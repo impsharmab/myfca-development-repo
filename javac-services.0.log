@@ -1,0 +1,3 @@
+INFO	?	main	2016-12-09T14:53:43.881Z	org.javacs.Main#connectToNode	Connected to parent using socket on port 55282
+INFO	?	main	2016-12-09T14:53:44.084Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\MyFcaWebApp+Service\myfca-dev2\src\main\java\com\imperialm\imiservices\rest\ResourceLoadController.java]
+INFO	?	main	2016-12-09T14:53:44.216Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath7125406874307208940.txt

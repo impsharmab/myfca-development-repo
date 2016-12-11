@@ -1,0 +1,60 @@
+<div id="main">
+    <div class="container">
+        <div class="section">
+            <div class="row">
+
+                <!--   Card Start  -->
+                
+                <div class="col s12 m6">  
+                                
+                    <div *ngFor="let tile of colOneArray">
+                        <div *ngFor="let tileName of tile.tiles">
+                            <div class="card horizontal"> 
+                                <div class="card-image">
+                                    <img src="{{tileName.tileImage}}">
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <div class="image-frame"><img src="{{tileName.tileHeaderImage}}"> </div>
+                                        <div class="data-group" *ngFor="let data of tileName.attributes">
+                                            <p class="data-point">{{data.value}}</p>
+                                        
+                                            <p class="data-substitle">{{data.name}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-action"> <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Visit Program Site</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col s12 m6">                    
+                    <div *ngFor="let tile of colTwoArray">
+                        <div *ngFor="let tileName of tile.tiles">
+                           <div class="card horizontal">
+                                <div class="card-image">
+                                    <img src="app/ts/contentbody/_img/card-01.jpg">
+                                </div>
+                                <div class="card-stacked">
+                                    <div class="card-content">
+                                        <div class="image-frame"><img src="app/ts/contentbody/_img/mser-logo.jpg"> </div>
+                                        <div class="data-group" *ngFor="let data of tileName.attributes">
+                                            <p>{{data.value}}</p>
+                                        
+                                            <p>{{data.name}}</p>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-action"> <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Visit Program Site</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,167 @@
+[
+  {
+    "order": 1,
+    "title": "MSER-GENERIC",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "8655",
+        "key": "DEALERS ENROLLED",
+        "type": "number"
+      },
+      {
+        "value": "5481",
+        "key": "TOP PERFORMANCE",
+        "type": "number"
+      },
+      {
+        "value": "14823",
+        "key": "EXCELLENCE CARD AWARDS YTD",
+        "type": "number"
+      },
+      {
+        "value": "442240",
+        "key": "DEALERSHIP PARTICIPANTS ENROLLED",
+        "type": "number"
+      },
+      {
+        "value": "442240",
+        "key": "BC Dealers Advisors Techs",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "order": 2,
+    "title": "TOP TECH",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "8655",
+        "key": "ENROLLED",
+        "type": "number"
+      },
+      {
+        "value": "5481",
+        "key": "Top BC Enrolled",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "order": 3,
+    "title": "TOP ADVISOR",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "8655",
+        "key": "ENROLLED",
+        "type": "number"
+      },
+      {
+        "value": "5481",
+        "key": "TOP BC Enrolled",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "order": 4,
+    "title": "SERVICE INCENTIVE REWARDS",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "Northeast",
+        "key": "Top BC YTD",
+        "type": "string"
+      },
+      {
+        "value": "5481",
+        "key": "Participants Enrolled",
+        "type": "number"
+      },
+      {
+        "value": "442240",
+        "key": "Dealership Excellence Card Awards YTD",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "order": 5,
+    "title": "WINNING LIFESTYLE",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "8655",
+        "key": "DEALERS ENROLLED",
+        "type": "number"
+      },
+      {
+        "value1": "125",
+        "value2": "250",
+        "key": "Project Trip Winners",
+        "type": "number"
+      },
+      {
+        "value": "442240",
+        "key": "Projected Excellence Card Winners",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "order": 6,
+    "title": "REWARDING EXCELLENCE VISA PREPAID CARD",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "3,409,510",
+        "key": "Total Cash Awards YTD",
+        "type": "number"
+      }
+    ]
+  },
+  {
+    "order": 7,
+    "title": "DEALER SITE",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "",
+        "key": "Learn MORE",
+        "type": "string"
+      },
+      {
+        "value": "",
+        "key": "visit mopar.dealer.com",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "order": 8,
+    "title": "Customer First",
+    "title_image": "",
+    "data_image": "",
+    "data": [
+      {
+        "value": "8655",
+        "key": "Inaugral Winner",
+        "type": "number"
+      },
+      {
+        "value": "5481",
+        "key": "Projected Winners (Current Year)",
+        "type": "number"
+      }
+    ]
+  }
+]

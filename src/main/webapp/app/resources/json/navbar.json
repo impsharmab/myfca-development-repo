@@ -1,0 +1,54 @@
+[  
+   {  
+      "menubar":[  
+         {  
+            "menubar_order":"1",
+            "menubar_name":"Dashboard",
+            "menubar_url":"http://localhost:3002/app/userdetail.json"
+         },
+         {  
+            "menubar_order":"2",
+            "menubar_name":"MSER",
+            "menubar_url":""
+         },
+         {  
+            "menubar_order":"1",
+            "menubar_name":"Service Intensive Rewards",
+            "menubar_url":""
+         },
+         {  
+            "menubar_order":"1",
+            "menubar_name":"Top Advisor",
+            "menubar_url":""
+         },
+         {  
+            "menubar_order":"1",
+            "menubar_name":"FCA Rewards Redmption",
+            "menubar_url":""
+         },
+         {  
+            "menubar_order":"1",
+            "menubar_name":"MSER Program rules",
+            "menubar_url":""
+         },
+         {  
+            "menubar_order":"1",
+            "menubar_name":"View Dealer",
+            "menubar_url":""
+         }
+      ]
+   },
+   {  
+      "image_slider":[  
+         {  
+            "image1":"app/resources/images/slider/david.jpg"
+         },
+         {  
+            "image2":"imag2Url"
+         },
+         {  
+            "image3":"imag3Url"
+         }
+      ]
+   }
+]

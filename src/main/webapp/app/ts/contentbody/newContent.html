@@ -1,0 +1,48 @@
+
+
+<div class="row no-gutter">
+                <div class="col-xs-12 col-md-6">
+                    <div  *ngFor="let tile of colOneArray">
+                        <div class="panel panel-default" *ngFor="let tileName of tile.tile">
+                        <div class="panel-heading"><img class="col-xs-4 no-gutter" src="{{tile.TileHeaderImage}}"><label class="pull-right col-xs-8 text-right no-gutter panel-captcha">{{tileName.TileName}}</label></div>
+                        <div class="panel-body">
+                            <div class="col-xs-6">
+                                <div class="panel-text" *ngFor="let data of tileName.attribute">
+                                    <div class="panel-text" *ngFor="let value of data.tileattribute">
+                                    <p>{{value.AttributeValue}}</p>
+                                    </div>
+                                    <h3>{{data.AttributeName}}</h3>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="col-xs-6"><img src="{{tile.TileImage}}" class="img-responsive widget-block">
+                                <label class="pull-right visit-site"><a href="{{tile.url}}">{{tile.TileUrlName}} <span><i class="glyphicon glyphicon-chevron-right"></i></span></a></label>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div  *ngFor="let tile of colTwoArray">
+                        <div class="panel panel-default" *ngFor="let tileName of tile.tile">
+                        <div class="panel-heading"><img class="col-xs-4 no-gutter" src="{{tile.TileHeaderImage}}"><label class="pull-right col-xs-8 text-right no-gutter panel-captcha">{{tileName.TileName}}</label></div>
+                        <div class="panel-body">
+                            <div class="col-xs-6">
+                                <div class="panel-text" *ngFor="let data of tileName.attribute">
+                                    <div class="panel-text" *ngFor="let value of data.tileattribute">
+                                    <p>{{value.AttributeValue}}</p>
+                                    </div>
+                                    <h3>{{data.AttributeName}}</h3>
+                                    
+                                </div>
+                               
+                            </div>
+                            <div class="col-xs-6"><img src="{{tile.TileImage}}" class="img-responsive widget-block">
+                                <label class="pull-right visit-site"><a href="{{tile.url}}">{{tile.TileUrlName}} <span><i class="glyphicon glyphicon-chevron-right"></i></span></a></label>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+</div>
