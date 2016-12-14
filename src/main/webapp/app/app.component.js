@@ -89,8 +89,8 @@ AppComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'my-app',
-        //templateUrl: './app.component.html',
-        templateUrl: './login.html',
+        templateUrl: './app.component.html',
+        //templateUrl: './login.html',
         providers: [app_component_service_1.MyFcaService]
     }),
     __metadata("design:paramtypes", [app_component_service_1.MyFcaService, router_1.Router, http_1.Http])

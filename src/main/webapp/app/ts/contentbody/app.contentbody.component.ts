@@ -15,18 +15,16 @@ Highcharts.setOptions({
     moduleId:module.id,
     selector:"app-content",  
     templateUrl:  "./content_new.html"
+   
   
 })
 export class ContentSection implements OnInit{
    @Input('tiles') tilesArray:any;
     
 
-    ngOnInit() {
-      
-           }
+   ngOnInit() {  }
 
-        constructor(private service:MyFcaService){
-           }     
+   constructor(private service:MyFcaService){  }     
 
         
 }

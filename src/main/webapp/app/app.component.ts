@@ -13,8 +13,8 @@ import {Observable} from 'rxjs/Rx';
   moduleId:module.id,
   selector: 'my-app',
  
- //templateUrl: './app.component.html',
- templateUrl: './login.html',
+ templateUrl: './app.component.html',
+ //templateUrl: './login.html',
   providers:[MyFcaService]
 })
 export class AppComponent implements OnInit{

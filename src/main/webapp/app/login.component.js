@@ -21,9 +21,8 @@ LoginComponent = __decorate([
         selector: 'home',
         template: "\n    <h4 *ngIf=\"auth.authenticated()\">You are logged in</h4>\n    <h4 *ngIf=\"!auth.authenticated()\">You are not logged in, please click 'Log in' button to login</h4>\n  "
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.Auth !== "undefined" && auth_service_1.Auth) === "function" && _a || Object])
+    __metadata("design:paramtypes", [auth_service_1.Auth])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 ;
-var _a;
 //# sourceMappingURL=login.component.js.map
