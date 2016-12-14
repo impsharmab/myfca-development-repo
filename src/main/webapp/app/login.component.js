@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var app_component_service_1 = require("../../app.component.service");
-var NavImageComponent = (function () {
-    function NavImageComponent() {
+var auth_service_1 = require("./auth.service");
+var LoginComponent = (function () {
+    function LoginComponent(auth) {
+        this.auth = auth;
     }
-    NavImageComponent.prototype.ngOnInit = function () { };
-    return NavImageComponent;
+    return LoginComponent;
 }());
-NavImageComponent = __decorate([
+LoginComponent = __decorate([
     core_1.Component({
-        selector: "nav-image",
-        templateUrl: "./app/ts/navbar/new-navbar.html",
-        providers: [app_component_service_1.MyFcaService]
+        selector: 'home',
+        template: "\n    <h4 *ngIf=\"auth.authenticated()\">You are logged in</h4>\n    <h4 *ngIf=\"!auth.authenticated()\">You are not logged in, please click 'Log in' button to login</h4>\n  "
     }),
-    __metadata("design:paramtypes", [])
-], NavImageComponent);
-exports.NavImageComponent = NavImageComponent;
-//# sourceMappingURL=navbar.component.js.map
+    __metadata("design:paramtypes", [typeof (_a = typeof auth_service_1.Auth !== "undefined" && auth_service_1.Auth) === "function" && _a || Object])
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+;
+var _a;
+//# sourceMappingURL=login.component.js.map

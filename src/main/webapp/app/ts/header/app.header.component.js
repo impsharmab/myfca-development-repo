@@ -10,31 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var app_component_service_1 = require("../../app.component.service");
-var loc1 = window.location.pathname;
-var nloc1 = loc1.slice(0, -10);
 var HeaderSection = (function () {
     function HeaderSection(service) {
         this.service = service;
-        this.myUsers = {};
-        console.log("new test" + nloc1);
     }
-    HeaderSection.prototype.ngOnInit = function () {
-        this.getUsersDetail();
-    };
-    HeaderSection.prototype.getUsersDetail = function () {
-        var _this = this;
-        //  console.log("test" +nloc1);
-        this.service.getUsersData()
-            .subscribe(function (resUserData) { return _this.myUsers = resUserData; });
-    };
+    HeaderSection.prototype.ngOnInit = function () { };
     return HeaderSection;
 }());
+__decorate([
+    core_1.Input('data'),
+    __metadata("design:type", Object)
+], HeaderSection.prototype, "userDetails", void 0);
 HeaderSection = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-header",
-        // npm url
-        templateUrl: "./header.html"
+        templateUrl: "./newDesignHeader.html"
     }),
     __metadata("design:paramtypes", [app_component_service_1.MyFcaService])
 ], HeaderSection);

@@ -9,20 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var loc4 = window.location.pathname;
-var nloc4 = loc4.slice(0, -10);
 var FooterSection = (function () {
     function FooterSection() {
     }
-    FooterSection.prototype.methodd = function () { console.log("loc44" + nloc4); };
     return FooterSection;
 }());
 FooterSection = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-footer",
-        // npm url  
-        templateUrl: "./footer.html"
+        templateUrl: "./new-footer.html"
     }),
     __metadata("design:paramtypes", [])
 ], FooterSection);

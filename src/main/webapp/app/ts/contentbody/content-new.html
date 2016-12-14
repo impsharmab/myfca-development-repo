@@ -1,0 +1,31 @@
+<div id="main">
+    <div class="container">
+        <div class="section">
+            <!--   Icon Section   -->
+            <div class="row">
+                <!--   Card Start  -->
+                <div class="col s12 m6" *ngFor="let tile of tilesArray">
+                    <div class="card horizontal">
+                        <div class="card-image">
+                            <img src="/imiservices/services/loadrsc?id={{tiles.tileImage}}">
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content">
+                                <div class="image-frame"><img src="/imiservices/services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
+                                <div class="data-group" *ngFor="let data of tile.attributes">
+                                    <p class="data-point">{{data.value}}</p>
+
+                                    <p class="data-substitle">{{data.name}}</p>
+                                </div>
+                            </div>
+                            <div class="card-action"> <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Visit Program Site</a></div>
+                        </div>
+                    </div>
+                </div>
+                <!--   Card Stop  -->
+                <!--   Card Start  -->
+
+            </div>
+        </div>
+    </div>
+</div>

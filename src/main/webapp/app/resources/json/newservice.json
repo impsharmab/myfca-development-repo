@@ -1,4 +1,4 @@
-[  
+  
    {  
       "programcode":"MSER",
       "error":"",
@@ -8,7 +8,7 @@
             "tileHeaderImage":"app/ts/contentbody/_img/mser-logo.jpg",
             "tileImage":"app/ts/contentbody/_img/card-01.jpg",
             "tileURL":"www.mopar.com",
-            "tileOrder":1,
+            "tileOrder":2,
             "attributes":[  
                {  
                   "name":"Excellence Card Awards MSER MTD",
@@ -29,7 +29,7 @@
             "tileHeaderImage":"app/ts/contentbody/_img/mser-logo.jpg",
             "tileImage":"app/ts/contentbody/_img/card-01.jpg",
             "tileURL":"www.mopar.com",
-            "tileOrder":2,
+            "tileOrder":1,
             "attributes":[  
                {  
                   "name":"Total Dealers Enrolled + %",
@@ -284,4 +284,3 @@
          }
       ]
    }
-]

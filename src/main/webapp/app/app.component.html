@@ -1,26 +1,22 @@
+<title>
+    MSER Program Director</title>
 
-        <title>MSER Program Director</title>
-     
-    
-        <!-- Header  -->
-      <!--<app-header>header .... </app-header>
-      <nav-image>navbar .....</nav-image>
-      -->
-        <!-- Page Content -->
-        <div class="container-fluid">
-            <hr>
-            <!-- Page Heading -->
-            <!-- <div class="row">
+
+<app-header [data]="userdata">header .... </app-header>
+<!--<nav-image>navbar .....</nav-image>-->
+
+<!-- Page Content -->
+<!--<div class="container-fluid">-->
+    <!--<hr>-->
+    <!-- Page Heading -->
+    <!-- <div class="row">
                <div class="col-lg-12">
                    <h1 class="page-header">Page Heading
                        <small>Secondary Text</small>
                    </h1>
                </div>
                </div> -->
-            <!-- /.row -->
-            <!-- Projects Row -->
-           <app-content>content ....</app-content>
-           <!--<app-footer>footer ... </app-footer>-->
-        </div>
-       
-        
+    <!-- /.row -->
+    <!-- Projects Row -->
+    <app-content [tiles] ="tilesArray" >content ....</app-content>
+    <app-footer>footer ... </app-footer> 

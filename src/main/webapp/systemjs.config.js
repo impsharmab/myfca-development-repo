@@ -3,10 +3,10 @@
  * Adjust as necessary for your application needs.
  */
 (function (global) {
-	var loc=window.location.pathname;
+	//var loc=window.location.pathname;
 	//console.log(loc);
 	//loc = "/MyFcaWebApp/MyFcaDashboard/index.html";
-	var nloc = loc.slice(0,-10);
+	//var nloc = loc.slice(0,-10);
 	//console.log(nloc);
 	//nloc=MyFcaWebApp/MyFcaDashboard
   System.config({

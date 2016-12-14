@@ -12,12 +12,13 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
+var angular2_highcharts_1 = require("angular2-highcharts");
+var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var app_header_component_1 = require("./ts/header/app.header.component");
 var app_footer_component_1 = require("./ts/footer/app.footer.component");
 var app_contentbody_component_1 = require("./ts/contentbody/app.contentbody.component");
 var navbar_component_1 = require("./ts/navbar/navbar.component");
-var angular2_highcharts_1 = require("angular2-highcharts");
 var app_component_service_1 = require("./app.component.service");
 var AppModule = (function () {
     function AppModule() {
@@ -26,7 +27,14 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, angular2_highcharts_1.ChartModule],
+        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, angular2_highcharts_1.ChartModule, forms_1.ReactiveFormsModule,
+            router_1.RouterModule.forRoot([
+                {
+                    path: "login",
+                    component: app_component_1.AppComponent
+                }
+            ])
+        ],
         providers: [app_component_service_1.MyFcaService],
         declarations: [app_component_1.AppComponent, app_header_component_1.HeaderSection, app_footer_component_1.FooterSection, app_contentbody_component_1.ContentSection, navbar_component_1.NavImageComponent],
         bootstrap: [app_component_1.AppComponent]

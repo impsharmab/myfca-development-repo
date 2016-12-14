@@ -1,0 +1,86 @@
+.logo{
+    padding-left:0px !important;
+    margin-top: 15px !important;
+}
+body {
+
+    font-family: 'Open Sans', sans-serif;
+    background: #000 url(/app/resources/images/login/loginBg.jpg) no-repeat center top;
+    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+.headerarea{
+    margin-top: 5px;
+    color: #fff;
+
+}
+.text-danger {
+    color: #ff0000;
+    margin: 0 0 5px 0;
+    float: left;
+    width: 100%;
+}
+.panel-login .panel-body .form-textbox {
+    min-height: 45px;
+}
+.navbar {
+    border-radius: 0px important;
+}
+.panel-login .panel-body {
+    min-height: 245px;
+}
+.navbar {
+    position: relative;
+    min-height: 30px;
+    margin-bottom: 20px !important; 
+    border: 1px solid transparent;
+}
+#loginbox .input-group{
+    margin-bottom:10px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #e4c882;
+}
+
+
+
+.panel-login .panel-body{
+    background: url(/app/resources/images/login/loginwrpBg.jpg) left center no-repeat #252525;
+}
+
+.nolisting li{
+    list-style: none;
+    float: left;
+    padding: 0 15px;
+}
+.nolisting li:first-child{
+
+    padding-left:0;
+}
+.panel-login{
+    border-color: #000000 !important;
+}
+.sub-btn{
+    color: #fff !important;
+    background-color: #6784C1;
+    border-color: #6783C0;
+
+}
+.fpwd{
+    color: #e4c882 !important;
+}
+.panel{
+    margin-bottom: 10px !important;
+}
+
+.list-inline {
+    display: table !important;
+    width: 100% !important;
+
+}
+.list-inline li {
+    display: table-cell !important;
+    text-align: center !important;
+
+    float:none !important;
+}
