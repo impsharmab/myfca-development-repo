@@ -20,8 +20,15 @@ var MyFcaService = (function () {
         this.userprofiletestJsonUrl = "./app/resources/json/userprofiletest.json";
         this.userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json"; //imiservices/services/userprofiletest?id=S12345&key=password";
         this.newService = "/app/resources/json/newservicejson.json";
+        this.titles = new Array();
         this.userdata = {};
     }
+    MyFcaService.prototype.setTiles = function (titles) {
+        this.titles = titles;
+    };
+    MyFcaService.prototype.getTiles = function () {
+        return this.titles;
+    };
     MyFcaService.prototype.getUsers = function () {
         var mytestUsers = this.http.get(this.userDetailUrl)
             .map(function (response) { return response.json(); })
@@ -38,15 +45,15 @@ var MyFcaService = (function () {
         //   return myFcaUsers;
         return this.userdata;
     };
-    MyFcaService.prototype.getNewServiceJSON = function () {
-        // var serviceurl = "/imiservices/services/userprofiletest?id="+loginUsername+"&key="+loginPassword"
-        var tileDataThroughService = this.http.get(this.userprofiletestServiceUrl)
+    MyFcaService.prototype.getNewServiceJSON = function (username, password) {
+        var serviceurl = "/imiservices/services/userprofiletest?id=" + username + "&key=" + password;
+        var tileDataThroughService = this.http.get(serviceurl)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;
     };
     MyFcaService.prototype.getTileDataThroughService = function () {
-        // var newServiceUrl="/imiservices/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
+        //var newServiceUrl="/imiservices/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
         var userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json";
         // var serviceUrl="/imiservices/services/tileslistbyrole?role="+this.userdata.access[0].roleID+"&id="+this.userdata.userID;
         var tileDataThroughService = this.http.get(userprofiletestServiceUrl)
@@ -54,6 +61,7 @@ var MyFcaService = (function () {
             .catch(this.handleError);
         return tileDataThroughService;
     };
+    // <nfSubmit =getTileDataThroughService();> Login</>
     MyFcaService.prototype.extractData = function (res) {
         var body = res.json();
         return body.data || {};

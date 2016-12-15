@@ -19,6 +19,7 @@ Highcharts.setOptions({
   
 })
 export class ContentSection implements OnInit{
+    
    @Input('tiles') tilesArray:any;
     
 

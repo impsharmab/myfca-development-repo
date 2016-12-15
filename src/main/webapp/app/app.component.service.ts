@@ -12,13 +12,18 @@ export class MyFcaService{
   private userprofiletestJsonUrl= "./app/resources/json/userprofiletest.json";
   private userprofiletestServiceUrl="./app/resources/json/userprofiletest.json" //imiservices/services/userprofiletest?id=S12345&key=password";
   private newService="/app/resources/json/newservicejson.json";
-  
+  private titles =new Array();
   private userdata={ 
    
   }
 
   constructor(private http : Http){  }
-
+setTiles(titles){
+  this.titles = titles;
+}
+getTiles(){
+  return this.titles;
+}
   getUsers() {
     var mytestUsers =  this.http.get(this.userDetailUrl)
       .map((response:Response) => response.json())
@@ -37,16 +42,16 @@ export class MyFcaService{
       //   return myFcaUsers;
          return this.userdata;
     }
-    getNewServiceJSON():any{
- // var serviceurl = "/imiservices/services/userprofiletest?id="+loginUsername+"&key="+loginPassword"
-    var tileDataThroughService =  this.http.get(this.userprofiletestServiceUrl)
+    getNewServiceJSON(username,password):any{
+ var serviceurl = "/imiservices/services/userprofiletest?id="+username+"&key="+password;
+    var tileDataThroughService =  this.http.get(serviceurl)
         .map((response:Response) => response.json()) 
         .catch(this.handleError);
         return tileDataThroughService;
 }
   
     getTileDataThroughService():any {
-   // var newServiceUrl="/imiservices/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
+    //var newServiceUrl="/imiservices/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
     var  userprofiletestServiceUrl="./app/resources/json/userprofiletest.json";
     // var serviceUrl="/imiservices/services/tileslistbyrole?role="+this.userdata.access[0].roleID+"&id="+this.userdata.userID;
     var tileDataThroughService =  this.http.get(userprofiletestServiceUrl)
@@ -54,6 +59,8 @@ export class MyFcaService{
         .catch(this.handleError);
         return tileDataThroughService;
     }
+
+    // <nfSubmit =getTileDataThroughService();> Login</>
     
 
     private extractData(res: Response) {

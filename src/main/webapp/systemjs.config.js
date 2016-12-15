@@ -3,8 +3,8 @@
  * Adjust as necessary for your application needs.
  */
 (function (global) {
-	//var loc=window.location.pathname;
-	//console.log(loc);
+	var loc=window.location.pathname;
+	console.log(loc);
 	//loc = "/MyFcaWebApp/MyFcaDashboard/index.html";
 	//var nloc = loc.slice(0,-10);
 	//console.log(nloc);
@@ -13,14 +13,14 @@
     paths: {
       // paths serve as alias
     // npm url     
-    'npm:': 'node_modules/'
+    'npm:': 'imiservices/node_modules/'
     //tomcat url 'npm:': '/MyFcaWebApp/MyFcaDashboard/node_modules/'
     },
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
      //npm url    
-      app: 'app',
+      app: 'imiservices/app',
     // tomacat url      app: '/MyFcaWebApp/MyFcaDashboard/app',
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',

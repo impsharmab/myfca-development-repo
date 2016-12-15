@@ -13,8 +13,8 @@ import {Observable} from 'rxjs/Rx';
   moduleId:module.id,
   selector: 'my-app',
  
- templateUrl: './app.component.html',
- //templateUrl: './login.html',
+ //templateUrl: './app.component.html',
+ templateUrl: './login.html',
   providers:[MyFcaService]
 })
 export class AppComponent implements OnInit{
@@ -32,8 +32,47 @@ export class AppComponent implements OnInit{
    
    
     ngOnInit(){
-      this.service.getNewServiceJSON().subscribe(
+    //   this.service.getNewServiceJSON().subscribe(
+    //   (resUserData) => {
+    //     this.userdata["userID"] = resUserData["userID"];
+    //     this.userdata["name"] = resUserData["name"];
+    //     this.userdata["email"] = resUserData["email"];
+    //     this.userdata["access"] = resUserData["access"];
+    //     this.service.setUserData(this.userdata);
+    //     this.menu = resUserData["menus"];
+    //     this.banners = resUserData["banners"]
+    //     this.tilesArray = resUserData.dashboard[0]["tiles"];
+    //     this.tilesArray.sort((one, two) => {
+    //       return one.tileOrder - two.tileOrder;
+    //     })
+    //     this.service.setTiles(this.tilesArray);
+    //   }
+    // )
+    /* Login Validation */
+        this.user = {
+            username: '',
+            password: '',
+        }
+        /* Login Validation End */
+
+        /** User Details
+         * Get User details tiles for the dashboard
+         */
+
+    }
+    log:boolean = false;
+    public login() {
+
+        // Call the show method to display the widget.
+        
+        // let headers = new Headers({ 'Content-Type': 'application/json' });
+        // let options = new RequestOptions({ headers: headers });
+    
+        //  this.http.post("app/userdetail.json", { username, password }, options)
+        //             .catch(this.handleError);
+         this.service.getNewServiceJSON(this.user.username,this.user.password).subscribe(
       (resUserData) => {
+          alert(resUserData["userID"]);
         this.userdata["userID"] = resUserData["userID"];
         this.userdata["name"] = resUserData["name"];
         this.userdata["email"] = resUserData["email"];
@@ -45,32 +84,13 @@ export class AppComponent implements OnInit{
         this.tilesArray.sort((one, two) => {
           return one.tileOrder - two.tileOrder;
         })
+       this.log = true;
+        let url = ["myfcadashboard"]
+    this.router.navigate(url);
+})
+        
 
-      }
-    )
-    /* Login Validation */
-        this.user = {
-            username: '',
-            password: '',
-        },
-        /* Login Validation End */
-
-        /** User Details
-         * Get User details tiles for the dashboard
-         */
-        this.getUsersDetail();
     }
-    public login(username, password) {
-
-        // Call the show method to display the widget.
-        
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-    
-        return this.http.post("app/userdetail.json", { username, password }, options)
-                    .catch(this.handleError);
-        
-    };
 
     //HTTP Response Error
     private handleError (error: Response | any) {
@@ -79,7 +99,7 @@ export class AppComponent implements OnInit{
         if (error instanceof Response) {
             const body = error.json() || '';
             const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+            errMsg = `${error.status} - ${error.statusText || ''} ${err};
         } else {
             errMsg = error.message ? error.message : error.toString();
         }

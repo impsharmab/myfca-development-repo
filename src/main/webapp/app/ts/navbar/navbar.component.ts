@@ -5,7 +5,9 @@ import {MyFcaService} from '../../app.component.service';
 
 @Component({
     selector:"nav-image",
-   templateUrl: "./app/ts/navbar/new-navbar.html", 
+    template:"hello",
+//    templateUrl: "imiservices/app/ts/navbar/new-navbar.html", 
+   
     providers:[MyFcaService]
 })
 

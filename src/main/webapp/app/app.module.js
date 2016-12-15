@@ -19,6 +19,7 @@ var app_header_component_1 = require("./ts/header/app.header.component");
 var app_footer_component_1 = require("./ts/footer/app.footer.component");
 var app_contentbody_component_1 = require("./ts/contentbody/app.contentbody.component");
 var navbar_component_1 = require("./ts/navbar/navbar.component");
+var app_view_component_1 = require("./app.view.component");
 var app_component_service_1 = require("./app.component.service");
 var AppModule = (function () {
     function AppModule() {
@@ -32,11 +33,11 @@ AppModule = __decorate([
                 {
                     path: "login",
                     component: app_component_1.AppComponent
-                }
+                }, { path: "myfcadashboard", component: app_view_component_1.ViewComponent }
             ])
         ],
         providers: [app_component_service_1.MyFcaService],
-        declarations: [app_component_1.AppComponent, app_header_component_1.HeaderSection, app_footer_component_1.FooterSection, app_contentbody_component_1.ContentSection, navbar_component_1.NavImageComponent],
+        declarations: [app_component_1.AppComponent, app_header_component_1.HeaderSection, app_footer_component_1.FooterSection, app_contentbody_component_1.ContentSection, navbar_component_1.NavImageComponent, app_view_component_1.ViewComponent],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])

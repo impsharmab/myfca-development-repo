@@ -19,7 +19,8 @@ var NavImageComponent = (function () {
 NavImageComponent = __decorate([
     core_1.Component({
         selector: "nav-image",
-        templateUrl: "./app/ts/navbar/new-navbar.html",
+        template: "hello",
+        //    templateUrl: "imiservices/app/ts/navbar/new-navbar.html", 
         providers: [app_component_service_1.MyFcaService]
     }),
     __metadata("design:paramtypes", [])

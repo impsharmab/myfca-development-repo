@@ -15,6 +15,7 @@ import { ContentSection } from './ts/contentbody/app.contentbody.component'
 import { NavImageComponent } from './ts/navbar/navbar.component';
 import { routing,appRoutingProviders } from './app.routes';
 
+import { ViewComponent }               from './app.view.component';
 
 import {MyFcaService} from './app.component.service'
 
@@ -24,11 +25,11 @@ import {MyFcaService} from './app.component.service'
                     {
                     path:"login",
                     component: AppComponent
-                    } 
+                    } ,{path:"myfcadashboard",component:ViewComponent}
                   ])
                 ],
   providers:[ MyFcaService ],
-  declarations: [ AppComponent,HeaderSection,FooterSection,ContentSection,NavImageComponent],
+  declarations: [ AppComponent,HeaderSection,FooterSection,ContentSection,NavImageComponent, ViewComponent],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule {
