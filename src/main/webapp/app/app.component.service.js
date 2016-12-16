@@ -16,10 +16,10 @@ var MyFcaService = (function () {
     function MyFcaService(http) {
         this.http = http;
         this.userDetailUrl = "/app/resources/json/userdetail.json"; // /imiservices/app/resources/json/userdetail.json"; 
-        this.serviceUrl = ""; //"/imiservices/services/tileslistbyrole?role=2&id=S12345";
-        this.userprofiletestJsonUrl = "./app/resources/json/userprofiletest.json";
-        this.userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json"; //imiservices/services/userprofiletest?id=S12345&key=password";
-        this.newService = "/app/resources/json/newservicejson.json";
+        // private serviceUrl = "" //"/imiservices/services/tileslistbyrole?role=2&id=S12345";
+        // private userprofiletestJsonUrl = "./app/resources/json/userprofiletest.json";
+        // private userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json" //imiservices/services/userprofiletest?id=S12345&key=password";
+        // private newService = "/app/resources/json/newservicejson.json";
         this.titles = new Array();
         this.userdata = {};
     }
@@ -46,21 +46,32 @@ var MyFcaService = (function () {
         return this.userdata;
     };
     MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        var serviceurl = "/imiservices/services/userprofiletest?id=" + username + "&key=" + password;
-        var tileDataThroughService = this.http.get(serviceurl)
+        var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
+        var tileDataThroughService = this.http.post(serviceurl, {})
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;
     };
-    MyFcaService.prototype.getTileDataThroughService = function () {
-        //var newServiceUrl="/imiservices/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
-        var userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json";
-        // var serviceUrl="/imiservices/services/tileslistbyrole?role="+this.userdata.access[0].roleID+"&id="+this.userdata.userID;
-        var tileDataThroughService = this.http.get(userprofiletestServiceUrl)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-        return tileDataThroughService;
-    };
+    //     getNewServiceJSON(username, password): any {
+    //         var serviceurl = "services/userprofiletest?id=" + username + "&key=" + password;
+    //         setTimeout(() => 
+    // {
+    //     var tileDataThroughService = this.http.get(serviceurl)
+    //             .map((response: Response) => response.json())
+    //             .catch(this.handleError);
+    //    return tileDataThroughService;
+    // },
+    // 1000);
+    //var userprofiletestServiceUrl = "app/resources/json/userprofiletest.json"
+    // getTileDataThroughService(): any {
+    //    // var newServiceUrl="/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
+    //    // var userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json";
+    //     // var serviceUrl="/imiservices/services/tileslistbyrole?role="+this.userdata.access[0].roleID+"&id="+this.userdata.userID;
+    //     var tileDataThroughService = this.http.get(newServiceUrl)
+    //         .map((response: Response) => response.json())
+    //         .catch(this.handleError);
+    //     return tileDataThroughService;
+    // }
     // <nfSubmit =getTileDataThroughService();> Login</>
     MyFcaService.prototype.extractData = function (res) {
         var body = res.json();
@@ -86,11 +97,17 @@ var MyFcaService = (function () {
         headersObj.append('Access-Control-Allow-Methods', 'GET');
         headersObj.append('Access-Control-Allow-Origin', '*');
         this.http
-            .get("http://localhost:3000/app/json/jsonData.json", { headers: headersObj })
+            .get("http://localhost:3000/app/json/jsonData.json", {
+            headers: headersObj
+        })
             .map(function (response) {
             console.log(response.json().data);
         })
-            .catch(function (rr) { alert(); console.log(rr); return rr; }).subscribe(function (heroes) { return console.log(heroes); }, function (error) { return console.log(error); });
+            .catch(function (rr) {
+            alert();
+            console.log(rr);
+            return rr;
+        }).subscribe(function (heroes) { return console.log(heroes); }, function (error) { return console.log(error); });
     };
     return MyFcaService;
 }());

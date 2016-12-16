@@ -13,6 +13,7 @@ var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var app_component_service_1 = require("./app.component.service");
 require("./rxjs-operators");
+var Rx_1 = require("rxjs/Rx");
 var AppComponent = (function () {
     function AppComponent(service, router, http) {
         this.service = service;
@@ -81,8 +82,25 @@ var AppComponent = (function () {
         if (error instanceof http_1.Response) {
             var body = error.json() || '';
             var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err + ";\n        } else {\n            errMsg = error.message ? error.message : error.toString();\n        }\n        console.error(errMsg);\n        return Observable.throw(errMsg);\n    }\n    \n\n    getData(){};\n    getUsersDetail() {\n        this.service.getUsers()\n            .subscribe(\n                resUserData => this.sampleUsers = resUserData\n\n            )\n           // console.log(this.sampleUsers)\n    }\n\n    save(model: User, isValid: boolean) {\n        // call API to save customer\n        console.log(model, isValid);\n    }\n\n}\n";
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
         }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
+        console.error(errMsg);
+        return Rx_1.Observable.throw(errMsg);
+    };
+    AppComponent.prototype.getData = function () { };
+    ;
+    AppComponent.prototype.getUsersDetail = function () {
+        var _this = this;
+        this.service.getUsers()
+            .subscribe(function (resUserData) { return _this.sampleUsers = resUserData; });
+        // console.log(this.sampleUsers)
+    };
+    AppComponent.prototype.save = function (model, isValid) {
+        // call API to save customer
+        console.log(model, isValid);
     };
     return AppComponent;
 }());
@@ -91,7 +109,7 @@ AppComponent = __decorate([
         moduleId: module.id,
         selector: 'my-app',
         //templateUrl: './app.component.html',
-        templateUrl: './login.html',
+        templateUrl: './ts/login/login.html',
         providers: [app_component_service_1.MyFcaService]
     }),
     __metadata("design:paramtypes", [app_component_service_1.MyFcaService, router_1.Router, http_1.Http])

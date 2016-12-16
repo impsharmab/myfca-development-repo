@@ -57,9 +57,11 @@ var EqualValidator = EqualValidator_1 = (function () {
 EqualValidator = EqualValidator_1 = __decorate([
     core_1.Directive({
         selector: '[validateEqual][formControlName],[validateEqual][formControl],[validateEqual][ngModel]',
-        providers: [
-            { provide: forms_1.NG_VALIDATORS, useExisting: core_1.forwardRef(function () { return EqualValidator_1; }), multi: true }
-        ]
+        providers: [{
+                provide: forms_1.NG_VALIDATORS,
+                useExisting: core_1.forwardRef(function () { return EqualValidator_1; }),
+                multi: true
+            }]
     }),
     __param(0, core_1.Attribute('validateEqual')),
     __param(1, core_1.Attribute('reverse')),

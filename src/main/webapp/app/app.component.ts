@@ -4,7 +4,7 @@ import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 
-import { User } from './user.interface';
+import { User } from './ts/login/user.interface';
 import {MyFcaService} from './app.component.service';
 import './rxjs-operators';
 import {Observable} from 'rxjs/Rx';
@@ -14,7 +14,7 @@ import {Observable} from 'rxjs/Rx';
   selector: 'my-app',
  
  //templateUrl: './app.component.html',
- templateUrl: './login.html',
+ templateUrl: './ts/login/login.html',
   providers:[MyFcaService]
 })
 export class AppComponent implements OnInit{
@@ -61,7 +61,8 @@ export class AppComponent implements OnInit{
 
     }
     log:boolean = false;
-    public login() {
+    public login() { //why login method is ! private???
+         
 
         // Call the show method to display the widget.
         
@@ -83,6 +84,7 @@ export class AppComponent implements OnInit{
         this.tilesArray = resUserData.dashboard[0]["tiles"];
         this.tilesArray.sort((one, two) => {
           return one.tileOrder - two.tileOrder;
+         
         })
        this.log = true;
         let url = ["myfcadashboard"]
@@ -99,7 +101,7 @@ export class AppComponent implements OnInit{
         if (error instanceof Response) {
             const body = error.json() || '';
             const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err};
+            errMsg = `${error.status} - ${error.statusText || ''} ${err}`
         } else {
             errMsg = error.message ? error.message : error.toString();
         }

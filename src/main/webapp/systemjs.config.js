@@ -13,15 +13,15 @@
     paths: {
       // paths serve as alias
     // npm url     
-    'npm:': 'imiservices/node_modules/'
-    //tomcat url 'npm:': '/MyFcaWebApp/MyFcaDashboard/node_modules/'
+    'npm:': 'node_modules/'
+    //tomcat url   'npm:': 'imiservices/node_modules/'
     },
     // map tells the System loader where to look for things
     map: {
       // our app is within the app folder
      //npm url    
-      app: 'imiservices/app',
-    // tomacat url      app: '/MyFcaWebApp/MyFcaDashboard/app',
+      app: 'app',
+    // tomacat url      app: 'imiservices/app',
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',

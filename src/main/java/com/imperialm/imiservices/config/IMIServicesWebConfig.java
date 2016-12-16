@@ -28,8 +28,11 @@ public class IMIServicesWebConfig extends WebMvcConfigurerAdapter {
 	public void configureViewResolvers(final ViewResolverRegistry registry) {
 		final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setPrefix("/WEB-INF/views/");
+//		viewResolver.setPrefix("/WEB-INF/views/");
+//		viewResolver.setSuffix(".html");
+		viewResolver.setPrefix("/");
 		viewResolver.setSuffix(".html");
+		
 		registry.viewResolver(viewResolver);
 	}
 
