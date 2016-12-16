@@ -14,13 +14,15 @@ var HeaderSection = (function () {
     function HeaderSection(service) {
         this.service = service;
     }
-    HeaderSection.prototype.ngOnInit = function () { };
+    HeaderSection.prototype.ngOnInit = function () {
+        this.data = JSON.parse(localStorage.getItem("CurrentUser"));
+    };
     return HeaderSection;
 }());
 __decorate([
-    core_1.Input('data'),
+    core_1.Input(),
     __metadata("design:type", Object)
-], HeaderSection.prototype, "userDetails", void 0);
+], HeaderSection.prototype, "data", void 0);
 HeaderSection = __decorate([
     core_1.Component({
         moduleId: module.id,

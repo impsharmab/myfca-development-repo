@@ -21,6 +21,7 @@ var app_header_component_1 = require("./ts/header/app.header.component");
 var app_footer_component_1 = require("./ts/footer/app.footer.component");
 var app_contentbody_component_1 = require("./ts/contentbody/app.contentbody.component");
 var navbar_component_1 = require("./ts/navbar/navbar.component");
+var login_component_1 = require("./ts/login/login.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,16 +30,16 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, angular2_highcharts_1.ChartModule, forms_1.ReactiveFormsModule,
-            router_1.RouterModule.forRoot([{
+            router_1.RouterModule.forRoot([{ path: '', redirectTo: 'login', pathMatch: 'full' }, {
                     path: "login",
-                    component: app_component_1.AppComponent
+                    component: login_component_1.Login
                 }, {
                     path: "myfcadashboard",
                     component: app_view_component_1.ViewComponent
                 }])
         ],
         providers: [app_component_service_1.MyFcaService],
-        declarations: [app_component_1.AppComponent, app_header_component_1.HeaderSection, app_footer_component_1.FooterSection, app_contentbody_component_1.ContentSection, navbar_component_1.NavImageComponent, app_view_component_1.ViewComponent],
+        declarations: [app_component_1.AppComponent, login_component_1.Login, app_header_component_1.HeaderSection, app_footer_component_1.FooterSection, app_contentbody_component_1.ContentSection, navbar_component_1.NavImageComponent, app_view_component_1.ViewComponent],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])

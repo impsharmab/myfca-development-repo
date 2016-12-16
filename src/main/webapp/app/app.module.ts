@@ -15,20 +15,20 @@ import { HeaderSection }                      from './ts/header/app.header.compo
 import { FooterSection }                      from './ts/footer/app.footer.component'
 import { ContentSection }                     from './ts/contentbody/app.contentbody.component'
 import { NavImageComponent }                  from './ts/navbar/navbar.component';
-
+import {Login} from "./ts/login/login.component";
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule, ChartModule, ReactiveFormsModule,
-        RouterModule.forRoot([{
+        RouterModule.forRoot([{ path: '', redirectTo: 'login', pathMatch: 'full' },{
             path: "login",
-            component: AppComponent
+            component: Login
         }, {
             path: "myfcadashboard",
             component: ViewComponent
         }])
     ],
     providers: [MyFcaService],
-    declarations: [AppComponent, HeaderSection, FooterSection, ContentSection, NavImageComponent, ViewComponent],
+    declarations: [AppComponent, Login,HeaderSection, FooterSection, ContentSection, NavImageComponent, ViewComponent],
     bootstrap: [AppComponent]
 })
 

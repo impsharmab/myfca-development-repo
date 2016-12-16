@@ -9,11 +9,14 @@ import {MyFcaService} from '../../app.component.service';
 })
 
 export class HeaderSection implements OnInit {
-
-    @Input('data') userDetails: any;
+    
+    @Input() data: any;
     constructor(private service: MyFcaService) {
 
     }
-    ngOnInit() {}
+    ngOnInit() {
+        this.data = JSON.parse(localStorage.getItem("CurrentUser"))
+    }
+
 
 }

@@ -10,7 +10,7 @@ export class MyFcaService {
     // private serviceUrl = "" //"/imiservices/services/tileslistbyrole?role=2&id=S12345";
     // private userprofiletestJsonUrl = "./app/resources/json/userprofiletest.json";
     // private userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json" //imiservices/services/userprofiletest?id=S12345&key=password";
-    // private newService = "/app/resources/json/newservicejson.json";
+   // private newService = "/app/resources/json/userprofiletest.json";
     private titles = new Array();
     private userdata = {
 
@@ -42,7 +42,7 @@ export class MyFcaService {
     }
 
     getNewServiceJSON(username, password): any {
-        var serviceurl = "services/userprofile?id=" + username + "&key=" + password;        
+        var serviceurl = "http://localhost:9090/imiservices/services/userprofile?id=" + username + "&key=" + password;        
 
          var tileDataThroughService = this.http.post(serviceurl, {})
             .map((response: Response) => response.json())
@@ -89,14 +89,15 @@ export class MyFcaService {
 
     private handleError(error: Response | any) {
         // In a real world app, we might use a remote logging infrastructure
-        let errMsg: string;
-        if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
-            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        } else {
-            errMsg = error.message ? error.message : error.toString();
-        }
+        let errMsg: string="";
+        // if (error instanceof Response) {
+        //     const body = error.json() || '';
+        //     const err = body.error || JSON.stringify(body);
+        //     errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        // } else {
+        //     errMsg = error.message ? error.message : error.toString();
+        // }
+        alert("Invalid credentials");
         return Observable.throw(errMsg);
     }
 

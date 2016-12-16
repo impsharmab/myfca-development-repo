@@ -19,7 +19,7 @@ var MyFcaService = (function () {
         // private serviceUrl = "" //"/imiservices/services/tileslistbyrole?role=2&id=S12345";
         // private userprofiletestJsonUrl = "./app/resources/json/userprofiletest.json";
         // private userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json" //imiservices/services/userprofiletest?id=S12345&key=password";
-        // private newService = "/app/resources/json/newservicejson.json";
+        // private newService = "/app/resources/json/userprofiletest.json";
         this.titles = new Array();
         this.userdata = {};
     }
@@ -46,7 +46,7 @@ var MyFcaService = (function () {
         return this.userdata;
     };
     MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
+        var serviceurl = "http://localhost:9090/imiservices/services/userprofile?id=" + username + "&key=" + password;
         var tileDataThroughService = this.http.post(serviceurl, {})
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -79,15 +79,15 @@ var MyFcaService = (function () {
     };
     MyFcaService.prototype.handleError = function (error) {
         // In a real world app, we might use a remote logging infrastructure
-        var errMsg;
-        if (error instanceof http_1.Response) {
-            var body = error.json() || '';
-            var err = body.error || JSON.stringify(body);
-            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
-        }
-        else {
-            errMsg = error.message ? error.message : error.toString();
-        }
+        var errMsg = "";
+        // if (error instanceof Response) {
+        //     const body = error.json() || '';
+        //     const err = body.error || JSON.stringify(body);
+        //     errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+        // } else {
+        //     errMsg = error.message ? error.message : error.toString();
+        // }
+        alert("Invalid credentials");
         return Observable_1.Observable.throw(errMsg);
     };
     MyFcaService.prototype.getData = function () {

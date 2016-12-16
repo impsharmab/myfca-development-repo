@@ -22,16 +22,16 @@ var ViewComponent = (function () {
         this.userdata = {};
     }
     ViewComponent.prototype.ngOnInit = function () {
-        this.userdata = this.service.getUsersData();
-        this.tilesArray = this.service.getTiles();
+        this.userdata = JSON.parse(localStorage.getItem("CurrentUser"));
+        this.tilesArray = JSON.parse(localStorage.getItem("titles"));
     };
     return ViewComponent;
 }());
 ViewComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        selector: 'my-app',
-        templateUrl: './app.component.html',
+        selector: '',
+        templateUrl: './ts/rootPage/rootpage.html',
         //templateUrl: './login.html',
         providers: [app_component_service_1.MyFcaService]
     }),
