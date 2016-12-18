@@ -10,11 +10,12 @@ import {MyFcaService} from '../../app.component.service';
 @Component({
   moduleId:module.id,
   
- templateUrl: './login.html',
+  templateUrl: './login.html',
   providers:[MyFcaService]
 })
 export class Login implements OnInit{
   form: FormGroup;
+  private test:any;
   public user: User;
   sampleUsers=[];
 
@@ -57,7 +58,8 @@ export class Login implements OnInit{
 
     }
     log:boolean = false;
-    public login() { //why login method is ! private???
+
+    private login() { //why login method is ! private???
          
 
         // Call the show method to display the widget.
@@ -70,6 +72,8 @@ export class Login implements OnInit{
          this.service.getNewServiceJSON(this.user.username,this.user.password).subscribe(
       (resUserData) => {
           alert(resUserData["userID"]);
+          if(resUserData["error"] === null)
+          {
         this.userdata["userID"] = resUserData["userID"];
         this.userdata["name"] = resUserData["name"];
         this.userdata["email"] = resUserData["email"];
@@ -81,13 +85,16 @@ export class Login implements OnInit{
         this.tilesArray.sort((one, two) => {
           return one.tileOrder - two.tileOrder;
          
-        })
-        localStorage.setItem("CurrentUser", JSON.stringify(this.userdata));
-         localStorage.setItem("titles", JSON.stringify(this.tilesArray));
+        })         
+        
         this.service.setTiles(this.tilesArray);
     //    this.log = true;
         let url = ["myfcadashboard"]
-    this.router.navigate(url);
+        this.router.navigate(url);
+          }else{
+              var msg = JSON.parse(resUserData["error"])["error"];
+              alert(msg);
+          }
 })
 
     }

@@ -24,7 +24,7 @@ var MyFcaService = (function () {
         this.userdata = {};
     }
     MyFcaService.prototype.setTiles = function (titles) {
-        this.titles = titles;
+        localStorage.setItem("titles", JSON.stringify(titles));
     };
     MyFcaService.prototype.getTiles = function () {
         return this.titles;
@@ -36,7 +36,7 @@ var MyFcaService = (function () {
         return mytestUsers;
     };
     MyFcaService.prototype.setUserData = function (userdata) {
-        this.userdata = userdata;
+        localStorage.setItem("CurrentUser", JSON.stringify(userdata));
     };
     MyFcaService.prototype.getUsersData = function () {
         // var myFcaUsers =  this.http.get(this.userDetailUrl)
@@ -46,8 +46,13 @@ var MyFcaService = (function () {
         return this.userdata;
     };
     MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        var serviceurl = "http://localhost:9090/imiservices/services/userprofile?id=" + username + "&key=" + password;
-        var tileDataThroughService = this.http.post(serviceurl, {})
+        //this is for live service url
+        // var serviceurl = "services/userprofile?id=" + username + "&key=" + password;        
+        // var serviceurl = "http://localhost:9123/imiservices/services/userprofile?id=" + username + "&key=" + password;
+        //this is the local service url
+        var serviceurl = "app/resources/json/userprofiletest.json";
+        //var tileDataThroughService = this.http.post(serviceurl, {})
+        var tileDataThroughService = this.http.get(serviceurl)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;

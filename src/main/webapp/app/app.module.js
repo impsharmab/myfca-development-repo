@@ -21,6 +21,7 @@ var app_header_component_1 = require("./ts/header/app.header.component");
 var app_footer_component_1 = require("./ts/footer/app.footer.component");
 var app_contentbody_component_1 = require("./ts/contentbody/app.contentbody.component");
 var navbar_component_1 = require("./ts/navbar/navbar.component");
+var spinner_1 = require("./ts/spinner/spinner");
 var login_component_1 = require("./ts/login/login.component");
 var AppModule = (function () {
     function AppModule() {
@@ -39,7 +40,16 @@ AppModule = __decorate([
                 }])
         ],
         providers: [app_component_service_1.MyFcaService],
-        declarations: [app_component_1.AppComponent, login_component_1.Login, app_header_component_1.HeaderSection, app_footer_component_1.FooterSection, app_contentbody_component_1.ContentSection, navbar_component_1.NavImageComponent, app_view_component_1.ViewComponent],
+        declarations: [
+            app_component_1.AppComponent,
+            login_component_1.Login,
+            app_header_component_1.HeaderSection,
+            app_footer_component_1.FooterSection,
+            app_contentbody_component_1.ContentSection,
+            navbar_component_1.NavImageComponent,
+            app_view_component_1.ViewComponent,
+            spinner_1.SpinnerComponent
+        ],
         bootstrap: [app_component_1.AppComponent]
     }),
     __metadata("design:paramtypes", [])

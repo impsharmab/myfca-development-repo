@@ -22,7 +22,8 @@ var ContentSection = (function () {
     function ContentSection(service) {
         this.service = service;
     }
-    ContentSection.prototype.ngOnInit = function () { };
+    ContentSection.prototype.ngOnInit = function () {
+    };
     return ContentSection;
 }());
 __decorate([

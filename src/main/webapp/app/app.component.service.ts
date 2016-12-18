@@ -18,7 +18,7 @@ export class MyFcaService {
 
     constructor(private http: Http) {}
     setTiles(titles) {
-        this.titles = titles;
+         localStorage.setItem("titles", JSON.stringify(titles));
     }
     getTiles() {
         return this.titles;
@@ -31,7 +31,7 @@ export class MyFcaService {
     }
 
     setUserData(userdata: any) {
-        this.userdata = userdata;
+        localStorage.setItem("CurrentUser", JSON.stringify(userdata));
     }
     getUsersData() {
         // var myFcaUsers =  this.http.get(this.userDetailUrl)
@@ -42,9 +42,15 @@ export class MyFcaService {
     }
 
     getNewServiceJSON(username, password): any {
-        var serviceurl = "http://localhost:9090/imiservices/services/userprofile?id=" + username + "&key=" + password;        
-
-         var tileDataThroughService = this.http.post(serviceurl, {})
+       //this is for live service url
+       // var serviceurl = "services/userprofile?id=" + username + "&key=" + password;        
+       // var serviceurl = "http://localhost:9123/imiservices/services/userprofile?id=" + username + "&key=" + password;
+        
+        //this is the local service url
+        var serviceurl = "app/resources/json/userprofiletest.json";
+         
+         //var tileDataThroughService = this.http.post(serviceurl, {})
+           var tileDataThroughService = this.http.get(serviceurl)  
             .map((response: Response) => response.json())
             .catch(this.handleError);
             return tileDataThroughService;

@@ -24,7 +24,9 @@ export class ContentSection implements OnInit {
     @Input('tiles') tilesArray: any;
 
 
-    ngOnInit() {}
+    ngOnInit() {
+        
+    }
 
     constructor(private service: MyFcaService) {}
 

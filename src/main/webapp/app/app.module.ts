@@ -15,6 +15,7 @@ import { HeaderSection }                      from './ts/header/app.header.compo
 import { FooterSection }                      from './ts/footer/app.footer.component'
 import { ContentSection }                     from './ts/contentbody/app.contentbody.component'
 import { NavImageComponent }                  from './ts/navbar/navbar.component';
+import { SpinnerComponent }                   from './ts/spinner/spinner';
 import {Login} from "./ts/login/login.component";
 
 @NgModule({
@@ -28,7 +29,16 @@ import {Login} from "./ts/login/login.component";
         }])
     ],
     providers: [MyFcaService],
-    declarations: [AppComponent, Login,HeaderSection, FooterSection, ContentSection, NavImageComponent, ViewComponent],
+    declarations: [
+        AppComponent, 
+        Login,
+        HeaderSection, 
+        FooterSection, 
+        ContentSection, 
+        NavImageComponent, 
+        ViewComponent,
+        SpinnerComponent
+        ],
     bootstrap: [AppComponent]
 })
 

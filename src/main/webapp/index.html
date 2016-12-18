@@ -54,12 +54,19 @@
             console.error(err);
         });
     </script>
+   
 </head>
 <!-- 3. Display the application -->
 
 <body>
+  <!--<div style="background:url(app/resources/spinner.gif) no-repeat center center;width:4px;height:4px;"></div>-->
 
-    <my-app> <span class="glyphicon  glyphicon-refresh text-center"></span></my-app>
+    <!--<my-app> <span class="glyphicon  glyphicon-refresh text-center"></span></my-app>
+    <h1 class ="text-center" ><s</h1><span class="glyphicon  glyphicon-refresh spin" style=" no-repeat center center;width:4px;height:4px;">
+    -->
+        <my-app>
+          <spinner-component></spinner-component>
+        </my-app>
 </body>
 
 </html>

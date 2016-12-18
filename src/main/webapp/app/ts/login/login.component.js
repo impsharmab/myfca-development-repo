@@ -57,23 +57,27 @@ var Login = (function () {
         //             .catch(this.handleError);
         this.service.getNewServiceJSON(this.user.username, this.user.password).subscribe(function (resUserData) {
             alert(resUserData["userID"]);
-            _this.userdata["userID"] = resUserData["userID"];
-            _this.userdata["name"] = resUserData["name"];
-            _this.userdata["email"] = resUserData["email"];
-            _this.userdata["access"] = resUserData["access"];
-            _this.service.setUserData(_this.userdata);
-            _this.menu = resUserData["menus"];
-            _this.banners = resUserData["banners"];
-            _this.tilesArray = resUserData.dashboard[0]["tiles"];
-            _this.tilesArray.sort(function (one, two) {
-                return one.tileOrder - two.tileOrder;
-            });
-            localStorage.setItem("CurrentUser", JSON.stringify(_this.userdata));
-            localStorage.setItem("titles", JSON.stringify(_this.tilesArray));
-            _this.service.setTiles(_this.tilesArray);
-            //    this.log = true;
-            var url = ["myfcadashboard"];
-            _this.router.navigate(url);
+            if (resUserData["error"] === null) {
+                _this.userdata["userID"] = resUserData["userID"];
+                _this.userdata["name"] = resUserData["name"];
+                _this.userdata["email"] = resUserData["email"];
+                _this.userdata["access"] = resUserData["access"];
+                _this.service.setUserData(_this.userdata);
+                _this.menu = resUserData["menus"];
+                _this.banners = resUserData["banners"];
+                _this.tilesArray = resUserData.dashboard[0]["tiles"];
+                _this.tilesArray.sort(function (one, two) {
+                    return one.tileOrder - two.tileOrder;
+                });
+                _this.service.setTiles(_this.tilesArray);
+                //    this.log = true;
+                var url = ["myfcadashboard"];
+                _this.router.navigate(url);
+            }
+            else {
+                var msg = JSON.parse(resUserData["error"])["error"];
+                alert(msg);
+            }
         });
     };
     //HTTP Response Error
