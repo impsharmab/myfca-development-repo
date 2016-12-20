@@ -35,7 +35,7 @@ public class AttributeDTO implements Serializable {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class AttributeDTO implements Serializable {
 	}
 
 	public String getValue() {
-		return value;
+		return this.value;
 	}
 
 	public void setValue(final String value) {
@@ -55,7 +55,7 @@ public class AttributeDTO implements Serializable {
 	}
 
 	public String getType() {
-		return type;
+		return this.type;
 	}
 
 	public void setType(final String type) {
@@ -63,7 +63,7 @@ public class AttributeDTO implements Serializable {
 	}
 
 	public int getOrder() {
-		return order;
+		return this.order;
 	}
 
 	public void setOrder(final int order) {

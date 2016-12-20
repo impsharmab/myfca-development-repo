@@ -4,7 +4,7 @@
 package com.imperialm.imiservices.dao;
 
 import com.imperialm.imiservices.dto.UserProfileDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 
 /**
  * @author Dheerajr
@@ -22,6 +22,6 @@ public interface UserProfileDAO {
 	 * @param userRoleReq
 	 * @return
 	 */
-	UserProfileDTO getUserProfile(UserRoleRequest userRoleReq);
+	UserProfileDTO getUserProfile(InputRequest userRoleReq);
 
 }

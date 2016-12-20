@@ -19,7 +19,7 @@ import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MenuDTO;
 import com.imperialm.imiservices.dto.RoleDTO;
 import com.imperialm.imiservices.dto.UserProfileDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.UserProfileResponse;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -46,26 +46,23 @@ public class UserProfileDAOImpl implements UserProfileDAO {
 	private DashboardDAO dashboardDAO;
 
 	@Override
-	public UserProfileDTO getUserProfile(final UserRoleRequest userRoleReq) {
+	public UserProfileDTO getUserProfile(final InputRequest userRoleReq) {
 		UserProfileDTO result = new UserProfileDTO();
 		List<AccessDTO> accesses = null;
 		List<RoleDTO> roles = null;
-		
-		List<BannersDTO> banners = new ArrayList<>();
-		List<DashboardDTO> dashboard = new ArrayList<>();
-		List<MenuDTO> menus =  new ArrayList<>();
-		
-		
+
+		final List<BannersDTO> banners = new ArrayList<>();
+		final List<DashboardDTO> dashboard = new ArrayList<>();
+		final List<MenuDTO> menus = new ArrayList<>();
+
 		AccessDTO access = null;
 		RoleDTO role = null;
-		
-		
 
 		String prevProgramCode = "";
 		String preRoleName = "";
 
 		try {
-			final Query query = em.createNativeQuery(USER_PROFILE_DAO, UserProfileResponse.class);
+			final Query query = this.em.createNativeQuery(USER_PROFILE_DAO, UserProfileResponse.class);
 			query.setParameter(1, userRoleReq.getUserID());
 			query.setParameter(2, userRoleReq.getPassword());
 
@@ -104,15 +101,14 @@ public class UserProfileDAOImpl implements UserProfileDAO {
 				accesses.add(access);
 				result.setAccess(access);
 			}
-			for (AccessDTO dto :  accesses) {
-				for ( RoleDTO inputRole : dto.getRoles())
-				{
-					UserRoleRequest inputReq = new UserRoleRequest();
+			for (final AccessDTO dto : accesses) {
+				for (final RoleDTO inputRole : dto.getRoles()) {
+					final InputRequest inputReq = new InputRequest();
 					inputReq.setRoleID(inputRole.getRoleID());
 					inputReq.setUserID(userRoleReq.getUserID());
-					menus.addAll(menuDAO.findMenuByRole(inputReq));
-					banners.addAll(bannerDAO.getBannersByRole(inputReq));
-					dashboard.addAll(dashboardDAO.findTilesListByRole(inputReq));
+					menus.addAll(this.menuDAO.findMenuByRole(inputReq));
+					banners.addAll(this.bannerDAO.getBannersByRole(inputReq));
+					dashboard.addAll(this.dashboardDAO.findTilesByRole(inputReq));
 				}
 			}
 			result.setMenus(menus);

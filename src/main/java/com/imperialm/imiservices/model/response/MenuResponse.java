@@ -40,7 +40,7 @@ public class MenuResponse implements Serializable {
 	 * @return the programCode
 	 */
 	public String getProgramCode() {
-		return programCode;
+		return this.programCode;
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class MenuResponse implements Serializable {
 	 * @return the menuName
 	 */
 	public String getMenuName() {
-		return menuName;
+		return this.menuName;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class MenuResponse implements Serializable {
 	 * @return the subMenu
 	 */
 	public String getSubMenuName() {
-		return subMenuName;
+		return this.subMenuName;
 	}
 
 	/**

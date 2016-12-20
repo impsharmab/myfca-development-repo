@@ -43,7 +43,7 @@ public class IMIServicesErrorController implements ErrorController {
 
 	@RequestMapping
 	public Map<String, Object> error(final HttpServletRequest aRequest) {
-		final Map<String, Object> body = getErrorAttributes(aRequest, getTraceParameter(aRequest));
+		final Map<String, Object> body = this.getErrorAttributes(aRequest, this.getTraceParameter(aRequest));
 		final String trace = (String) body.get("trace");
 		if (trace != null) {
 			final String[] lines = trace.split("\n\t");
@@ -62,6 +62,6 @@ public class IMIServicesErrorController implements ErrorController {
 
 	private Map<String, Object> getErrorAttributes(final HttpServletRequest aRequest, final boolean includeStackTrace) {
 		final RequestAttributes requestAttributes = new ServletRequestAttributes(aRequest);
-		return errorAttributes.getErrorAttributes(requestAttributes, includeStackTrace);
+		return this.errorAttributes.getErrorAttributes(requestAttributes, includeStackTrace);
 	}
 }

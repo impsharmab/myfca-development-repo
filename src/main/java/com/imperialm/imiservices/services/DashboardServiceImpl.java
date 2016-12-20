@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.imperialm.imiservices.dao.DashboardDAO;
 import com.imperialm.imiservices.dto.DashboardDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 
 @Service
 public class DashboardServiceImpl implements DashboardService {
@@ -16,7 +16,12 @@ public class DashboardServiceImpl implements DashboardService {
 	private DashboardDAO dashboardDAO;
 
 	@Override
-	public List<DashboardDTO> findTilesListByRole(final UserRoleRequest userRoleReq) {
-		return dashboardDAO.findTilesListByRole(userRoleReq);
+	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
+		return this.dashboardDAO.findTilesListByRole(userRoleReq);
+	}
+
+	@Override
+	public List<DashboardDTO> findTilesByRole(final InputRequest userRoleReq) {
+		return this.dashboardDAO.findTilesByRole(userRoleReq);
 	}
 }

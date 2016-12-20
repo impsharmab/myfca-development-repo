@@ -26,7 +26,7 @@ public class ImagesDTO implements Serializable {
 	 * @return the imageName
 	 */
 	public String getImageName() {
-		return imageName;
+		return this.imageName;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class ImagesDTO implements Serializable {
 	 * @return the fileName
 	 */
 	public String getFileName() {
-		return fileName;
+		return this.fileName;
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class ImagesDTO implements Serializable {
 	 * @return the imageOrder
 	 */
 	public int getImageOrder() {
-		return imageOrder;
+		return this.imageOrder;
 	}
 
 	/**
@@ -69,12 +69,13 @@ public class ImagesDTO implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "ImagesDTO [imageName=" + imageName + ", fileName=" + fileName + ", imageOrder=" + imageOrder + "]";
+		return "ImagesDTO [imageName=" + this.imageName + ", fileName=" + this.fileName + ", imageOrder="
+				+ this.imageOrder + "]";
 	}
 
 }

@@ -22,7 +22,7 @@ public class RoleDTO implements Serializable {
 	 * @return the roleID
 	 */
 	public Long getRoleID() {
-		return roleID;
+		return this.roleID;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class RoleDTO implements Serializable {
 	 * @return the roleName
 	 */
 	public String getRoleName() {
-		return roleName;
+		return this.roleName;
 	}
 
 	/**
@@ -50,12 +50,12 @@ public class RoleDTO implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "RoleDTO [roleID=" + roleID + ", roleName=" + roleName + "]";
+		return "RoleDTO [roleID=" + this.roleID + ", roleName=" + this.roleName + "]";
 	}
 
 }

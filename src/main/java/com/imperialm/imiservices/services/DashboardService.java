@@ -3,7 +3,7 @@ package com.imperialm.imiservices.services;
 import java.util.List;
 
 import com.imperialm.imiservices.dto.DashboardDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 
 /**
  *
@@ -11,6 +11,12 @@ import com.imperialm.imiservices.dto.request.UserRoleRequest;
  *
  */
 public interface DashboardService {
-	public List<DashboardDTO> findTilesListByRole(UserRoleRequest userRoleReq);
+	public List<DashboardDTO> findTilesListByRole(InputRequest userRoleReq);
+
+	/**
+	 * @param userRoleReq
+	 * @return
+	 */
+	public List<DashboardDTO> findTilesByRole(InputRequest userRoleReq);
 
 }

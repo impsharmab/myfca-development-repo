@@ -33,21 +33,21 @@ public class JpaConfiguration {
 	@Bean
 	public DataSource dataSource() {
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(environment.getRequiredProperty("spring.datasource.driverClassName"));
-		dataSource.setUrl(environment.getRequiredProperty("spring.datasource.url"));
-		dataSource.setUsername(environment.getRequiredProperty("spring.datasource.username"));
-		dataSource.setPassword(environment.getRequiredProperty("spring.datasource.password"));
+		dataSource.setDriverClassName(this.environment.getRequiredProperty("spring.datasource.driverClassName"));
+		dataSource.setUrl(this.environment.getRequiredProperty("spring.datasource.url"));
+		dataSource.setUsername(this.environment.getRequiredProperty("spring.datasource.username"));
+		dataSource.setPassword(this.environment.getRequiredProperty("spring.datasource.password"));
 		return dataSource;
 	}
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
 		final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-		factoryBean.setDataSource(dataSource());
+		factoryBean.setDataSource(this.dataSource());
 		factoryBean.setPackagesToScan(
 				new String[] { "com.imperialm.imiservices.model", "com.imperialm.imiservices.model.response" });
-		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
-		factoryBean.setJpaProperties(jpaProperties());
+		factoryBean.setJpaVendorAdapter(this.jpaVendorAdapter());
+		factoryBean.setJpaProperties(this.jpaProperties());
 		return factoryBean;
 	}
 
@@ -69,7 +69,7 @@ public class JpaConfiguration {
 		// environment.getRequiredProperty("hibernate.dialect"));
 		// properties.put("hibernate.hbm2ddl.auto",
 		// environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
-		properties.put("hibernate.show_sql", environment.getRequiredProperty("spring.jpa.show-sql"));
+		properties.put("hibernate.show_sql", this.environment.getRequiredProperty("spring.jpa.show-sql"));
 		return properties;
 	}
 

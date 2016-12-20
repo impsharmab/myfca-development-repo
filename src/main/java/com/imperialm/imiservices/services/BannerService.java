@@ -3,7 +3,7 @@ package com.imperialm.imiservices.services;
 import java.util.List;
 
 import com.imperialm.imiservices.dto.BannersDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 
 /**
  *
@@ -11,5 +11,5 @@ import com.imperialm.imiservices.dto.request.UserRoleRequest;
  *
  */
 public interface BannerService {
-	public List<BannersDTO> findBannersByRole(UserRoleRequest userRoleReq);
+	public List<BannersDTO> findBannersByRole(InputRequest userRoleReq);
 }

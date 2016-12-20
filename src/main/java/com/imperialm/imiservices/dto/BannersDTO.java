@@ -31,7 +31,7 @@ public class BannersDTO implements Serializable {
 	 * @return the programCode
 	 */
 	public String getProgramCode() {
-		return programCode;
+		return this.programCode;
 	}
 
 	/**
@@ -46,7 +46,7 @@ public class BannersDTO implements Serializable {
 	 * @return the error
 	 */
 	public String getError() {
-		return error;
+		return this.error;
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class BannersDTO implements Serializable {
 	 * @return the banners
 	 */
 	public List<ImagesDTO> getBanners() {
-		return banners;
+		return this.banners;
 	}
 
 	/**

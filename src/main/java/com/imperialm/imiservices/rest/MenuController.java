@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dto.MenuDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.services.MenuService;
 
 /**
@@ -32,7 +32,7 @@ public class MenuController {
 
 	@RequestMapping(value = "/services/menubyrole", method = RequestMethod.GET)
 	public @ResponseBody List<MenuDTO> findTilesListByRole(@RequestParam("role") final Long roleId) {
-		final UserRoleRequest userRoleReq = new UserRoleRequest(roleId);
-		return menuService.findMenuByRole(userRoleReq);
+		final InputRequest userRoleReq = new InputRequest(roleId);
+		return this.menuService.findMenuByRole(userRoleReq);
 	}
 }

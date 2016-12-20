@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dto.DashboardDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.services.DashboardService;
 
 /**
@@ -31,7 +31,14 @@ public class DashboardController {
 	@RequestMapping(value = "/services/tileslistbyrole", method = RequestMethod.GET)
 	public @ResponseBody List<DashboardDTO> findTilesListByRole(@RequestParam("role") final Long roleId,
 			@RequestParam("id") final String userID) {
-		final UserRoleRequest userRoleReq = new UserRoleRequest(userID, roleId);
-		return dashService.findTilesListByRole(userRoleReq);
+		final InputRequest userRoleReq = new InputRequest(userID, roleId);
+		return this.dashService.findTilesListByRole(userRoleReq);
+	}
+
+	@RequestMapping(value = "/services/tilesdetailsbyrole", method = RequestMethod.GET)
+	public @ResponseBody List<DashboardDTO> findTilesByRole(@RequestParam("role") final Long roleId,
+			@RequestParam("id") final String userID) {
+		final InputRequest userRoleReq = new InputRequest(userID, roleId);
+		return this.dashService.findTilesByRole(userRoleReq);
 	}
 }

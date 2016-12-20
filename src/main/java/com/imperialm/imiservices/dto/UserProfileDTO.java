@@ -29,7 +29,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the userID
 	 */
 	public String getUserID() {
-		return userID;
+		return this.userID;
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the access
 	 */
 	public AccessDTO getAccess() {
-		return access;
+		return this.access;
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the menus
 	 */
 	public List<MenuDTO> getMenus() {
-		return menus;
+		return this.menus;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the banners
 	 */
 	public List<BannersDTO> getBanners() {
-		return banners;
+		return this.banners;
 	}
 
 	/**
@@ -119,7 +119,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the dashboard
 	 */
 	public List<DashboardDTO> getDashboard() {
-		return dashboard;
+		return this.dashboard;
 	}
 
 	/**
@@ -134,7 +134,7 @@ public class UserProfileDTO implements Serializable {
 	 * @return the error
 	 */
 	public String getError() {
-		return error;
+		return this.error;
 	}
 
 	/**
