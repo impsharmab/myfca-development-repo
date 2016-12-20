@@ -4,7 +4,6 @@
 package com.imperialm.imiservices.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * @author Dheerajr
@@ -16,14 +15,17 @@ public class TileDTO implements Serializable {
 	 *
 	 */
 	private static final long serialVersionUID = 5144477871277407196L;
+	private String error;
 	private String tileName;
 	private String tileHeaderImage;
 	private String tileImage;
 	private String tileURL;
 	private Integer tileOrder;
+	private String attributes;
+	private String datatable;
 
 	public TileDTO(final String tileName, final String tileHeaderImage, final String tileImage, final String tileURL,
-			final Integer tileOrder, final List<AttributeDTO> attributes) {
+			final Integer tileOrder, final String attributes, String datatable) {
 		super();
 		this.tileName = tileName;
 		this.tileHeaderImage = tileHeaderImage;
@@ -31,14 +33,17 @@ public class TileDTO implements Serializable {
 		this.tileURL = tileURL;
 		this.tileOrder = tileOrder;
 		this.attributes = attributes;
+		this.setDatatable(datatable);
 	}
-
-	private List<AttributeDTO> attributes;
 
 	public TileDTO() {
 	}
 
-	public TileDTO(final String tileName, final List<AttributeDTO> attributes) {
+	public TileDTO(String error) {
+		this.error = error;
+	}
+
+	public TileDTO(final String tileName, final String attributes) {
 		this.tileName = tileName;
 		this.attributes = attributes;
 	}
@@ -47,7 +52,7 @@ public class TileDTO implements Serializable {
 	 * @return the tileName
 	 */
 	public String getTileName() {
-		return tileName;
+		return this.tileName;
 	}
 
 	/**
@@ -61,15 +66,15 @@ public class TileDTO implements Serializable {
 	/**
 	 * @return the attributes
 	 */
-	public List<AttributeDTO> getAttributes() {
-		return attributes;
+	public String getAttributes() {
+		return this.attributes;
 	}
 
 	/**
 	 * @param attributes
 	 *            the attributes to set
 	 */
-	public void setAttributes(final List<AttributeDTO> attributes) {
+	public void setAttributes(final String attributes) {
 		this.attributes = attributes;
 	}
 
@@ -77,7 +82,7 @@ public class TileDTO implements Serializable {
 	 * @return the tileHeaderImage
 	 */
 	public String getTileHeaderImage() {
-		return tileHeaderImage;
+		return this.tileHeaderImage;
 	}
 
 	/**
@@ -92,7 +97,7 @@ public class TileDTO implements Serializable {
 	 * @return the tileImage
 	 */
 	public String getTileImage() {
-		return tileImage;
+		return this.tileImage;
 	}
 
 	/**
@@ -107,7 +112,7 @@ public class TileDTO implements Serializable {
 	 * @return the tileOrder
 	 */
 	public Integer getTileOrder() {
-		return tileOrder;
+		return this.tileOrder;
 	}
 
 	/**
@@ -122,7 +127,7 @@ public class TileDTO implements Serializable {
 	 * @return the tileURL
 	 */
 	public String getTileURL() {
-		return tileURL;
+		return this.tileURL;
 	}
 
 	/**
@@ -131,6 +136,36 @@ public class TileDTO implements Serializable {
 	 */
 	public void setTileURL(final String tileURL) {
 		this.tileURL = tileURL;
+	}
+
+	/**
+	 * @return the datatable
+	 */
+	public String getDatatable() {
+		return this.datatable;
+	}
+
+	/**
+	 * @param datatable
+	 *            the datatable to set
+	 */
+	public void setDatatable(String datatable) {
+		this.datatable = datatable;
+	}
+
+	/**
+	 * @return the error
+	 */
+	public String getError() {
+		return this.error;
+	}
+
+	/**
+	 * @param error
+	 *            the error to set
+	 */
+	public void setError(String error) {
+		this.error = error;
 	}
 
 }

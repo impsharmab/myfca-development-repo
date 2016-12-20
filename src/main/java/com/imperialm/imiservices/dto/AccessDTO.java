@@ -27,7 +27,7 @@ public class AccessDTO implements Serializable {
 	 * @return the programCode
 	 */
 	public String getProgramCode() {
-		return programCode;
+		return this.programCode;
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class AccessDTO implements Serializable {
 	 * @return the roles
 	 */
 	public List<RoleDTO> getRoles() {
-		return roles;
+		return this.roles;
 	}
 
 	/**
@@ -55,12 +55,12 @@ public class AccessDTO implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "AccessDTO [programCode=" + programCode + ", roles=" + roles + "]";
+		return "AccessDTO [programCode=" + this.programCode + ", roles=" + this.roles + "]";
 	}
 
 }

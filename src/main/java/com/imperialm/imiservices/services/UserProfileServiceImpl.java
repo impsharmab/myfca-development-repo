@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.imperialm.imiservices.dao.UserProfileDAO;
 import com.imperialm.imiservices.dto.UserProfileDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
@@ -14,7 +14,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private UserProfileDAO userProfileDAO;
 
 	@Override
-	public UserProfileDTO getUserProfile(final UserRoleRequest userRoleReq) {
-		return userProfileDAO.getUserProfile(userRoleReq);
+	public UserProfileDTO getUserProfile(final InputRequest userRoleReq) {
+		return this.userProfileDAO.getUserProfile(userRoleReq);
 	}
+
 }

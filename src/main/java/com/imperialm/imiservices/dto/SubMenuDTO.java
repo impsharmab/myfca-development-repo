@@ -21,7 +21,7 @@ public class SubMenuDTO implements Serializable {
 	 * @return the subMenu
 	 */
 	public String getSubMenu() {
-		return subMenu;
+		return this.subMenu;
 	}
 
 	/**

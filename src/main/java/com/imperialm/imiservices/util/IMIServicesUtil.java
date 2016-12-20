@@ -24,19 +24,27 @@ public class IMIServicesUtil {
 		return gson.toJson(props);
 	}
 
+	/**
+	 * from Clob to String
+	 * 
+	 * @param result
+	 * @return java.lang.String
+	 */
 	public static String buildString(final Object result) {
-		Clob singleResult = null;
-		String targetString = "";
+		String returnString = "";
 		if (result != null) {
-			singleResult = (Clob) result;
 			try {
-				targetString = IOUtils.toString(singleResult.getAsciiStream());
+				returnString = IOUtils.toString(((Clob) result).getCharacterStream()).replaceAll("\t", "")
+						.replaceAll("\\s", "").replaceAll("\"", "'");
 			} catch (final IOException e) {
 				logger.error("error while building String from Clob Step 1", e);
 			} catch (final SQLException e) {
 				logger.error("error while building String from Clob Step 2", e);
 			}
 		}
-		return targetString;
+		logger.info("returnString  " + returnString);
+
+		return returnString;
 	}
+
 }

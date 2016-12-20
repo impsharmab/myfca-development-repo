@@ -39,7 +39,7 @@ public class MenuDTO implements Serializable {
 	 * @return the programCode
 	 */
 	public String getProgramCode() {
-		return programCode;
+		return this.programCode;
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class MenuDTO implements Serializable {
 	 * @return the menus
 	 */
 	public List<MenuDetailDTO> getMenus() {
-		return menus;
+		return this.menus;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class MenuDTO implements Serializable {
 	 * @return the error
 	 */
 	public String getError() {
-		return error;
+		return this.error;
 	}
 
 	/**

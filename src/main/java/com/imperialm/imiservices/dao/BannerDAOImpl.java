@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.BannersDTO;
 import com.imperialm.imiservices.dto.ImagesDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.BannerResponse;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -31,8 +31,9 @@ public class BannerDAOImpl implements BannerDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<BannersDTO> getBannersByRole(final UserRoleRequest role) {
+	public List<BannersDTO> getBannersByRole(final InputRequest role) {
 		final List<BannersDTO> result = new ArrayList<>();
 		List<ImagesDTO> images = null;
 
@@ -41,7 +42,7 @@ public class BannerDAOImpl implements BannerDAO {
 
 		String prevProgramCode = "";
 		try {
-			final Query query = em.createNativeQuery(BANNERS_BY_ROLE, BannerResponse.class);
+			final Query query = this.em.createNativeQuery(BANNERS_BY_ROLE, BannerResponse.class);
 			query.setParameter(1, role.getRoleID());
 
 			final List<BannerResponse> bannerRows = query.getResultList();

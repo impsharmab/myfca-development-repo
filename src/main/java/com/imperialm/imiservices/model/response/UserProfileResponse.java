@@ -36,7 +36,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the rNo
 	 */
 	public Long getrNo() {
-		return rNo;
+		return this.rNo;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the userId
 	 */
 	public String getUserId() {
-		return userId;
+		return this.userId;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the programCode
 	 */
 	public String getProgramCode() {
-		return programCode;
+		return this.programCode;
 	}
 
 	/**
@@ -111,7 +111,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the roleId
 	 */
 	public Long getRoleId() {
-		return roleId;
+		return this.roleId;
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the roleName
 	 */
 	public String getRoleName() {
-		return roleName;
+		return this.roleName;
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class UserProfileResponse implements Serializable {
 	 * @return the roleLevel
 	 */
 	public Long getRoleLevel() {
-		return roleLevel;
+		return this.roleLevel;
 	}
 
 	/**
@@ -154,14 +154,14 @@ public class UserProfileResponse implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "UserProfileResponse [rNo=" + rNo + ", userId=" + userId + ", name=" + name + ", email=" + email
-				+ ", programCode=" + programCode + ", roleId=" + roleId + ", roleName=" + roleName + ", roleLevel="
-				+ roleLevel + "]";
+		return "UserProfileResponse [rNo=" + this.rNo + ", userId=" + this.userId + ", name=" + this.name + ", email="
+				+ this.email + ", programCode=" + this.programCode + ", roleId=" + this.roleId + ", roleName="
+				+ this.roleName + ", roleLevel=" + this.roleLevel + "]";
 	}
 
 }

@@ -32,7 +32,7 @@ public class MenuDetailDTO implements Serializable {
 	 * @return the menuName
 	 */
 	public String getMenuName() {
-		return menuName;
+		return this.menuName;
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class MenuDetailDTO implements Serializable {
 	 * @return the submenus
 	 */
 	public List<SubMenuDTO> getSubmenus() {
-		return submenus;
+		return this.submenus;
 	}
 
 	/**

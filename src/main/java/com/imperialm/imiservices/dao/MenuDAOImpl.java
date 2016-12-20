@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.imperialm.imiservices.dto.MenuDTO;
 import com.imperialm.imiservices.dto.MenuDetailDTO;
 import com.imperialm.imiservices.dto.SubMenuDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.MenuResponse;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -34,7 +34,7 @@ public class MenuDAOImpl implements MenuDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MenuDTO> findMenuByRole(final UserRoleRequest userRoleReq) {
+	public List<MenuDTO> findMenuByRole(final InputRequest userRoleReq) {
 		final List<MenuDTO> result = new ArrayList<>();
 		MenuDTO menuDTO = null;
 		MenuDetailDTO menuDetailDTO = null;
@@ -44,7 +44,7 @@ public class MenuDAOImpl implements MenuDAO {
 		String prevProgramCode = "";
 		String preMenuName = "";
 		try {
-			final Query query = em.createNativeQuery(MENU_BY_ROLE, MenuResponse.class);
+			final Query query = this.em.createNativeQuery(MENU_BY_ROLE, MenuResponse.class);
 			query.setParameter(1, userRoleReq.getRoleID());
 
 			final List<MenuResponse> menuRows = query.getResultList();

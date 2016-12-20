@@ -43,10 +43,10 @@ public class ResourceLoadController {
 		final HttpHeaders headers = new HttpHeaders();
 		byte[] byteArray = null;
 		try {
-			randonAccFile = new RandomAccessFile(imagesSharedFolder + fileName, "r");
+			randonAccFile = new RandomAccessFile(this.imagesSharedFolder + fileName, "r");
 			byteArray = new byte[(int) randonAccFile.length()];
 			randonAccFile.readFully(byteArray);
-			headers.setContentType(getMediaType(fileName));
+			headers.setContentType(this.getMediaType(fileName));
 			randonAccFile.close();
 			return new ResponseEntity<>(byteArray, headers, HttpStatus.CREATED);
 		} catch (final Exception ex) {
@@ -61,7 +61,7 @@ public class ResourceLoadController {
 	}
 
 	/**
-	 * 
+	 *
 	 * @param fileName
 	 * @return
 	 */

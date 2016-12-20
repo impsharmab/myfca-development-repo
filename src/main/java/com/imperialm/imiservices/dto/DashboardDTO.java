@@ -38,7 +38,7 @@ public class DashboardDTO implements Serializable {
 	}
 
 	public String getProgramcode() {
-		return programcode;
+		return this.programcode;
 	}
 
 	public void setProgramcode(final String programcode) {
@@ -46,7 +46,7 @@ public class DashboardDTO implements Serializable {
 	}
 
 	public List<TileDTO> getTiles() {
-		return tiles;
+		return this.tiles;
 	}
 
 	public void setTiles(final List<TileDTO> tiles) {
@@ -57,7 +57,7 @@ public class DashboardDTO implements Serializable {
 	 * @return the error
 	 */
 	public String getError() {
-		return error;
+		return this.error;
 	}
 
 	/**

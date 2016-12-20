@@ -34,7 +34,7 @@ public class BannerResponse implements Serializable {
 	 * @return the programCode
 	 */
 	public String getProgramCode() {
-		return programCode;
+		return this.programCode;
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class BannerResponse implements Serializable {
 	 * @return the bannerName
 	 */
 	public String getBannerName() {
-		return bannerName;
+		return this.bannerName;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class BannerResponse implements Serializable {
 	 * @return the fileName
 	 */
 	public String getFileName() {
-		return fileName;
+		return this.fileName;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class BannerResponse implements Serializable {
 	 * @return the bannerOrder
 	 */
 	public int getBannerOrder() {
-		return bannerOrder;
+		return this.bannerOrder;
 	}
 
 	/**
@@ -92,20 +92,20 @@ public class BannerResponse implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "BannerResponse [programCode=" + programCode + ", bannerName=" + bannerName + ", fileName=" + fileName
-				+ ", bannerOrder=" + bannerOrder + "]";
+		return "BannerResponse [programCode=" + this.programCode + ", bannerName=" + this.bannerName + ", fileName="
+				+ this.fileName + ", bannerOrder=" + this.bannerOrder + "]";
 	}
 
 	/**
 	 * @return the rNo
 	 */
 	public Long getrNo() {
-		return rNo;
+		return this.rNo;
 	}
 
 	/**

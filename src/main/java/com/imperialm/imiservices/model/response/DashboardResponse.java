@@ -21,21 +21,19 @@ public class DashboardResponse implements Serializable {
 	@Id
 	private Long rNo;
 	private String programCode;
+	private String territory;
 	private String tileName;
 	private int tileOrder;
 	private String tileHeaderImage;
 	private String tileImage;
 	private String url;
-	private String attributeName;
-	private String attributeValue;
-	private int attributeOrder;
-	private String format;
+	private Long tileID;
 
 	/**
 	 * @return the programCode
 	 */
 	public String getProgramCode() {
-		return programCode;
+		return this.programCode;
 	}
 
 	/**
@@ -50,7 +48,7 @@ public class DashboardResponse implements Serializable {
 	 * @return the tileName
 	 */
 	public String getTileName() {
-		return tileName;
+		return this.tileName;
 	}
 
 	/**
@@ -65,7 +63,7 @@ public class DashboardResponse implements Serializable {
 	 * @return the tileOrder
 	 */
 	public int getTileOrder() {
-		return tileOrder;
+		return this.tileOrder;
 	}
 
 	/**
@@ -80,7 +78,7 @@ public class DashboardResponse implements Serializable {
 	 * @return the tileHeaderImage
 	 */
 	public String getTileHeaderImage() {
-		return tileHeaderImage;
+		return this.tileHeaderImage;
 	}
 
 	/**
@@ -95,7 +93,7 @@ public class DashboardResponse implements Serializable {
 	 * @return the tileImage
 	 */
 	public String getTileImage() {
-		return tileImage;
+		return this.tileImage;
 	}
 
 	/**
@@ -110,7 +108,7 @@ public class DashboardResponse implements Serializable {
 	 * @return the url
 	 */
 	public String getUrl() {
-		return url;
+		return this.url;
 	}
 
 	/**
@@ -121,76 +119,16 @@ public class DashboardResponse implements Serializable {
 		this.url = url;
 	}
 
-	/**
-	 * @return the attributeName
-	 */
-	public String getAttributeName() {
-		return attributeName;
-	}
-
-	/**
-	 * @param attributeName
-	 *            the attributeName to set
-	 */
-	public void setAttributeName(final String attributeName) {
-		this.attributeName = attributeName;
-	}
-
-	/**
-	 * @return the attributeValue
-	 */
-	public String getAttributeValue() {
-		return attributeValue;
-	}
-
-	/**
-	 * @param attributeValue
-	 *            the attributeValue to set
-	 */
-	public void setAttributeValue(final String attributeValue) {
-		this.attributeValue = attributeValue;
-	}
-
-	/**
-	 * @return the attributeOrder
-	 */
-	public int getAttributeOrder() {
-		return attributeOrder;
-	}
-
-	/**
-	 * @param attributeOrder
-	 *            the attributeOrder to set
-	 */
-	public void setAttributeOrder(final int attributeOrder) {
-		this.attributeOrder = attributeOrder;
-	}
-
-	/**
-	 * @return the format
-	 */
-	public String getFormat() {
-		return format;
-	}
-
-	/**
-	 * @param format
-	 *            the format to set
-	 */
-	public void setFormat(final String format) {
-		this.format = format;
-	}
-
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	/**
 	 * @return the rNo
 	 */
 	public Long getrNo() {
-		return rNo;
+		return this.rNo;
 	}
 
 	/**
@@ -208,10 +146,40 @@ public class DashboardResponse implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "DashboardResponse [rNo=" + rNo + ", programCode=" + programCode + ", tileName=" + tileName
-				+ ", tileOrder=" + tileOrder + ", tileHeaderImage=" + tileHeaderImage + ", tileImage=" + tileImage
-				+ ", url=" + url + ", attributeName=" + attributeName + ", attributeValue=" + attributeValue
-				+ ", attributeOrder=" + attributeOrder + ", format=" + format + "]";
+		return "DashboardResponse [rNo=" + this.rNo + ", programCode=" + this.programCode + ", territory="
+				+ this.territory + ", tileName=" + this.tileName + ", tileOrder=" + this.tileOrder
+				+ ", tileHeaderImage=" + this.tileHeaderImage + ", tileImage=" + this.tileImage + ", url=" + this.url
+				+ ", tileID=" + this.tileID + "]";
+	}
+
+	/**
+	 * @return the tileID
+	 */
+	public Long getTileID() {
+		return this.tileID;
+	}
+
+	/**
+	 * @param tileID
+	 *            the tileID to set
+	 */
+	public void setTileID(Long tileID) {
+		this.tileID = tileID;
+	}
+
+	/**
+	 * @return the territory
+	 */
+	public String getTerritory() {
+		return this.territory;
+	}
+
+	/**
+	 * @param territory
+	 *            the territory to set
+	 */
+	public void setTerritory(String territory) {
+		this.territory = territory;
 	}
 
 }

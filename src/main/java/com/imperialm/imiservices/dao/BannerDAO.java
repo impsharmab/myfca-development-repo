@@ -3,7 +3,7 @@ package com.imperialm.imiservices.dao;
 import java.util.List;
 
 import com.imperialm.imiservices.dto.BannersDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 
 /**
  *
@@ -18,5 +18,5 @@ public interface BannerDAO {
 			+ " BannerMappings BM JOIN banners banners  on banners.id = bm.BannerID "
 			+ " where bm.RoleID = ? AND banners.DelFlag = 'N' and bm.DelFlag = 'N' order by Programcode, BannerName ";
 
-	public List<BannersDTO> getBannersByRole(UserRoleRequest userRoleReq);
+	public List<BannersDTO> getBannersByRole(InputRequest userRoleReq);
 }

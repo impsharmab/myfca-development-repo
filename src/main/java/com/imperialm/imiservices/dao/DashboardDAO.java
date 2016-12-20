@@ -3,7 +3,7 @@ package com.imperialm.imiservices.dao;
 import java.util.List;
 
 import com.imperialm.imiservices.dto.DashboardDTO;
-import com.imperialm.imiservices.dto.request.UserRoleRequest;
+import com.imperialm.imiservices.dto.request.InputRequest;
 
 /**
  *
@@ -25,5 +25,17 @@ public interface DashboardDAO {
 			+ " AND tileattribute.delFlag = 'N'  AND attribute.delFlag = 'N'  AND d.delFlag = 'N' "
 			+ " AND tileattribute.delFlag = 'N' order by d.programcode, d.TileOrder, tileattribute.AttributeOrder ";
 
-	public List<DashboardDTO> findTilesListByRole(UserRoleRequest userRoleReq);
+	public static final String DASH_TILE_BY_ROLE_USER = "SELECT DISTINCT ROW_NUMBER() OVER(ORDER BY d.programcode ASC) as Rno, "
+			+ " d.programcode, d.territory,  tile.name 'TileName',  "
+			+ " d.TileOrder,   d.TileHeaderImage,  d.TileImage, d.url, d.TileID "
+			+ " FROM dashboard d JOIN tiles tile ON tile.id = d.tileid " + " WHERE d.roleid = ? and d.UserID = ? "
+			+ " AND d.delFlag = 'N' and tile.DelFlag = 'N' " + " order by d.programcode, d.TileOrder ";
+
+	public List<DashboardDTO> findTilesListByRole(InputRequest userRoleReq);
+
+	/**
+	 * @param userRoleReq
+	 * @return
+	 */
+	public List<DashboardDTO> findTilesByRole(InputRequest userRoleReq);
 }
