@@ -9,7 +9,7 @@ var appRoutes = [{
     }, {
         path: "app.component",
         component: app_contentbody_component_1.ContentSection
-    },
+    }
 ];
 exports.appRoutingProviders = [];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

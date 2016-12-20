@@ -11,20 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
+var sha256_js_1 = require("./sha256.js");
 require("./rxjs-operators");
 var MyFcaService = (function () {
     function MyFcaService(http) {
         this.http = http;
-        this.userDetailUrl = "/app/resources/json/userdetail.json"; // /imiservices/app/resources/json/userdetail.json"; 
-        // private serviceUrl = "" //"/imiservices/services/tileslistbyrole?role=2&id=S12345";
-        // private userprofiletestJsonUrl = "./app/resources/json/userprofiletest.json";
-        // private userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json" //imiservices/services/userprofiletest?id=S12345&key=password";
-        // private newService = "/app/resources/json/userprofiletest.json";
+        this.userDetailUrl = "/app/resources/json/userdetail.json";
         this.titles = new Array();
         this.userdata = {};
     }
     MyFcaService.prototype.setTiles = function (titles) {
         localStorage.setItem("titles", JSON.stringify(titles));
+        //sessionStorage.setItem("titles", JSON.stringify(titles));
     };
     MyFcaService.prototype.getTiles = function () {
         return this.titles;
@@ -46,38 +44,20 @@ var MyFcaService = (function () {
         return this.userdata;
     };
     MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        //this is for live service url
-        // var serviceurl = "services/userprofile?id=" + username + "&key=" + password;        
-        // var serviceurl = "http://localhost:9123/imiservices/services/userprofile?id=" + username + "&key=" + password;
-        //this is the local service url
+        var string = 'Test String';
+        var encodedString = btoa(string);
+        console.log(encodedString);
+        var decodedString = atob(encodedString);
+        console.log(decodedString);
+        var x = sha256_js_1.sha256('hello');
+        console.log(x);
         var serviceurl = "app/resources/json/userprofiletest.json";
-        //var tileDataThroughService = this.http.post(serviceurl, {})
-        var tileDataThroughService = this.http.get(serviceurl)
+        // var serviceurl = "services/userprofile?id="+ username + "&key=" + password;        
+        var tileDataThroughService = this.http.post(serviceurl, {})
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;
     };
-    //     getNewServiceJSON(username, password): any {
-    //         var serviceurl = "services/userprofiletest?id=" + username + "&key=" + password;
-    //         setTimeout(() => 
-    // {
-    //     var tileDataThroughService = this.http.get(serviceurl)
-    //             .map((response: Response) => response.json())
-    //             .catch(this.handleError);
-    //    return tileDataThroughService;
-    // },
-    // 1000);
-    //var userprofiletestServiceUrl = "app/resources/json/userprofiletest.json"
-    // getTileDataThroughService(): any {
-    //    // var newServiceUrl="/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
-    //    // var userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json";
-    //     // var serviceUrl="/imiservices/services/tileslistbyrole?role="+this.userdata.access[0].roleID+"&id="+this.userdata.userID;
-    //     var tileDataThroughService = this.http.get(newServiceUrl)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.handleError);
-    //     return tileDataThroughService;
-    // }
-    // <nfSubmit =getTileDataThroughService();> Login</>
     MyFcaService.prototype.extractData = function (res) {
         var body = res.json();
         return body.data || {};

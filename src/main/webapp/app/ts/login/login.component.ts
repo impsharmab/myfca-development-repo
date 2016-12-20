@@ -70,7 +70,7 @@ export class Login implements OnInit{
         //  this.http.post("app/userdetail.json", { username, password }, options)
         //             .catch(this.handleError);
          this.service.getNewServiceJSON(this.user.username,this.user.password).subscribe(
-      (resUserData) => {
+        (resUserData) => {
           alert(resUserData["userID"]);
           if(resUserData["error"] === null)
           {
@@ -81,11 +81,16 @@ export class Login implements OnInit{
         this.service.setUserData(this.userdata);
         this.menu = resUserData["menus"];
         this.banners = resUserData["banners"]
+       // if(resUserData.dashboard.length>0){
         this.tilesArray = resUserData.dashboard[0]["tiles"];
         this.tilesArray.sort((one, two) => {
           return one.tileOrder - two.tileOrder;
          
-        })         
+        }) 
+        // }  
+        //     else{
+        //     this.tilesArray=new Array();
+        // }    
         
         this.service.setTiles(this.tilesArray);
     //    this.log = true;

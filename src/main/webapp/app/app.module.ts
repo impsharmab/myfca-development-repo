@@ -9,14 +9,14 @@ import {Observable}                           from 'rxjs/Rx';
 import { AppComponent }                       from './app.component';
 import { ViewComponent }                      from './app.view.component';
 import { routing,appRoutingProviders }        from './app.routes';
-import {MyFcaService}                         from './app.component.service'
+import { MyFcaService }                       from './app.component.service'
 
 import { HeaderSection }                      from './ts/header/app.header.component'
 import { FooterSection }                      from './ts/footer/app.footer.component'
 import { ContentSection }                     from './ts/contentbody/app.contentbody.component'
 import { NavImageComponent }                  from './ts/navbar/navbar.component';
 import { SpinnerComponent }                   from './ts/spinner/spinner';
-import {Login} from "./ts/login/login.component";
+import { Login }                              from "./ts/login/login.component";
 
 @NgModule({
     imports: [BrowserModule, HttpModule, FormsModule, ChartModule, ReactiveFormsModule,

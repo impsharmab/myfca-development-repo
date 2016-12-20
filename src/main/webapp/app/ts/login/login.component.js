@@ -65,10 +65,15 @@ var Login = (function () {
                 _this.service.setUserData(_this.userdata);
                 _this.menu = resUserData["menus"];
                 _this.banners = resUserData["banners"];
+                // if(resUserData.dashboard.length>0){
                 _this.tilesArray = resUserData.dashboard[0]["tiles"];
                 _this.tilesArray.sort(function (one, two) {
                     return one.tileOrder - two.tileOrder;
                 });
+                // }  
+                //     else{
+                //     this.tilesArray=new Array();
+                // }    
                 _this.service.setTiles(_this.tilesArray);
                 //    this.log = true;
                 var url = ["myfcadashboard"];

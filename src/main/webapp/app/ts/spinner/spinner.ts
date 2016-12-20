@@ -2,17 +2,18 @@ import {Component} from '@angular/core';
 
 @Component({
     selector:"spinner-component",
-    template:`<div style="display: flex; justify-content: center;">
+    template: `
+    <div style="display: flex; justify-content: center;">
             <img class ="refreshGlyphImg" src="../../../app/resources/spinner.gif" />
-</div>`,
+    </div>`,
 
 styles:[` 
             .refreshGlyphImg{
-                width: 200px; 
-                height:200px;
+                width: 50px; 
+                height:50px;
                 }`
                 
-        ]
+         ]
     
         // templateUrl:"./spinner.html",
     // styleUrls:["spinner.css"]

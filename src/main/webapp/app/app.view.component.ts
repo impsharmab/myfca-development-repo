@@ -1,13 +1,13 @@
-import { Component, OnInit }                                from '@angular/core';
-import { Router, RouterOutlet }                             from '@angular/router';
-import {Http, Response, Headers, RequestOptions}            from '@angular/http';
-import { FormGroup, FormArray, FormBuilder, Validators }    from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 
 
-import { User }                                             from './ts/login/user.interface';
-import {MyFcaService}                                       from './app.component.service';
+import { User } from './ts/login/user.interface';
+import { MyFcaService } from './app.component.service';
 import './rxjs-operators';
-import {Observable}                                         from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
     moduleId: module.id,
@@ -29,8 +29,8 @@ export class ViewComponent implements OnInit {
 
     }
     ngOnInit() {
-    this.userdata =JSON.parse(localStorage.getItem("CurrentUser"));
-    this.tilesArray =JSON.parse(localStorage.getItem("titles"));
+        this.userdata = JSON.parse(localStorage.getItem("CurrentUser"));
+        this.tilesArray = JSON.parse(localStorage.getItem("titles"));
 
     }
 }

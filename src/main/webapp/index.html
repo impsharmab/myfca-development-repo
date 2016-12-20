@@ -10,10 +10,11 @@
 
     <!-- 1. Load libraries -->
     <!--for newDesign -->
-    <link rel="shortcut icon" href="app/resources/images/cp_ico.png">
+    <!--<link rel="shortcut icon" href="app/resources/images/cp_ico.png">-->
 
     <link rel="stylesheet" href="app/resources/css/slippry.css">
     <link rel="stylesheet" href="app/resources/css/demo.css">
+    <link rel="stylesheet" href="app/resources/css/spinner.css">
     <!--stylesheets / link tags loaded here-->
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -59,13 +60,10 @@
 <!-- 3. Display the application -->
 
 <body>
-  <!--<div style="background:url(app/resources/spinner.gif) no-repeat center center;width:4px;height:4px;"></div>-->
-
-    <!--<my-app> <span class="glyphicon  glyphicon-refresh text-center"></span></my-app>
-    <h1 class ="text-center" ><s</h1><span class="glyphicon  glyphicon-refresh spin" style=" no-repeat center center;width:4px;height:4px;">
-    -->
-        <my-app>
-          <spinner-component></spinner-component>
+          <my-app>
+                <div style="display: flex; justify-content: center;">
+                    <img class ="refreshGlyphImg" src="app/resources/spinner.gif" />
+                </div>  
         </my-app>
 </body>
 
