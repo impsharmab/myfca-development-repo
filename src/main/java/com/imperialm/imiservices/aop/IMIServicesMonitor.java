@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class IMIServicesMonitor {
-	private static final Logger logger = LoggerFactory.getLogger(IMIServicesMonitor.class);
+	private static Logger logger = LoggerFactory.getLogger(IMIServicesMonitor.class);
 
 	@AfterThrowing(pointcut = "execution(* com.imperialm.imiservices..*.*(..))", throwing = "error")
 	public void logAfterThrowing(final JoinPoint joinPoint, final Throwable error) {

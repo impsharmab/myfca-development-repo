@@ -11,11 +11,6 @@ import java.io.Serializable;
  */
 public class InputRequest implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -2485285474957736493L;
-
 	private String userID;
 	private Long roleID;
 	private String password;
@@ -113,13 +108,13 @@ public class InputRequest implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "UserRoleRequest [userID=" + this.userID + ", roleID=" + this.roleID + ", password=" + this.password
+		return "InputRequest [userID=" + this.userID + ", roleID=" + this.roleID + ", password=" + this.password
 				+ ", territory=" + this.territory + ", tileID=" + this.tileID + "]";
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -135,11 +130,11 @@ public class InputRequest implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(final Object obj) {
 		if (this == obj) {
 			return true;
 		}
@@ -192,7 +187,7 @@ public class InputRequest implements Serializable {
 	 * @param territory
 	 *            the territory to set
 	 */
-	public void setTerritory(String territory) {
+	public void setTerritory(final String territory) {
 		this.territory = territory;
 	}
 
@@ -207,7 +202,7 @@ public class InputRequest implements Serializable {
 	 * @param tileID
 	 *            the tileID to set
 	 */
-	public void setTileID(Long tileID) {
+	public void setTileID(final Long tileID) {
 		this.tileID = tileID;
 	}
 

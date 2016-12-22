@@ -27,7 +27,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class MenuDAOImpl implements MenuDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(MenuDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(MenuDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

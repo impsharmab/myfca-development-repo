@@ -15,13 +15,8 @@ import javax.persistence.Id;
 @Entity
 public class MenuResponse implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -4474783130283863634L;
-
 	@Id
-	private Long rNo;
+	private String rNo;
 	private String programCode;
 	private String menuName;
 	private String subMenuName;
@@ -79,6 +74,20 @@ public class MenuResponse implements Serializable {
 	 */
 	public void setSubMenuName(final String subMenu) {
 		this.subMenuName = subMenu;
+	}
+
+	/**
+	 * @return the rNo
+	 */
+	public String getrNo() {
+		return rNo;
+	}
+
+	/**
+	 * @param rNo the rNo to set
+	 */
+	public void setrNo(String rNo) {
+		this.rNo = rNo;
 	}
 
 }

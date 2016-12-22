@@ -25,7 +25,7 @@ import com.imperialm.imiservices.services.MenuService;
 @RestController
 public class MenuController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
+	private static Logger logger = LoggerFactory.getLogger(MenuController.class);
 
 	@Autowired
 	private MenuService menuService;

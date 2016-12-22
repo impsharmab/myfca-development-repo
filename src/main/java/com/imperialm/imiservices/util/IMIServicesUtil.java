@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 @Component
 public class IMIServicesUtil {
 
-	private static final Logger logger = LoggerFactory.getLogger(IMIServicesUtil.class);
+	private static Logger logger = LoggerFactory.getLogger(IMIServicesUtil.class);
 
 	public static String prepareJson(final String key, final String value) {
 		final Gson gson = new Gson();
@@ -26,7 +26,6 @@ public class IMIServicesUtil {
 
 	/**
 	 * from Clob to String
-	 * 
 	 * @param result
 	 * @return java.lang.String
 	 */
@@ -34,15 +33,13 @@ public class IMIServicesUtil {
 		String returnString = "";
 		if (result != null) {
 			try {
-				returnString = IOUtils.toString(((Clob) result).getCharacterStream()).replaceAll("\t", "")
-						.replaceAll("\\s", "").replaceAll("\"", "'");
+				returnString = IOUtils.toString(((Clob) result).getCharacterStream()).replaceAll("\t", "");
 			} catch (final IOException e) {
 				logger.error("error while building String from Clob Step 1", e);
 			} catch (final SQLException e) {
 				logger.error("error while building String from Clob Step 2", e);
 			}
 		}
-		logger.info("returnString  " + returnString);
 
 		return returnString;
 	}

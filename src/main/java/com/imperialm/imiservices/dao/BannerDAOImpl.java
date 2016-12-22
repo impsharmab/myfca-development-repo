@@ -26,7 +26,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class BannerDAOImpl implements BannerDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(BannerDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(BannerDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

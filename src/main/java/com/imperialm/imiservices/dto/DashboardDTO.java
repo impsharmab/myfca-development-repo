@@ -12,11 +12,6 @@ import java.util.List;
  */
 public class DashboardDTO implements Serializable {
 
-	/**
-		 *
-		 */
-	private static final long serialVersionUID = -5573712786197367779L;
-
 	private String programcode;
 	private String error;
 	private List<TileDTO> tiles;

@@ -23,7 +23,7 @@ import com.imperialm.imiservices.services.DashboardService;
 @RestController
 public class DashboardController {
 
-	private static final Logger logger = LoggerFactory.getLogger(DashboardController.class);
+	private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
 	@Autowired
 	private DashboardService dashService;

@@ -15,12 +15,8 @@ import javax.persistence.Id;
 @Entity
 public class UserProfileResponse implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 4116603470080613520L;
 	@Id
-	private Long rNo;
+	private String rNo;
 	private String userId;
 	private String name;
 	private String email;
@@ -35,7 +31,7 @@ public class UserProfileResponse implements Serializable {
 	/**
 	 * @return the rNo
 	 */
-	public Long getrNo() {
+	public String getrNo() {
 		return this.rNo;
 	}
 
@@ -43,7 +39,7 @@ public class UserProfileResponse implements Serializable {
 	 * @param rNo
 	 *            the rNo to set
 	 */
-	public void setrNo(final Long rNo) {
+	public void setrNo(final String rNo) {
 		this.rNo = rNo;
 	}
 
@@ -163,5 +159,4 @@ public class UserProfileResponse implements Serializable {
 				+ this.email + ", programCode=" + this.programCode + ", roleId=" + this.roleId + ", roleName="
 				+ this.roleName + ", roleLevel=" + this.roleLevel + "]";
 	}
-
 }

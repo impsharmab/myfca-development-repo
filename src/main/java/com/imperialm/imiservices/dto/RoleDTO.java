@@ -11,10 +11,6 @@ import java.io.Serializable;
  */
 public class RoleDTO implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 8847686964672502829L;
 	private Long roleID;
 	private String roleName;
 

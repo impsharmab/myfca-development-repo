@@ -11,11 +11,7 @@ import java.io.Serializable;
  */
 public class TileDTO implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 5144477871277407196L;
-	private String error;
+	private String error = "";
 	private String tileName;
 	private String tileHeaderImage;
 	private String tileImage;
@@ -25,7 +21,7 @@ public class TileDTO implements Serializable {
 	private String datatable;
 
 	public TileDTO(final String tileName, final String tileHeaderImage, final String tileImage, final String tileURL,
-			final Integer tileOrder, final String attributes, String datatable) {
+			final Integer tileOrder, final String attributes, final String datatable) {
 		super();
 		this.tileName = tileName;
 		this.tileHeaderImage = tileHeaderImage;
@@ -39,7 +35,7 @@ public class TileDTO implements Serializable {
 	public TileDTO() {
 	}
 
-	public TileDTO(String error) {
+	public TileDTO(final String error) {
 		this.error = error;
 	}
 
@@ -149,7 +145,7 @@ public class TileDTO implements Serializable {
 	 * @param datatable
 	 *            the datatable to set
 	 */
-	public void setDatatable(String datatable) {
+	public void setDatatable(final String datatable) {
 		this.datatable = datatable;
 	}
 
@@ -164,8 +160,20 @@ public class TileDTO implements Serializable {
 	 * @param error
 	 *            the error to set
 	 */
-	public void setError(String error) {
+	public void setError(final String error) {
 		this.error = error;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "TileDTO [error=" + this.error + ", tileName=" + this.tileName + ", tileHeaderImage="
+				+ this.tileHeaderImage + ", tileImage=" + this.tileImage + ", tileURL=" + this.tileURL + ", tileOrder="
+				+ this.tileOrder + ", attributes=" + this.attributes + ", datatable=" + this.datatable + "]";
 	}
 
 }

@@ -11,10 +11,6 @@ import java.io.Serializable;
  */
 public class AttributeDTO implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 8994560709632350053L;
 	private String name;
 	private String value;
 	private String type;

@@ -11,10 +11,6 @@ import java.io.Serializable;
  */
 public class ImagesDTO implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 1398447048509343150L;
 	private String imageName;
 	private String fileName;
 	private int imageOrder;

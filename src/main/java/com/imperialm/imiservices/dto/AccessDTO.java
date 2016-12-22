@@ -12,10 +12,6 @@ import java.util.List;
  */
 public class AccessDTO implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -6546491317884943781L;
 	private String programCode;
 	private List<RoleDTO> roles;
 

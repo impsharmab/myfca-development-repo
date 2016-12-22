@@ -11,12 +11,8 @@ import java.util.List;
  *
  */
 public class BannersDTO implements Serializable {
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 2751669145743233156L;
 	private String programCode;
-	private String error;
+	private String error = "";
 	private List<ImagesDTO> banners;
 
 	public BannersDTO() {
