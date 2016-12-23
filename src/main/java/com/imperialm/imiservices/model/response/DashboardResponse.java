@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class DashboardResponse implements Serializable {
 	@Id
-	private Long rNo;
+	private String rNo;
 	private String programCode;
 	private String territory;
 	private String tileName;
@@ -123,7 +123,7 @@ public class DashboardResponse implements Serializable {
 	/**
 	 * @return the rNo
 	 */
-	public Long getrNo() {
+	public String getrNo() {
 		return this.rNo;
 	}
 
@@ -131,7 +131,7 @@ public class DashboardResponse implements Serializable {
 	 * @param rNo
 	 *            the rNo to set
 	 */
-	public void setrNo(final Long rNo) {
+	public void setrNo(final String rNo) {
 		this.rNo = rNo;
 	}
 

@@ -16,14 +16,14 @@ import javax.persistence.Id;
 public class TileReponse implements Serializable {
 
 	@Id
-	private Long rNo;
+	private String rNo;
 	private String attributes;
 	private String datatable;
 
 	public TileReponse() {
 	}
 
-	public TileReponse(final String attributes, final String dataTable) {
+	public TileReponse(String attributes, String dataTable) {
 		this.attributes = attributes;
 		this.datatable = dataTable;
 	}
@@ -39,7 +39,7 @@ public class TileReponse implements Serializable {
 	 * @param attributes
 	 *            the attributes to set
 	 */
-	public void setAttributes(final String attributes) {
+	public void setAttributes(String attributes) {
 		this.attributes = attributes;
 	}
 
@@ -65,8 +65,22 @@ public class TileReponse implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "TileReponse [rNo=" + this.rNo + ", attributes=" + this.attributes + ", datatable=" + this.datatable
-				+ "]";
+		return "TileReponse [rNo=" + this.rNo + ", attributes=" + this.attributes
+				+ ", datatable=" + this.datatable + "]";
+	}
+
+	/**
+	 * @return the rNo
+	 */
+	public String getrNo() {
+		return rNo;
+	}
+
+	/**
+	 * @param rNo the rNo to set
+	 */
+	public void setrNo(String rNo) {
+		this.rNo = rNo;
 	}
 
 }

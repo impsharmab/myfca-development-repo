@@ -13,7 +13,7 @@ import com.imperialm.imiservices.dto.request.InputRequest;
 
 public interface TilesDAO {
 
-	public static String TILES_BY_ROLES_AND_PROGRAM = "SELECT DATEPART(MILLISECOND,GETDATE())+DATEPART(second,getdate())*tileid 'rNo' "
+	public static String TILES_BY_ROLES_AND_PROGRAM = "SELECT NEWID() 'rNo' "
 			+ " , attributes, datatable FROM SERVICETILES WHERE USERID = ? "
 			+ " AND Territory = ? AND TILEID = ? AND DELFLAG = 'N' ";
 

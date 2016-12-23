@@ -26,7 +26,6 @@ public class IMIServicesUtil {
 
 	/**
 	 * from Clob to String
-	 *
 	 * @param result
 	 * @return java.lang.String
 	 */

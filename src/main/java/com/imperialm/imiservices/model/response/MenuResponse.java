@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class MenuResponse implements Serializable {
 
 	@Id
-	private Long rNo;
+	private String rNo;
 	private String programCode;
 	private String menuName;
 	private String subMenuName;
@@ -74,6 +74,20 @@ public class MenuResponse implements Serializable {
 	 */
 	public void setSubMenuName(final String subMenu) {
 		this.subMenuName = subMenu;
+	}
+
+	/**
+	 * @return the rNo
+	 */
+	public String getrNo() {
+		return rNo;
+	}
+
+	/**
+	 * @param rNo the rNo to set
+	 */
+	public void setrNo(String rNo) {
+		this.rNo = rNo;
 	}
 
 }
