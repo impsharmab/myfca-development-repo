@@ -11,10 +11,6 @@ import java.io.Serializable;
  */
 public class SubMenuDTO implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 3488080152377050614L;
 	private String subMenu;
 
 	/**

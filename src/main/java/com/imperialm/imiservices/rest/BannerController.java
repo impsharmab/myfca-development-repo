@@ -17,7 +17,7 @@ import com.imperialm.imiservices.services.BannerService;
 
 @RestController
 public class BannerController {
-	private static final Logger logger = LoggerFactory.getLogger(BannerController.class);
+	private static Logger logger = LoggerFactory.getLogger(BannerController.class);
 	@Autowired
 	private BannerService bannerService;
 

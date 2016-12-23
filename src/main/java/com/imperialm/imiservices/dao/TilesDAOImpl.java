@@ -24,30 +24,30 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class TilesDAOImpl implements TilesDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(MenuDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * com.imperialm.imiservices.dao.TilesDAO#findTilesByUserRoleAndTerritory(
 	 * com.imperialm.imiservices.dto.request.UserRoleRequest)
 	 */
 	@Override
-	public TileDTO findTilesByUserRoleAndTerritory(InputRequest roleRequest) {
-		final TileDTO tilesDTO = new TileDTO();
+	public TileDTO findTilesByUserRoleAndTerritory(final InputRequest roleRequest) {
+		TileDTO tilesDTO = null;
 		try {
 			final Query query = this.em.createNativeQuery(TILES_BY_ROLES_AND_PROGRAM, TileReponse.class);
 			query.setParameter(1, roleRequest.getUserID());
 			query.setParameter(2, roleRequest.getTerritory());
 			query.setParameter(3, roleRequest.getTileID());
-
 			final TileReponse row = (TileReponse) query.getSingleResult();
-			tilesDTO.setAttributes(IMIServicesUtil.buildString(row.getAttributes()));
-			tilesDTO.setDatatable(IMIServicesUtil.buildString(row.getDatatable()));
+			tilesDTO = new TileDTO();
+			tilesDTO.setAttributes(row.getAttributes());
+			tilesDTO.setDatatable(row.getDatatable());
 
 		} catch (final NoResultException ex) {
 

@@ -16,6 +16,7 @@ export class HeaderSection implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(localStorage.getItem("CurrentUser"))
+        document.getElementById("profileModel").click();
     }
 
 

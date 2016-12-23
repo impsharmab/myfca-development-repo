@@ -12,10 +12,6 @@ import java.util.List;
  */
 public class MenuDTO implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 96007841917111782L;
 	private String programCode;
 	private String error;
 	private List<MenuDetailDTO> menus;

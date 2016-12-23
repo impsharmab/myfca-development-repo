@@ -15,10 +15,6 @@ import javax.persistence.Id;
 @Entity
 public class UserProfileResponse implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 4116603470080613520L;
 	@Id
 	private Long rNo;
 	private String userId;

@@ -1,6 +1,6 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {MyFcaService} from '../../app.component.service';
-const Highcharts = require ('highcharts');
+import { Component, OnInit, Input } from '@angular/core';
+import { MyFcaService } from '../../app.component.service';
+const Highcharts = require('highcharts');
 
 const Highcharts3d = require('highcharts/highcharts-3d.src');
 Highcharts3d(Highcharts)
@@ -24,7 +24,10 @@ export class ContentSection implements OnInit {
 
     ngOnInit() { }
 
-    constructor(private service: MyFcaService) {}
-
-
+    constructor(private service: MyFcaService) { }
+    getJSONObject(jsonString: string) {
+        //  debugger;
+        console.log(jsonString)
+        return JSON.parse(jsonString);
+    }
 }

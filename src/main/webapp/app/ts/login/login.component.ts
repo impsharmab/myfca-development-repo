@@ -25,8 +25,7 @@ export class Login implements OnInit{
   private banners:any;
   constructor(private service: MyFcaService, private router: Router, private http:Http) {
 
-  }
-   
+  }  
    
     ngOnInit(){
     //   this.service.getNewServiceJSON().subscribe(
@@ -72,7 +71,7 @@ export class Login implements OnInit{
          this.service.getNewServiceJSON(this.user.username,this.user.password).subscribe(
         (resUserData) => {
           alert(resUserData["userID"]);
-          if(resUserData["error"] === null)
+          if(resUserData["error"] === "" &&  resUserData["error"] !== null)
           {
         this.userdata["userID"] = resUserData["userID"];
         this.userdata["name"] = resUserData["name"];

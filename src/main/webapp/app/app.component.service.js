@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
-var sha256_js_1 = require("./sha256.js");
 require("./rxjs-operators");
+//var sha256=require('sha256.js');
 var MyFcaService = (function () {
     function MyFcaService(http) {
         this.http = http;
@@ -44,15 +44,18 @@ var MyFcaService = (function () {
         return this.userdata;
     };
     MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        var string = 'Test String';
-        var encodedString = btoa(string);
-        console.log(encodedString);
-        var decodedString = atob(encodedString);
-        console.log(decodedString);
-        var x = sha256_js_1.sha256('hello');
-        console.log(x);
-        var serviceurl = "app/resources/json/userprofiletest.json";
-        // var serviceurl = "services/userprofile?id="+ username + "&key=" + password;        
+        // var string = 'Test String';
+        // var encodedString = btoa(string);
+        // console.log(encodedString);
+        // var decodedString = atob(encodedString);
+        // console.log(decodedString);
+        //  var x = sha256('hello');
+        //  console.log(x);
+        //   var daveService = "./app/resources/json/dave.json";
+        //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
+        //   var mikeService = "./app/resources/json/mike.json";
+        // var params= "id="+ username + "&key=" + password;
+        var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
         var tileDataThroughService = this.http.post(serviceurl, {})
             .map(function (response) { return response.json(); })
             .catch(this.handleError);

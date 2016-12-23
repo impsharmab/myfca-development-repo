@@ -148,6 +148,32 @@
                   "type":"Currency",
                   "order":4
                }
+            ],
+            "datatable":[  
+               {  
+                  "name":"Top 3 Parts Sold MTD",
+                  "value":"26093",
+                  "type":"Number",
+                  "order":1
+               },
+               {  
+                  "name":"Top 3 Parts Sold YTD",
+                  "value":"26993",
+                  "type":"Number",
+                  "order":2
+               },
+               {  
+                  "name":"Earnings Month to Date",
+                  "value":"27892",
+                  "type":"Currency",
+                  "order":3
+               },
+               {  
+                  "name":"Earnings Year to Date",
+                  "value":"28792",
+                  "type":"Currency",
+                  "order":4
+               }
             ]
          },
          {  

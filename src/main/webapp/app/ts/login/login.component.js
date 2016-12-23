@@ -57,7 +57,7 @@ var Login = (function () {
         //             .catch(this.handleError);
         this.service.getNewServiceJSON(this.user.username, this.user.password).subscribe(function (resUserData) {
             alert(resUserData["userID"]);
-            if (resUserData["error"] === null) {
+            if (resUserData["error"] === "" && resUserData["error"] !== null) {
                 _this.userdata["userID"] = resUserData["userID"];
                 _this.userdata["name"] = resUserData["name"];
                 _this.userdata["email"] = resUserData["email"];

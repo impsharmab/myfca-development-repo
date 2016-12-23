@@ -14,10 +14,6 @@ import javax.persistence.Id;
  */
 @Entity
 public class DashboardResponse implements Serializable {
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -360922292108683419L;
 	@Id
 	private Long rNo;
 	private String programCode;
@@ -141,7 +137,7 @@ public class DashboardResponse implements Serializable {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -163,7 +159,7 @@ public class DashboardResponse implements Serializable {
 	 * @param tileID
 	 *            the tileID to set
 	 */
-	public void setTileID(Long tileID) {
+	public void setTileID(final Long tileID) {
 		this.tileID = tileID;
 	}
 
@@ -178,7 +174,7 @@ public class DashboardResponse implements Serializable {
 	 * @param territory
 	 *            the territory to set
 	 */
-	public void setTerritory(String territory) {
+	public void setTerritory(final String territory) {
 		this.territory = territory;
 	}
 

@@ -27,7 +27,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class DashboardDAOImpl implements DashboardDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(DashboardDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(DashboardDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;
@@ -38,17 +38,17 @@ public class DashboardDAOImpl implements DashboardDAO {
 	@Override
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
 		/*
-		 * final List<DashboardDTO> result = new ArrayList<>(); DashboardDTO
+		 * List<DashboardDTO> result = new ArrayList<>(); DashboardDTO
 		 * dashboardDTO = null; TileDTO tileDTO = null; List<TileDTO> tiles =
 		 * null; AttributeDTO attributeDTO = null; List<AttributeDTO> attributes
 		 * = null; String prevProgramCode = ""; String prevTileName = ""; try {
-		 * final Query query = em.createNativeQuery(DASH_TILE_LIST_BY_ROLE,
+		 * Query query = em.createNativeQuery(DASH_TILE_LIST_BY_ROLE,
 		 * DashboardResponse.class); query.setParameter(1,
 		 * userRoleReq.getRoleID()); query.setParameter(2,
 		 * userRoleReq.getUserID());
 		 *
-		 * final List<DashboardResponse> rows = query.getResultList(); for
-		 * (final DashboardResponse dash : rows) {
+		 * List<DashboardResponse> rows = query.getResultList(); for (
+		 * DashboardResponse dash : rows) {
 		 *
 		 * if ("".equals(prevProgramCode)) { prevProgramCode =
 		 * dash.getProgramCode(); dashboardDTO = new
@@ -84,12 +84,11 @@ public class DashboardDAOImpl implements DashboardDAO {
 		 * tileDTO.setAttributes(attributes); tiles.add(tileDTO);
 		 * dashboardDTO.setTiles(tiles); result.add(dashboardDTO); }
 		 *
-		 * } catch (final NoResultException ex) { dashboardDTO = new
-		 * DashboardDTO();
+		 * } catch ( NoResultException ex) { dashboardDTO = new DashboardDTO();
 		 * dashboardDTO.setError(IMIServicesUtil.prepareJson("Info",
 		 * "No Results found")); result.add(dashboardDTO);
-		 * logger.info("result in else " + result); } catch (final Exception ex)
-		 * { logger.error("error occured in findTilesListByRole", ex);
+		 * logger.info("result in else " + result); } catch ( Exception ex) {
+		 * logger.error("error occured in findTilesListByRole", ex);
 		 * dashboardDTO = new DashboardDTO();
 		 * dashboardDTO.setError(IMIServicesUtil.prepareJson("error",
 		 * "error Occured" + ex.getMessage())); result.add(dashboardDTO); }
@@ -105,7 +104,7 @@ public class DashboardDAOImpl implements DashboardDAO {
 	 * imiservices.dto.request.UserRoleRequest)
 	 */
 	@Override
-	public List<DashboardDTO> findTilesByRole(InputRequest userRoleReq) {
+	public List<DashboardDTO> findTilesByRole(final InputRequest userRoleReq) {
 
 		final List<DashboardDTO> result = new ArrayList<>();
 		DashboardDTO dashboardDTO = null;
@@ -122,6 +121,7 @@ public class DashboardDAOImpl implements DashboardDAO {
 			final List<DashboardResponse> rows = query.getResultList();
 			for (final DashboardResponse dash : rows) {
 				inputRequest = new InputRequest();
+
 				inputRequest.setRoleID(userRoleReq.getRoleID());
 				inputRequest.setUserID(userRoleReq.getUserID());
 				inputRequest.setTerritory(dash.getTerritory());
@@ -142,8 +142,6 @@ public class DashboardDAOImpl implements DashboardDAO {
 
 				tileDTO = new TileDTO();
 				tileDTO.setTileName(dash.getTileName());
-				inputRequest = new InputRequest(userRoleReq.getUserID(), userRoleReq.getRoleID(),
-						dash.getTerritory(), dash.getTileID());
 				tileDTO.setTileHeaderImage(dash.getTileHeaderImage());
 				tileDTO.setTileImage(dash.getTileImage());
 				tileDTO.setTileName(dash.getTileName());
@@ -155,7 +153,6 @@ public class DashboardDAOImpl implements DashboardDAO {
 				tiles.add(tileDTO);
 			}
 			if (!rows.isEmpty()) {
-				tiles.add(tileDTO);
 				dashboardDTO.setTiles(tiles);
 				result.add(dashboardDTO);
 			}
@@ -171,6 +168,7 @@ public class DashboardDAOImpl implements DashboardDAO {
 			dashboardDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
 			result.add(dashboardDTO);
 		}
+
 		return result;
 	}
 

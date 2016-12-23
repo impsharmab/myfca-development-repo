@@ -31,7 +31,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class UserProfileDAOImpl implements UserProfileDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserProfileDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(UserProfileDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

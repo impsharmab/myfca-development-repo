@@ -13,7 +13,7 @@ import com.imperialm.imiservices.dto.request.InputRequest;
 
 public interface DashboardDAO {
 
-	public static final String DASH_TILE_LIST_BY_ROLE = "SELECT DISTINCT ROW_NUMBER() OVER(ORDER BY d.programcode ASC) as Rno,"
+	public static String DASH_TILE_LIST_BY_ROLE = "SELECT DISTINCT ROW_NUMBER() OVER(ORDER BY d.programcode ASC) as Rno,"
 			+ " d.programcode,  tile.name 'TileName', "
 			+ " d.TileOrder,   d.TileHeaderImage,  d.TileImage,  attribute.name 'AttributeName', d.url,"
 			+ " tileattribute.value 'AttributeValue',  tileattribute.AttributeOrder, "
@@ -25,7 +25,7 @@ public interface DashboardDAO {
 			+ " AND tileattribute.delFlag = 'N'  AND attribute.delFlag = 'N'  AND d.delFlag = 'N' "
 			+ " AND tileattribute.delFlag = 'N' order by d.programcode, d.TileOrder, tileattribute.AttributeOrder ";
 
-	public static final String DASH_TILE_BY_ROLE_USER = "SELECT DISTINCT ROW_NUMBER() OVER(ORDER BY d.programcode ASC) as Rno, "
+	public static String DASH_TILE_BY_ROLE_USER = "SELECT DISTINCT ROW_NUMBER() OVER(ORDER BY d.programcode ASC) as Rno, "
 			+ " d.programcode, d.territory,  tile.name 'TileName',  "
 			+ " d.TileOrder,   d.TileHeaderImage,  d.TileImage, d.url, d.TileID "
 			+ " FROM dashboard d JOIN tiles tile ON tile.id = d.tileid " + " WHERE d.roleid = ? and d.UserID = ? "

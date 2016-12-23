@@ -13,7 +13,7 @@ import com.imperialm.imiservices.dto.request.InputRequest;
 
 public interface BannerDAO {
 
-	public static final String BANNERS_BY_ROLE = "select DISTINCT ROW_NUMBER() OVER(ORDER BY programcode ASC) as Rno, "
+	public static String BANNERS_BY_ROLE = "select DISTINCT ROW_NUMBER() OVER(ORDER BY programcode ASC) as Rno, "
 			+ " ProgramCode,name 'BannerName', filename 'FileName', OrderBy BannerOrder  from "
 			+ " BannerMappings BM JOIN banners banners  on banners.id = bm.BannerID "
 			+ " where bm.RoleID = ? AND banners.DelFlag = 'N' and bm.DelFlag = 'N' order by Programcode, BannerName ";

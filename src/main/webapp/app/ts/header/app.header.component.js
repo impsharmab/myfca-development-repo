@@ -16,6 +16,7 @@ var HeaderSection = (function () {
     }
     HeaderSection.prototype.ngOnInit = function () {
         this.data = JSON.parse(localStorage.getItem("CurrentUser"));
+        document.getElementById("profileModel").click();
     };
     return HeaderSection;
 }());

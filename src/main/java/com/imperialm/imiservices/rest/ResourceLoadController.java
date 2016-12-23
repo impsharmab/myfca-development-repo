@@ -26,7 +26,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @RestController
 public class ResourceLoadController {
 
-	private static final Logger logger = LoggerFactory.getLogger(ResourceLoadController.class);
+	private static Logger logger = LoggerFactory.getLogger(ResourceLoadController.class);
 
 	@Value("${images.shared.folder}")
 	private String imagesSharedFolder;

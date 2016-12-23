@@ -23,6 +23,11 @@ var ContentSection = (function () {
         this.service = service;
     }
     ContentSection.prototype.ngOnInit = function () { };
+    ContentSection.prototype.getJSONObject = function (jsonString) {
+        //  debugger;
+        console.log(jsonString);
+        return JSON.parse(jsonString);
+    };
     return ContentSection;
 }());
 __decorate([

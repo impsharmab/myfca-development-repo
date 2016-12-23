@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable'
-import {sha256} from './sha256.js';
 
 import './rxjs-operators';
+//var sha256=require('sha256.js');
 
 @Injectable()
 export class MyFcaService {
     private userDetailUrl = "/app/resources/json/userdetail.json";
     private titles = new Array();
     private userdata = {
-
     }
 
     constructor(private http: Http) { }
     setTiles(titles) {
         localStorage.setItem("titles", JSON.stringify(titles));
         //sessionStorage.setItem("titles", JSON.stringify(titles));
-
     }
+
     getTiles() {
         return this.titles;
     }
@@ -42,20 +41,25 @@ export class MyFcaService {
 
     getNewServiceJSON(username, password): any {
 
-        var string = 'Test String';
-        var encodedString = btoa(string);
-        console.log(encodedString);
-        var decodedString = atob(encodedString);
-        console.log(decodedString);
+        // var string = 'Test String';
+        // var encodedString = btoa(string);
+        // console.log(encodedString);
+        // var decodedString = atob(encodedString);
+        // console.log(decodedString);
 
-        var x = sha256('hello');
-        console.log(x);
+        //  var x = sha256('hello');
+        //  console.log(x);
 
-        var serviceurl = "app/resources/json/userprofiletest.json"
+     
+    //   var daveService = "./app/resources/json/dave.json";
+    //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
+    //   var mikeService = "./app/resources/json/mike.json";
         
-       // var serviceurl = "services/userprofile?id="+ username + "&key=" + password;        
+       
+      // var params= "id="+ username + "&key=" + password;
+        var serviceurl = "services/userprofile?id="+ username + "&key=" + password;        
         var tileDataThroughService = this.http.post(serviceurl, {})
-            // var tileDataThroughService = this.http.get(serviceurl)  
+          //  var tileDataThroughService = this.http.get(daveService)  
             .map((response: Response) => response.json())
             .catch(this.handleError);
         return tileDataThroughService;

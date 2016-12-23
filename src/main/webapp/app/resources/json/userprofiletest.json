@@ -87,7 +87,7 @@
    "dashboard":[  
       {  
          "programcode":"MSER",
-         "error":"",
+         "error":"", 
          "tiles":[  
             {  
                "tileName":"Rewarding Excellence",
@@ -168,7 +168,7 @@
                      "type":"Currency",
                      "order":4
                   }
-               ]
+               ] 
             },
             {  
                "tileName":"MSER - MVP Plan Sales",

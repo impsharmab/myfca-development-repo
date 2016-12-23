@@ -15,11 +15,6 @@ import javax.persistence.Id;
 @Entity
 public class BannerResponse implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -2188173489279966976L;
-
 	@Id
 	private Long rNo;
 	private String programCode;

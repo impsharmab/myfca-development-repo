@@ -26,7 +26,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @RequestMapping("/error")
 public class IMIServicesErrorController implements ErrorController {
 
-	private static final Logger logger = LoggerFactory.getLogger(IMIServicesErrorController.class);
+	private static Logger logger = LoggerFactory.getLogger(IMIServicesErrorController.class);
 
 	private final ErrorAttributes errorAttributes;
 

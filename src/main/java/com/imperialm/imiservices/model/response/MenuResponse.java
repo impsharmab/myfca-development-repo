@@ -15,11 +15,6 @@ import javax.persistence.Id;
 @Entity
 public class MenuResponse implements Serializable {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -4474783130283863634L;
-
 	@Id
 	private Long rNo;
 	private String programCode;

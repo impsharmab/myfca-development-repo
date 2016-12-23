@@ -23,7 +23,7 @@ import com.imperialm.imiservices.services.UserProfileService;
 @RestController
 public class UserProfileController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserProfileController.class);
+	private static Logger logger = LoggerFactory.getLogger(UserProfileController.class);
 	@Autowired
 	private UserProfileService userprofileService;
 
