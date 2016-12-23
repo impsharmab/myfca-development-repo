@@ -8,6 +8,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.imperialm.imiservices.util.IMIServicesUtil;
+
 /**
  * @author Dheerajr
  *
@@ -54,7 +56,7 @@ public class TileReponse implements Serializable {
 	 * @param datatable
 	 *            the datatable to set
 	 */
-	public void setDatatable(final String datatable) {
+	public void setDatatable(String datatable) {
 		this.datatable = datatable;
 	}
 
