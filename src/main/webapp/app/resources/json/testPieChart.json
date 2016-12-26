@@ -1,15 +1,104 @@
-[
+{
+  "error": "",
+  "userID": "Dave",
+  "name": "Dave Skiff",
+  "email": "dave@fcagroup.com",
+  "access": {
+    "programCode": "MSER",
+    "roles": [
+      {
+        "roleID": 2,
+        "roleName": "Director"
+      }
+    ]
+  },
+  "menus": [
+    {
+      "programCode": "MSER",
+      "error": "",
+      "menus": [
+        {
+          "menuName": "MSER",
+          "submenus": [
+            {
+              "subMenu": "Payout Chart"
+            },
+            {
+              "subMenu": "Report Center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "programCode": "CCP",
+      "error": "",
+      "menus": [
+        {
+          "menuName": "CCP",
+          "submenus": [
+            {
+              "subMenu": "Payout Chart"
+            },
+            {
+              "subMenu": "Report Center"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "banners": [
+    {
+      "programCode": "CCP",
+      "error": "",
+      "banners": [
+        {
+          "imageName": "FCA Rewards",
+          "fileName": "fcarewards.jpg",
+          "imagetiletileOrder": 1
+        },
+        {
+          "imageName": "FCA Welcome",
+          "fileName": "fcawelcome.jpg",
+          "imagetileOrder": 1
+        }
+      ]
+    },
+    {
+      "programCode": "MSER",
+      "error": "",
+      "banners": [
+        {
+          "imageName": "FCA Rewards",
+          "fileName": "fcarewards.jpg",
+          "imagetileOrder": 1
+        },
+        {
+          "imageName": "FCA Welcome",
+          "fileName": "fcawelcome.jpg",
+          "imagetileOrder": 1
+        }
+      ]
+    }
+  ],
+  "dashboard": [
+    {
+      "programcode": "MSER",
+      "error": "",
+      "tiles": [
+        
   {  
-      "order":1,
-      "title":"2015 Certified Participants",
-      "title_image":"app/resources/images/ph1.png",
-      "data_image":"",
+      "tileOrder":1,
+      "tileName":"2015 Certified Participants",
+      "tileHeaderImage":"app/resources/images/ph1.png",
+      "tileImage":"",
       "type":"chart",
       "data":{  
          "chart":{  
             "type":"pie"
          },
-         "title":{   
+         "tileName":{  
             "text":""
          },
          "plotOptions":{  
@@ -381,12 +470,12 @@
       }
    },
    {  
-      "order":2,
-      "title":"Call Summary -July 2016",
-      "title_image":"app/resources/images/ph1.png",
-      "data_image":"",
+      "tileOrder":2,
+      "tileName":"Call Summary -July 2016",
+      "tileHeaderImage":"app/resources/images/ph1.png",
+      "tileImage":"",
       "type":"chart",
-      "data":{  
+      "attributes":{  
          "credits":{  
             "enabled":false
          },
@@ -524,12 +613,12 @@
    },
 
   {
-    "order": 3,
-    "title": "Enrollment",
-    "title_image": "app/resources/images/ph6.png",
-    "data_image": "app/resources/images/panel1.png",
+    "tileOrder": 3,
+    "tileName": "Enrollment",
+    "tileHeaderImage": "app/resources/images/ph6.png",
+    "tileImage": "app/resources/images/panel1.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "2035/2635",
         "key": "Total Dealerships Enrolled",
@@ -553,12 +642,12 @@
     ]
   },
   {
-    "order": 4,
+    "tileOrder": 4,
     "title": "MOPAR PART SALES(qualifying parts)",
-    "title_image": "app/resources/images/ph6.png",
-    "data_image": "app/resources/images/panel5.png",
+    "tileHeaderImage": "app/resources/images/ph6.png",
+    "tileImage": "app/resources/images/panel5.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "47325",
         "key": "TOP 3 Parts sold MTD",
@@ -582,12 +671,12 @@
     ]
   },
   {
-    "order": 5,
-    "title": "MVP PLAN SALES(qualifying plans)",
-    "title_image": "app/resources/images/ph6.png",
-    "data_image": "app/resources/images/panel2.png",
+    "tileOrder": 5,
+    "tileName": "MVP PLAN SALES(qualifying plans)",
+    "tileHeaderImage": "app/resources/images/ph6.png",
+    "tileImage": "app/resources/images/panel2.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "21536",
         "key": "plan month to date",
@@ -611,12 +700,12 @@
     ]
   },
   {
-    "order": 6,
+    "tileOrder": 6,
     "title": "MAGNETI MARELL(qualifying parts)",
-    "title_image": "app/resources/images/ph6.png",
-    "data_image": "app/resources/images/panel6.png",
+    "tileHeaderImage": "app/resources/images/ph6.png",
+    "tileImage": "app/resources/images/panel6.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "1316",
         "key": "PARTS month to date",
@@ -640,12 +729,12 @@
     ]
   },
   {
-    "order": 7,
-    "title": "EXPRESS LANE(qualifying parts)",
-    "title_image": "app/resources/images/ph6.png",
-    "data_image": "app/resources/images/panel3.png",
+    "tiletileOrder": 7,
+    "tileName": "EXPRESS LANE(qualifying parts)",
+    "tileHeaderImage": "app/resources/images/ph6.png",
+    "tileImage": "app/resources/images/panel3.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "8655",
         "key": "PARTS month to date",
@@ -669,12 +758,12 @@
     ]
   },
   {
-    "order": 8,
-    "title": "EXPRESS LANE(qualifying parts)",
-    "title_image": "app/resources/images/ph6.png",
-    "data_image": "app/resources/images/panel7.png",
+    "tiletileOrder": 8,
+    "tileName": "EXPRESS LANE(qualifying parts)",
+    "tileHeaderImage": "app/resources/images/ph6.png",
+    "tileImage": "app/resources/images/panel7.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "5499",
         "key": "PARTS month to date",
@@ -698,12 +787,12 @@
     ]
   },
   {
-    "order": 9,
-    "title": "REWARDING EXCELLENCE VISA PREPAID CARD",
-    "title_image": "app/resources/images/page2/RewardingExcellence.jpg",
-    "data_image": "app/resources/images/panel4.png",
+    "tiletileOrder": 9,
+    "tileName": "REWARDING EXCELLENCE VISA PREPAID CARD",
+    "tileHeaderImage": "app/resources/images/page2/RewardingExcellence.jpg",
+    "tileImage": "app/resources/images/panel4.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "601385",
         "key": "Excellence card awards MSER MTD",
@@ -717,12 +806,12 @@
     ]
   },
   {
-    "order": 10,
-    "title": "WINNING LIFESTYLE",
-    "title_image": "app/resources/images/page2/ph10.png",
-    "data_image": "app/resources/images/panel15.png",
+    "tiletileOrder": 10,
+    "tileName": "WINNING LIFESTYLE",
+    "tileHeaderImage": "app/resources/images/page2/ph10.png",
+    "tileImage": "app/resources/images/panel15.png",
     "type": "tile",
-    "data": [
+    "attributes": [
       {
         "value": "8655",
         "key": "DEALERS ENROLLED",
@@ -760,19 +849,19 @@
       }
     ]
   },{  
-      "order":10,
-      "title":"DEALER SITE",
-      "title_image":"app/resources/images/page2/Dealer_Site_logo.png",
-      "data_image":"app/resources/images/page2/panel17.png",
+      "tiletileOrder":10,
+      "tileName":"DEALER SITE",
+      "tileHeaderImage":"app/resources/images/page2/Dealer_Site_logo.png",
+      "tileImage":"app/resources/images/page2/panel17.png",
       "type":"tile",
-      "data":[  
+      "attributes":[  
          {  
-            "value":"",
+            "value":"546565",
             "key":"Learn MORE",
             "type":"string"
          },
          {  
-            "value":"",
+            "value":"5421",
             "key":"visit mopar.dealer.com",
             "type":"string"
          }
@@ -781,3 +870,7 @@
    
    
 ]
+      
+    }
+  ]
+}

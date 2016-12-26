@@ -1,0 +1,42 @@
+<div class="row no-gutter">
+                <div class="col-xs-12 col-md-6">                    
+                    <div class="panel panel-default" *ngFor="let tile of colOneArray">
+                        <div class="panel-heading"><img class="col-xs-4 no-gutter" src="{{tile.title_image}}"><label class="pull-right col-xs-8 text-right no-gutter panel-captcha">{{tile.title}}</label></div>
+                         <div class="panel-body" *ngIf="tile.type == 'chart'">
+                         <chart [options]="tile.data" ></chart>
+                         </div>
+                        <div class="panel-body" *ngIf="tile.type == 'tile'">
+                            <div class="col-xs-6">
+                                <div class="panel-text" *ngFor="let data of tile.data">
+                                    <h3>{{data.value}}</h3>
+                                    <p>{{data.key}}</p>
+                                </div>
+                               
+                            </div>
+                            <div class="col-xs-6"><img src="{{tile.data_image}}" class="img-responsive widget-block">
+                                <label class="pull-right visit-site"><a href="http://uat.imperialmarketing.com/FCA_Rewards_Dashboard/david.html#">Visit Program Site <span><i class="glyphicon glyphicon-chevron-right"></i></span></a></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default" *ngFor="let tile of colTwoArray">
+                        <div class="panel-heading"><img class="col-xs-4 no-gutter" src="{{tile.title_image}}"><label class="pull-right col-xs-8 text-right no-gutter panel-captcha">{{tile.title}}</label></div>
+                        <div class="panel-body" *ngIf="tile.type == 'chart'">
+                         <chart [options]="tile.data" ></chart>
+                         </div>
+                        <div class="panel-body" *ngIf="tile.type == 'tile'">
+                            <div class="col-xs-6">
+                                <div class="panel-text" *ngFor="let data of tile.data">
+                                    <h3>{{data.value}}</h3>
+                                    <p>{{data.key}}</p>
+                                </div>
+                               
+                            </div>
+                            <div class="col-xs-6"><img src="{{tile.data_image}}" class="img-responsive widget-block">
+                                <label class="pull-right visit-site"><a href="http://uat.imperialmarketing.com/FCA_Rewards_Dashboard/david.html#">Visit Program Site <span><i class="glyphicon glyphicon-chevron-right"></i></span></a></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>

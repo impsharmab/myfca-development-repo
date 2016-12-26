@@ -12,7 +12,7 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("./rxjs-operators");
-//var sha256=require('sha256.js');
+var sha256 = require('./sha256.js');
 var MyFcaService = (function () {
     function MyFcaService(http) {
         this.http = http;
@@ -51,12 +51,17 @@ var MyFcaService = (function () {
         // console.log(decodedString);
         //  var x = sha256('hello');
         //  console.log(x);
-        //   var daveService = "./app/resources/json/dave.json";
+        var daveService = "./app/resources/json/dave.json";
+        var pieChartService = "./app/resources/json/testPieChart.json";
         //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
         //   var mikeService = "./app/resources/json/mike.json";
+        //  http://localhost:9090/imiservices/services/userprofile?id=Dave&key=password    
         // var params= "id="+ username + "&key=" + password;
-        var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
-        var tileDataThroughService = this.http.post(serviceurl, {})
+        var serviceurl = "services/userprofile"; //?id="+ username + "&key=" + password;    
+        var creds = "id=" + username + "&key=" + password;
+        // var headers = new Headers();
+        //  headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var tileDataThroughService = this.http.post(serviceurl, creds, {})
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;

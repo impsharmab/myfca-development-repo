@@ -3,7 +3,7 @@ import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/ht
 import { Observable } from 'rxjs/Observable'
 
 import './rxjs-operators';
-//var sha256=require('sha256.js');
+var sha256=require('./sha256.js');
 
 @Injectable()
 export class MyFcaService {
@@ -51,15 +51,23 @@ export class MyFcaService {
         //  console.log(x);
 
      
-    //   var daveService = "./app/resources/json/dave.json";
+       var daveService = "./app/resources/json/dave.json";
+        var pieChartService = "./app/resources/json/testPieChart.json";
     //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
     //   var mikeService = "./app/resources/json/mike.json";
+    //  http://localhost:9090/imiservices/services/userprofile?id=Dave&key=password    
+       
         
        
       // var params= "id="+ username + "&key=" + password;
-        var serviceurl = "services/userprofile?id="+ username + "&key=" + password;        
-        var tileDataThroughService = this.http.post(serviceurl, {})
-          //  var tileDataThroughService = this.http.get(daveService)  
+        var serviceurl = "services/userprofile" //?id="+ username + "&key=" + password;    
+        var creds= "id="+ username + "&key=" + password;
+       // var headers = new Headers();
+      //  headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+       var tileDataThroughService = this.http.post(serviceurl, creds, {})
+
+       //var tileDataThroughService = this.http.get(daveService)  
             .map((response: Response) => response.json())
             .catch(this.handleError);
         return tileDataThroughService;
@@ -105,31 +113,5 @@ export class MyFcaService {
             }).subscribe(
             heroes => console.log(heroes),
             error => console.log(error));
-    }
-    
-
-
-    //     getNewServiceJSON(username, password): any {
-    //         var serviceurl = "services/userprofiletest?id=" + username + "&key=" + password;
-    //         setTimeout(() => 
-    // {
-    //     var tileDataThroughService = this.http.get(serviceurl)
-    //             .map((response: Response) => response.json())
-    //             .catch(this.handleError);
-    //    return tileDataThroughService;
-    // },
-    // 1000);
-    //var userprofiletestServiceUrl = "app/resources/json/userprofiletest.json"
-
-    // getTileDataThroughService(): any {
-    //    // var newServiceUrl="/services/userprofiletest?id="+this.userdata.id+"&key="+this.userdata.key;
-    //    // var userprofiletestServiceUrl = "./app/resources/json/userprofiletest.json";
-    //     // var serviceUrl="/imiservices/services/tileslistbyrole?role="+this.userdata.access[0].roleID+"&id="+this.userdata.userID;
-    //     var tileDataThroughService = this.http.get(newServiceUrl)
-    //         .map((response: Response) => response.json())
-    //         .catch(this.handleError);
-    //     return tileDataThroughService;
-    // }
-
-    // <ngSubmit =getTileDataThroughService();> Login</>
+    }    
 }

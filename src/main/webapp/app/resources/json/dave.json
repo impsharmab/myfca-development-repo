@@ -14,11 +14,11 @@
   },
   "menus": [
     {
-      "programCode": "CCP",
+      "programCode": "MSER",
       "error": "",
       "menus": [
         {
-          "menuName": "CCP",
+          "menuName": "MSER",
           "submenus": [
             {
               "subMenu": "Payout Chart"
@@ -31,11 +31,11 @@
       ]
     },
     {
-      "programCode": "MSER",
+      "programCode": "CCP",
       "error": "",
       "menus": [
         {
-          "menuName": "MSER",
+          "menuName": "CCP",
           "submenus": [
             {
               "subMenu": "Payout Chart"
@@ -89,14 +89,13 @@
       "tiles": [
         {
           "error": "",
-          "type":"high/tile",
           "tileName": "MSER - MOPAR Part Sales",
           "tileHeaderImage": "fileImagename.9.jpg",
           "tileImage": "fileHeadername.9.jpg",
           "tileURL": "www.mopar.com",
           "tileOrder": 9,
           "attributes": "[{\"name\":\"Total MSER Parts Earnings MTD\",\"value\":\"$62,908.25\",\"type\":\"Currency\",\"Order\":\"1\"}]",
-          "datatable": "[{\"Part Number\":\"Y151093203\",\"value:4,508\"},{\"Part Number\":\"V2013776AC\",\"value:\"2,576\"},{\"Part Number\":\"Y183934470\",\"value:\"2,018\"}]"
+          "datatable": "[{\"Part Number\":\"Y151093203\",\"value\":\"4,508\"},{\"Part Number\":\"V2013776AC\",\"value\":\"2,576\"},{\"Part Number\":\"Y183934470\",\"value\":\"2,018\"}]"
         },
         {
           "error": "",
@@ -106,7 +105,7 @@
           "tileURL": "www.mopar.com",
           "tileOrder": 10,
           "attributes": "[{\"name\":\"Total MVP Plans Earnings MTD\",\"value\":\"$130,232.50\",\"type\":\"Currency\",\"Order\":\"1\"}]",
-          "datatable": "[{\"Plan Code\":\"ECP24N\",\"value:2,773\"},{\"Plan Code\":\"ECG24N\",\"value:\"1,595\"},{\"Plan Code\":\"ECS24N\",\"value:\"1,391\"}]"
+          "datatable": "[{\"Plan Code\":\"ECP24N\",\"value\":\"2,773\"},{\"Plan Code\":\"ECG24N\",\"value\":\"1,595\"},{\"Plan Code\":\"ECS24N\",\"value\":\"1,391\"}]"
         },
         {
           "error": "",
@@ -116,7 +115,7 @@
           "tileURL": "www.mopar.com",
           "tileOrder": 11,
           "attributes": "[{\"name\":\"Total Magneti Marelli Earnings MTD\",\"value\":\"$12,262.05\",\"type\":\"Currency\",\"Order\":\"1\"}]",
-          "datatable": "[{\"Part Number\":\"2AMV9783AA\",\"value:1,490\"},{\"Part Number\":\"2AMV1350AB\",\"value:\"1,446\"},{\"Part Number\":\"2AMV1996AB\",\"value:\"346\"}]"
+          "datatable": "[{\"Part Number\":\"2AMV9783AA\",\"value\":\"1,490\"},{\"Part Number\":\"2AMV1350AB\",\"value\":\"1,446\"},{\"Part Number\":\"2AMV1996AB\",\"value\":\"346\"}]"
         },
         {
           "error": "",
@@ -126,7 +125,7 @@
           "tileURL": "www.mopar.com",
           "tileOrder": 12,
           "attributes": "[{\"name\":\"Total Parts Counter Earnings MTD\",\"value\":\"$23,359.44\",\"type\":\"Currency\",\"Order\":\"1\"}]",
-          "datatable": "[{\"Part Number\":\"04443633\",\"value:\"1,914\"},{\"Part Number\":\"82214879\",\"value:\"1336\"},{\"Part Number\":\"2AMV1350AB\",\"value:\"1046\"}]"
+          "datatable": "[{\"Part Number\":\"04443633\",\"value\":\"1,914\"},{\"Part Number\":\"82214879\",\"value\":\"1336\"},{\"Part Number\":\"2AMV1350AB\",\"value\":\"1046\"}]"
         },
         {
           "error": "",
@@ -134,9 +133,9 @@
           "tileHeaderImage": "fileImagename.13.jpg",
           "tileImage": "fileHeadername.13.jpg",
           "tileURL": "www.mopar.com",
-          "tileOrder":"52525",
-          "attributes": "[{\"name\":\"2 Express Lane Earnings MTD\",\"value\":\"$8,799.80\",\"type\":\"Currency\",\"Order\":\"1\"}]",
-          "datatable": "[{\"Part Number\":\"WBF00022AA\",\"value:1,658\"},{\"Part Number\":\"WBF00021AA\",\"value:\"1,060\"},{\"Part Number\":\"WBF00024AA\",\"value:\"608\"}]"
+          "tileOrder": 13,
+          "attributes": "[{\"name\":\"Total Express Lane Earnings MTD\",\"value\":\"$8,799.80\",\"type\":\"Currency\",\"Order\":\"1\"}]",
+          "datatable": "[{\"Part Number\":\"WBF00022AA\",\"value\":\"1,658\"},{\"Part Number\":\"WBF00021AA\",\"value\":\"1,060\"},{\"Part Number\":\"WBF00024AA\",\"value\":\"608\"}]"
         },
         {
           "error": "",
@@ -144,8 +143,8 @@
           "tileHeaderImage": "head.jpg",
           "tileImage": "filename.jpg",
           "tileURL": "www.moparser.com",
-          "tileOrder": 1999,
-          "attributes": "[{\"name\":\"1 UConnect Navigation Activations MTD\",\"value\":\"39,00\",\"type\":\"Number\",\"Order\":\"1\"},{\"name\":\"Total UConnect Navigation Activations Earnings MTD\",\"value\":\"$39,000\",\"type\":\"Currency\",\"Order\":\"2\"}]",
+          "tileOrder": 15,
+          "attributes": "[{\"name\":\"Total UConnect Navigation Activations MTD\",\"value\":\"39,00\",\"type\":\"Number\",\"Order\":\"1\"},{\"name\":\"Total UConnect Navigation Activations Earnings MTD\",\"value\":\"$39,000\",\"type\":\"Currency\",\"Order\":\"2\"}]",
           "datatable": "[]"
         }
       ]

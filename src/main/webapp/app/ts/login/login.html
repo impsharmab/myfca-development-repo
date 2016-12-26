@@ -71,7 +71,7 @@
                             <div class="form-textbox">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input type="password" class="form-control" name="password" [(ngModel)]="user.password" required validateEqual="confirmPassword" reverse="true" #password="ngModel" placeholder="Password">
+                                    <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" placeholder="Password">
 
                                     <!--<pre *ngIf="password.errors" class="margin-20">{{ password.errors | json }}</pre>-->
                                 </div>
