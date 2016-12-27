@@ -10,7 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class IMIServicesUtil {
@@ -18,12 +19,19 @@ public class IMIServicesUtil {
 	private static Logger logger = LoggerFactory.getLogger(IMIServicesUtil.class);
 
 	public static String prepareJson(final String key, final String value) {
-		final Gson gson = new Gson();
+		final ObjectMapper json = new ObjectMapper();
+		String toReturn ="";
 		final Properties props = new Properties();
 		props.put(key, value);
-		return gson.toJson(props);
+		try {
+			toReturn = json.writeValueAsString(props);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return toReturn;
 	}
-
+	
 	/**
 	 * from Clob to String
 	 * @param result
