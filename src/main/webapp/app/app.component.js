@@ -12,15 +12,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var app_component_service_1 = require("./app.component.service");
-require("./rxjs-operators");
 var AppComponent = (function () {
-    //   form: FormGroup;
-    //   public user: User;
-    //   sampleUsers=[];
-    //   private tilesArray: any;
-    //   private userdata: any={};
-    //   private menu:any;
-    //   private banners:any;
     function AppComponent(service, router, http) {
         this.service = service;
         this.router = router;

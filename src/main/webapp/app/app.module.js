@@ -13,16 +13,16 @@ var forms_1 = require("@angular/forms");
 var platform_browser_1 = require("@angular/platform-browser");
 var http_1 = require("@angular/http");
 var angular2_highcharts_1 = require("angular2-highcharts");
-var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
-var app_view_component_1 = require("./app.view.component");
+var app_view_component_1 = require("./views/rootPage/app.view.component");
+var app_routes_1 = require("./app.routes");
 var app_component_service_1 = require("./app.component.service");
-var app_header_component_1 = require("./ts/header/app.header.component");
-var app_footer_component_1 = require("./ts/footer/app.footer.component");
-var app_contentbody_component_1 = require("./ts/contentbody/app.contentbody.component");
-var navbar_component_1 = require("./ts/navbar/navbar.component");
-var spinner_1 = require("./ts/spinner/spinner");
-var login_component_1 = require("./ts/login/login.component");
+var app_header_component_1 = require("./views/dashboard/header/app.header.component");
+var app_footer_component_1 = require("./views/dashboard/footer/app.footer.component");
+var app_contentbody_component_1 = require("./views/dashboard/contentbody/app.contentbody.component");
+var navbar_component_1 = require("./views/dashboard/navbar/navbar.component");
+var spinner_1 = require("./views/spinner/spinner");
+var login_component_1 = require("./views/login/login.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -30,14 +30,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, angular2_highcharts_1.ChartModule, forms_1.ReactiveFormsModule,
-            router_1.RouterModule.forRoot([{ path: '', redirectTo: 'login', pathMatch: 'full' }, {
-                    path: "login",
-                    component: login_component_1.Login
-                }, {
-                    path: "myfcadashboard",
-                    component: app_view_component_1.ViewComponent
-                }])
+        imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule, angular2_highcharts_1.ChartModule, forms_1.ReactiveFormsModule, app_routes_1.AppRoutingModule
         ],
         providers: [app_component_service_1.MyFcaService],
         declarations: [

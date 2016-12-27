@@ -1,44 +1,41 @@
-import { NgModule }                           from '@angular/core';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
-import { BrowserModule }                      from '@angular/platform-browser';
-import { HttpModule }                         from '@angular/http'
-import { ChartModule }                        from 'angular2-highcharts';
-import {RouterModule, Routes }                from "@angular/router";
-import {Observable}                           from 'rxjs/Rx';
-
-import { AppComponent }                       from './app.component';
-import { ViewComponent }                      from './app.view.component';
-import { routing,appRoutingProviders }        from './app.routes';
-import { MyFcaService }                       from './app.component.service'
-
-import { HeaderSection }                      from './ts/header/app.header.component'
-import { FooterSection }                      from './ts/footer/app.footer.component'
-import { ContentSection }                     from './ts/contentbody/app.contentbody.component'
-import { NavImageComponent }                  from './ts/navbar/navbar.component';
-import { SpinnerComponent }                   from './ts/spinner/spinner';
-import { Login }                              from "./ts/login/login.component";
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http'
+import { ChartModule } from 'angular2-highcharts';
+import { RouterModule, Routes } from "@angular/router";
+import { AppComponent } from './app.component';
+import { ViewComponent } from './views/rootPage/app.view.component';
+import { AppRoutingModule } from './app.routes';
+import { MyFcaService } from './app.component.service'
+import { HeaderSection } from './views/dashboard/header/app.header.component'
+import { FooterSection } from './views/dashboard/footer/app.footer.component'
+import { ContentSection } from './views/dashboard/contentbody/app.contentbody.component'
+import { NavImageComponent } from './views/dashboard/navbar/navbar.component';
+import { SpinnerComponent } from './views/spinner/spinner';
+import { Login } from "./views/login/login.component";
 
 @NgModule({
-    imports: [BrowserModule, HttpModule, FormsModule, ChartModule, ReactiveFormsModule,
-        RouterModule.forRoot([{ path: '', redirectTo: 'login', pathMatch: 'full' },{
-            path: "login",
-            component: Login
-        }, {
-            path: "myfcadashboard",
-            component: ViewComponent
-        }])
+    imports: [BrowserModule, HttpModule, FormsModule, ChartModule, ReactiveFormsModule, AppRoutingModule
+        // RouterModule.forRoot([{ path: '', redirectTo: 'login', pathMatch: 'full' },{
+        //     path: "login",
+        //     component: Login
+        // }, {
+        //     path: "myfcadashboard",
+        //     component: ViewComponent
+        // }])
     ],
     providers: [MyFcaService],
     declarations: [
-        AppComponent, 
+        AppComponent,
         Login,
-        HeaderSection, 
-        FooterSection, 
-        ContentSection, 
-        NavImageComponent, 
+        HeaderSection,
+        FooterSection,
+        ContentSection,
+        NavImageComponent,
         ViewComponent,
         SpinnerComponent
-        ],
+    ],
     bootstrap: [AppComponent]
 })
 

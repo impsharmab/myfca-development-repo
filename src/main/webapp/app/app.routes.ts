@@ -1,27 +1,22 @@
-import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
 
-//import { LoginComponent }               from './ts/login/login.component';
-import { ViewComponent } from './app.view.component';
-import { ContentSection } from './ts/contentbody/app.contentbody.component'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
+import { ViewComponent } from './views/rootPage/app.view.component';
+import { Login } from "./views/login/login.component";
 
-const appRoutes: Routes = [{
+const routes: Routes = [{ path: '', redirectTo: 'login', pathMatch: 'full' }, {
+    path: "login",
+    component: Login
+}, {
     path: "myfcadashboard",
     component: ViewComponent
-}, {
-    path: "app.component",
-    component: ContentSection
+}]
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule {
+
 }
-
-    //{
-    //  path: "login",
-    //component: LoginComponent
-    // }, 
-];
-
-export const appRoutingProviders: any[] = [
-
-];
-
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

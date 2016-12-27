@@ -12,11 +12,9 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("./rxjs-operators");
-var sha256 = require('./sha256.js');
 var MyFcaService = (function () {
     function MyFcaService(http) {
         this.http = http;
-        this.userDetailUrl = "/app/resources/json/userdetail.json";
         this.titles = new Array();
         this.userdata = {};
     }
@@ -27,41 +25,21 @@ var MyFcaService = (function () {
     MyFcaService.prototype.getTiles = function () {
         return this.titles;
     };
-    MyFcaService.prototype.getUsers = function () {
-        var mytestUsers = this.http.get(this.userDetailUrl)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-        return mytestUsers;
-    };
     MyFcaService.prototype.setUserData = function (userdata) {
         localStorage.setItem("CurrentUser", JSON.stringify(userdata));
     };
     MyFcaService.prototype.getUsersData = function () {
-        // var myFcaUsers =  this.http.get(this.userDetailUrl)
-        //   .map((response:Response) => response.json()) 
-        //   .catch(this.handleError);
-        //   return myFcaUsers;
         return this.userdata;
     };
     MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        // var string = 'Test String';
-        // var encodedString = btoa(string);
-        // console.log(encodedString);
-        // var decodedString = atob(encodedString);
-        // console.log(decodedString);
-        //  var x = sha256('hello');
-        //  console.log(x);
         var daveService = "./app/resources/json/dave.json";
-        var pieChartService = "./app/resources/json/testPieChart.json";
-        //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
-        //   var mikeService = "./app/resources/json/mike.json";
-        //  http://localhost:9090/imiservices/services/userprofile?id=Dave&key=password    
-        // var params= "id="+ username + "&key=" + password;
-        var serviceurl = "services/userprofile"; //?id="+ username + "&key=" + password;    
-        var creds = "id=" + username + "&key=" + password;
+        // var pieChartService = "./app/resources/json/testPieChart.json";
+        // var serviceurl = "services/userprofile";
+        // var creds = "id=" + username + "&key=" + password;
         // var headers = new Headers();
-        //  headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        var tileDataThroughService = this.http.post(serviceurl, creds, {})
+        // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
+        var tileDataThroughService = this.http.post(serviceurl, {})
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;
@@ -71,36 +49,24 @@ var MyFcaService = (function () {
         return body.data || {};
     };
     MyFcaService.prototype.handleError = function (error) {
-        // In a real world app, we might use a remote logging infrastructure
         var errMsg = "";
-        // if (error instanceof Response) {
-        //     const body = error.json() || '';
-        //     const err = body.error || JSON.stringify(body);
-        //     errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-        // } else {
-        //     errMsg = error.message ? error.message : error.toString();
-        // }
-        alert("Invalid credentials");
+        if (error instanceof http_1.Response) {
+            var body = error.json() || '';
+            var err = body.error || JSON.stringify(body);
+            errMsg = error.status + " - " + (error.statusText || '') + " " + err;
+        }
+        else {
+            errMsg = error.message ? error.message : error.toString();
+        }
         return Observable_1.Observable.throw(errMsg);
     };
-    MyFcaService.prototype.getData = function () {
+    MyFcaService.prototype.getHeaders = function () {
         var headersObj = new http_1.Headers();
         //headers.append('Accept', 'application/json');
         headersObj.append('Access-Control-Allow-Headers', 'Content-Type');
         headersObj.append('Access-Control-Allow-Methods', 'GET');
         headersObj.append('Access-Control-Allow-Origin', '*');
-        this.http
-            .get("http://localhost:3000/app/json/jsonData.json", {
-            headers: headersObj
-        })
-            .map(function (response) {
-            console.log(response.json().data);
-        })
-            .catch(function (rr) {
-            alert();
-            console.log(rr);
-            return rr;
-        }).subscribe(function (heroes) { return console.log(heroes); }, function (error) { return console.log(error); });
+        return headersObj;
     };
     return MyFcaService;
 }());
