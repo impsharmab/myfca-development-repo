@@ -1,98 +1,81 @@
-INFO	?	main	2016-12-27T19:09:29.598Z	org.javacs.Main#connectToNode	Connected to parent using socket on port 55282
-INFO	?	main	2016-12-27T19:09:29.787Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceSecutiryConfig.java]
-INFO	?	main	2016-12-27T19:09:29.933Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath5346499846559638346.txt
-INFO	?	main	2016-12-27T19:09:35.890Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:09:35.892Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	InitialIndex	2016-12-27T19:09:36.188Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\aop\IMIServicesMonitor.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.194Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceConfig.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.195Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceSecutiryConfig.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.197Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesInitializer.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.199Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesWebConfig.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.201Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\JpaConfiguration.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.207Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\BannerDAO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.209Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\BannerDAOImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.212Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\DashboardDAO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.214Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\DashboardDAOImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.223Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\MenuDAO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.226Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\MenuDAOImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.232Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\TilesDAO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.233Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\TilesDAOImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.235Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\UserProfileDAO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.236Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\UserProfileDAOImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.240Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\AccessDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.243Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\AttributeDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.247Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\BannersDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.251Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\DashboardDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.259Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\ImagesDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.268Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\MenuDetailDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.274Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\MenuDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.278Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\request\InputRequest.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.293Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\request\UserRoleRequest.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.297Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\RoleDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.299Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\SubMenuDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.301Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\TileDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.305Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\UserProfileDTO.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.313Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\filters\IMIServicesFilter.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.315Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\IMIServicesApplication.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.317Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Attribute.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.319Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Dashboard.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.325Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Program.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.329Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\BannerResponse.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.333Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\DashboardResponse.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.350Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\MenuResponse.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.352Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\TileReponse.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.354Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\UserProfileResponse.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.357Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Role.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.360Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Tile.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.365Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Tileattribute.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.372Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\BannerController.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.374Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\DashboardController.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.376Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\IMIServicesErrorController.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.379Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\IMIServiceWebController.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.381Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\MenuController.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.389Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\ResourceLoadController.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.395Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\UserProfileController.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.399Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\BannerService.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.400Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\BannerServiceImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.403Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\DashboardService.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.404Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\DashboardServiceImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.406Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\MenuService.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.408Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\MenuServiceImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.410Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\UserProfileService.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.413Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\UserProfileServiceImpl.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.417Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\util\IMIServicesConstants.java
-INFO	?	InitialIndex	2016-12-27T19:09:36.420Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\util\IMIServicesUtil.java
-INFO	?	main	2016-12-27T19:09:37.863Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesInitializer.java]
-INFO	?	main	2016-12-27T19:09:37.867Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath4299947069550604466.txt
-INFO	?	main	2016-12-27T19:09:46.158Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:09:46.160Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	main	2016-12-27T19:09:46.220Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath1748452915620292567.txt
-INFO	?	main	2016-12-27T19:09:51.346Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:09:51.347Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	main	2016-12-27T19:09:51.350Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesWebConfig.java]
-INFO	?	main	2016-12-27T19:09:51.353Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath979685765943262139.txt
-INFO	?	main	2016-12-27T19:09:55.353Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:09:55.354Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	main	2016-12-27T19:09:55.380Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\JpaConfiguration.java]
-INFO	?	main	2016-12-27T19:09:55.386Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath1038432017878969938.txt
-INFO	?	main	2016-12-27T19:10:00.508Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:10:00.518Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	main	2016-12-27T19:10:00.800Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceConfig.java]
-INFO	?	main	2016-12-27T19:10:00.804Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath2221594968102612187.txt
-INFO	?	main	2016-12-27T19:10:05.059Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:10:05.060Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	main	2016-12-27T19:10:05.074Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\filters\IMIServicesFilter.java]
-INFO	?	main	2016-12-27T19:10:05.077Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath2674147333085543349.txt
-INFO	?	main	2016-12-27T19:10:09.070Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:10:09.071Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	main	2016-12-27T19:10:09.091Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath7354625647762705693.txt
-INFO	?	main	2016-12-27T19:10:13.224Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
-INFO	?	main	2016-12-27T19:10:13.225Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
-INFO	?	main	2016-12-27T19:10:47.160Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesWebConfig.java]
-INFO	?	main	2016-12-27T19:11:02.737Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesInitializer.java]
-INFO	?	main	2016-12-27T19:11:10.790Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\JpaConfiguration.java]
-INFO	?	main	2016-12-27T19:11:19.645Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesWebConfig.java]
-INFO	?	main	2016-12-27T19:11:22.051Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesInitializer.java]
-INFO	?	main	2016-12-27T19:11:26.883Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceSecutiryConfig.java]
-INFO	?	main	2016-12-27T19:11:30.281Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceConfig.java]
-INFO	?	main	2016-12-27T19:13:42.705Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesWebConfig.java]
+INFO	?	main	2016-12-28T20:30:40.759Z	org.javacs.Main#connectToNode	Connected to parent using socket on port 55282
+INFO	?	main	2016-12-28T20:30:40.937Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\TilesDAO.java]
+INFO	?	main	2016-12-28T20:30:41.050Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath3636128685511767479.txt
+INFO	?	main	2016-12-28T20:30:46.146Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-12-28T20:30:46.148Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	InitialIndex	2016-12-28T20:30:46.483Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\aop\IMIServicesMonitor.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.488Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceConfig.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.492Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServiceSecutiryConfig.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.494Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesInitializer.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.497Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\IMIServicesWebConfig.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.500Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\config\JpaConfiguration.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.505Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\BannerDAO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.512Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\BannerDAOImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.517Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\DashboardDAO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.519Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\DashboardDAOImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.532Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\MenuDAO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.537Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\MenuDAOImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.546Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\TilesDAO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.548Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\TilesDAOImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.551Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\UserProfileDAO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.552Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dao\UserProfileDAOImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.561Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\AccessDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.564Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\AttributeDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.566Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\BannersDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.570Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\DashboardDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.586Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\ImagesDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.592Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\MenuDetailDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.600Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\MenuDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.604Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\request\InputRequest.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.619Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\request\UserRoleRequest.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.626Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\RoleDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.630Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\SubMenuDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.633Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\TileDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.637Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\dto\UserProfileDTO.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.650Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\filters\IMIServicesFilter.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.652Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\IMIServicesApplication.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.659Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Attribute.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.664Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Dashboard.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.671Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Program.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.680Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\BannerResponse.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.685Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\DashboardResponse.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.693Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\MenuResponse.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.711Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\TileReponse.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.714Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\response\UserProfileResponse.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.720Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Role.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.745Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Tile.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.763Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\model\Tileattribute.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.773Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\BannerController.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.784Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\DashboardController.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.789Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\IMIServicesErrorController.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.793Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\IMIServiceWebController.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.795Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\MenuController.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.798Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\ResourceLoadController.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.801Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\rest\UserProfileController.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.842Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\BannerService.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.844Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\BannerServiceImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.845Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\DashboardService.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.849Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\DashboardServiceImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.852Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\MenuService.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.853Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\MenuServiceImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.857Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\UserProfileService.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.859Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\services\UserProfileServiceImpl.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.863Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\util\IMIServicesConstants.java
+INFO	?	InitialIndex	2016-12-28T20:30:46.865Z	org.javacs.SymbolIndex$1#parseAll	Index c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\util\IMIServicesUtil.java
+INFO	?	main	2016-12-28T20:30:48.231Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath8704309938048706127.txt
+INFO	?	main	2016-12-28T20:30:54.483Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-12-28T20:30:54.485Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-12-28T20:31:52.691Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\IMIServicesApplication.java]
+INFO	?	main	2016-12-28T20:31:52.694Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath3704626668332414768.txt
+INFO	?	main	2016-12-28T20:31:57.321Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-12-28T20:31:57.322Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-12-28T20:32:01.370Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath161060402270669978.txt
+INFO	?	main	2016-12-28T20:32:05.737Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-12-28T20:32:05.738Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-12-28T20:32:50.063Z	org.javacs.JavaLanguageServer#doLint	Lint [c:\Users\sharmab\Desktop\work\myfca-dev\myfca-development-repo\src\main\java\com\imperialm\imiservices\util\IMIServicesUtil.java]
+INFO	?	main	2016-12-28T20:32:50.066Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath5228799806212924665.txt
+INFO	?	main	2016-12-28T20:32:54.989Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-12-28T20:32:54.990Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java
+INFO	?	main	2016-12-28T20:32:55.050Z	org.javacs.JavaLanguageServer#buildClassPath	Emit classpath to C:\Users\sharmab\AppData\Local\Temp\classpath1879694845340048943.txt
+INFO	?	main	2016-12-28T20:32:59.057Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default source directory src/main/java
+INFO	?	main	2016-12-28T20:32:59.058Z	org.javacs.JavaLanguageServer#sourceDirectories	Use default test directory src/test/java

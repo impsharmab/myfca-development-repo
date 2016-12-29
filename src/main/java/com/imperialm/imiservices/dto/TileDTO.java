@@ -4,6 +4,11 @@
 package com.imperialm.imiservices.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.imperialm.imiservices.model.TileAttribute1;
+import com.imperialm.imiservices.model.TileDataTable;
 
 /**
  * @author Dheerajr
@@ -17,11 +22,11 @@ public class TileDTO implements Serializable {
 	private String tileImage;
 	private String tileURL;
 	private Integer tileOrder;
-	private String attributes;
-	private String datatable;
+	private List<TileAttribute1> attributes;
+	private List<TileDataTable> datatable;
 
 	public TileDTO(final String tileName, final String tileHeaderImage, final String tileImage, final String tileURL,
-			final Integer tileOrder, final String attributes, final String datatable) {
+			final Integer tileOrder, final List<TileAttribute1> attributes, final List<TileDataTable> datatable) {
 		super();
 		this.tileName = tileName;
 		this.tileHeaderImage = tileHeaderImage;
@@ -39,7 +44,7 @@ public class TileDTO implements Serializable {
 		this.error = error;
 	}
 
-	public TileDTO(final String tileName, final String attributes) {
+	public TileDTO(final String tileName, final List<TileAttribute1> attributes) {
 		this.tileName = tileName;
 		this.attributes = attributes;
 	}
@@ -62,7 +67,7 @@ public class TileDTO implements Serializable {
 	/**
 	 * @return the attributes
 	 */
-	public String getAttributes() {
+	public List<TileAttribute1> getAttributes() {
 		return this.attributes;
 	}
 
@@ -70,7 +75,7 @@ public class TileDTO implements Serializable {
 	 * @param attributes
 	 *            the attributes to set
 	 */
-	public void setAttributes(final String attributes) {
+	public void setAttributes(final List<TileAttribute1> attributes) {
 		this.attributes = attributes;
 	}
 
@@ -137,7 +142,7 @@ public class TileDTO implements Serializable {
 	/**
 	 * @return the datatable
 	 */
-	public String getDatatable() {
+	public List<TileDataTable> getDatatable() {
 		return this.datatable;
 	}
 
@@ -145,7 +150,7 @@ public class TileDTO implements Serializable {
 	 * @param datatable
 	 *            the datatable to set
 	 */
-	public void setDatatable(final String datatable) {
+	public void setDatatable(final List<TileDataTable> datatable) {
 		this.datatable = datatable;
 	}
 

@@ -3,17 +3,22 @@
  */
 package com.imperialm.imiservices.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.imperialm.imiservices.dto.TileDTO;
+import com.imperialm.imiservices.model.TileDataTable;
 import com.imperialm.imiservices.dto.request.InputRequest;
+import com.imperialm.imiservices.model.TileAttribute1;
 import com.imperialm.imiservices.model.response.TileReponse;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -46,8 +51,13 @@ public class TilesDAOImpl implements TilesDAO {
 			query.setParameter(3, roleRequest.getTileID());
 			final TileReponse row = (TileReponse) query.getSingleResult();
 			tilesDTO = new TileDTO();
-			tilesDTO.setAttributes(row.getAttributes());
-			tilesDTO.setDatatable(row.getDatatable());
+			ObjectMapper mapper = new ObjectMapper();
+			List<TileAttribute1> attribute1 = mapper.readValue(row.getAttributes(), 
+					TypeFactory.defaultInstance().constructCollectionType(List.class, TileAttribute1.class));
+			tilesDTO.setAttributes(attribute1);
+			List<TileDataTable> datatable1 = mapper.readValue(row.getDatatable(), 
+					TypeFactory.defaultInstance().constructCollectionType(List.class, TileDataTable.class));
+			tilesDTO.setDatatable(datatable1);
 
 		} catch (final NoResultException ex) {
 

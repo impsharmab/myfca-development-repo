@@ -1,0 +1,570 @@
+{
+    "dashboard": [
+        {
+            "programcode": "MSER",
+            "error": "",
+            "tiles": [
+                {
+                    "error": "",
+                    "tileName": "MSER - MOPAR Part Sales",
+                    "tileHeaderImage": "fileImagename.9.jpg",
+                    "tileImage": "fileHeadername.9.jpg",
+                    "tileURL": "www.mopar.com",
+                    "type": "tile",
+                    "tileOrder": 1,
+                    "attributes": [
+                        {
+                            "value": "47325",
+                            "name": "TOP 3 Parts sold MTD",
+                            "attribute_order": "1"
+                        },
+                        {
+                            "value": "167451",
+                            "name": "Earnings months to date",
+                            "attribute_order": "2"
+                        },
+                        {
+                            "value": "2852737",
+                            "name": "Earnings YTD",
+                            "attribute_order": "3"
+                        },
+                        {
+                            "value": "15553",
+                            "name": "prior month total parts sold",
+                            "attribute_order": "4"
+                        }
+                    ],
+                    "datatable": [
+                        {
+                            "Part Number": "Y151093203",
+                            "value": "4,508",
+                            "datatable_order": "1"
+                        },
+                        {
+                            "Part Number": "V2013776AC",
+                            "value": "2,576",
+                            "datatable_order": "2"
+                        },
+                        {
+                            "Part Number": "Y183934470",
+                            "value": "2,018",
+                            "datatable_order": "3"
+                        }
+                    ]
+                },
+                {
+                    "error": "",
+                    "tileName": "MSER - MVP Plan Sales",
+                    "tileHeaderImage": "fileImagename.10.jpg",
+                    "tileImage": "fileHeadername.10.jpg",
+                    "tileURL": "www.mopar.com",
+                    "type": "chart",
+                    "tileOrder": 2,
+                    "attributes": [
+                        {
+                            "credits": {
+                                "enabled": false
+                            },
+                            "chart": {
+                                "type": "pie"
+                            },
+                            "title": {
+                                "text": ""
+                            },
+                            "subtitle": {
+                                "text": ""
+                            },
+                            "xAxis": {
+                                "categories": [
+                                    "",
+                                    "",
+                                    ""
+                                ]
+                            },
+                            "yAxis": {
+                                "min": 0,
+                                "title": {
+                                    "text": "Total Certifications"
+                                }
+                            },
+                            "tooltip": {
+                                "headerFormat": "",
+                                "pointFormat": "",
+                                "footerFormat": "",
+                                "shared": true,
+                                "useHTML": true
+                            },
+                            "plotOptions": {
+                                "column": {
+                                    "stacking": "normal",
+                                    "pointPadding": 0.2,
+                                    "borderWidth": 0,
+                                    "dataLabels": {
+                                        "enabled": false,
+                                        "color": "white"
+                                    }
+                                },
+                                "series": {
+                                    "stacking": "normal",
+                                    "allowPointSelect": true,
+                                    "cursor": "pointer",
+                                    "dataLabels": {
+                                        "enabled": true
+                                    }
+                                }
+                            },
+                            "series": [
+                                {
+                                    "type": "",
+                                    "name": "Groups",
+                                    "color": "rgba(165,170,217,1)",
+                                    "colorByPoint": true,
+                                    "data": [
+                                        {
+                                            "name": "CDJR Certified, 33919",
+                                            "y": 89,
+                                            "drilldown": "CDJR"
+                                        },
+                                        {
+                                            "name": "FIAT Certified, 3497",
+                                            "y": 9,
+                                            "drilldown": "FIAT"
+                                        },
+                                        {
+                                            "name": "Alfa Certified, 587",
+                                            "y": 2,
+                                            "drilldown": ""
+                                        }
+                                    ]
+                                }
+                            ],
+                            "drilldown": {
+                                "series": [
+                                    {
+                                        "id": "CDJR",
+                                        "name": "CDJR",
+                                        "colorByPoint": true,
+                                        "data": [
+                                            {
+                                                "name": "Sales, 17621",
+                                                "y": 52,
+                                                "drilldown": "CDJR Sales"
+                                            },
+                                            {
+                                                "name": "Aftersales, 7703",
+                                                "y": 23,
+                                                "drilldown": ""
+                                            },
+                                            {
+                                                "name": "Technicians, 8595",
+                                                "y": 25,
+                                                "drilldown": "CDJR Technicians"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "CDJR Sales",
+                                        "name": "CDJR Sales",
+                                        "data": [
+                                            [
+                                                "Certified, 11520",
+                                                65
+                                            ],
+                                            [
+                                                "Certified Specialist",
+                                                1140,
+                                                7
+                                            ],
+                                            [
+                                                "Master, 1454",
+                                                8
+                                            ],
+                                            [
+                                                "Sales Manager, 2324",
+                                                13
+                                            ],
+                                            [
+                                                "Sales Commercial, 1183",
+                                                7
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "CDJR After Sales",
+                                        "name": "CDJR After Sales",
+                                        "data": [
+                                            {
+                                                "name": "Certified",
+                                                "y": 35,
+                                                "drilldown": "CDJR After Sales Certified"
+                                            },
+                                            {
+                                                "name": "Certified Specialist",
+                                                "y": 18,
+                                                "drilldown": "CDJR After Sales Certified Specialist"
+                                            },
+                                            {
+                                                "name": "Master",
+                                                "y": 11,
+                                                "drilldown": "CDJR After Sales Master"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "CDJR After Sales Certified",
+                                        "name": "CDJR After Sales Certified",
+                                        "data": [
+                                            [
+                                                "Service Advisor",
+                                                22
+                                            ],
+                                            [
+                                                "Service Manager",
+                                                39
+                                            ],
+                                            [
+                                                "Parts Advisor",
+                                                42
+                                            ],
+                                            [
+                                                "Parts Manager",
+                                                42
+                                            ],
+                                            [
+                                                "Warranty Administrator",
+                                                50
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "CDJR After Sales Certified",
+                                        "name": "CDJR After Sales Certified",
+                                        "data": [
+                                            [
+                                                "Service Advisor",
+                                                22
+                                            ],
+                                            [
+                                                "Service Manager",
+                                                39
+                                            ],
+                                            [
+                                                "Parts Advisor",
+                                                42
+                                            ],
+                                            [
+                                                "Parts Manager",
+                                                42
+                                            ],
+                                            [
+                                                "Warranty Administrator",
+                                                50
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "CDJR After Sales Certified",
+                                        "name": "CDJR After Sales Certified",
+                                        "data": [
+                                            [
+                                                "Service Advisor",
+                                                22
+                                            ],
+                                            [
+                                                "Service Manager",
+                                                39
+                                            ],
+                                            [
+                                                "Parts Advisor",
+                                                42
+                                            ],
+                                            [
+                                                "Parts Manager",
+                                                42
+                                            ],
+                                            [
+                                                "Warranty Administrator",
+                                                50
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "CDJR Technicians",
+                                        "name": "CDJR Technicians",
+                                        "data": [
+                                            [
+                                                "Certified, 4098",
+                                                68
+                                            ],
+                                            [
+                                                "Certified Specialist, 590",
+                                                10
+                                            ],
+                                            [
+                                                "Master, 1291",
+                                                22
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "FIAT",
+                                        "name": "FIAT",
+                                        "colorByPoint": true,
+                                        "data": [
+                                            {
+                                                "name": "Sales Certified",
+                                                "y": 76,
+                                                "drilldown": "FIAT Sales"
+                                            },
+                                            {
+                                                "name": "Aftersales Certified",
+                                                "y": 62,
+                                                "drilldown": "FIAT After Sales"
+                                            },
+                                            {
+                                                "name": "Technicians",
+                                                "y": 48,
+                                                "drilldown": "FIAT Technicians"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "FIAT Sales",
+                                        "name": "FIAT Sales",
+                                        "data": [
+                                            [
+                                                "Certified",
+                                                73
+                                            ],
+                                            [
+                                                "Certified Specialist",
+                                                3
+                                            ],
+                                            [
+                                                "Master",
+                                                1
+                                            ],
+                                            [
+                                                "Sales Manager Certified",
+                                                71
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "FIAT After Sales",
+                                        "name": "FIAT After Sales",
+                                        "data": [
+                                            {
+                                                "name": "Certified",
+                                                "y": 33,
+                                                "drilldown": "FIAT After Sales Certified"
+                                            },
+                                            {
+                                                "name": "Certified Specialist",
+                                                "y": 9,
+                                                "drilldown": "FIAT After Sales Certified Specialist"
+                                            },
+                                            {
+                                                "name": "Master",
+                                                "y": 19,
+                                                "drilldown": "FIAT After Sales Master"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "id": "FIAT After Sales Certified",
+                                        "name": "After Sales Certified",
+                                        "data": [
+                                            [
+                                                "Service Advisor",
+                                                27
+                                            ],
+                                            [
+                                                "Service Manager",
+                                                31
+                                            ],
+                                            [
+                                                "Parts Advisor",
+                                                26
+                                            ],
+                                            [
+                                                "FIAT Parts Manager",
+                                                48
+                                            ],
+                                            [
+                                                "Warranty Administrator",
+                                                32
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "FIAT After Sales Certified Specialist",
+                                        "name": "After Sales Certified Specialist",
+                                        "data": [
+                                            [
+                                                "Service Advisor",
+                                                5
+                                            ],
+                                            [
+                                                "Service Manager",
+                                                12
+                                            ],
+                                            [
+                                                "Parts Advisor",
+                                                13
+                                            ],
+                                            [
+                                                "Parts Manager",
+                                                9
+                                            ],
+                                            [
+                                                "Warranty Administrator",
+                                                9
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "FIAT After Sales Master",
+                                        "name": "After Sales Master",
+                                        "data": [
+                                            [
+                                                "Service Advisor",
+                                                21
+                                            ],
+                                            [
+                                                "Service Manager",
+                                                31
+                                            ],
+                                            [
+                                                "Parts Advisor",
+                                                21
+                                            ],
+                                            [
+                                                "Parts Manager",
+                                                13
+                                            ],
+                                            [
+                                                "Warranty Administrator",
+                                                15
+                                            ]
+                                        ]
+                                    },
+                                    {
+                                        "id": "FIAT Technicians",
+                                        "name": "FIAT Technicians",
+                                        "data": [
+                                            [
+                                                "Technician Certified",
+                                                48
+                                            ],
+                                            [
+                                                "Technician Certified Specialist",
+                                                0
+                                            ],
+                                            [
+                                                "Technician Master",
+                                                0
+                                            ]
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ],
+                    "datatable": []
+                },
+                {
+                    "error": "",
+                    "tileName": "",
+                    "tileHeaderImage": "",
+                    "tileImage": "",
+                    "tileURL": "",
+                    "type": "",
+                    "tileOrder": 3,
+                    "attributes": [
+                        {
+                            "credits": {
+                                "enabled": false
+                            },
+                            "chart": {
+                                "type": "pie"
+                            },
+                            "title": {
+                                "text": ""
+                            },
+                            "subtitle": {
+                                "text": ""
+                            },
+                            "xAxis": {
+                                "categories": [
+                                    "",
+                                    "",
+                                    ""
+                                ]
+                            },
+                            "yAxis": {
+                                "min": 0,
+                                "title": {
+                                    "text": ""
+                                }
+                            },
+                            "tooltip": {
+                                "headerFormat": "",
+                                "pointFormat": "",
+                                "footerFormat": "",
+                                "shared": true,
+                                "useHTML": true
+                            },
+                            "plotOptions": {
+                                "column": {
+                                    "stacking": "",
+                                    "pointPadding": 0,
+                                    "borderWidth": 0,
+                                    "dataLabels": {
+                                        "enabled": false,
+                                        "color": ""
+                                    }
+                                },
+                                "series": {
+                                    "stacking": "",
+                                    "allowPointSelect": false,
+                                    "cursor": "",
+                                    "dataLabels": {
+                                        "enabled": false
+                                    }
+                                }
+                            },
+                            "series": [
+                                {
+                                    "type": "",
+                                    "name": "",
+                                    "color": "",
+                                    "colorByPoint": false,
+                                    "data": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                },
+                                {
+                                    "type": "",
+                                    "name": "",
+                                    "color": "",
+                                    "colorByPoint": true,
+                                    "data": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "datatable": []
+                }
+            ]
+        }
+    ]
+
+}
+
