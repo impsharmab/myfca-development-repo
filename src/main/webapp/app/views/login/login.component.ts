@@ -10,7 +10,7 @@ import {MyFcaService} from '../../app.component.service';
 @Component({
   moduleId:module.id,
   
-  templateUrl: './loginForm.html',
+  templateUrl: './login.html',
  // providers:[MyFcaService]
 })
 export class Login implements OnInit{
