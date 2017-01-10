@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.imperialm.imiservices.dao.DashboardDAO;
+import com.imperialm.imiservices.dao.MSEREarningsDAO;
 import com.imperialm.imiservices.dto.DashboardDTO;
+import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 
 @Service
@@ -14,6 +16,9 @@ public class DashboardServiceImpl implements DashboardService {
 
 	@Autowired
 	private DashboardDAO dashboardDAO;
+	
+	@Autowired
+	private MSEREarningsDAO MSEREarningsDAO;
 
 	@Override
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
@@ -24,4 +29,9 @@ public class DashboardServiceImpl implements DashboardService {
 	public List<DashboardDTO> findTilesByRole(final InputRequest userRoleReq) {
 		return this.dashboardDAO.findTilesByRole(userRoleReq);
 	}
+	
+	public List<MSEREarningsDTO> getEarningsByRole(final InputRequest userRoleReq){
+		 return this.MSEREarningsDAO.getEarningsByRole(userRoleReq);
+	}
+	
 }

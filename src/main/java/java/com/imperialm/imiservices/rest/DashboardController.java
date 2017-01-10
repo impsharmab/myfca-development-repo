@@ -11,9 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.imperialm.imiservices.dao.DashboardDAO;
+import com.imperialm.imiservices.dao.MSEREarningsDAOImpl;
 import com.imperialm.imiservices.dto.DashboardDTO;
+import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
+import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.services.DashboardService;
+import com.imperialm.imiservices.services.MappingServiceImpl;
 
 /**
  *
@@ -27,6 +32,12 @@ public class DashboardController {
 
 	@Autowired
 	private DashboardService dashService;
+	
+	@Autowired
+	private MappingServiceImpl mappingService;
+	
+	
+	
 
 	@RequestMapping(value = "/services/tileslistbyrole", method = RequestMethod.GET)
 	public @ResponseBody List<DashboardDTO> findTilesListByRole(@RequestParam("role") final Long roleId,
@@ -41,4 +52,13 @@ public class DashboardController {
 		final InputRequest userRoleReq = new InputRequest(userID, roleId);
 		return this.dashService.findTilesByRole(userRoleReq);
 	}
+	
+	@RequestMapping(value = "/services/tile/", method = RequestMethod.GET)
+	public @ResponseBody Chart findTilesListByRole() {
+		final InputRequest userRoleReq = new InputRequest("", "");
+		List<MSEREarningsDTO> list = this.dashService.getEarningsByRole(userRoleReq);
+		return this.mappingService.MapMSEREarningsDTOtoChart(list, "BC Total Earnings YTD", "", "Totsl Earnings", "", "bar-compond");
+	}
+
+	
 }

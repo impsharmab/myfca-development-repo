@@ -96,14 +96,14 @@ table, th, td {
 
                         <div class="card-content">
                             <div class="image-frame"><img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
-                            <div class="data-group" *ngFor="let data of getJSONObject(tile.attributes)">
+                            <!--<div class="data-group" *ngFor="let data of getJSONObject(tile.attributes)">
+                                <p class="data-point">{{data.value}}</p>
+                                <p class="data-substitle">{{data.name}}</p>
+                            </div>-->
+                            <div class="data-group" *ngFor="let data of tile.attributes">
                                 <p class="data-point">{{data.value}}</p>
                                 <p class="data-substitle">{{data.name}}</p>
                             </div>
-                            <!--<div class="data-group" *ngFor="let data of tile.attributes">
-                                <p class="data-point">{{data.value}}</p>
-                                <p class="data-substitle">{{data.key}}</p>
-                            </div>-->
                             <!--<div class="data-group">
                                     <p class="data-point">{{getJSONObject(tile.attributes).value}}</p>
 

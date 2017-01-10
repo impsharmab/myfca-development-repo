@@ -1,0 +1,280 @@
+{
+  "error": "",
+  "userID": "Dave",
+  "name": "Dave Skiff",
+  "email": "dave@fcagroup.com",
+  "access": {
+    "programCode": "MSER",
+    "roles": [
+      {
+        "roleID": 2,
+        "roleName": "Director"
+      }
+    ]
+  },
+  "menus": [
+    {
+      "programCode": "MSER",
+      "error": "",
+      "menus": [
+        {
+          "menuName": "MSER",
+          "submenus": [
+            {
+              "subMenu": "Payout Chart"
+            },
+            {
+              "subMenu": "Report Center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "programCode": "CCP",
+      "error": "",
+      "menus": [
+        {
+          "menuName": "CCP",
+          "submenus": [
+            {
+              "subMenu": "Payout Chart"
+            },
+            {
+              "subMenu": "Report Center"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "banners": [
+    {
+      "programCode": "CCP",
+      "error": "",
+      "banners": [
+        {
+          "imageName": "FCA Rewards",
+          "fileName": "fcarewards.jpg",
+          "imageOrder": 1
+        },
+        {
+          "imageName": "FCA Welcome",
+          "fileName": "fcawelcome.jpg",
+          "imageOrder": 1
+        }
+      ]
+    },
+    {
+      "programCode": "MSER",
+      "error": "",
+      "banners": [
+        {
+          "imageName": "FCA Rewards",
+          "fileName": "fcarewards.jpg",
+          "imageOrder": 1
+        },
+        {
+          "imageName": "FCA Welcome",
+          "fileName": "fcawelcome.jpg",
+          "imageOrder": 1
+        }
+      ]
+    }
+  ],
+  "dashboard": [
+    {
+      "programcode": "MSER",
+      "error": "",
+      "tiles": [
+        {
+          "error": "",
+          "tileName": "MSER - MOPAR Part Sales",
+          "tileHeaderImage": "fileImagename.9.jpg",
+          "tileImage": "fileHeadername.9.jpg",
+          "tileURL": "www.mopar.com",
+          "tileOrder": 9,
+          "tableName": "",
+          "table1": "",
+          "table2": "",
+          "attributes": [
+            {
+              "name": "Total MSER Parts Earnings MTD",
+              "value": "$62,908.25",
+              "type": "Currency",
+              "order": "1",
+              "Order": "1"
+            }
+          ],
+          "datatable": [         
+            {
+              "tableHeader": "partNumber",
+              "name": "Y151093203",
+              "value": "4,508"
+            },
+            {
+              "tableHeader": "Advisor BC, District, Dealer Code",
+              "name": "Paul T. AndersonOaklandCountyDealers(72354)",
+              "value": "4,508"
+            },
+            {
+              "value": "2,576",
+              "partNumber": "V2013776AC",
+              "Part Number": "V2013776AC"
+            },
+            {
+              "value": "2,018",
+              "partNumber": "Y183934470",
+              "Part Number": "Y183934470"
+            }
+          ]
+        },
+        {
+          "error": "",
+          "tileName": "MSER - MVP Plan Sales",
+          "tileHeaderImage": "fileImagename.10.jpg",
+          "tileImage": "fileHeadername.10.jpg",
+          "tileURL": "www.mopar.com",
+          "tileOrder": 10,
+          "attributes": [
+            {
+              "name": "Total MVP Plans Earnings MTD",
+              "value": "$130,232.50",
+              "type": "Currency",
+              "order": "1",
+              "Order": "1"
+            }
+          ],
+          "datatable": null
+        },
+        {
+          "error": "",
+          "tileName": "MSER - Magneti Marelli",
+          "tileHeaderImage": "fileImagename.11.jpg",
+          "tileImage": "fileHeadername.11.jpg",
+          "tileURL": "www.mopar.com",
+          "tileOrder": 11,
+          "attributes": [
+            {
+              "name": "Total Magneti Marelli Earnings MTD",
+              "value": "$12,262.05",
+              "type": "Currency",
+              "order": "1",
+              "Order": "1"
+            }
+          ],
+          "datatable": [
+            {
+              "value": "1,490",
+              "partNumber": "2AMV9783AA",
+              "Part Number": "2AMV9783AA"
+            },
+            {
+              "value": "1,446",
+              "partNumber": "2AMV1350AB",
+              "Part Number": "2AMV1350AB"
+            },
+            {
+              "value": "346",
+              "partNumber": "2AMV1996AB",
+              "Part Number": "2AMV1996AB"
+            }
+          ]
+        },
+        {
+          "error": "",
+          "tileName": "MSER - Parts Counter",
+          "tileHeaderImage": "fileImagename.12.jpg",
+          "tileImage": "fileHeadername.12.jpg",
+          "tileURL": "www.mopar.com",
+          "tileOrder": 12,
+          "attributes": [
+            {
+              "name": "Total Parts Counter Earnings MTD",
+              "value": "$23,359.44",
+              "type": "Currency",
+              "order": "1",
+              "Order": "1"
+            }
+          ],
+          "datatable": [
+            {
+              "value": "1,914",
+              "partNumber": "04443633",
+              "Part Number": "04443633"
+            },
+            {
+              "value": "1336",
+              "partNumber": "82214879",
+              "Part Number": "82214879"
+            },
+            {
+              "value": "1046",
+              "partNumber": "2AMV1350AB",
+              "Part Number": "2AMV1350AB"
+            }
+          ]
+        },
+        {
+          "error": "",
+          "tileName": "MSER - Express Lane",
+          "tileHeaderImage": "fileImagename.13.jpg",
+          "tileImage": "fileHeadername.13.jpg",
+          "tileURL": "www.mopar.com",
+          "tileOrder": 13,
+          "attributes": [
+            {
+              "name": "Total Express Lane Earnings MTD",
+              "value": "$8,799.80",
+              "type": "Currency",
+              "order": "1",
+              "Order": "1"
+            }
+          ],
+          "datatable": [
+            {
+              "value": "1,658",
+              "partNumber": "WBF00022AA",
+              "Part Number": "WBF00022AA"
+            },
+            {
+              "value": "1,060",
+              "partNumber": "WBF00021AA",
+              "Part Number": "WBF00021AA"
+            },
+            {
+              "value": "608",
+              "partNumber": "WBF00024AA",
+              "Part Number": "WBF00024AA"
+            }
+          ]
+        },
+        {
+          "error": "",
+          "tileName": "MSER - uConnect",
+          "tileHeaderImage": "head.jpg",
+          "tileImage": "filename.jpg",
+          "tileURL": "www.moparser.com",
+          "tileOrder": 15,
+          "attributes": [
+            {
+              "name": "Total UConnect Navigation Activations MTD",
+              "value": "39,00",
+              "type": "Number",
+              "order": "1",
+              "Order": "1"
+            },
+            {
+              "name": "Total UConnect Navigation Activations Earnings MTD",
+              "value": "$39,000",
+              "type": "Currency",
+              "order": "2",
+              "Order": "2"
+            }
+          ],
+          "datatable": []
+        }
+      ]
+    }
+  ]
+}

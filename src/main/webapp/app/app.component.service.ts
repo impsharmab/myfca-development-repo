@@ -29,7 +29,7 @@ export class MyFcaService {
 
     getNewServiceJSON(username, password): any {
 
-        var daveService = "./app/resources/json/dave.json";
+        var cleanDaveService = "./app/resources/json/cleanDave.json";
         // var pieChartService = "./app/resources/json/testPieChart.json";
         // var serviceurl = "services/userprofile";
         // var creds = "id=" + username + "&key=" + password;
@@ -38,8 +38,8 @@ export class MyFcaService {
 
         var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
 
-        var tileDataThroughService = this.http.post(serviceurl, {})
-            // var tileDataThroughService = this.http.get(daveService)
+       // var tileDataThroughService = this.http.post(serviceurl, {})
+             var tileDataThroughService = this.http.get(cleanDaveService)
             .map((response: Response) => response.json())
             .catch(this.handleError);
         return tileDataThroughService;

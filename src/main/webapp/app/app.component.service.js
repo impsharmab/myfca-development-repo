@@ -32,14 +32,15 @@ var MyFcaService = (function () {
         return this.userdata;
     };
     MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        var daveService = "./app/resources/json/dave.json";
+        var cleanDaveService = "./app/resources/json/cleanDave.json";
         // var pieChartService = "./app/resources/json/testPieChart.json";
         // var serviceurl = "services/userprofile";
         // var creds = "id=" + username + "&key=" + password;
         // var headers = new Headers();
         // headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
-        var tileDataThroughService = this.http.post(serviceurl, {})
+        // var tileDataThroughService = this.http.post(serviceurl, {})
+        var tileDataThroughService = this.http.get(cleanDaveService)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;
