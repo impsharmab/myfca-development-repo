@@ -37,13 +37,13 @@ public class MappingServiceImpl {
 		
 		List<ChartData> data = new ArrayList<ChartData>();
 		ChartData MoparParts , mvp, MagnetiMarelli, PartsCounter, ExpressLane, wiAdvisor, uConnect;
-		MoparParts = new ChartData("Mopar Parts", java.util.Objects.toString(MSEREarningDTO.getMoparParts()), null);
-		mvp = new ChartData("mvp",java.util.Objects.toString(MSEREarningDTO.getMvp()), null);
-		MagnetiMarelli = new ChartData("Magneti Marelli",java.util.Objects.toString(MSEREarningDTO.getMagnetiMarelli()), null);
-		PartsCounter = new ChartData("Parts Counter", java.util.Objects.toString(MSEREarningDTO.getPartsCounter()), null);
-		wiAdvisor = new ChartData("wiAdvisor", java.util.Objects.toString(MSEREarningDTO.getWiAdvisor()), null);
-		ExpressLane = new ChartData("Express Lane", java.util.Objects.toString(MSEREarningDTO.getExpressLane()), null);
-		uConnect = new ChartData("uConnect", java.util.Objects.toString(MSEREarningDTO.getuConnect()), null);
+		MoparParts = new ChartData("Mopar Parts", java.util.Objects.toString(MSEREarningDTO.getMoparParts()));
+		mvp = new ChartData("mvp",java.util.Objects.toString(MSEREarningDTO.getMvp()));
+		MagnetiMarelli = new ChartData("Magneti Marelli",java.util.Objects.toString(MSEREarningDTO.getMagnetiMarelli()));
+		PartsCounter = new ChartData("Parts Counter", java.util.Objects.toString(MSEREarningDTO.getPartsCounter()));
+		wiAdvisor = new ChartData("wiAdvisor", java.util.Objects.toString(MSEREarningDTO.getWiAdvisor()));
+		ExpressLane = new ChartData("Express Lane", java.util.Objects.toString(MSEREarningDTO.getExpressLane()));
+		uConnect = new ChartData("uConnect", java.util.Objects.toString(MSEREarningDTO.getuConnect()));
 		
 		data.add(MoparParts);
 		data.add(mvp);

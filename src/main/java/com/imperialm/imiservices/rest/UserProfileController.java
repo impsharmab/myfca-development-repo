@@ -34,7 +34,7 @@ public class UserProfileController {
 		return this.userprofileService.getUserProfile(userRoleReq);
 	}
 
-	@RequestMapping(value = "/services/userprofile", method = RequestMethod.GET)
+	@RequestMapping(value = "/services/userprofile", method = RequestMethod.POST)
 	public @ResponseBody UserProfileDTO getUserProfile(@RequestParam("id") final String userID,
 			@RequestParam("key") final String password) {
 		final InputRequest userRoleReq = new InputRequest(userID, password);

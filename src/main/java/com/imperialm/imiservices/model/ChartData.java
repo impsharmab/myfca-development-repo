@@ -38,6 +38,12 @@ public class ChartData {
 		this.value = value;
 		this.data = data;
 	}
+	
+	public ChartData(String name, String value){
+		this.name = name;
+		this.value = value;
+		this.data = new ArrayList<ChartData>();
+	}
 
 	public ChartData() {
 		this.name = "";
