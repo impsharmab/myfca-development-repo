@@ -38,8 +38,8 @@ export class MyFcaService {
 
         var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
 
-       // var tileDataThroughService = this.http.post(serviceurl, {})
-             var tileDataThroughService = this.http.get(cleanDaveService)
+        var tileDataThroughService = this.http.post(serviceurl, {})
+           //  var tileDataThroughService = this.http.get(cleanDaveService)
             .map((response: Response) => response.json())
             .catch(this.handleError);
         return tileDataThroughService;

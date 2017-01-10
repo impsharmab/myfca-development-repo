@@ -39,8 +39,7 @@ var MyFcaService = (function () {
         // var headers = new Headers();
         // headers.append('Content-Type', 'application/x-www-form-urlencoded');
         var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
-        // var tileDataThroughService = this.http.post(serviceurl, {})
-        var tileDataThroughService = this.http.get(cleanDaveService)
+        var tileDataThroughService = this.http.post(serviceurl, {})
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
         return tileDataThroughService;
