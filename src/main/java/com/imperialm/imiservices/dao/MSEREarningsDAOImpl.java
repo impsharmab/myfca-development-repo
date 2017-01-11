@@ -44,7 +44,6 @@ public class MSEREarningsDAOImpl implements MSEREarningsDAO {
 		try {
 			final Query query = this.em.createNativeQuery(EARNING_BY_ROLE, EarningsResponse.class);
 			List<EarningsResponse> EarningsRows = query.getResultList();
-			int a = EarningsRows.size();
 			for (EarningsResponse Earning : EarningsRows) {
 				MSEREarningsDTO MSEREarningsDTOTemp = new MSEREarningsDTO();
 				MSEREarningsDTOTemp.setMvp(Earning.getMvp());

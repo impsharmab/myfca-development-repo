@@ -117,7 +117,7 @@ var Login = (function () {
 Login = __decorate([
     core_1.Component({
         moduleId: module.id,
-        templateUrl: './login.html',
+        templateUrl: './new-loginForm.html',
     }),
     __metadata("design:paramtypes", [app_component_service_1.MyFcaService, router_1.Router, http_1.Http])
 ], Login);

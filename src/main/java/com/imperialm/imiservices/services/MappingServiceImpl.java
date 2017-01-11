@@ -37,13 +37,13 @@ public class MappingServiceImpl {
 		
 		List<ChartData> data = new ArrayList<ChartData>();
 		ChartData MoparParts , mvp, MagnetiMarelli, PartsCounter, ExpressLane, wiAdvisor, uConnect;
-		MoparParts = new ChartData("Mopar Parts", java.util.Objects.toString(MSEREarningDTO.getMoparParts()));
-		mvp = new ChartData("mvp",java.util.Objects.toString(MSEREarningDTO.getMvp()));
-		MagnetiMarelli = new ChartData("Magneti Marelli",java.util.Objects.toString(MSEREarningDTO.getMagnetiMarelli()));
-		PartsCounter = new ChartData("Parts Counter", java.util.Objects.toString(MSEREarningDTO.getPartsCounter()));
-		wiAdvisor = new ChartData("wiAdvisor", java.util.Objects.toString(MSEREarningDTO.getWiAdvisor()));
-		ExpressLane = new ChartData("Express Lane", java.util.Objects.toString(MSEREarningDTO.getExpressLane()));
-		uConnect = new ChartData("uConnect", java.util.Objects.toString(MSEREarningDTO.getuConnect()));
+		MoparParts = new ChartData("Mopar Parts", MSEREarningDTO.getMoparParts());
+		mvp = new ChartData("mvp",MSEREarningDTO.getMvp());
+		MagnetiMarelli = new ChartData("Magneti Marelli",MSEREarningDTO.getMagnetiMarelli());
+		PartsCounter = new ChartData("Parts Counter", MSEREarningDTO.getPartsCounter());
+		wiAdvisor = new ChartData("wiAdvisor", MSEREarningDTO.getWiAdvisor());
+		ExpressLane = new ChartData("Express Lane", MSEREarningDTO.getExpressLane());
+		uConnect = new ChartData("uConnect", MSEREarningDTO.getuConnect());
 		
 		data.add(MoparParts);
 		data.add(mvp);

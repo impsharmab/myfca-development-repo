@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,11 +54,17 @@ public class DashboardController {
 		return this.dashService.findTilesByRole(userRoleReq);
 	}
 	
-	@RequestMapping(value = "/services/tile/", method = RequestMethod.GET)
-	public @ResponseBody Chart findTilesListByRole() {
+	@RequestMapping(value = "/services/tile/{chartId}", method = RequestMethod.GET)
+	public @ResponseBody Object findTilesListByRole(@PathVariable(value="chartId") int id) {
 		final InputRequest userRoleReq = new InputRequest("", "");
-		List<MSEREarningsDTO> list = this.dashService.getEarningsByRole(userRoleReq);
-		return this.mappingService.MapMSEREarningsDTOtoChart(list, "BC Total Earnings YTD", "", "Totsl Earnings", "", "bar-compond");
+		
+		switch(id){
+		case 1:
+			List<MSEREarningsDTO> list = this.dashService.getEarningsByRole(userRoleReq);
+			return this.mappingService.MapMSEREarningsDTOtoChart(list, "BC Total Earnings YTD", "", "Totsl Earnings", "", "bar-compond");
+		default:
+			return "No such service call exists.";
+		}
 	}
 
 	

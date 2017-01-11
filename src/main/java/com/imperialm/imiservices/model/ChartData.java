@@ -1,5 +1,6 @@
 package com.imperialm.imiservices.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,11 @@ public class ChartData {
 		this.name = name;
 	}
 
-	public String getValue() {
+	public double getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(double value) {
 		this.value = value;
 	}
 
@@ -30,24 +31,24 @@ public class ChartData {
 
 
 	private String name;
-	private String value;
+	private double value;
 	private List<ChartData> data;
 	
-	public ChartData(String name, String value, List<ChartData> data){
+	public ChartData(String name, double value, List<ChartData> data){
 		this.name = name;
 		this.value = value;
 		this.data = data;
 	}
 	
-	public ChartData(String name, String value){
+	public ChartData(String name, double value){
 		this.name = name;
-		this.value = value;
+		this.value = (double) value;
 		this.data = new ArrayList<ChartData>();
 	}
 
 	public ChartData() {
 		this.name = "";
-		this.value = "";
+		this.value = 0.0;
 		this.data = new ArrayList<ChartData>();
 	}	
 

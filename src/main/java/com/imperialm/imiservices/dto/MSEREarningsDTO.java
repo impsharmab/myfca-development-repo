@@ -9,13 +9,13 @@ import javax.persistence.Entity;
 public class MSEREarningsDTO implements Serializable {
 	
 	private String territory;
-	private BigDecimal moparParts;
-	private BigDecimal mvp;
-	private BigDecimal magnetiMarelli;
-	private BigDecimal partsCounter;
-	private BigDecimal expressLane;
-	private BigDecimal wiAdvisor;	
-	private BigDecimal uConnect;
+	private double moparParts;
+	private double mvp;
+	private double magnetiMarelli;
+	private double partsCounter;
+	private double expressLane;
+	private double wiAdvisor;	
+	private double uConnect;
 	private String error;
 	public String getTerritory() {
 		return territory;
@@ -23,46 +23,46 @@ public class MSEREarningsDTO implements Serializable {
 	public void setTerritory(String territory) {
 		this.territory = territory;
 	}
-	public BigDecimal getMoparParts() {
+	public double getMoparParts() {
 		return moparParts;
 	}
-	public void setMoparParts(BigDecimal moparParts) {
+	public void setMoparParts(double moparParts) {
 		this.moparParts = moparParts;
 	}
-	public BigDecimal getMvp() {
+	public double getMvp() {
 		return mvp;
 	}
-	public void setMvp(BigDecimal mvp) {
+	public void setMvp(double mvp) {
 		this.mvp = mvp;
 	}
-	public BigDecimal getMagnetiMarelli() {
+	public double getMagnetiMarelli() {
 		return magnetiMarelli;
 	}
-	public void setMagnetiMarelli(BigDecimal magnetiMarelli) {
+	public void setMagnetiMarelli(double magnetiMarelli) {
 		this.magnetiMarelli = magnetiMarelli;
 	}
-	public BigDecimal getPartsCounter() {
+	public double getPartsCounter() {
 		return partsCounter;
 	}
-	public void setPartsCounter(BigDecimal partsCounter) {
+	public void setPartsCounter(double partsCounter) {
 		this.partsCounter = partsCounter;
 	}
-	public BigDecimal getExpressLane() {
+	public double getExpressLane() {
 		return expressLane;
 	}
-	public void setExpressLane(BigDecimal expressLane) {
+	public void setExpressLane(double expressLane) {
 		this.expressLane = expressLane;
 	}
-	public BigDecimal getWiAdvisor() {
+	public double getWiAdvisor() {
 		return wiAdvisor;
 	}
-	public void setWiAdvisor(BigDecimal wiAdvisor) {
+	public void setWiAdvisor(double wiAdvisor) {
 		this.wiAdvisor = wiAdvisor;
 	}
-	public BigDecimal getuConnect() {
+	public double getuConnect() {
 		return uConnect;
 	}
-	public void setuConnect(BigDecimal uConnect) {
+	public void setuConnect(double uConnect) {
 		this.uConnect = uConnect;
 	}
 	public String getError() {
