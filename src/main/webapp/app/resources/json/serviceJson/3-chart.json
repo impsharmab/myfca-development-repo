@@ -1,0 +1,29 @@
+{
+    "title": "chart title",
+    "subTitle": "chart sub-title",
+    "xaxisTitle": "x-axis title",
+    "yaxisTitle": "y-axis title",
+    "type": "column",
+    "data": [
+        {
+            "name": "a",
+            "value": 10,
+            "data": []
+        },
+        {
+            "name": "b",
+            "value": 17,
+            "data": []
+        },
+        {
+            "name": "c",
+            "value": 8,
+            "data": []
+        },
+        {
+            "name": "d",
+            "value": 4,
+            "data": []
+        }
+    ]
+}

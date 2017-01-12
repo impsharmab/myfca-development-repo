@@ -1,0 +1,154 @@
+
+<template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>One fine body&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</template>
+<!--<template #topModel let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Modal title</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>One fine body&hellip;</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</template>-->
+<template ngbModalContainer></template>
+
+
+<ngb-carousel>   
+  <template ngbSlide>
+    <img src="app/resources/images/carousel/image-5.jpg" alt="Random first slide">
+    <div class="carousel-caption">
+      <h3>First slide label</h3>
+      <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+    </div>
+  </template>
+  <template ngbSlide>
+    <img src="app/resources/images/carousel/image-6.jpg" alt="Random second slide">
+    <div class="carousel-caption">
+      <h3>Second slide label</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </template>
+  <template ngbSlide>
+    <img src="app/resources/images/carousel/image-7.jpg" alt="Random third slide">
+    <div class="carousel-caption">
+      <h3>Third slide label</h3>
+      <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+    </div>
+  </template>
+</ngb-carousel>
+<div id="main">
+  <section class="demo_wrapper">
+    <article class="demo_block">
+      <!-- 
+            <a href="#glob" class='prev'>Prev</a> / <a href="#glob" class='next'>Next</a>
+            || <a href="#glob" class='init'>Init</a> | <a href="#glob" class='reset'>Destroy</a> | <a href="#glob" class='reload'>Reload</a>
+            || <a href="#glob" class='stop'>Stop</a> | <a href="#glob" class='start'>Start</a>
+                
+         <ul id="demo1">
+            <li><a href="#slide1"><img src="_img/image-5.jpg" alt="Welcome Technicians! Please review the program notices &nbsp;<a href='#link'>here!</a>"></a></li>
+            <li><a href="#slide3"><img src="_img/image-7.jpg" alt="Denver Business Center click here for upcoming promotions&nbsp;<a href='#link'>here!</a>"></a></li>
+            <li><a href="#slide2"><img src="_img/image-6.jpg"  alt="Download the 2017 Payout Chart &nbsp;<a href='#link'>here!</a>"></a></li>
+         </ul>
+      </article>
+   </section>
+   <div class="container">
+      <div class="section">
+           Icon Section   -->
+      <div class="row">
+        <!--   Card Start  -->
+        <div class="col s12 m6" *ngFor="let tile of tilesArray">
+          <div class="card horizontal">
+            <!--  <div class="card-image">
+                     <img src="_img/card-01.jpg">
+                     </div>-->
+            <div class="card-stacked">
+              <div class="card-content" *ngIf="tile.type == 'chart'">
+                <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
+                <chart [options]="contentBody[tile.id]"></chart>
+              </div>
+              <div class="card-content" *ngIf="tile.type == 'tile'">
+                <div class="image-frame"><img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
+                <div class="data-group" *ngFor="let data of contentBody[tile.id].attributes">
+                  <p class="data-point">{{data.value}}</p>
+                  <p class="data-substitle">{{data.name}}</p>
+                </div>
+
+                <!--<ul class="collection">
+                           <li class="collection-header">
+                              <h5>Top 5 MTD Technicians <br/>Excellence Card Awards </h5>
+                           </li>
+                           <li class="collection-item avatar">
+                              <i class="circle blue"> <span class="white-text-rank">1</span></i>
+                              <span class="title">John Doe</span>
+                              <p>Bearns Dealer Group(23545)</p>
+                              <a href="#!" class="secondary-content">$600</a>
+                           </li>
+                           <li class="collection-item avatar">
+                              <i class="circle blue"> <span class="white-text-rank">2</span></i>
+                              <span class="title">Jane Doe</span>
+                              <p>Howard & Howard Automotive (23521)</p>
+                              <a href="#!" class="secondary-content">$575</a>
+                           </li>
+                           <li class="collection-item avatar">
+                              <i class="circle blue"> <span class="white-text-rank">3</span></i>
+                              <span class="title">Matt Stafford</span>
+                              <p>Shine Automotive(23547)</p>
+                              <a href="#!" class="secondary-content">$537</a>
+                           </li>
+                           <li class="collection-item avatar">
+                              <i class="circle blue"> <span class="white-text-rank">4</span></i>
+                              <span class="title">Karen Neuman</span>
+                              <p>Baker & Sons Dealer Group (72354)</p>
+                              <a href="#!" class="secondary-content">$534</a>
+                           </li>
+                           <li class="collection-item avatar">
+                              <i class="circle blue"> <span class="white-text-rank">5</span></i>
+                              <span class="title">Tony Soprano</span>
+                              <p>Brightly Auto (92354)</p>
+                              <a href="#!" class="secondary-content">$510</a>
+                           </li>
+                        </ul>-->
+
+              </div>
+              <div class="card-action">
+                <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--   Card Stop  -->
+        <!--   Card Start  -->
+        <div class="col s12 m6">
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <div class="image-frame"><img src="_img/mser.jpg"> </div>
+                <div id="container12" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+</div>
+<div class="card-action">
+  <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+  <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+</div>

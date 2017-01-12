@@ -1,883 +1,928 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <title>FCA My Rewards - Welcome</title>
-  <base target="_self">
-  <meta name="description" content="An example template using MaterializeCSS. This demonstrates how to use the pushpin affix plugin for the navbar so that is sticks to the top once the page is scroll beyond a top header" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="google" value="notranslate">
+    <meta charset="utf-8">
+    <title>FCA My Rewards - Welcome</title>
+    <base target="_self">
+    <meta name="description" content="An example template using MaterializeCSS. This demonstrates how to use the pushpin affix plugin for the navbar so that is sticks to the top once the page is scroll beyond a top header"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" value="notranslate">
     <link rel="shortcut icon" href="/images/cp_ico.png">
-    
+
     <link rel="stylesheet" href="_css/slippry.css">
     <link rel="stylesheet" href="_css/demo.css">
     <!--stylesheets / link tags loaded here-->
-    
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="_css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    
-    <link href="_css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  
+    <link href="_css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
 
-  
+    <link href="_css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+
 
 
 
 </head>
-<body >
-  <!-- Modal Structure --> 
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Welcome, Arnold Weber</h4>
-      <p>The FCA Rewards Dashbaord is a here to provide you with quick to review information of all your vital sales data.</p>
-      <p>Use the <a class="" href="#modal1"><i class="material-icons .md-14 ">info_outline</i></a> whenever you want to reference this menu again.</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Get Started!</a>
-    </div>
-  </div>
-  <div id="nav container">
-  <div class="navbar-fixed">
-  <nav class="">
-  <div class="nav-wrapper container">
-   <a href="#" class="brand-logo"><img src="_img/FCA-mast-logo.jpg"/></a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-   <div class="utility-container">
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-      
-            <li><a href="admin.html">Admin</a></li>
-            <li><a href="myprofile.html">Profile</a></li>
-            <li><a href="contacthtml">Contact Us</a></li>
-            <li><a href="logout.html">Logout</a></li>
-      </ul>
-        <div class="user-profile">
-        
-        <div class="profile-help">
-        <!-- Modal Trigger -->
-        <a id="profileModel" class="" href="#modal1"><i class="material-icons .md-14 ">info_outline</i></a>
-        </div>
-        <div class="profile-name">Welcome, <a href="#">{{data.name}}</a></div>
-        </div>
-      </div> 
-  <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 
-      <ul class="tabs tabs-transparent hide-on-med-and-down">
-  <!--
+<body>
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Welcome, Arnold Weber</h4>
+            <p>The FCA Rewards Dashbaord is a here to provide you with quick to review information of all your vital sales data.</p>
+            <p>Use the <a class="" href="#modal1"><i class="material-icons .md-14 ">info_outline</i></a> whenever you want to
+                reference this menu again.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class=" modal-action modal-close waves-effect waves-light btn-flat">Get Started!</a>
+        </div>
+    </div>
+    <div id="nav container">
+        <div class="navbar-fixed">
+            <nav class="">
+                <div class="nav-wrapper container">
+                    <a href="#" class="brand-logo"><img src="_img/FCA-mast-logo.jpg" /></a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <div class="utility-container">
+                        <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            <li><a href="admin.html">Admin</a></li>
+                            <li><a href="myprofile.html">Profile</a></li>
+                            <li><a href="contacthtml">Contact Us</a></li>
+                            <li><a href="logout.html">Logout</a></li>
+                        </ul>
+                        <div class="user-profile">
+
+                            <div class="profile-help">
+                                <!-- Modal Trigger -->
+                                <a id="profileModel" class="" href="#modal1"><i class="material-icons .md-14 ">info_outline</i></a>
+                            </div>
+                            <div class="profile-name">Welcome, <a href="#">{{data.name}}</a></div>
+                        </div>
+                    </div>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+
+                    <ul class="tabs tabs-transparent hide-on-med-and-down">
+                        <!--
             <li class="tab"><a href="#">Dashboard</a></li>
             <li class="tab"><a href="#">FCA Performance Institute</a></li>
             <li class="tab"><a href="mser.html">MSER</a></li>
             <li class="tab"><a href="#">Top Advisor</a></li>
             <li class="tab"><a href="#">Service Incentive Rewards</a></li>
             <li class="tab"><a href="#">FCA Rewards Redemption</a></li>
-    --> 
-    
-    </ul>
-            
-  
-  
-  <ul class="side-nav" id="mobile-demo"> 
-  <li><a href="#"><input id="search" type="search" placeholder="search"></a></li> 
-                     <li><a href="#">Link</a></li>                 
-                        <li><a href="#">Link</a></li>                   
-                         <li><a href="#">Link</a></li>                    
-                         <li><a href="#">Link</a></li>                
-                         </ul>           
-                          </div>        
-                          </nav>
-                          </div>
-                          
-                          </div>
+    -->
 
-  <!-- main content -->
+                    </ul>
 
-<div  id="main">
 
-		<section class="demo_wrapper">
-			<article class="demo_block">
-			<!-- 
+
+                    <ul class="side-nav" id="mobile-demo">
+                        <li>
+                            <a href="#"><input id="search" type="search" placeholder="search"></a>
+                        </li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                        <li><a href="#">Link</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+
+    <!-- main content -->
+
+    <div id="main">
+
+        <section class="demo_wrapper">
+            <article class="demo_block">
+                <!-- 
 				<a href="#glob" class='prev'>Prev</a> / <a href="#glob" class='next'>Next</a>
 		|| <a href="#glob" class='init'>Init</a> | <a href="#glob" class='reset'>Destroy</a> | <a href="#glob" class='reload'>Reload</a>
 		|| <a href="#glob" class='stop'>Stop</a> | <a href="#glob" class='start'>Start</a>
         --->
-			<ul id="demo1">
-				<li><a href="#slide1"><img src="_img/image-5.jpg" alt="Welcome Technicians! Please review the program notices &nbsp;<a href='#link'>here!</a>"></a></li>
-				<li><a href="#slide3"><img src="_img/image-7.jpg" alt="Denver Business Center click here for upcoming promotions&nbsp;<a href='#link'>here!</a>"></a></li>
-                <li><a href="#slide2"><img src="_img/image-6.jpg"  alt="Download the 2017 Payout Chart &nbsp;<a href='#link'>here!</a>"></a></li>
-			</ul>
-   
-            
-			</article>
-		</section>
+                <ul id="demo1">
+                    <li><a href="#slide1"><img src="_img/image-5.jpg" alt="Welcome Technicians! Please review the program notices &nbsp;<a href='#link'>here!</a>"></a>
+                    </li>
+                    <li><a href="#slide3"><img src="_img/image-7.jpg" alt="Denver Business Center click here for upcoming promotions&nbsp;<a href='#link'>here!</a>"></a>
+                    </li>
+                    <li><a href="#slide2"><img src="_img/image-6.jpg"  alt="Download the 2017 Payout Chart &nbsp;<a href='#link'>here!</a>"></a>
+                    </li>
+                </ul>
 
-   <div class="container">
-    <div class="section">
 
-      <!--   Icon Section   -->
-      <div class="row">
-   <!--   Card Start  -->
-            <div class="col s12 m6">
-           
-            <div class="card horizontal">
-         <!--  <div class="card-image">
+            </article>
+        </section>
+
+        <div class="container">
+            <div class="section">
+
+                <!--   Icon Section   -->
+                <div class="row">
+                    <!--   Card Start  -->
+                    <div class="col s12 m6">
+
+                        <div class="card horizontal">
+                            <!--  <div class="card-image">
             <img src="_img/card-01.jpg">
             </div>-->
-            <div class="card-stacked">
-             
-            <div class="card-content">
-            <div class="image-frame"><img src="_img/mser-logo.jpg"> </div>
-                <div class="data-group">
-                    <p class="data-point">2,503</p>
-                    <p class="data-substitle">Total Dealers Enrolled</p>
-                </div>
-           
-                 <div class="data-group">
-                    <p class="data-point">$515,000</p>
-                    <p class="data-substitle">Excellence Cards Awards MTD</p>
-                </div>
-                <div class="data-group">
-                    <p class="data-point">$6,000,000</p>
-                       <p class="data-substitle">Excellence Cards Awards YTD</p>
-                </div>
-        <ul class="collection">
-  <li class="collection-header"><h5>Top 5 MTD Technicians <br/>Excellence Card Awards </h5></li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">1</span></i>
-      <span class="title">John Doe</span>
-      <p>Bearns Dealer Group(23545)</p>
-      <a href="#!" class="secondary-content">$600</a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">2</span></i>
-      <span class="title">Jane Doe</span>
-      <p>Howard & Howard Automotive (23521)</p>
-      <a href="#!" class="secondary-content">$575</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-      <span class="title">Matt Stafford</span>
-      <p>Shine Automotive(23547)</p>
-      <a href="#!" class="secondary-content">$537</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">4</span></i>
-      <span class="title">Karen Neuman</span>
-      <p>Baker & Sons Dealer Group (72354)</p>
-      <a href="#!" class="secondary-content">$534</a>
-    </li>
-       <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">5</span></i>
-      <span class="title">Tony Soprano</span>
-      <p>Brightly Auto (92354)</p>
-      <a href="#!" class="secondary-content">$510</a>
-    </li>
-  </ul>           
-              
-  <ul class="collection">
-  <li class="collection-header"><h5>Top 5 MTD Advisors <br/>Excellence Card Awards </h5></li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">1</span></i>
-      <span class="title">William Smith</span>
-      <p>Prestige Auto(72354)</p>
-      <a href="#!" class="secondary-content">$1600</a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">2</span></i>
-      <span class="title">Jackie Chan</span>
-      <p>Diamond Motors (82354)</p>
-      <a href="#!" class="secondary-content">$1595</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-      <span class="title">Lee Marvin</span>
-      <p>Steely Dealer Group (32354)</p>
-      <a href="#!" class="secondary-content">$1580</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">4</span></i>
-      <span class="title">Bing Crosby</span>
-      <p>Institute Group(52354)</p>
-      <a href="#!" class="secondary-content">$1570</a>
-    </li>
-       <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">5</span></i>
-      <span class="title">Walter Sobczek</span>
-      <p>Fox Auto (32354)</p>
-      <a href="#!" class="secondary-content"> $1550</a>
-    </li>
-  </ul>
-            
-            </div>
-            <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+                            <div class="card-stacked">
 
-            </div>
-            
-            </div>
-            </div>
-            </div>
-            <!--   Card Stop  -->
-   
-                          <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
+                                <div class="card-content">
+                                    <div class="image-frame"><img src="_img/mser-logo.jpg"> </div>
+                                    <div class="data-group">
+                                        <p class="data-point">2,503</p>
+                                        <p class="data-substitle">Total Dealers Enrolled</p>
+                                    </div>
+
+                                    <div class="data-group">
+                                        <p class="data-point">$515,000</p>
+                                        <p class="data-substitle">Excellence Cards Awards MTD</p>
+                                    </div>
+                                    <div class="data-group">
+                                        <p class="data-point">$6,000,000</p>
+                                        <p class="data-substitle">Excellence Cards Awards YTD</p>
+                                    </div>
+                                    <ul class="collection">
+                                        <li class="collection-header">
+                                            <h5>Top 5 MTD Technicians <br/>Excellence Card Awards </h5>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">1</span></i>
+                                            <span class="title">John Doe</span>
+                                            <p>Bearns Dealer Group(23545)</p>
+                                            <a href="#!" class="secondary-content">$600</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">2</span></i>
+                                            <span class="title">Jane Doe</span>
+                                            <p>Howard & Howard Automotive (23521)</p>
+                                            <a href="#!" class="secondary-content">$575</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">3</span></i>
+                                            <span class="title">Matt Stafford</span>
+                                            <p>Shine Automotive(23547)</p>
+                                            <a href="#!" class="secondary-content">$537</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">4</span></i>
+                                            <span class="title">Karen Neuman</span>
+                                            <p>Baker & Sons Dealer Group (72354)</p>
+                                            <a href="#!" class="secondary-content">$534</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">5</span></i>
+                                            <span class="title">Tony Soprano</span>
+                                            <p>Brightly Auto (92354)</p>
+                                            <a href="#!" class="secondary-content">$510</a>
+                                        </li>
+                                    </ul>
+
+                                    <ul class="collection">
+                                        <li class="collection-header">
+                                            <h5>Top 5 MTD Advisors <br/>Excellence Card Awards </h5>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">1</span></i>
+                                            <span class="title">William Smith</span>
+                                            <p>Prestige Auto(72354)</p>
+                                            <a href="#!" class="secondary-content">$1600</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">2</span></i>
+                                            <span class="title">Jackie Chan</span>
+                                            <p>Diamond Motors (82354)</p>
+                                            <a href="#!" class="secondary-content">$1595</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">3</span></i>
+                                            <span class="title">Lee Marvin</span>
+                                            <p>Steely Dealer Group (32354)</p>
+                                            <a href="#!" class="secondary-content">$1580</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">4</span></i>
+                                            <span class="title">Bing Crosby</span>
+                                            <p>Institute Group(52354)</p>
+                                            <a href="#!" class="secondary-content">$1570</a>
+                                        </li>
+                                        <li class="collection-item avatar">
+                                            <i class="circle blue"> <span class="white-text-rank">5</span></i>
+                                            <span class="title">Walter Sobczek</span>
+                                            <p>Fox Auto (32354)</p>
+                                            <a href="#!" class="secondary-content"> $1550</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <div class="card-action">
+                                    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+                                    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--   Card Stop  -->
+
+                    <!--   Card Start  -->
+                    <div class="col s12 m6">
+
+                        <div class="card horizontal">
+
+                            <div class="card-stacked">
+                                <div class="card-content">
+                                    <div class="image-frame"><img src="_img/mser.jpg"> </div>
+
+                                    <div id="container12" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+</div>
+<div class="row">
+
+    <!--   Card Start  -->
+    <div class="col s12 m6">
+
+        <div class="card horizontal">
+
+            <div class="card-stacked">
                 <div class="card-content">
-                <div class="image-frame"><img src="_img/mser.jpg"> </div>
-                
-                <div id="container12" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+                    <div class="image-frame"> <img src="_img/brainboost.jpg"></div>
 
-            </div>
-                </div>
-                </div>
-                </div>
-            <!--   Card Stop  -->
-            </div><div class="row">
-               
-            <!--   Card Start  -->
-            <div class="col s12 m6">
-          
-            <div class="card horizontal">
-         
-            <div class="card-stacked">
+                    <div id="container3" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+
+        <div class="card-stacked">
             <div class="card-content">
-            <div class="image-frame"> <img src="_img/brainboost.jpg"></div>
+                <div class="image-frame"> <img src="_img/brainboost.jpg"></div>
 
-          		<div id="container3" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+                <div id="container2" style=" max-width: 600px; height: 400px; margin: 0 auto"></div>
 
-            </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
-            </div>
-            </div>
-            </div>
-            </div>
-            <!--   Card Stop  -->
-            
-            <!--   Card Start  -->
-            <div class="col s12 m6">
-          
-            <div class="card horizontal">
-         
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+</div>
+<div class="row">
+    <!--   Card Start  -->
+    <div class="col s12 m6">
+
+        <div class="card horizontal">
+
             <div class="card-stacked">
-            <div class="card-content">
-            <div class="image-frame"> <img src="_img/brainboost.jpg"></div>
-
-          		<div id="container2" style=" max-width: 600px; height: 400px; margin: 0 auto"></div>
-
-            </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
-
-            </div>
-            </div>
-            </div>
-            </div>
-            <!--   Card Stop  -->
-             </div>        <div class="row">
-                              <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
                 <div class="card-content">
+                    <div class="image-frame"><img src="_img/cert-pro-experts.jpg"> </div>
+
+                    <div id="container4" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+
+        <div class="card-stacked">
+            <div class="card-content">
                 <div class="image-frame"><img src="_img/cert-pro-experts.jpg"> </div>
-                
-                <div id="container4" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div><div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
-            </div>
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-          
-                   <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
-                <div class="card-content">
-                <div class="image-frame"><img src="_img/cert-pro-experts.jpg"> </div>
-                
                 <div id="container5" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
-            </div>
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-                  
-                  
-           
-    
-                
-                     </div>        <div class="row">
-                                   <!--   Card Start  -->
-            <div class="col s12 m6">
-           
-            <div class="card horizontal">
-         
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+
+
+
+
+</div>
+<div class="row">
+    <!--   Card Start  -->
+    <div class="col s12 m6">
+
+        <div class="card horizontal">
+
             <div class="card-stacked">
-             
-            <div class="card-content">
-            <div class="image-frame"><img src="_img/cert-pro-banner.jpg"> </div>
-          		<div id="container" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-            </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
-            </div>
-            </div>
-            </div>
-            </div>
-            <!--   Card Stop  -->
-                                         
-                     
-                     
-              
-          
-           
-                       
-                <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
                 <div class="card-content">
-                <div class="image-frame"><img src="_img/toptech-topadv.jpg"></div>
-                
-                <div id="container6" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+                    <div class="image-frame"><img src="_img/cert-pro-banner.jpg"> </div>
+                    <div id="container" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
-            </div>
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-                </div>        <div class="row">
-                
-                     <!--   Card Start  -->
-            <div class="col s12 m6">
-           
-            <div class="card horizontal">
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+
+
+
+
+
+
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+
+        <div class="card-stacked">
+            <div class="card-content">
+                <div class="image-frame"><img src="_img/toptech-topadv.jpg"></div>
+
+                <div id="container6" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+</div>
+<div class="row">
+
+    <!--   Card Start  -->
+    <div class="col s12 m6">
+
+        <div class="card horizontal">
             <!--  <div class="card-image">
             <img src="_img/card-01.jpg">
             </div>-->
             <div class="card-stacked">
-             
+
+                <div class="card-content">
+                    <div class="image-frame"><img src="_img/topadvisor.jpg"> </div>
+                    <div class="data-group">
+                        <p class="data-point">1,560</p>
+                        <p class="data-substitle">Total Dealers Enrolled</p>
+                    </div>
+                    <div class="data-group">
+                        <p class="data-point">250</p>
+                        <p class="data-substitle">Total Top Performers - QTD</p>
+                    </div>
+                    <div class="data-group">
+                        <p class="data-point">21,000</p>
+                        <p class="data-substitle">Count of Surveys QTD </p>
+                    </div>
+                    <div class="data-group">
+                        <p class="data-point">1,110</p>
+                        <p class="data-substitle">Incentive Eligible Advisors</p>
+                    </div>
+                    <div class="data-group">
+                        <p class="data-point">99%</p>
+                        <p class="data-substitle">Average Quarterly Survey Score </p>
+                    </div>
+                    <ul class="collection">
+                        <li class="collection-header">
+                            <h5>Top 5 Advisors QTD <br/>Highest average survey scores </h5>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">1</span></i>
+                            <span class="title">William Katz</span>
+                            <p>Diamond Mtor Dealers (72354)</p>
+                            <a href="#!" class="secondary-content">92 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">2</span></i>
+                            <span class="title">Jessica Umbreon</span>
+                            <p>Oakland County Dealers (82354)</p>
+                            <a href="#!" class="secondary-content">90 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">3</span></i>
+                            <span class="title">Bridget von Hammersmark</span>
+                            <p>Fox Motors (92354)</p>
+                            <a href="#!" class="secondary-content">89 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">4</span></i>
+                            <span class="title">Antonio Gorlami</span>
+                            <p>Vincent Dealer Group (12354)</p>
+                            <a href="#!" class="secondary-content">86 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">5</span></i>
+                            <span class="title">Walker T. Ranger</span>
+                            <p>Greater Chicago Dodge Dealers (42354)</p>
+                            <a href="#!" class="secondary-content">84 pts</a>
+                        </li>
+                    </ul>
+                    <ul class="collection">
+                        <li class="collection-header">
+                            <h5>Top 5 Advisors YTD <br/>Highest average survey scores </h5>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">1</span></i>
+                            <span class="title">Harold Ramos</span>
+                            <p>Bryce Dealer Group (72354)</p>
+                            <a href="#!" class="secondary-content">92 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">2</span></i>
+                            <span class="title">Richard D. James </span>
+                            <p>Wilcox Dealers (62354)</p>
+                            <a href="#!" class="secondary-content">90 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">3</span></i>
+
+                            <span class="title">Michael Paradenis</span>
+                            <p>Prestige Auto Dealers (92354)</p>
+                            <a href="#!" class="secondary-content">89 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">4</span></i>
+                            <span class="title">Tom Jenkinson </span>
+                            <p>Fox Auto (02354)</p>
+                            <a href="#!" class="secondary-content">86 pts</a>
+                        </li>
+                        <li class="collection-item avatar">
+                            <i class="circle blue"> <span class="white-text-rank">5</span></i>
+                            <span class="title">Richard Anthony "Dick" Wolf </span>
+                            <p>Jersey Area Dealers (12354)</p>
+                            <a href="#!" class="secondary-content">84 pts</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+                    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Card Stop  -->
+    <!--   Card Start  -->
+
+    <div class="col s12 m6 hide">
+
+        <div class="card horizontal">
+
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="image-frame"><img src="_img/toptech.jpg"> </div>
+
+                    <div id="container6b" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+
+        <div class="card-stacked">
             <div class="card-content">
-            <div class="image-frame"><img src="_img/topadvisor.jpg"> </div>
-            <div class="data-group">
-                <p class="data-point">1,560</p>
-                <p class="data-substitle">Total Dealers Enrolled</p>
-            </div>
-            <div class="data-group">
-                <p class="data-point">250</p>
-                <p class="data-substitle">Total Top Performers - QTD</p>
-            </div>
-            <div class="data-group">
-                <p class="data-point">21,000</p>
-                <p class="data-substitle">Count of Surveys QTD </p>
-            </div>
-            <div class="data-group">
-                <p class="data-point">1,110</p>
-                <p class="data-substitle">Incentive Eligible Advisors</p>
-            </div>
-            <div class="data-group">
-                <p class="data-point">99%</p>
-                <p class="data-substitle">Average Quarterly Survey Score </p>
-            </div>
-            <ul class="collection">
-  <li class="collection-header"><h5>Top 5 Advisors QTD <br/>Highest average survey scores </h5></li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">1</span></i>
-      <span class="title">William Katz</span>
-      <p>Diamond Mtor Dealers (72354)</p>
-      <a href="#!" class="secondary-content">92 pts</a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">2</span></i>
-      <span class="title">Jessica Umbreon</span>
-      <p>Oakland County Dealers (82354)</p>
-      <a href="#!" class="secondary-content">90 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-      <span class="title">Bridget von Hammersmark</span>
-      <p>Fox Motors (92354)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">4</span></i>
-      <span class="title">Antonio Gorlami</span>
-      <p>Vincent Dealer Group (12354)</p>
-      <a href="#!" class="secondary-content">86 pts</a>
-    </li>
-       <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">5</span></i>
-      <span class="title">Walker T. Ranger</span>
-      <p>Greater Chicago Dodge Dealers (42354)</p>
-      <a href="#!" class="secondary-content">84 pts</a>
-    </li>
-  </ul>
-              <ul class="collection">
-  <li class="collection-header"><h5>Top 5 Advisors YTD <br/>Highest average survey scores </h5></li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">1</span></i>
-  <span class="title">Harold Ramos</span>
-  <p>Bryce Dealer Group (72354)</p>
-      <a href="#!" class="secondary-content">92 pts</a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">2</span></i>
-      <span class="title">Richard D. James </span>
-      <p>Wilcox Dealers (62354)</p>
-      <a href="#!" class="secondary-content">90 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-    
-       <span class="title">Michael Paradenis</span>
-      <p>Prestige Auto Dealers (92354)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">4</span></i>
-      <span class="title">Tom Jenkinson </span>
-      <p>Fox Auto (02354)</p>
-      <a href="#!" class="secondary-content">86 pts</a>
-    </li>
-       <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">5</span></i>
-      <span class="title">Richard Anthony "Dick" Wolf </span>
-      <p>Jersey Area Dealers (12354)</p>
-      <a href="#!" class="secondary-content">84 pts</a>
-    </li>
-  </ul>  
-            </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
-
-            </div>
-            </div>
-            </div>
-            </div>
-            <!--   Card Stop  -->
-                 <!--   Card Start  -->
-               
-                <div class="col s12 m6 hide">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
-                <div class="card-content">
                 <div class="image-frame"><img src="_img/toptech.jpg"> </div>
-                
-                <div id="container6b" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
-
-            </div>
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-              
-               
-                <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
-                <div class="card-content">
-                <div class="image-frame"><img src="_img/toptech.jpg"> </div>
-        <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">1,560</p>
                     <p class="data-substitle">Total Dealers Enrolled</p>
                 </div>
-           
-                 <div class="data-group">
+
+                <div class="data-group">
                     <p class="data-point">1000</p>
                     <p class="data-substitle">Top Performers</p>
                 </div>
                 <div class="data-group">
                     <p class="data-point">2,300</p>
-                       <p class="data-substitle">Count of Surveys QTD</p>
+                    <p class="data-substitle">Count of Surveys QTD</p>
                 </div>
-                  <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">99</p>
-                       <p class="data-substitle">Average Quarterly Survey Score</p>
+                    <p class="data-substitle">Average Quarterly Survey Score</p>
                 </div>
-                  <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">7</p>
-                       <p class="data-substitle">Average Years of Service Per Technician</p>
+                    <p class="data-substitle">Average Years of Service Per Technician</p>
                 </div>
-   <ul class="collection">
-  <li class="collection-header"><h5>Top 5 Technicians QTD <br/>Highest average survey scores </h5></li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">1</span></i>
-  <span class="title">Paul T. Anderson</span>
-  <p>Oakland County Dealers (72354)</p>
-      <a href="#!" class="secondary-content">92 pts</a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">2</span></i>
-      <span class="title">Julian Schnabel</span>
-      <p>Roxbury Motors (62354)</p>
-      <a href="#!" class="secondary-content">90 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-    
-       <span class="title">Alan Kaufman</span>
-      <p>Diamond Motors (82354)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-    
-       <span class="title">Alan Kaufman</span>
-      <p>Lifestyle Motors (76345)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-    
-       <span class="title">Rick Littel</span>
-      <p> (13452)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>
-  </ul>  
-                              <ul class="collection">
-  <li class="collection-header"><h5>Top 5 Technicians YTD <br/>Highest average survey scores </h5></li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">1</span></i>
-  <span class="title">Wilson Hitchock</span>
-  <p>Bernard Auto(56654)</p>
-      <a href="#!" class="secondary-content">92 pts</a>
-    </li>
-    <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">2</span></i>
-      <span class="title">Frank Truffaut</span>
-      <p>Prestige Motors (76354)</p>
-      <a href="#!" class="secondary-content">90 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-    
-       <span class="title">Martin Scorcese</span>
-      <p>Fox Motor Group(54354)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>
-   <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-    
-       <span class="title">Howard Hawkes</span>
-      <p>Allied Motor Group(12354)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>
-       <li class="collection-item avatar">
-      <i class="circle blue"> <span class="white-text-rank">3</span></i>
-    
-       <span class="title">Sydney Lumet</span>
-      <p>Jefferson Motor Group(91001)</p>
-      <a href="#!" class="secondary-content">89 pts</a>
-    </li>
-  </ul>  
-            
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+                <ul class="collection">
+                    <li class="collection-header">
+                        <h5>Top 5 Technicians QTD <br/>Highest average survey scores </h5>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">1</span></i>
+                        <span class="title">Paul T. Anderson</span>
+                        <p>Oakland County Dealers (72354)</p>
+                        <a href="#!" class="secondary-content">92 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">2</span></i>
+                        <span class="title">Julian Schnabel</span>
+                        <p>Roxbury Motors (62354)</p>
+                        <a href="#!" class="secondary-content">90 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">3</span></i>
+
+                        <span class="title">Alan Kaufman</span>
+                        <p>Diamond Motors (82354)</p>
+                        <a href="#!" class="secondary-content">89 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">3</span></i>
+
+                        <span class="title">Alan Kaufman</span>
+                        <p>Lifestyle Motors (76345)</p>
+                        <a href="#!" class="secondary-content">89 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">3</span></i>
+
+                        <span class="title">Rick Littel</span>
+                        <p> (13452)</p>
+                        <a href="#!" class="secondary-content">89 pts</a>
+                    </li>
+                </ul>
+                <ul class="collection">
+                    <li class="collection-header">
+                        <h5>Top 5 Technicians YTD <br/>Highest average survey scores </h5>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">1</span></i>
+                        <span class="title">Wilson Hitchock</span>
+                        <p>Bernard Auto(56654)</p>
+                        <a href="#!" class="secondary-content">92 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">2</span></i>
+                        <span class="title">Frank Truffaut</span>
+                        <p>Prestige Motors (76354)</p>
+                        <a href="#!" class="secondary-content">90 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">3</span></i>
+
+                        <span class="title">Martin Scorcese</span>
+                        <p>Fox Motor Group(54354)</p>
+                        <a href="#!" class="secondary-content">89 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">3</span></i>
+
+                        <span class="title">Howard Hawkes</span>
+                        <p>Allied Motor Group(12354)</p>
+                        <a href="#!" class="secondary-content">89 pts</a>
+                    </li>
+                    <li class="collection-item avatar">
+                        <i class="circle blue"> <span class="white-text-rank">3</span></i>
+
+                        <span class="title">Sydney Lumet</span>
+                        <p>Jefferson Motor Group(91001)</p>
+                        <a href="#!" class="secondary-content">89 pts</a>
+                    </li>
+                </ul>
+
 
             </div>
-                </div>
-                </div>
-                </div>
+            <div class="card-action">
+                <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+            </div>
+        </div>
+    </div>
+</div>
 <!--   Card Stop  -->
-</div>        <div class="row">
-<!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
-                <div class="card-content">
-                <div class="image-frame"><img src="_img/service-incentive.jpg"> </div>
-                
-                <div id="container8" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+</div>
+<div class="row">
+    <!--   Card Start  -->
+    <div class="col s12 m6">
 
-            </div>
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-                
-                                 <!--   Card Start  -->
-            <div class="col s12 m6">
-           
-            <div class="card horizontal">
-         <!--  <div class="card-image">
+        <div class="card horizontal">
+
+            <div class="card-stacked">
+                <div class="card-content">
+                    <div class="image-frame"><img src="_img/service-incentive.jpg"> </div>
+
+                    <div id="container8" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+        <!--  <div class="card-image">
             <img src="_img/card-01.jpg">
             </div>-->
-            <div class="card-stacked">
-             
+        <div class="card-stacked">
+
             <div class="card-content">
-            <div class="image-frame"><img src="_img/mvp.jpg"> </div>
+                <div class="image-frame"><img src="_img/mvp.jpg"> </div>
                 <div class="data-group">
                     <p class="data-point">4WD Systems /2</p>
                     <p class="data-substitle">2017 Completed Compentency</p>
                 </div>
-           
-                 <div class="data-group">
+
+                <div class="data-group">
                     <p class="data-point">$720</p>
                     <p class="data-substitle">2017 Excellence Cards Awards YTD</p>
                 </div>
                 <div class="data-group">
                     <p class="data-point">6</p>
-                     <p class="data-substitle">Level 1 Complete</p>
+                    <p class="data-substitle">Level 1 Complete</p>
                 </div>
-         <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">2</p>
-                     <p class="data-substitle">Level 2 Complete</p>
+                    <p class="data-substitle">Level 2 Complete</p>
                 </div>
-                   
+
             </div>
             <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+                <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
             </div>
-            
-            </div>
-            </div>
-            </div>
-            <!--   Card Stop  -->
-                
-                </div>        <div class="row">
-                                <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
-                <div class="card-content">
-                         <div class="image-frame"><img src="_img/rewards.jpg"> </div>
-                
-                <div id="container9" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
-            </div>
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-                
-                
-                
-                
-                
-                
-                                        <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
+        </div>
+    </div>
+</div>
+<!--   Card Stop  -->
+
+</div>
+<div class="row">
+    <!--   Card Start  -->
+    <div class="col s12 m6">
+
+        <div class="card horizontal">
+
+            <div class="card-stacked">
                 <div class="card-content">
-<div class="image-frame"><img src="_img/fca-banner.jpg"> </div>                
+                    <div class="image-frame"><img src="_img/rewards.jpg"> </div>
+
+                    <div id="container9" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+
+
+
+
+
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+
+        <div class="card-stacked">
+            <div class="card-content">
+                <div class="image-frame"><img src="_img/fca-banner.jpg"> </div>
                 <div id="container11" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>
-                <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
-            </div>
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-                
-                      </div>        <div class="row">
-                 <!--   Card Start  -->
-              
-                <div class="col s12 m6 hide">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+
+</div>
+<div class="row">
+    <!--   Card Start  -->
+
+    <div class="col s12 m6 hide">
+
+        <div class="card horizontal">
+
+            <div class="card-stacked">
                 <div class="card-content">
-                <div class="image-frame"><img src="_img/toptech.jpg"> </div>
-                
-                <div id="container10" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-                
-                </div>                      <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site 1</a>
+                    <div class="image-frame"><img src="_img/toptech.jpg"> </div>
 
-            </div>
-                </div>
-                </div>
-                </div>
-                
-                <!--   Card Stop  -->
-            
-         
-              
-   
-                    
+                    <div id="container10" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
 
-                 <!--   Card Start  -->
-            <div class="col s12 m6">
-           
-            <div class="card horizontal">
-         <!--  <div class="card-image">
+</div>
+<div class="card-action">
+    <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site 1</a>
+
+</div>
+</div>
+</div>
+</div>
+
+<!--   Card Stop  -->
+
+
+
+
+
+
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+        <!--  <div class="card-image">
             <img src="_img/card-01.jpg">
             </div>-->
-            <div class="card-stacked">
-             
+        <div class="card-stacked">
+
             <div class="card-content">
-            <div class="image-frame"><img src="_img/fca-banner.jpg"> </div>
+                <div class="image-frame"><img src="_img/fca-banner.jpg"> </div>
                 <div class="data-group">
                     <p class="data-point">87%</p>
                     <p class="data-substitle">Service Manager Retention %</p>
                 </div>
-           
-                 <div class="data-group">
+
+                <div class="data-group">
                     <p class="data-point">82%</p>
                     <p class="data-substitle">Service Advisor Retention %</p>
                 </div>
                 <div class="data-group">
                     <p class="data-point">79%</p>
-                     <p class="data-substitle">Parts Manager Retention %</p>
+                    <p class="data-substitle">Parts Manager Retention %</p>
                 </div>
-         <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">90%</p>
-                     <p class="data-substitle">Parts Advisor Retention %</p>
+                    <p class="data-substitle">Parts Advisor Retention %</p>
                 </div>
-                     <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">73%</p>
-                     <p class="data-substitle">Technician Retention %</p>
+                    <p class="data-substitle">Technician Retention %</p>
                 </div>
-                         <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">76%</p>
-                     <p class="data-substitle">Sales Manager Rentention %</p>
+                    <p class="data-substitle">Sales Manager Rentention %</p>
                 </div>
-                         <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">67%</p>
-                     <p class="data-substitle">Sales Consultant Rentention %</p>
+                    <p class="data-substitle">Sales Consultant Rentention %</p>
                 </div>
             </div>
             <div class="card-action">
-<a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
- <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+                <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
 
             </div>
-            
-            </div>
-            </div>
-            </div>
-            <!--   Card Stop  -->
-                <!--   Card Start  -->
-                <div class="col s12 m6">
-                
-                <div class="card horizontal">
-                
-                <div class="card-stacked">
-                <div class="card-content">
+
+        </div>
+    </div>
+</div>
+<!--   Card Stop  -->
+<!--   Card Start  -->
+<div class="col s12 m6">
+
+    <div class="card horizontal">
+
+        <div class="card-stacked">
+            <div class="card-content">
                 <div class="image-frame"><img src="_img/customer-first.jpg"> </div>
-        <div class="data-group">
+                <div class="data-group">
                     <p class="data-point">138</p>
                     <p class="data-substitle">Inaugural Winner</p>
                 </div>
-           
-                 <div class="data-group">
+
+                <div class="data-group">
                     <p class="data-point">605</p>
                     <p class="data-substitle">Projected Winners - 2016</p>
                 </div>
-        
 
-            
-                
-                </div>
-            <div class="card-action">
-            <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
-            <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+
+
+
             </div>
-            
-                </div>
-                </div>
-                </div>
-                <!--   Card Stop  -->
-            
-       
+            <div class="card-action">
+                <a class="waves-effect waves-light btn-small"> <i class="material-icons left">assignment_turned_in</i>Program Rules</a>
+                <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>Program Site</a>
+            </div>
+
+        </div>
     </div>
-    </div>
+</div>
+<!--   Card Stop  -->
+
+
+</div>
+</div>
 </div>
 
 </div>
-  
-  <footer class="page-footer blue">
+
+<footer class="page-footer blue">
     <div class="container">
-      <div class="row">
-        <div class="col s12 m8">
-          <h5 class="white-text">My FCA Rewards</h5>
-          <p class="grey-text text-lighten-4">Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
+        <div class="row">
+            <div class="col s12 m8">
+                <h5 class="white-text">My FCA Rewards</h5>
+                <p class="grey-text text-lighten-4">Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam,
+                    eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum
+                    ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis
+                    in faucibus orci luctus et ultrices posuere cubilia Curae.</p>
 
+
+            </div>
+            <div class="extra-links">
+
+                <ul>
+                    <li><a class="white-text" href="#!"> MSER Payout Charts</a></li>
+                    <li><a class="white-text" href="#!">Rewards Redemption</a></li>
+                    <li><a class="white-text" href="#!"> Rewarding Excellence</a></li>
+                    <li><a class="white-text" href="#!">Dealers-MOPAR.com</a></li>
+                </ul>
+            </div>
 
         </div>
-       <div class="extra-links">
-         
-          <ul>
-           <li><a class="white-text" href="#!"> MSER Payout Charts</a></li>
-            <li><a class="white-text" href="#!">Rewards Redemption</a></li>
-           <li><a class="white-text" href="#!"> Rewarding Excellence</a></li>
-            <li><a class="white-text" href="#!">Dealers-MOPAR.com</a></li>
-          </ul>
-        </div>
-
-      </div>
     </div>
-    
+
     <div class="footer-copyright">
-      <div class="container">
-      My FCA Rewards.
-      </div>
+        <div class="container">
+            My FCA Rewards.
+        </div>
     </div>
-  </footer>
-  <style>
+</footer>
+<style>
   .fix{
     position:fixed;
     bottom:8px;
@@ -885,1211 +930,1222 @@
 	z-index:20000;
     }
 	</style>
-<img src="_img/chat.png" class="fix"/>
-  <!--scripts loaded here-->
-  
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-  <script src="_js/materialize.js"></script>
-  
-  	<script src="_js/slippry.min.js"></script>
-  
-  <script>
-  $(document).ready(function(){$(".button-collapse").sideNav();$('.modal-trigger').leanModal();$('#push,secton').pushpin({ top:$('#push').height() });})
-  </script>
-  
-		<script>
-			$(function() {
-				var demo1 = $("#demo1").slippry({
-					// transition: 'fade',
-					// useCSS: true,
-					// speed: 1000,
-					// pause: 3000,
-					// auto: true,
-					// preload: 'visible',
-					// autoHover: false
-				});
+<img src="_img/chat.png" class="fix" />
+<!--scripts loaded here-->
 
-				$('.stop').click(function () {
-					demo1.stopAuto();
-				});
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+<script src="_js/materialize.js"></script>
 
-				$('.start').click(function () {
-					demo1.startAuto();
-				});
+<script src="_js/slippry.min.js"></script>
 
-				$('.prev').click(function () {
-					demo1.goToPrevSlide();
-					return false;
-				});
-				$('.next').click(function () {
-					demo1.goToNextSlide();
-					return false;
-				});
-				$('.reset').click(function () {
-					demo1.destroySlider();
-					return false;
-				});
-				$('.reload').click(function () {
-					demo1.reloadSlider();
-					return false;
-				});
-				$('.init').click(function () {
-					demo1 = $("#demo1").slippry();
-					return false;
-				});
-			});
-		</script>
-  
-                <!-- jQuery -->
-        <!-- <script type="text/javascript" src="js/jquery.js"></script>  -->
-        <!-- Bootstrap Core JavaScript -->
-        <!--  <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
-       <!--  <script type="text/javascript" src="js/jquery.min.js"></script>      -->
-        <script type="text/javascript" src="js/scripts.js"></script>
-        <script type="text/javascript" src="js/highcharts.js"></script>
-        <script type="text/javascript" src="js/highcharts-3d.js"></script>
-        <script type="text/javascript" src="js/exporting.js"></script>
-        <script type="text/javascript" src="js/data.js"></script>
-        <script type="text/javascript" src="js/drilldown.js"></script>
-        <script type="text/javascript">
-                                        $(function() {
-                                           
-                                           $(function () {
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Certified Professionals - YTD Certifications'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'DN',
-'SW',
-'GL',
-'MA',
-'WE',
-'NE',
-'SE',
-'MW']
+<script>
+    $(document).ready(function () { $(".button-collapse").sideNav(); $('.modal-trigger').leanModal(); $('#push,secton').pushpin({ top: $('#push').height() }); })
+</script>
 
+<script>
+    $(function () {
+        var demo1 = $("#demo1").slippry({
+            // transition: 'fade',
+            // useCSS: true,
+            // speed: 1000,
+            // pause: 3000,
+            // auto: true,
+            // preload: 'visible',
+            // autoHover: false
+        });
 
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Total Certifications'
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: false,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
-                }
-            }
-        },
-        series: [{
-            name: 'Certified',
-            data: 
-[
-100,
-50,
-60,
-70,
-80,
-90,
-110,
-115,
-75]
+        $('.stop').click(function () {
+            demo1.stopAuto();
+        });
 
-			
-			
-        }, {
-            name: 'Certified Specialist',
-				color: 'rgba(165,170,217,1)',
-            data: [
-50,
-55,
-40,
-30,
-45,
-60,
-70,
-73,
-49]
+        $('.start').click(function () {
+            demo1.startAuto();
+        });
 
-			
-			
-        }, {
-            name: 'Master Certified ',
-			color: 'rgba(99, 130, 192)',
-            data: [
-20,
-10,
-15,
-12,
-14,
-19,
-5,
-4,
-12]
-
-        }]
+        $('.prev').click(function () {
+            demo1.goToPrevSlide();
+            return false;
+        });
+        $('.next').click(function () {
+            demo1.goToNextSlide();
+            return false;
+        });
+        $('.reset').click(function () {
+            demo1.destroySlider();
+            return false;
+        });
+        $('.reload').click(function () {
+            demo1.reloadSlider();
+            return false;
+        });
+        $('.init').click(function () {
+            demo1 = $("#demo1").slippry();
+            return false;
+        });
     });
-});
+</script>
 
-                     
-  Highcharts.chart('container2', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'BrainBoost - YTD Winners'
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
+<!-- jQuery -->
+<!-- <script type="text/javascript" src="js/jquery.js"></script>  -->
+<!-- Bootstrap Core JavaScript -->
+<!--  <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+<!--  <script type="text/javascript" src="js/jquery.min.js"></script>      -->
+<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/highcharts.js"></script>
+<script type="text/javascript" src="js/highcharts-3d.js"></script>
+<script type="text/javascript" src="js/exporting.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript" src="js/drilldown.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $(function () {
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Certified Professionals - YTD Certifications'
+                },
+                xAxis: {
+                    categories: [
+                        'CA',
+                        'DN',
+                        'SW',
+                        'GL',
+                        'MA',
+                        'WE',
+                        'NE',
+                        'SE',
+                        'MW']
+
+
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Certifications'
+                    }
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                    shared: true
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: false,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Certified',
+                    data:
+                    [
+                        100,
+                        50,
+                        60,
+                        70,
+                        80,
+                        90,
+                        110,
+                        115,
+                        75]
+
+
+
+                }, {
+                    name: 'Certified Specialist',
+                    color: 'rgba(165,170,217,1)',
+                    data: [
+                        50,
+                        55,
+                        40,
+                        30,
+                        45,
+                        60,
+                        70,
+                        73,
+                        49]
+
+
+
+                }, {
+                    name: 'Master Certified ',
+                    color: 'rgba(99, 130, 192)',
+                    data: [
+                        20,
+                        10,
+                        15,
+                        12,
+                        14,
+                        19,
+                        5,
+                        4,
+                        12]
+
+                }]
+            });
+        });
+
+
+        Highcharts.chart('container2', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Total Winners'
-            }
-
-        },
-        legend: {
-            enabled: false
-        },
-        plotOptions: {
-            series: {
-                borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y}'
+                text: 'BrainBoost - YTD Winners'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Total Winners'
                 }
-            }
-        },
 
-        tooltip: {
-            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
-        },
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.y}'
+                    }
+                }
+            },
 
-        series: [{
-            name: 'Business Center',
-            colorByPoint: true,
-				 color: 'rgba(126,86,134,.9)',
-            data: [{
-                name: 'CA',
-				 color: 'rgba(248,161,63,1)',
-                y: 273,
-                drilldown: 'CA'
-            }, {
-                name: 'DN',
-				    color: 'rgba(165,170,217,1)',
-                y: 356,
-                drilldown: 'DN'
-            }, {
-                name: 'GL',
-                y: 231,
-                drilldown: 'GL'
-            }, {
-                name: 'MA',
-                y: 348,
-                drilldown: 'MA'
-            }, {
-                name: 'MW',
-                y: 298,
-                drilldown: 'MW'
-            }, {
-                name: 'NE',
-                y: 206,
-                drilldown: 'NE'
-            }, {
-                name: 'SE',
-                y: 166,
-                drilldown: 'SE'
-            }, {
-                name: 'SW',
-                y: 313,
-                drilldown: 'SW'
-            }, {
-                name: 'WE',
-                y: 329,
-                drilldown: 'WE'
-            }]
-        }],
-        drilldown: {
+            tooltip: {
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b><br/>'
+            },
+
             series: [{
-                name: 'CA',
-				 color: 'rgba(248,161,63,1)',
-                id: 'CA',
-                data: [            
-					['CA-A',50],
-					['CA-B',40],
-					['CA-C',30],
-					['CA-D',35],
-					['CA-E',34],
-					['CA-F',29],
-					['CA-G',28],
-					['CA-H',27]
-				]}, 
-{
-                name: 'DN',
-				    color: 'rgba(165,170,217,1)',
-                id: 'DN',
-                data: [            
-					['DN-A',50],
-					['DN-B',40],
-					['DN-C',30],
-					['DN-D',35],
-					['DN-E',34],
-					['DN-F',29],
-					['DN-G',28],
-					['DN-H',27]
-				]}, 
-{
-                name: 'GL',
-                id: 'GL',
-                data: [            
-					['DN-A',50],
-					['DN-B',40],
-					['DN-C',30],
-					['DN-D',35],
-					['DN-E',34],
-					['DN-F',29],
-					['DN-G',28],
-					['DN-H',27]
-				]}, 
-{
-                name: 'MW',
-                id: 'MW',
-                data: [            
-					['DN-A',50],
-					['DN-B',40],
-					['DN-C',30],
-					['DN-D',35],
-					['DN-E',34],
-					['DN-F',29],
-					['DN-G',28],
-					['DN-H',27]
-				]}, 
-{
-                name: 'NE',
-                id: 'NE',
-                data: [            
-					['DN-A',50],
-					['DN-B',40],
-					['DN-C',30],
-					['DN-D',35],
-					['DN-E',34],
-					['DN-F',29],
-					['DN-G',28],
-					['DN-H',27]
-				]}, 
-{
-                name: 'SE',
-                id: 'SE',
-                data: [            
-					['SE-A',50],
-					['SE-B',40],
-					['SE-C',30],
-					['SE-D',35],
-					['SE-E',34],
-					['SE-F',29],
-					['SE-G',28],
-					['SE-H',27]
-				]}, 
-{
-                name: 'SW',
-                id: 'SW',
-                data: [            
-					['SW-A',50],
-					['SW-B',40],
-					['SW-C',30],
-					['SW-D',35],
-					['SW-E',34],
-					['SW-F',29],
-					['SW-G',28],
-					['SW-H',27]
-				]}
+                name: 'Business Center',
+                colorByPoint: true,
+                color: 'rgba(126,86,134,.9)',
+                data: [{
+                    name: 'CA',
+                    color: 'rgba(248,161,63,1)',
+                    y: 273,
+                    drilldown: 'CA'
+                }, {
+                    name: 'DN',
+                    color: 'rgba(165,170,217,1)',
+                    y: 356,
+                    drilldown: 'DN'
+                }, {
+                    name: 'GL',
+                    y: 231,
+                    drilldown: 'GL'
+                }, {
+                    name: 'MA',
+                    y: 348,
+                    drilldown: 'MA'
+                }, {
+                    name: 'MW',
+                    y: 298,
+                    drilldown: 'MW'
+                }, {
+                    name: 'NE',
+                    y: 206,
+                    drilldown: 'NE'
+                }, {
+                    name: 'SE',
+                    y: 166,
+                    drilldown: 'SE'
+                }, {
+                    name: 'SW',
+                    y: 313,
+                    drilldown: 'SW'
+                }, {
+                    name: 'WE',
+                    y: 329,
+                    drilldown: 'WE'
+                }]
+            }],
+            drilldown: {
+                series: [{
+                    name: 'CA',
+                    color: 'rgba(248,161,63,1)',
+                    id: 'CA',
+                    data: [
+                        ['CA-A', 50],
+                        ['CA-B', 40],
+                        ['CA-C', 30],
+                        ['CA-D', 35],
+                        ['CA-E', 34],
+                        ['CA-F', 29],
+                        ['CA-G', 28],
+                        ['CA-H', 27]
+                    ]
+                },
+                {
+                    name: 'DN',
+                    color: 'rgba(165,170,217,1)',
+                    id: 'DN',
+                    data: [
+                        ['DN-A', 50],
+                        ['DN-B', 40],
+                        ['DN-C', 30],
+                        ['DN-D', 35],
+                        ['DN-E', 34],
+                        ['DN-F', 29],
+                        ['DN-G', 28],
+                        ['DN-H', 27]
+                    ]
+                },
+                {
+                    name: 'GL',
+                    id: 'GL',
+                    data: [
+                        ['DN-A', 50],
+                        ['DN-B', 40],
+                        ['DN-C', 30],
+                        ['DN-D', 35],
+                        ['DN-E', 34],
+                        ['DN-F', 29],
+                        ['DN-G', 28],
+                        ['DN-H', 27]
+                    ]
+                },
+                {
+                    name: 'MW',
+                    id: 'MW',
+                    data: [
+                        ['DN-A', 50],
+                        ['DN-B', 40],
+                        ['DN-C', 30],
+                        ['DN-D', 35],
+                        ['DN-E', 34],
+                        ['DN-F', 29],
+                        ['DN-G', 28],
+                        ['DN-H', 27]
+                    ]
+                },
+                {
+                    name: 'NE',
+                    id: 'NE',
+                    data: [
+                        ['DN-A', 50],
+                        ['DN-B', 40],
+                        ['DN-C', 30],
+                        ['DN-D', 35],
+                        ['DN-E', 34],
+                        ['DN-F', 29],
+                        ['DN-G', 28],
+                        ['DN-H', 27]
+                    ]
+                },
+                {
+                    name: 'SE',
+                    id: 'SE',
+                    data: [
+                        ['SE-A', 50],
+                        ['SE-B', 40],
+                        ['SE-C', 30],
+                        ['SE-D', 35],
+                        ['SE-E', 34],
+                        ['SE-F', 29],
+                        ['SE-G', 28],
+                        ['SE-H', 27]
+                    ]
+                },
+                {
+                    name: 'SW',
+                    id: 'SW',
+                    data: [
+                        ['SW-A', 50],
+                        ['SW-B', 40],
+                        ['SW-C', 30],
+                        ['SW-D', 35],
+                        ['SW-E', 34],
+                        ['SW-F', 29],
+                        ['SW-G', 28],
+                        ['SW-H', 27]
+                    ]
+                }
 
-			]
-        }
-    });
+                ]
+            }
+        });
 
-   Highcharts.chart('container3', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Excellence Card Awards and Award Points YTD'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: [
-                'SE',
-'MA',
-'SW',
-'WE',
-'CA',
-'DN',
-'GL',
-'NE',
-'MW'
-
-            ],
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
+        Highcharts.chart('container3', {
+            chart: {
+                type: 'column'
+            },
             title: {
+                text: 'Excellence Card Awards and Award Points YTD'
+            },
+            subtitle: {
                 text: ''
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            },
+            xAxis: {
+                categories: [
+                    'SE',
+                    'MA',
+                    'SW',
+                    'WE',
+                    'CA',
+                    'DN',
+                    'GL',
+                    'NE',
+                    'MW'
+
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                 '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Excellence Card',
-            data: [
-12500,
-12000,
-11000,
-11000,
-10500,
-10000,
-9500,
-9000,
-7000
-
-]}, {
-            name: 'Award Points',
-            data: [
-			10000,
-9100,
-8500,
-9200,
-9500,
-8000,
-7600,
-7800,
-8300
-
-			
-			
-			]
-
-        
-
-        } ]
-    });
-
-                                        
-  Highcharts.chart('container4', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Participants Completed by Program YTD'
-        },
-        xAxis: {
-            categories: ['CA',
-'DN',
-'SW',
-'GL',
-'MA',
-'WE',
-'NE','SE','MW']
-
-
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Total Number'
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled:  false,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
                 }
-            }
-        },
-        series: [{
-            name: 'Ram Expert',
-            data: 
-			
-			[
-100,
-110,
-115,
-80,
-75,
-50,
-120,
-105,
-110
+            },
+            series: [{
+                name: 'Excellence Card',
+                data: [
+                    12500,
+                    12000,
+                    11000,
+                    11000,
+                    10500,
+                    10000,
+                    9500,
+                    9000,
+                    7000
 
-]
-
-			
-			
-        }, {
-            name: 'Jeep Expert',
-            data: [
-95,
-105,
-110,
-75,
-70,
-45,
-115,
-100,
-105
-
-]
-
-			
-			
-        }]
-    });
-                            
-                                         
- Highcharts.chart('container5', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Experts Points Earned YTD'
-        },
-        xAxis: {
-            categories: ['CA',
-'DN',
-'SW',
-'GL',
-'MA',
-'WE',
-'NE','SE','MW']
+                ]
+            }, {
+                name: 'Award Points',
+                data: [
+                    10000,
+                    9100,
+                    8500,
+                    9200,
+                    9500,
+                    8000,
+                    7600,
+                    7800,
+                    8300
 
 
-        },
-        yAxis: {
-            min: 0,
+
+                ]
+
+
+
+            }]
+        });
+
+
+        Highcharts.chart('container4', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Total Number'
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
-                    enabled: false,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                text: 'Participants Completed by Program YTD'
+            },
+            xAxis: {
+                categories: ['CA',
+                    'DN',
+                    'SW',
+                    'GL',
+                    'MA',
+                    'WE',
+                    'NE', 'SE', 'MW']
+
+
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Number'
                 }
-            }
-        },
-        series: [{
-            name: 'Points Earned',
-            data: 
-			
-			[
-12500,
-12000,
-11000,
-11000,
-10500,
-10000,
-9500,
-9000,
-7000
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: false,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: [{
+                name: 'Ram Expert',
+                data:
+
+                [
+                    100,
+                    110,
+                    115,
+                    80,
+                    75,
+                    50,
+                    120,
+                    105,
+                    110
+
+                ]
 
 
-]
 
-			
-			
-        }]
-    });
- Highcharts.chart('container6', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '% of Dealers Enrolled YTD'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'DN',
-'GL',
-'MA',
-'MW',
-'NE',
-'SE',
-'SW',
-'WE'
+            }, {
+                name: 'Jeep Expert',
+                data: [
+                    95,
+                    105,
+                    110,
+                    75,
+                    70,
+                    45,
+                    115,
+                    100,
+                    105
 
-]
+                ]
 
 
-        },
-        yAxis: {
-            min: 0,
+
+            }]
+        });
+
+
+        Highcharts.chart('container5', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: '% Enrolled'
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Business Centers',
-            data: 
-			
-			[
-89,
-182,
-193,
-180,
-194,
-217,
-227,
-183,
-95
-
-]
-
-			
-			
-        }]
-    });
-	
-	 Highcharts.chart('container6b', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '% of Dealers Enrolled YTD'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
-
-]
+                text: 'Experts Points Earned YTD'
+            },
+            xAxis: {
+                categories: ['CA',
+                    'DN',
+                    'SW',
+                    'GL',
+                    'MA',
+                    'WE',
+                    'NE', 'SE', 'MW']
 
 
-        },
-        yAxis: {
-            min: 0,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Number'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: false,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                }
+            },
+            series: [{
+                name: 'Points Earned',
+                data:
+
+                [
+                    12500,
+                    12000,
+                    11000,
+                    11000,
+                    10500,
+                    10000,
+                    9500,
+                    9000,
+                    7000
+
+
+                ]
+
+
+
+            }]
+        });
+        Highcharts.chart('container6', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: '% Totals '
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-    name: 'Percent Enrolled',
-	            data: 
-			
-			[
-90,
-80,
-75,
-72,
-70,
-68,
-65,
-60,
-55
+                text: '% of Dealers Enrolled YTD'
+            },
+            xAxis: {
+                categories: [
+                    'CA',
+                    'DN',
+                    'GL',
+                    'MA',
+                    'MW',
+                    'NE',
+                    'SE',
+                    'SW',
+                    'WE'
 
-]
-
-			
-			
-        }]
-    });
-	/*
-	 Highcharts.chart('container7', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '% of Dealers Enrolled YTD'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
-
-]
+                ]
 
 
-        },
-        yAxis: {
-            min: 0,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '% Enrolled'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Business Centers',
+                data:
+
+                [
+                    89,
+                    182,
+                    193,
+                    180,
+                    194,
+                    217,
+                    227,
+                    183,
+                    95
+
+                ]
+
+
+
+            }]
+        });
+
+        Highcharts.chart('container6b', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Total Number'
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-       plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: '% Dealers Enrolled',
-            data: 
-			
-			[
-90,
-80,
-75,
-72,
-70,
-68,
-65,
-60,
-55
+                text: '% of Dealers Enrolled YTD'
+            },
+            xAxis: {
+                categories: [
+                    'CA',
+                    'SE',
+                    'NE',
+                    'WE',
+                    'GL',
+                    'MA',
+                    'SW',
+                    'MW',
+                    'DN'
 
-]
-
-			
-			
-        }]
-    });
-	/* End of single chart init */
- Highcharts.chart('container6', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '% of Dealers Enrolled YTD'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
-
-]
+                ]
 
 
-        },
-        yAxis: {
-            min: 0,
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '% Totals '
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Percent Enrolled',
+                data:
+
+                [
+                    90,
+                    80,
+                    75,
+                    72,
+                    70,
+                    68,
+                    65,
+                    60,
+                    55
+
+                ]
+
+
+
+            }]
+        });
+        /*
+         Highcharts.chart('container7', {
+            chart: {
+                type: 'column'
+            },
             title: {
-  text: '% Totals '
-  
-              }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Percent Enrolled',
-            data: 
-			
-			[
-90,
-80,
-75,
-72,
-70,
-76,
-65,
-60,
-87
-
-]
-
-			
-			
-        }]
-    });
-	 Highcharts.chart('container8', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Service Incentive Reward Earnings YTD'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
-
-]
-
-
-        },
-        yAxis: {
-            min: 0,
+                text: '% of Dealers Enrolled YTD'
+            },
+            xAxis: {
+                categories: [
+    'CA',
+    'SE',
+    'NE',
+    'WE',
+    'GL',
+    'MA',
+    'SW',
+    'MW',
+    'DN'
+    
+    ]
+    
+    
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Number'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+           plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: '% Dealers Enrolled',
+                data: 
+            	
+                [
+    90,
+    80,
+    75,
+    72,
+    70,
+    68,
+    65,
+    60,
+    55
+    
+    ]
+    
+            	
+            	
+            }]
+        });
+        /* End of single chart init */
+        Highcharts.chart('container6', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Total Dollars Earned'
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-       plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: '2015',
-            data: 
-			
-			[
-150000,
-160000,
-170000,
-110000,
-150000,
-135000,
-210000,
-210000,
-180000
+                text: '% of Dealers Enrolled YTD'
+            },
+            xAxis: {
+                categories: [
+                    'CA',
+                    'SE',
+                    'NE',
+                    'WE',
+                    'GL',
+                    'MA',
+                    'SW',
+                    'MW',
+                    'DN'
+
+                ]
 
 
-]}, {
-            name: '2016',
-            data: [
-170000,
-190000,
-180000,
-100000,
-156000,
-120000,
-200000,
-180000,
-120000
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '% Totals '
 
-]
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Percent Enrolled',
+                data:
 
-	
-			
-        }]
-    });
-	/* End of single chart init */	
-	 Highcharts.chart('container9', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Program Points YTD'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
+                [
+                    90,
+                    80,
+                    75,
+                    72,
+                    70,
+                    76,
+                    65,
+                    60,
+                    87
 
-]
-        },
-        yAxis: {
-            min: 0,
+                ]
+
+
+
+            }]
+        });
+        Highcharts.chart('container8', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Total Points Earned'
-            }
-        },
-        tooltip: {
-            pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-            shared: true
-        },
-       plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: 'Total Points Earned',
-            data: 
-			
-			[
-12500,
-12000,
-11000,
-11000,
-10500,
-10000,
-9500,
-9000,
-7000
-]
+                text: 'Service Incentive Reward Earnings YTD'
+            },
+            xAxis: {
+                categories: [
+                    'CA',
+                    'SE',
+                    'NE',
+                    'WE',
+                    'GL',
+                    'MA',
+                    'SW',
+                    'MW',
+                    'DN'
 
-			
-			
-        }]
-    });
-	/* End of single chart init */	
- Highcharts.chart('container10', {
-        title: {
-            text: 'Total Earnings YTD'
-        },
-        xAxis: {
-            categories: [
-			
-			'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
-			]
-        },
-		yAxis: {
-			min: 0,
-			title: {
-				text: 'Total Dollars Earned'
-			}
-		},
-       
-        series: [{
-            type: 'column',
-            name: 'Total Dollars Earned',
-            data: [
-			150000,
-160000,
-170000,
-100000,
-150000,
-120000,
-200000,
-210000,
-180000
+                ]
 
-			
-			]
-        },  {
-            type: 'spline',
-            name: 'Average',
-            data: [
-			160000,
-160000,
-160000,
-160000,
-160000,
-160000,
-160000,
-160000,
-160000,
 
-			],
-            marker: {
-                lineWidth: 2,
-                lineColor: Highcharts.getOptions().colors[3],
-                fillColor: 'white'
-            }
-        
-        }]
-    });
-	/* End of single chart init */	
-	 Highcharts.chart('container11', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Total Employment Retention YTD'
-        },
-        xAxis: {
-            categories: [
-'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Dollars Earned'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: '2015',
+                data:
 
-]
-        },
-		yAxis: {
-			min: 0,
-			title: {
-				text: '% Retention'
-			}
-		},
-		tooltip: {
-			pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-			shared: true
-		},
-		plotOptions: {
-			column: {
-				pointPadding: 0.2,
-				borderWidth: 0
-			}
-		},
-		series: [{
-			name: 'Total Retention',
-			data: 
-			
-[
-90,
-80,
-75,
-72,
-70,
-68,
-65,
-60,
-55
-]
+                [
+                    150000,
+                    160000,
+                    170000,
+                    110000,
+                    150000,
+                    135000,
+                    210000,
+                    210000,
+                    180000
 
-			
-			
-        }]
-    });
-	/* End of single chart init */
-Highcharts.chart('container12', {
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'BC Total Earnings YTD'
-        },
-        xAxis: {
-            categories: [
-			'CA',
-'SE',
-'NE',
-'WE',
-'GL',
-'MA',
-'SW',
-'MW',
-'DN'
-			
-			]
-        },
-        yAxis: {
-            min: 0,
+
+                ]
+            }, {
+                name: '2016',
+                data: [
+                    170000,
+                    190000,
+                    180000,
+                    100000,
+                    156000,
+                    120000,
+                    200000,
+                    180000,
+                    120000
+
+                ]
+
+
+
+            }]
+        });
+        /* End of single chart init */
+        Highcharts.chart('container9', {
+            chart: {
+                type: 'column'
+            },
             title: {
-                text: 'Total Earnings'
-            }
-        },
-        legend: {
-            reversed: true
-        },
-        plotOptions: {
-            series: {
-                stacking: 'normal'
-            }
-        },
-        series: [{
-            name: 'Mopar Parts',
-			color: 'rgba(165,170,217,1)',
-            data: [
-			12500,
-12000,
-11000,
-11000,
-10500,
-10000,
-9500,
-9000,
-7000
-			
-			]
-        }, {
-            name: 'MVP',
-			 color: 'rgba(126,86,134,.9)',
-            data: [
-21500,
-22500,
-22500,
-22500,
-22500,
-22500,
-26500,
-25500,
-28500
-			
-			]
-        }, {
-            name: 'Magenti Marelli',
-			color: 'rgba(186,60,61,.9)',
-            data: [
-12500,
-8000,
-5000,
-7000,
-6500,
-9000,
-7500,
-9000,
-8000
-			]
-        }, {
-            name: 'Parts Counter',
-			 color: 'rgb(99, 130, 192)',
-            data: [
-9500,
-9000,
-6000,
-6000,
-7500,
-9000,
-7500,
-6000,
-7000
-			
-			]
-        }, {
-            name: 'Express Lane',
-			color: 'rgb(255,186,88)',
-            data: [
-7000,
-7000,
-7000,
-7000,
-6500,
-6700,
-5600,
-3400,
-2800
-			
-			]
-        }, {
-            name: 'wiAdvisor',
-			color: 'rgba(79,130,91,.9)',
-            data: [
-12500,
-12000,
-13000,
-7000,
-6500,
-9000,
-11500,
-12000,
-17000
-			]
-        }, {
-            name: 'uConnect',
-			color: 'rgba(54,154,148,.9)',
-            data: [
-12500,
-13000,
-13000,
-7000,
-4500,
-9000,
-7500,
-4000,
-9000
-			]
-        }]
-    });	 /* End of single chart init */
-		
-		
-});  /* End Chart Initialize */                                                        
-                                       
+                text: 'Program Points YTD'
+            },
+            xAxis: {
+                categories: [
+                    'CA',
+                    'SE',
+                    'NE',
+                    'WE',
+                    'GL',
+                    'MA',
+                    'SW',
+                    'MW',
+                    'DN'
+
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Points Earned'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Total Points Earned',
+                data:
+
+                [
+                    12500,
+                    12000,
+                    11000,
+                    11000,
+                    10500,
+                    10000,
+                    9500,
+                    9000,
+                    7000
+                ]
+
+
+
+            }]
+        });
+        /* End of single chart init */
+        Highcharts.chart('container10', {
+            title: {
+                text: 'Total Earnings YTD'
+            },
+            xAxis: {
+                categories: [
+
+                    'CA',
+                    'SE',
+                    'NE',
+                    'WE',
+                    'GL',
+                    'MA',
+                    'SW',
+                    'MW',
+                    'DN'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Dollars Earned'
+                }
+            },
+
+            series: [{
+                type: 'column',
+                name: 'Total Dollars Earned',
+                data: [
+                    150000,
+                    160000,
+                    170000,
+                    100000,
+                    150000,
+                    120000,
+                    200000,
+                    210000,
+                    180000
+
+
+                ]
+            }, {
+                type: 'spline',
+                name: 'Average',
+                data: [
+                    160000,
+                    160000,
+                    160000,
+                    160000,
+                    160000,
+                    160000,
+                    160000,
+                    160000,
+                    160000,
+
+                ],
+                marker: {
+                    lineWidth: 2,
+                    lineColor: Highcharts.getOptions().colors[3],
+                    fillColor: 'white'
+                }
+
+            }]
+        });
+        /* End of single chart init */
+        Highcharts.chart('container11', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Total Employment Retention YTD'
+            },
+            xAxis: {
+                categories: [
+                    'CA',
+                    'SE',
+                    'NE',
+                    'WE',
+                    'GL',
+                    'MA',
+                    'SW',
+                    'MW',
+                    'DN'
+
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '% Retention'
+                }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Total Retention',
+                data:
+
+                [
+                    90,
+                    80,
+                    75,
+                    72,
+                    70,
+                    68,
+                    65,
+                    60,
+                    55
+                ]
+
+
+
+            }]
+        });
+        /* End of single chart init */
+        Highcharts.chart('container12', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'BC Total Earnings YTD'
+            },
+            xAxis: {
+                categories: [
+                    'CA',
+                    'SE',
+                    'NE',
+                    'WE',
+                    'GL',
+                    'MA',
+                    'SW',
+                    'MW',
+                    'DN'
+
+                ]
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total Earnings'
+                }
+            },
+            legend: {
+                reversed: true
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+            series: [{
+                name: 'Mopar Parts',
+                color: 'rgba(165,170,217,1)',
+                data: [
+                    12500,
+                    12000,
+                    11000,
+                    11000,
+                    10500,
+                    10000,
+                    9500,
+                    9000,
+                    7000
+
+                ]
+            }, {
+                name: 'MVP',
+                color: 'rgba(126,86,134,.9)',
+                data: [
+                    21500,
+                    22500,
+                    22500,
+                    22500,
+                    22500,
+                    22500,
+                    26500,
+                    25500,
+                    28500
+
+                ]
+            }, {
+                name: 'Magenti Marelli',
+                color: 'rgba(186,60,61,.9)',
+                data: [
+                    12500,
+                    8000,
+                    5000,
+                    7000,
+                    6500,
+                    9000,
+                    7500,
+                    9000,
+                    8000
+                ]
+            }, {
+                name: 'Parts Counter',
+                color: 'rgb(99, 130, 192)',
+                data: [
+                    9500,
+                    9000,
+                    6000,
+                    6000,
+                    7500,
+                    9000,
+                    7500,
+                    6000,
+                    7000
+
+                ]
+            }, {
+                name: 'Express Lane',
+                color: 'rgb(255,186,88)',
+                data: [
+                    7000,
+                    7000,
+                    7000,
+                    7000,
+                    6500,
+                    6700,
+                    5600,
+                    3400,
+                    2800
+
+                ]
+            }, {
+                name: 'wiAdvisor',
+                color: 'rgba(79,130,91,.9)',
+                data: [
+                    12500,
+                    12000,
+                    13000,
+                    7000,
+                    6500,
+                    9000,
+                    11500,
+                    12000,
+                    17000
+                ]
+            }, {
+                name: 'uConnect',
+                color: 'rgba(54,154,148,.9)',
+                data: [
+                    12500,
+                    13000,
+                    13000,
+                    7000,
+                    4500,
+                    9000,
+                    7500,
+                    4000,
+                    9000
+                ]
+            }]
+        });	 /* End of single chart init */
+
+
+    });  /* End Chart Initialize */
+
 </script>
 
 <script>      
-$(document).ready(function(){
-	$('.modal').modal();
-	$('#modal1').modal('open');
-});
-</script> 
+            $(document).ready(function () {
+                $('.modal').modal();
+                $('#modal1').modal('open');
+            });
+</script>
 </body>
+
 </html>

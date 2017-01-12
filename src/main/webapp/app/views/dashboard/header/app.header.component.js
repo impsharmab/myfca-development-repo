@@ -27,7 +27,8 @@ HeaderSection = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-header",
-        templateUrl: "./newDesignHeader.html"
+        templateUrl: "./header-bootstrap.html",
+        styleUrls: ["./css/carosuel.css", "./css/scrolling-nav.css"]
     }),
     __metadata("design:paramtypes", [])
 ], HeaderSection);

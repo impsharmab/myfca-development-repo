@@ -26,20 +26,48 @@ export class MyFcaService {
     getUsersData() {
         return this.userdata;
     }
-
+    getNumberOfTiltes() {
+        var notiles = "./app/resources/json/serviceJson/notiles.json";
+        var tileDataThroughService = this.http.get(notiles)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        return tileDataThroughService;
+    }
+    getTilteJson() {
+        var tileService = "./app/resources/json/serviceJson/1-tile.json";
+        var tileDataThroughService = this.http.get(tileService)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        return tileDataThroughService;
+    }
+    getChartJson(id) {
+        var chartService = "./app/resources/json/serviceJson/" + id + "-chart.json";
+        //  var chartService = "services/tile/" + id;
+        var tileDataThroughService = this.http.get(chartService)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+        return tileDataThroughService;
+    }
     getNewServiceJSON(username, password): any {
 
-        var cleanDaveService = "./app/resources/json/cleanDave.json";
-        // var pieChartService = "./app/resources/json/testPieChart.json";
-        // var serviceurl = "services/userprofile";
-        // var creds = "id=" + username + "&key=" + password;
+        var daveService = "./app/resources/json/dave.json";
+        var userService = "./app/resources/json/newUserDetail.json";
+        var pieChartService ="" //"./app/resources/json/testPieChart.json";
+        //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
+        //   var mikeService = "./app/resources/json/mike.json";
+        //  http://localhost:9090/imiservices/services/userprofile?id=Dave&key=password    
+
+
+
+        // var params= "id="+ username + "&key=" + password;
+        var serviceurl = "services/userprofile" //?id="+ username + "&key=" + password;    
+        var creds = "id=" + username + "&key=" + password;
         // var headers = new Headers();
-        // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        //  headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        var serviceurl = "services/userprofile?id=" + username + "&key=" + password;
+        //    var tileDataThroughService = this.http.post(serviceurl, creds, {})
 
-        var tileDataThroughService = this.http.post(serviceurl, {})
-           //  var tileDataThroughService = this.http.get(cleanDaveService)
+        var tileDataThroughService = this.http.get(userService)
             .map((response: Response) => response.json())
             .catch(this.handleError);
         return tileDataThroughService;

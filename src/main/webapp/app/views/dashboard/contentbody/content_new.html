@@ -87,23 +87,26 @@ table, th, td {
 
             <!--   Card Start  -->
             <div class="col s12 m6" *ngFor="let tile of tilesArray">
-
+                
                 <div class="card horizontal">
                     <!--<div class="card-image">
                         <img src="services/loadrsc?id={{tile.tileImage}}">
                     </div>-->
                     <div class="card-stacked">
-
-                        <div class="card-content">
+                         <div class="card-content" *ngIf="tile.type == 'chart'">
+                         <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
+                         <chart [options]="option"></chart>
+                </div>
+                        <div class="card-content" *ngIf="tile.type == 'tile'">
                             <div class="image-frame"><img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
-                            <!--<div class="data-group" *ngFor="let data of getJSONObject(tile.attributes)">
-                                <p class="data-point">{{data.value}}</p>
-                                <p class="data-substitle">{{data.name}}</p>
-                            </div>-->
-                            <div class="data-group" *ngFor="let data of tile.attributes">
+                            <div class="data-group" *ngFor="let data of contentBody[tile.id].attributes">
                                 <p class="data-point">{{data.value}}</p>
                                 <p class="data-substitle">{{data.name}}</p>
                             </div>
+                            <!--<div class="data-group" *ngFor="let data of tile.attributes">
+                                <p class="data-point">{{data.value}}</p>
+                                <p class="data-substitle">{{data.key}}</p>
+                            </div>-->
                             <!--<div class="data-group">
                                     <p class="data-point">{{getJSONObject(tile.attributes).value}}</p>
 
@@ -125,36 +128,36 @@ table, th, td {
                                     </tr>
                                     </table>
                            </div>-->
-
-                            <!--<p class="data-point">{{sata.value}}</p>
+                           
+<!--<p class="data-point">{{sata.value}}</p>
                                 <p class="data-substitle">{{sata.key}}</p>-->
 
 
-                            <!--<div class="data-group" *ngFor="let Card of getJSONObject(tile.datatable)">
+<!--<div class="data-group" *ngFor="let Card of getJSONObject(tile.datatable)">
 
                                 <p class="data-point" *ngFor="let newdata of Card">{{newdata.value}}</p>
                                 <p class="data-substitle">{{newdata.key}}</p>
                             </div>-->
-                            <!--<div class="data-group">
+<!--<div class="data-group">
                                     <p class="data-point">{{getJSONObject(tile.attributes).value}}</p>
 
                                     <p class="data-substitle">{{getJSONObject(tile.attributes).name}}</p>
                                 </div>-->
 
-                        </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn-small"><i class="material-icons left">assignment_turned_in</i>PROGRAM RULES</a>
-                            <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>PROGRAM SITE</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--   Card Stop  -->
-            <!--   Card Start  -->
+</div>
+<div class="card-action"> 
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">assignment_turned_in</i>PROGRAM RULES</a>
+    <a class="waves-effect waves-light btn-small"><i class="material-icons left">slideshow</i>PROGRAM SITE</a>
+</div>
+</div>
+</div>
+</div>
+<!--   Card Stop  -->
+<!--   Card Start  -->
 
 
-        </div>
-    </div>
+</div>
+</div>
 </div>
 
 </div>

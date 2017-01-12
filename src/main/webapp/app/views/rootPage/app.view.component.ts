@@ -18,6 +18,7 @@ export class ViewComponent implements OnInit {
     private userdata: any = {};
     private menu: any;
     private banners: any;
+    
     constructor(private service: MyFcaService, private router: Router, private http: Http) {
 
     }

@@ -1,0 +1,74 @@
+<template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Welcome, Mr. Arnold Weber</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>The FCA Rewards Dashbaord is a here to provide you with quick to review information of all your vital sales data.</p>
+    <p>Use the <a class="" href="#modal1"><i class="material-icons .md-14 ">info_outline</i></a> whenever you want to reference
+      this menu again.</p>
+  </div>
+  <div class="modal-footer">
+    <a class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Get Started!</a>
+
+    <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
+  </div>
+</template>
+<template #topModel let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">{{tableData.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <ul class="collection" *ngFor="let tdata of tableData.tableData">
+      <li class="collection-header">
+        <h5>{{tdata.tableName}}</h5>
+      </li>
+      <li class="collection-item avatar" *ngFor="let data of tdata.data">
+        <i class="circle blue"> <span class="white-text-rank">{{data[0]}}</span></i>
+        <span class="title">{{data[1]}}</span>
+        <a href="#!" class="secondary-content">{{data[2]}}</a>
+      </li>
+
+    </ul>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</template>
+<template ngbModalContainer></template>
+
+<section id="intro" class="intro-section">
+  <div class="container">
+
+    <!--- Row START -->
+    <div *ngFor="let rowarray of tilesArray" class="row">
+      <div class="col-sm card" *ngFor="let tile of rowarray">
+        <div class="image-frame"><img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
+        <div class="card-content" *ngIf="tile.type == 'chart'">
+          <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
+          <chart [options]="contentBody[tile.id]" style="min-width: 425px; max-width: 600px; margin: 0 auto"></chart>
+</div>
+
+<div class="display-data-set" *ngIf="tile.type == 'tile'">
+
+  <div class="data-group" *ngFor="let data of contentBody[tile.id].attributes">
+    <p class="data-point">{{data.value}}</p>
+    <p class="data-substitle">{{data.name}}</p>
+  </div>
+
+</div>
+<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id])" (click)="openDataTable(contentBody[tile.id].datatable)">{{contentBody[tile.id].datatable.buttonName}}</button>
+</div>
+</div>
+<!--- Row END -->
+
+
+</div>
+</section>

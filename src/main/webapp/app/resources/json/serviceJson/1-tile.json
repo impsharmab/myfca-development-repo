@@ -1,0 +1,87 @@
+{
+  "attributes": [
+    {
+      "name": "2 TEST MSER Parts Earnings MTD",
+      "value": "$62,908.25",
+      "Order": "1"
+    }
+  ],
+  "datatable": {
+    "buttonName": "Excellence Card Awards",
+    "title": "Excellence Card Awards - Top 5 Technicians",
+    "tableData": [
+      {
+        "tableName": "Top 5 MTD Technicians Excellence Card Awards",
+        "tableHeader": [
+          "order",
+          "Advisor BC, District, Dealer Code",
+          "Reward amount"
+        ],
+        "data": [
+          [
+            1,
+            "John Doe Bearns Dealer Group(23545)",
+            100
+          ],
+          [
+            2,
+            "Jane Doe Howard & Howard Automotive ",
+            80
+          ],
+          [
+            3,
+            "Matt Stafford Shine Automotive(23547)",
+            66
+          ],
+          [
+            4,
+            "Matt Stafford Shine Automotive(23547)",
+            66
+          ],
+          [
+            5,
+            "Matt Stafford Shine Automotive(23547)",
+            66
+          ]
+        ]
+      },
+      {
+        "tableName": "Top 5 MTD Advisors Excellence Card Awards",
+        "tableHeader": [
+          "order",
+          "Advisor BC, District, Dealer Code",
+          "Reward Amount"
+        ],
+        "data": [
+          [
+            1,
+            "William Smith Prestige Auto(72354)",
+            660
+          ],
+          [
+            2,
+            "Jackie Chan Diamond Motors (82354)",
+            600
+          ],
+          [
+            3,
+            "Lee Marvin Steely Dealer Group (32354)",
+            550
+          ],
+          [
+            4,
+            "Bing Crosby Institute Group(52354)",
+            444
+          ],
+          [
+            5,
+            "Walter Sobczek Fox Auto (32354)",
+            222
+          ]
+
+        ]
+      }
+    ]
+  }
+}
+

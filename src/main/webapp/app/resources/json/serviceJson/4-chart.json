@@ -1,0 +1,97 @@
+{
+    "title": "chart title",
+    "subTitle": "chart sub-title",
+    "xaxisTitle": "x-axis title",
+    "yaxisTitle": "y-axis title",
+    "type": "column-compond",
+    "data": [
+        {
+            "name": "a",
+            "value": "",
+            "data": [
+                {
+                    "name": "Parts Counter",
+                    "value": 10
+                },
+                {
+                    "name": "Mopar Parts",
+                    "value": 4
+                },
+                {
+                    "name": "Magenti Marelli",
+                    "value": 8
+                },
+                {
+                    "name": "MVP",
+                    "value": 14
+                }
+            ]
+        },
+        {
+            "name": "b",
+            "value": "",
+            "data": [
+                {
+                    "name": "Magenti Marelli",
+                    "value": 17
+                },
+                {
+                    "name": "Parts Counter",
+                    "value": 12
+                },
+                {
+                    "name": "Mopar Parts",
+                    "value": 5
+                },
+                {
+                    "name": "MVP",
+                    "value": 10
+                }
+            ]
+        },
+        {
+            "name": "c",
+            "value": "",
+            "data": [
+                {
+                    "name": "MVP",
+                    "value": 4
+                },
+                {
+                    "name": "Magenti Marelli",
+                    "value": 10
+                },
+                {
+                    "name": "Parts Counter",
+                    "value": 12
+                },
+                {
+                    "name": "Mopar Parts",
+                    "value": 8
+                }
+            ]
+        },
+        {
+            "name": "d",
+            "value": "",
+            "data": [
+                {
+                    "name": "Magenti Marelli",
+                    "value": 5
+                },
+                {
+                    "name": "MVP",
+                    "value": 10
+                },
+                {
+                    "name": "Mopar Parts",
+                    "value": 12
+                },
+                {
+                    "name": "Parts Counter",
+                    "value": 6
+                }
+            ]
+        }
+    ]
+}

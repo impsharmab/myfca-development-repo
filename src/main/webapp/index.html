@@ -1,29 +1,25 @@
 <html>
 
 <head>
-    <base href="">
+    <base href="/">
     <title>MyFcaDashboard</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href="app/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="app/resources/bootstrap/js/bootstrap.js" rel="stylesheet">-->
 
-    <link rel="stylesheet" href="app/resources/css/slippry.css">
-    <link rel="stylesheet" href="app/resources/css/demo.css">
-     <link rel="stylesheet" href="app/resources/css/spinner.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="app/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="app/resources/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <link href="app/resources/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
-    <script src="app/resources/js/materialize.js"></script>
-    <script src="app/resources/js/slippry.min.js"></script>
-
+    <link rel="stylesheet" href="app/resources/bootstrap/bootstrap.css" />
+      <link rel="stylesheet" href="app/views/dashboard/header/css/scrolling-nav.css" />
+       <link rel="stylesheet" href="app/views/dashboard/header/css/carosuel.css" />
+       <link rel="stylesheet" href="styles.css" />
+ 
     <script src="node_modules/core-js/client/shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
     <script src="node_modules/rxjs/bundles/Rx.js"></script>
     <script src="systemjs.config.js"></script>
+
 
     <script>
         System.import('app').catch(function (err) {
@@ -33,7 +29,7 @@
 
 </head>
 
-<body>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <my-app>
         <div style="display: flex; justify-content: center;">
 <img class="refreshGlyphImg" src="app/resources/spinner.gif" />
