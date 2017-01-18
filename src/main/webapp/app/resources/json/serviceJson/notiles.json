@@ -4,13 +4,10 @@
         "id": "1",
         "type": "tile",
         "tileOrder": 1,
-        "tileName": "MSER - MOPAR Part Sales",
+        "tileName": "",
         "tileHeaderImage": "fileImagename.9.jpg",
         "tileImage": "fileHeadername.9.jpg",
-        "tileURL": "www.mopar.com",
-        "tableName": "",
-        "table1": "",
-        "table2": ""
+        "tileURL": "www.mopar.com"
     },
     {
         "error": "",
@@ -20,10 +17,7 @@
         "tileName": "MSER - MOPAR Part Sales",
         "tileHeaderImage": "fileImagename.9.jpg",
         "tileImage": "fileHeadername.9.jpg",
-        "tileURL": "www.mopar.com",
-        "tableName": "",
-        "table1": "",
-        "table2": ""
+        "tileURL": "www.mopar.com"
     },
     {
         "error": "",
@@ -33,10 +27,7 @@
         "tileName": "MSER - MOPAR Part Sales",
         "tileHeaderImage": "fileImagename.9.jpg",
         "tileImage": "fileHeadername.9.jpg",
-        "tileURL": "www.mopar.com",
-        "tableName": "",
-        "table1": "",
-        "table2": ""
+        "tileURL": "www.mopar.com"
     },
     {
         "error": "",
@@ -46,10 +37,7 @@
         "tileName": "MSER - MOPAR Part Sales",
         "tileHeaderImage": "fileImagename.9.jpg",
         "tileImage": "fileHeadername.9.jpg",
-        "tileURL": "www.mopar.com",
-        "tableName": "",
-        "table1": "",
-        "table2": ""
+        "tileURL": "www.mopar.com"
     },
     {
         "error": "",
@@ -59,10 +47,7 @@
         "tileName": "MSER - MOPAR Part Sales",
         "tileHeaderImage": "fileImagename.9.jpg",
         "tileImage": "fileHeadername.9.jpg",
-        "tileURL": "www.mopar.com",
-        "tableName": "",
-        "table1": "",
-        "table2": ""
+        "tileURL": "www.mopar.com"
     },
     {
         "error": "",
@@ -72,10 +57,7 @@
         "tileName": "MSER - MOPAR Part Sales",
         "tileHeaderImage": "fileImagename.9.jpg",
         "tileImage": "fileHeadername.9.jpg",
-        "tileURL": "www.mopar.com",
-        "tableName": "",
-        "table1": "",
-        "table2": ""
+        "tileURL": "www.mopar.com"
     },
     {
         "error": "",
@@ -83,11 +65,8 @@
         "type": "tile",
         "tileOrder": 7,
         "tileName": "MSER - MOPAR Part Sales",
-        "tileHeaderImage": "fileImagename.9.jpg",
+        "tileHeaderImage": "",
         "tileImage": "fileHeadername.9.jpg",
-        "tileURL": "www.mopar.com",
-        "tableName": "",
-        "table1": "",
-        "table2": ""
-    }
+        "tileURL": "www.mopar.com"
+      }
 ]

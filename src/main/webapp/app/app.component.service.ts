@@ -33,8 +33,8 @@ export class MyFcaService {
             .catch(this.handleError);
         return tileDataThroughService;
     }
-    getTilteJson() {
-        var tileService = "./app/resources/json/serviceJson/1-tile.json";
+    getTilteJson(id) {
+        var tileService = "./app/resources/json/serviceJson/"+id+"-tile.json";
         var tileDataThroughService = this.http.get(tileService)
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -52,7 +52,7 @@ export class MyFcaService {
 
         var daveService = "./app/resources/json/dave.json";
         var userService = "./app/resources/json/newUserDetail.json";
-        var pieChartService ="" //"./app/resources/json/testPieChart.json";
+        var pieChartService = "" //"./app/resources/json/testPieChart.json";
         //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
         //   var mikeService = "./app/resources/json/mike.json";
         //  http://localhost:9090/imiservices/services/userprofile?id=Dave&key=password    
@@ -60,18 +60,39 @@ export class MyFcaService {
 
 
         // var params= "id="+ username + "&key=" + password;
-        var serviceurl = "services/userprofile" //?id="+ username + "&key=" + password;    
-        var creds = "id=" + username + "&key=" + password;
-        // var headers = new Headers();
-        //  headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        //    var tileDataThroughService = this.http.post(serviceurl, creds, {})
+        var serviceurl = "services/userprofile"//?id="+ username + "&key=" + password;  
 
-        var tileDataThroughService = this.http.get(userService)
-            .map((response: Response) => response.json())
+        var body = "id=" + username + "&key=" + password;
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+       // var tileDataThroughService = this.http.post(serviceurl, body, { headers: headers })
+
+            //var tileDataThroughService = this.http.post(serviceurl, {username, password})
+               var tileDataThroughService = this.http.get(userService)
+            .map((response: Response) =>
+                response.json()
+            //console.log("response: " + response.json())
+            )
             .catch(this.handleError);
+
         return tileDataThroughService;
+
+
     }
+
+    // getModalJson() {
+    //     var modalService = "./app/resources/json/modal.json";
+    //     var modalData= this.http.get(modalService)
+    //         .map((response: Response) => {
+    //             response.json();
+    //             console.log("inside service " + response.json());            
+    //         }
+    //         )
+    //         .catch(this.handleError);
+    //         return modalData;
+    // }
 
     private extractData(res: Response) {
         let body = res.json();

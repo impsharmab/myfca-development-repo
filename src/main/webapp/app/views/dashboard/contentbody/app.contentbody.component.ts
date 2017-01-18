@@ -1,7 +1,7 @@
-import { Component, OnInit, Input,ViewChild,TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef } from '@angular/core';
 import { MyFcaService } from '../../../app.component.service';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {NgbdModalContent} from './app.component.model'
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalContent } from './app.component.model'
 const Highcharts = require('highcharts');
 
 const Highcharts3d = require('highcharts/highcharts-3d.src');
@@ -21,26 +21,24 @@ Highcharts.setOptions({
 })
 
 export class ContentSection implements OnInit {
-   @ViewChild("content") private model: TemplateRef<any>;
-   @ViewChild("topModel") private topModel: TemplateRef<any>;
- 
+  @ViewChild("content") private model: TemplateRef<any>;
+  @ViewChild("topModel") private topModel: TemplateRef<any>;
+
 
   tilesArray: any;
   contentBody: any = {};
-  tableData:any = {"buttonName": "",
-    "title": "",
-    "tableData": [ ]
-};
-  ngOnInit() { 
-this.modalService.open(this.model);
+  tableData: any = {"buttonName": "",
+      "title": "",
+         "tableData": []
+  };
+  ngOnInit() {
+    this.modalService.open(this.model);
   }
 
-  constructor(private service: MyFcaService,private modalService: NgbModal) {
-
-
+  constructor(private service: MyFcaService, private modalService: NgbModal) {
     this.service.getNumberOfTiltes().subscribe(
       (resUserData) => {
-        this.tilesArray = this.chunk(resUserData,2);
+        this.tilesArray = this.chunk(resUserData, 2);
         for (var i = 0; i < resUserData.length; i++) {
           var obj = resUserData[i];
           if (obj.type === "tile") {
@@ -51,29 +49,41 @@ this.modalService.open(this.model);
         }
       })
   }
-  openDataTable(data){
+  openDataTable(data) {
     this.tableData = data;
     this.modalService.open(this.topModel);
   }
-  chunk(arr, size):any {
-  var newArr = [];
-  for (var i=0; i<arr.length; i+=size) {
-    newArr.push(arr.slice(i, i+size));
+  chunk(arr, size): any {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i += size) {
+      newArr.push(arr.slice(i, i + size));
+    }
+    return newArr;
   }
-  return newArr;
-}
-notEmpty(dataObj:any):boolean{
-  try{
-    console.log(dataObj)
-  if(dataObj.datatable.buttonName === undefined){
-return false;
-  }else{
-    return true;
+  notEmpty(dataObj: any): boolean {
+    try {
+      //console.log(dataObj)
+      if (dataObj.datatable.buttonName === undefined) {
+        return false;
+      } else {
+        return dataObj.datatable.tableData[0].data.length > 3 ? true : false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
-  }catch(e){
-    return false;
+  isTopThree(dataObj: any): boolean {
+    try {
+      if (dataObj.datatable.buttonName === undefined) {
+        return false;
+      } else {
+
+        return dataObj.datatable.tableData[0].data.length <= 3 ? true : false;
+      }
+    } catch (e) {
+      return false;
+    }
   }
-}
   // options: any;
   // getJSONObject(jsonString: string) {
   //   //  debugger;
@@ -83,7 +93,7 @@ return false;
 
   getTileJson(id: string) {
     this.contentBody[id] = [];
-    this.service.getTilteJson().subscribe(
+    this.service.getTilteJson(id).subscribe(
       (resUserData) => {
         this.contentBody[id] = resUserData;
       })

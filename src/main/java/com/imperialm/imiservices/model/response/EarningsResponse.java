@@ -1,7 +1,5 @@
 package com.imperialm.imiservices.model.response;
 
-import java.math.BigDecimal;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

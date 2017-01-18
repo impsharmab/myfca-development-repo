@@ -1,5 +1,6 @@
 package com.imperialm.imiservices.model.response;
 
+
 public class TTTAResponse {
 	private String territory;
 	private char enrollmentStatus;

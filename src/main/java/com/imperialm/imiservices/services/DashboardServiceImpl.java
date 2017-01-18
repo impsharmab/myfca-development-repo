@@ -9,7 +9,9 @@ import com.imperialm.imiservices.dao.DashboardDAO;
 import com.imperialm.imiservices.dao.MSEREarningsDAO;
 import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
+import com.imperialm.imiservices.dto.MSERTopNDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
+import com.imperialm.imiservices.dao.MSERTopNDAO;
 
 @Service
 public class DashboardServiceImpl implements DashboardService {
@@ -19,6 +21,9 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	private MSEREarningsDAO MSEREarningsDAO;
+	
+	@Autowired
+	private MSERTopNDAO MSERTopNDAO;
 
 	@Override
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
@@ -32,6 +37,10 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	public List<MSEREarningsDTO> getEarningsByRole(final InputRequest userRoleReq){
 		 return this.MSEREarningsDAO.getEarningsByRole(userRoleReq);
+	}
+	
+	public List<MSERTopNDTO> getMSERTopTen(String type, int rows){
+		 return this.MSERTopNDAO.getTopNByType(type, rows);
 	}
 	
 }

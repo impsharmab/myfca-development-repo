@@ -19,29 +19,29 @@
         ],
         "data": [
           [
-            1,
+            "1",
             "John Doe Bearns Dealer Group(23545)",
-            100
+            "$1000"
           ],
           [
-            2,
+            "2",
             "Jane Doe Howard & Howard Automotive ",
-            80
+            "$80"
           ],
           [
-            3,
+            "3",
             "Matt Stafford Shine Automotive(23547)",
-            66
+            "$66"
           ],
           [
-            4,
+            "4",
             "Matt Stafford Shine Automotive(23547)",
-            66
+            "$66"
           ],
           [
-            5,
+            "5",
             "Matt Stafford Shine Automotive(23547)",
-            66
+            "$66"
           ]
         ]
       },
@@ -54,29 +54,29 @@
         ],
         "data": [
           [
-            1,
+            "1",
             "William Smith Prestige Auto(72354)",
-            660
+            "$660"
           ],
           [
-            2,
+            "2",
             "Jackie Chan Diamond Motors (82354)",
-            600
+            "$600"
           ],
           [
-            3,
+            "3",
             "Lee Marvin Steely Dealer Group (32354)",
-            550
+            "$550"
           ],
           [
-            4,
+            "4",
             "Bing Crosby Institute Group(52354)",
-            444
+            "$444"
           ],
           [
-            5,
+            "5",
             "Walter Sobczek Fox Auto (32354)",
-            222
+            "222"
           ]
 
         ]

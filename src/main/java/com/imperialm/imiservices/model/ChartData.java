@@ -1,35 +1,13 @@
 package com.imperialm.imiservices.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter 
 public class ChartData {
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public double getValue() {
-		return value;
-	}
-
-	public void setValue(double value) {
-		this.value = value;
-	}
-
-	public List<ChartData> getData() {
-		return data;
-	}
-
-	public void setData(List<ChartData> data) {
-		this.data = data;
-	}
-
-
 	private String name;
 	private double value;
 	private List<ChartData> data;

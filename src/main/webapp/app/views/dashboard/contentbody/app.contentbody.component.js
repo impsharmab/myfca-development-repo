@@ -59,12 +59,25 @@ var ContentSection = (function () {
     };
     ContentSection.prototype.notEmpty = function (dataObj) {
         try {
-            console.log(dataObj);
+            //console.log(dataObj)
             if (dataObj.datatable.buttonName === undefined) {
                 return false;
             }
             else {
-                return true;
+                return dataObj.datatable.tableData[0].data.length > 3 ? true : false;
+            }
+        }
+        catch (e) {
+            return false;
+        }
+    };
+    ContentSection.prototype.isTopThree = function (dataObj) {
+        try {
+            if (dataObj.datatable.buttonName === undefined) {
+                return false;
+            }
+            else {
+                return dataObj.datatable.tableData[0].data.length <= 3 ? true : false;
             }
         }
         catch (e) {
@@ -80,7 +93,7 @@ var ContentSection = (function () {
     ContentSection.prototype.getTileJson = function (id) {
         var _this = this;
         this.contentBody[id] = [];
-        this.service.getTilteJson().subscribe(function (resUserData) {
+        this.service.getTilteJson(id).subscribe(function (resUserData) {
             _this.contentBody[id] = resUserData;
         });
     };

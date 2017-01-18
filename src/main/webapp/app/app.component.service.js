@@ -38,8 +38,8 @@ var MyFcaService = (function () {
             .catch(this.handleError);
         return tileDataThroughService;
     };
-    MyFcaService.prototype.getTilteJson = function () {
-        var tileService = "./app/resources/json/serviceJson/1-tile.json";
+    MyFcaService.prototype.getTilteJson = function (id) {
+        var tileService = "./app/resources/json/serviceJson/" + id + "-tile.json";
         var tileDataThroughService = this.http.get(tileService)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -61,16 +61,30 @@ var MyFcaService = (function () {
         //   var mikeService = "./app/resources/json/mike.json";
         //  http://localhost:9090/imiservices/services/userprofile?id=Dave&key=password    
         // var params= "id="+ username + "&key=" + password;
-        var serviceurl = "services/userprofile"; //?id="+ username + "&key=" + password;    
-        var creds = "id=" + username + "&key=" + password;
-        // var headers = new Headers();
-        //  headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        //    var tileDataThroughService = this.http.post(serviceurl, creds, {})
+        var serviceurl = "services/userprofile"; //?id="+ username + "&key=" + password;  
+        var body = "id=" + username + "&key=" + password;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        // var tileDataThroughService = this.http.post(serviceurl, body, { headers: headers })
+        //var tileDataThroughService = this.http.post(serviceurl, {username, password})
         var tileDataThroughService = this.http.get(userService)
-            .map(function (response) { return response.json(); })
+            .map(function (response) {
+            return response.json();
+        })
             .catch(this.handleError);
         return tileDataThroughService;
     };
+    // getModalJson() {
+    //     var modalService = "./app/resources/json/modal.json";
+    //     var modalData= this.http.get(modalService)
+    //         .map((response: Response) => {
+    //             response.json();
+    //             console.log("inside service " + response.json());            
+    //         }
+    //         )
+    //         .catch(this.handleError);
+    //         return modalData;
+    // }
     MyFcaService.prototype.extractData = function (res) {
         var body = res.json();
         return body.data || {};

@@ -1,7 +1,5 @@
 package com.imperialm.imiservices.dao;
 
-import java.io.Reader;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,17 +8,12 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
-import com.imperialm.imiservices.model.TileAttribute1;
-import com.imperialm.imiservices.model.response.BannerResponse;
 import com.imperialm.imiservices.model.response.EarningsResponse;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -33,9 +26,7 @@ public class MSEREarningsDAOImpl implements MSEREarningsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MSEREarningsDTO> getEarningsByRole(InputRequest userRoleReq) {
-		// TODO Auto-generated method stub
-		
+	public List<MSEREarningsDTO> getEarningsByRole(InputRequest userRoleReq) {		
 		
 		List<MSEREarningsDTO> result = new ArrayList<MSEREarningsDTO>();
 

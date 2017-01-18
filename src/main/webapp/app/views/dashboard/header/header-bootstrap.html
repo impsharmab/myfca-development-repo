@@ -1,33 +1,84 @@
- <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top " role="navigation">
+<!--<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top " role="navigation">
         <div class="container">
            <a href="#" class="brand-logo"><img src="/app/resources/_img/FCA-mast-logo.jpg"/></a>
+           <div class="navbar-header">
+                <ul class="nav">
+                    <li class="nav-item wide">
+                        Welcome, <a class="nav-link active" href="#">Brian Johnson</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Logout</a>
+                    </li>
+                </ul>
+
+            </div>
          
  </div>
- </nav>
-<ngb-carousel>   
-  <template ngbSlide >
-    <img src="app/resources/images/carousel/image-5.jpg" alt="Random first slide" style="width:100%">
-    <div class="carousel-caption">
+ </nav>-->
+
+<!-- Navigation -->
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top " role="navigation">
+    <div class="container">
+        <a href="#" class="brand-logo"><img src="/app/resources/_img/FCA-mast-logo.jpg" /></a>
+        <div class="navbar-header">
+
+            <ul class="nav">
+                <li class="nav-item ">
+                    Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="utility-nav active" href="#">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="utility-nav" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="utility-nav" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="utility-nav disabled" href="/login">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+
+
+    </div>
+    <!-- /.container -->
+</nav>
+<ngb-carousel>
+    <template ngbSlide>
+        <img src="app/resources/images/carousel/image-5.jpg" alt="Random first slide" style="width:100%">
+<!--<div class="carousel-caption">
        <h1>Example headline.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Enroll!</a></p>
-    </div>
-  </template>
-  <template ngbSlide>
+    </div>-->
+</template>
+<template ngbSlide>
     <img src="app/resources/images/carousel/image-6.jpg" alt="Random second slide" style="width:100%">
-    <div class="carousel-caption">
+<!--<div class="carousel-caption">
        <h1>Another example headline.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">More</a></p>
 
-    </div>
-  </template>
-  <template ngbSlide>
+    </div>-->
+</template>
+<template ngbSlide>
     <img src="app/resources/images/carousel/image-7.jpg" alt="Random third slide" style="width:100%">
-    <div class="carousel-caption">
+<!--<div class="carousel-caption">
      <h1>One more for good measure.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">More</a></p>
-    </div>
-  </template>
+    </div>-->
+</template>
 </ngb-carousel>

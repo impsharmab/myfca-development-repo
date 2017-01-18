@@ -1,5 +1,5 @@
 <div class="container">
-    <h2>Welcome to the login page of <span style="color:blue">MyFCADashboard!</span></h2>
+    <h2 id="myfca">Welcome to the login page of <span style = "font-weight:bold" >MyFCADashboard!</span></h2>
     <form #f="ngForm" novalidate (ngSubmit)="login()">
         <div id="loginbox" class="mainbox col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
             <div class="form-textbox">
@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="form-textbox">
-                <div>                    
+                <div>
                     <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" placeholder="Password">
                 </div>
             </div>
@@ -16,3 +16,11 @@
         </div>
     </form>
 </div>
+
+<style>
+#myfca{
+color:#7cb5ec;
+cursor:pointer;
+
+}
+</style>

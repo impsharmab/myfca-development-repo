@@ -17,7 +17,6 @@ var app_component_service_1 = require("./app.component.service");
 var app_header_component_1 = require("./views/dashboard/header/app.header.component");
 var app_footer_component_1 = require("./views/dashboard/footer/app.footer.component");
 var app_contentbody_component_1 = require("./views/dashboard/contentbody/app.contentbody.component");
-var navbar_component_1 = require("./views/dashboard/navbar/navbar.component");
 var spinner_1 = require("./views/spinner/spinner");
 var login_component_1 = require("./views/login/login.component");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
@@ -37,7 +36,6 @@ AppModule = __decorate([
             app_header_component_1.HeaderSection,
             app_footer_component_1.FooterSection,
             app_contentbody_component_1.ContentSection,
-            navbar_component_1.NavImageComponent,
             app_view_component_1.ViewComponent,
             spinner_1.SpinnerComponent
         ],

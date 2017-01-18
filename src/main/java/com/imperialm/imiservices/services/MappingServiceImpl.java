@@ -7,9 +7,13 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
+import com.imperialm.imiservices.dto.MSERTopNDTO;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
 import com.imperialm.imiservices.model.TileAttribute1;
+import com.imperialm.imiservices.model.TopTenChart;
+import com.imperialm.imiservices.model.TopTenDataTable;
+import com.imperialm.imiservices.model.TopTenTableData;
 
 @Service
 public class MappingServiceImpl {
@@ -66,6 +70,29 @@ public class MappingServiceImpl {
 		}
 		
 		return list;
+	}
+	
+	public TopTenTableData MapMSERTopNDTOtoTopTenTableData(List<MSERTopNDTO> MSERTopNDTO, String tableName, List<String> tableHeader){
+		TopTenTableData topTenTableData = new TopTenTableData();
+		
+		topTenTableData.setTableHeader(tableHeader);
+		topTenTableData.setTableName(tableName);
+		
+		List<Object> data = new ArrayList<Object>();
+		
+		for(MSERTopNDTO item: MSERTopNDTO){
+			List<Object> items = new ArrayList<Object>();
+			if(item.getError().equals("") || item.getError().equals(null)){
+				items.add(item.getTopNRank());
+				items.add(item.getName());
+				items.add(item.getEarnings());
+			}
+			data.add(items);
+		}
+		
+		topTenTableData.setData(data);
+		
+		return topTenTableData;
 	}
 	
 }

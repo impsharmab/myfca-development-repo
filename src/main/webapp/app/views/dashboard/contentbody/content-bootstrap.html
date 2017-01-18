@@ -1,6 +1,6 @@
 <template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Welcome, Mr. Arnold Weber</h4>
+    <h4 class="modal-title">Welcome, Arnold Weber</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -11,7 +11,7 @@
       this menu again.</p>
   </div>
   <div class="modal-footer">
-    <a class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Get Started!</a>
+    <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat" (click)="c('Close click')">Get Started!</a>
 
     <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
   </div>
@@ -47,24 +47,50 @@
 <section id="intro" class="intro-section">
   <div class="container">
 
+
     <!--- Row START -->
     <div *ngFor="let rowarray of tilesArray" class="row">
       <div class="col-sm card" *ngFor="let tile of rowarray">
-        <div class="image-frame"><img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
+        <div class="image-frame">{{tile.tileName}}<img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
         <div class="card-content" *ngIf="tile.type == 'chart'">
           <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
           <chart [options]="contentBody[tile.id]" style="min-width: 425px; max-width: 600px; margin: 0 auto"></chart>
 </div>
 
 <div class="display-data-set" *ngIf="tile.type == 'tile'">
+  <div class="display-data-set" *ngIf="tile.type == 'tile' && isTopThree(contentBody[tile.id])">
 
+    <ul class="list-group" *ngFor="let tdata of contentBody[tile.id].datatable.tableData">
+      <h4>{{tdata.tableName}}</h4>
+      <li class="list-group-item" *ngFor="let data of tdata.data">
+        <span class="item-title">{{data[0]}}</span>
+        <span class="badge">{{data[1]}}</span>
+      </li>
+    </ul>
+
+  </div>
   <div class="data-group" *ngFor="let data of contentBody[tile.id].attributes">
     <p class="data-point">{{data.value}}</p>
     <p class="data-substitle">{{data.name}}</p>
+
   </div>
 
+
 </div>
-<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id])" (click)="openDataTable(contentBody[tile.id].datatable)">{{contentBody[tile.id].datatable.buttonName}}</button>
+<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id])" (click)="openDataTable(contentBody[tile.id].datatable)"><i class="fa fa-star" aria-hidden="true"></i> {{contentBody[tile.id].datatable.buttonName}}</button>
+<div class="chart-controls">
+  <a onclick="chartFuncSwitch('pie')" alt="View Pie Chart" ><i class="fa fa-pie-chart" aria-hidden="true"></i>
+</a>
+<a onclick="chartFuncSwitch('column')" alt="View Column Chart" ><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+</div>
+
+<div class="card-action">
+  <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-check-square" aria-hidden="true"></i>
+                    Program Rules</button>
+  <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                    Program Site</button>
+</div>
+
 </div>
 </div>
 <!--- Row END -->
@@ -72,3 +98,29 @@
 
 </div>
 </section>
+
+<style>
+  .my-btn-flat {
+  box-shadow: none;
+  background-color: transparent;
+  color: #343434;
+  cursor: pointer;
+  transition: background-color .2s;
+}
+.my-btn-flat:focus, .btn-flat:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+}
+
+.my-btn-flat:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.my-btn-flat.disabled {
+  background-color: transparent !important;
+  color: #b3b3b3 !important;
+  cursor: default;
+}
+
+
+</style>
