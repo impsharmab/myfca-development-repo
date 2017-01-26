@@ -1,10 +1,14 @@
 package com.imperialm.imiservices.dto;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter @Getter
+@Entity @Setter @Getter
 public class MSERTopNDTO {
+	@Id
 	private String topNType;
 	private String parentTerritory;
 	private String dealerCode;

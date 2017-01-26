@@ -1,29 +1,430 @@
 {
-    "title": "chart title",
+    "title": "Brainboost-YTD Winners",
     "subTitle": "chart sub-title",
-    "xaxisTitle": "x-axis title",
-    "yaxisTitle": "y-axis title",
-    "type": "column",
+    "xaxisTitle": "Business Center",
+    "yaxisTitle": "Total Winners",
+    "type": "column_drilldown",
     "data": [
         {
-            "name": "a",
+            "name": "CA",
             "value": 10,
-            "data": []
+            "data" :[]
         },
         {
-            "name": "b",
-            "value": 17,
-            "data": []
+            "name": "DN",
+            "value": 17
         },
         {
-            "name": "c",
-            "value": 8,
-            "data": []
+            "name": "GL",
+            "value": 8
         },
         {
-            "name": "d",
-            "value": 4,
-            "data": []
+            "name": "MA",
+            "value": 4
+        },
+        {
+            "name": "MW",
+            "value": 10
+        },
+        {
+            "name": "NE",
+            "value": 17
+        },
+        {
+            "name": "SE",
+            "value": 8
+        },
+        {
+            "name": "SW",
+            "value": 4
+        },
+        {
+            "name": "WE",
+            "value": 4
         }
-    ]
+    ],
+    "drilldownData": {
+        "CA": {
+            "name": "CA",
+            "data": [
+                {
+                    "name": "CA-A",
+                    "value": 1
+                },
+                {
+                    "name": "CA-B",
+                    "value": 2
+                },
+                {
+                    "name": "CA-C",
+                    "value": 3
+                },
+                {
+                    "name": "CA-D",
+                    "value": 4
+                },
+                {
+                    "name": "CA-E",
+                    "value": 1
+                },
+                {
+                    "name": "CA-F",
+                    "value": 2
+                },
+                {
+                    "name": "CA-G",
+                    "value": 3
+                },
+                {
+                    "name": "CA-H",
+                    "value": 4
+                },
+                {
+                    "name": "CA-I",
+                    "value": 4
+                }
+            ]
+        },
+        "DN": {
+            "name": "DN",
+            "data": [
+                {
+                    "name": "DN-A",
+                    "value": 1
+                },
+                {
+                    "name": "DN-B",
+                    "value": 2
+                },
+                {
+                    "name": "DN-C",
+                    "value": 3
+                },
+                {
+                    "name": "DN-D",
+                    "value": 4
+                },
+                {
+                    "name": "DN-E",
+                    "value": 1
+                },
+                {
+                    "name": "DN-F",
+                    "value": 2
+                },
+                {
+                    "name": "DN-G",
+                    "value": 3
+                },
+                {
+                    "name": "DN-H",
+                    "value": 4
+                },
+                {
+                    "name": "DN-I",
+                    "value": 4
+                }
+            ]
+        },
+        "GL": {
+            "name": "GL",
+            "data": [
+                {
+                    "name": "GL-A",
+                    "value": 1
+                },
+                {
+                    "name": "GL-B",
+                    "value": 2
+                },
+                {
+                    "name": "GL-C",
+                    "value": 3
+                },
+                {
+                    "name": "GL-D",
+                    "value": 4
+                },
+                {
+                    "name": "GL-E",
+                    "value": 1
+                },
+                {
+                    "name": "GL-F",
+                    "value": 2
+                },
+                {
+                    "name": "GL-G",
+                    "value": 3
+                },
+                {
+                    "name": "GL-H",
+                    "value": 4
+                },
+                {
+                    "name": "GL-I",
+                    "value": 4
+                }
+            ]
+        },
+        "MA": {
+            "name": "MA",
+            "data": [
+                {
+                    "name": "MA-A",
+                    "value": 1
+                },
+                {
+                    "name": "MA-B",
+                    "value": 2
+                },
+                {
+                    "name": "MA-C",
+                    "value": 3
+                },
+                {
+                    "name": "MA-D",
+                    "value": 4
+                },
+                {
+                    "name": "MA-E",
+                    "value": 1
+                },
+                {
+                    "name": "MA-F",
+                    "value": 2
+                },
+                {
+                    "name": "MA-G",
+                    "value": 3
+                },
+                {
+                    "name": "MA-H",
+                    "value": 4
+                },
+                {
+                    "name": "MA-I",
+                    "value": 4
+                }
+            ]
+        },
+        "MW": {
+            "name": "MW",
+            "data": [
+                {
+                    "name": "MW-A",
+                    "value": 1
+                },
+                {
+                    "name": "MW-B",
+                    "value": 2
+                },
+                {
+                    "name": "MW-C",
+                    "value": 3
+                },
+                {
+                    "name": "MW-D",
+                    "value": 4
+                },
+                {
+                    "name": "MW-E",
+                    "value": 1
+                },
+                {
+                    "name": "CA-F",
+                    "value": 2
+                },
+                {
+                    "name": "MW-G",
+                    "value": 3
+                },
+                {
+                    "name": "MW-H",
+                    "value": 4
+                },
+                {
+                    "name": "MW-I",
+                    "value": 4
+                }
+            ]
+        },
+        "NE": {
+            "name": "NE",
+            "data": [
+                {
+                    "name": "NE-A",
+                    "value": 1
+                },
+                {
+                    "name": "NE-B",
+                    "value": 2
+                },
+                {
+                    "name": "NE-C",
+                    "value": 3
+                },
+                {
+                    "name": "NE-D",
+                    "value": 4
+                },
+                {
+                    "name": "CA-E",
+                    "value": 1
+                },
+                {
+                    "name": "NE-F",
+                    "value": 2
+                },
+                {
+                    "name": "NE-G",
+                    "value": 3
+                },
+                {
+                    "name": "NE-H",
+                    "value": 4
+                },
+                {
+                    "name": "NE-I",
+                    "value": 4
+                }
+            ]
+        },
+        "SE": {
+            "name": "SE",
+            "data": [
+                {
+                    "name": "SE-A",
+                    "value": 1
+                },
+                {
+                    "name": "SE-B",
+                    "value": 2
+                },
+                {
+                    "name": "SE-C",
+                    "value": 3
+                },
+                {
+                    "name": "SE-D",
+                    "value": 4
+                },
+                {
+                    "name": "SE-E",
+                    "value": 1
+                },
+                {
+                    "name": "SE-F",
+                    "value": 2
+                },
+                {
+                    "name": "SE-G",
+                    "value": 3
+                },
+                {
+                    "name": "SE-H",
+                    "value": 4
+                },
+                {
+                    "name": "SE-I",
+                    "value": 4
+                }
+            ]
+        },
+        "SW": {
+            "name": "SW",
+            "data": [
+                {
+                    "name": "SW-A",
+                    "value": 1
+                },
+                {
+                    "name": "SW-B",
+                    "value": 2
+                },
+                {
+                    "name": "SW-C",
+                    "value": 3
+                },
+                {
+                    "name": "SW-D",
+                    "value": 4
+                },
+                {
+                    "name": "SW-E",
+                    "value": 1
+                },
+                {
+                    "name": "SW-F",
+                    "value": 2
+                },
+                {
+                    "name": "SW-G",
+                    "value": 3
+                },
+                {
+                    "name": "SW-H",
+                    "value": 4
+                },
+                {
+                    "name": "SW-I",
+                    "value": 4
+                }
+            ]
+        },
+        "WE": {
+            "name": "WE",
+            "data": [
+                {
+                    "name": "WE-A",
+                    "value": 1
+                },
+                {
+                    "name": "WE-B",
+                    "value": 2
+                },
+                {
+                    "name": "WE-C",
+                    "value": 3
+                },
+                {
+                    "name": "WE-D",
+                    "value": 4
+                },
+                {
+                    "name": "WE-E",
+                    "value": 1
+                },
+                {
+                    "name": "WE-F",
+                    "value": 2
+                },
+                {
+                    "name": "WE-G",
+                    "value": 3
+                },
+                {
+                    "name": "WE-H",
+                    "value": 4
+                },
+                {
+                    "name": "WE-I",
+                    "value": 4
+                }
+            ]
+        },
+        "CA-A": {
+            "name": "k",
+            "data": [
+                {
+                    "name": "n",
+                    "value": 10
+                },
+                {
+                    "name": "x",
+                    "value": 17
+                }
+            ]
+        }
+    }
 }

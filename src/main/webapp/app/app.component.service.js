@@ -12,67 +12,74 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("./rxjs-operators");
+var sha256 = require('app/resources/js/sha256.js');
+//const sha256=require('https://raw.githubusercontent.com/emn178/js-sha256/master/src/sha256.js');
 var MyFcaService = (function () {
     function MyFcaService(http) {
         this.http = http;
-        this.titles = new Array();
+        this.getLoginResponseUrl = './app/resources/json/serviceJson/token_response.json';
+        this.getUserServiceUrl = './app/resources/json/newUserDetail.json';
+        this.getBaseServiceUrl = 'services/userprofile';
+        this.getBannersServiceUrl = './app/resources/json/newbanners.json';
+        this.getNumberOfTiltesServiceUrl = "./app/resources/json/serviceJson/notiles.json";
+        this.tokenObject = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        //private validToken: any = this.tokenObject.validToken;
+        this.tiles = new Array();
         this.userdata = {};
     }
-    MyFcaService.prototype.setTiles = function (titles) {
-        localStorage.setItem("titles", JSON.stringify(titles));
-        //sessionStorage.setItem("titles", JSON.stringify(titles));
+    MyFcaService.prototype.setTiles = function (tiles) {
+        sessionStorage.setItem("tiles", JSON.stringify(tiles));
+        //sessionStorage.setItem("tiles", JSON.stringify(tiles));
     };
     MyFcaService.prototype.getTiles = function () {
-        return this.titles;
+        return this.tiles;
     };
     MyFcaService.prototype.setUserData = function (userdata) {
-        localStorage.setItem("CurrentUser", JSON.stringify(userdata));
+        sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
     };
     MyFcaService.prototype.getUsersData = function () {
         return this.userdata;
     };
-    MyFcaService.prototype.getNumberOfTiltes = function () {
-        var notiles = "./app/resources/json/serviceJson/notiles.json";
-        var tileDataThroughService = this.http.get(notiles)
+    MyFcaService.prototype.getBanners = function () {
+        return this.http.get(this.getBannersServiceUrl)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
-        return tileDataThroughService;
+    };
+    MyFcaService.prototype.getNumberOfTiltes = function () {
+        return this.http.get(this.getNumberOfTiltesServiceUrl)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
     };
     MyFcaService.prototype.getTilteJson = function (id) {
-        var tileService = "./app/resources/json/serviceJson/" + id + "-tile.json";
-        var tileDataThroughService = this.http.get(tileService)
+        // alert("token from sessionstorage" + this.token);
+        var headers = new http_1.Headers();
+        // headers.append('Parameter', this.validToken);
+        // var tileService = "./app/resources/json/serviceJson/" + id + "-tile.json";
+        var tileService = "services/tile/" + id;
+        return this.http.get(tileService, { headers: headers }) //headers should be in object
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
-        return tileDataThroughService;
     };
     MyFcaService.prototype.getChartJson = function (id) {
-        var chartService = "./app/resources/json/serviceJson/" + id + "-chart.json";
-        //  var chartService = "services/tile/" + id;
-        var tileDataThroughService = this.http.get(chartService)
+        //  var chartService = "./app/resources/json/serviceJson/" + id + "-chart.json";
+        var chartService = "services/tile/" + id;
+        return this.http.get(chartService)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
-        return tileDataThroughService;
     };
-    MyFcaService.prototype.getNewServiceJSON = function (username, password) {
-        var daveService = "./app/resources/json/dave.json";
-        var userService = "./app/resources/json/newUserDetail.json";
-        var pieChartService = ""; //"./app/resources/json/testPieChart.json";
-        //   var cleanDaveService = "./app/resources/json/cleanDave.json";      
-        //   var mikeService = "./app/resources/json/mike.json";
-        //  http://localhost:9090/imiservices/services/userprofile?id=Dave&key=password    
-        // var params= "id="+ username + "&key=" + password;
-        var serviceurl = "services/userprofile"; //?id="+ username + "&key=" + password;  
+    MyFcaService.prototype.getLoginResponse = function (username, password) {
+        var q_password = sha256(password);
+        //console.log("encrypted q_password: " + q_password)
+        // console.log("encrypted q_password: " + q_password) 
+        // console.log("this.token :"+ this.validToken)       
         var body = "id=" + username + "&key=" + password;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        // var tileDataThroughService = this.http.post(serviceurl, body, { headers: headers })
-        //var tileDataThroughService = this.http.post(serviceurl, {username, password})
-        var tileDataThroughService = this.http.get(userService)
+        return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
             .map(function (response) {
             return response.json();
         })
             .catch(this.handleError);
-        return tileDataThroughService;
     };
     // getModalJson() {
     //     var modalService = "./app/resources/json/modal.json";

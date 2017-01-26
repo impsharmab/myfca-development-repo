@@ -9,13 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-// import {MyFcaService} from '../../app.component.service';
+var http_1 = require("@angular/http");
+var app_component_service_1 = require("../../../app.component.service");
 var HeaderSection = (function () {
-    function HeaderSection() {
+    function HeaderSection(http, service) {
+        this.http = http;
+        this.service = service;
+        this.banners = new Array;
+        this.getBanners();
+        //console.log("banners: "+this.banners)
     }
     HeaderSection.prototype.ngOnInit = function () {
-        this.data = JSON.parse(localStorage.getItem("CurrentUser"));
+        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
         //    document.getElementById("profileModel").click();
+    };
+    HeaderSection.prototype.getBanners = function () {
+        var _this = this;
+        this.service.getBanners().subscribe(function (banners) {
+            _this.banners = banners;
+            console.log("banners1 : " + banners.fileName);
+        });
     };
     return HeaderSection;
 }());
@@ -27,9 +40,10 @@ HeaderSection = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-header",
-        templateUrl: "./header-bootstrap.html"
+        templateUrl: "./header-bootstrap.html",
+        styleUrls: ["./css/carosuel.css", "./css/scrolling-nav.css"]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [http_1.Http, app_component_service_1.MyFcaService])
 ], HeaderSection);
 exports.HeaderSection = HeaderSection;
 //# sourceMappingURL=app.header.component.js.map

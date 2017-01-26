@@ -54,7 +54,7 @@ public class MSEREarningsDAOImpl implements MSEREarningsDAO {
 			result.add(MSEREarningsDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
-			logger.error("error occured in getBannersByRole", ex);
+			logger.error("error occured in getEarningsByRole", ex);
 			MSEREarningsDTO = new MSEREarningsDTO();
 			MSEREarningsDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
 			result.add(MSEREarningsDTO);

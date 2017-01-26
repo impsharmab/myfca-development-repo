@@ -21,8 +21,8 @@ var ViewComponent = (function () {
         this.userdata = {};
     }
     ViewComponent.prototype.ngOnInit = function () {
-        this.userdata = JSON.parse(localStorage.getItem("CurrentUser"));
-        this.tilesArray = JSON.parse(localStorage.getItem("titles"));
+        this.userdata = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        this.tilesArray = JSON.parse(sessionStorage.getItem("tiles"));
     };
     return ViewComponent;
 }());

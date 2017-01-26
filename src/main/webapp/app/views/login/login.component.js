@@ -20,6 +20,13 @@ var Login = (function () {
         this.sampleUsers = [];
         this.userdata = {};
         this.log = false;
+        this.responseUserdata = {
+            "data": {
+                "token": "",
+                "status": false
+            },
+            "error": ""
+        };
     }
     Login.prototype.ngOnInit = function () {
         this.user = {
@@ -27,9 +34,14 @@ var Login = (function () {
             password: ''
         };
     };
-    Login.prototype.login = function () {
+    Login.prototype.login = function (username, password) {
         var _this = this;
-        this.service.getNewServiceJSON(this.user.username, this.user.password).subscribe(function (resUserData) {
+        this.service.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
+            resUserData = _this.userdata = (resUserData);
+            //alert(resUserData.data.token)
+            // console.log("resUserData: "+resUserData["data"]["token"])
+            // if (resUserData.data.status) {
+            //     sessionStorage.setItem("validToken", resUserData.data.token);
             alert(resUserData["userID"]);
             if (resUserData["error"] === "" && resUserData["error"] !== null) {
                 _this.userdata["userID"] = resUserData["userID"];
@@ -44,30 +56,24 @@ var Login = (function () {
                 _this.tilesArray.sort(function (one, two) {
                     return one.tileOrder - two.tileOrder;
                 });
-                _this.service.setTiles(_this.tilesArray);
+                // this.service.setTiles(this.tilesArray);
                 //    this.log = true;
                 var url = ["myfcadashboard"];
                 _this.router.navigate(url);
             }
             else {
-                var msg = JSON.parse(resUserData["error"])["error"];
-                alert(msg);
+                alert("error in response json " + resUserData.error);
             }
+            // var msg = JSON.parse(resUserData["error"])["error"]; 
+            //alert(msg);
         });
-    };
-    Login.prototype.getData = function () {
-    };
-    ;
-    Login.prototype.save = function (model, isValid) {
-        // call API to save customer
-        console.log(model, isValid);
     };
     return Login;
 }());
 Login = __decorate([
     core_1.Component({
         moduleId: module.id,
-        templateUrl: './new-loginForm.html',
+        templateUrl: './formSubmit.html',
     }),
     __metadata("design:paramtypes", [app_component_service_1.MyFcaService, router_1.Router, http_1.Http])
 ], Login);

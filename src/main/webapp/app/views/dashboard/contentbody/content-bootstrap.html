@@ -12,7 +12,6 @@
   </div>
   <div class="modal-footer">
     <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat" (click)="c('Close click')">Get Started!</a>
-
     <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
   </div>
 </template>
@@ -34,7 +33,6 @@
         <span class="title">{{data[1]}}</span>
         <a href="#!" class="secondary-content">{{data[2]}}</a>
       </li>
-
     </ul>
 
   </div>
@@ -46,20 +44,18 @@
 
 <section id="intro" class="intro-section">
   <div class="container">
-
-
     <!--- Row START -->
     <div *ngFor="let rowarray of tilesArray" class="row">
       <div class="col-sm card" *ngFor="let tile of rowarray">
         <div class="image-frame">{{tile.tileName}}<img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
+        <!--<div class="image-frame">{{tile.tileName}}<img src="app/resources/_img/{{tile.tileHeaderImage}}"> </div>-->
         <div class="card-content" *ngIf="tile.type == 'chart'">
           <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
-          <chart [options]="contentBody[tile.id]" style="min-width: 425px; max-width: 600px; margin: 0 auto"></chart>
+          <chart (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 425px; max-width: 600px; margin: 0 auto"></chart>
 </div>
 
 <div class="display-data-set" *ngIf="tile.type == 'tile'">
   <div class="display-data-set" *ngIf="tile.type == 'tile' && isTopThree(contentBody[tile.id])">
-
     <ul class="list-group" *ngFor="let tdata of contentBody[tile.id].datatable.tableData">
       <h4>{{tdata.tableName}}</h4>
       <li class="list-group-item" *ngFor="let data of tdata.data">
@@ -67,30 +63,27 @@
         <span class="badge">{{data[1]}}</span>
       </li>
     </ul>
-
   </div>
-  <div class="data-group" *ngFor="let data of contentBody[tile.id].attributes">
+
+  <div class="data-group" *ngFor="let data of contentBody[tile.id].attribute">
     <p class="data-point">{{data.value}}</p>
     <p class="data-substitle">{{data.name}}</p>
-
   </div>
 
-
 </div>
-<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id])" (click)="openDataTable(contentBody[tile.id].datatable)"><i class="fa fa-star" aria-hidden="true"></i> {{contentBody[tile.id].datatable.buttonName}}</button>
-<div class="chart-controls">
-  <a onclick="chartFuncSwitch('pie')" alt="View Pie Chart" ><i class="fa fa-pie-chart" aria-hidden="true"></i>
+<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id])" (click)="openDataTable(contentBody[tile.id].datatable)"><i class="fa fa-star" aria-hidden="true"></i>{{contentBody[tile.id].datatable.buttonName}}</button>
+<div class="chart-controls" *ngIf="tile.type == 'chart' && chartType(contentBody[tile.id])">
+  <a (click)="chartChange('pie',tile.id)" alt="View Pie Chart"><i class="fa fa-pie-chart" aria-hidden="true"></i>
 </a>
-<a onclick="chartFuncSwitch('column')" alt="View Column Chart" ><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+  <a (click)="chartChange('column',tile.id)" alt="View Column Chart"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
 </div>
 
-<div class="card-action">
+<div class="card-action" *ngIf="tile.type == 'tile'">
   <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-check-square" aria-hidden="true"></i>
-                    Program Rules</button>
+                {{tile.programRules}}</button>
   <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                    Program Site</button>
+                {{tile.programSite}}</button>
 </div>
-
 </div>
 </div>
 <!--- Row END -->

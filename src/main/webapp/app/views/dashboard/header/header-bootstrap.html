@@ -31,16 +31,18 @@
         <a href="#" class="brand-logo"><img src="/app/resources/_img/FCA-mast-logo.jpg" /></a>
         <div class="navbar-header">
 
+            <p>hello: {{banners[0]}}</p>
+
             <ul class="nav">
                 <li class="nav-item ">
-                    Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}}</a>
+                    Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>
                 </li>
                 <li class="nav-item">
-                    <a class="utility-nav active" href="#">Admin</a>
+                    <a class="utility-nav active" href="#">Admin </a>
                 </li>
                 <li class="nav-item">
                     <a class="utility-nav" href="#">Contact Us</a>
-                </li>
+                </li> 
                 <li class="nav-item">
                     <a class="utility-nav" href="#">Profile</a>
                 </li>
@@ -55,30 +57,15 @@
     </div>
     <!-- /.container -->
 </nav>
-<ngb-carousel>
-    <template ngbSlide>
-        <img src="app/resources/images/carousel/image-5.jpg" alt="Random first slide" style="width:100%">
+<ngb-carousel >
+    <template ngbSlide *ngFor="let banner of banners">
+        <!--<p>HELLO:  {{banner}}</p>-->
+        <!--<img src="app/resources/images/carousel/{{banner.fileName}}" alt="app/resources/images/carousel/{{banner.imageName}}" style="width:100%">-->
+        <img src="services/loadrsc?id={{banner.fileName}}" alt="{{banner.imageName}}" style="width:100%">
 <!--<div class="carousel-caption">
        <h1>Example headline.</h1>
               <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
               <p><a class="btn btn-lg btn-primary" href="#" role="button">Enroll!</a></p>
-    </div>-->
-</template>
-<template ngbSlide>
-    <img src="app/resources/images/carousel/image-6.jpg" alt="Random second slide" style="width:100%">
-<!--<div class="carousel-caption">
-       <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">More</a></p>
-
-    </div>-->
-</template>
-<template ngbSlide>
-    <img src="app/resources/images/carousel/image-7.jpg" alt="Random third slide" style="width:100%">
-<!--<div class="carousel-caption">
-     <h1>One more for good measure.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">More</a></p>
     </div>-->
 </template>
 </ngb-carousel>

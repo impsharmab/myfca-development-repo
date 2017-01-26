@@ -1,96 +1,178 @@
 {
-    "title": "chart title",
+    "title": "Certified Professionals-YTD Certifications",
     "subtitle": "chart sub-title",
-    "xaxisTitle": "x-axis title",
-    "yaxisTitle": "y-axis title",
-    "type": "column-stack",
+    "xaxisTitle": "",
+    "yaxisTitle": "Total Certifications",
+    "type": "column_stack",
     "data": [
         {
-            "name": "a",
+            "name": "CA",
             "value": "",
             "data": [
                 {
-                    "name": "Parts Counter",
+                    "name": "Certified",
                     "value": 4
                     
                 },
                 {
-                    "name": "Mopar Parts",
+                    "name": "Certified Specialist",
                     "value": 10
                 },
                 {
-                    "name": "Magenti Marelli",
+                    "name": "master Certified",
                     "value": 21
-                },
-                {
-                    "name": "MVP",
-                    "value": 8
                 }
             ]
         },
         {
-            "name": "b",
+            "name": "DN",
             "value": "",
             "data": [
                 {
-                    "name": "Magenti Marelli",
-                    "value": 6
+                    "name": "Certified",
+                    "value": 41
+                    
                 },
                 {
-                    "name": "Parts Counter",
+                    "name": "Certified Specialist",
                     "value": 10
                 },
                 {
-                    "name": "Mopar Parts",
-                    "value": 7
-                },
-                {
-                    "name": "MVP",
-                    "value": 9
+                    "name": "master Certified",
+                    "value": 36
                 }
             ]
         },
         {
-            "name": "c",
+            "name": "SW",
             "value": "",
             "data": [
                 {
-                    "name": "MVP",
-                    "value": 1
+                    "name": "Certified",
+                    "value": 12
+                    
                 },
                 {
-                    "name": "Magenti Marelli",
-                    "value": 18
+                    "name": "Certified Specialist",
+                    "value": 19
                 },
                 {
-                    "name": "Parts Counter",
-                    "value": 10
-                },
-                {
-                    "name": "Mopar Parts",
-                    "value": 7
+                    "name": "master Certified",
+                    "value": 34
                 }
             ]
         },
         {
-            "name": "d",
+            "name": "GL",
             "value": "",
             "data": [
                 {
-                    "name": "Magenti Marelli",
-                    "value": 6
+                    "name": "Certified",
+                    "value": 51
+                    
                 },
                 {
-                    "name": "MVP",
-                    "value": 1
-                },
-                {
-                    "name": "Mopar Parts",
+                    "name": "Certified Specialist",
                     "value": 10
                 },
                 {
-                    "name": "Parts Counter",
-                    "value": 17
+                    "name": "master Certified",
+                    "value": 21
+                }
+            ]
+        },
+        {
+            "name": "MA",
+            "value": "",
+            "data": [
+                {
+                    "name": "Certified",
+                    "value": 29
+                    
+                },
+                {
+                    "name": "Certified Specialist",
+                    "value": 31
+                },
+                {
+                    "name": "master Certified",
+                    "value": 14
+                }
+            ]
+        },
+        {
+            "name": "WE",
+            "value": "",
+            "data": [
+                {
+                    "name": "Certified",
+                    "value": 41
+                    
+                },
+                {
+                    "name": "Certified Specialist",
+                    "value": 19
+                },
+                {
+                    "name": "master Certified",
+                    "value": 27
+                }
+            ]
+        }
+        ,{
+            "name": "NE",
+            "value": "",
+            "data": [
+                {
+                    "name": "Certified",
+                    "value": 35
+                    
+                },
+                {
+                    "name": "Certified Specialist",
+                    "value": 20
+                },
+                {
+                    "name": "master Certified",
+                    "value": 31
+                }
+            ]
+        },
+        {
+            "name": "MW",
+            "value": "",
+            "data": [
+                {
+                    "name": "Certified",
+                    "value": 40
+                    
+                },
+                {
+                    "name": "Certified Specialist",
+                    "value": 10
+                },
+                {
+                    "name": "master Certified",
+                    "value": 21
+                }
+            ]
+        },
+        {
+            "name": "SE",
+            "value": "",
+            "data": [
+                {
+                    "name": "Certified",
+                    "value": 10
+                    
+                },
+                {
+                    "name": "Certified Specialist",
+                    "value": 20
+                },
+                {
+                    "name": "master Certified",
+                    "value": 15
                 }
             ]
         }

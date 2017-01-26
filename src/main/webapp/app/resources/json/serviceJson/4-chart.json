@@ -1,95 +1,133 @@
 {
-    "title": "chart title",
+    "title": "Excellence Card Awards and Award Points YTD",
     "subTitle": "chart sub-title",
-    "xaxisTitle": "x-axis title",
-    "yaxisTitle": "y-axis title",
-    "type": "column-compond",
+    "xaxisTitle": "",
+    "yaxisTitle": "",
+    "type": "column_compound",
     "data": [
         {
-            "name": "a",
+            "name": "SE",
             "value": "",
             "data": [
                 {
-                    "name": "Parts Counter",
+                    "name": "Excellence Card",
                     "value": 10
                 },
                 {
-                    "name": "Mopar Parts",
+                    "name": "Awards Point",
                     "value": 4
-                },
-                {
-                    "name": "Magenti Marelli",
-                    "value": 8
-                },
-                {
-                    "name": "MVP",
-                    "value": 14
                 }
             ]
         },
         {
-            "name": "b",
+            "name": "MA",
             "value": "",
             "data": [
                 {
-                    "name": "Magenti Marelli",
+                    "name": "Excellence Card",
                     "value": 17
                 },
                 {
-                    "name": "Parts Counter",
+                    "name": "Awards Point",
                     "value": 12
-                },
-                {
-                    "name": "Mopar Parts",
-                    "value": 5
-                },
-                {
-                    "name": "MVP",
-                    "value": 10
                 }
             ]
         },
         {
-            "name": "c",
+            "name": "SW",
             "value": "",
             "data": [
                 {
-                    "name": "MVP",
+                    "name": "Excellence Card",
                     "value": 4
                 },
                 {
-                    "name": "Magenti Marelli",
+                  "name": "Awards Point",
                     "value": 10
-                },
-                {
-                    "name": "Parts Counter",
-                    "value": 12
-                },
-                {
-                    "name": "Mopar Parts",
-                    "value": 8
                 }
             ]
         },
         {
-            "name": "d",
+            "name": "WE",
             "value": "",
             "data": [
                 {
-                    "name": "Magenti Marelli",
+                   "name": "Excellence Card",
                     "value": 5
                 },
                 {
-                    "name": "MVP",
+                    "name": "Awards Point",
                     "value": 10
+                }
+            ]
+        },
+        {
+            "name": "CA",
+            "value": "",
+            "data": [
+                {
+                   "name": "Excellence Card",
+                    "value": 5
                 },
                 {
-                    "name": "Mopar Parts",
-                    "value": 12
+                    "name": "Awards Point",
+                    "value": 10
+                }
+            ]
+        },
+        {
+            "name": "DN",
+            "value": "",
+            "data": [
+                {
+                   "name": "Excellence Card",
+                    "value": 5
                 },
                 {
-                    "name": "Parts Counter",
-                    "value": 6
+                    "name": "Awards Point",
+                    "value": 10
+                }
+            ]
+        },
+        {
+            "name": "GL",
+            "value": "",
+            "data": [
+                {
+                   "name": "Excellence Card",
+                    "value": 5
+                },
+                {
+                    "name": "Awards Point",
+                    "value": 10
+                }
+            ]
+        },
+        {
+            "name": "NE",
+            "value": "",
+            "data": [
+                {
+                   "name": "Excellence Card",
+                    "value": 5
+                },
+                {
+                    "name": "Awards Point",
+                    "value": 10
+                }
+            ]
+        },
+        {
+            "name": "NW",
+            "value": "",
+            "data": [
+                {
+                   "name": "Excellence Card",
+                    "value": 5
+                },
+                {
+                    "name": "Awards Point",
+                    "value": 10
                 }
             ]
         }

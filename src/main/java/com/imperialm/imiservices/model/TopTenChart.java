@@ -22,4 +22,13 @@ public class TopTenChart{
 		this.datatable = new TopTenDataTable(buttonName, title);
 	}
 	
+	public Boolean addAttribute(TileAttribute1 attribute){
+		try{
+			this.attribute.add(attribute);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
 }

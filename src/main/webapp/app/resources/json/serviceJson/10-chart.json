@@ -1,0 +1,55 @@
+{
+  "title": "Expert Points Earned YTD",
+  "subTitle": "",
+  "yaxisTitle": "Total Numbers",
+  "xaxisTitle": "",
+  "type": "column",
+  "data": [
+    {
+      "name": "CA",
+      "value": 11200,
+      "data": []
+    },
+    {
+      "name": "DN",
+      "value": 38400,
+      "data": []
+    },
+    {
+      "name": "GL",
+      "value": 40800,
+      "data": []
+    },
+    {
+      "name": "MA",
+      "value": 42400,
+      "data": []
+    },
+    {
+      "name": "MW",
+      "value": 32800,
+      "data": []
+    },
+    {
+      "name": "NE",
+      "value": 37600,
+      "data": []
+    },
+    {
+      "name": "SE",
+      "value": 45600,
+      "data": []
+    },
+    {
+      "name": "SW",
+      "value": 55200,
+      "data": []
+    },
+    {
+      "name": "WE",
+      "value": 40000,
+      "data": []
+    }
+  ],
+  "drilldownData": null
+}

@@ -1,0 +1,19 @@
+{
+    "banners": [
+        {
+            "imageName": "FCA Rewards",
+            "fileName": "fcarewards.jpg",
+            "imageOrder": 1
+        },
+        {
+            "imageName": "FCA Welcome",
+            "fileName": "fcawelcome.jpg",
+            "imageOrder": 2
+        },
+        {
+            "imageName": "FCA Welcome",
+            "fileName": "fcawelcome.jpg",
+            "imageOrder": 3
+        }
+    ]
+}

@@ -18,13 +18,12 @@ export class ViewComponent implements OnInit {
     private userdata: any = {};
     private menu: any;
     private banners: any;
-    
+        
     constructor(private service: MyFcaService, private router: Router, private http: Http) {
-
     }
     ngOnInit() {
-        this.userdata = JSON.parse(localStorage.getItem("CurrentUser"));
-        this.tilesArray = JSON.parse(localStorage.getItem("titles"));
+        this.userdata = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        this.tilesArray = JSON.parse(sessionStorage.getItem("tiles"));
 
     }
 }
