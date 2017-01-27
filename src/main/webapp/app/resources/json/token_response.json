@@ -1,0 +1,12 @@
+{
+    "error": "",
+    "userID": "Dave",
+    "name": "Dave Skiff",
+    "tokenresponse": {
+        "data": {
+            "token": "SHF98OI9099OIJA32",
+            "status": true
+        },
+        "error": ""
+    }
+} 

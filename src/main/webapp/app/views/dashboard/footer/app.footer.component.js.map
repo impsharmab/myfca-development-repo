@@ -1,1 +1,0 @@
-{"version":3,"file":"app.footer.component.js","sourceRoot":"","sources":["app.footer.component.ts"],"names":[],"mappings":";;;;;;;AAAA,sCAAwC;AAUxC,IAAa,aAAa;IAA1B;IAGA,CAAC;IAAD,oBAAC;AAAD,CAAC,AAHD,IAGC;AAHY,aAAa;IANzB,gBAAS,CAAC;QACP,QAAQ,EAAE,MAAM,CAAC,EAAE;QACnB,QAAQ,EAAE,YAAY;QACtB,WAAW,EAAE,eAAe;KAE/B,CAAC;GACW,aAAa,CAGzB;AAHY,sCAAa"}

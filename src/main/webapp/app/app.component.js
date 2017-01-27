@@ -11,10 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
-var app_component_service_1 = require("./app.component.service");
 var AppComponent = (function () {
-    function AppComponent(service, router, http) {
-        this.service = service;
+    function AppComponent(router, http) {
         this.router = router;
         this.http = http;
     }
@@ -25,9 +23,8 @@ AppComponent = __decorate([
         moduleId: module.id,
         selector: 'my-app',
         templateUrl: './app.component.html',
-        providers: [app_component_service_1.MyFcaService]
     }),
-    __metadata("design:paramtypes", [app_component_service_1.MyFcaService, router_1.Router, http_1.Http])
+    __metadata("design:paramtypes", [router_1.Router, http_1.Http])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

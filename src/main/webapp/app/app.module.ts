@@ -1,40 +1,61 @@
+//importing default angular dependencies 
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http'
 import { ChartModule } from 'angular2-highcharts';
 import { RouterModule, Routes } from "@angular/router";
-
-import { AppComponent } from './app.component';
-import { ViewComponent } from './views/rootPage/app.view.component';
-import { AppRoutingModule } from './app.routes';
-import { MyFcaService } from './app.component.service'
-import { HeaderSection } from './views/dashboard/header/app.header.component'
-import { FooterSection } from './views/dashboard/footer/app.footer.component'
-import { ContentSection } from './views/dashboard/contentbody/app.contentbody.component'
-import { SpinnerComponent } from './views/spinner/spinner';
-import { Login } from "./views/login/login.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+//importing components
+import { AppComponent } from './app.component';
+import { RootPageComponent } from './components/root-page/root-page.component';
+import { AppRoutingModule } from './components/routes/app.routes';
+import { HeaderComponent } from './components/header/header.component'
+import { FooterComponent } from './components/footer/footer.component'
+import { BodyComponent } from './components/body/body.component'
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoginComponent } from "./components/login/login.component";
+import { NgbdModalContent } from "./components/body/body.component.modal";
+
+
+
+//importing services
+import { BodyService } from "./services/body-services/body.service"
+import { FooterService } from "./services/footer-services/footer.service"
+import { HeaderService } from "./services/header-services/header.service"
+import { LoginService } from "./services/login-services/login.service"
+
 @NgModule({
-    imports: [BrowserModule, HttpModule, FormsModule, ChartModule, ReactiveFormsModule, AppRoutingModule, NgbModule.forRoot()
-        // RouterModule.forRoot([{ path: '', redirectTo: 'login', pathMatch: 'full' },{
-        //     path: "login",
-        //     component: Login
-        // }, {
-        //     path: "myfcadashboard",
-        //     component: ViewComponent
-        // }])
+    imports: [
+        BrowserModule,
+        HttpModule,
+        FormsModule,
+        ChartModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        NgbModule.forRoot()
     ],
-    providers: [MyFcaService],
+
+    providers: [
+        BodyService,
+        FooterService,
+        HeaderService,
+        LoginService,
+        NgbActiveModal],
+
     declarations: [
         AppComponent,
-        Login,
-        HeaderSection,
-        FooterSection,
-        ContentSection,
-        ViewComponent,
-        SpinnerComponent
+        LoginComponent,
+        HeaderComponent,
+        FooterComponent,
+        BodyComponent,
+        RootPageComponent,
+        SpinnerComponent,
+        NgbdModalContent
     ],
+
     bootstrap: [AppComponent]
 })
 
