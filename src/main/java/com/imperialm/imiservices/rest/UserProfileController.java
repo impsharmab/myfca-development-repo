@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.imperialm.imiservices.dto.UserProfileDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.services.UserProfileService;
+import com.imperialm.imiservices.services.UserService;
 
 /**
  * @author Dheerajr
@@ -22,7 +23,12 @@ import com.imperialm.imiservices.services.UserProfileService;
  */
 @RestController
 public class UserProfileController {
+	@Autowired
+	private UserService userService;
 
+	public UserProfileController(UserService userService){
+		this.userService = userService;
+	}
 	private static Logger logger = LoggerFactory.getLogger(UserProfileController.class);
 	@Autowired
 	private UserProfileService userprofileService;

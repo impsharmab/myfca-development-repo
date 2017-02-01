@@ -12,8 +12,6 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("./../rxjs-operators");
-var sha256 = require('app/resources/js/sha256.js');
-//const sha256=require('https://raw.githubusercontent.com/emn178/js-sha256/master/src/sha256.js');
 var HeaderService = (function () {
     // private validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).validToken;
     // private validToken: any = this.tokenObject.validToken;

@@ -14,7 +14,7 @@ var SpinnerComponent = (function () {
 SpinnerComponent = __decorate([
     core_1.Component({
         selector: "spinner-component",
-        template: "<div style=\"display: flex; justify-content: center;\">\n<img class=\"refreshGlyphImg\" src=\"../../../app/resources/spinner.gif\" />\n</div>",
+        template: "<div style=\"display: flex; justify-content: center;\">\n<img class=\"refreshGlyphImg\" src=\"../../../app/resources/spinner.gif\" />\n</div>"
     })
 ], SpinnerComponent);
 exports.SpinnerComponent = SpinnerComponent;

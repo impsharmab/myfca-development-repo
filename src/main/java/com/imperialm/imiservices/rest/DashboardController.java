@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,6 +26,7 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
@@ -33,8 +35,8 @@ import com.imperialm.imiservices.model.TopTenDataTable;
 import com.imperialm.imiservices.model.TopTenTableData;
 import com.imperialm.imiservices.model.response.TotalName;
 import com.imperialm.imiservices.services.DashboardService;
-import com.imperialm.imiservices.services.DashboardServiceImpl;
 import com.imperialm.imiservices.services.MappingServiceImpl;
+import com.imperialm.imiservices.util.IMIServicesConstants;
 
 /**
  *
@@ -65,6 +67,12 @@ public class DashboardController {
 			@RequestParam("id") final String userID) {
 		final InputRequest userRoleReq = new InputRequest(userID, roleId);
 		return this.dashService.findTilesByRole(userRoleReq);
+	}
+	
+	@RequestMapping(value = "/myfcadashboard", method = RequestMethod.GET)
+	public RedirectView myfcadashboard() {
+		    RedirectView redirectView = new RedirectView("/", true);
+		    return redirectView;
 	}
 	
 	@RequestMapping(value = "/services/tile/{chartId}", method = RequestMethod.GET)
@@ -321,7 +329,7 @@ public class DashboardController {
 		{
 			// check for role, to know what data to display
 			List<CertProfsExpertGraphDTO> list = this.dashService.getParticipantCompletedByProgram();
-			return this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Numbers", "column_compound");
+			return this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Numbers", "column_stack");
 			
 			//special mapping for stacked column
 		}
@@ -386,6 +394,72 @@ public class DashboardController {
 			return this.mappingService.CertProfsWinnersGraphDTOtoChart(list, "Certified Proffessionals - YTD Certifications", "", "", "Total Certification", "column_stack");
 			
 			//special mapping for stacked column
+		}
+		case "14":
+		{
+			//set datatables
+			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("AdvisorQTD", 5);
+			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("AdvisorYTD", 5);
+			
+			TopTenChart topTenChart = new TopTenChart();
+			TopTenDataTable datatable = new TopTenDataTable("View Top Advisors", "Top 5 Advisors - Highest average survey scores");
+			
+			List<TopTenTableData> tabledata = new ArrayList<TopTenTableData>();
+			
+			List<String> tableheaders = new ArrayList<String>();
+			//keeps this as example
+			/*tableheaders.add("Order");
+			tableheaders.add("Advisor BC, District, Dealer Code");
+			tableheaders.add("Reward amount");*/
+			
+			tabledata.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 5 Advisors QTD Highest average survey scores", tableheaders));	
+			tabledata.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 5 Advisors YTD Highest average survey scores", tableheaders));
+			
+			datatable.setTableData(tabledata);
+			
+			topTenChart.setDatatable(datatable);
+			
+			//set attributes
+			TotalName dealerscount = this.dashService.getTTTAEnrollmentCount();
+			
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+			//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+			
+			return topTenChart;
+		}
+		case "15":
+		{
+			//set datatables
+			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TechQTD", 5);
+			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TexhYTD", 5);
+			
+			TopTenChart topTenChart = new TopTenChart();
+			TopTenDataTable datatable = new TopTenDataTable("View Top Technicians", "Top 5 Technicians - Highest average survey scores");
+			
+			List<TopTenTableData> tabledata = new ArrayList<TopTenTableData>();
+			
+			List<String> tableheaders = new ArrayList<String>();
+			//keeps this as example
+			/*tableheaders.add("Order");
+			tableheaders.add("Advisor BC, District, Dealer Code");
+			tableheaders.add("Reward amount");*/
+			
+			tabledata.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 5 Technicians QTD Highest average survey scores", tableheaders));	
+			tabledata.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 5 Technicians YTD Highest average survey scores", tableheaders));
+			
+			datatable.setTableData(tabledata);
+			
+			topTenChart.setDatatable(datatable);
+			
+			//set attributes
+			TotalName dealerscount = this.dashService.getTTTAEnrollmentCount();
+			TotalName dealerscount1 = this.dashService.getTTTAIncentiveEligibleSUM();
+			
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount1));
+			//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+			
+			return topTenChart;
 		}
 		default:
 			return "No such service call exists.";

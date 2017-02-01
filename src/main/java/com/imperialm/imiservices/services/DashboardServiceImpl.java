@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imperialm.imiservices.dao.TTTAEnrollmentsDAO;
 import com.imperialm.imiservices.dao.DashboardDAO;
 import com.imperialm.imiservices.dao.MSEREarningsDAO;
 import com.imperialm.imiservices.dao.MSERGraphDetailsDAO;
@@ -17,9 +18,11 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.TotalName;
 import com.imperialm.imiservices.dao.MSERTopNDAO;
+import com.imperialm.imiservices.dao.TTTATopNDAO;
 
 @Service
 public class DashboardServiceImpl implements DashboardService {
@@ -44,6 +47,12 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	private CertProfsWinnersGraphDAO CertProfsWinnersGraphDAO;
+	
+	@Autowired
+	private TTTATopNDAO TTTATopNDAO;
+	
+	@Autowired
+	private TTTAEnrollmentsDAO TTTAEnrollmentsDAO;
 	
 
 	@Override
@@ -100,4 +109,15 @@ public class DashboardServiceImpl implements DashboardService {
 		return this.CertProfsWinnersGraphDAO.getBCCertifications();
 	}
 	
+	public List<TTTATopNDTO> getTTTATopN(String type, int rows){
+		 return this.TTTATopNDAO.getTopNByType(type, rows);
+	}
+	
+	public TotalName getTTTAEnrollmentCount(){
+		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentCount();
+	}
+	
+	public TotalName getTTTAIncentiveEligibleSUM(){
+		return this.TTTAEnrollmentsDAO.getTTTAIncentiveEligibleSUM();
+	}
 }

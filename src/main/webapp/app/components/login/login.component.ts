@@ -42,19 +42,19 @@ export class LoginComponent implements OnInit {
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
             (resUserData) => {
                 resUserData = this.userdata = (resUserData)
-                alert(resUserData["userID"]);
+                // alert(resUserData["userID"]);
                 if (resUserData["error"] === "" && resUserData["error"] !== null) {
                     this.userdata["userID"] = resUserData["userID"];
                     this.userdata["name"] = resUserData["name"];
                     this.loginService.setUserData(this.userdata);
-                   
+
                     let url = ["myfcadashboard"]
                     this.router.navigate(url);
                 } else {
-                    alert("error in response json " + resUserData.error)
+                    alert(resUserData.error)
                 }
-               var msg = JSON.parse(resUserData["error"])["error"]; 
-                alert(msg);
+                // var msg = JSON.parse(resUserData["error"])["error"];
+                // alert(msg);
             }
         )
     }

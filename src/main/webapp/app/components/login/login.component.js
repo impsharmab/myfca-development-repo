@@ -38,7 +38,7 @@ var LoginComponent = (function () {
         var _this = this;
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
             resUserData = _this.userdata = (resUserData);
-            alert(resUserData["userID"]);
+            // alert(resUserData["userID"]);
             if (resUserData["error"] === "" && resUserData["error"] !== null) {
                 _this.userdata["userID"] = resUserData["userID"];
                 _this.userdata["name"] = resUserData["name"];
@@ -47,10 +47,10 @@ var LoginComponent = (function () {
                 _this.router.navigate(url);
             }
             else {
-                alert("error in response json " + resUserData.error);
+                alert(resUserData.error);
             }
-            var msg = JSON.parse(resUserData["error"])["error"];
-            alert(msg);
+            // var msg = JSON.parse(resUserData["error"])["error"];
+            // alert(msg);
         });
     };
     return LoginComponent;

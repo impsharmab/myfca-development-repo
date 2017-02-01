@@ -45,7 +45,7 @@ public class JpaConfiguration {
 		final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(this.dataSource());
 		factoryBean.setPackagesToScan(
-				new String[] { "com.imperialm.imiservices.model", "com.imperialm.imiservices.model.response", "com.imperialm.imiservices.dto" });
+				new String[] { "com.imperialm.imiservices.model", "com.imperialm.imiservices.model.response", "com.imperialm.imiservices.dto", "com.imperialm.imiservices.repositories", "com.imperialm.imiservices.entities", "com.imperialm.imiservices.services" });
 		factoryBean.setJpaVendorAdapter(this.jpaVendorAdapter());
 		factoryBean.setJpaProperties(this.jpaProperties());
 		return factoryBean;

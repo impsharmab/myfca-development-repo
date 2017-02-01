@@ -10,12 +10,14 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.TTTADTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.TTTAResponse;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
+@Repository
 public class TTTADAOImpl implements TTTADAO {
 	private static Logger logger = LoggerFactory.getLogger(BannerDAOImpl.class);
 

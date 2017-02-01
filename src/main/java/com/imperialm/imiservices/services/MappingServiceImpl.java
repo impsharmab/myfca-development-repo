@@ -10,6 +10,7 @@ import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
 import com.imperialm.imiservices.model.TileAttribute1;
@@ -248,6 +249,31 @@ public class MappingServiceImpl {
 		return chartData;
 	}
 	
+	
+	public TopTenTableData MapTTTATopNDTOtoTopTenTableData(List<TTTATopNDTO> TTTATopNDTO, String tableName, List<String> tableHeader){
+		TopTenTableData topTenTableData = new TopTenTableData();
+		
+		topTenTableData.setTableHeader(tableHeader);
+		topTenTableData.setTableName(tableName);
+		
+		List<Object> data = new ArrayList<Object>();
+		
+		int i = 1;
+		for(TTTATopNDTO item: TTTATopNDTO){
+			List<Object> items = new ArrayList<Object>();
+			if(item.getError().equals("") || item.getError().equals(null)){
+				items.add(i);
+				items.add(item.getName());
+				items.add(item.getAvgSurveyScore());
+				i++;
+			}
+			data.add(items);
+		}
+		
+		topTenTableData.setData(data);
+		
+		return topTenTableData;
+	}
 	
 	public TopTenTableData MapMSERTopNDTOtoTopTenTableData(List<MSERTopNDTO> MSERTopNDTO, String tableName, List<String> tableHeader){
 		TopTenTableData topTenTableData = new TopTenTableData();

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: "spinner-component",
     template: `<div style="display: flex; justify-content: center;">
 <img class="refreshGlyphImg" src="../../../app/resources/spinner.gif" />
-</div>`,
+</div>`
     //styleUrls: ["../../resources/css/spinner.css"]
 })
 

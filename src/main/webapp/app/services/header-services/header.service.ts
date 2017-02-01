@@ -3,9 +3,6 @@ import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/ht
 import { Observable } from 'rxjs/Observable'
 import './../rxjs-operators';
 
-const sha256 = require('app/resources/js/sha256.js');
-//const sha256=require('https://raw.githubusercontent.com/emn178/js-sha256/master/src/sha256.js');
-
 @Injectable()
 export class HeaderService {
     private getBannersServiceUrl: string = './app/resources/json/newbanners.json';

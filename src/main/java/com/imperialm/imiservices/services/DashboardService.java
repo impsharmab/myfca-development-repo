@@ -8,6 +8,7 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.TotalName;
 
@@ -46,5 +47,11 @@ public interface DashboardService {
 	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgram();
 	
 	public List<CertProfsWinnersGraphDTO> getBCCertifications();
+	
+	public List<TTTATopNDTO> getTTTATopN(String type, int rows);
+	
+	public TotalName getTTTAEnrollmentCount();
+	
+	public TotalName getTTTAIncentiveEligibleSUM();
 
 }
