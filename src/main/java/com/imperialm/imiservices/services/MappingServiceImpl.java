@@ -10,6 +10,7 @@ import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
@@ -32,6 +33,19 @@ public class MappingServiceImpl {
 		chart.setYaxisTitle(yaxisTitle);
 		
 		chart.setData(this.MapMSEREarningDTOtoChartData(MSEREarningDTO));
+		
+		return chart;
+	}
+	
+	public Chart MapTTTAEnrolledDTOtoChart(List<TTTAEnrolledDTO> TTTAEnrolledDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+		
+		chart.setData(this.MapTTTAEnrolledDTOtoChartData(TTTAEnrolledDTO));
 		
 		return chart;
 	}
@@ -93,6 +107,16 @@ public class MappingServiceImpl {
 		
 		for (MSEREarningsDTO Earning : MSEREarningDTO) {
 			list.add(this.MapMSEREarningDTOtoChartData(Earning));
+		}
+		
+		return list;
+	}
+	
+	public List<ChartData> MapTTTAEnrolledDTOtoChartData(List<TTTAEnrolledDTO> TTTAEnrolledDTO){
+		List<ChartData> list = new ArrayList<ChartData>();
+		
+		for (TTTAEnrolledDTO Earning : TTTAEnrolledDTO) {
+			list.add(this.MapTTTAEnrolledDTOtoChartData(Earning));
 		}
 		
 		return list;
@@ -178,6 +202,30 @@ public class MappingServiceImpl {
 		data.add(wiAdvisor);
 		data.add(ExpressLane);
 		data.add(uConnect);
+		
+		chartData.setData(data);
+		
+		return chartData;
+	}
+	
+	public ChartData MapTTTAEnrolledDTOtoChartData(TTTAEnrolledDTO TTTAEnrolledDTO){
+		ChartData chartData = new ChartData();
+		
+		chartData.setName(TTTAEnrolledDTO.getTerritory());
+		
+		List<ChartData> data = new ArrayList<ChartData>();
+		ChartData groupA , groupB, groupC, groupD, groupE;
+		groupA = new ChartData("Group A", TTTAEnrolledDTO.getGroupA());
+		groupB = new ChartData("Group B",TTTAEnrolledDTO.getGroupB());
+		groupC = new ChartData("Group C",TTTAEnrolledDTO.getGroupC());
+		groupD = new ChartData("Group D", TTTAEnrolledDTO.getGroupD());
+		groupE = new ChartData("Group E", TTTAEnrolledDTO.getGroupE());
+		
+		data.add(groupA);
+		data.add(groupB);
+		data.add(groupC);
+		data.add(groupD);
+		data.add(groupE);
 		
 		chartData.setData(data);
 		

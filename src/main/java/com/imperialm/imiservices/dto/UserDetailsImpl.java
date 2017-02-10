@@ -9,9 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.imperialm.imiservices.entities.User;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class UserDetailsImpl implements UserDetails {
 	
 	private static final long serialVersionUID = 5197941260523577515L;
+	
+	@Getter @Setter
 	private User user;
 	
 	public UserDetailsImpl(User user){

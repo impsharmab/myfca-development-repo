@@ -1,4 +1,5 @@
 [
+    
     {
         "error": "",
         "id": "1",
@@ -54,29 +55,7 @@
         "programSite": "Program Sites",
         "programSiteUrl": "www.mopar.com"
     },
-    {
-        "error": "",
-        "id": "6",
-        "type": "tile",
-        "tileOrder": 6,
-        "tileName": "",
-        "tileHeaderImage": "mser-logo.jpg",
-        "programRules": "Program Rules",
-        "programSite": "Program Sites",
-        "programSiteUrl": "www.mopar.com"
-    },
-    {
-        "error": "",
-        "id": "7",
-        "type": "tile",
-        "tileOrder": 7,
-        "tileName": "",
-        "tileHeaderImage": "mser-logo.JPG",
-        "programRules": "Program Rules",
-        "programSite": "Program Sites",
-        "programSiteUrl": "www.mopar.com"
-    },
-    {
+    { 
         "error": "",
         "id": "8",
         "type": "chart",

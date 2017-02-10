@@ -20,6 +20,14 @@ export class LoginService {
     getUsersData() {
         return this.userdata;
     }
+
+    //     let headers = new Headers({ 'Content-Type': 'application/json' });
+    //     let options = new RequestOptions({ headers: headers });
+
+    //     return this.http.post(this.heroesUrl, { name }, options)
+    //                     .map(this.extractData)
+    //                     .catch(this.handleError);
+    //   }
     getLoginResponse(username, password): any {
         var q_password = sha256(password);
         //console.log("encrypted q_password: " + q_password)
@@ -27,14 +35,24 @@ export class LoginService {
         //  console.log("this.token :"+ this.validToken)       
 
         var body = "id=" + username + "&key=" + password;
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+             var headers = new Headers();
+             headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
-          //   return this.http.get(this.getLoginResponseUrl)
+        //     return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
+        //   //       return this.http.get(this.getLoginResponseUrl)
+        //         .map((response: Response) =>
+        //             response.json())
+        //         .catch(this.handleError);
+       // let headers = new Headers({ 'Content-Type': 'x-www-form-urlencoded' });
+        //let options = new RequestOptions({ headers: headers });
+
+       // return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
+        return this.http.get(this.getLoginResponseUrl)
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError);
+
+
 
     }
     private handleError(error: Response | any) {

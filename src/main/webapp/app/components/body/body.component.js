@@ -28,6 +28,7 @@ var BodyComponent = (function () {
             "title": "",
             "tableData": []
         };
+        this.charTypeJSON = {};
         this.chartObjects = {};
         this.service.getNumberOfTiltes().subscribe(function (resUserData) {
             _this.tilesArray = _this.chunk(resUserData, 2);
@@ -43,11 +44,11 @@ var BodyComponent = (function () {
         });
     }
     BodyComponent.prototype.ngOnInit = function () {
-        this.modalService.open(this.model);
+        this.modalService.open(this.model, { size: "lg" });
     };
     BodyComponent.prototype.openDataTable = function (data) {
-        this.tableData = data;
-        this.modalService.open(this.topModel);
+        this.tableData = data.data;
+        this.modalService.open(this.topModel, { size: "lg" });
     };
     BodyComponent.prototype.chunk = function (arr, size) {
         var newArr = [];
@@ -58,25 +59,23 @@ var BodyComponent = (function () {
     };
     BodyComponent.prototype.notEmpty = function (dataObj) {
         try {
-            if (dataObj.datatable.buttonName === undefined) {
-                return false;
+            if (dataObj.buttonName !== undefined) {
+                return dataObj.data.length > 0 ? true : false;
+            }
+            else if (dataObj.buttonName !== undefined) {
+                return dataObj.data.length > 0 ? true : false;
             }
             else {
-                return dataObj.datatable.tableData[0].data.length > 3 ? true : false;
+                return false;
             }
         }
         catch (e) {
             return false;
         }
     };
-    BodyComponent.prototype.chartType = function (dataObj) {
+    BodyComponent.prototype.chartType = function (id) {
         try {
-            if (dataObj.chart.type === undefined) {
-                return false;
-            }
-            else {
-                return dataObj.chart.type === 'column' || dataObj.chart.type === 'pie' ? true : false;
-            }
+            return this.charTypeJSON[id] === 'column' ? true : false;
         }
         catch (e) {
             return false;
@@ -116,6 +115,7 @@ var BodyComponent = (function () {
         });
     };
     BodyComponent.prototype.constructChartJson = function (obj, chartData) {
+        this.charTypeJSON[obj.id] = chartData.type;
         var chartObj = this.getChartJSONObject(obj, chartData);
         this.contentBody[obj.id] = chartObj;
     };
@@ -133,6 +133,7 @@ var BodyComponent = (function () {
                 enabled: false
             },
             xAxis: {
+                type: 'category',
                 categories: []
             },
             yAxis: {
@@ -142,6 +143,7 @@ var BodyComponent = (function () {
                 }
             },
             tooltip: {
+                //pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
                 pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
                 shared: true
             },
@@ -150,33 +152,41 @@ var BodyComponent = (function () {
             drilldown: {}
         };
         switch (chartData.type) {
+            // case "column":
+            //   chartObj.chart.type = "column"
+            //   chartObj.plotOptions["series"] = {
+            //     pointPadding: 0.2,
+            //     borderWidth: 0,
+            //     dataLabels: {
+            //       enabled: true
+            //     }
+            //   }
+            //   // chartObj.title.text = chartData.title;
+            //   var categories = [];
+            //   var chartDataValues = [];
+            //   for (var i = 0; i < chartData.data.length; i++) {
+            //     var dataObj = chartData.data[i];
+            //     categories.push(dataObj.name);
+            //     chartDataValues.push(dataObj.value);
+            //   }
+            //   chartObj.xAxis.categories = categories;
+            //   chartObj.series = [{
+            //     name: chartData.xaxisTitle,
+            //     data: chartDataValues
+            //   }];
+            //   // chartObj.yAxis.title.text = chartData.yaxisTitle;
+            //   break;
             case "column":
                 chartObj.chart.type = "column";
-                chartObj.plotOptions["column"] = {
+                chartObj.plotOptions["series"] = {
                     pointPadding: 0.2,
-                    borderWidth: 0
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
+                    }
                 };
-                // chartObj.title.text = chartData.title;
-                var categories = [];
-                var chartDataValues = [];
-                for (var i = 0; i < chartData.data.length; i++) {
-                    var dataObj = chartData.data[i];
-                    categories.push(dataObj.name);
-                    chartDataValues.push(dataObj.value);
-                }
-                chartObj.xAxis.categories = categories;
-                chartObj.series = [{
-                        name: chartData.xaxisTitle,
-                        data: chartDataValues
-                    }];
-                // chartObj.yAxis.title.text = chartData.yaxisTitle;
-                break;
-            case "column_drilldown":
-                chartObj.chart.type = "column";
-                chartObj.plotOptions["column"] = {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                };
+                chartObj.xAxis["type"] = 'category';
+                delete chartObj.xAxis.categories;
                 // chartObj.title.text = chartData.title;
                 var categories = new Array();
                 var chartDataValues = new Array();
@@ -184,14 +194,14 @@ var BodyComponent = (function () {
                 for (var i = 0; i < chartData.data.length; i++) {
                     var dataObj = chartData.data[i];
                     categories.push(dataObj.name);
-                    var drilldownData = chartData.drilldownData[dataObj.name];
-                    if (drilldownData !== undefined) {
+                    var drilldownData = dataObj.data;
+                    if (drilldownData.length > 0) {
                         var drillDownObj = {};
-                        drillDownObj.name = drilldownData.name;
-                        drillDownObj.id = drilldownData.name;
+                        drillDownObj.name = dataObj.name;
+                        drillDownObj.id = dataObj.name + i;
                         drillDownObj.data = new Array();
-                        for (var j = 0; j < drilldownData.data.length; j++) {
-                            var obj = drilldownData.data[j];
+                        for (var j = 0; j < drilldownData.length; j++) {
+                            var obj = drilldownData[j];
                             drillDownObj.data.push({
                                 name: obj.name,
                                 y: obj.value,
@@ -202,7 +212,7 @@ var BodyComponent = (function () {
                         chartDataValues.push({
                             name: dataObj.name,
                             y: dataObj.value,
-                            drilldown: drilldownData.name
+                            drilldown: drillDownObj.id
                         });
                     }
                     else {
@@ -213,7 +223,7 @@ var BodyComponent = (function () {
                         });
                     }
                 }
-                chartObj.xAxis.categories = categories;
+                // chartObj.xAxis.categories = categories;
                 chartObj.series = [{
                         name: chartData.xaxisTitle,
                         data: chartDataValues
@@ -225,59 +235,71 @@ var BodyComponent = (function () {
                 break;
             case "bar_compound":
                 chartObj.chart.type = "bar";
-                chartObj.plotOptions["series"] = {};
-                chartObj.plotOptions["series"]["stacking"] = "normal";
-                var categories = [];
-                var seriesJson = {};
-                for (var i = 0; i < chartData.data.length; i++) {
-                    var dataObj = chartData.data[i];
-                    categories.push(dataObj.name);
-                    for (var j = 0; j < dataObj.data.length; j++) {
-                        var innerDataObj = dataObj.data[j];
-                        if (seriesJson[innerDataObj.name] === undefined) {
-                            seriesJson[innerDataObj.name] = [innerDataObj.value];
-                        }
-                        else {
-                            seriesJson[innerDataObj.name].push(innerDataObj.value);
-                        }
+                chartObj.plotOptions["series"] = {
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: false,
                     }
-                }
-                chartObj.xAxis.categories = categories;
-                for (var key in seriesJson) {
-                    chartObj.series.push({
-                        name: key,
-                        data: seriesJson[key]
-                    });
-                }
+                };
+                chartObj.plotOptions["series"]["stacking"] = "normal";
+                delete chartObj.xAxis.categories;
+                delete chartObj.yAxis;
+                this.constructChartObject(chartData, chartObj);
+                //   var categories = [];
+                //   var seriesJson = {};
+                //   for (var i = 0; i < chartData.data.length; i++) {
+                //     var dataObj = chartData.data[i];
+                //     categories.push(dataObj.name);
+                //     for (var j = 0; j < dataObj.data.length; j++) {
+                //       var innerDataObj = dataObj.data[j];
+                //       if (seriesJson[innerDataObj.name] === undefined) {
+                //         seriesJson[innerDataObj.name] = [innerDataObj.value];
+                //       } else {
+                //         seriesJson[innerDataObj.name].push(innerDataObj.value)
+                //       }
+                //     }
+                //   }
+                // //  chartObj.xAxis.categories = categories;
+                //   for (var key in seriesJson) {
+                //     chartObj.series.push({
+                //       name: key,
+                //       data: seriesJson[key]
+                //     });
+                //   }
                 break;
             case "column_compound":
                 chartObj.chart.type = "column";
-                chartObj.plotOptions["column"] = {
+                chartObj.plotOptions["series"] = {
                     pointPadding: 0.2,
-                    borderWidth: 0
-                };
-                var categories = [];
-                var seriesJson = {};
-                for (var i = 0; i < chartData.data.length; i++) {
-                    var dataObj = chartData.data[i];
-                    categories.push(dataObj.name);
-                    for (var j = 0; j < dataObj.data.length; j++) {
-                        var innerDataObj = dataObj.data[j];
-                        if (seriesJson[innerDataObj.name] === undefined) {
-                            seriesJson[innerDataObj.name] = [innerDataObj.value];
-                        }
-                        else {
-                            seriesJson[innerDataObj.name].push(innerDataObj.value);
-                        }
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true
                     }
-                }
-                chartObj.xAxis.categories = categories;
-                for (var key in seriesJson) {
-                    chartObj.series.push({
-                        name: key,
-                        data: seriesJson[key]
-                    });
-                }
+                };
+                delete chartObj.xAxis.categories;
+                delete chartObj.yAxis;
+                this.constructChartObject(chartData, chartObj);
+                // var categories = [];
+                // var seriesJson = {};
+                // for (var i = 0; i < chartData.data.length; i++) {
+                //   var dataObj = chartData.data[i];
+                //   categories.push(dataObj.name);
+                //   for (var j = 0; j < dataObj.data.length; j++) {
+                //     var innerDataObj = dataObj.data[j];
+                //     if (seriesJson[innerDataObj.name] === undefined) {
+                //       seriesJson[innerDataObj.name] = [innerDataObj.value];
+                //     } else {
+                //       seriesJson[innerDataObj.name].push(innerDataObj.value)
+                //     }
+                //   }
+                // }
+                // chartObj.xAxis.categories = categories;
+                // for (var key in seriesJson) {
+                //   chartObj.series.push({
+                //     name: key,
+                //     data: seriesJson[key]
+                //   });
+                // }
                 break;
             case "column_stack":
                 chartObj.chart.type = "column";
@@ -285,31 +307,32 @@ var BodyComponent = (function () {
                     stacking: 'normal',
                     dataLabels: {
                         enabled: false,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                     }
                 };
-                var categories = [];
-                var seriesJson = {};
-                for (var i = 0; i < chartData.data.length; i++) {
-                    var dataObj = chartData.data[i];
-                    categories.push(dataObj.name);
-                    for (var j = 0; j < dataObj.data.length; j++) {
-                        var innerDataObj = dataObj.data[j];
-                        if (seriesJson[innerDataObj.name] === undefined) {
-                            seriesJson[innerDataObj.name] = [innerDataObj.value];
-                        }
-                        else {
-                            seriesJson[innerDataObj.name].push(innerDataObj.value);
-                        }
-                    }
-                }
-                chartObj.xAxis.categories = categories;
-                for (var key in seriesJson) {
-                    chartObj.series.push({
-                        name: key,
-                        data: seriesJson[key]
-                    });
-                }
+                delete chartObj.xAxis.categories;
+                delete chartObj.yAxis;
+                this.constructChartObject(chartData, chartObj);
+                // var categories = [];
+                // var seriesJson = {};
+                // for (var i = 0; i < chartData.data.length; i++) {
+                //   var dataObj = chartData.data[i];
+                //   categories.push(dataObj.name);
+                //   for (var j = 0; j < dataObj.data.length; j++) {
+                //     var innerDataObj = dataObj.data[j];
+                //     if (seriesJson[innerDataObj.name] === undefined) {
+                //       seriesJson[innerDataObj.name] = [innerDataObj.value];
+                //     } else {
+                //       seriesJson[innerDataObj.name].push(innerDataObj.value)
+                //     }
+                //   }
+                // }
+                // chartObj.xAxis.categories = categories;
+                // for (var key in seriesJson) {
+                //   chartObj.series.push({
+                //     name: key,
+                //     data: seriesJson[key]
+                //   });
+                // }
                 break;
         }
         return chartObj;
@@ -344,6 +367,88 @@ var BodyComponent = (function () {
     };
     BodyComponent.prototype.saveChartInstance = function (chartObj, id) {
         this.chartObjects[id] = chartObj;
+    };
+    BodyComponent.prototype.constructChartObject = function (chartData, chartObj) {
+        var categories = [];
+        var seriesJsonObject = [];
+        var drilldownArray = [];
+        for (var i = 0; i < chartData.data.length; i++) {
+            var dataObj = chartData.data[i];
+            var seriesJson = [];
+            var seriesObject = { name: "", data: [] };
+            seriesObject.name = dataObj.name;
+            seriesObject.data = seriesJson;
+            seriesJsonObject.push(seriesObject);
+            // categories.push(dataObj.name);
+            for (var k = 0; k < dataObj.data.length; k++) {
+                var innerDataObj = dataObj.data[k];
+                console.log(innerDataObj.name);
+                //   var innerDataObject = {name:"",y:"",drilldown:""};
+                //   seriesObject.data.push(innerDataObject);
+                //   if (chartData.drilldownData[innerDataObj.name] === undefined) {
+                //     innerDataObject.drilldown = null;
+                //   } else {
+                //      innerDataObject.drilldown = chartData.drilldownData[innerDataObj.name].name;
+                //   }
+                // }
+                // var drilldownData = chartData.drilldownData[innerDataObj.name];
+                var drilldownData = innerDataObj.data;
+                if (drilldownData.length > 0) {
+                    // var drillDownObj: any = {};
+                    // drillDownObj.name = drilldownData.name;
+                    // drillDownObj.id = drilldownData.name;
+                    // drillDownObj.data = new Array();
+                    // for (var j = 0; j < drilldownData.data.length; j++) {
+                    //   var obj = drilldownData.data[j];
+                    //   drillDownObj.data.push({
+                    //     name: obj.name,
+                    //     y: obj.value,
+                    //     drilldown: null
+                    //   });
+                    // }
+                    var drillDownObj = {};
+                    drillDownObj.point = {
+                        events: {
+                            click: function () {
+                                if (this.x != undefined)
+                                    // modal trigger
+                                    alert(this.x);
+                            }
+                        }
+                    };
+                    drillDownObj.name = innerDataObj.name;
+                    drillDownObj.id = innerDataObj.name + i;
+                    drillDownObj.data = new Array();
+                    for (var j = 0; j < drilldownData.length; j++) {
+                        var obj = drilldownData[j];
+                        drillDownObj.data.push([
+                            obj.name,
+                            obj.value,
+                        ]);
+                    }
+                    drilldownArray.push(drillDownObj);
+                    seriesJson.push({
+                        name: innerDataObj.name,
+                        y: innerDataObj.value,
+                        drilldown: drillDownObj.id
+                    });
+                }
+                else {
+                    seriesJson.push({
+                        name: innerDataObj.name,
+                        y: innerDataObj.value,
+                        drilldown: null
+                    });
+                }
+            }
+        }
+        chartObj.drilldown = {
+            "series": drilldownArray
+        };
+        //  chartObj.xAxis.categories = categories;
+        // for (var key in seriesJson) {
+        chartObj.series = seriesJsonObject;
+        // }
     };
     return BodyComponent;
 }());

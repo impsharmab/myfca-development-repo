@@ -25,8 +25,7 @@ export class HeaderComponent implements OnInit {
         this.headerService.getBanners().subscribe(
             (banners) => {
                 this.banners = banners;
-
-                console.log("banners1 : " + banners.fileName)
+                //console.log("banners1 : " + banners.fileName)
 
             }
         )

@@ -2,7 +2,7 @@
   "title": "Expert Points Earned YTD",
   "subTitle": "",
   "yaxisTitle": "Total Numbers",
-  "xaxisTitle": "",
+  "xaxisTitle": "Business Center",
   "type": "column",
   "data": [
     {
@@ -50,6 +50,5 @@
       "value": 40000,
       "data": []
     }
-  ],
-  "drilldownData": null
+  ]
 }

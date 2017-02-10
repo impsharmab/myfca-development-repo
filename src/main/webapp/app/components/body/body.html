@@ -2,7 +2,7 @@
 
 <template #content  let-c="close" let-d="dismiss">
   <div class="modal-header"  >
-    <h4 class="modal-title">Welcome, Arnold Weber</h4>
+    <h4 class="modal-title">Welcome,  </h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -17,7 +17,7 @@
     <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
   </div>
 </template>
-<template #topModel let-c="close" let-d="dismiss">
+<!--<template #topModel let-c="close" let-d="dismiss">
   <div class="modal-header">
     <h4 class="modal-title">{{tableData.title}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -41,6 +41,44 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
   </div>
+</template>-->
+<template #topModel let-c="close" let-d="dismiss" ngbModalContainer>
+  <div class="modal-header">
+    <!--<h4 class="modal-title">{{tableData.advisorsTableName}}</h4>-->
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ngb-tabset>
+      <ngb-tab *ngFor="let tableDataObj of tableData" title={{tableDataObj.tabName}}>
+        <template ngbTabContent>
+          <h4>{{tableDataObj.tableName}}</h4>
+          <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Export to Excel">
+<table id="testTable" class="table table-hover table-striped bdt">
+
+  <thead>
+    <tr>
+      <th *ngFor="let thead of tableDataObj.tableHeader"><span class="sort-element">{{thead}}</span><span class="sort-icon fa"></span></th>
+
+    </tr>
+  </thead>
+  <tbody >
+    <tr style="display: table-row;" *ngFor="let tdata of tableDataObj.data" >
+<td *ngFor="let tdData of tdata">{{tdData}}</td>
+</tr>
+</tbody>
+</table>
+
+</template>
+</ngb-tab>
+
+</ngb-tabset>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+</div>
 </template>
 <template ngbModalContainer></template>
 
@@ -57,15 +95,15 @@
 </div>
 
 <div class="display-data-set" *ngIf="tile.type == 'tile'">
-  <div class="display-data-set" *ngIf="tile.type == 'tile' && isTopThree(contentBody[tile.id])">
-    <ul class="list-group" *ngFor="let tdata of contentBody[tile.id].datatable.tableData">
+  
+    <ul class="list-group" *ngFor="let tdata of contentBody[tile.id].top3">
       <h4>{{tdata.tableName}}</h4>
       <li class="list-group-item" *ngFor="let data of tdata.data">
         <span class="item-title">{{data[0]}}</span>
         <span class="badge">{{data[1]}}</span>
       </li>
     </ul>
-  </div>
+  
 
   <div class="data-group" *ngFor="let data of contentBody[tile.id].attribute">
     <p class="data-point">{{data.value}}</p>
@@ -73,8 +111,9 @@
   </div>
 
 </div>
-<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id])" (click)="openDataTable(contentBody[tile.id].datatable)"><i class="fa fa-star" aria-hidden="true"></i>{{contentBody[tile.id].datatable.buttonName}}</button>
-<div class="chart-controls" *ngIf="tile.type == 'chart' && chartType(contentBody[tile.id])">
+<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id].top10_advisors)" (click)="openDataTable(contentBody[tile.id].top10_advisors)"><i class="fa fa-star" aria-hidden="true"></i>{{contentBody[tile.id].top10_advisors.buttonName}}</button><br>
+<button type="button" class="btn btn-info btn-lg" *ngIf="tile.type == 'tile' && notEmpty(contentBody[tile.id].top10_technicians)" (click)="openDataTable(contentBody[tile.id].top10_technicians)"><i class="fa fa-star" aria-hidden="true"></i>{{contentBody[tile.id].top10_technicians.buttonName}}</button>
+<div class="chart-controls" *ngIf="tile.type == 'chart' && chartType(tile.id)">
   <a (click)="chartChange('pie',tile.id)" alt="View Pie Chart"><i class="fa fa-pie-chart" aria-hidden="true"></i>
 </a>
   <a (click)="chartChange('column',tile.id)" alt="View Column Chart"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>

@@ -3,8 +3,11 @@
  */
 package com.imperialm.imiservices.services;
 
+import java.util.List;
+
 import com.imperialm.imiservices.dto.UserProfileDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
+import com.imperialm.imiservices.model.NoTile;
 
 /**
  * @author Dheerajr
@@ -17,5 +20,7 @@ public interface UserProfileService {
 	 * @return
 	 */
 	UserProfileDTO getUserProfile(InputRequest userRoleReq);
+	
+	public List<NoTile> getNoTiles();
 
 }

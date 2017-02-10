@@ -27,7 +27,7 @@ var HeaderComponent = (function () {
         var _this = this;
         this.headerService.getBanners().subscribe(function (banners) {
             _this.banners = banners;
-            console.log("banners1 : " + banners.fileName);
+            //console.log("banners1 : " + banners.fileName)
         });
     };
     return HeaderComponent;

@@ -26,6 +26,7 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.Chart;
@@ -75,6 +76,12 @@ public class DashboardController {
 		    return redirectView;
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public RedirectView login() {
+		    RedirectView redirectView = new RedirectView("/", true);
+		    return redirectView;
+	}
+	
 	@RequestMapping(value = "/services/tile/{chartId}", method = RequestMethod.GET)
 	public @ResponseBody Object findTilesListByRole(@PathVariable(value="chartId") String id) {
 		final InputRequest userRoleReq = new InputRequest("", "");
@@ -90,8 +97,8 @@ public class DashboardController {
 		case "2":
 		{
 			//set datatables
-			List<MSERTopNDTO> listAdvisors = this.dashService.getMSERTopTen("Advisor", 5);
-			List<MSERTopNDTO> listTechnicians = this.dashService.getMSERTopTen("Technician", 5);
+			List<MSERTopNDTO> listAdvisors = this.dashService.getMSERTopTen("TOP SA", 5);
+			List<MSERTopNDTO> listTechnicians = this.dashService.getMSERTopTen("TOP ST", 5);
 			
 			TopTenChart topTenChart = new TopTenChart();
 			TopTenDataTable datatable = new TopTenDataTable("Excellence Card Awards", "Excellence Card Awards - Top 5 Technicians");
@@ -398,8 +405,8 @@ public class DashboardController {
 		case "14":
 		{
 			//set datatables
-			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("AdvisorQTD", 5);
-			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("AdvisorYTD", 5);
+			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TOP SA QTD", 5);
+			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP SA YTD", 5);
 			
 			TopTenChart topTenChart = new TopTenChart();
 			TopTenDataTable datatable = new TopTenDataTable("View Top Advisors", "Top 5 Advisors - Highest average survey scores");
@@ -421,8 +428,9 @@ public class DashboardController {
 			
 			//set attributes
 			TotalName dealerscount = this.dashService.getTTTAEnrollmentCount();
-			
+			TotalName dealerscount1 = this.dashService.getTTTAIncentiveEligibleSUM();
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount1));
 			//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
 			
 			return topTenChart;
@@ -430,8 +438,8 @@ public class DashboardController {
 		case "15":
 		{
 			//set datatables
-			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TechQTD", 5);
-			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TexhYTD", 5);
+			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TOP ST QTD", 5);
+			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP ST YTD", 5);
 			
 			TopTenChart topTenChart = new TopTenChart();
 			TopTenDataTable datatable = new TopTenDataTable("View Top Technicians", "Top 5 Technicians - Highest average survey scores");
@@ -453,13 +461,24 @@ public class DashboardController {
 			
 			//set attributes
 			TotalName dealerscount = this.dashService.getTTTAEnrollmentCount();
-			TotalName dealerscount1 = this.dashService.getTTTAIncentiveEligibleSUM();
+			
 			
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount1));
 			//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
 			
 			return topTenChart;
+		}
+		case "16":
+		{
+			List<TTTAEnrolledDTO> listEnrolled = this.dashService.getTTTAEnrollmentsBC(true);
+			
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", "", "column_compound");
+		}
+		case "17":
+		{
+			List<TTTAEnrolledDTO> listNotEnrolled = this.dashService.getTTTAEnrollmentsBC(false);
+			
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", "", "column_compound");
 		}
 		default:
 			return "No such service call exists.";

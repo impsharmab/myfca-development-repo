@@ -7,7 +7,9 @@ import './../rxjs-operators';
 export class BodyService {
     private getUserServiceUrl: string = './app/resources/json/newUserDetail.json';
     private getBaseServiceUrl: string = 'services/userprofile';
-    private getNumberOfTiltesServiceUrl: string = "./app/resources/json/notiles-service.json";
+    // private getNumberOfTilesServiceUrl: string = "services/notile";
+       private getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
+    
 
     // private validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).validToken;
     // private validToken: any = this.tokenObject.validToken;
@@ -30,24 +32,24 @@ export class BodyService {
     }
 
     getNumberOfTiltes() {
-        return this.http.get(this.getNumberOfTiltesServiceUrl)
+        return this.http.get(this.getNumberOfTilesServiceUrl)
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
     getTilteJson(id) {
         // alert("token from sessionstorage" + this.token);
         var headers = new Headers();
-        // headers.append('Parameter', this.validToken);
+        // headers.append('authorization', this.validToken);
         
-        // var tileService = "./app/resources/json/" + id + "-tile.json";
-        var tileService = "services/tile/" + id;
+         var tileService = "./app/resources/json/" + id + "-tile.json";
+       // var tileService = "services/tile/" + id;
         return this.http.get(tileService, { headers }) //headers should be in object
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
     getChartJson(id) {
-        //  var chartService = "./app/resources/json/" + id + "-chart.json";
-        var chartService = "services/tile/" + id;
+          var chartService = "./app/resources/json/" + id + "-chart.json";
+        //var chartService = "services/tile/" + id;
         return this.http.get(chartService)
             .map((response: Response) => response.json())
             .catch(this.handleError);

@@ -3,6 +3,8 @@
  */
 package com.imperialm.imiservices.rest;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dto.UserProfileDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
+import com.imperialm.imiservices.model.NoTile;
 import com.imperialm.imiservices.services.UserProfileService;
 import com.imperialm.imiservices.services.UserService;
 
@@ -45,6 +48,11 @@ public class UserProfileController {
 			@RequestParam("key") final String password) {
 		final InputRequest userRoleReq = new InputRequest(userID, password);
 		return this.userprofileService.getUserProfile(userRoleReq);
+	}
+	
+	@RequestMapping(value = "/services/notile", method = RequestMethod.GET)
+	public @ResponseBody List<NoTile> getNoTile() {
+		return this.userprofileService.getNoTiles();
 	}
 
 }

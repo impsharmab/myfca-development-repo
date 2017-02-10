@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imperialm.imiservices.dao.TTTAEnrolledDAO;
 import com.imperialm.imiservices.dao.TTTAEnrollmentsDAO;
 import com.imperialm.imiservices.dao.DashboardDAO;
 import com.imperialm.imiservices.dao.MSEREarningsDAO;
@@ -18,6 +19,7 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.TotalName;
@@ -53,6 +55,9 @@ public class DashboardServiceImpl implements DashboardService {
 	
 	@Autowired
 	private TTTAEnrollmentsDAO TTTAEnrollmentsDAO;
+	
+	@Autowired
+	private TTTAEnrolledDAO TTTAEnrolledDAO;
 	
 
 	@Override
@@ -120,4 +125,9 @@ public class DashboardServiceImpl implements DashboardService {
 	public TotalName getTTTAIncentiveEligibleSUM(){
 		return this.TTTAEnrollmentsDAO.getTTTAIncentiveEligibleSUM();
 	}
+	
+	public List<TTTAEnrolledDTO> getTTTAEnrollmentsBC(boolean enrolled){
+		return this.TTTAEnrolledDAO.getTTTAEnrollmentsBC(enrolled);
+	}
+	
 }
