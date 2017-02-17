@@ -2,7 +2,7 @@
 
 <template #content  let-c="close" let-d="dismiss">
   <div class="modal-header"  >
-    <h4 class="modal-title">Welcome,  </h4>
+    <h4 class="modal-title">Welcome, Mr.  </h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -14,6 +14,21 @@
   </div>
   <div class="modal-footer">
     <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat" (click)="c('Close click')">Get Started!</a>
+    <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
+  </div>
+</template>
+<template #tableContent  let-c="close" let-d="dismiss">
+  <div class="modal-header"  >
+    <h4 class="modal-title">Welcome,  </h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   tableContent
+  </div>
+  <div class="modal-footer">
+    <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat" (click)="c('Close click')">Ok</a>
     <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
   </div>
 </template>
@@ -91,7 +106,7 @@
         <!--<div class="image-frame">{{tile.tileName}}<img src="app/resources/images/body/{{tile.tileHeaderImage}}"> </div>-->
         <div class="card-content" *ngIf="tile.type == 'chart'">
           <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
-          <chart (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 425px; max-width: 600px; margin: 0 auto"></chart>
+          <chart (drillup)="drillUp($event.originalEvent,$event.context)" (drilldown)="drillDown($event.originalEvent,$event.context)" (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 425px; max-width: 600px; margin: 0 auto"></chart>
 </div>
 
 <div class="display-data-set" *ngIf="tile.type == 'tile'">

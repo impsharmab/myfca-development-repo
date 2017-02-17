@@ -20,5 +20,7 @@ public class MSERTopNDTO implements Serializable {
 	@Id private double earnings;
 	@Id private int topNRank;
 	@Id private String error;
+	@Id private String period;
+	@Id private String quantity;
 	
 }

@@ -10,15 +10,20 @@ public class NoTile {
 	private String type;
 	private String tileName;
 	private String tileHeaderImage;
-	private String tileURL;
+	//private String tileURL;
+	private String programRules = "Program Rules";
+	private String programRulesUrl = "";
+	private String programSite = "Program Sites";
+	private String programSiteUrl;
 	
 	
-	public NoTile(int id, String error, String type, String tileName, String tileHeaderImage, String tileURL){
+	
+	public NoTile(int id, String error, String type, String tileName, String tileHeaderImage, String programSiteUrl){
 		this.id = id;
 		this.error = error;
 		this.type = type;
 		this.tileName = tileName;
 		this.tileHeaderImage = tileHeaderImage;
-		this.tileURL = tileURL;
+		this.programSiteUrl = programSiteUrl;
 	}
 }

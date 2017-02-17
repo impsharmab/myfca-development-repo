@@ -18,6 +18,8 @@ import org.springframework.web.servlet.view.JstlView;
  * @author Dheerajr
  *
  */
+
+/*
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.imperialm.imiservices")
@@ -46,3 +48,4 @@ public class IMIServicesWebConfig extends WebMvcConfigurerAdapter {
 	
 	
 }
+*/

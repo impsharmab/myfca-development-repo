@@ -1,5 +1,6 @@
 package com.imperialm.imiservices.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -15,5 +16,5 @@ public class Chart {
 	private String xaxisTitle;
 	private String type;
 	private List<ChartData> data;
-	private JsonNode drilldownData;
+	//private JsonNode drilldownData;
 }

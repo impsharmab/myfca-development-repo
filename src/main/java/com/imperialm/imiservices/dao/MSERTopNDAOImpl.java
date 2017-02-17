@@ -53,15 +53,24 @@ public class MSERTopNDAOImpl implements MSERTopNDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<MSERTopNDTO> getTopNByType(String type, int rows) {
+	public List<MSERTopNDTO> getTopNByType(String type, int rows, String name, String period) {
 		List<MSERTopNDTO> result = new ArrayList<MSERTopNDTO>();
 
 		MSERTopNDTO MSERTopNDTO = null;
 		try {
+			if(name == null || period == null){
 			final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE, MSERTopNDTO.class);
 			query.setParameter(1, rows);
 			query.setParameter(2, type);
 			result = query.getResultList();
+			}else{
+				final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE_NAME_PERIOD, MSERTopNDTO.class);
+				query.setParameter(1, rows);
+				query.setParameter(2, type);
+				query.setParameter(3, name);
+				query.setParameter(4, period);
+				result = query.getResultList();
+			}
 			
 		} catch (final NoResultException ex) {
 			MSERTopNDTO = new MSERTopNDTO();

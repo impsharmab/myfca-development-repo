@@ -15,4 +15,6 @@ public class MSERTopNResponse {
 	private String name;
 	private double earnings;
 	private int topNRank;
+	private String period;
+	private int quantity;
 }

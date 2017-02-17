@@ -38,5 +38,18 @@ public class ChartData {
 			return false;
 		}
 	}
+	
+	public boolean addDataList(List<ChartData> data){
+		try{
+			if(data != null){
+			this.data.addAll(data);
+			return true;
+			}else{
+				return false;
+			}
+		}catch(Exception ex){
+			return false;
+		}
+	}
 
 }

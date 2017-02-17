@@ -19,8 +19,7 @@ var BodyService = (function () {
         this.getBaseServiceUrl = 'services/userprofile';
         // private getNumberOfTilesServiceUrl: string = "services/notile";
         this.getNumberOfTilesServiceUrl = "./app/resources/json/notiles.json";
-        // private validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).validToken;
-        // private validToken: any = this.tokenObject.validToken;
+        this.validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         this.tiles = new Array();
         this.userdata = {};
     }
@@ -38,14 +37,17 @@ var BodyService = (function () {
         return this.userdata;
     };
     BodyService.prototype.getNumberOfTiltes = function () {
-        return this.http.get(this.getNumberOfTilesServiceUrl)
+        var headers = new http_1.Headers();
+        headers.append('Authorization', this.validToken);
+        return this.http.get(this.getNumberOfTilesServiceUrl, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     BodyService.prototype.getTilteJson = function (id) {
-        // alert("token from sessionstorage" + this.token);
+        console.log("this.validToken: " + this.validToken);
+        // alert("token from sessionstorage" + this.validToken);
         var headers = new http_1.Headers();
-        // headers.append('authorization', this.validToken);
+        headers.append('Authorization', this.validToken);
         var tileService = "./app/resources/json/" + id + "-tile.json";
         // var tileService = "services/tile/" + id;
         return this.http.get(tileService, { headers: headers }) //headers should be in object
@@ -53,9 +55,11 @@ var BodyService = (function () {
             .catch(this.handleError);
     };
     BodyService.prototype.getChartJson = function (id) {
+        var headers = new http_1.Headers();
+        headers.append('Authorization', this.validToken);
         var chartService = "./app/resources/json/" + id + "-chart.json";
-        //var chartService = "services/tile/" + id;
-        return this.http.get(chartService)
+        //  var chartService = "services/tile/" + id;
+        return this.http.get(chartService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };

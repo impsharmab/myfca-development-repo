@@ -8,6 +8,7 @@ import javax.servlet.Filter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.imperialm.imiservices.filters.IMIServicesFilter;
+import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
 
 /**
  * @author Dheerajr
@@ -15,10 +16,11 @@ import com.imperialm.imiservices.filters.IMIServicesFilter;
  */
 
 public class IMIServicesInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
+	
+	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { IMIServicesWebConfig.class };
+		return new Class[] { IMIServiceSecutiryConfig.class };
 	}
 
 	@Override
@@ -31,10 +33,10 @@ public class IMIServicesInitializer extends AbstractAnnotationConfigDispatcherSe
 		return new String[] { "/" };
 	}
 
+	
 	@Override
 	protected Filter[] getServletFilters() {
 		final Filter[] singleton = { new IMIServicesFilter() };
 		return singleton;
 	}
-
 }

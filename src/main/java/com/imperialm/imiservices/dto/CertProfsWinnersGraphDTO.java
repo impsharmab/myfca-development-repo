@@ -34,5 +34,6 @@ public class CertProfsWinnersGraphDTO implements Serializable {
 	private String allBCCertRank;
 	@Id
 	private String allNATCertRank;
+	@Id
 	private String error;
 }

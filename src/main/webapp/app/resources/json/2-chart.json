@@ -57,91 +57,6 @@
                             "name": "CA-I",
                             "value": 20,
                             "data": []
-                        },
-                        {
-                            "name": "CA-J",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-K",
-                            "value": 12,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-L",
-                            "value": 5,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-M",
-                            "value": 20,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-N",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-O",
-                            "value": 12,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-P",
-                            "value": 5,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-Q",
-                            "value": 20,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-R",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-S",
-                            "value": 12,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-T",
-                            "value": 5,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-U",
-                            "value": 20,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-V",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-W",
-                            "value": 12,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-X",
-                            "value": 5,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-Y",
-                            "value": 20,
-                            "data": []
-                        },
-                        {
-                            "name": "CA-Z",
-                            "value": 10,
-                            "data": []
                         }
                     ]
                 },
@@ -191,91 +106,6 @@
                         },
                         {
                             "name": "DN-I",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-J",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-K",
-                            "value": 18,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-L",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-M",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-N",
-                            "value": 35,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-O",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-P",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-Q",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-R",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-S",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-T",
-                            "value": 18,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-U",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-V",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-W",
-                            "value": 35,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-X",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-Y",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "DN-Z",
                             "value": 50,
                             "data": []
                         }
@@ -374,46 +204,6 @@
                             "name": "GL-I",
                             "value": 46,
                             "data": []
-                        },
-                        {
-                            "name": "GL-A",
-                            "value": 32,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-B",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-C",
-                            "value": 41,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-D",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-E",
-                            "value": 23,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-F",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-G",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-H",
-                            "value": 50,
-                            "data": []
                         }
                     ]
                 },
@@ -464,91 +254,6 @@
                         {
                             "name": "GL-I",
                             "value": 46,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-A",
-                            "value": 32,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-B",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-C",
-                            "value": 41,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-D",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-E",
-                            "value": 23,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-F",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-G",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-H",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-I",
-                            "value": 46,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-A",
-                            "value": 32,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-B",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-C",
-                            "value": 41,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-D",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-E",
-                            "value": 23,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-F",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-G",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-H",
-                            "value": 50,
                             "data": []
                         }
                     ]
@@ -601,92 +306,7 @@
                             "name": "GL-I",
                             "value": 46,
                             "data": []
-                        },
-                        {
-                            "name": "GL-A",
-                            "value": 32,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-B",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-C",
-                            "value": 41,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-D",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-E",
-                            "value": 23,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-F",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-G",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-H",
-                            "value": 50,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-I",
-                            "value": 46,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-A",
-                            "value": 32,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-B",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-C",
-                            "value": 41,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-D",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-E",
-                            "value": 23,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-F",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-G",
-                            "value": 10,
-                            "data": []
-                        },
-                        {
-                            "name": "GL-H",
-                            "value": 50,
-                            "data": []
-                        }
+                        } 
                     ]
                 },
                 {
@@ -1236,7 +856,7 @@
             ]
         },
         {
-            "name": "Mopar Parts",
+            "name": "MVP",
             "value": "",
             "data": [
                 {
@@ -2466,7 +2086,7 @@
             ]
         },
         {
-            "name": "Mopar Parts",
+            "name": "uConnect",
             "value": "",
             "data": [
                 {
@@ -3696,7 +3316,7 @@
             ]
         },
         {
-            "name": "Mopar Parts",
+            "name": "wiAdvisor",
             "value": "",
             "data": [
                 {
@@ -4926,7 +4546,7 @@
             ]
         },
         {
-            "name": "Mopar Parts",
+            "name": "Express Lane",
             "value": "",
             "data": [
                 {
@@ -6156,7 +5776,7 @@
             ]
         },
         {
-            "name": "Mopar Parts",
+            "name": "Parts Counter",
             "value": "",
             "data": [
                 {
@@ -7386,7 +7006,7 @@
             ]
         },
         {
-            "name": "Mopar Parts",
+            "name": "Magnetti Marelli",
             "value": "",
             "data": [
                 {

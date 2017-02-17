@@ -9,18 +9,22 @@ import lombok.Setter;
 @Getter @Setter
 public class TopTenChart{
 	List<TileAttribute1> attribute;
-	TopTenDataTable datatable;
+	TopTenDataTable top10_advisors;
+	TopTenDataTable top10_technicians;
+	List<TopTenTableData> top3;
 	
 	
 	public TopTenChart(){
 		this.attribute = new ArrayList<TileAttribute1>();
-		this.datatable = null;
+		this.top10_advisors = null;
+		this.top10_technicians = null;
+		this.top3 = new ArrayList<TopTenTableData>();
 	}
 	
-	public TopTenChart(String buttonName, String title){
+	/*public TopTenChart(String buttonName){
 		this.attribute = new ArrayList<TileAttribute1>();
-		this.datatable = new TopTenDataTable(buttonName, title);
-	}
+		this.datatable = new TopTenDataTable(buttonName);
+	}*/
 	
 	public Boolean addAttribute(TileAttribute1 attribute){
 		try{

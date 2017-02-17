@@ -16,19 +16,10 @@ var HeaderComponent = (function () {
         this.http = http;
         this.headerService = headerService;
         this.banners = new Array;
-        this.getBanners();
-        //console.log("banners: "+this.banners)
     }
     HeaderComponent.prototype.ngOnInit = function () {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
         //    document.getElementById("profileModel").click();
-    };
-    HeaderComponent.prototype.getBanners = function () {
-        var _this = this;
-        this.headerService.getBanners().subscribe(function (banners) {
-            _this.banners = banners;
-            //console.log("banners1 : " + banners.fileName)
-        });
     };
     return HeaderComponent;
 }());

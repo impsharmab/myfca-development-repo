@@ -29,7 +29,7 @@ public interface DashboardService {
 	
 	public List<MSEREarningsDTO> getEarningsByRole(final InputRequest userRoleReq);
 	
-	public List<MSERTopNDTO> getMSERTopTen(String type, int rows);
+	public List<MSERTopNDTO> getMSERTopTen(String type, int rows, String name, String period);
 	
 	public TotalName getMTDByProgramAndProgramgroup(String name, String program, String programgroup);
 	
@@ -47,7 +47,9 @@ public interface DashboardService {
 	
 	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgram();
 	
-	public List<CertProfsWinnersGraphDTO> getBCCertifications();
+	public List<CertProfsWinnersGraphDTO> getBCCertifications(boolean filter);
+	
+	public List<CertProfsWinnersGraphDTO> getCertProfsWinnersGraphAllDistricData(List<String> list);
 	
 	public List<TTTATopNDTO> getTTTATopN(String type, int rows);
 	

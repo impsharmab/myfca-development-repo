@@ -19,6 +19,7 @@ import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.NoTile;
 import com.imperialm.imiservices.services.UserProfileService;
 import com.imperialm.imiservices.services.UserService;
+import com.imperialm.imiservices.services.UserServiceImpl;
 
 /**
  * @author Dheerajr
@@ -27,9 +28,9 @@ import com.imperialm.imiservices.services.UserService;
 @RestController
 public class UserProfileController {
 	@Autowired
-	private UserService userService;
+	private UserServiceImpl userService;
 
-	public UserProfileController(UserService userService){
+	public UserProfileController(UserServiceImpl userService){
 		this.userService = userService;
 	}
 	private static Logger logger = LoggerFactory.getLogger(UserProfileController.class);

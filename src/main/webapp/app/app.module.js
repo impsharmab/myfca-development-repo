@@ -23,11 +23,16 @@ var body_component_1 = require("./components/body/body.component");
 var spinner_component_1 = require("./components/spinner/spinner.component");
 var login_component_1 = require("./components/login/login.component");
 var body_component_modal_1 = require("./components/body/body.component.modal");
+var banner_component_1 = require("./components/banner/banner.component");
+var admin_component_1 = require("./components/admin/admin.component");
+var admin_rootpage_component_1 = require("./components/admin/admin-rootpage.component");
 //importing services
 var body_service_1 = require("./services/body-services/body.service");
 var footer_service_1 = require("./services/footer-services/footer.service");
 var header_service_1 = require("./services/header-services/header.service");
 var login_service_1 = require("./services/login-services/login.service");
+var banner_service_1 = require("./services/banner-services/banner.service");
+var admin_service_1 = require("./services/admin-services/admin.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -49,7 +54,9 @@ AppModule = __decorate([
             footer_service_1.FooterService,
             header_service_1.HeaderService,
             login_service_1.LoginService,
-            ng_bootstrap_2.NgbActiveModal
+            ng_bootstrap_2.NgbActiveModal,
+            banner_service_1.BannerService,
+            admin_service_1.AdminService
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -59,7 +66,10 @@ AppModule = __decorate([
             body_component_1.BodyComponent,
             root_page_component_1.RootPageComponent,
             spinner_component_1.SpinnerComponent,
-            body_component_modal_1.NgbdModalContent
+            body_component_modal_1.NgbdModalContent,
+            banner_component_1.BannerComponent,
+            admin_component_1.AdminComponent,
+            admin_rootpage_component_1.AdminRootPageComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })

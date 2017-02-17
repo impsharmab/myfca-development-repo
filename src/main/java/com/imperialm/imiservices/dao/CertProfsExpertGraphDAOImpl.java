@@ -17,7 +17,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
-	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CertProfsExpertGraphDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

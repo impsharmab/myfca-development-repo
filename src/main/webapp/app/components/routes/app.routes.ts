@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RootPageComponent } from '../root-page/root-page.component';
 import { LoginComponent } from "../login/login.component";
+import { AdminRootPageComponent } from "../admin/admin-rootpage.component";
+
 
 const routes: Routes = [
     {
@@ -18,6 +20,10 @@ const routes: Routes = [
     {
         path: "myfcadashboard",
         component: RootPageComponent
+    },
+    {
+        path: "admin",
+        component: AdminRootPageComponent
     }
 ]
 

@@ -9,12 +9,10 @@ import lombok.Setter;
 @Getter @Setter
 public class TopTenDataTable {
 	private String buttonName;
-	private String title;
-	private List<TopTenTableData> tableData;
+	private List<TopTenTableData> data;
 	
-	public TopTenDataTable(String buttonName, String title){
+	public TopTenDataTable(String buttonName){
 		this.buttonName = buttonName;
-		this.title = title;
-		this.tableData = new ArrayList<TopTenTableData>();
+		this.data = new ArrayList<TopTenTableData>();
 	}
 }

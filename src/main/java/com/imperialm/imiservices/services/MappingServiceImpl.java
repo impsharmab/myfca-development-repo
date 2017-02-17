@@ -306,14 +306,14 @@ public class MappingServiceImpl {
 		
 		List<Object> data = new ArrayList<Object>();
 		
-		int i = 1;
 		for(TTTATopNDTO item: TTTATopNDTO){
 			List<Object> items = new ArrayList<Object>();
 			if(item.getError().equals("") || item.getError().equals(null)){
-				items.add(i);
 				items.add(item.getName());
+				items.add(item.getDealerName());
+				items.add(item.getParentTerritory());
+				items.add(item.getTotalSurveys());
 				items.add(item.getAvgSurveyScore());
-				i++;
 			}
 			data.add(items);
 		}
@@ -330,15 +330,26 @@ public class MappingServiceImpl {
 		topTenTableData.setTableName(tableName);
 		
 		List<Object> data = new ArrayList<Object>();
-		
+		if(MSERTopNDTO.size() == 10){
 		for(MSERTopNDTO item: MSERTopNDTO){
 			List<Object> items = new ArrayList<Object>();
 			if(item.getError().equals("") || item.getError().equals(null)){
-				items.add(item.getTopNRank());
 				items.add(item.getName());
+				items.add(item.getDealerName());
+				items.add(item.getParentTerritory());
 				items.add(item.getEarnings());
 			}
 			data.add(items);
+		}
+		}else{
+			for(MSERTopNDTO item: MSERTopNDTO){
+				List<Object> items = new ArrayList<Object>();
+				if(item.getError().equals("") || item.getError().equals(null)){
+					items.add(item.getName());
+					items.add(item.getQuantity());
+				}
+				data.add(items);
+			}
 		}
 		
 		topTenTableData.setData(data);

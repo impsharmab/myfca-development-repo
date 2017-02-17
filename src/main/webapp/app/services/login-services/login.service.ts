@@ -12,6 +12,8 @@ export class LoginService {
     private getUserServiceUrl: string = './app/resources/json/newUserDetail.json';
     private getBaseServiceUrl: string = 'services/userprofile';
 
+    // /imiservices/login/token
+
     private userdata = {}
     constructor(private http: Http) { }
     setUserData(userdata: any) {
@@ -34,20 +36,25 @@ export class LoginService {
         // console.log("encrypted q_password: " + q_password) 
         //  console.log("this.token :"+ this.validToken)       
 
-        var body = "id=" + username + "&key=" + password;
-             var headers = new Headers();
-             headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        var url = "/imiservices/login/token/";
+        var body = {"username": username, "password": password}; //"username:" + username +  "," + "password:" + password;
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
         //     return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
         //   //       return this.http.get(this.getLoginResponseUrl)
         //         .map((response: Response) =>
         //             response.json())
         //         .catch(this.handleError);
-       // let headers = new Headers({ 'Content-Type': 'x-www-form-urlencoded' });
+        // let headers = new Headers({ 'Content-Type': 'x-www-form-urlencoded' });
         //let options = new RequestOptions({ headers: headers });
 
-       // return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
-        return this.http.get(this.getLoginResponseUrl)
+        // return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
+        // return this.http.post(url, body, { headers:headers })
+
+       // return this.http.post(url, body, { headers: headers })
+
+             return this.http.get(this.getLoginResponseUrl)
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError);

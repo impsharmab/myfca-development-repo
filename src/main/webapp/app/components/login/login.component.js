@@ -39,15 +39,15 @@ var LoginComponent = (function () {
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
             resUserData = _this.userdata = (resUserData);
             // alert(resUserData["userID"]);
-            if (resUserData["error"] === "" && resUserData["error"] !== null) {
-                _this.userdata["userID"] = resUserData["userID"];
-                _this.userdata["name"] = resUserData["name"];
+            if (resUserData["token"] !== null) {
+                _this.userdata["token"] = resUserData["token"];
+                // this.userdata["name"] = resUserData["name"];
                 _this.loginService.setUserData(_this.userdata);
                 var url = ["myfcadashboard"];
                 _this.router.navigate(url);
             }
             else {
-                alert(resUserData.error);
+                alert("invalid user");
             }
             // var msg = JSON.parse(resUserData["error"])["error"];
             // alert(msg);

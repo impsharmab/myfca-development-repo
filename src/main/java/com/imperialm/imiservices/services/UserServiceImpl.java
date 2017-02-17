@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,9 +14,10 @@ import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.entities.User;
 import com.imperialm.imiservices.repositories.UserRepository;
 
-@Service("userService")
+//@Service("userService")
+@Component("UserServiceImpl")
 @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
-public class UserServiceImpl implements UserService, UserDetailsService {
+public class UserServiceImpl implements UserDetailsService {
 	private UserRepository userRepository;
 	private PasswordEncoder passwordEncoder;
 	
@@ -31,5 +33,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		User user = userRepository.findByUserId(username);
 		if(user == null) throw new UsernameNotFoundException(username);
 		return new UserDetailsImpl(user);
+	}
+	
+	public User getByUsername(String username) throws UsernameNotFoundException{
+		User user = userRepository.findByUserId(username);
+		if(user == null) throw new UsernameNotFoundException(username);
+		return user;
 	}
 }

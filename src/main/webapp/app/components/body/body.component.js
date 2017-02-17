@@ -12,10 +12,10 @@ var core_1 = require("@angular/core");
 var body_service_1 = require("../../services/body-services/body.service");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var Highcharts = require('highcharts');
-var Highcharts3d = require('highcharts/highcharts-3d.src');
-Highcharts3d(Highcharts);
-require('../../resources/js/exporting.js')(Highcharts);
-require('../../resources/js/drilldown.js')(Highcharts);
+// const Highcharts3d = require('highcharts/highcharts-3d.src');
+// Highcharts3d(Highcharts)
+require('highcharts/modules/exporting')(Highcharts);
+require('highcharts/modules/drilldown')(Highcharts);
 // require('../../resources/js/data.js')(Highcharts);
 var BodyComponent = (function () {
     function BodyComponent(service, modalService) {
@@ -28,6 +28,8 @@ var BodyComponent = (function () {
             "title": "",
             "tableData": []
         };
+        this.totalCount = 0;
+        this.drillUptotalCount = 0;
         this.charTypeJSON = {};
         this.chartObjects = {};
         this.service.getNumberOfTiltes().subscribe(function (resUserData) {
@@ -43,6 +45,21 @@ var BodyComponent = (function () {
             }
         });
     }
+    BodyComponent.prototype.drillDown = function (e, chart) {
+        this.drillUptotalCount = 0;
+        for (var i = 0; i < e.seriesOptions.data.length; i++) {
+            this.totalCount = this.totalCount + e.seriesOptions.data[i][1];
+        }
+        chart.setTitle(null, { text: "Total " + this.totalCount });
+    };
+    BodyComponent.prototype.drillUp = function (e, chart) {
+        //chart.setTitle(null,{ text:  e.point.name });
+        for (var i = 0; i < e.seriesOptions.data.length; i++) {
+            this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
+        }
+        chart.setTitle(null, { text: "Total " + this.drillUptotalCount });
+        this.totalCount = 0;
+    };
     BodyComponent.prototype.ngOnInit = function () {
         this.modalService.open(this.model, { size: "lg" });
     };
@@ -128,6 +145,8 @@ var BodyComponent = (function () {
                 '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
             title: {
                 text: chartData.title
+            }, subtitle: {
+                text: ''
             },
             credits: {
                 enabled: false
@@ -141,11 +160,6 @@ var BodyComponent = (function () {
                 title: {
                     text: chartData.yaxisTitle
                 }
-            },
-            tooltip: {
-                //pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-                shared: true
             },
             plotOptions: {},
             series: [],
@@ -189,24 +203,47 @@ var BodyComponent = (function () {
                 delete chartObj.xAxis.categories;
                 // chartObj.title.text = chartData.title;
                 var categories = new Array();
+                var total = 0;
                 var chartDataValues = new Array();
                 var drilldownArray = new Array();
                 for (var i = 0; i < chartData.data.length; i++) {
                     var dataObj = chartData.data[i];
                     categories.push(dataObj.name);
+                    total = total + dataObj.value;
                     var drilldownData = dataObj.data;
                     if (drilldownData.length > 0) {
                         var drillDownObj = {};
+                        var __this = this;
+                        drillDownObj.point = {
+                            events: {
+                                click: function () {
+                                    if (this.x != undefined)
+                                        // modal trigger
+                                        __this.modalService.open(__this.tableContent, { size: "lg" });
+                                },
+                                drilldown: function () {
+                                    var chart = this;
+                                    chart.setTitle(null, {
+                                        text: "after drilldown subtitle"
+                                    });
+                                },
+                                drillup: function () {
+                                    var chart = this;
+                                    chart.setTitle(null, {
+                                        text: "after drillup subtitle"
+                                    });
+                                }
+                            }
+                        };
                         drillDownObj.name = dataObj.name;
                         drillDownObj.id = dataObj.name + i;
                         drillDownObj.data = new Array();
                         for (var j = 0; j < drilldownData.length; j++) {
                             var obj = drilldownData[j];
-                            drillDownObj.data.push({
-                                name: obj.name,
-                                y: obj.value,
-                                drilldown: null
-                            });
+                            drillDownObj.data.push([
+                                obj.name,
+                                obj.value
+                            ]);
                         }
                         drilldownArray.push(drillDownObj);
                         chartDataValues.push({
@@ -231,6 +268,7 @@ var BodyComponent = (function () {
                 chartObj.drilldown = {
                     "series": drilldownArray
                 };
+                chartObj.subtitle.text = "Total " + total;
                 // chartObj.yAxis.title.text = chartData.yaxisTitle;
                 break;
             case "bar_compound":
@@ -243,7 +281,7 @@ var BodyComponent = (function () {
                 };
                 chartObj.plotOptions["series"]["stacking"] = "normal";
                 delete chartObj.xAxis.categories;
-                delete chartObj.yAxis;
+                //delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
                 //   var categories = [];
                 //   var seriesJson = {};
@@ -277,7 +315,7 @@ var BodyComponent = (function () {
                     }
                 };
                 delete chartObj.xAxis.categories;
-                delete chartObj.yAxis;
+                //delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
                 // var categories = [];
                 // var seriesJson = {};
@@ -310,7 +348,7 @@ var BodyComponent = (function () {
                     }
                 };
                 delete chartObj.xAxis.categories;
-                delete chartObj.yAxis;
+                // delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
                 // var categories = [];
                 // var seriesJson = {};
@@ -362,6 +400,15 @@ var BodyComponent = (function () {
                 }
             }
         };
+        if (chartType === "pie") {
+            chartObject.tooltip = {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                shared: true
+            };
+        }
+        else {
+            delete chartObject.tooltip;
+        }
         this.chartObjects[id] = new Highcharts.Chart(chartObject);
         // this.contentBody[id]=chartObject;
     };
@@ -372,6 +419,7 @@ var BodyComponent = (function () {
         var categories = [];
         var seriesJsonObject = [];
         var drilldownArray = [];
+        var total = 0;
         for (var i = 0; i < chartData.data.length; i++) {
             var dataObj = chartData.data[i];
             var seriesJson = [];
@@ -382,6 +430,7 @@ var BodyComponent = (function () {
             // categories.push(dataObj.name);
             for (var k = 0; k < dataObj.data.length; k++) {
                 var innerDataObj = dataObj.data[k];
+                total = total + innerDataObj.value;
                 console.log(innerDataObj.name);
                 //   var innerDataObject = {name:"",y:"",drilldown:""};
                 //   seriesObject.data.push(innerDataObject);
@@ -407,16 +456,29 @@ var BodyComponent = (function () {
                     //   });
                     // }
                     var drillDownObj = {};
+                    var __this = this;
                     drillDownObj.point = {
                         events: {
                             click: function () {
                                 if (this.x != undefined)
                                     // modal trigger
-                                    alert(this.x);
+                                    __this.modalService.open(__this.tableContent, { size: "lg" });
+                            },
+                            drilldown: function () {
+                                var chart = this;
+                                chart.setTitle(null, {
+                                    text: "after drilldown subtitle"
+                                });
+                            },
+                            drillup: function () {
+                                var chart = this;
+                                chart.setTitle(null, {
+                                    text: "after drillup subtitle"
+                                });
                             }
                         }
                     };
-                    drillDownObj.name = innerDataObj.name;
+                    drillDownObj.name = seriesObject.name;
                     drillDownObj.id = innerDataObj.name + i;
                     drillDownObj.data = new Array();
                     for (var j = 0; j < drilldownData.length; j++) {
@@ -448,6 +510,7 @@ var BodyComponent = (function () {
         //  chartObj.xAxis.categories = categories;
         // for (var key in seriesJson) {
         chartObj.series = seriesJsonObject;
+        chartObj.subtitle.text = "Total " + total;
         // }
     };
     return BodyComponent;
@@ -464,6 +527,10 @@ __decorate([
     core_1.ViewChild("topModel"),
     __metadata("design:type", core_1.TemplateRef)
 ], BodyComponent.prototype, "topModel", void 0);
+__decorate([
+    core_1.ViewChild("tableContent"),
+    __metadata("design:type", core_1.TemplateRef)
+], BodyComponent.prototype, "tableContent", void 0);
 BodyComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

@@ -20,6 +20,7 @@ var LoginService = (function () {
         this.getLoginResponseUrl = './app/resources/json/token_response.json';
         this.getUserServiceUrl = './app/resources/json/newUserDetail.json';
         this.getBaseServiceUrl = 'services/userprofile';
+        // /imiservices/login/token
         this.userdata = {};
     }
     LoginService.prototype.setUserData = function (userdata) {
@@ -39,9 +40,10 @@ var LoginService = (function () {
         //console.log("encrypted q_password: " + q_password)
         // console.log("encrypted q_password: " + q_password) 
         //  console.log("this.token :"+ this.validToken)       
-        var body = "id=" + username + "&key=" + password;
+        var url = "/imiservices/login/token/";
+        var body = { "username": username, "password": password }; //"username:" + username +  "," + "password:" + password;
         var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
         //     return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
         //   //       return this.http.get(this.getLoginResponseUrl)
         //         .map((response: Response) =>
@@ -50,6 +52,8 @@ var LoginService = (function () {
         // let headers = new Headers({ 'Content-Type': 'x-www-form-urlencoded' });
         //let options = new RequestOptions({ headers: headers });
         // return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
+        // return this.http.post(url, body, { headers:headers })
+        // return this.http.post(url, body, { headers: headers })
         return this.http.get(this.getLoginResponseUrl)
             .map(function (response) {
             return response.json();

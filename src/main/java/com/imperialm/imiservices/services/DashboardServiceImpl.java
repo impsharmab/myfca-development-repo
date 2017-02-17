@@ -74,8 +74,8 @@ public class DashboardServiceImpl implements DashboardService {
 		 return this.MSEREarningsDAO.getEarningsByRole(userRoleReq);
 	}
 	
-	public List<MSERTopNDTO> getMSERTopTen(String type, int rows){
-		 return this.MSERTopNDAO.getTopNByType(type, rows);
+	public List<MSERTopNDTO> getMSERTopTen(String type, int rows, String name, String period){
+		 return this.MSERTopNDAO.getTopNByType(type, rows, name, period);
 	}
 	
 	public TotalName getMTDByProgramAndProgramgroup(String name, String program, String programgroup){
@@ -102,6 +102,11 @@ public class DashboardServiceImpl implements DashboardService {
 		 return this.BrainBoostWinndersGraphDAO.getAllDistricData(list);
 	}
 	
+	public List<CertProfsWinnersGraphDTO> getCertProfsWinnersGraphAllDistricData(List<String> list)
+	{
+		return this.CertProfsWinnersGraphDAO.getAllDistricData(list);
+	}
+	
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarned(){
 		return this.CertProfsExpertGraphDAO.getExpertPointsEarned();
 	}
@@ -110,8 +115,8 @@ public class DashboardServiceImpl implements DashboardService {
 		return this.CertProfsExpertGraphDAO.getParticipantCompletedByProgram();
 	}
 	
-	public List<CertProfsWinnersGraphDTO> getBCCertifications(){
-		return this.CertProfsWinnersGraphDAO.getBCCertifications();
+	public List<CertProfsWinnersGraphDTO> getBCCertifications(boolean filter){
+		return this.CertProfsWinnersGraphDAO.getBCCertifications(filter);
 	}
 	
 	public List<TTTATopNDTO> getTTTATopN(String type, int rows){

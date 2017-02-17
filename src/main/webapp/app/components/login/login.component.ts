@@ -43,15 +43,17 @@ export class LoginComponent implements OnInit {
             (resUserData) => {
                 resUserData = this.userdata = (resUserData)
                 // alert(resUserData["userID"]);
-                if (resUserData["error"] === "" && resUserData["error"] !== null) {
-                    this.userdata["userID"] = resUserData["userID"];
-                    this.userdata["name"] = resUserData["name"];
+                if (resUserData["token"] !== null) {
+                    this.userdata["token"] = resUserData["token"];
+                    // this.userdata["name"] = resUserData["name"];
                     this.loginService.setUserData(this.userdata);
 
                     let url = ["myfcadashboard"]
                     this.router.navigate(url);
                 } else {
-                    alert(resUserData.error)
+                   alert("invalid user");
+                   
+                    //alert(resUserData.error)
                 }
                 // var msg = JSON.parse(resUserData["error"])["error"];
                 // alert(msg);

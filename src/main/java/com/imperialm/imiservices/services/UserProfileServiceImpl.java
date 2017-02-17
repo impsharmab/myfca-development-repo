@@ -23,11 +23,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 		this.userProfileDAO = userProfileDAO;
 		
 		this.noTileList.add(new NoTile(2,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(1,"","chart", "","mser.jpg","www.mopar.com"));
+		this.noTileList.add(new NoTile(1,"","chart", "","mser-logo.jpg","www.mopar.com"));
 		this.noTileList.add(new NoTile(9,"","chart", "","brainboost.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
 		this.noTileList.add(new NoTile(12,"","chart", "","brainboost.jpg","www.mopar.com"));
+		this.noTileList.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
+		this.noTileList.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
 		this.noTileList.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","www.mopar.com"));
 		this.noTileList.add(new NoTile(14,"","tile", "","topadvisor.jpg","www.mopar.com"));
 		this.noTileList.add(new NoTile(15,"","tile", "","toptech.jpg","www.mopar.com"));
@@ -38,7 +38,8 @@ public class UserProfileServiceImpl implements UserProfileService {
 		this.noTileList.add(new NoTile(5,"","tile", "","mser-logo.jpg","www.mopar.com"));
 		this.noTileList.add(new NoTile(6,"","tile", "","mser-logo.jpg","www.mopar.com"));
 		this.noTileList.add(new NoTile(7,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(8,"","tile", "","mser-logo.jpg","www.mopar.com"));
+		this.noTileList.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","www.mopar.com"));
+		this.noTileList.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","www.mopar.com"));
 		
 	}
 

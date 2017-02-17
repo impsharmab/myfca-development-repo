@@ -18,7 +18,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class MSERGraphDetailsDAOImpl implements MSERGraphDetailsDAO {
-	private static Logger logger = LoggerFactory.getLogger(BannerDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(MSERGraphDetailsDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

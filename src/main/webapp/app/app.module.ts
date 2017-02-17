@@ -18,7 +18,9 @@ import { BodyComponent } from './components/body/body.component'
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoginComponent } from "./components/login/login.component";
 import { NgbdModalContent } from "./components/body/body.component.modal";
-
+import { BannerComponent } from "./components/banner/banner.component";
+import { AdminComponent } from "./components/admin/admin.component";
+import { AdminRootPageComponent } from "./components/admin/admin-rootpage.component"
 
 
 //importing services
@@ -26,6 +28,8 @@ import { BodyService } from "./services/body-services/body.service"
 import { FooterService } from "./services/footer-services/footer.service"
 import { HeaderService } from "./services/header-services/header.service"
 import { LoginService } from "./services/login-services/login.service"
+import { BannerService } from "./services/banner-services/banner.service"
+import { AdminService } from "./services/admin-services/admin.service"
 
 @NgModule({
     imports: [
@@ -43,7 +47,10 @@ import { LoginService } from "./services/login-services/login.service"
         FooterService,
         HeaderService,
         LoginService,
-        NgbActiveModal],
+        NgbActiveModal,
+        BannerService,
+        AdminService
+        ],
 
     declarations: [
         AppComponent,
@@ -53,7 +60,10 @@ import { LoginService } from "./services/login-services/login.service"
         BodyComponent,
         RootPageComponent,
         SpinnerComponent,
-        NgbdModalContent
+        NgbdModalContent,
+        BannerComponent,
+        AdminComponent,
+        AdminRootPageComponent
     ],
 
     bootstrap: [AppComponent]
