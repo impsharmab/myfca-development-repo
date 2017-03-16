@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
+var dashboard_body_component_1 = require("../dashboard-body/dashboard-body.component");
 var RootPageComponent = (function () {
     function RootPageComponent(router, http) {
         this.router = router;
@@ -24,6 +25,10 @@ var RootPageComponent = (function () {
     };
     return RootPageComponent;
 }());
+__decorate([
+    core_1.ViewChild("bodyContent"),
+    __metadata("design:type", dashboard_body_component_1.DashboardBodyComponent)
+], RootPageComponent.prototype, "bodyContent", void 0);
 RootPageComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

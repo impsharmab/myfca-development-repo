@@ -19,20 +19,23 @@ var root_page_component_1 = require("./components/root-page/root-page.component"
 var app_routes_1 = require("./components/routes/app.routes");
 var header_component_1 = require("./components/header/header.component");
 var footer_component_1 = require("./components/footer/footer.component");
-var body_component_1 = require("./components/body/body.component");
+var dashboard_body_component_1 = require("./components/dashboard-body/dashboard-body.component");
 var spinner_component_1 = require("./components/spinner/spinner.component");
 var login_component_1 = require("./components/login/login.component");
-var body_component_modal_1 = require("./components/body/body.component.modal");
+var dashboard_body_component_modal_1 = require("./components/dashboard-body/dashboard-body.component.modal");
 var banner_component_1 = require("./components/banner/banner.component");
 var admin_component_1 = require("./components/admin/admin.component");
 var admin_rootpage_component_1 = require("./components/admin/admin-rootpage.component");
+var table_component_1 = require("./components/table/table.component");
+var positioncode_component_1 = require("./components/positioncode/positioncode.component");
 //importing services
-var body_service_1 = require("./services/body-services/body.service");
+var dashboard_body_service_1 = require("./services/dashboard-body-services/dashboard-body.service");
 var footer_service_1 = require("./services/footer-services/footer.service");
 var header_service_1 = require("./services/header-services/header.service");
 var login_service_1 = require("./services/login-services/login.service");
 var banner_service_1 = require("./services/banner-services/banner.service");
 var admin_service_1 = require("./services/admin-services/admin.service");
+var positioncode_service_1 = require("./services/positioncode-services/positioncode.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -50,26 +53,29 @@ AppModule = __decorate([
             ng_bootstrap_1.NgbModule.forRoot()
         ],
         providers: [
-            body_service_1.BodyService,
+            dashboard_body_service_1.DashboardBodyService,
             footer_service_1.FooterService,
             header_service_1.HeaderService,
             login_service_1.LoginService,
             ng_bootstrap_2.NgbActiveModal,
             banner_service_1.BannerService,
-            admin_service_1.AdminService
+            admin_service_1.AdminService,
+            positioncode_service_1.PositionCodeService
         ],
         declarations: [
             app_component_1.AppComponent,
             login_component_1.LoginComponent,
             header_component_1.HeaderComponent,
             footer_component_1.FooterComponent,
-            body_component_1.BodyComponent,
+            dashboard_body_component_1.DashboardBodyComponent,
             root_page_component_1.RootPageComponent,
             spinner_component_1.SpinnerComponent,
-            body_component_modal_1.NgbdModalContent,
+            dashboard_body_component_modal_1.NgbdModalContent,
             banner_component_1.BannerComponent,
             admin_component_1.AdminComponent,
-            admin_rootpage_component_1.AdminRootPageComponent
+            admin_rootpage_component_1.AdminRootPageComponent,
+            table_component_1.TableComponent,
+            positioncode_component_1.PositionCodeComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })

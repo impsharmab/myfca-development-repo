@@ -29,8 +29,6 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 	public List<CertProfsWinnersGraphDTO> getBCCertifications(boolean filter) {
 		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
 
-		CertProfsWinnersGraphDTO CertProfsWinnersGraphDTO = null;
-
 		try {
 			if(filter){
 				final Query query = this.em.createNativeQuery(SELECT_BC_FILTERED, CertProfsWinnersGraphDTO.class);
@@ -42,15 +40,9 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 				result = rows;
 			}
 		} catch (final NoResultException ex) {
-			CertProfsWinnersGraphDTO = new CertProfsWinnersGraphDTO();
-			CertProfsWinnersGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(CertProfsWinnersGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getBCCertifications", ex);
-			CertProfsWinnersGraphDTO = new CertProfsWinnersGraphDTO();
-			CertProfsWinnersGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(CertProfsWinnersGraphDTO);
 		}
 		return result;
 	}
@@ -67,18 +59,49 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 			List<CertProfsWinnersGraphDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			CertProfsWinnersGraphDTO = new CertProfsWinnersGraphDTO();
-			CertProfsWinnersGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(CertProfsWinnersGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getAllDistricData", ex);
-			CertProfsWinnersGraphDTO = new CertProfsWinnersGraphDTO();
-			CertProfsWinnersGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(CertProfsWinnersGraphDTO);
 		}
 		return result;
 		
+	}
+	
+	public List<CertProfsWinnersGraphDTO>  getByTerritory(List<String> list){
+		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
+
+		CertProfsWinnersGraphDTO CertProfsWinnersGraphDTO = null;
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY, CertProfsWinnersGraphDTO.class);
+			query.setParameter(0, list);
+			List<CertProfsWinnersGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getAllDistricData", ex);
+		}
+		return result;
+		
+	}
+
+
+	@Override
+	public List<CertProfsWinnersGraphDTO> getByChildTerritory(List<String> list) {
+		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY, CertProfsWinnersGraphDTO.class);
+			query.setParameter(0, list);
+			List<CertProfsWinnersGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getByChildTerritory", ex);
+		}
+		return result;
 	}
 	
 

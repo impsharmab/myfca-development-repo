@@ -7,6 +7,7 @@ import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
+import com.imperialm.imiservices.dto.MSERGraphDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
@@ -18,13 +19,10 @@ import com.imperialm.imiservices.model.response.TotalName;
  * @author Dheerajr
  *
  */
+/*
 public interface DashboardService {
 	public List<DashboardDTO> findTilesListByRole(InputRequest userRoleReq);
 
-	/**
-	 * @param userRoleReq
-	 * @return
-	 */
 	public List<DashboardDTO> findTilesByRole(InputRequest userRoleReq);
 	
 	public List<MSEREarningsDTO> getEarningsByRole(final InputRequest userRoleReq);
@@ -41,7 +39,7 @@ public interface DashboardService {
 	
 	public List<BrainBoostWinndersGraphDTO> getBrainBoostGraphBCData(boolean filter);
 	
-	public List<BrainBoostWinndersGraphDTO> getBrainBoostGraphAllDistricData(List<String> filter);
+	public List<BrainBoostWinndersGraphDTO> getBrainBoostGraphAllDistricData(List<String> list);
 	
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarned();
 	
@@ -58,5 +56,13 @@ public interface DashboardService {
 	public TotalName getTTTAIncentiveEligibleSUM();
 	
 	public List<TTTAEnrolledDTO> getTTTAEnrollmentsBC(boolean enrolled);
+	
+	public List<MSERGraphDTO> getMSERGraphBCData(boolean filter);
+	
+	public List<MSERGraphDTO> getMSERGraphAllDistricData(List<String> list);
+	
+	public List<MSERGraphDTO> getMSERGraphByTerritoryAndToggle(String territory, String toggle);
+	public List<MSERGraphDTO> getMSERGraphByTerritoryAndToggleAndProgram(String territory, String toggle, String program);
+	public List<String> getMSERGraphDistinctProgramsByParentTerritoryAndToggle(String territory, String toggle);
 
-}
+}*/

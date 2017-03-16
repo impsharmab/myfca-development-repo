@@ -39,15 +39,9 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 				result = rows;
 			}
 		} catch (final NoResultException ex) {
-			BrainBoostWinndersGraphDTO = new BrainBoostWinndersGraphDTO();
-			BrainBoostWinndersGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(BrainBoostWinndersGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getBCData", ex);
-			BrainBoostWinndersGraphDTO = new BrainBoostWinndersGraphDTO();
-			BrainBoostWinndersGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(BrainBoostWinndersGraphDTO);
 		}
 		return result;
 	}
@@ -63,19 +57,45 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			BrainBoostWinndersGraphDTO = new BrainBoostWinndersGraphDTO();
-			BrainBoostWinndersGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(BrainBoostWinndersGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getAllDistricData", ex);
-			BrainBoostWinndersGraphDTO = new BrainBoostWinndersGraphDTO();
-			BrainBoostWinndersGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(BrainBoostWinndersGraphDTO);
 		}
 		return result;
 		
 	}
 	
+	
+	public List<BrainBoostWinndersGraphDTO>  getByTerritory(List<String> list){
+		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
+		BrainBoostWinndersGraphDTO BrainBoostWinndersGraphDTO = null;
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY, BrainBoostWinndersGraphDTO.class);
+			query.setParameter(0, list);
+			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getAllDistricData", ex);
+		}
+		return result;
+	}
 
+	@Override
+	public List<BrainBoostWinndersGraphDTO> getByChildTerritory(List<String> list) {
+		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
+		BrainBoostWinndersGraphDTO BrainBoostWinndersGraphDTO = null;
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY, BrainBoostWinndersGraphDTO.class);
+			query.setParameter(0, list);
+			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getByChildTerritory", ex);
+		}
+		return result;
+	}
 }

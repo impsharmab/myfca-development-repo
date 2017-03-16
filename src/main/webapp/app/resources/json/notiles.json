@@ -1,5 +1,26 @@
 [
-    
+    {
+        "error": "",
+        "id": "2",
+        "type": "chart",
+        "tileOrder": 1,
+        "tileName": "",
+        "tileHeaderImage": "mser-logo.jpg",
+        "programRules": "Program Rules",
+        "programSite": "Program Sites",
+        "programSiteUrl": "www.mopar.com"
+    },
+    {
+        "error": "",
+        "id": "3",
+        "type": "chart",
+        "tileOrder": 2,
+        "tileName": "",
+        "tileHeaderImage": "mser-logo.jpg",
+        "programRules": "Program Rules",
+        "programSite": "Program Sites",
+        "programSiteUrl": "www.mopar.com"
+    },
     {
         "error": "",
         "id": "1",
@@ -13,9 +34,9 @@
     },
     {
         "error": "",
-        "id": "2",
-        "type": "chart",
-        "tileOrder": 2,
+        "id": "6",
+        "type": "tile",
+        "tileOrder": 1,
         "tileName": "",
         "tileHeaderImage": "mser-logo.jpg",
         "programRules": "Program Rules",
@@ -24,7 +45,7 @@
     },
     {
         "error": "",
-        "id": "3",
+        "id": "100",
         "type": "chart",
         "tileOrder": 3,
         "tileName": "",
@@ -55,7 +76,29 @@
         "programSite": "Program Sites",
         "programSiteUrl": "www.mopar.com"
     },
-    { 
+    {
+        "error": "",
+        "id": "6",
+        "type": "tile",
+        "tileOrder": 5,
+        "tileName": "",
+        "tileHeaderImage": "cert-pro-banner.jpg",
+        "programRules": "Program Rules",
+        "programSite": "Program Sites",
+        "programSiteUrl": "www.mopar.com"
+    },
+    {
+        "error": "",
+        "id": "7",
+        "type": "tile",
+        "tileOrder": 5,
+        "tileName": "",
+        "tileHeaderImage": "cert-pro-banner.jpg",
+        "programRules": "Program Rules",
+        "programSite": "Program Sites",
+        "programSiteUrl": "www.mopar.com"
+    },
+    {
         "error": "",
         "id": "8",
         "type": "chart",
@@ -80,6 +123,17 @@
     {
         "error": "",
         "id": "10",
+        "type": "chart",
+        "tileOrder": 7,
+        "tileName": "",
+        "tileHeaderImage": "mser-logo.JPG",
+        "programRules": "Program Rules",
+        "programSite": "Program Sites",
+        "programSiteUrl": "www.mopar.com"
+    },
+    {
+        "error": "",
+        "id": "16",
         "type": "chart",
         "tileOrder": 7,
         "tileName": "",
@@ -120,6 +174,16 @@
         "programRules": "Program Rules",
         "programSite": "Program Sites",
         "programSiteUrl": "www.mopar.com"
+    },
+    {
+        "error": "",
+        "id": "14",
+        "type": "tile",
+        "tileOrder": 1,
+        "tileName": "",
+        "tileHeaderImage": "mser-logo.jpg",
+        "programRules": "Program Rules",
+        "programSite": "Program Sites",
+        "programSiteUrl": "www.mopar.com"
     }
-    
 ]

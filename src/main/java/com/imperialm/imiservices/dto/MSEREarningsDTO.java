@@ -7,7 +7,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
 public class MSEREarningsDTO implements Serializable {
-	
 	private String territory;
 	private double moparParts;
 	private double mvp;

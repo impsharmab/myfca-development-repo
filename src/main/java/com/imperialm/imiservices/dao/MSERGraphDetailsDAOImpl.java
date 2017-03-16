@@ -24,7 +24,7 @@ public class MSERGraphDetailsDAOImpl implements MSERGraphDetailsDAO {
 	private EntityManager em;
 
 	@Override
-	public TotalName getDealersCount() {
+	public TotalName getMSERDealersCount() {
 		List<TotalName> result = new ArrayList<TotalName>();
 
 		TotalName TotalName = null;
@@ -117,6 +117,76 @@ public class MSERGraphDetailsDAOImpl implements MSERGraphDetailsDAO {
 		} catch (final Exception ex) {
 			TotalName = new TotalName();
 			logger.error("error occured in getYTDByProgramAndProgramgroup", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getExcellanceCardAwardYTDNAT() {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(EXCELLENCE_CARD_AWARDS_YTD_NAT, TotalName.class);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getExcellanceCardAwardYTDNAT", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getExcellanceCardAwardMTDNAT() {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(EXCELLENCE_CARD_AWARDS_MTD_NAT, TotalName.class);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getExcellanceCardAwardMTDNAT", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getMSEREnrolledDealersCount() {
+		// TODO Auto-generated method stub 
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(DEALERS_ENROLLED_COUNT, TotalName.class);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getDealersCount", ex);
 			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
 			result.add(TotalName);
 		}

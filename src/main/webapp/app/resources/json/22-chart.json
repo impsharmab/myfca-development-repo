@@ -4,6 +4,8 @@
     "xaxisTitle": "Total Earnings",
     "yaxisTitle": "y-axis title",
     "type": "bar_compound",
+    "unit":"",
+  "avarage":true,
     "data": [
         {
             "name": "Mopar Parts",

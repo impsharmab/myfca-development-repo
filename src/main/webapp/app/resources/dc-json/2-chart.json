@@ -1,0 +1,424 @@
+{
+  "title": "Total Earnings YTD",
+  "subTitle": "",
+  "yaxisTitle": "Totsl Earnings",
+  "xaxisTitle": "",
+  "type": "bar_compound",
+  "dealer": true,
+  "data": [
+    {
+      "name": "Express Lane",
+      "value": 0.0,
+      "data": [
+        {
+          "name": "CA",
+          "value": 1352.2,
+          "data": [
+            {
+              "name": "CA-F",
+              "value": 23.6,
+              "data": []
+            },
+            {
+              "name": "CA-L",
+              "value": 21.8,
+              "data": []
+            },
+            {
+              "name": "CA-G",
+              "value": 0.0,
+              "data": []
+            },
+            {
+              "name": "CA-M",
+              "value": 32.8,
+              "data": []
+            },
+            {
+              "name": "CA-D",
+              "value": 2.4,
+              "data": []
+            },
+            {
+              "name": "CA-Y",
+              "value": 4.4,
+              "data": []
+            },
+            {
+              "name": "CA-K",
+              "value": 172.6,
+              "data": []
+            },
+            {
+              "name": "CA-N",
+              "value": 747.2,
+              "data": []
+            },
+            {
+              "name": "CA-J",
+              "value": 29.8,
+              "data": []
+            },
+            {
+              "name": "CA-W",
+              "value": 107.8,
+              "data": []
+            },
+            {
+              "name": "CA-E",
+              "value": 4.8,
+              "data": []
+            },
+            {
+              "name": "CA-H",
+              "value": 205.0,
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Magneti Marelli",
+      "value": 0.0,
+      "data": [
+        {
+          "name": "CA",
+          "value": 438.0,
+          "data": [
+            {
+              "name": "CA-J",
+              "value": 38.5,
+              "data": []
+            },
+            {
+              "name": "CA-N",
+              "value": 103.8,
+              "data": []
+            },
+            {
+              "name": "CA-F",
+              "value": 8.2,
+              "data": []
+            },
+            {
+              "name": "CA-D",
+              "value": 1.2,
+              "data": []
+            },
+            {
+              "name": "CA-L",
+              "value": 20.5,
+              "data": []
+            },
+            {
+              "name": "CA-Y",
+              "value": 25.8,
+              "data": []
+            },
+            {
+              "name": "CA-M",
+              "value": 67.4,
+              "data": []
+            },
+            {
+              "name": "CA-W",
+              "value": 38.8,
+              "data": []
+            },
+            {
+              "name": "CA-K",
+              "value": 49.4,
+              "data": []
+            },
+            {
+              "name": "CA-E",
+              "value": 4.8,
+              "data": []
+            },
+            {
+              "name": "CA-H",
+              "value": 15.6,
+              "data": []
+            },
+            {
+              "name": "CA-G",
+              "value": 64.0,
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mopar Parts",
+      "value": 0.0,
+      "data": [
+        {
+          "name": "CA",
+          "value": 8851.699999999999,
+          "data": [
+            {
+              "name": "CA-K",
+              "value": 823.4,
+              "data": []
+            },
+            {
+              "name": "CA-H",
+              "value": 981.3,
+              "data": []
+            },
+            {
+              "name": "CA-L",
+              "value": 1233.8,
+              "data": []
+            },
+            {
+              "name": "CA-M",
+              "value": 1393.8,
+              "data": []
+            },
+            {
+              "name": "CA-D",
+              "value": 267.2,
+              "data": []
+            },
+            {
+              "name": "CA-Y",
+              "value": 494.0,
+              "data": []
+            },
+            {
+              "name": "CA-F",
+              "value": 951.4,
+              "data": []
+            },
+            {
+              "name": "CA-N",
+              "value": 1248.0,
+              "data": []
+            },
+            {
+              "name": "CA-G",
+              "value": 547.2,
+              "data": []
+            },
+            {
+              "name": "CA-E",
+              "value": 353.9,
+              "data": []
+            },
+            {
+              "name": "CA-W",
+              "value": 225.8,
+              "data": []
+            },
+            {
+              "name": "CA-J",
+              "value": 331.9,
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MVP",
+      "value": 0.0,
+      "data": [
+        {
+          "name": "CA",
+          "value": 16860.0,
+          "data": [
+            {
+              "name": "CA-F",
+              "value": 1309.0,
+              "data": []
+            },
+            {
+              "name": "CA-D",
+              "value": 757.5,
+              "data": []
+            },
+            {
+              "name": "CA-J",
+              "value": 1465.5,
+              "data": []
+            },
+            {
+              "name": "CA-W",
+              "value": 44.0,
+              "data": []
+            },
+            {
+              "name": "CA-E",
+              "value": 550.0,
+              "data": []
+            },
+            {
+              "name": "CA-Y",
+              "value": 443.5,
+              "data": []
+            },
+            {
+              "name": "CA-M",
+              "value": 2156.0,
+              "data": []
+            },
+            {
+              "name": "CA-L",
+              "value": 2244.0,
+              "data": []
+            },
+            {
+              "name": "CA-N",
+              "value": 1765.5,
+              "data": []
+            },
+            {
+              "name": "CA-H",
+              "value": 2948.0,
+              "data": []
+            },
+            {
+              "name": "CA-K",
+              "value": 2876.5,
+              "data": []
+            },
+            {
+              "name": "CA-G",
+              "value": 300.5,
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Part Counter",
+      "value": 0.0,
+      "data": [
+        {
+          "name": "CA",
+          "value": 1566.0,
+          "data": [
+            {
+              "name": "CA-K",
+              "value": 348.0,
+              "data": []
+            },
+            {
+              "name": "CA-H",
+              "value": 77.0,
+              "data": []
+            },
+            {
+              "name": "CA-N",
+              "value": 281.0,
+              "data": []
+            },
+            {
+              "name": "CA-L",
+              "value": 79.0,
+              "data": []
+            },
+            {
+              "name": "CA-Y",
+              "value": 154.0,
+              "data": []
+            },
+            {
+              "name": "CA-G",
+              "value": 93.0,
+              "data": []
+            },
+            {
+              "name": "CA-M",
+              "value": 149.0,
+              "data": []
+            },
+            {
+              "name": "CA-D",
+              "value": 52.0,
+              "data": []
+            },
+            {
+              "name": "CA-F",
+              "value": 107.0,
+              "data": []
+            },
+            {
+              "name": "CA-J",
+              "value": 114.0,
+              "data": []
+            },
+            {
+              "name": "CA-W",
+              "value": 72.0,
+              "data": []
+            },
+            {
+              "name": "CA-E",
+              "value": 40.0,
+              "data": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "wiAdvisor",
+      "value": 0.0,
+      "data": [
+        {
+          "name": "CA",
+          "value": 743.8000000000001,
+          "data": [
+            {
+              "name": "CA-E",
+              "value": 0.0,
+              "data": []
+            },
+            {
+              "name": "CA-J",
+              "value": 39.6,
+              "data": []
+            },
+            {
+              "name": "CA-L",
+              "value": 140.8,
+              "data": []
+            },
+            {
+              "name": "CA-K",
+              "value": 140.8,
+              "data": []
+            },
+            {
+              "name": "CA-H",
+              "value": 189.6,
+              "data": []
+            },
+            {
+              "name": "CA-Y",
+              "value": 76.8,
+              "data": []
+            },
+            {
+              "name": "CA-N",
+              "value": 138.6,
+              "data": []
+            },
+            {
+              "name": "CA-M",
+              "value": 17.6,
+              "data": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "unit": "$",
+  "avarage": false
+}

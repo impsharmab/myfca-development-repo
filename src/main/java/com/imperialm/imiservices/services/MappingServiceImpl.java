@@ -8,8 +8,13 @@ import org.springframework.stereotype.Service;
 import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
+import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
+import com.imperialm.imiservices.dto.MSERGraphDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.model.Chart;
@@ -37,6 +42,21 @@ public class MappingServiceImpl {
 		return chart;
 	}
 	
+	
+	public Chart MapMSERGraphDTOtoChart(List<MSERGraphDTO> MSERGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+		
+		chart.setData(this.MapMSERGraphDTOtoChartData(MSERGraphDTO));
+		
+		return chart;
+	}
+	
+	
 	public Chart MapTTTAEnrolledDTOtoChart(List<TTTAEnrolledDTO> TTTAEnrolledDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
 		Chart chart = new Chart();
 		chart.setTitle(title);
@@ -59,6 +79,32 @@ public class MappingServiceImpl {
 		chart.setYaxisTitle(yaxisTitle);
 				
 		chart.setData(this.BrainBoostWinndersGraphDTOtoChartData(BrainBoostWinndersGraphDTO, graph));
+		
+		return chart;
+	}
+	
+	public Chart SIRewardsDetailsGraphDTOtoChart(List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type, String graph){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+				
+		chart.setData(this.SIRewardsDetailsGraphDTOtoChartData(SIRewardsDetailsGraphDTO, graph));
+		
+		return chart;
+	}
+	
+	public Chart RewardRedemptionGraphDTOtoChart(List<RewardRedemptionGraphDTO> RewardRedemptionGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type, String graph){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+				
+		chart.setData(this.RewardRedemptionGraphDTOtoChartData(RewardRedemptionGraphDTO, graph));
 		
 		return chart;
 	}
@@ -102,11 +148,49 @@ public class MappingServiceImpl {
 		return chart;
 	}
 	
+	public Chart CustomerFirstGraphDTOtoChart(List<CustomerFirstGraphDTO> CustomerFirstGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+		
+		chart.setData(this.CustomerFirstGraphDTOtoChartData(CustomerFirstGraphDTO));
+		
+		return chart;
+	}
+	
+	
+	public Chart SIRewardsYOYGraphDTOtoChart(List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+		
+		chart.setData(this.SIRewardsYOYGraphDTOtoChartData(SIRewardsYOYGraphDTO));
+		
+		return chart;
+	}
+	
 	public List<ChartData> MapMSEREarningDTOtoChartData(List<MSEREarningsDTO> MSEREarningDTO){
 		List<ChartData> list = new ArrayList<ChartData>();
 		
 		for (MSEREarningsDTO Earning : MSEREarningDTO) {
 			list.add(this.MapMSEREarningDTOtoChartData(Earning));
+		}
+		
+		return list;
+	}
+	
+	
+	public List<ChartData> MapMSERGraphDTOtoChartData(List<MSERGraphDTO> MSERGraphDTO){
+		List<ChartData> list = new ArrayList<ChartData>();
+		
+		for (MSERGraphDTO Earning : MSERGraphDTO) {
+			list.add(this.MapMSERGraphDTOtoChartData(Earning));
 		}
 		
 		return list;
@@ -138,6 +222,34 @@ public class MappingServiceImpl {
 		return list;
 	}
 	
+	public List<ChartData> SIRewardsDetailsGraphDTOtoChartData(List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphDTO, String type){
+		List<ChartData> list = new ArrayList<ChartData>();
+		
+		if(type.equals("Projected")){
+			for (SIRewardsDetailsGraphDTO item : SIRewardsDetailsGraphDTO) {
+				list.add(this.SIRewardsDetailsGraphDTOtoChartDataProjected(item));
+			}
+		}else if(type.equals("Average Score")){
+			for (SIRewardsDetailsGraphDTO item : SIRewardsDetailsGraphDTO) {
+				list.add(this.SIRewardsDetailsGraphDTOtoChartDataAverageScore(item));
+			}
+		}
+		
+		return list;
+	}
+	
+	public List<ChartData> RewardRedemptionGraphDTOtoChartData(List<RewardRedemptionGraphDTO> RewardRedemptionGraphDTO, String type){
+		List<ChartData> list = new ArrayList<ChartData>();
+		
+		if(type.equals("EarnedPoints")){
+			for (RewardRedemptionGraphDTO item : RewardRedemptionGraphDTO) {
+				list.add(this.RewardRedemptionGraphDTOtoChartDataEarnedPoints(item));
+			}
+		}
+		
+		return list;
+	}
+	
 	public List<ChartData> CertProfsExpertGraphDTOtoChartDataTotalPoints(List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTO){
 		List<ChartData> list = new ArrayList<ChartData>();
 		
@@ -153,6 +265,26 @@ public class MappingServiceImpl {
 		
 		for (CertProfsWinnersGraphDTO item : CertProfsWinnersGraphDTO) {
 			list.add(this.CertProfsWinnersGraphDTOtoChartData(item));
+		}
+		
+		return list;
+	}
+	
+	public List<ChartData> CustomerFirstGraphDTOtoChartData(List<CustomerFirstGraphDTO> CustomerFirstGraphDTO){
+		List<ChartData> list = new ArrayList<ChartData>();
+		
+		for (CustomerFirstGraphDTO item : CustomerFirstGraphDTO) {
+			list.add(this.CustomerFirstGraphDTOtoChartData(item));
+		}
+		
+		return list;
+	}
+	
+	public List<ChartData> SIRewardsYOYGraphDTOtoChartData(List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTO){
+		List<ChartData> list = new ArrayList<ChartData>();
+		
+		for (SIRewardsYOYGraphDTO item : SIRewardsYOYGraphDTO) {
+			list.add(this.SIRewardsYOYGraphDTOtoChartData(item));
 		}
 		
 		return list;
@@ -208,6 +340,53 @@ public class MappingServiceImpl {
 		return chartData;
 	}
 	
+	public ChartData MapMSERGraphDTOtoChartData(MSERGraphDTO MSERGraphDTO){
+		ChartData chartData = new ChartData();
+		
+		chartData.setName(MSERGraphDTO.getChild());
+		
+		List<ChartData> data = new ArrayList<ChartData>();
+		ChartData MoparParts , mvp, MagnetiMarelli, PartsCounter, ExpressLane, wiAdvisor, uConnect;
+		
+		MoparParts = new ChartData("Mopar Parts", 0);
+		mvp = new ChartData("MVP",0);
+		MagnetiMarelli = new ChartData("Magneti Marelli",0);
+		PartsCounter = new ChartData("Part Counter", 0);
+		wiAdvisor = new ChartData("wiAdvisor", 0);
+		ExpressLane = new ChartData("Express Lane", 0);
+		uConnect = new ChartData("uConnect", 0);
+		
+		if(MSERGraphDTO.getProgram().equals("Express Lane")){
+			ExpressLane.setValue(MSERGraphDTO.getAmount());
+    	}else if(MSERGraphDTO.getProgram().equals("Magneti Marelli")){
+    		MagnetiMarelli.setValue(MSERGraphDTO.getAmount());
+    	}else if(MSERGraphDTO.getProgram().equals("Mopar Parts")){
+    		MoparParts.setValue(MSERGraphDTO.getAmount());
+    	}else if(MSERGraphDTO.getProgram().equals("MVP")){
+    		mvp.setValue(MSERGraphDTO.getAmount());
+    	}else if(MSERGraphDTO.getProgram().equals("Part Counter")){
+    		PartsCounter.setValue(MSERGraphDTO.getAmount());
+    	}else if(MSERGraphDTO.getProgram().equals("wiAdvisor")){
+    		wiAdvisor.setValue(MSERGraphDTO.getAmount());
+    	}else if(MSERGraphDTO.getProgram().equals("uConnect")){
+    		uConnect.setValue(MSERGraphDTO.getAmount());
+    	}
+		
+		
+		
+		data.add(MoparParts);
+		data.add(mvp);
+		data.add(MagnetiMarelli);
+		data.add(PartsCounter);
+		data.add(wiAdvisor);
+		data.add(ExpressLane);
+		data.add(uConnect);
+		
+		chartData.setData(data);
+		
+		return chartData;
+	}
+	
 	public ChartData MapTTTAEnrolledDTOtoChartData(TTTAEnrolledDTO TTTAEnrolledDTO){
 		ChartData chartData = new ChartData();
 		
@@ -235,7 +414,28 @@ public class MappingServiceImpl {
 	public ChartData BrainBoostWinndersGraphDTOtoChartDataWinners(BrainBoostWinndersGraphDTO BrainBoostWinndersGraphDTO){
 		ChartData chartData = new ChartData();		
 		chartData.setName(BrainBoostWinndersGraphDTO.getParentTerritory());
-		chartData.setValue(Double.parseDouble(BrainBoostWinndersGraphDTO.getWinners()));
+		chartData.setValue(BrainBoostWinndersGraphDTO.getWinners());
+		return chartData;
+	}
+	
+	public ChartData SIRewardsDetailsGraphDTOtoChartDataProjected(SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO){
+		ChartData chartData = new ChartData();		
+		chartData.setName(SIRewardsDetailsGraphDTO.getParentTerritory());
+		chartData.setValue(SIRewardsDetailsGraphDTO.getProjectedEarnings());
+		return chartData;
+	}
+	
+	public ChartData SIRewardsDetailsGraphDTOtoChartDataAverageScore(SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO){
+		ChartData chartData = new ChartData();		
+		chartData.setName(SIRewardsDetailsGraphDTO.getParentTerritory());
+		chartData.setValue(SIRewardsDetailsGraphDTO.getAvgSurveyScore());
+		return chartData;
+	}
+	
+	public ChartData RewardRedemptionGraphDTOtoChartDataEarnedPoints(RewardRedemptionGraphDTO RewardRedemptionGraphDTO){
+		ChartData chartData = new ChartData();		
+		chartData.setName(RewardRedemptionGraphDTO.getParentTerritory());
+		chartData.setValue(RewardRedemptionGraphDTO.getEarnedPoints());
 		return chartData;
 	}
 	
@@ -247,10 +447,10 @@ public class MappingServiceImpl {
 		chartData.setName(BrainBoostWinndersGraphDTO.getParentTerritory());
 		
 		excellenceCard.setName("Excellence Card");
-		excellenceCard.setValue(Double.parseDouble(BrainBoostWinndersGraphDTO.getEarnings()));
+		excellenceCard.setValue(BrainBoostWinndersGraphDTO.getEarnings());
 		
 		awardPoints.setName("Award Points");
-		awardPoints.setValue(Double.parseDouble(BrainBoostWinndersGraphDTO.getPoints()));
+		awardPoints.setValue(BrainBoostWinndersGraphDTO.getPoints());
 		
 		chartData.addData(excellenceCard);
 		chartData.addData(awardPoints);
@@ -261,14 +461,14 @@ public class MappingServiceImpl {
 	public ChartData CertProfsExpertGraphDTOtoChartDataTotalPoints(CertProfsExpertGraphDTO CertProfsExpertGraphDTO){
 		ChartData chartData = new ChartData();		
 		chartData.setName(CertProfsExpertGraphDTO.getParentTerritory());
-		chartData.setValue(Double.parseDouble(CertProfsExpertGraphDTO.getTotalPoints()));
+		chartData.setValue(CertProfsExpertGraphDTO.getTotalPoints());
 		return chartData;
 	}
 	
 	public ChartData CertProfsExpertGraphDTOtoChartDataCert(CertProfsExpertGraphDTO CertProfsExpertGraphDTO){
 		ChartData chartData = new ChartData();		
 		chartData.setName(CertProfsExpertGraphDTO.getCertType());
-		chartData.setValue(Double.parseDouble(CertProfsExpertGraphDTO.getCert()));
+		chartData.setValue(CertProfsExpertGraphDTO.getCert());
 		return chartData;
 	}
 	
@@ -294,6 +494,71 @@ public class MappingServiceImpl {
 		chartData.addData(masterCertified);
 		
 		chartData.setName(CertProfsWinnersGraphDTO.getParentTerritory());
+		return chartData;
+	}
+	
+	public ChartData CustomerFirstGraphDTOtoChartData(CustomerFirstGraphDTO CustomerFirstGraphDTO){
+		ChartData chartData = new ChartData();
+		ChartData certified = new ChartData();
+		ChartData certifiedSpacialist = new ChartData();
+		ChartData voe = new ChartData();
+		ChartData training = new ChartData();
+		ChartData facility = new ChartData();
+		ChartData masterCertified = new ChartData();
+		ChartData CFAFEAwardCertification = new ChartData();
+		
+		chartData.setName(CustomerFirstGraphDTO.getChildTerritory());
+		
+		certified.setName("Level 0");
+		certified.setValue(CustomerFirstGraphDTO.getNoCertification());
+		
+		certifiedSpacialist.setName("Performance");
+		certifiedSpacialist.setValue(CustomerFirstGraphDTO.getPerformance());
+		
+		masterCertified.setName("Process");
+		masterCertified.setValue(CustomerFirstGraphDTO.getProcess());
+		
+		voe.setName("Voice of Employee");
+		voe.setValue(CustomerFirstGraphDTO.getVoiceofEmployee());
+		
+		training.setName("Training");
+		training.setValue(CustomerFirstGraphDTO.getTraining());
+		
+		facility.setName("Facility");
+		facility.setValue(CustomerFirstGraphDTO.getFacility());
+		
+		CFAFEAwardCertification.setName("CFAFE Award Certification");
+		CFAFEAwardCertification.setValue(CustomerFirstGraphDTO.getFacility());
+		
+		
+		chartData.addData(certified);
+		chartData.addData(certifiedSpacialist);
+		chartData.addData(masterCertified);
+		chartData.addData(voe);
+		chartData.addData(training);
+		chartData.addData(facility);
+		chartData.addData(CFAFEAwardCertification);
+		
+		return chartData;
+	}
+	
+	public ChartData SIRewardsYOYGraphDTOtoChartData(SIRewardsYOYGraphDTO SIRewardsYOYGraphDTO){
+		ChartData chartData = new ChartData();
+		ChartData certified = new ChartData();
+		ChartData certifiedSpacialist = new ChartData();
+		
+		chartData.setName(SIRewardsYOYGraphDTO.getParentTerritory());
+		
+		certified.setName("2016");
+		certified.setValue(SIRewardsYOYGraphDTO.getEarnings2016YTD());
+		
+		certifiedSpacialist.setName("2017");
+		certifiedSpacialist.setValue(SIRewardsYOYGraphDTO.getEarnings2017YTD());
+		
+		chartData.addData(certified);
+		chartData.addData(certifiedSpacialist);
+		
+		chartData.setName(SIRewardsYOYGraphDTO.getParentTerritory());
 		return chartData;
 	}
 	

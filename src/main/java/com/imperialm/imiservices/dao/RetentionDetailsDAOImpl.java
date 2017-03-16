@@ -24,7 +24,7 @@ public class RetentionDetailsDAOImpl implements RetentionDetailsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RetentionDetailsDTO> getRetentionDetails(int dealersCode) {		
+	public List<RetentionDetailsDTO> getRetentionDetails(String dealersCode) {		
 		
 		List<RetentionDetailsDTO> result = new ArrayList<RetentionDetailsDTO>();
 

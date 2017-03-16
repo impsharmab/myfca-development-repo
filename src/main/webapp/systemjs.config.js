@@ -36,7 +36,7 @@
       '@angular/upgrade/static': 'npm:@angular/upgrade/bundles/upgrade-static.umd.js',
       // other libraries
       'angular2-highcharts': 'npm:angular2-highcharts',
-
+      'angular-datatables':'npm:angular-datatables',
       'highcharts': 'npm:highcharts',
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
@@ -46,7 +46,14 @@
     packages: {
       app: {
       	main: './main.js',
-        defaultExtension: 'js'
+        defaultExtension: 'js',
+           "styles": [
+        "../node_modules/datatables.net-dt/css/jquery.dataTables.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/datatables.net/js/jquery.dataTables.js"
+      ]
       },
       rxjs: {
         defaultExtension: 'js'

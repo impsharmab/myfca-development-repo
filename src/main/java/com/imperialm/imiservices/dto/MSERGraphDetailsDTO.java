@@ -1,20 +1,25 @@
 package com.imperialm.imiservices.dto;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
-public class MSERGraphDetailsDTO {
-	  private String DealerCode;
-	  private String DealerName;
-	  private String SID;
-	  private String Name;
-	  private String PositionCode;
-	  private String Program;
-	  private String ProgramGroup;
-	  private double EarningsMTD;
-	  private double EarningsYTD;
-	  private int DealersEnrolled;
-	  private int ParticipantsEnrolled;
-	  private String error;
+@Entity @Getter @Setter
+public class MSERGraphDetailsDTO implements Serializable{
+	  @Id private String DealerCode;
+	  @Id private String DealerName;
+	  @Id private String SID;
+	  @Id private String Name;
+	  @Id private String PositionCode;
+	  @Id private String Program;
+	  @Id private String ProgramGroup;
+	  @Id private double EarningsMTD;
+	  @Id private double EarningsYTD;
+	  @Id private int DealersEnrolled;
+	  @Id private int ParticipantsEnrolled;
+	  @Id private String error;
 }

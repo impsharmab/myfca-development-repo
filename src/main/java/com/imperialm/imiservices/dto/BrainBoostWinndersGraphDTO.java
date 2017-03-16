@@ -15,12 +15,13 @@ public class BrainBoostWinndersGraphDTO implements Serializable {
 	@Id
 	private String childTerritory;
 	@Id
-	private String points;
+	private int points;
 	@Id
-	private String partcipants;
+	private int partcipants;
 	@Id
-	private String winners;
+	private int winners;
 	@Id
-	private String earnings;
+	private int earnings;
+	@Id
 	private String error;
 }

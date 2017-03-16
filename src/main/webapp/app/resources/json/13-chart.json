@@ -4,6 +4,8 @@
   "yaxisTitle": "",
   "xaxisTitle": "",
   "type": "column_compound",
+  "unit":"",
+  "avarage":true,
   "data": [
     {
       "name": "CA",

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
+import {DashboardBodyComponent} from "../dashboard-body/dashboard-body.component"
 @Component({
     moduleId: module.id,
     selector: '',
@@ -14,7 +14,7 @@ export class RootPageComponent implements OnInit {
     private userdata: any = {};
     private menu: any;
     private banners: any;
-
+    @ViewChild("bodyContent") bodyContent:DashboardBodyComponent;
     constructor(private router: Router, private http: Http) {
     }
     ngOnInit() {

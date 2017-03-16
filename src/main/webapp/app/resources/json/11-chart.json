@@ -4,6 +4,8 @@
   "yaxisTitle": "Total Numbers",
   "xaxisTitle": "",
   "type": "column_compound",
+  "unit":" ",
+  "average":true,
   "data": [
     {
       "name": "CA",

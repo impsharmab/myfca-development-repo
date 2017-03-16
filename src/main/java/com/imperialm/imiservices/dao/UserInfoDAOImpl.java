@@ -26,9 +26,6 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@Override
 	public List<UserInfoDTO> getUserInfo(String userId) {
 		List<UserInfoDTO> result = new ArrayList<UserInfoDTO>();
-
-		UserInfoDTO UserInfoDTO = null;
-		
 		try {
 			final Query query = this.em.createNativeQuery(GET_USERINFO, UserInfoDTO.class);
 			query.setParameter(1, userId);
@@ -36,15 +33,9 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 			List<UserInfoDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			UserInfoDTO = new UserInfoDTO();
-			UserInfoDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(UserInfoDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getExpertPointsEarned", ex);
-			UserInfoDTO = new UserInfoDTO();
-			UserInfoDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(UserInfoDTO);
 		}
 		return result;
 	}

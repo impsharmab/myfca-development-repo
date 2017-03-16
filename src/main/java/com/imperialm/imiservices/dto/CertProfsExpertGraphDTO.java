@@ -17,14 +17,14 @@ public class CertProfsExpertGraphDTO implements Serializable {
 	@Id
 	private String certType;
 	@Id
-	private String cert;
+	private int cert;
 	@Id
-	private String points;
+	private int points;
 	@Id
-	private String totalPoints;
+	private int totalPoints;
 	@Id
-	private String bCPointRank;
+	private int bCPointRank;
 	@Id
-	private String nATPointRank;
-	private String error;
+	private int nATPointRank;
+	@Id private String error;
 }

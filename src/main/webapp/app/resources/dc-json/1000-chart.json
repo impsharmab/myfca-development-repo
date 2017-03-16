@@ -1,0 +1,11 @@
+{
+    "title": "BC Total Earnings YTD",
+    "subTitle": "chart sub-title",
+    "xaxisTitle": "Total Earnings",
+    "yaxisTitle": "y-axis title",
+    "type": "pie",
+    "unit": "$",
+    "avarage": true,
+    "customer_first": true,
+    "data": []
+}

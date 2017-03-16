@@ -33,15 +33,9 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 			List<CertProfsExpertGraphDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			CertProfsExpertGraphDTO = new CertProfsExpertGraphDTO();
-			CertProfsExpertGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(CertProfsExpertGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getExpertPointsEarned", ex);
-			CertProfsExpertGraphDTO = new CertProfsExpertGraphDTO();
-			CertProfsExpertGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(CertProfsExpertGraphDTO);
 		}
 		return result;
 	}
@@ -57,15 +51,116 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 			List<CertProfsExpertGraphDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			CertProfsExpertGraphDTO = new CertProfsExpertGraphDTO();
-			CertProfsExpertGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(CertProfsExpertGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getParticipantCompletedByProgram", ex);
-			CertProfsExpertGraphDTO = new CertProfsExpertGraphDTO();
-			CertProfsExpertGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(CertProfsExpertGraphDTO);
+		}
+		return result;
+	}
+
+	@Override
+	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritory(List<String> filters) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_POINTS_BY_CHILD_TERRITORY, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getExpertPointsEarnedByChildTerritory", ex);
+		}
+		return result;
+	}
+	
+	@Override
+	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritoryAsParent(List<String> filters) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+
+		CertProfsExpertGraphDTO CertProfsExpertGraphDTO = null;
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_POINTS_BY_CHILD_TERRITORY_AS_PARENT, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getExpertPointsEarnedByChildTerritory", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritory(List<String> filters) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getParticipantCompletedByProgramByChildTerritory", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritoryAndCertType(
+			List<String> filters, String certType) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+
+		CertProfsExpertGraphDTO CertProfsExpertGraphDTO = null;
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY_AND_CERT_TYPE, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			query.setParameter(1, certType);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getParticipantCompletedByProgramByChildTerritoryAndCertType", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByParentTerritory(List<String> filters) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getExpertPointsEarnedByParentTerritory", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByParentTerritorySum(List<String> filters) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_SUM, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getExpertPointsEarnedByParentTerritorySum", ex);
 		}
 		return result;
 	}

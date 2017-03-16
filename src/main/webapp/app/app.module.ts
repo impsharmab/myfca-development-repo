@@ -14,22 +14,25 @@ import { RootPageComponent } from './components/root-page/root-page.component';
 import { AppRoutingModule } from './components/routes/app.routes';
 import { HeaderComponent } from './components/header/header.component'
 import { FooterComponent } from './components/footer/footer.component'
-import { BodyComponent } from './components/body/body.component'
+import { DashboardBodyComponent } from './components/dashboard-body/dashboard-body.component'
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoginComponent } from "./components/login/login.component";
-import { NgbdModalContent } from "./components/body/body.component.modal";
+import { NgbdModalContent } from "./components/dashboard-body/dashboard-body.component.modal";
 import { BannerComponent } from "./components/banner/banner.component";
 import { AdminComponent } from "./components/admin/admin.component";
-import { AdminRootPageComponent } from "./components/admin/admin-rootpage.component"
+import { AdminRootPageComponent } from "./components/admin/admin-rootpage.component";
+import {TableComponent} from "./components/table/table.component";
+import { PositionCodeComponent } from "./components/positioncode/positioncode.component";
 
 
 //importing services
-import { BodyService } from "./services/body-services/body.service"
+import { DashboardBodyService } from "./services/dashboard-body-services/dashboard-body.service"
 import { FooterService } from "./services/footer-services/footer.service"
 import { HeaderService } from "./services/header-services/header.service"
 import { LoginService } from "./services/login-services/login.service"
 import { BannerService } from "./services/banner-services/banner.service"
 import { AdminService } from "./services/admin-services/admin.service"
+import { PositionCodeService } from "./services/positioncode-services/positioncode.service"
 
 @NgModule({
     imports: [
@@ -43,27 +46,30 @@ import { AdminService } from "./services/admin-services/admin.service"
     ],
 
     providers: [
-        BodyService,
+        DashboardBodyService,
         FooterService,
         HeaderService,
         LoginService,
         NgbActiveModal,
         BannerService,
-        AdminService
-        ],
+        AdminService,
+        PositionCodeService
+    ],
 
     declarations: [
         AppComponent,
         LoginComponent,
         HeaderComponent,
         FooterComponent,
-        BodyComponent,
+        DashboardBodyComponent,
         RootPageComponent,
         SpinnerComponent,
         NgbdModalContent,
         BannerComponent,
         AdminComponent,
-        AdminRootPageComponent
+        AdminRootPageComponent,
+        TableComponent,
+        PositionCodeComponent
     ],
 
     bootstrap: [AppComponent]

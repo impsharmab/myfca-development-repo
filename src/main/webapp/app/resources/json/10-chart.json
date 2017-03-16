@@ -4,6 +4,8 @@
   "yaxisTitle": "Total Numbers",
   "xaxisTitle": "Business Center",
   "type": "column",
+  "unit":"",
+  "average":true,
   "data": [
     {
       "name": "CA",

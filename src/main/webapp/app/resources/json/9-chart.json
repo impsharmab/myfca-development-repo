@@ -4,6 +4,8 @@
   "yaxisTitle": "Total Winners",
   "xaxisTitle": "Business Center",
   "type": "column",
+  "unit":"$",
+  "average":false,
   "data": [
     {
       "name": "CA",

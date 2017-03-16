@@ -19,7 +19,6 @@ var LoginComponent = (function () {
         this.http = http;
         this.sampleUsers = [];
         this.userdata = {};
-        this.log = false;
         this.responseUserdata = {
             "data": {
                 "token": "",
@@ -37,12 +36,18 @@ var LoginComponent = (function () {
     LoginComponent.prototype.login = function (username, password) {
         var _this = this;
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
-            resUserData = _this.userdata = (resUserData);
+            _this.userdata = (resUserData);
             // alert(resUserData["userID"]);
-            if (resUserData["token"] !== null) {
-                _this.userdata["token"] = resUserData["token"];
-                // this.userdata["name"] = resUserData["name"];
+            if (resUserData["token"].length > 0) {
                 _this.loginService.setUserData(_this.userdata);
+                var poscodes = _this.userdata.positionCode;
+                var delcodes = _this.userdata.dealerCode;
+                //var poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+                // var delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+                sessionStorage.setItem("selectedCodeData", JSON.stringify({
+                    "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                    "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                }));
                 var url = ["myfcadashboard"];
                 _this.router.navigate(url);
             }

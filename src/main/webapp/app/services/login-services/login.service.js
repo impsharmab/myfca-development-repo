@@ -24,37 +24,20 @@ var LoginService = (function () {
         this.userdata = {};
     }
     LoginService.prototype.setUserData = function (userdata) {
+        sessionStorage.setItem("CurrentUser", "");
+        sessionStorage.removeItem('CurrentUser');
+        sessionStorage.removeItem('selectedCodeData');
         sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
     };
     LoginService.prototype.getUsersData = function () {
         return this.userdata;
     };
-    //     let headers = new Headers({ 'Content-Type': 'application/json' });
-    //     let options = new RequestOptions({ headers: headers });
-    //     return this.http.post(this.heroesUrl, { name }, options)
-    //                     .map(this.extractData)
-    //                     .catch(this.handleError);
-    //   }
     LoginService.prototype.getLoginResponse = function (username, password) {
-        var q_password = sha256(password);
-        //console.log("encrypted q_password: " + q_password)
-        // console.log("encrypted q_password: " + q_password) 
-        //  console.log("this.token :"+ this.validToken)       
-        var url = "/imiservices/login/token/";
-        var body = { "username": username, "password": password }; //"username:" + username +  "," + "password:" + password;
+        var url = "./login/token/";
+        var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        //     return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
-        //   //       return this.http.get(this.getLoginResponseUrl)
-        //         .map((response: Response) =>
-        //             response.json())
-        //         .catch(this.handleError);
-        // let headers = new Headers({ 'Content-Type': 'x-www-form-urlencoded' });
-        //let options = new RequestOptions({ headers: headers });
-        // return this.http.post(this.getBaseServiceUrl, body, { headers: headers })
-        // return this.http.post(url, body, { headers:headers })
-        // return this.http.post(url, body, { headers: headers })
-        return this.http.get(this.getLoginResponseUrl)
+        return this.http.post(url, body, { headers: headers })
             .map(function (response) {
             return response.json();
         })

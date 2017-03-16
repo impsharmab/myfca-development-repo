@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dao.UserProgramRolesDAO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 import com.imperialm.imiservices.entities.User;
 import com.imperialm.imiservices.security.JwtAuthenticationRequest;
 import com.imperialm.imiservices.security.JwtTokenUtil;
@@ -21,6 +24,8 @@ import com.imperialm.imiservices.services.UserService;
 import com.imperialm.imiservices.services.UserServiceImpl;
 
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.crypto.Mac;
 import javax.naming.AuthenticationException;
@@ -34,6 +39,9 @@ public class AuthenticationRestController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    
+    @Autowired
+    private UserPositionCodeRoleDAO userPositionCodeRoleDAO;
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
@@ -58,9 +66,27 @@ public class AuthenticationRestController {
         	throw new AuthenticationException("Failed to login");
         }*/
         final String token = jwtTokenUtil.generateToken(user);
-
+        List<UserPositionCodeRoleDTO> userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
+        
+        
+        List<String> positionCode = new ArrayList<String>();
+        List<String> dealerCode = new ArrayList<String>();
+        
+        for(UserPositionCodeRoleDTO item: userCodes){
+        	positionCode.add(item.getPositionCode());
+        	dealerCode.add(item.getDealerCode());
+        }
+        
+        
+        JwtAuthenticationResponse response =new JwtAuthenticationResponse(token);
+        response.setPositionCode(positionCode);
+        response.setDealerCode(dealerCode);
+        response.setName(user.getUsername());
+        if(user.getUserId().toLowerCase().equals("dave")){
+        	response.setAdmin(true);
+        }
         // Return the token
-        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+        return ResponseEntity.ok(response);
     }
 
     @RequestMapping(value = "/login/tokenrefresh", method = RequestMethod.GET)
