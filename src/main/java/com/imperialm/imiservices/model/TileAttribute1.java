@@ -10,6 +10,8 @@ public class TileAttribute1 {
 	private String name;
 	private String value;
 	private String type;
+	private String badgeUrl = "";
+	private String badgeTitle = "";
 	
 	@JsonProperty("Order")
 	private String Order;

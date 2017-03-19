@@ -1,5 +1,5 @@
-<title>MyFcaDashboard </title>
-<app-header [data]="userdata"></app-header>
+<title>MyFcaDashboard  </title>
+<app-header [data]="userdata" (onProfileChange)="onProfileChange()">header .... </app-header>
 <app-banner></app-banner>
-<app-content #bodyContent></app-content>
-<app-footer></app-footer>
+<app-content #bodyContent >content ....</app-content>
+<app-footer>footer ... </app-footer>

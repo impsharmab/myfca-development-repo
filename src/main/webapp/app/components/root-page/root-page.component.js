@@ -23,6 +23,10 @@ var RootPageComponent = (function () {
         this.userdata = JSON.parse(sessionStorage.getItem("CurrentUser"));
         this.tilesArray = JSON.parse(sessionStorage.getItem("tiles"));
     };
+    RootPageComponent.prototype.onProfileChange = function () {
+        alert();
+        this.bodyContent.reload();
+    };
     return RootPageComponent;
 }());
 __decorate([

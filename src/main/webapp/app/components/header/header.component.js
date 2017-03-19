@@ -25,15 +25,21 @@ var HeaderComponent = (function () {
         this.delcodes = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
         this.booleanAdmin = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
     }
+    HeaderComponent.prototype.positionCodeCancel = function () {
+    };
+    HeaderComponent.prototype.positionCodeSubmit = function () {
+        alert("1");
+        this.profileChange.emit("");
+    };
     HeaderComponent.prototype.ngOnInit = function () {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
     };
     HeaderComponent.prototype.contactUs = function () {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
     };
-    HeaderComponent.prototype.profileChangeEvent = function (value) {
-        this.profileChange.emit(value);
-    };
+    // private profileChangeEvent(value: any) {
+    //     this.profileChange.emit(value);
+    // }
     HeaderComponent.prototype.logout = function () {
         sessionStorage.removeItem('CurrentUser');
         sessionStorage.removeItem('selectedCodeData');
@@ -45,6 +51,10 @@ var HeaderComponent = (function () {
         var adminUrl = ["admin"];
         this.router.navigate(adminUrl);
     };
+    HeaderComponent.prototype.dashboardPage = function () {
+        var dashboardUrl = ["myfcadashboard"];
+        this.router.navigate(dashboardUrl);
+    };
     HeaderComponent.prototype.dropdownPositionCode = function () {
         this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' });
     };
@@ -55,7 +65,7 @@ __decorate([
     __metadata("design:type", Object)
 ], HeaderComponent.prototype, "data", void 0);
 __decorate([
-    core_1.Output(),
+    core_1.Output("onProfileChange"),
     __metadata("design:type", Object)
 ], HeaderComponent.prototype, "profileChange", void 0);
 __decorate([

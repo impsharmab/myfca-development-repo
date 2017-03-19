@@ -162,8 +162,33 @@ public class DashboardServiceImpl {
 		 return this.MSERGraphDetailsDAO.getDealersCountWithPercentage();
 	}
 	
+	public TotalName getMSERDealersCountByBCOrDistrict(String territory){
+		 return this.MSERGraphDetailsDAO.getMSERDealersCountByBCOrDistrict(territory);
+	}
+	
+	public TotalName getMSEREarningsYTDByBCOrDistrict(String territory){
+		 return this.MSERGraphDetailsDAO.getMSEREarningsYTDByBCOrDistrict(territory);
+	}
+	
+	public TotalName getMSEREarningsMTDByBCOrDistrict(String territory){
+		 return this.MSERGraphDetailsDAO.getMSEREarningsMTDByBCOrDistrict(territory);
+	}
+	
+	public TotalName getMSERParticipantEnrolledByDealerCode(String dealerCode){
+		 return this.MSERGraphDetailsDAO.getMSERParticipantEnrolledByDealerCode(dealerCode);
+	}
+	
+	
 	public TotalName getYTDByProgramAndProgramgroup(String name, String program, String programgroup){
 		 return this.MSERGraphDetailsDAO.getYTDByProgramAndProgramgroup(name, program, programgroup);
+	}
+	
+	public TotalName getParticipantExcellanceCardAwardMTD(String sid){
+		 return this.MSERGraphDetailsDAO.getParticipantExcellanceCardAwardMTD(sid);
+	}
+	
+	public TotalName getParticipantExcellanceCardAwardYTD(String sid){
+		 return this.MSERGraphDetailsDAO.getParticipantExcellanceCardAwardYTD(sid);
 	}
 	
 	public List<BrainBoostWinndersGraphDTO> getBrainBoostGraphBCData(boolean filter){
@@ -187,7 +212,7 @@ public class DashboardServiceImpl {
 	}
 	
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOByDealerCode(String dealerCode, String toggle){
-		 return this.BrainBoostWinnersDetailsDAO.getBrainBoostWinnersDetailsBySID(dealerCode, toggle);
+		 return this.BrainBoostWinnersDetailsDAO.getBrainBoostWinnersDetailsByDealerCode(dealerCode, toggle);
 	}
 	
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOSUMByDealerCode(String dealerCode, String toggle){

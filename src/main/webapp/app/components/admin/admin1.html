@@ -1,0 +1,6 @@
+<template ngFor [ngForOf]="accordionData" let-book>
+      <div>{{book.name}}</div>
+      <li *ngFor="let chapter of book.chapter">
+        {{chapter.name}}
+      </li>
+    </template>

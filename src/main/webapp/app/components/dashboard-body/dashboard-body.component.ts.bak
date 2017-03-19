@@ -104,23 +104,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   constructor(private service: DashboardBodyService, private modalService: NgbModal) {
     this.initializeContent();
   }
-reload(){
-     this.tilesArray=[]; 
-    this.contentBody = {};
-    this.tableData = {
-      "buttonName": "",
-      "title": "",
-      "tableData": []
-    };
-    this.unitAndAverage = {}
-    this.showPieButton = {}
-    this.bc
-    this.totalCount = 0;
-    this.avarage = 0;
-    this.pieButtons = {};
-    this.chartRawData = {};
-     this.initializeContent();
-  }
   initializeContent() {
     this.service.getNumberOfTiltes().subscribe(
       (resUserData) => {

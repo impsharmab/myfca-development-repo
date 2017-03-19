@@ -46,6 +46,7 @@ import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
+import com.imperialm.imiservices.model.TileAttribute1;
 import com.imperialm.imiservices.model.TopTenChart;
 import com.imperialm.imiservices.model.TopTenDataTable;
 import com.imperialm.imiservices.model.TopTenTableData;
@@ -248,17 +249,18 @@ public class DashboardController {
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 			}
 				
+				TotalName dealerscount = this.dashService.getMSEREnrolledDealersCount();
+				dealerscount.setTotal(this.formatCurrency(Integer.parseInt(dealerscount.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+				
 			}
 			
 			
 			if(type.equals("BC")){
-				List<String> bcList = this.dashService.getBCByDealerCode(dealerCode);
-				if(bcList.size() == 0){
-					return topTenChart;
-				}
-				String bc = bcList.get(0);
-				List<MSERGraphDTO> MSERGraphDTOListYTD = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(bc, "YTD");
-				List<MSERGraphDTO> MSERGraphDTOListMTD = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(bc, "MTD");
+				
+				List<MSERGraphDTO> MSERGraphDTOListYTD = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(BC, "YTD");
+				List<MSERGraphDTO> MSERGraphDTOListMTD = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(BC, "MTD");
 				
 				if(MSERGraphDTOListYTD.size()>0){
 					MSERGraphDTO MSERGraphDTO = MSERGraphDTOListYTD.get(0);
@@ -293,12 +295,14 @@ public class DashboardController {
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 			}
 				
+				TotalName dealerscount = this.dashService.getMSERDealersCountByBCOrDistrict(BC+"%");
+				dealerscount.setTotal(this.formatCurrency(Integer.parseInt(dealerscount.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+				
 			}
 			
-			TotalName dealerscount = this.dashService.getMSEREnrolledDealersCount();
 			
-			
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 			
 			return topTenChart;
 		}
@@ -578,7 +582,8 @@ public class DashboardController {
 			
 			topTenChart.setDatatable(datatable);*/
 			
-			TotalName dealerscount = this.dashService.getDealersCountWithPercentage();
+			TotalName dealerscount = this.dashService.getMSEREnrolledDealersCount();
+			dealerscount.setTotal(this.formatCurrency(Integer.parseInt(dealerscount.getTotal())));
 			
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 			
@@ -749,13 +754,28 @@ public class DashboardController {
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
 			for(CertProfsExpertGraphDTO item: unfiltereList){
 				if(!filters.contains(item.getChildTerritory())){
-					filters.add(item.getChildTerritory());
+					if(type.equals("BC")){
+						//get users BC
+						if(item.getChildTerritory().contains(BC)){
+							filters.add(item.getChildTerritory());
+						}
+					}else{
+						filters.add(item.getChildTerritory());
+					}
 				}
 				if(!map.containsKey(item.getParentTerritory())){
 					map.put(item.getParentTerritory(), new ArrayList<String>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				temp.add(item.getChildTerritory());
+				
+				if(type.equals("BC")){
+					//get users BC
+					if(item.getChildTerritory().contains(BC)){
+						temp.add(item.getChildTerritory());
+					}
+				}else{
+					temp.add(item.getChildTerritory());
+				}
 				map.put(item.getParentTerritory(), temp);
 			}
 			
@@ -793,6 +813,8 @@ public class DashboardController {
 					}
 				}
 	        	
+				
+				
 	        	/*if(item.getCertType().contains("JEEP")){
 					mapValues.put(item.getParentTerritory(), (double)item.getCert());
 	        	}else if(item.getCertType().contains("RAM")){
@@ -978,7 +1000,14 @@ public class DashboardController {
 			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap3 = new HashMap<String, List<ChartData>>();
 			for(CertProfsWinnersGraphDTO item: listBC_unfiltered){
-				filters.add(item.getChildTerritory());
+				if(type.equals("BC")){
+					//get users BC
+					if(item.getChildTerritory().contains(BC)){
+						filters.add(item.getChildTerritory());
+					}
+				}else{
+					filters.add(item.getChildTerritory());
+				}
 				if(!map.containsKey(item.getParentTerritory())){
 					map.put(item.getParentTerritory(), new ArrayList<String>());
 					//chartsMap.put(item.getParentTerritory(), new ArrayList<ChartData>());
@@ -986,7 +1015,14 @@ public class DashboardController {
 					//chartsMap3.put(item.getParentTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				temp.add(item.getChildTerritory());
+				if(type.equals("BC")){
+					//get users BC
+					if(item.getChildTerritory().contains(BC)){
+						temp.add(item.getChildTerritory());
+					}
+				}else{
+					temp.add(item.getChildTerritory());
+				}
 				map.put(item.getParentTerritory(), temp);
 			}
 			List<CertProfsWinnersGraphDTO> sublist = this.dashService.getCertProfsWinnersGraphAllDistricData(filters);
@@ -1300,7 +1336,14 @@ public class DashboardController {
 							chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 						}
 						List<String> temp = map.get(item.getChildTerritory());
-						temp.add(item.getChildTerritory());
+						if(type.equals("BC")){
+							//get users BC
+							if(item.getChildTerritory().contains(BC)){
+								temp.add(item.getChildTerritory());
+							}
+						}else{
+							temp.add(item.getChildTerritory());
+						}
 						map.put(item.getParentTerritory(), temp);
 						
 					}
@@ -1403,7 +1446,14 @@ public class DashboardController {
 							chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 						}
 						List<String> temp = map.get(item.getChildTerritory());
-						temp.add(item.getChildTerritory());
+						if(type.equals("BC")){
+							//get users BC
+							if(item.getChildTerritory().contains(BC)){
+								temp.add(item.getChildTerritory());
+							}
+						}else{
+							temp.add(item.getChildTerritory());
+						}
 						map.put(item.getParentTerritory(), temp);
 						
 					}
@@ -1458,7 +1508,14 @@ public class DashboardController {
 							chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 						}
 						List<String> temp = map.get(item.getChildTerritory());
-						temp.add(item.getChildTerritory());
+						if(type.equals("BC")){
+							//get users BC
+							if(item.getChildTerritory().contains(BC)){
+								temp.add(item.getChildTerritory());
+							}
+						}else{
+							temp.add(item.getChildTerritory());
+						}
 						map.put(item.getParentTerritory(), temp);
 						
 					}
@@ -1513,7 +1570,14 @@ public class DashboardController {
 							chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 						}
 						List<String> temp = map.get(item.getChildTerritory());
-						temp.add(item.getChildTerritory());
+						if(type.equals("BC")){
+							//get users BC
+							if(item.getChildTerritory().contains(BC)){
+								temp.add(item.getChildTerritory());
+							}
+						}else{
+							temp.add(item.getChildTerritory());
+						}
 						map.put(item.getParentTerritory(), temp);
 						
 					}
@@ -1550,9 +1614,9 @@ public class DashboardController {
 			bal.setName("Balance");
 			redeemed.setName("Redeemed Points");
 			earned.setName("Earned Points");
-			bal.setTotal(RewardRedemptionDetails.get(0).getBalancePoints() + "pt");
-			earned.setTotal(RewardRedemptionDetails.get(0).getEarnedPoints() + "pt");
-			redeemed.setTotal(RewardRedemptionDetails.get(0).getRedeemedPoints() + "pt");
+			bal.setTotal(this.formatCurrency(RewardRedemptionDetails.get(0).getBalancePoints()) + "pt");
+			earned.setTotal(this.formatCurrency(RewardRedemptionDetails.get(0).getEarnedPoints()) + "pt");
+			redeemed.setTotal(this.formatCurrency(RewardRedemptionDetails.get(0).getRedeemedPoints()) + "pt");
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
@@ -1904,7 +1968,7 @@ public class DashboardController {
 			}*/
 			List<String> filters = new ArrayList<String>(Arrays.asList("CA","DN","GL","MA","MW","NE","SE","SW","WE"));
 			//main chart model
-			Chart chart = new Chart("Retention % By Employee Type", "", "Retention Rate", "", "bar_compound");
+			Chart chart = new Chart("Retention % By Employee Type", "", "Retention Rate", "", "column_stack");
 			
 			//Create first level of the chart
 			//Get Distinct program names
@@ -1978,18 +2042,25 @@ public class DashboardController {
 					//chartsMap3.put(item.getParentTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				temp.add(item.getChildTerritory());
+				if(type.equals("BC")){
+					//get users BC
+					if(item.getChildTerritory().contains(BC)){
+						temp.add(item.getChildTerritory());
+					}
+				}else{
+					temp.add(item.getChildTerritory());
+				}
 				map.put(item.getParentTerritory(), temp);
 			}
 			//List<CustomerFirstGraphDTO> sublist = this.dashService.getCustomerFirstGraphByParentTerritoryAndToggle(filters, "Total");
 			
 			
-			Chart chart = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Total", "column_stack");
-			Chart chart2 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Total", "column_stack");
-			Chart chart3 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Total", "column_stack");
-			Chart chart4 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Total", "column_stack");
-			Chart chart5 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Total", "column_stack");
-			Chart chart6 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Total", "column_stack");
+			Chart chart = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Pillars QTD", "column_stack");
+			Chart chart2 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Pillars QTD", "column_stack");
+			Chart chart3 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Pillars QTD", "column_stack");
+			Chart chart4 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Pillars QTD", "column_stack");
+			Chart chart5 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Pillars QTD", "column_stack");
+			Chart chart6 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Pillars QTD", "column_stack");
 			//Chart chart7 = this.mappingService.CustomerFirstGraphDTOtoChart(listBC, "Customer First Pillars Completed QTD", "", "", "Total", "column_stack");
 
 			Map<String, Double> mapValues = new HashMap<String, Double>();
@@ -2218,7 +2289,14 @@ public class DashboardController {
 					//chartsMap3.put(item.getParentTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				temp.add(item.getChildTerritory());
+				if(type.equals("BC")){
+					//get users BC
+					if(item.getChildTerritory().contains(BC)){
+						temp.add(item.getChildTerritory());
+					}
+				}else{
+					temp.add(item.getChildTerritory());
+				}
 				map.put(item.getParentTerritory(), temp);
 			}
 			//List<CustomerFirstGraphDTO> sublist = this.dashService.getCustomerFirstGraphByParentTerritoryAndToggle(filters, "Total");
@@ -2456,48 +2534,72 @@ public class DashboardController {
 		switch(id){
 		case "2":
 		{
-			//This is for executive + business Center
-			//set datatables
-			//List<MSERTopNDTO> listAdvisors = this.dashService.getMSERTopTen("TOP SA", 10, null, null);
-			//List<MSERTopNDTO> listTechnicians = this.dashService.getMSERTopTen("TOP ST", 10, null, null);
-			
 			TopTenChart topTenChart = new TopTenChart();
-			/*TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians Excellence Card Awards"); //, "Excellence Card Awards - Top 5 Technicians"
-			TopTenDataTable datatableA = new TopTenDataTable("TOP 10 Advisors Excellence Card Awards");
-			List<TopTenTableData> tabledataA = new ArrayList<TopTenTableData>();
-			List<TopTenTableData> tabledataT = new ArrayList<TopTenTableData>();
-			
-			List<String> tableheaders = new ArrayList<String>();
-			//keeps this as example
-			tableheaders.add("Name");
-			tableheaders.add("Dealership");
-			tableheaders.add("BusinessCenter");
-			tableheaders.add("Total Awards");
-			
-			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 MTD Technicians Excellence Card Awards", tableheaders));
-			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 YTD Technicians Excellence Card Awards", tableheaders));
-			tabledataT.get(0).setTabName("MTD");
-			tabledataT.get(1).setTabName("YTD");
-			tabledataA.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listAdvisors, "Top 10 MTD Advisors Excellence Card Awards", tableheaders));
-			tabledataA.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listAdvisors, "Top 10 YTD Advisors Excellence Card Awards", tableheaders));
-			tabledataA.get(0).setTabName("MTD");
-			tabledataA.get(1).setTabName("YTD");
-			
-			datatableT.setData(tabledataT);
-			datatableA.setData(tabledataA);
-			
-			topTenChart.setTop10_advisors(datatableA);
-			topTenChart.setTop10_technicians(datatableT);
-			*/
-			//set attributes
-			TotalName dealerscount = this.dashService.getMSEREnrolledDealersCount();
-			TotalName mtd = this.dashService.getMTDByProgramAndProgramgroup("Excellence Cards Awards MTD", "", "");
-			TotalName ytd = this.dashService.getYTDByProgramAndProgramgroup("Excellence Cards Awards YTD", "", "");
-			
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
-			
+			if(type.equals("Participant")){
+				
+				TotalName mtd = this.dashService.getParticipantExcellanceCardAwardMTD(territory);
+				mtd.setTotal("$" + this.formatCurrency(Double.parseDouble(mtd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+				
+				
+				TotalName ytd = this.dashService.getParticipantExcellanceCardAwardYTD(territory);
+				ytd.setTotal("$" + this.formatCurrency(Double.parseDouble(ytd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
+				
+			}else if(type.equals("Dealer")){
+				
+				//MAKE ONEFO DEALER?
+				TotalName mtd = this.dashService.getParticipantExcellanceCardAwardMTD(user.getUserId().trim());
+				mtd.setTotal("$" + this.formatCurrency(Double.parseDouble(mtd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+				
+				
+				TotalName ytd = this.dashService.getParticipantExcellanceCardAwardYTD(user.getUserId().trim());
+				ytd.setTotal("$" + this.formatCurrency(Double.parseDouble(ytd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
+				
+				TotalName dealerscount = this.dashService.getMSERParticipantEnrolledByDealerCode(territory);
+				dealerscount.setTotal(this.formatCurrency(Integer.parseInt(dealerscount.getTotal())));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+				
+			}else if(type.equals("Manager")){
+				TotalName mtd = this.dashService.getParticipantExcellanceCardAwardMTD(user.getUserId().trim());
+				mtd.setTotal("$" + this.formatCurrency(Double.parseDouble(mtd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+				
+				
+				TotalName ytd = this.dashService.getParticipantExcellanceCardAwardYTD(user.getUserId().trim());
+				ytd.setTotal("$" + this.formatCurrency(Double.parseDouble(ytd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
+				
+				
+				TotalName dealerscount = this.dashService.getMSERParticipantEnrolledByDealerCode(territory);
+				dealerscount.setTotal(this.formatCurrency(Integer.parseInt(dealerscount.getTotal())));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+				
+			}else if(type.equals("District")){
+				
+				TotalName mtd = this.dashService.getMSEREarningsMTDByBCOrDistrict(territory);
+				mtd.setTotal("$" + this.formatCurrency(Double.parseDouble(mtd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+				
+				
+				TotalName ytd = this.dashService.getMSEREarningsYTDByBCOrDistrict(territory);
+				ytd.setTotal("$" + this.formatCurrency(Double.parseDouble(ytd.getTotal())));
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
+				
+				TotalName dealerscount = this.dashService.getMSERDealersCountByBCOrDistrict(territory);
+				dealerscount.setTotal(this.formatCurrency(Integer.parseInt(dealerscount.getTotal())));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+			}
 			return topTenChart;
 		}
 		case "3":
@@ -3388,15 +3490,24 @@ public class DashboardController {
 			if(CertProfsWinnersDetails.getMasterCertified() > 0){
 				cartificationLevel.setName("Certified Master");
 				cartificationLevel.setTotal(CertProfsWinnersDetails.getMasterCertified() + "");
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel);
+				tile.setBadgeTitle(tile.getName());
+				tile.setBadgeTitle("master certified.jpg");
+				topTenChart.addAttribute(tile);
 			}else if(CertProfsWinnersDetails.getCertifiedSpecalist() > 0){
 				cartificationLevel.setName("Certified Specialist");
 				cartificationLevel.setTotal(CertProfsWinnersDetails.getCertifiedSpecalist() + "");
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel);
+				tile.setBadgeTitle(tile.getName());
+				tile.setBadgeTitle("certified specialist.jpg");
+				topTenChart.addAttribute(tile);
 			}else if(CertProfsWinnersDetails.getCertified() > 0){
 				cartificationLevel.setName("Certified");
 				cartificationLevel.setTotal(CertProfsWinnersDetails.getCertified() + "");
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel);
+				tile.setBadgeTitle(tile.getName());
+				tile.setBadgeTitle("cert-pro-badges.jpg");
+				topTenChart.addAttribute(tile);
 			}else{
 				cartificationLevel.setName("Not Certified");
 				cartificationLevel.setTotal("No Certification");
@@ -3971,7 +4082,7 @@ public class DashboardController {
 		{
 			
 			//main chart model
-			Chart chart = new Chart("Retention % By Employee Type", "", "Retention Rate", "", "bar_compound");
+			Chart chart = new Chart("Retention % By Employee Type", "", "Retention Rate", "", "column_stack");
 			
 			//Create first level of the chart
 			//Get Distinct program names
@@ -4008,7 +4119,7 @@ public class DashboardController {
 			chart.setTitle("Customer First Pillars Completed QTD");
 			chart.setSubTitle("");
 			chart.setType("pie");
-			chart.setXaxisTitle("Total");
+			chart.setXaxisTitle("Pillars QTD");
 			chart.setYaxisTitle("");
 			chart.setCustomer_first(true);
 			
@@ -4139,6 +4250,30 @@ public class DashboardController {
 	}
 	
 	
-
+	public String formatCurrency(int number){
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		String moneyString = formatter.format(number);
+		if (moneyString.endsWith(".00")) {
+		    int centsIndex = moneyString.lastIndexOf(".00");
+		    if (centsIndex != -1) {
+		    	moneyString = moneyString.substring(1, centsIndex);
+		    }
+		}
+		
+		return moneyString;
+	}
+	
+	public String formatCurrency(double number){
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		String moneyString = formatter.format(number);
+		if (moneyString.endsWith(".00")) {
+		    int centsIndex = moneyString.lastIndexOf(".00");
+		    if (centsIndex != -1) {
+		    	moneyString = moneyString.substring(1, centsIndex);
+		    }
+		}
+		
+		return moneyString;
+	}
 	
 }

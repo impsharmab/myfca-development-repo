@@ -27,6 +27,7 @@
         <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
     </div>
 </template>
+<template ngbModalContainer></template>
 <template #positioncodeModal let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title"> </h4>
@@ -35,7 +36,7 @@
     </button>
     </div>
     <div class="modal-body">
-        <position-code></position-code>
+       <position-code (onSubmit)="positionCodeSubmit()" (onCancel)="positionCodeCancel()"></position-code>
     </div>
     <div class="modal-footer">
         <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat" (click)="c('Close click')">Ok</a>
@@ -51,12 +52,12 @@
             <ul class="nav">
                 <li class="nav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
-                    Welcome, <a class="utility-nav active">{{data.name}} ({{data.positionCode[0]}})</a>
+                    Welcome, <a class="utility-nav active" style="cursor:pointer" (click)="dashboardPage()">{{data.name}} ({{data.positionCode[0]}})</a>
                 </li>
                 <li class="nav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">
-                        <span><img src = "../../../app/resources/images/retweet.png"  alt="Retweet"  width="25" height="25"></span></a>
+                        <span><img src = "./../../../app/resources/images/retweet.png"  alt="Retweet"  width="25" height="25"></span></a>
                 </li>
                 <li class="nav-item">
                     <!--<a *ngIf="booleanAdmin" class="utility-nav active" (click)="admin()">Admin </a>-->

@@ -34,6 +34,7 @@ var DashboardBodyComponent = (function () {
         this.avarage = 0;
         this.pieButtons = {};
         this.chartRawData = {};
+        this.unit = "";
         this.drillUptotalCount = 0;
         this.charTypeJSON = {};
         this.chartObjects = {};
@@ -46,7 +47,19 @@ var DashboardBodyComponent = (function () {
         for (var i = 0; i < e.seriesOptions.data.length; i++) {
             this.totalCount = this.totalCount + e.seriesOptions.data[i][1];
         }
-        chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() });
+        if (obj.unit == "$" && obj.avarage == false) {
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+        }
+        else if (obj.unit == "$" && obj.avarage == true) {
+            chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+        }
+        else if (obj.unit == "%") {
+            chart.setTitle(null, { text: "Total " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+        }
+        else {
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+        }
+        // chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
     };
     DashboardBodyComponent.prototype.drillUp = function (e, chart, id) {
         //chart.setTitle(null,{ text:  e.point.name });
@@ -54,10 +67,23 @@ var DashboardBodyComponent = (function () {
         for (var i = 0; i < e.seriesOptions.data.length; i++) {
             this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
         }
-        chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+        if (obj.unit == "$" && obj.avarage == false) {
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+        }
+        else if (obj.unit == "$" && obj.avarage == true) {
+            chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+        }
+        else if (obj.unit == "%") {
+            chart.setTitle(null, { text: "Total " + Math.round(this.drillUptotalCount).toLocaleString() + obj.unit });
+        }
+        else {
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+        }
+        // chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
         this.totalCount = 0;
     };
     DashboardBodyComponent.prototype.ngOnInit = function () {
+        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
         this.modalService.open(this.model, { size: "lg" });
     };
     DashboardBodyComponent.prototype.ngOnDestroy = function () {
@@ -75,6 +101,23 @@ var DashboardBodyComponent = (function () {
         this.avarage = 0;
         this.pieButtons = {};
         this.chartRawData = {};
+    };
+    DashboardBodyComponent.prototype.reload = function () {
+        this.tilesArray = [];
+        this.contentBody = {};
+        this.tableData = {
+            "buttonName": "",
+            "title": "",
+            "tableData": []
+        };
+        this.unitAndAverage = {};
+        this.showPieButton = {};
+        this.bc;
+        this.totalCount = 0;
+        this.avarage = 0;
+        this.pieButtons = {};
+        this.chartRawData = {};
+        this.initializeContent();
     };
     DashboardBodyComponent.prototype.initializeContent = function () {
         var _this = this;
@@ -205,10 +248,15 @@ var DashboardBodyComponent = (function () {
         //console.log("this.chartObjects.customer_first :" + this.button)
     };
     DashboardBodyComponent.prototype.getChartJSONObject = function (obj, chartData) {
+        var unit; // = this.unit;
+        if (chartData.unit == "$") {
+            unit = chartData.unit;
+        }
         this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage };
         this.showPieButton[obj.id] = chartData.customer_first;
         // this.bc = this.bc[obj.id] = { data: chartData.data };
-        console.log("this.chartObjects.customer_first :" + chartData.data);
+        // alert("unit " + unit);
+        // console.log("this.chartObjects.customer_first :" + chartData.data)
         var chartObj = {
             chart: {
                 type: ''
@@ -225,14 +273,29 @@ var DashboardBodyComponent = (function () {
             },
             xAxis: {
                 type: 'category',
-                categories: []
+                categories: [],
+                labels: {
+                    style: {
+                        fontSize: '9px'
+                    }
+                }
             },
             yAxis: {
                 min: 0,
                 title: {
                     text: chartData.yaxisTitle
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontSize: 10,
+                    }
                 }
             },
+            // tooltip: {
+            //   pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{unit}</b><b>{point.y}</b> <br/>',
+            //   shared: true
+            // },
             plotOptions: {},
             series: [],
             drilldown: {}
@@ -270,14 +333,27 @@ var DashboardBodyComponent = (function () {
             //   break;
             case "pie":
                 chartObj.chart.type = "pie";
-                chartObj.plotOptions["series"] = {
-                    pointPadding: 0.2,
-                    borderWidth: 0,
-                    dataLabels: {
-                        enabled: true
+                // chartObj.plotOptions["series"] = {
+                //   pointPadding: 0.2,
+                //   borderWidth: 0,
+                //   dataLabels: {
+                //     enabled: true
+                //   }
+                // },
+                chartObj.plotOptions = {
+                    pie: {
+                        allowPointSelect: false,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
                     }
-                };
-                chartObj.xAxis["type"] = 'category';
+                },
+                    chartObj.xAxis["type"] = 'category';
                 delete chartObj.xAxis.categories;
                 // chartObj.title.text = chartData.title;
                 var categories = new Array();
@@ -383,6 +459,7 @@ var DashboardBodyComponent = (function () {
                     }
                 };
                 chartObj.xAxis["type"] = 'category';
+                //chartObj.yAxis.stackLabels.style.fontSize= 100,
                 delete chartObj.xAxis.categories;
                 // chartObj.title.text = chartData.title;
                 var categories = new Array();
@@ -584,6 +661,8 @@ var DashboardBodyComponent = (function () {
         // console.log(JSON.stringify(chartObject));
         // console.log(this.chartObjects[id].container.id);
         chartObject.chart.type = chartType;
+        var __this = this;
+        chartObject.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } };
         chartObject.chart.renderTo = this.chartObjects[id].container.id;
         chartObject.chart.plotOptions = {
             series: {
@@ -743,6 +822,8 @@ var DashboardBodyComponent = (function () {
         // console.log(JSON.stringify(chartObject));
         // console.log(this.chartObjects[id].container.id);
         chartObj.chart.type = "pie";
+        var __this = this;
+        chartObj.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } };
         chartObj.chart.renderTo = this.chartObjects[id].container.id;
         chartObj.chart.plotOptions = {
             series: {
@@ -844,10 +925,10 @@ var DashboardBodyComponent = (function () {
             total = total / avagerCount;
         }
         if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "<br> <p>Hello1</p>";
         }
         else if (chartData.unit == "$" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+            chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString() + "<br> <p>Hello2</p>";
         }
         else if (chartData.unit == "%") {
             chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
@@ -855,6 +936,7 @@ var DashboardBodyComponent = (function () {
         else {
             chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
         }
+        // {series.name}
         this.chartObjects[id] = new Highcharts.Chart(chartObj);
     };
     DashboardBodyComponent.prototype.chartSwitch = function (buttonName, id) {
@@ -866,6 +948,8 @@ var DashboardBodyComponent = (function () {
         // console.log(JSON.stringify(chartObject));
         // console.log(this.chartObjects[id].container.id);
         chartObject.chart.type = "pie";
+        var __this = this;
+        chartObject.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } };
         chartObject.chart.renderTo = this.chartObjects[id].container.id;
         chartObject.chart.plotOptions = {
             series: {

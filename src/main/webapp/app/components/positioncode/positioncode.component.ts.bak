@@ -1,4 +1,4 @@
-import { Component, OnInit ,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //import {AbstractControl,FORM_DIRECTIVES } from '@angular/common';
 import { Code } from './code.interface';
 import { PositionCodeService } from '../../services/positioncode-services/positioncode.service'
@@ -10,8 +10,8 @@ import { DashboardBodyService } from '../../services/dashboard-body-services/das
     // directives:[FORM_DIRECTIVES]
 })
 export class PositionCodeComponent implements OnInit {
-    @Output("onSubmit") submitEvent: EventEmitter<any> = new EventEmitter<any>();
-    @Output("onCancel") cancelEvent: EventEmitter<any> = new EventEmitter<any>();
+    @Output("onSubmit") submitEvent:EventEmitter<any> = new EventEmitter<any>();
+      @Output("onCancel") cancelEvent:EventEmitter<any> = new EventEmitter<any>();
     private code: Code;
     private pcode: any = [];
     private dcode: any = [];
@@ -29,7 +29,7 @@ export class PositionCodeComponent implements OnInit {
             selectedPositionCode: '',
             selectedDealerCode: ''
         }
-        this.code = this.positionCodeService.getCodeData()
+        this.code=this.positionCodeService.getCodeData()
         this.pcode = this.poscodes;
         this.dcode = this.delcodes;
         // this.defaultPositionDealerCode();
@@ -51,16 +51,8 @@ export class PositionCodeComponent implements OnInit {
 
 
     private selectPositionCode(poscode?: any) {
-        //this.positionCodeService.setCodeData(this.code);
-
-    }
-    private submitClick() {
-        alert("Test");
         this.positionCodeService.setCodeData(this.code);
-        this.submitEvent.emit("");
-    }
-    private cancelClick() {
-        this.cancelEvent.emit("");
+
     }
 
     private selectDealerCode(delcode?: any) {

@@ -192,4 +192,148 @@ public class MSERGraphDetailsDAOImpl implements MSERGraphDetailsDAO {
 		}
 		return result.get(0);
 	}
+
+	@Override
+	public TotalName getMSEREarningsYTDByBCOrDistrict(String territory) {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_EARNINGS_YTD_BY_BC_OR_DISTRICT, TotalName.class);
+			query.setParameter(0, territory);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getMSEREarningsYTDByBCOrDistrict", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getMSEREarningsMTDByBCOrDistrict(String territory) {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_EARNINGS_MTD_BY_BC_OR_DISTRICT, TotalName.class);
+			query.setParameter(0, territory);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getMSEREarningsMTDByBCOrDistrict", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getMSERDealersCountByBCOrDistrict(String territory) {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_DEALERCOUNT_BY_BC_OR_DISTRICT, TotalName.class);
+			query.setParameter(0, territory);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getMSERDealersCountByBCOrDistrict", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getMSERParticipantEnrolledByDealerCode(String dealerCode) {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_PARTICIPANT_ENROLLED_BY_DEALERCODE, TotalName.class);
+			query.setParameter(0, dealerCode);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getMSERParticipantEnrolledByDealerCode", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getParticipantExcellanceCardAwardMTD(String sid) {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(MTD_EXCELLANCE_CARD_AWARD, TotalName.class);
+			query.setParameter(0, sid);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getParticipantExcellanceCardAwardMTD", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
+
+	@Override
+	public TotalName getParticipantExcellanceCardAwardYTD(String sid) {
+		List<TotalName> result = new ArrayList<TotalName>();
+
+		TotalName TotalName = null;
+		try {
+			final Query query = this.em.createNativeQuery(YTD_EXCELLANCE_CARD_AWARD, TotalName.class);
+			query.setParameter(0, sid);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			TotalName = new TotalName();
+			TotalName.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
+			logger.info("result in else " + TotalName);
+			result.add(TotalName);
+			
+		} catch (final Exception ex) {
+			TotalName = new TotalName();
+			logger.error("error occured in getParticipantExcellanceCardAwardYTD", ex);
+			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
+			result.add(TotalName);
+		}
+		return result.get(0);
+	}
 }

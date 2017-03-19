@@ -15,6 +15,8 @@ var PositionCodeComponent = (function () {
     function PositionCodeComponent(positionCodeService, dashboardBodyService) {
         this.positionCodeService = positionCodeService;
         this.dashboardBodyService = dashboardBodyService;
+        this.submitEvent = new core_1.EventEmitter();
+        this.cancelEvent = new core_1.EventEmitter();
         this.pcode = [];
         this.dcode = [];
         this.codeData = { "selectedPositionCode": "", "selectedDealerCode": "" };
@@ -46,18 +48,29 @@ var PositionCodeComponent = (function () {
     //     this.positionCodeService.setCodeData(this.codeData);
     // }
     PositionCodeComponent.prototype.selectPositionCode = function (poscode) {
+        //this.positionCodeService.setCodeData(this.code);
+    };
+    PositionCodeComponent.prototype.submitClick = function () {
+        alert("Test");
         this.positionCodeService.setCodeData(this.code);
+        this.submitEvent.emit("");
+    };
+    PositionCodeComponent.prototype.cancelClick = function () {
+        this.cancelEvent.emit("");
     };
     PositionCodeComponent.prototype.selectDealerCode = function (delcode) {
         this.positionCodeService.setCodeData(this.code);
     };
-    PositionCodeComponent.prototype.submitSelectedCodes = function () {
-        this.dashboardBodyService.getNumberOfTiltes();
-        this.dashboardBodyService.getTilteJson();
-        this.dashboardBodyService.getChartJson();
-    };
     return PositionCodeComponent;
 }());
+__decorate([
+    core_1.Output("onSubmit"),
+    __metadata("design:type", core_1.EventEmitter)
+], PositionCodeComponent.prototype, "submitEvent", void 0);
+__decorate([
+    core_1.Output("onCancel"),
+    __metadata("design:type", core_1.EventEmitter)
+], PositionCodeComponent.prototype, "cancelEvent", void 0);
 PositionCodeComponent = __decorate([
     core_1.Component({
         selector: 'position-code',

@@ -1,0 +1,39 @@
+{
+    "title": "Certified Proffessionals - YTD Certifications",
+    "subTitle": "",
+    "yaxisTitle": "",
+    "xaxisTitle": "Total Certification",
+    "type": "column_stack",
+    "data": [
+        {
+            "name": "26550",
+            "value": 9.0,
+            "data": [
+                {
+                    "name": "Certified",
+                    "value": [
+                        3.0
+                    ],
+                    "data": []
+                },
+                {
+                    "name": "Certified Spacialist",
+                    "value": [
+                        4.0
+                    ],
+                    "data": []
+                },
+                {
+                    "name": "Master Certified",
+                    "value": [
+                        2.0
+                    ],
+                    "data": []
+                }
+            ]
+        }
+    ],
+    "unit": "",
+    "avarage": false,
+    "customer_first": false
+}

@@ -34,6 +34,7 @@ var LoginService = (function () {
     };
     LoginService.prototype.getLoginResponse = function (username, password) {
         var url = "./login/token/";
+        // var url = "http://172.24.16.75:9080/imiservices/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');

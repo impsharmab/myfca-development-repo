@@ -1,6 +1,6 @@
 <template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title">Welcome, Mr. </h4>
+    <h4 class="modal-title">Welcome, {{data.name}} </h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -24,7 +24,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <input type="button" onclick="tableToExcel('dataTable', 'W3C Example Table')" value="Export to Excel">
+    <input type="button" onclick="tableToExcel('dataTable', 'W3C Example Table')" value="Export to Excel" style="cursor:pointer">
     <datatable id="dataTable" [tableData]="statisticModelData"></datatable>
   </div>
   <div class="modal-footer">
@@ -69,7 +69,7 @@
       <ngb-tab *ngFor="let tableDataObj of tableData" title={{tableDataObj.tabName}}>
         <template ngbTabContent>
           <h4>{{tableDataObj.tableName}}</h4>
-          <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Export to Excel">
+          <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Export to Excel" style="cursor:pointer">
           <table id="testTable" class="table table-hover table-striped bdt">
 
             <thead>
@@ -107,10 +107,10 @@
         <div class="card-content" *ngIf="tile.type == 'chart'">
           <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
           <chart (drillup)="drillUp($event.originalEvent,$event.context,tile.id)" (drilldown)="drillDown($event.originalEvent,$event.context,tile.id)"
-            (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 425px; max-width: 600px; margin: 0 auto"></chart>
+            (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 450px; max-width: 600px; min-height: 425px; max-height: 600px; margin: 0 auto"></chart>
           <span *ngIf="showPieButton[tile.id] ">
         <!--<button  id="button" (click)="chartSwitchNAT(tile.id)">NAT</button>-->
-        <button *ngFor = "let buttonName of pieButtons[tile.id] " id="button " (click)="chartSwitch(buttonName,tile.id)">{{buttonName}}</button>
+        <button id="button " class="selected" *ngFor = "let buttonName of pieButtons[tile.id] "  (click)="chartSwitch(buttonName,tile.id)">{{buttonName}}</button>
       </span>
           <!--<p *ngIf='errorInArray(contentBody[tile.id].data)'>
             <span style="color: red">Sorry Data is not available</span></p>-->
@@ -131,7 +131,7 @@
           && (errorInObject(contentBody[tile.id].top10_technicians)) 
           && (errorInArray(contentBody[tile.id].top3))' style="text-align: center;">
             No data to display</p>
-            
+
           <div class="data-group " *ngFor="let data of contentBody[tile.id].attribute ">
             <p class="data-point ">{{data.value}}</p>
             <p class="data-substitle ">{{data.name}}</p>
@@ -141,19 +141,19 @@
 
         </div>
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_advisors)
-              " (click)="openDataTable(contentBody[tile.id].top10_advisors) "><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_advisors.buttonName}}</button><br>
+              " (click)="openDataTable(contentBody[tile.id].top10_advisors) " style="cursor:pointer"><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_advisors.buttonName}}</button><br>
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_technicians) "
-          (click)="openDataTable(contentBody[tile.id].top10_technicians) "><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_technicians.buttonName}}</button>
+          (click)="openDataTable(contentBody[tile.id].top10_technicians) " style="cursor:pointer"><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_technicians.buttonName}}</button>
         <div class="chart-controls " *ngIf="tile.type=='chart' && chartType(tile.id) ">
-          <a (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i class="fa fa-pie-chart " aria-hidden="true "></i></a>
+          <a (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer"></i></a>
           <a (click)="chartChange( 'column',tile.id) " alt="View Column Chart "><i class="fa fa-bar-chart
-              " aria-hidden="true "></i></a>
+              " aria-hidden="true " style="cursor:pointer"></i></a>
         </div>
 
         <div class="card-action " *ngIf="tile.type=='tile' ">
-          <button type="button " class="btn btn-primary btn-sm "><i class="fa fa-check-square " aria-hidden="true "></i>
+          <button type="button " class="btn btn-primary btn-sm " style="cursor:pointer"><i class="fa fa-check-square " aria-hidden="true "></i>
                 {{tile.programRules}}</button>
-          <button type="button " class="btn btn-primary btn-sm "><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
+          <button type="button " class="btn btn-primary btn-sm " style="cursor:pointer"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
                 {{tile.programSite}}</button>
         </div>
       </div>
@@ -165,6 +165,10 @@
 </section>
 
 <style>
+  .selected {
+    border: 1px solid #0000ff;
+  }
+  
   .my-btn-flat {
     box-shadow: none;
     background-color: transparent;
@@ -188,4 +192,40 @@
     color: #b3b3b3 !important;
     cursor: default;
   }
+  /*button:hover  {
+    color: lightseagreen;
+  }
+  button:active  {
+    color: yellow;
+  }*/
+  /*button:active {
+    border: 2px solid green;
+}
+
+button:focus {
+    border: 2px solid red;
+}*/
+  
+  .selected {
+    color: #fff;
+    /*background-color: #5bc0de;*/
+    border-color: #5bc0de;
+    border: 2px solid transparent;
+    font-size: 15px;
+    border-radius: 4px;
+    width: 45px;
+    height: 35px;
+  }
+  
+  .selected:active, .selected:hover,
+    .selected-on {
+    background-color: #5bc0de;
+    color: red;
+    font-size: 10px;
+    border: 4px solid transparent;
+    border-radius: 4px;
+    width: 35px;
+    height: 35px;
+  }
+
 </style>

@@ -25,14 +25,15 @@ export class LoginService {
     getUsersData() {
         return this.userdata;
     }
-  
+
     getLoginResponse(username, password): any {
         var url = "./login/token/";
+      // var url = "http://172.24.16.75:9080/imiservices/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-       return this.http.post(url, body, { headers: headers })
-    // return this.http.get(this.getLoginResponseUrl)
+        return this.http.post(url, body, { headers: headers })
+            //     return this.http.get(this.getLoginResponseUrl)
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError);

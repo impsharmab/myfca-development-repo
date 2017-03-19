@@ -10,7 +10,7 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 public class CertProfsWinnersDetailsDTO implements Serializable{
-	@Id private String DealerCode;
+	@Id private String dealerCode;
 	@Id private String dealerName;
 	@Id private String sID;
 	@Id private String name;

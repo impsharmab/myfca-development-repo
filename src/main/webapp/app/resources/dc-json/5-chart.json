@@ -4,8 +4,8 @@
     "xaxisTitle": "Total Earnings",
     "yaxisTitle": "y-axis title",
     "type": "column_stack",
-     "unit":"$",
-  "average":true,
+    "unit": "$",
+    "average": true,
     "data": [
         {
             "name": "Certified",
@@ -13,7 +13,7 @@
             "data": [
                 {
                     "name": "CA",
-                    "value": 50,                   
+                    "value": 50,
                     "data": [
                         {
                             "name": "CA-A",

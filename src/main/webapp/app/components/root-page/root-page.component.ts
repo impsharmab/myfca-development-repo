@@ -22,4 +22,8 @@ export class RootPageComponent implements OnInit {
         this.tilesArray = JSON.parse(sessionStorage.getItem("tiles"));
 
     }
+    onProfileChange(){
+        alert();
+        this.bodyContent.reload();
+    }
 }
