@@ -1,0 +1,59 @@
+{
+  "attribute": [
+    {
+      "name": "2 TEST MSER Parts Earnings MTD",
+      "value": "$62,908.25",
+      "Order": "1"
+    }
+  ],
+  "datatable": {
+    "buttonName": "Excellence Card Awards",
+    "title": "Excellence Card Awards - Top 3 Technicians",
+    "tableData": [
+      {
+        "tableName": "Top 3 MOPAR Parts Sold MTD",
+        "tableHeader": [
+          "order",
+          "Advisor BC, District, Dealer Code",
+          "Reward amount"
+        ],
+        "data": [
+          [
+            "Winter Tire Sets",
+            100
+          ],
+          [
+            "Brake System Upgrades ",
+            80
+          ],
+          [
+            "Floor Mats",
+            66
+          ]
+        ]
+      },
+      {
+        "tableName": "Top 3 MOPAR Parts Sold YTD",
+        "tableHeader": [
+          "order",
+          "Advisor BC, District, Dealer Code",
+          "Reward Amount"
+        ],
+        "data": [
+          [
+            "Winter Tire Sets",
+            660
+          ],
+          [
+            "Brake System Upgrades",
+            600
+          ],
+          [
+            "Floor Mats",
+            550
+          ]
+        ]
+      }
+    ]
+  }
+}

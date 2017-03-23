@@ -1,0 +1,155 @@
+{
+  "title": "Exellence Card Award And Award Points YTD",
+  "subTitle": "",
+  "yaxisTitle": "",
+  "xaxisTitle": "",
+  "type": "column_compound",
+   "unit":"$",
+  "average":true,
+  "data": [
+    {
+      "name": "CA",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 1280,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "DN",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 12600,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "GL",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 2375,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "MA",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 1430,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "MW",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 740,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "NE",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 7290,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "SE",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 5055,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "SW",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 755,
+          "data": []
+        }
+      ]
+    },
+    {
+      "name": "WE",
+      "value": 0,
+      "data": [
+        {
+          "name": "Excellence Card",
+          "value": 0,
+          "data": []
+        },
+        {
+          "name": "Award Points",
+          "value": 7380,
+          "data": []
+        }
+      ]
+    }
+  ] 
+}

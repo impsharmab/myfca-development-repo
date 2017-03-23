@@ -1,0 +1,56 @@
+{
+    "title": "Brainboost-YTD Winners",
+    "subTitle": "chart sub-title",
+    "xaxisTitle": "Business Center",
+    "yaxisTitle": "Total Winners",
+    "type": "column",
+     "unit":"$",
+  "average":true,
+    "data": [
+        {
+            "name": "CA",
+            "value": 10,
+            "data": []
+        },
+        {
+            "name": "DN",
+            "value": 17,
+            "data": []
+        },
+        {
+            "name": "GL",
+            "value": 8,
+            "data": []
+        },
+        {
+            "name": "MA",
+            "value": 4,
+            "data": []
+        },
+        {
+            "name": "MW",
+            "value": 10,
+            "data": []
+        },
+        {
+            "name": "NE",
+            "value": 17,
+            "data": []
+        },
+        {
+            "name": "SE",
+            "value": 8,
+            "data": []
+        },
+        {
+            "name": "SW",
+            "value": 4,
+            "data": []
+        },
+        {
+            "name": "WE",
+            "value": 4,
+            "data": []
+        }
+    ]
+}

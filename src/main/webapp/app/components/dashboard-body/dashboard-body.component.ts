@@ -46,13 +46,13 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
 
     if (obj.unit == "$" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name});
+      chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
     } else if (obj.unit == "$" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.totalCount).toLocaleString()+ "<br>" + e.point.name});
+      chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
     } else if (obj.unit == "%") {
-      chart.setTitle(null, { text: "Total " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name});
+      chart.setTitle(null, { text: "Total " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
     } else {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString()+ "<br>" + e.point.name });
+      chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
 
     }
     // chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
@@ -72,7 +72,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
       chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
     } else if (obj.unit == "%") {
-      chart.setTitle(null, { text: "Total " + Math.round(this.drillUptotalCount).toLocaleString() + obj.unit});
+      chart.setTitle(null, { text: "Total " + Math.round(this.drillUptotalCount).toLocaleString() + obj.unit });
     } else {
       chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
 
@@ -104,8 +104,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   constructor(private service: DashboardBodyService, private modalService: NgbModal) {
     this.initializeContent();
   }
-reload(){
-     this.tilesArray=[]; 
+  reload() {
+    this.tilesArray = [];
     this.contentBody = {};
     this.tableData = {
       "buttonName": "",
@@ -119,7 +119,7 @@ reload(){
     this.avarage = 0;
     this.pieButtons = {};
     this.chartRawData = {};
-     this.initializeContent();
+    this.initializeContent();
   }
   initializeContent() {
     this.service.getNumberOfTiltes().subscribe(
@@ -247,11 +247,14 @@ reload(){
     this.contentBody[obj.id] = chartObj;
     //console.log("this.chartObjects.customer_first :" + this.button)
   }
+  private chartData: any;
   getChartJSONObject(obj: any, chartData: any): any {
     var unit;// = this.unit;
     if (chartData.unit == "$") {
       unit = chartData.unit;
     }
+    this.chartData = chartData;
+
     this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage };
     this.showPieButton[obj.id] = chartData.customer_first;
     // this.bc = this.bc[obj.id] = { data: chartData.data };
@@ -276,7 +279,7 @@ reload(){
         categories: [],
         labels: {
           style: {
-            fontSize: '9px'
+            fontSize: '7.5px'
             //fontFamily: 'Verdana, sans-serif',
 
           }
@@ -303,8 +306,11 @@ reload(){
       plotOptions: {
 
       },
-      series: [],
+      series: [
+        // { visible:false }
+      ],
       drilldown: {}
+
     }; Highcharts.setOptions({
       lang: {
         thousandsSep: ',',
@@ -466,10 +472,29 @@ reload(){
           pointPadding: 0.2,
           borderWidth: 0,
           dataLabels: {
-            enabled: true
+            enabled: true,
+            allowOverlap: true,
+            overFlow: 'none',
+            crop: false,
+            rotation: -70,
+            y: -25,
+            style: {
+              fontSize: '9px'
+            },
           }
 
         }
+        // chartObj.drilldown = {
+        //   activeAxisLabelStyle: {
+        //     textDecoration: 'none',
+        //     fontStyle: 'italic',
+        //     fontSize: 10
+        //   },
+        //   activeDataLabelStyle: {
+        //     textDecoration: 'none',
+        //     fontSize: 100
+        //   },
+        // }
         chartObj.xAxis["type"] = 'category';
         //chartObj.yAxis.stackLabels.style.fontSize= 100,
         delete chartObj.xAxis.categories;
@@ -642,6 +667,18 @@ reload(){
 
           }
         }
+
+
+        // if (this.chartData["retention"] == true) {
+        //   // for (var i = 0; i < chartObj["series"].length; i++) {           
+        //   alert(chartObj["series"]["data"])
+        //   //alert( chartObj["series"]["visible"][i])//=false;
+
+        //   //}
+        // }
+        // alert(this.chartData.type)
+        //chartObj.series["visible"][2]=false;
+
         delete chartObj.xAxis.categories;
         // delete chartObj.yAxis;
         this.constructChartObject(chartData, chartObj);

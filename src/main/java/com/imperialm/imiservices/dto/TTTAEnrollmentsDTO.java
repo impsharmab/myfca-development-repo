@@ -2,23 +2,25 @@ package com.imperialm.imiservices.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Entity @Getter @Setter
 public class TTTAEnrollmentsDTO implements Serializable {
 
-	private String dealerCode;
-	private String dealerName;
-	private String sID;
-	private String name;
-	private String enrollment;
-	private String positionCode;
-	private String incentiveEligible;
-	private String avgSurveyScore;
-	private String surveyCount;
-	private String level3Techs;
-	private String partcipantRank;
-	private String error;
+	@Id private String dealerCode;
+	@Id private String dealerName;
+	@Id private String sID;
+	@Id private String name;
+	@Id private String enrollment;
+	@Id private String positionCode;
+	@Id private int incentiveEligible;
+	@Id private double avgSurveyScore;
+	@Id private int surveyCount;
+	@Id private int level3Techs;
+	@Id private int partcipantRank;
 	
 }

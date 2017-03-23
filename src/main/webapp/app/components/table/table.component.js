@@ -17,106 +17,15 @@ var TableComponent = (function () {
         var elementHtml = element.nativeElement;
         elementHtml.innerHTML = "<table id=\"" + this.randomId + "\"></table>\n                <div style=\"display:none\">\n                    <table id=\"detailsTable\">\n                    </table>\n                </div>";
     }
-    // ngOnInit(): void{
-    //     this.ngOnChanges();
-    // }
     TableComponent.prototype.ngOnDestroy = function () {
-        // console.log(document.getElementById(this.randomId));
-        //alert("Destroy"+ this.randomId)
     };
     TableComponent.prototype.ngOnChanges = function () {
-        //  if(this.otable !== undefined)
-        //  {
-        //      this.otable.destroy();
-        //  }
         function fnFormatDetails(table_id, html) {
             var sOut = "<table id=\"exampleTable_" + table_id + "\">";
             sOut += html;
             sOut += "</table>";
             return sOut;
         }
-        //////////////////////////////////////////////////////////// EXTERNAL DATA - Array of Objects 
-        // var this.tableData = {
-        //     "headers": [
-        //         "Dealer",
-        //         "uConnect",
-        //         "Mopar Parts",
-        //         "WiAdvisor",
-        //         "Express Lane",
-        //         "Parts Coutner",
-        //         "Magnetti Marelli",
-        //         "MVP",
-        //         "Reward Total"
-        //     ],
-        //     "data": [
-        //         {
-        //             "data": [
-        //                 '<img src="http://i.imgur.com/SD7Dz.png">',
-        //                     "Dealer",
-        //                     "uConnect",
-        //                     "Mopar Parts",
-        //                     "WiAdvisor",
-        //                     "Express Lane",
-        //                     "Parts Coutner",
-        //                     "Magnetti Marelli",
-        //                     "MVP",
-        //                     "Reward Total"
-        //             ],
-        //             "innerData": {
-        //                 "headers": [
-        //                     "Particpant",
-        //                     "uConnect",
-        //                     "Mopar Parts",
-        //                     "WiAdvisor",
-        //                     "Express Lane",
-        //                     "Parts Coutner",
-        //                     "Magnetti Marelli",
-        //                     "MVP",
-        //                     "Reward Total"
-        //                 ],
-        //                 "data": [
-        //                     [
-        //                         "Particpant",
-        //                         "uConnect",
-        //                         "Mopar Parts",
-        //                         "WiAdvisor",
-        //                         "Express Lane",
-        //                         "Parts Coutner",
-        //                         "Magnetti Marelli",
-        //                         "MVP",
-        //                         "Reward Total"
-        //                     ],
-        //                     [
-        //                         "Particpant",
-        //                         "uConnect",
-        //                         "Mopar Parts",
-        //                         "WiAdvisor",
-        //                         "Express Lane",
-        //                         "Parts Coutner",
-        //                         "Magnetti Marelli",
-        //                         "MVP",
-        //                         "Reward Total"
-        //                     ]
-        //                 ]
-        //             }
-        //         }
-        //     ]
-        // }
-        // DETAILS ROW A 
-        // var detailsRowAPlayer1 = { name: "Ralph Ellison", uc:"$10", mp:"$10", wa:"$10", el:"$10", pc:"$10", mm:"$10", mv:"$10", reward: "$34,000"};
-        // var detailsRowAPlayer2 = { name: "Roger Ailes", uc:"$10", mp:"$10", wa:"$10", el:"$10", pc:"$10", mm:"$10", mv:"$10", reward: "$34,000"};
-        // var detailsRowAPlayer3 = { name: "Brian DiStephano", uc:"$10", mp:"$10", wa:"$10", el:"$10", pc:"$10", mm:"$10", mv:"$10", reward: "$34,000"};
-        // var detailsRowA = [ detailsRowAPlayer1, detailsRowAPlayer2, detailsRowAPlayer3 ];
-        // DETAILS ROW B 
-        // var detailsRowBPlayer1 = { name: "Ralph Ellison", uc:"$10", mp:"$10", wa:"$10", el:"$10", pc:"$10", mm:"$10", mv:"$10", reward: "$34,000"};
-        // var detailsRowB = [ detailsRowBPlayer1 ];
-        // DETAILS ROW C 
-        // var detailsRowCPlayer1 = { name: "Ralph Ellison", uc:"$10", mp:"$10", wa:"$10", el:"$10", pc:"$10", mm:"$10", mv:"$10", reward: "$34,000"};
-        // var detailsRowC = [ detailsRowCPlayer1 ];
-        // var rowA = { dealer: "Dealer ABC",  uc:"$10", mp:"$10", wa:"$10", el:"$10", pc:"$10", mm:"$10", mv:"$10", total: "$350,000", details: detailsRowA};
-        // var rowB = { dealer: "Dealer XYZ", uc:"$10", mp:"$10", wa:"$10", el:"$10", pc:"$10", mm:"$10", mv:"$10",  total: "$1,000,000", details: detailsRowB};
-        // var newRowData = [rowA, rowB] ;
-        ////////////////////////////////////////////////////////////
         var iTableCounter = 1;
         // var oTable;
         var oInnerTable;
@@ -156,30 +65,10 @@ var TableComponent = (function () {
             // "aaData": newRowData,
             // "bPaginate": false,
             "destroy": true,
-            // "aoColumns": [
-            //     {
-            //        "mDataProp": null,
-            //        "sClass": "control center",
-            //        "sDefaultContent": '<img src="http://i.imgur.com/SD7Dz.png">'
-            //     },
-            //     { "mDataProp": "dealer" },
-            // 	{ "mDataProp": "uc" },
-            // 	{ "mDataProp": "mp" },
-            // 	{ "mDataProp": "wa" },
-            // 	{ "mDataProp": "el" },
-            // 	{ "mDataProp": "pc" },
-            // 	{ "mDataProp": "mm" },
-            // 	{ "mDataProp": "mv" },
-            //     { "mDataProp": "total" }
-            // ],
             "oLanguage": {
                 "sInfo": "_TOTAL_ entries"
             },
         });
-        /* Add event listener for opening and closing details
-        * Note that the indicator for showing which row is open is not controlled by DataTables,
-        * rather it is done here
-        */
         $('#' + this.randomId + ' tbody td img').live('click', function () {
             var nTr = $(this).parents('tr')[0];
             var nTds = this;
@@ -209,17 +98,6 @@ var TableComponent = (function () {
                     "bFilter": false,
                     //     "aaData": detailsRowData,
                     "bSort": true,
-                    //     "aoColumns": [
-                    //     { "mDataProp": "name" },
-                    // 					{ "mDataProp": "uc" },
-                    // { "mDataProp": "mp" },
-                    // { "mDataProp": "wa" },
-                    // { "mDataProp": "el" },
-                    // { "mDataProp": "pc" },
-                    // { "mDataProp": "mm" },
-                    // { "mDataProp": "mv" },
-                    //     { "mDataProp": "reward" }
-                    // ],
                     "bPaginate": false,
                     "oLanguage": {
                         "sInfo": "_TOTAL_ entries"

@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
+import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
 import com.imperialm.imiservices.model.response.TotalName;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -159,6 +161,44 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 			result.add(TotalName);
 		}
 		return result.get(0);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsBySID(String sid, String positionCode) {
+		List<TTTAEnrollmentsDTO> result = new ArrayList<TTTAEnrollmentsDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_SID, TTTAEnrollmentsDTO.class);
+			query.setParameter(0, sid);
+			query.setParameter(1, positionCode);
+			List<TTTAEnrollmentsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getTTTAEnrollmentsBySID", ex);
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCode(String dealerCode, String positionCode) {
+		List<TTTAEnrollmentsDTO> result = new ArrayList<TTTAEnrollmentsDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_DEALERCODE, TTTAEnrollmentsDTO.class);
+			query.setParameter(0, dealerCode);
+			query.setParameter(1, positionCode);
+			List<TTTAEnrollmentsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getTTTAEnrollmentsByDealerCode", ex);
+		}
+		return result;
 	}
 
 }

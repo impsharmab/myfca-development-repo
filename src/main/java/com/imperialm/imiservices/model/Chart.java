@@ -19,6 +19,7 @@ public class Chart {
 	private String unit;
 	private boolean avarage = false;
 	private boolean customer_first = false;
+	private boolean retention = false;
 	//private JsonNode drilldownData;
 	
 	public Chart(){

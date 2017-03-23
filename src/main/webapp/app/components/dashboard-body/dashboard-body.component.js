@@ -252,6 +252,7 @@ var DashboardBodyComponent = (function () {
         if (chartData.unit == "$") {
             unit = chartData.unit;
         }
+        this.chartData = chartData;
         this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage };
         this.showPieButton[obj.id] = chartData.customer_first;
         // this.bc = this.bc[obj.id] = { data: chartData.data };
@@ -276,7 +277,7 @@ var DashboardBodyComponent = (function () {
                 categories: [],
                 labels: {
                     style: {
-                        fontSize: '9px'
+                        fontSize: '7.5px'
                     }
                 }
             },
@@ -455,9 +456,28 @@ var DashboardBodyComponent = (function () {
                     pointPadding: 0.2,
                     borderWidth: 0,
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
+                        allowOverlap: true,
+                        overFlow: 'none',
+                        crop: false,
+                        rotation: -70,
+                        y: -25,
+                        style: {
+                            fontSize: '9px'
+                        },
                     }
                 };
+                // chartObj.drilldown = {
+                //   activeAxisLabelStyle: {
+                //     textDecoration: 'none',
+                //     fontStyle: 'italic',
+                //     fontSize: 10
+                //   },
+                //   activeDataLabelStyle: {
+                //     textDecoration: 'none',
+                //     fontSize: 100
+                //   },
+                // }
                 chartObj.xAxis["type"] = 'category';
                 //chartObj.yAxis.stackLabels.style.fontSize= 100,
                 delete chartObj.xAxis.categories;
@@ -628,6 +648,14 @@ var DashboardBodyComponent = (function () {
                         enabled: false,
                     }
                 };
+                // if (this.chartData["retention"] == true) {
+                //   // for (var i = 0; i < chartObj["series"].length; i++) {           
+                //   alert(chartObj["series"]["data"])
+                //   //alert( chartObj["series"]["visible"][i])//=false;
+                //   //}
+                // }
+                // alert(this.chartData.type)
+                //chartObj.series["visible"][2]=false;
                 delete chartObj.xAxis.categories;
                 // delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);

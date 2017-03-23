@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imperialm.imiservices.dao.TTTAEnrollmentsSummaryDAO;
+import com.imperialm.imiservices.dao.TTTAEnrolledGraphDAO;
 import com.imperialm.imiservices.dao.CustomerFirstGraphDAO;
 import com.imperialm.imiservices.dao.CustomerFirstDetailsDAO;
 import com.imperialm.imiservices.dao.CertProfsExpertDetailsDAO;
@@ -48,6 +50,9 @@ import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
+import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
+import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
@@ -132,6 +137,12 @@ public class DashboardServiceImpl {
 	
 	@Autowired
 	private CustomerFirstGraphDAO CustomerFirstGraphDAO;
+	
+	@Autowired
+	private TTTAEnrolledGraphDAO TTTAEnrolledGraphDAO;
+	
+	@Autowired
+	private TTTAEnrollmentsSummaryDAO TTTAEnrollmentsSummaryDAO;
 	
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
 		return this.dashboardDAO.findTilesListByRole(userRoleReq);
@@ -474,6 +485,62 @@ public class DashboardServiceImpl {
 	
 	public List<CustomerFirstGraphDTO> getCustomerFirstGraphByChildTerritoryAndToggle(List<String> territory, String toggle){
 		return this.CustomerFirstGraphDAO.getCustomerFirstByChildTerritoryAndToggle(territory, toggle);
+	}
+	
+	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByParentTerritory(List<String> territory){
+		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledByParentTerritory(territory);
+	}
+	
+	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritory(List<String> territory){
+		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledByChildTerritory(territory);
+	}
+	
+	public int getTTTAEnrolledDealersNAT(){
+		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledDealersNAT();
+	}
+	
+	public int getTTTAEnrolledBCORDistrict(String territory){
+		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledBCORDistrict(territory);
+	}
+	
+	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByChildAndPositionCode(List<String> territories, String positionCode){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTAEnrollmentsSummaryByChildAndPositionCode(territories, positionCode);
+	}
+
+	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByParentAndPositionCode(List<String> territories, String positionCode){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTAEnrollmentsSummaryByParentAndPositionCode(territories, positionCode);
+	}
+	
+	public TotalName getTTTANATTopTechEnrolledDealerCount(){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopTechEnrolledDealerCount();
+	}
+	
+	public TotalName getTTTANATTopAdvisorEnrolledDealerCount(){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopTechEnrolledDealerCount();
+	}
+	
+	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory, String positionCode){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(territory, positionCode);
+	}
+	
+	
+	public TotalName getTTTANATTopTechEnrolledIncentiveEligible(){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopTechEnrolledIncentiveEligible();
+	}
+	
+	public TotalName getTTTANATTopAdvisorEnrolledIncentiveEligible(){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopAdvisorEnrolledIncentiveEligible();
+	}
+	
+	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummarySUMByParentAndPositionCode(List<String> territories, String positionCode){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTAEnrollmentsSummarySUMByParentAndPositionCode(territories, positionCode);
+	}
+	
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsBySID(String sid, String positionCode){
+		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsBySID(sid, positionCode);
+	}
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCode(String dealerCode, String positionCode){
+		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsBySID(dealerCode, positionCode);
 	}
 	
 }

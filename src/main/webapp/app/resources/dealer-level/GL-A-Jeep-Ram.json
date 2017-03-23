@@ -1,0 +1,83 @@
+[
+    {
+        "url": "http://localhost:9090/imiservices/services/data/10/GL-A",
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "James Michel",
+        "certType": "JEEP    ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "Charles Prohaska",
+        "certType": "JEEP    ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S27423I"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "James Michel",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "Charles Prohaska",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S27423I"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "James Michel",
+        "certType": "JEEP    ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "Charles Prohaska",
+        "certType": "JEEP    ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S27423I"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "James Michel",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "Charles Prohaska",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S27423I"
+    }
+]

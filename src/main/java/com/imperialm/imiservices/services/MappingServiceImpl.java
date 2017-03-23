@@ -16,6 +16,7 @@ import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
@@ -148,6 +149,19 @@ public class MappingServiceImpl {
 		return chart;
 	}
 	
+	public Chart TTTAEnrolledGraphDTOtoChart(List<TTTAEnrolledGraphDTO> TTTAEnrolledGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+		
+		chart.setData(this.TTTAEnrolledGraphDTOtoChartData(TTTAEnrolledGraphDTO));
+		
+		return chart;
+	}
+	
 	public Chart CustomerFirstGraphDTOtoChart(List<CustomerFirstGraphDTO> CustomerFirstGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
 		Chart chart = new Chart();
 		chart.setTitle(title);
@@ -265,6 +279,16 @@ public class MappingServiceImpl {
 		
 		for (CertProfsWinnersGraphDTO item : CertProfsWinnersGraphDTO) {
 			list.add(this.CertProfsWinnersGraphDTOtoChartData(item));
+		}
+		
+		return list;
+	}
+	
+	public List<ChartData> TTTAEnrolledGraphDTOtoChartData(List<TTTAEnrolledGraphDTO> TTTAEnrolledGraphDTO){
+		List<ChartData> list = new ArrayList<ChartData>();
+		
+		for (TTTAEnrolledGraphDTO item : TTTAEnrolledGraphDTO) {
+			list.add(this.TTTAEnrolledGraphDTOtoChartData(item));
 		}
 		
 		return list;
@@ -494,6 +518,40 @@ public class MappingServiceImpl {
 		chartData.addData(masterCertified);
 		
 		chartData.setName(CertProfsWinnersGraphDTO.getParentTerritory());
+		return chartData;
+	}
+	
+	public ChartData TTTAEnrolledGraphDTOtoChartData(TTTAEnrolledGraphDTO TTTAEnrolledGraphDTO){
+		ChartData chartData = new ChartData();
+		ChartData certified = new ChartData();
+		ChartData certifiedSpacialist = new ChartData();
+		ChartData masterCertified = new ChartData();
+		ChartData groupd = new ChartData();
+		ChartData groupe = new ChartData();
+		
+		chartData.setName(TTTAEnrolledGraphDTO.getChild());
+		
+		certified.setName("Total Group A");
+		certified.setValue(TTTAEnrolledGraphDTO.getTotalGroupA());
+		
+		certifiedSpacialist.setName("Total Group B");
+		certifiedSpacialist.setValue(TTTAEnrolledGraphDTO.getTotalGroupB());
+		
+		masterCertified.setName("Total Group C");
+		masterCertified.setValue(TTTAEnrolledGraphDTO.getTotalGroupC());
+		
+		groupd.setName("Total Group D");
+		groupd.setValue(TTTAEnrolledGraphDTO.getTotalGroupD());
+		
+		groupe.setName("Total Group E");
+		groupe.setValue(TTTAEnrolledGraphDTO.getTotalGroupE());
+		
+		chartData.addData(certified);
+		chartData.addData(certifiedSpacialist);
+		chartData.addData(masterCertified);
+		chartData.addData(groupd);
+		chartData.addData(groupe);
+		
 		return chartData;
 	}
 	

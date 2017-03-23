@@ -1,20 +1,25 @@
 package com.imperialm.imiservices.dto;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
-public class TTTAEnrollmentsSummaryDTO {
-	private String parentTerritory;
-	private String childTerritory;
-	private String totalEnrollments;
-	private String positionCode;
-	private String incentiveEligible;
-	private String avgSurveyScore;
-	private String surveyCount;
-	private String level3Techs;
-	private String tTTARank;
-	private String yearsOfService;
-	private String error;
+@Entity @Getter @Setter
+public class TTTAEnrollmentsSummaryDTO implements Serializable{
+	@Id private String parentTerritory;
+	@Id private String childTerritory;
+	@Id private int totalEnrollments;
+	@Id private String positionCode;
+	@Id private int incentiveEligible;
+	@Id private double avgSurveyScore;
+	@Id private int surveyCount;
+	@Id private int level3Techs;
+	@Id private int tTTARank;
+	@Id private int yearsOfService;
+	@Id private double percentEnrolled;
 
 }
