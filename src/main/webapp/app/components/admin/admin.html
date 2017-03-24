@@ -21,20 +21,19 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
+                        <!--<div class="col-sm-12 col-md-6">
 
                             <div class="box">
                                 <h4>Individual</h4>
                                 <label>Enter SID/TID</label>
                                 <input type="text" name="admin.sid" class="form-control" [(ngModel)]="sid" (blur)="onBlurMethod(this)" required #name="ngModel" />
-                                <!--Validation-->
                                 <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
                                 <div [hidden]="!name.errors.required">
                                     SID/TID is required
                                 </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="col-sm-12 col-md-6">
                             <div class="box">
                                 <h4>Group</h4>
@@ -51,15 +50,16 @@
                             </div>
                         </div>
 
-                    </div>
+                    <!--</div>-->
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <hr />
                         </div>
                     </div>
-                    <div class="row">
+                    <!--<div class="row">-->
                         <div class="col-sm-12 col-md-6">
-                            <h3>Choose view</h3>
+                            <div class="box">
+                               <h4>Choose View</h4>
                             <!--<select class="form-control" name="role" [(ngModel)]="role">
                                 <option value="1">Executive</option>
                                 <option value="2">BC</option>
@@ -68,10 +68,12 @@
                                 <option value="5">Manager</option>
                                 <option value="6">Participant</option>
                             </select>-->
-                            <select  class="form-control" name="role" id="role" [(ngModel)]="selectRole">
-                                <option *ngFor="let item of role" [ngValue]="item"
-                                >{{item.label}}</option>
-                            </select>
+                                <label>Role</label>
+                                <select  class="form-control" name="role" id="role" [(ngModel)]="selectRole">
+                                    <option *ngFor="let item of role" [ngValue]="item"
+                                    >{{item.label}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -79,39 +81,87 @@
                             <hr />
                         </div>
                     </div>
-                    <div class="row" *ngIf="edited">
-                        <div *ngFor="let acdata of accordionData" class="accNav">
-                            
+                    <div class="row">
+                        <div *ngFor="let acdata of accordionData" class="accNav">                            
                             <div ngbPanelTitle class="headerElement header{{acdata.order}}">
+                                <div class="row">
+                                    <div class="col-sm-10 col-md-10">
+                                        <div class="checkbox checkbox-primary">
+                                            <input type="checkbox" id="header{{acdata.order}}"  class="header"  name="header{{acdata.order}}"  [(ngModel)]="headerOpt[acdata.order]" (click)="toggleAll($event);" /> 
+                                            <label for="header{{acdata.order}}">{{acdata.accordionTitle}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 col-md-2">
+                                        <a  class="accordion-control acc collapsed" id="card-block{{acdata.order}}" (click)="onClick($event)">
+                                            +
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="card-block{{acdata.order}}">
+                                <div class="card-block{{acdata.order}}" >
+                                    <div class="row"*ngFor="let chapter of acdata.data;">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="checkbox checkbox-primary">
+                                                <input id="{{chapter.name}}" value="{{acdata.order}}"  [(ngModel)]="opt[chapter.name]" type="checkbox" name="{{chapter.name}}" (change)="uncheckParent($event)" >
+                                                <label for="{{chapter.name}}">{{chapter.title}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="accNav">
+                            <ngb-accordion #acc="ngbAccordion"[closeOthers]="false" activeIds="1">
+                                <ngb-panel>
+                                    <template ngbPanelTitle class="accrodionHeader">
                                         <div class="row">
                                             <div class="col-sm-10 col-md-10">
-                                                <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" id="header{{acdata.order}}"  class="header"  name="header{{acdata.order}}"  [(ngModel)]="headerOpt[acdata.order]" (click)="toggleAll($event);" /> 
-                                                    <label for="header{{acdata.order}}">{{acdata.accordionTitle}}</label>
+                                                <div class="checkbox checkbox-primary" (click)="onClickEvent($event)">
+                                                     <input type="checkbox" id="header1"  class="header" value="1" name="header1"  [(ngModel)]="headerOpt1" (click)="toggleAll($event);" /> 
+                                                    <label for="header1">MSER</label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-2 col-md-2">
-                                                <a  class="accordion-control collapsed" (click)="onClick($event)">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="accordion-control">
                                                     +
                                                 </a>
+
                                             </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                    <div class="card-block{{acdata.order}}" >
-                                            <div class="row"*ngFor="let chapter of acdata.data;">
+                                    </template>
+                                    <template ngbPanelContent>
+                                        <div class="card-block1">
+                                            <div class="row">
                                                 <div class="col-sm-12 col-md-6">
                                                     <div class="checkbox checkbox-primary">
-                                                        <input id="{{chapter.name}}" value="{{acdata.order}}"  [(ngModel)]="opt[chapter.name]" type="checkbox" name="{{chapter.name}}" (change)="uncheckParent($event)" >
-                                                        <label for="{{chapter.name}}">{{chapter.title}}</label>
+                                                        <input id="mseropt1" value="1"   type="checkbox" name="mseropt1" [(ngModel)]="opt[mseropt1]" (change)="uncheckParent($event)" >
+                                                        <label for="mseropt1">Total Dealers Enrolled</label>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt2" value="1"  type="checkbox" name="mseropt2" [(ngModel)]="opt[mseropt2]" (change)="uncheckParent($event)" >
+                                                        <label for="mseropt2">Excellence Cards Awards MTD</label>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt3" value="1"  type="checkbox" name="mseropt3" [(ngModel)]="opt[mseropt3]" (change)="uncheckParent($event)" >
+                                                        <label for="mseropt3">Excellence Cards Awards YTD</label>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>                                                
                                         </div>
-                                    </div>
-                        </div>
-                               
+                                    </template>
+                                </ngb-panel>                                
+                            
+                            </ngb-accordion>
+                        </div>-->
                         <div class="col-md-12">
                             <div class="text-center">
                                 <div class="btn-row">

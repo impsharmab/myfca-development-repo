@@ -6,8 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Admin } from './admin.interface';
-
 declare var $: any;
+declare var jQuery: any;
 
 @Component({
     moduleId: module.id,
@@ -44,7 +44,6 @@ export class AdminComponent implements OnInit {
     clickSuccessMessage = '';
     public admindata: Admin;
     
-
     // group dropdown options
     constructor(private http: Http, private adminService: AdminService, private elRef: ElementRef) {
         this.group = [
@@ -102,6 +101,7 @@ export class AdminComponent implements OnInit {
         this.selectRole = this.role[0];
     }
     ngOnInit() {
+        this.getAccordionData();
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
         
         // To set attribute checkbox default value false
@@ -125,16 +125,16 @@ export class AdminComponent implements OnInit {
         }
     }
 
-    // onClickEvent(e) {
-    //     console.log(e);
-    //     e.stopPropagation();
+    onClickEvent(e) {
+        console.log(e);
+        e.stopPropagation();
        
-    // }
+    }
 
     onSubmit(f) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        
+        var datas = [];
         
         if ($("#header1").is(":checked")) {
             f.value.header1=true;
@@ -170,12 +170,42 @@ export class AdminComponent implements OnInit {
             f.value.header7=true;
         } else {
            f.value.header7=false;
-        } 
-              
-         var FormData = JSON.stringify(f.value, null, 2);
+        }
+        
+        // console.log(f.value);
+        datas.push(
+            {
+                "positioncode":f.value.group.value,
+                "chooseView":f.value.role.value,
 
-         console.log("FormData...."+FormData)
+                "permissions": [
+                    "show"+":"+f.value.header1,
+                    {"attribute" : [f.value.mseropt1, f.value.mseropt2, f.value.mseropt3]},
+
+                    "show"+":"+f.value.header2,
+                    {"attribute" : [f.value.mseropt4, f.value.mseropt5, f.value.mseropt6, f.value.mseropt7, f.value.mseropt8, f.value.mseropt9, f.value.mseropt10]},
+
+                    "show"+":"+f.value.header3,
+                    {'attribute' : [f.value.mseropt11, f.value.mseropt12, f.value.mseropt13, f.value.mseropt14]},
+
+                    "show"+":"+f.value.header4,
+                    {'attribute' : [f.value.mseropt15, f.value.mseropt16, f.value.mseropt17, f.value.mseropt18]},
+
+                    "show"+":"+f.value.header5,
+                    {'attribute' : [f.value.mseropt19, f.value.mseropt20, f.value.mseropt21, f.value.mseropt22]},
+
+                    "show"+":"+f.value.header6,
+                    {'attribute' :  [f.value.mseropt23, f.value.mseropt24, f.value.mseropt25, f.value.mseropt26]},
+
+                    "show"+":"+f.value.header7,
+                    {'attribute' : [f.value.mseropt27, f.value.mseropt28, f.value.mseropt29, f.value.mseropt30]},
+                ]
+            }
+        );
+       var FormData = JSON.stringify(datas, null, 2);
        
+       
+       console.log(FormData);
         this.adminService.getAdminData(FormData).subscribe(
             (resUserData) => {
                 resUserData = this.admindata = (resUserData)                
@@ -204,8 +234,8 @@ export class AdminComponent implements OnInit {
         }
 
     }
-    onClick() {
-        $(event.target).siblings('div').toggle(500);
+    onClick(ev) {
+        $("."+ev.target.id).toggle(400);
     }
     getAccordionData() {
 
@@ -358,15 +388,14 @@ export class AdminComponent implements OnInit {
 
 
     onBlurMethod(sid: number, body: Object) {
-        console.log(this.sid);
-        if(this.sid) {
-            this.getAccordionData();
-        }
+        // if(this.sid) {
+        //     this.getAccordionData();
+        // }
         let bodyString = JSON.stringify(body); // Stringify payload
         let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
 
-        this.edited = true;
+        // this.edited = true;
         var adminData = "./app/resources/json/serviceJson/admin-data.json";
         var AdminDataThroughService = this.http.post(adminData, body, options)
             .map((response: Response) => response.json())

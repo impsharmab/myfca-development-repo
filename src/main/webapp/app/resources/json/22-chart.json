@@ -4,8 +4,8 @@
     "xaxisTitle": "Total Earnings",
     "yaxisTitle": "y-axis title",
     "type": "bar_compound",
-    "unit":"",
-  "avarage":true,
+    "unit": "",
+    "avarage": true,
     "data": [
         {
             "name": "Mopar Parts",
@@ -1381,7 +1381,7 @@
                     "name": "DN",
                     "value": 23,
                     "data": [
-                       {
+                        {
                             "name": "DN-A",
                             "value": 50,
                             "data": []
@@ -6301,7 +6301,7 @@
                     "name": "DN",
                     "value": 23,
                     "data": [
-                       {
+                        {
                             "name": "DN-A",
                             "value": 50,
                             "data": []
@@ -7531,7 +7531,7 @@
                     "name": "DN",
                     "value": 23,
                     "data": [
-                       {
+                        {
                             "name": "DN-A",
                             "value": 50,
                             "data": []

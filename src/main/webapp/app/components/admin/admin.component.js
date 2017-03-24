@@ -82,6 +82,7 @@ var AdminComponent = (function () {
         this.selectRole = this.role[0];
     }
     AdminComponent.prototype.ngOnInit = function () {
+        this.getAccordionData();
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
         // To set attribute checkbox default value false
         for (var i = 1; i <= 30; i++) {
@@ -101,14 +102,15 @@ var AdminComponent = (function () {
             mseropt29: "", mseropt30: "",
         };
     };
-    // onClickEvent(e) {
-    //     console.log(e);
-    //     e.stopPropagation();
-    // }
+    AdminComponent.prototype.onClickEvent = function (e) {
+        console.log(e);
+        e.stopPropagation();
+    };
     AdminComponent.prototype.onSubmit = function (f) {
         var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
+        var datas = [];
         if ($("#header1").is(":checked")) {
             f.value.header1 = true;
         }
@@ -151,8 +153,29 @@ var AdminComponent = (function () {
         else {
             f.value.header7 = false;
         }
-        var FormData = JSON.stringify(f.value, null, 2);
-        console.log("FormData...." + FormData);
+        // console.log(f.value);
+        datas.push({
+            "positioncode": f.value.group.value,
+            "chooseView": f.value.role.value,
+            "permissions": [
+                "show" + ":" + f.value.header1,
+                { "attribute": [f.value.mseropt1, f.value.mseropt2, f.value.mseropt3] },
+                "show" + ":" + f.value.header2,
+                { "attribute": [f.value.mseropt4, f.value.mseropt5, f.value.mseropt6, f.value.mseropt7, f.value.mseropt8, f.value.mseropt9, f.value.mseropt10] },
+                "show" + ":" + f.value.header3,
+                { 'attribute': [f.value.mseropt11, f.value.mseropt12, f.value.mseropt13, f.value.mseropt14] },
+                "show" + ":" + f.value.header4,
+                { 'attribute': [f.value.mseropt15, f.value.mseropt16, f.value.mseropt17, f.value.mseropt18] },
+                "show" + ":" + f.value.header5,
+                { 'attribute': [f.value.mseropt19, f.value.mseropt20, f.value.mseropt21, f.value.mseropt22] },
+                "show" + ":" + f.value.header6,
+                { 'attribute': [f.value.mseropt23, f.value.mseropt24, f.value.mseropt25, f.value.mseropt26] },
+                "show" + ":" + f.value.header7,
+                { 'attribute': [f.value.mseropt27, f.value.mseropt28, f.value.mseropt29, f.value.mseropt30] },
+            ]
+        });
+        var FormData = JSON.stringify(datas, null, 2);
+        console.log(FormData);
         this.adminService.getAdminData(FormData).subscribe(function (resUserData) {
             resUserData = _this.admindata = (resUserData);
         });
@@ -175,8 +198,8 @@ var AdminComponent = (function () {
             event.preventDefault();
         }
     };
-    AdminComponent.prototype.onClick = function () {
-        $(event.target).siblings('div').toggle(500);
+    AdminComponent.prototype.onClick = function (ev) {
+        $("." + ev.target.id).toggle(400);
     };
     AdminComponent.prototype.getAccordionData = function () {
         this.accordionData = [
@@ -318,14 +341,13 @@ var AdminComponent = (function () {
         }
     };
     AdminComponent.prototype.onBlurMethod = function (sid, body) {
-        console.log(this.sid);
-        if (this.sid) {
-            this.getAccordionData();
-        }
+        // if(this.sid) {
+        //     this.getAccordionData();
+        // }
         var bodyString = JSON.stringify(body); // Stringify payload
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         var options = new http_1.RequestOptions({ headers: headers }); // Create a request option
-        this.edited = true;
+        // this.edited = true;
         var adminData = "./app/resources/json/serviceJson/admin-data.json";
         var AdminDataThroughService = this.http.post(adminData, body, options)
             .map(function (response) { return response.json(); })

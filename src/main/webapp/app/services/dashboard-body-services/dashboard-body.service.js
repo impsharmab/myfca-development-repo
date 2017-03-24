@@ -35,7 +35,7 @@ var DashboardBodyService = (function () {
         var positioncodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
         var getNumberOfTilesServiceUrl = "services/notile/" + positioncodes + "/" + dealerlcodes;
-        //   var getNumberOfTilesServiceUrl: string = "http://localhost:8080/imiservices/services/notile/" + positioncodes + "/" + dealerlcodes;
+        // var getNumberOfTilesServiceUrl: string = "http://172.25.32.162/imiservices/services/notile/" + positioncodes + "/" + dealerlcodes;
         //  var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
         //  var getNumberOfTilesServiceUrl: string = "./app/resources/json/cutomer-notiles.json";
         var headers = new http_1.Headers();
@@ -52,7 +52,7 @@ var DashboardBodyService = (function () {
         headers.append('Authorization', validToken);
         // var tileService = "./app/resources/dc-json/" + id + "-tile.json";
         var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        //   var tileService = "http://localhost:8080/imiservices/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        //   var tileService = "http://172.25.32.162/imiservices/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -64,8 +64,8 @@ var DashboardBodyService = (function () {
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
         //var chartService = "./app/resources/dc-json/" + id + "-chart.json";
-        var chartService = "./app/resources/dc-json/column-stack.json";
-        //  var chartService = "http://localhost:8080/imiservices/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        // var chartService = "./app/resources/json/customer_first.json"; //retention
+        //   var chartService = "http://172.25.32.162/imiservices/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers: headers })
             .map(function (response) { return response.json(); })

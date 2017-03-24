@@ -274,6 +274,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       credits: {
         enabled: false
       },
+      //   legend: {
+      //     enabled: false
+      // },
       xAxis: {
         type: 'category',
         categories: [],
@@ -466,24 +469,71 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         }
         break;
       case "column":
-        chartObj.chart.type = "column"
-        chartObj.plotOptions["series"] = {
+        chartObj.chart.type = "column",
+          //chartObj["legend"] = { enabled: false },
+          chartObj.plotOptions["series"] = {
 
-          pointPadding: 0.2,
-          borderWidth: 0,
-          dataLabels: {
-            enabled: true,
-            allowOverlap: true,
-            overFlow: 'none',
-            crop: false,
-            rotation: -70,
-            y: -25,
-            style: {
-              fontSize: '9px'
+            pointPadding: 0.2,
+            borderWidth: 0,
+            dataLabels: {
+              enabled: true,
+              allowOverlap: true,
+              overFlow: 'none',
+              crop: false,
+              rotation: -70,
+              y: -20,
+              style: {
+                fontSize: '9px'
+              }
             },
+
+            // ,
+            // legend: {
+            //   enabled: false
+            // },
+            // pie: {
+            //   plotBorderWidth: 0,
+            //   allowPointSelect: true,
+            //   cursor: 'pointer',
+            //   size: '100%',
+            //   dataLabels: {
+            //     enabled: true,
+            //     format: '{point.name}: <b>{point.y}</b>',
+
+            //     allowOverlap: true,
+            //     overFlow: 'none',
+            //     crop: false,
+            //     rotation: -70,
+            //     y: -20,
+            //     style: {
+            //       fontSize: '900px'
+            //     }
+            //   }
+            // }
+
           }
 
-        }
+
+        // chartObject.chart.plotOptions = {
+        //   series: {
+        //     pointPadding: 0.2,
+        //     borderWidth: 0,
+        //     dataLabels: {
+        //       enabled: true
+        //     }
+        //   },
+        //   pie: {
+        //     plotBorderWidth: 0,
+        //     allowPointSelect: true,
+        //     cursor: 'pointer',
+        //     size: '100%',
+        //     dataLabels: {
+        //       enabled: true,
+        //       format: '{point.name}: <b>{point.y}</b>'
+        //     }
+        //   }
+        // }
+        // 
         // chartObj.drilldown = {
         //   activeAxisLabelStyle: {
         //     textDecoration: 'none',
