@@ -82,39 +82,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div *ngFor="let acdata of accordionData" class="accNav">                            
-                            <div ngbPanelTitle class="headerElement header{{acdata.order}}">
-                                <div class="row">
-                                    <div class="col-sm-10 col-md-10">
-                                        <div class="checkbox checkbox-primary">
-                                            <input type="checkbox" id="header{{acdata.order}}"  class="header"  name="header{{acdata.order}}"  [(ngModel)]="headerOpt[acdata.order]" (click)="toggleAll($event);" /> 
-                                            <label for="header{{acdata.order}}">{{acdata.accordionTitle}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2 col-md-2">
-                                        <a  class="accordion-control acc collapsed" id="card-block{{acdata.order}}" (click)="onClick($event)">
-                                            +
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="card-block{{acdata.order}}">
-                                <div class="card-block{{acdata.order}}" >
-                                    <div class="row"*ngFor="let chapter of acdata.data;">
-                                        <div class="col-sm-12 col-md-6">
-                                            <div class="checkbox checkbox-primary">
-                                                <input id="{{chapter.name}}" value="{{acdata.order}}"  [(ngModel)]="opt[chapter.name]" type="checkbox" name="{{chapter.name}}" (change)="uncheckParent($event)" >
-                                                <label for="{{chapter.name}}">{{chapter.title}}</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!--<div class="accNav">
-                            <ngb-accordion #acc="ngbAccordion"[closeOthers]="false" activeIds="1">
-                                <ngb-panel>
+                        <ngb-panel>
                                     <template ngbPanelTitle class="accrodionHeader">
                                         <div class="row">
                                             <div class="col-sm-10 col-md-10">
@@ -132,17 +100,17 @@
                                         </div>
                                     </template>
                                     <template ngbPanelContent>
-                                        <div class="card-block1">
+                                        <div class="card-block1" id="collapseOne">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6">
                                                     <div class="checkbox checkbox-primary">
-                                                        <input id="mseropt1" value="1"   type="checkbox" name="mseropt1" [(ngModel)]="opt[mseropt1]" (change)="uncheckParent($event)" >
+                                                        <input id="mseropt1" value="1" type="checkbox" name="mseropt1" [(ngModel)]="mseropt1"  >
                                                         <label for="mseropt1">Total Dealers Enrolled</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12 col-md-6">
                                                     <div class="checkbox checkbox-primary">
-                                                        <input id="mseropt2" value="1"  type="checkbox" name="mseropt2" [(ngModel)]="opt[mseropt2]" (change)="uncheckParent($event)" >
+                                                        <input id="mseropt2" value="1" type="checkbox" name="mseropt2" [(ngModel)]="mseropt2" >
                                                         <label for="mseropt2">Excellence Cards Awards MTD</label>
                                                     </div>
                                                 </div>
@@ -150,7 +118,7 @@
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-6">
                                                     <div class="checkbox checkbox-primary">
-                                                        <input id="mseropt3" value="1"  type="checkbox" name="mseropt3" [(ngModel)]="opt[mseropt3]" (change)="uncheckParent($event)" >
+                                                        <input id="mseropt3" value="1" type="checkbox" name="mseropt3" [(ngModel)]="mseropt3" >
                                                         <label for="mseropt3">Excellence Cards Awards YTD</label>
                                                     </div>
                                                 </div>
@@ -159,9 +127,128 @@
                                         </div>
                                     </template>
                                 </ngb-panel>                                
-                            
-                            </ngb-accordion>
-                        </div>-->
+                                <ngb-panel>
+                                    <template ngbPanelTitle class="accrodionHeader">
+                                        <div class="row">
+                                            <div class="col-sm-10 col-md-10">
+                                                <div class="checkbox checkbox-primary" (click)="onClickEvent($event)">
+                                                     <input type="checkbox" id="header2"  class="header" value="2" name="header2"  [(ngModel)]="headerOpt2" (click)="toggleAll($event);" /> 
+                                                    <label for="header2">MSER Graph</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 col-md-2">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="accordion-control">
+                                                    +
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template ngbPanelContent>
+                                        <div class="card-block2" id="collapseTwo">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt4" value="2"  type="checkbox" name="mseropt4" [(ngModel)]="mseropt4"  >
+                                                        <label for="mseropt4">uConnect</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt5" value="2" type="checkbox" name="mseropt5" [(ngModel)]="mseropt5" >
+                                                        <label for="mseropt5">wiAdvisor</label>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt6" value="2" type="checkbox" name="mseropt6" [(ngModel)]="mseropt6" >
+                                                        <label for="mseropt6">Express Lane</label>
+                                                    </div>
+                                                </div>                                                
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt7" value="2" type="checkbox" name="mseropt7" [(ngModel)]="mseropt7" >
+                                                        <label for="mseropt7">Parts Counter</label>
+                                                    </div>
+                                                </div>                                                
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt8" value="2" type="checkbox" name="mseropt8" [(ngModel)]="mseropt8" >
+                                                        <label for="mseropt8">Magenti Marelli</label>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt9" value="2" type="checkbox" name="mseropt9" [(ngModel)]="mseropt9" >
+                                                        <label for="mseropt9">Mopar Parts</label>
+                                                    </div>
+                                                </div>                                                
+                                            </div>                                                
+                                        </div>
+                                    </template>
+                                </ngb-panel>
+
+                                <ngb-panel>
+                                    <template ngbPanelTitle class="accrodionHeader">
+                                        <div class="row">
+                                            <div class="col-sm-10 col-md-10">
+                                                <div class="checkbox checkbox-primary" (click)="onClickEvent($event)">
+                                                     <input type="checkbox" id="header3"  class="header" value="3" name="header3"  [(ngModel)]="headerOpt3" (click)="toggleAll($event);" /> 
+                                                    <label for="header2">Top Tech</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 col-md-2">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="accordion-control">
+                                                    +
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template ngbPanelContent>
+                                        <div class="card-block3" id="collapseThree">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt11" value="3"  type="checkbox" name="mseropt11" [(ngModel)]="mseropt11"  >
+                                                        <label for="mseropt11">Total Dealers Enrolled</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt12" value="3" type="checkbox" name="mseropt12" [(ngModel)]="mseropt12" >
+                                                        <label for="mseropt12">Top Performers</label>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt13" value="3" type="checkbox" name="mseropt13" [(ngModel)]="mseropt13" >
+                                                        <label for="mseropt13">Count of Surveys QTD</label>
+                                                    </div>
+                                                </div>                                                
+                                            </div> 
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6">
+                                                    <div class="checkbox checkbox-primary">
+                                                        <input id="mseropt14" value="3" type="checkbox" name="mseropt14" [(ngModel)]="mseropt14" >
+                                                        <label for="mseropt14">Average Quarterly Survey Score</label>
+                                                    </div>
+                                                </div>                                                
+                                            </div>                                                                                          
+                                        </div>
+                                    </template>
+                                </ngb-panel>
+                        
                         <div class="col-md-12">
                             <div class="text-center">
                                 <div class="btn-row">

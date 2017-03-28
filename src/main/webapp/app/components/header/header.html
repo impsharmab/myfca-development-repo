@@ -37,10 +37,10 @@
     </button>
     </div>
     <div class="modal-body">
-       <position-code (onSubmit)="positionCodeSubmit()" (onCancel)="positionCodeCancel()"></position-code>
+       <position-code (onSubmit)="positionCodeSubmit(c)" (onCancel)="c()"></position-code>
     </div>
     <div class="modal-footer">
-        <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat" (click)="c('Close click')">Ok</a>
+      
         <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
     </div>
 </template>
@@ -58,7 +58,7 @@
                 <li class="nav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">
-                        <span><img src = "./../../../app/resources/images/retweet.png"  alt="Retweet"  width="25" height="25"></span></a>
+                        <span><img src = "services/loadrsc?id=retweet.png"  alt="Retweet"  width="25" height="25"></span></a>
                 </li>
                 <li class="nav-item">
                     <!--<a *ngIf="booleanAdmin" class="utility-nav active" (click)="admin()">Admin </a>-->

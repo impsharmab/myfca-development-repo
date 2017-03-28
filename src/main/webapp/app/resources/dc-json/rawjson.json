@@ -1,6 +1,6 @@
-[
   [
     {
+      "url": "http://localhost:9090/imiservices/services/data/14/CA-F",
       "parentTerritory": "CA-F",
       "childTerritory": "60435",
       "certType": "",
@@ -165,6 +165,4 @@
       "allNATCertRank": "383",
       "error": ""
     }
-  ],
-  []
-]
+  ]

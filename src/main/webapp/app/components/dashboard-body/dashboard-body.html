@@ -133,9 +133,9 @@
             No data to display</p>
 
           <div class="data-group " *ngFor="let data of contentBody[tile.id].attribute ">
-            <p class="data-point ">{{data.value}}</p>
-            <p class="data-substitle ">{{data.name}}</p>
-            <p class=" " *ngIf="notEmptyBadge(data.badgeUrl) "><img src="app/resources/images/body/{{data.badgeUrl}} "></p>
+            <p class="data-point " *ngIf="emptyBadge(data.badgeUrl) ">{{data.value}}</p>
+            <p class="data-substitle " *ngIf="emptyBadge(data.badgeUrl) ">{{data.name}}</p>
+            <p class=" " *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc?id={{data.badgeUrl}} "></p>
             <p class=" ">{{data.badgeTitle}}</p>
           </div>
 

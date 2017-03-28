@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { HeaderService } from '../../services/header-services/header.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons,NgbModalRef,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -16,19 +16,21 @@ export class HeaderComponent implements OnInit {
     @Output("onProfileChange") profileChange = new EventEmitter<any>();
     private banners: any = new Array;
     @ViewChild("contactModal") private contactModal: TemplateRef<any>;
-    @ViewChild("positioncodeModal") private positioncodeModal: TemplateRef<any>;
+    @ViewChild("positioncodeModal") private positioncodeModal: NgbModalRef;
 
     private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
     private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
     private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
 
-    constructor(private http: Http, private headerService: HeaderService, private modalService: NgbModal, private router: Router) {
+    constructor(public activeModal: NgbActiveModal,private http: Http, private headerService: HeaderService, private modalService: NgbModal, private router: Router) {
 
     }
     private positionCodeCancel(){	
+        this.positioncodeModal.close();
     }	
-    private positionCodeSubmit(){	
-        alert("1");	
+    private positionCodeSubmit(c:any){	
+        // alert("1");	
+       c();
         this.profileChange.emit("")		
     }
     ngOnInit() {

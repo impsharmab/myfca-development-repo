@@ -51,7 +51,7 @@ var PositionCodeComponent = (function () {
         //this.positionCodeService.setCodeData(this.code);
     };
     PositionCodeComponent.prototype.submitClick = function () {
-        alert("Test");
+        //alert("Test");
         this.positionCodeService.setCodeData(this.code);
         this.submitEvent.emit("");
     };

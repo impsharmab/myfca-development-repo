@@ -56,7 +56,7 @@ export class PositionCodeComponent implements OnInit {
 
     }
     private submitClick() {
-        alert("Test");
+        //alert("Test");
         this.positionCodeService.setCodeData(this.code);
         this.submitEvent.emit("");
     }

@@ -24,7 +24,7 @@ var RootPageComponent = (function () {
         this.tilesArray = JSON.parse(sessionStorage.getItem("tiles"));
     };
     RootPageComponent.prototype.onProfileChange = function () {
-        alert();
+        //  alert();
         this.bodyContent.reload();
     };
     return RootPageComponent;

@@ -1,5 +1,7 @@
 package com.imperialm.imiservices.services;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -635,8 +637,8 @@ public class MappingServiceImpl {
 				items.add(item.getName());
 				items.add(item.getDealerName());
 				items.add(item.getParentTerritory());
-				items.add(item.getTotalSurveys());
-				items.add(item.getAvgSurveyScore());
+				items.add(this.formatNumbers(item.getTotalSurveys()));
+				items.add(this.formatNumbers(item.getAvgSurveyScore()));
 			}
 			data.add(items);
 		}
@@ -660,7 +662,7 @@ public class MappingServiceImpl {
 				items.add(item.getName());
 				items.add(item.getDealerName());
 				items.add(item.getParentTerritory());
-				items.add(item.getEarnings());
+				items.add(this.formatCurrency(item.getEarnings()));
 			}
 			data.add(items);
 		}
@@ -669,7 +671,7 @@ public class MappingServiceImpl {
 				List<Object> items = new ArrayList<Object>();
 				if(item.getError().equals("") || item.getError().equals(null)){
 					items.add(item.getName());
-					items.add(item.getQuantity());
+					items.add(this.formatNumbers(item.getQuantity()));
 				}
 				data.add(items);
 			}
@@ -685,6 +687,45 @@ public class MappingServiceImpl {
 		attribute.setName(totalName.getName());
 		attribute.setValue(totalName.getTotal());
 		return attribute;
+	}
+	
+	
+	public String formatCurrency(int number){
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		String moneyString = formatter.format(number);
+		if (moneyString.endsWith(".00")) {
+		    int centsIndex = moneyString.lastIndexOf(".00");
+		    if (centsIndex != -1) {
+		    	moneyString = moneyString.substring(1, centsIndex);
+		    }
+		}
+		
+		return moneyString;
+	}
+	
+	public String formatCurrency(double number){
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		String moneyString = formatter.format(number);
+		if (moneyString.endsWith(".00")) {
+		    int centsIndex = moneyString.lastIndexOf(".00");
+		    if (centsIndex != -1) {
+		    	moneyString = moneyString.substring(1, centsIndex);
+		    }
+		}
+		
+		return moneyString;
+	}
+	
+	public String formatNumbers(double number){
+		DecimalFormat formatter = new DecimalFormat("#,###");
+
+		return formatter.format(number);
+	}
+	
+	public String formatNumbers(int number){
+		DecimalFormat formatter = new DecimalFormat("#,###");
+		
+		return formatter.format(number);
 	}
 	
 }

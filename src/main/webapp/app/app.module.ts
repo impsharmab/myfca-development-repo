@@ -23,8 +23,7 @@ import { AdminComponent } from "./components/admin/admin.component";
 import { AdminRootPageComponent } from "./components/admin/admin-rootpage.component";
 import { TableComponent } from "./components/table/table.component";
 import { PositionCodeComponent } from "./components/positioncode/positioncode.component";
-declare var $: any;
-declare var jQuery: any;
+
 
 //importing services
 import { DashboardBodyService } from "./services/dashboard-body-services/dashboard-body.service"

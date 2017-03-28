@@ -23,7 +23,7 @@ export class RootPageComponent implements OnInit {
 
     }
     onProfileChange(){
-        alert();
+      //  alert();
         this.bodyContent.reload();
     }
 }

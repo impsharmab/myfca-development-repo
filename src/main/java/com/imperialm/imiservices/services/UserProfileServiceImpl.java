@@ -173,8 +173,9 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		//enrolled not enrolled 2 tiles
 		if(tile14.contains(positionCode)){
-			this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
-			this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
+			//this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
+			//this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
 			}
 		
 		if(tile15.contains(positionCode)){
@@ -198,7 +199,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			this.userTiles.add(new NoTile(24,"","tile", "","rewards.jpg","www.mopar.com")); // REWARDRED
 			}
 		
-		if(tile20.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
+		if(tile20.contains(positionCode) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
 			this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","www.mopar.com")); // REWARDRED
 			}
 		
@@ -209,12 +210,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 			*/
 			//Customer first
 			if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","blank.jpg","www.mopar.com")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.jpg","www.mopar.com")); // //customer first
 			}
 			
 			//customer first
 			if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","blank.jpg","www.mopar.com")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.jpg","www.mopar.com")); // //customer first
 			}
 			/*
 			//NOTHING

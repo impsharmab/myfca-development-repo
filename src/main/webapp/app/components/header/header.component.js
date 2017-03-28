@@ -14,7 +14,8 @@ var header_service_1 = require("../../services/header-services/header.service");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var router_1 = require("@angular/router");
 var HeaderComponent = (function () {
-    function HeaderComponent(http, headerService, modalService, router) {
+    function HeaderComponent(activeModal, http, headerService, modalService, router) {
+        this.activeModal = activeModal;
         this.http = http;
         this.headerService = headerService;
         this.modalService = modalService;
@@ -26,9 +27,11 @@ var HeaderComponent = (function () {
         this.booleanAdmin = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
     }
     HeaderComponent.prototype.positionCodeCancel = function () {
+        this.positioncodeModal.close();
     };
-    HeaderComponent.prototype.positionCodeSubmit = function () {
-        alert("1");
+    HeaderComponent.prototype.positionCodeSubmit = function (c) {
+        // alert("1");	
+        c();
         this.profileChange.emit("");
     };
     HeaderComponent.prototype.ngOnInit = function () {
@@ -74,7 +77,7 @@ __decorate([
 ], HeaderComponent.prototype, "contactModal", void 0);
 __decorate([
     core_1.ViewChild("positioncodeModal"),
-    __metadata("design:type", core_1.TemplateRef)
+    __metadata("design:type", ng_bootstrap_1.NgbModalRef)
 ], HeaderComponent.prototype, "positioncodeModal", void 0);
 HeaderComponent = __decorate([
     core_1.Component({
@@ -82,7 +85,7 @@ HeaderComponent = __decorate([
         selector: "app-header",
         templateUrl: "./header.html"
     }),
-    __metadata("design:paramtypes", [http_1.Http, header_service_1.HeaderService, ng_bootstrap_1.NgbModal, router_1.Router])
+    __metadata("design:paramtypes", [ng_bootstrap_1.NgbActiveModal, http_1.Http, header_service_1.HeaderService, ng_bootstrap_1.NgbModal, router_1.Router])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.component.js.map

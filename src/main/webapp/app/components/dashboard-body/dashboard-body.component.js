@@ -174,6 +174,19 @@ var DashboardBodyComponent = (function () {
             return false;
         }
     };
+    DashboardBodyComponent.prototype.emptyBadge = function (data) {
+        try {
+            if ((data).length == 0 || (data).length == 1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch (e) {
+            return false;
+        }
+    };
     DashboardBodyComponent.prototype.errorInArray = function (data) {
         try {
             if ((data).length < 1 || typeof data == undefined || !(data instanceof Array)) {
@@ -249,6 +262,7 @@ var DashboardBodyComponent = (function () {
     };
     DashboardBodyComponent.prototype.getChartJSONObject = function (obj, chartData) {
         var unit; // = this.unit;
+        var tileId = obj.id;
         if (chartData.unit == "$") {
             unit = chartData.unit;
         }
@@ -297,7 +311,7 @@ var DashboardBodyComponent = (function () {
                 }
             },
             // tooltip: {
-            //   pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{unit}</b><b>{point.y}</b> <br/>',
+            //   pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{'+unit+'}</b><b>{point.y}</b> <br/>',
             //   shared: true
             // },
             plotOptions: {},
@@ -310,6 +324,7 @@ var DashboardBodyComponent = (function () {
                 drillUpText: '◁ Back'
             }
         });
+        var __this = this;
         switch (chartData.type) {
             // case "column":
             //   chartObj.chart.type = "column"
@@ -368,7 +383,7 @@ var DashboardBodyComponent = (function () {
                 var pieButtons = new Array();
                 this.pieButtons[obj.id] = pieButtons;
                 for (var i = 0; i < chartData.data.length; i++) {
-                    i == 0 ? pieButtons.push("NAT") : "";
+                    i == 0 && !chartData.DelDisMan ? pieButtons.push("NAT") : "";
                     var dataObj = chartData.data[i];
                     categories.push(dataObj.name);
                     avagerCount = avagerCount + 1;
@@ -456,21 +471,45 @@ var DashboardBodyComponent = (function () {
             case "column":
                 chartObj.chart.type = "column",
                     //chartObj["legend"] = { enabled: false },
-                    chartObj.plotOptions["series"] = {
-                        pointPadding: 0.2,
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            allowOverlap: true,
-                            overFlow: 'none',
-                            crop: false,
-                            rotation: -70,
-                            y: -20,
-                            style: {
-                                fontSize: '9px'
+                    chartObj.plotOptions["pie"] =
+                        {
+                            plotBorderWidth: 0,
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            size: '60%',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}: <br><b>{point.y}</b>',
+                                allowOverlap: true,
+                                overFlow: 'none',
+                                crop: false,
+                                rotation: 70,
+                                y: 20,
+                                style: {
+                                    fontSize: '9px'
+                                }
                             }
-                        },
-                    };
+                        };
+                chartObj.plotOptions["series"] = {
+                    events: {
+                        legendItemClick: function (e) {
+                            __this.lengendItemClick(e, this, tileId);
+                        }
+                    },
+                    pointPadding: 0.2,
+                    borderWidth: 0,
+                    dataLabels: {
+                        enabled: true,
+                        allowOverlap: true,
+                        overFlow: 'none',
+                        crop: false,
+                        rotation: -70,
+                        y: -15,
+                        style: {
+                            fontSize: '9px'
+                        }
+                    },
+                };
                 // chartObject.chart.plotOptions = {
                 //   series: {
                 //     pointPadding: 0.2,
@@ -599,6 +638,11 @@ var DashboardBodyComponent = (function () {
             case "bar_compound":
                 chartObj.chart.type = "bar";
                 chartObj.plotOptions["series"] = {
+                    events: {
+                        legendItemClick: function (e) {
+                            __this.lengendItemClick(e, this, tileId);
+                        }
+                    },
                     borderWidth: 0,
                     dataLabels: {
                         enabled: false,
@@ -633,10 +677,23 @@ var DashboardBodyComponent = (function () {
             case "column_compound":
                 chartObj.chart.type = "column";
                 chartObj.plotOptions["series"] = {
+                    events: {
+                        legendItemClick: function (e) {
+                            __this.lengendItemClick(e, this, tileId);
+                        }
+                    },
                     pointPadding: 0.2,
                     borderWidth: 0,
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
+                        allowOverlap: true,
+                        overFlow: 'none',
+                        crop: false,
+                        rotation: -70,
+                        y: -15,
+                        style: {
+                            fontSize: '9px'
+                        }
                     }
                 };
                 delete chartObj.xAxis.categories;
@@ -667,6 +724,11 @@ var DashboardBodyComponent = (function () {
             case "column_stack":
                 chartObj.chart.type = "column";
                 chartObj.plotOptions["column"] = {
+                    events: {
+                        legendItemClick: function (e) {
+                            __this.lengendItemClick(e, this, tileId);
+                        }
+                    },
                     stacking: 'normal',
                     dataLabels: {
                         enabled: false,
@@ -683,6 +745,14 @@ var DashboardBodyComponent = (function () {
                 delete chartObj.xAxis.categories;
                 // delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
+                if (chartObj.series.length > 2) {
+                    if (chartData.retention) {
+                        for (var i = 0; i < chartObj.series.length; i++) {
+                            var seriesObj = chartObj.series[i];
+                            i == 2 ? seriesObj.visible = true : seriesObj.visible = false;
+                        }
+                    }
+                }
                 // var categories = [];
                 // var seriesJson = {};
                 // for (var i = 0; i < chartData.data.length; i++) {
@@ -731,7 +801,15 @@ var DashboardBodyComponent = (function () {
                 size: '100%',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.name}: <b>{point.y}</b>'
+                    format: '{point.name}: <b>{point.y}</b>',
+                    allowOverlap: true,
+                    overFlow: 'none',
+                    crop: false,
+                    rotation: -0,
+                    y: -20,
+                    style: {
+                        fontSize: '9px'
+                    }
                 }
             }
         };
@@ -1119,6 +1197,41 @@ var DashboardBodyComponent = (function () {
             chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
         }
         this.chartObjects[id] = new Highcharts.Chart(chartObject);
+    };
+    DashboardBodyComponent.prototype.lengendItemClick = function (event, clickedSeries, id) {
+        var obj = this.unitAndAverage[id];
+        var total = 0;
+        for (var i = 0; i < event.target.chart.series.length; i++) {
+            var series = event.target.chart.series[i];
+            if (clickedSeries.name === series.name) {
+                if (!clickedSeries.visible) {
+                    for (var j = 0; j < series.data.length; j++) {
+                        var value = series.data[j].y;
+                        total = total + value;
+                    }
+                }
+            }
+            else {
+                if (series.visible) {
+                    for (var j = 0; j < series.data.length; j++) {
+                        var value = series.data[j].y;
+                        total = total + value;
+                    }
+                }
+            }
+        }
+        if (obj.unit == "$" && obj.avarage == false) {
+            event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.round(total).toLocaleString() });
+        }
+        else if (obj.unit == "$" && obj.avarage == true) {
+            event.target.chart.setTitle(null, { text: "Average " + obj.unit + Math.round(total).toLocaleString() });
+        }
+        else if (obj.unit == "%") {
+            event.target.chart.setTitle(null, { text: "Total " + Math.round(total).toLocaleString() + obj.unit });
+        }
+        else {
+            event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.round(total).toLocaleString() });
+        }
     };
     return DashboardBodyComponent;
 }());

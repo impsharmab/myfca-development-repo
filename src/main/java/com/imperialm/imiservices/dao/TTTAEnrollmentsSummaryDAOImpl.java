@@ -32,7 +32,7 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_AND_POSITIONCODE, TTTAEnrollmentsSummaryDTO.class);
-			query.setParameter(0, territories);
+			query.setParameter(0, territories.get(0));
 			query.setParameter(1, positionCode);
 			List<TTTAEnrollmentsSummaryDTO> rows = query.getResultList();
 			result = rows;
@@ -52,7 +52,7 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_AND_POSITIONCODE, TTTAEnrollmentsSummaryDTO.class);
-			query.setParameter(0, territories);
+			query.setParameter(0, territories.get(0));
 			query.setParameter(1, positionCode);
 			List<TTTAEnrollmentsSummaryDTO> rows = query.getResultList();
 			result = rows;
@@ -195,14 +195,14 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_SUM_BY_PARENT_TERRITORY_AND_POSITIONCODE, TTTAEnrollmentsSummaryDTO.class);
-			query.setParameter(0, territories);
+			query.setParameter(0, territories.get(0));
 			query.setParameter(1, positionCode);
 			List<TTTAEnrollmentsSummaryDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
-			logger.error("error occured in getTTTAEnrollmentsSummaryByChildAndPositionCode", ex);
+			logger.error("error occured in getTTTAEnrollmentsSummarySUMByParentAndPositionCode", ex);
 		}
 		return result;
 	}

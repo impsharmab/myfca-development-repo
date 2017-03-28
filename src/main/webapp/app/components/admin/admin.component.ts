@@ -6,14 +6,16 @@ import { Observable } from 'rxjs/Observable';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Admin } from './admin.interface';
-declare var $: any;
-declare var jQuery: any;
+import {NgbAccordionConfig} from '@ng-bootstrap/ng-bootstrap';
+import { NgbdAccordionConfig } from './accordion-config';
 
+declare var $:any;
 @Component({
     moduleId: module.id,
     selector: "app-admin",
-    templateUrl: "./admin.html"
+    templateUrl: "./admin-static.html",
     //  templateUrl: "./admin1.html"
+    providers: [NgbAccordionConfig]
 })
 
 // @Directive({selector: '[collapse]'})
@@ -43,24 +45,28 @@ export class AdminComponent implements OnInit {
     private selectRole:any;
     clickSuccessMessage = '';
     public admindata: Admin;
-    
+    private isOpen:Boolean = false;
     // group dropdown options
-    constructor(private http: Http, private adminService: AdminService, private elRef: ElementRef) {
+    constructor(private http: Http, private adminService: AdminService, private elRef: ElementRef, 
+        config: NgbAccordionConfig
+        ) {
+        config.closeOthers = true;
+        // config.type = 'info';
         this.group = [
             {
                 id: 1,
                 label: "Select Language",
-                value: 0
+                value: "Select"
             },
             {
                 id: 2,
                 label: "Group 1",
-                value:1
+                value:"Group1"
             },
             {
                 id: 3,
                 label: "Group 2",
-                value: 2
+                value: "Group2"
             },
         ]
         this.selectGroup = this.group[0];
@@ -70,32 +76,32 @@ export class AdminComponent implements OnInit {
             {
                 id: 1,
                 label: "Executive",
-                value: 0
+                value: "executive"
             },
             {
                 id: 2,
                 label: "BC",
-                value:1
+                value:"BC"
             },
             {
                 id: 3,
                 label: "District",
-                value: 2
+                value: "district"
             },
             {
                 id: 4,
                 label: "Dealer",
-                value: 3
+                value: "dealer"
             },
             {
                 id: 5,
                 label: "Manager",
-                value: 4
+                value: "manager"
             },
             {
                 id: 6,
                 label: "Participant",
-                value: 5
+                value: "participant"
             },
         ]
         this.selectRole = this.role[0];
@@ -171,37 +177,134 @@ export class AdminComponent implements OnInit {
         } else {
            f.value.header7=false;
         }
-        
-        // console.log(f.value);
+
+        if(f.value.mseropt1==undefined || f.value.mseropt1==null) {
+            f.value.mseropt1=false;
+        }
+        if(f.value.mseropt2==undefined || f.value.mseropt2==null) {
+            f.value.mseropt2=false;
+        }
+        if(f.value.mseropt3==undefined || f.value.mseropt3==null) {
+            f.value.mseropt3=false;
+        }
+        if(f.value.mseropt4==undefined || f.value.mseropt4==null) {
+            f.value.mseropt4=false;
+        }
+        if(f.value.mseropt5==undefined || f.value.mseropt5==null) {
+            f.value.mseropt5=false;
+        }
+        if(f.value.mseropt6==undefined || f.value.mseropt6==null) {
+            f.value.mseropt6=false;
+        }
+        if(f.value.mseropt7==undefined || f.value.mseropt7==null) {
+            f.value.mseropt7=false;
+        }
+        if(f.value.mseropt7==undefined || f.value.mseropt7==null) {
+            f.value.mseropt7=false;
+        }
+        if(f.value.mseropt8==undefined || f.value.mseropt8==null) {
+            f.value.mseropt8=false;
+        }
+        if(f.value.mseropt9==undefined || f.value.mseropt9==null) {
+            f.value.mseropt9=false;
+        }
+        if(f.value.mseropt10==undefined || f.value.mseropt10==null) {
+            f.value.mseropt10=false;
+        }
+        if(f.value.mseropt11==undefined || f.value.mseropt11==null) {
+            f.value.mseropt11=false;
+        }
+        if(f.value.mseropt12==undefined || f.value.mseropt12==null) {
+            f.value.mseropt12=false;
+        }
+        if(f.value.mseropt13==undefined || f.value.mseropt13==null) {
+            f.value.mseropt13=false;
+        }
+        if(f.value.mseropt14==undefined || f.value.mseropt14==null) {
+            f.value.mseropt14=false;
+        }
+        if(f.value.mseropt15==undefined || f.value.mseropt15==null) {
+            f.value.mseropt15=false;
+        }
+        if(f.value.mseropt16==undefined || f.value.mseropt16==null) {
+            f.value.mseropt16=false;
+        }
+        if(f.value.mseropt17==undefined || f.value.mseropt17==null) {
+            f.value.mseropt17=false;
+        }
+        if(f.value.mseropt18==undefined || f.value.mseropt18==null) {
+            f.value.mseropt18=false;
+        }
+        if(f.value.mseropt19==undefined || f.value.mseropt19==null) {
+            f.value.mseropt19=false;
+        }
+        if(f.value.mseropt20==undefined || f.value.mseropt20==null) {
+            f.value.mseropt20=false;
+        }
+        if(f.value.mseropt21==undefined || f.value.mseropt21==null) {
+            f.value.mseropt21=false;
+        }
+        if(f.value.mseropt22==undefined || f.value.mseropt22==null) {
+            f.value.mseropt22=false;
+        }
+        if(f.value.mseropt23==undefined || f.value.mseropt23==null) {
+            f.value.mseropt23=false;
+        }
+        if(f.value.mseropt24==undefined || f.value.mseropt24==null) {
+            f.value.mseropt24=false;
+        }
+        if(f.value.mseropt25==undefined || f.value.mseropt25==null) {
+            f.value.mseropt25=false;
+        }
+        if(f.value.mseropt26==undefined || f.value.mseropt26==null) {
+            f.value.mseropt26=false;
+        }
+        if(f.value.mseropt27==undefined || f.value.mseropt27==null) {
+            f.value.mseropt27=false;
+        }
+        if(f.value.mseropt28==undefined || f.value.mseropt28==null) {
+            f.value.mseropt28=false;
+        }
+        if(f.value.mseropt29==undefined || f.value.mseropt29==null) {
+            f.value.mseropt29=false;
+        }
+        if(f.value.mseropt30==undefined || f.value.mseropt30==null) {
+            f.value.mseropt30=false;
+        }
         datas.push(
             {
                 "positioncode":f.value.group.value,
                 "chooseView":f.value.role.value,
 
                 "permissions": [
-                    "show"+":"+f.value.header1,
-                    {"attribute" : [f.value.mseropt1, f.value.mseropt2, f.value.mseropt3]},
+                    {
+                    "show":f.value.header1,
+                    "attribute" : [f.value.mseropt1, f.value.mseropt2, f.value.mseropt3]},
 
-                    "show"+":"+f.value.header2,
-                    {"attribute" : [f.value.mseropt4, f.value.mseropt5, f.value.mseropt6, f.value.mseropt7, f.value.mseropt8, f.value.mseropt9, f.value.mseropt10]},
+                    {"show":+f.value.header2,
+                    "attribute" : [f.value.mseropt4, f.value.mseropt5, f.value.mseropt6, f.value.mseropt7, f.value.mseropt8, f.value.mseropt9, f.value.mseropt10]},
 
-                    "show"+":"+f.value.header3,
-                    {'attribute' : [f.value.mseropt11, f.value.mseropt12, f.value.mseropt13, f.value.mseropt14]},
+                    {"show":f.value.header3,
+                    'attribute' : [f.value.mseropt11, f.value.mseropt12, f.value.mseropt13, f.value.mseropt14]},
 
-                    "show"+":"+f.value.header4,
-                    {'attribute' : [f.value.mseropt15, f.value.mseropt16, f.value.mseropt17, f.value.mseropt18]},
+                    {"show":+f.value.header4,
+                    'attribute' : [f.value.mseropt15, f.value.mseropt16, f.value.mseropt17, f.value.mseropt18]},
 
-                    "show"+":"+f.value.header5,
-                    {'attribute' : [f.value.mseropt19, f.value.mseropt20, f.value.mseropt21, f.value.mseropt22]},
+                    {"show":f.value.header5,
+                    'attribute' : [f.value.mseropt19, f.value.mseropt20, f.value.mseropt21, f.value.mseropt22]},
 
-                    "show"+":"+f.value.header6,
-                    {'attribute' :  [f.value.mseropt23, f.value.mseropt24, f.value.mseropt25, f.value.mseropt26]},
+                    {"show":f.value.header6,
+                    'attribute' :  [f.value.mseropt23, f.value.mseropt24, f.value.mseropt25, f.value.mseropt26]},
 
-                    "show"+":"+f.value.header7,
-                    {'attribute' : [f.value.mseropt27, f.value.mseropt28, f.value.mseropt29, f.value.mseropt30]},
+                    {"show":f.value.header7,
+                    'attribute' : [f.value.mseropt27, f.value.mseropt28, f.value.mseropt29, f.value.mseropt30]},
                 ]
             }
         );
+        console.log(f.value);
+            // console.log(f.value.mseropti);
+        
+        // 
        var FormData = JSON.stringify(datas, null, 2);
        
        
@@ -235,7 +338,45 @@ export class AdminComponent implements OnInit {
 
     }
     onClick(ev) {
-        $("."+ev.target.id).toggle(400);
+
+        // for(var i = 1; i<=7; i++) {
+            
+        //     if ($('.'+ev.target.id).hasClass('hide')){
+        //         $("."+ev.target.id).removeClass('hide');
+        //         $("."+ev.target.id).addClass("show");
+        //     } else {
+        //         $("."+ev.target.id).addClass("hide");
+        //         $("."+ev.target.id).removeClass('show');
+        //     }
+        // }
+        // $("."+ev.target.id).toggle("slow");
+        // if ($('.'+ev.target.id).hasClass('hide')){ 
+        //     $(".AccContent."+ev.target.id).removeClass("hide");
+        //     // $(".AccContent").addClass("hide");
+        // } else {
+        //     $(".AccContent."+ev.target.id).toggleClass("hide");
+        // }
+        // $('.AccContent').each(
+        //     function() {
+        //         $('.'+ev.target.id).addClass('hide');
+        //         if ($('.'+ev.target.id).hasClass('hide')){            
+        //             $("."+ev.target.id).removeClass('hide').delay(2000).queue(function(){
+        //             $("."+ev.target.id).addClass("show");
+        //             });
+        //         } 
+        //     }
+        // );
+        
+        // if ($('.'+ev.target.id).hasClass('show')){
+        //     $("."+ev.target.id).removeClass('show').delay(2000).queue(function(){
+        //         $("."+ev.target.id).addClass("hide");
+        //     });
+        // }
+        // else {
+        //     $("."+ev.target.id).removeClass('show').addClass("hide");
+        // }
+        
+        //  $(this).addClass("show");
     }
     getAccordionData() {
 
@@ -322,36 +463,36 @@ export class AdminComponent implements OnInit {
 
     toggleAll(ev) {
         
-        this.parentId = ev.target.value
-        var dataLength = this.accordionData.length;
-            if(this.parentId===this.parentId) {
-                if(this.parentId === "1") {
-                    var SubDataLeng = 3
-                } 
-                if(this.parentId === "2") {
-                    var SubDataLeng = 7
-                }
-                if(this.parentId === "3") {
-                    var SubDataLeng = 4
-                }
-                if(this.parentId === "4" || this.parentId === "5" || this.parentId === "6" || this.parentId === "7") {
-                    var SubDataLeng = 4
-                }
-                // if ($('input.header').is(':checked')) {
-                if(ev.target.checked===true) {
-                    for(var j=0;j<=SubDataLeng; j++) {
-                        if($(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', false)) {
-                            $(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', true)
-                        }
-                    }               
-                }  else {
-                    for(var j=0;j<=SubDataLeng; j++) {
-                        if($(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', true)) {
-                            $(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', false)
-                        }
-                    }
-                }           
-            } 
+        // this.parentId = ev.target.value
+        // var dataLength = this.accordionData.length;
+        //     if(this.parentId===this.parentId) {
+        //         if(this.parentId === "1") {
+        //             var SubDataLeng = 3
+        //         } 
+        //         if(this.parentId === "2") {
+        //             var SubDataLeng = 7
+        //         }
+        //         if(this.parentId === "3") {
+        //             var SubDataLeng = 4
+        //         }
+        //         if(this.parentId === "4" || this.parentId === "5" || this.parentId === "6" || this.parentId === "7") {
+        //             var SubDataLeng = 4
+        //         }
+        //         // if ($('input.header').is(':checked')) {
+        //         if(ev.target.checked===true) {
+        //             for(var j=0;j<=SubDataLeng; j++) {
+        //                 if($(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', false)) {
+        //                     $(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', true)
+        //                 }
+        //             }               
+        //         }  else {
+        //             for(var j=0;j<=SubDataLeng; j++) {
+        //                 if($(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', true)) {
+        //                     $(".card-block"+this.parentId+" input#mseropt"+j).prop('checked', false)
+        //                 }
+        //             }
+        //         }           
+        //     } 
      }   
     
     
