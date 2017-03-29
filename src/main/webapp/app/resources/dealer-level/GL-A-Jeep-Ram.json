@@ -1,6 +1,46 @@
 [
     {
         "url": "http://localhost:9090/imiservices/services/data/10/GL-A",
+        "dealerCode": "59655 unnecessary key",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "James Michel",
+        "certType": "JEEP    ",
+        "cert":  "1 unnecessary key",
+        "points": 400,
+        "totalPoints": "400 unnecessary key",
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "Charles Prohaska",
+        "certType": "JEEP    ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S27423I"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "James Michel",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400,
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "59655",
+        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
+        "name": "Charles Prohaska",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 400,
+        "totalPoints": 400, 
+        "sid": "S27423I"
+    },
+    {
         "dealerCode": "59655",
         "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
         "name": "James Michel",
@@ -41,42 +81,82 @@
         "sid": "S27423I"
     },
     {
-        "dealerCode": "59655",
-        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
-        "name": "James Michel",
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Toni",
         "certType": "JEEP    ",
         "cert": 1,
-        "points": 400,
+        "points": 200,
         "totalPoints": 400,
         "sid": "S01972B"
     },
     {
-        "dealerCode": "59655",
-        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
-        "name": "Charles Prohaska",
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Romi",
         "certType": "JEEP    ",
         "cert": 1,
-        "points": 400,
+        "points": 200,
         "totalPoints": 400,
         "sid": "S27423I"
     },
     {
-        "dealerCode": "59655",
-        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
-        "name": "James Michel",
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Toni",
         "certType": "RAM     ",
         "cert": 1,
-        "points": 400,
+        "points": 200,
         "totalPoints": 400,
         "sid": "S01972B"
     },
     {
-        "dealerCode": "59655",
-        "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
-        "name": "Charles Prohaska",
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Romi",
         "certType": "RAM     ",
         "cert": 1,
-        "points": 400,
+        "points": 200,
+        "totalPoints": 400,
+        "sid": "S27423I"
+    },
+    {
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Toni",
+        "certType": "JEEP    ",
+        "cert": 1,
+        "points": 200,
+        "totalPoints": 400,
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Romi",
+        "certType": "JEEP    ",
+        "cert": 1,
+        "points": 200,
+        "totalPoints": 400,
+        "sid": "S27423I"
+    },
+    {
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Toni",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 200,
+        "totalPoints": 400,
+        "sid": "S01972B"
+    },
+    {
+        "dealerCode": "51255",
+        "dealerName": "CANTON MI",
+        "name": "Romi",
+        "certType": "RAM     ",
+        "cert": 1,
+        "points": 200,
         "totalPoints": 400,
         "sid": "S27423I"
     }

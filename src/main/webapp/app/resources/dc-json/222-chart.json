@@ -1,0 +1,90 @@
+{
+    "title": "Retention % By Employee Type",
+    "subTitle": "",
+    "yaxisTitle": "Retention Rate",
+    "xaxisTitle": "",
+    "type": "column_stack",
+    "data": [
+        {
+            "name": "Service Managers",
+            "value": 57.69,
+            "data": [
+                {
+                    "name": "CA-H",
+                    "value": 57.69,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Parts Advisors",
+            "value": 62.43,
+            "data": [
+                {
+                    "name": "CA-H",
+                    "value": 62.43,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Service Technicians",
+            "value": 75.04,
+            "data": [
+                {
+                    "name": "CA-H",
+                    "value": 75.04,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Service Advisors",
+            "value": 43.42,
+            "data": [
+                {
+                    "name": "CA-H",
+                    "value": 43.42,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Position 42",
+            "value": 42.94,
+            "data": [
+                {
+                    "name": "CA-H",
+                    "value": 42.94,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Sales Managers",
+            "value": 70.24,
+            "data": [
+                {
+                    "name": "CA-H",
+                    "value": 70.24,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Parts Managers",
+            "value": 55.13,
+            "data": [
+                {
+                    "name": "CA-H",
+                    "value": 55.13,
+                    "data": []
+                }
+            ]
+        }
+    ],
+    "unit": "%",
+    "avarage": false,
+    "customer_first": false,
+    "retention": true
+}

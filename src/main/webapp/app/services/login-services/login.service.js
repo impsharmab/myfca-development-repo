@@ -39,7 +39,8 @@ var LoginService = (function () {
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        return this.http.post(url, body, { headers: headers })
+        //    return this.http.post(url, body, { headers: headers })
+        return this.http.get(this.getLoginResponseUrl)
             .map(function (response) {
             return response.json();
         })

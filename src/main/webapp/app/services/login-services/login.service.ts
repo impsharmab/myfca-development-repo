@@ -33,8 +33,8 @@ export class LoginService {
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-          return this.http.post(url, body, { headers: headers })
-      //  return this.http.get(this.getLoginResponseUrl)
+      //    return this.http.post(url, body, { headers: headers })
+        return this.http.get(this.getLoginResponseUrl)
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError);
