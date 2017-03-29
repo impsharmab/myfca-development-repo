@@ -72,7 +72,7 @@ var DashboardBodyService = (function () {
             .catch(this.handleError);
     };
     DashboardBodyService.prototype.getTableJson = function (id) {
-        var chartService = "./app/resources/json/datatable.json";
+        var chartService = "./app/resources/dealer-level/GL-A-Jeep-Ram-processed.json";
         //var chartService = "services/tile/" + id;
         return this.http.get(chartService)
             .map(function (response) { return response.json(); })

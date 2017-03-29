@@ -1,6 +1,5 @@
 [
-    {
-        "url": "http://localhost:9090/imiservices/services/data/10/GL-A",
+    {        
         "dealerCode": "59655 unnecessary key",
         "dealerName": "STERLING HEIGHTS DODGE CHRYSLER JEEP, INC.",
         "name": "James Michel",
@@ -8,7 +7,7 @@
         "cert":  "1 unnecessary key",
         "points": 400,
         "totalPoints": "400 unnecessary key",
-        "sid": "S01972B"
+        "sid": "S01972B" 
     },
     {
         "dealerCode": "59655",

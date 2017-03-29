@@ -64,7 +64,7 @@ export class DashboardBodyService {
             .catch(this.handleError);
     }
     getTableJson(id) {
-        var chartService = "./app/resources/json/datatable.json";
+        var chartService = "./app/resources/dealer-level/GL-A-Jeep-Ram-processed.json";
         //var chartService = "services/tile/" + id;
         return this.http.get(chartService)
             .map((response: Response) => response.json())

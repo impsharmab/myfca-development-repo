@@ -1,0 +1,18 @@
+{
+    "title": "YTD Winners",
+    "subTitle": "",
+    "yaxisTitle": "Total Winners",
+    "xaxisTitle": "Dealer",
+    "type": "column",
+    "data": [
+        {
+            "name": "26550",
+            "value": 1.0,
+            "data": []
+        }
+    ],
+    "unit": "",
+    "avarage": false,
+    "customer_first": false,
+    "retention": false
+}
