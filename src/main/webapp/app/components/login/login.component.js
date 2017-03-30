@@ -13,10 +13,11 @@ var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var login_service_1 = require("../../services/login-services/login.service");
 var LoginComponent = (function () {
-    function LoginComponent(loginService, router, http) {
+    function LoginComponent(loginService, router, http, _compiler) {
         this.loginService = loginService;
         this.router = router;
         this.http = http;
+        this._compiler = _compiler;
         this.sampleUsers = [];
         this.userdata = {};
         this.responseUserdata = {
@@ -26,6 +27,7 @@ var LoginComponent = (function () {
             },
             "error": ""
         };
+        this._compiler.clearCache();
     }
     LoginComponent.prototype.ngOnInit = function () {
         this.user = {
@@ -65,7 +67,7 @@ LoginComponent = __decorate([
         moduleId: module.id,
         templateUrl: './loginform.html',
     }),
-    __metadata("design:paramtypes", [login_service_1.LoginService, router_1.Router, http_1.Http])
+    __metadata("design:paramtypes", [login_service_1.LoginService, router_1.Router, http_1.Http, core_1.Compiler])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

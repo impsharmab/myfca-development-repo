@@ -8,6 +8,7 @@
     "avarage": false,
     "customer_first": true,
     "retention": false,
+    "cfdealDisMan": true,
     "data": [
         {
             "name": "Level 0",

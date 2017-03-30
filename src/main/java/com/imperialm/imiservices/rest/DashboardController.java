@@ -186,6 +186,7 @@ public class DashboardController {
 			tableheaders.add("Dealership");
 			tableheaders.add("BusinessCenter");
 			tableheaders.add("Total Awards");
+			tableheaders.add("Survey Score");
 			
 			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 MTD Technicians Excellence Card Awards", tableheaders));
 			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 YTD Technicians Excellence Card Awards", tableheaders));
@@ -718,8 +719,8 @@ public class DashboardController {
 			
 			unfiltereList = this.dashService.getExpertPointsEarnedByParentTerritory(filters);
 			
-			Chart chart = this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Numbers", "column_stack");
-			Chart chart2 = this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Numbers", "column_stack");
+			Chart chart = this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Participants", "column_stack");
+			Chart chart2 = this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Participants", "column_stack");
 			
 			filters = new ArrayList<String>();
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
@@ -1081,11 +1082,11 @@ public class DashboardController {
 		{
 			//set datatables
 			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TOP TA", 10);
-			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TA", 10);
+			//List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TA", 10);
 			
 			TopTenChart topTenChart = new TopTenChart();
 			//TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians"); //, "Excellence Card Awards - Top 5 Technicians"
-			TopTenDataTable datatableA = new TopTenDataTable("TOP 10 Advisors");
+			TopTenDataTable datatableA = new TopTenDataTable("TOP 10 Advisors QTD by Overall Survey Score");
 			List<TopTenTableData> tabledataA = new ArrayList<TopTenTableData>();
 			//List<TopTenTableData> tabledataT = new ArrayList<TopTenTableData>();
 			
@@ -1099,9 +1100,9 @@ public class DashboardController {
 			
 			
 			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD Average Survey Scores", tableheaders));	
-			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
+			//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
 			tabledataA.get(0).setTabName("QTD");
-			tabledataA.get(1).setTabName("YTD");
+			//tabledataA.get(1).setTabName("YTD");
 			datatableA.setData(tabledataA);
 			
 			topTenChart.setTop10_advisors(datatableA);
@@ -1186,11 +1187,11 @@ public class DashboardController {
 		{
 			//set datatables
 			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TOP TT", 10);
-			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TT", 10);
+			//List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TT", 10);
 			
 			TopTenChart topTenChart = new TopTenChart();
 			
-			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians"); //, "Excellence Card Awards - Top 5 Technicians"
+			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 TechniciansQTD by Overall Survey Score"); //, "Excellence Card Awards - Top 5 Technicians"
 			List<TopTenTableData> tabledataT = new ArrayList<TopTenTableData>();
 			
 			List<String> tableheaders = new ArrayList<String>();
@@ -1206,9 +1207,9 @@ public class DashboardController {
 			//datatableT.setData(tabledataT);
 			
 			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD Average Survey Scores", tableheaders));	
-			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
+			//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
 			tabledataT.get(0).setTabName("QTD");
-			tabledataT.get(1).setTabName("YTD");
+			//tabledataT.get(1).setTabName("YTD");
 			datatableT.setData(tabledataT);
 			
 			topTenChart.setTop10_technicians(datatableT);
@@ -1285,13 +1286,13 @@ public class DashboardController {
 		{
 			List<TTTAEnrolledDTO> listEnrolled = this.dashService.getTTTAEnrollmentsBC(true);
 			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", "", "column_compound");
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", " # of  Dealers", "column_compound");
 		}
 		case "17":
 		{
 			List<TTTAEnrolledDTO> listNotEnrolled = this.dashService.getTTTAEnrollmentsBC(false);
 			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", "", "column_compound");
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", " # of  Dealers", "column_compound");
 		}
 		case "18":
 		{
@@ -1680,7 +1681,6 @@ public class DashboardController {
 			for(ChartData item: a){
 				item.addDataList(chartsMap.get(item.getName()));
 			}
-			
 			return chart;
 		}
 		case "24":
@@ -2101,7 +2101,7 @@ public class DashboardController {
 				}else if(item.getName().equals("13")){
 					item.setName("Service Advisors");
 				}else if(item.getName().equals("42")){
-					item.setName("Position 42");
+					item.setName("Sales Consultant");
 				}else if(item.getName().equals("04")){
 					item.setName("Sales Managers");
 				}else if(item.getName().equals("08")){
@@ -2112,6 +2112,7 @@ public class DashboardController {
 			chart.setData(attributes);
 			chart.setUnit("%");
 			chart.setRetention(true);
+			chart.setAvarage(true);
 			return chart;
 		}
 		case "32":
@@ -2660,11 +2661,11 @@ public class DashboardController {
 			}
 			*/
 			
-			Chart chart = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "", "Total", "column_stack");
-			Chart chart2 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "", "Total", "column_stack");
-			Chart chart3 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "", "Total", "column_stack");
-			Chart chart4 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "", "Total", "column_stack");
-			Chart chart5 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "", "Total", "column_stack");
+			Chart chart = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "# of  Dealers", "Total Enrolled", "column_stack");
+			Chart chart2 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "# of  Dealers", "Total Enrolled", "column_stack");
+			Chart chart3 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "# of  Dealers", "Total Enrolled", "column_stack");
+			Chart chart4 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "# of  Dealers", "Total Enrolled", "column_stack");
+			Chart chart5 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Enrolled YTD", "", "# of  Dealers", "Total Enrolled", "column_stack");
 
 			Map<String, Double> mapValues = new HashMap<String, Double>();
 			Map<String, Double> mapValues2 = new HashMap<String, Double>();
@@ -2807,6 +2808,194 @@ public class DashboardController {
 			
 			//special mapping for stacked column
 		}
+		case "35":
+		{
+			List<String> filters = new ArrayList<String>(Arrays.asList("NAT"));
+			List<TTTAEnrolledGraphDTO> listBC = this.dashService.getTTTAEnrolledByParentTerritoryNotEnrolled(filters);
+			filters = new ArrayList<String>();
+			for(TTTAEnrolledGraphDTO item: listBC){
+				if(type.equals("BC")){
+					//get users BC
+					if(item.getChild().contains(BC)){
+						filters.add(item.getChild());
+					}
+				}else{
+					filters.add(item.getChild());
+				}
+			}
+			
+			List<TTTAEnrolledGraphDTO> sublist = this.dashService.getTTTAEnrolledByParentTerritoryNotEnrolled(filters);
+			Map<String, List<String>> map = new HashMap<String, List<String>>();
+			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
+			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
+			Map<String, List<ChartData>> chartsMap3 = new HashMap<String, List<ChartData>>();
+			Map<String, List<ChartData>> chartsMap4 = new HashMap<String, List<ChartData>>();
+			Map<String, List<ChartData>> chartsMap5 = new HashMap<String, List<ChartData>>();
+		/*	for(TTTAEnrolledGraphDTO item: sublist){
+				if(!map.containsKey(item.getParent())){
+					map.put(item.getParent(), new ArrayList<String>());
+				}
+				List<String> temp = map.get(item.getParent());
+				if(type.equals("BC")){
+					//get users BC
+					if(item.getChild().contains(BC)){
+						temp.add(item.getChild());
+					}
+				}else{
+					temp.add(item.getChild());
+				}
+				map.put(item.getParent(), temp);
+			}
+			*/
+			
+			Chart chart = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Not Enrolled YTD", "", "# of  Dealers", "Total Not Enrolled", "column_stack");
+			Chart chart2 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Not Enrolled YTD", "", "# of  Dealers", "Total Not Enrolled", "column_stack");
+			Chart chart3 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Not Enrolled YTD", "", "# of  Dealers", "Total Not Enrolled", "column_stack");
+			Chart chart4 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Not Enrolled YTD", "", "# of  Dealers", "Total Not Enrolled", "column_stack");
+			Chart chart5 = this.mappingService.TTTAEnrolledGraphDTOtoChart(listBC, "Dealers Not Enrolled YTD", "", "# of  Dealers", "Total Not Enrolled", "column_stack");
+
+			Map<String, Double> mapValues = new HashMap<String, Double>();
+			Map<String, Double> mapValues2 = new HashMap<String, Double>();
+			Map<String, Double> mapValues3 = new HashMap<String, Double>();
+			Map<String, Double> mapValues4 = new HashMap<String, Double>();
+			Map<String, Double> mapValues5 = new HashMap<String, Double>();
+			for(TTTAEnrolledGraphDTO item: listBC){
+				List<ChartData> list = new ArrayList<ChartData>();
+				List<ChartData> list2 = new ArrayList<ChartData>();
+				List<ChartData> list3 = new ArrayList<ChartData>();
+				List<ChartData> list4 = new ArrayList<ChartData>();
+				List<ChartData> list5 = new ArrayList<ChartData>();
+				for(TTTAEnrolledGraphDTO object: sublist){
+					if(item.getChild().equals(object.getParent())){
+						ChartData temp = new ChartData();
+						temp.setName(object.getChild());
+						temp.setValue(object.getTotalGroupA());
+						list.add(temp);
+						temp = new ChartData();
+						temp.setName(object.getChild());
+						temp.setValue(object.getTotalGroupB());
+						list2.add(temp);
+						
+						
+						temp = new ChartData();
+						temp.setName(object.getChild());
+						temp.setValue(object.getTotalGroupC());
+						list3.add(temp);
+						
+						temp = new ChartData();
+						temp.setName(object.getChild());
+						temp.setValue(object.getTotalGroupD());
+						list4.add(temp);
+						
+						temp = new ChartData();
+						temp.setName(object.getChild());
+						temp.setValue(object.getTotalGroupE());
+						list5.add(temp);
+						
+						
+					}
+					chartsMap.put(item.getChild(), list);
+					chartsMap2.put(item.getChild(), list2);
+					chartsMap3.put(item.getChild(), list3);
+					chartsMap4.put(item.getChild(), list4);
+					chartsMap5.put(item.getChild(), list5);
+					mapValues.put(item.getChild(), (double)item.getTotalGroupA());
+					mapValues2.put(item.getChild(), (double)item.getTotalGroupB());
+					mapValues3.put(item.getChild(), (double)item.getTotalGroupC());
+					mapValues4.put(item.getChild(), (double)item.getTotalGroupD());
+					mapValues5.put(item.getChild(), (double)item.getTotalGroupE());
+				}
+			}
+			
+			
+			List<ChartData> list1 = new ArrayList<ChartData>();
+			list1.add(new ChartData("Total Group A", 0));
+			list1.add(new ChartData("Total Group B", 0));
+			list1.add(new ChartData("Total Group C", 0)); 
+			list1.add(new ChartData("Total Group D", 0)); 
+			list1.add(new ChartData("Total Group E", 0));
+			
+			List<ChartData> a = new ArrayList<ChartData>(chart.getData());
+			List<ChartData> b = new ArrayList<ChartData>(chart2.getData());
+			List<ChartData> c = new ArrayList<ChartData>(chart3.getData());
+			List<ChartData> d = new ArrayList<ChartData>(chart4.getData());
+			List<ChartData> e = new ArrayList<ChartData>(chart5.getData());
+			
+			double tempa =0;
+			double tempb =0;
+			double tempc =0;
+			double tempd =0;
+			double tempe =0;
+			
+			for(ChartData item: a){
+				for(ChartData var: item.getData()){
+					if(var.getName().equals("Total Group A"))
+						tempa += var.getValue();
+				}
+				item.setData(new ArrayList<ChartData>());
+				item.setValue(mapValues.get(item.getName()));
+				item.addDataList(chartsMap.get(item.getName()));
+			}
+
+			for(ChartData item: b){
+				for(ChartData var: item.getData()){
+					if(var.getName().equals("Total Group B"))
+						tempb += var.getValue();
+				}
+				item.setData(new ArrayList<ChartData>());
+				item.setValue(mapValues2.get(item.getName()));
+				item.addDataList(chartsMap2.get(item.getName()));
+			}
+
+				
+			for(ChartData item: c){
+				for(ChartData var: item.getData()){
+					if(var.getName().equals("Total Group C"))
+						tempc += var.getValue();
+				}
+				item.setData(new ArrayList<ChartData>());
+				item.setValue(mapValues3.get(item.getName()));
+				item.addDataList( chartsMap3.get(item.getName()));
+			}
+
+			for(ChartData item: d){
+				for(ChartData var: item.getData()){
+					if(var.getName().equals("Total Group D"))
+						tempd += var.getValue();
+				}
+				item.setData(new ArrayList<ChartData>());
+				item.setValue(mapValues4.get(item.getName()));
+				item.addDataList( chartsMap4.get(item.getName()));
+			}
+
+			for(ChartData item: e){
+				for(ChartData var: item.getData()){
+					if(var.getName().equals("Total Group E"))
+						tempe += var.getValue();
+				}
+				item.setData(new ArrayList<ChartData>());
+				item.setValue(mapValues5.get(item.getName()));
+				item.addDataList( chartsMap5.get(item.getName()));
+			}
+
+			
+			list1.get(0).setValue(tempa);
+			list1.get(1).setValue(tempb);
+			list1.get(2).setValue(tempc);
+			list1.get(3).setValue(tempd);
+			list1.get(4).setValue(tempe);
+			list1.get(0).setData(a);
+			list1.get(1).setData(b);
+			list1.get(2).setData(c);
+			list1.get(3).setData(d);
+			list1.get(4).setData(e);
+			
+			chart.setData(list1);
+			return chart;
+			
+			//special mapping for stacked column
+		}
+		
 		default:
 			return "No such service call exists.";
 		}
@@ -3250,7 +3439,7 @@ public class DashboardController {
 			chart.setTitle("Participants Completed By Program");
 			chart.setSubTitle("");
 			chart.setType("column_stack");
-			chart.setXaxisTitle("Total Numbers");
+			chart.setXaxisTitle("Total Participants");
 			chart.setYaxisTitle("");
 			
 			List<ChartData> list = new ArrayList<ChartData>();
@@ -3373,11 +3562,11 @@ public class DashboardController {
 			if(type.equals("District")){
 			//set datatables
 			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TOP TA", 10);
-			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TA", 10);
+			//List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TA", 10);
 			
 			
 			//TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians"); //, "Excellence Card Awards - Top 5 Technicians"
-			TopTenDataTable datatableA = new TopTenDataTable("TOP 10 Advisors");
+			TopTenDataTable datatableA = new TopTenDataTable("TOP 10 Advisors QTD by Overall Survey Score");
 			List<TopTenTableData> tabledataA = new ArrayList<TopTenTableData>();
 			//List<TopTenTableData> tabledataT = new ArrayList<TopTenTableData>();
 			
@@ -3391,9 +3580,9 @@ public class DashboardController {
 			
 			
 			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD Average Survey Scores", tableheaders));	
-			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
+			//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
 			tabledataA.get(0).setTabName("QTD");
-			tabledataA.get(1).setTabName("YTD");
+			//tabledataA.get(1).setTabName("YTD");
 			datatableA.setData(tabledataA);
 			
 			topTenChart.setTop10_advisors(datatableA);
@@ -3520,12 +3709,12 @@ public class DashboardController {
 			
 			//set datatables
 			List<TTTATopNDTO> listAdvisorsQTD = this.dashService.getTTTATopN("TOP TT", 10);
-			List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TT", 10);
+			//List<TTTATopNDTO> listAdvisorsYTD = this.dashService.getTTTATopN("TOP TT", 10);
 			
 			TopTenChart topTenChart = new TopTenChart();
 			
 			if(type.equals("District")){
-			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians"); //, "Excellence Card Awards - Top 5 Technicians"
+			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians QTD by Overall Survey Score"); //, "Excellence Card Awards - Top 5 Technicians"
 			List<TopTenTableData> tabledataT = new ArrayList<TopTenTableData>();
 			
 			List<String> tableheaders = new ArrayList<String>();
@@ -3541,9 +3730,9 @@ public class DashboardController {
 			//datatableT.setData(tabledataT);
 			
 			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD Average Survey Scores", tableheaders));	
-			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
+			//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
 			tabledataT.get(0).setTabName("QTD");
-			tabledataT.get(1).setTabName("YTD");
+			//tabledataT.get(1).setTabName("YTD");
 			datatableT.setData(tabledataT);
 			
 			topTenChart.setTop10_technicians(datatableT);
@@ -3668,13 +3857,13 @@ public class DashboardController {
 		{
 			List<TTTAEnrolledDTO> listEnrolled = this.dashService.getTTTAEnrollmentsBC(true);
 			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", "", "column_compound");
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", " # of  Dealers", "column_compound");
 		}
 		case "17":
 		{
 			List<TTTAEnrolledDTO> listNotEnrolled = this.dashService.getTTTAEnrollmentsBC(false);
 			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", "", "column_compound");
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", " # of  Dealers", "column_compound");
 		}
 		case "18":
 		{
@@ -4645,7 +4834,7 @@ public class DashboardController {
 					}else if(item.getName().equals("13")){
 						item.setName("Service Advisors");
 					}else if(item.getName().equals("42")){
-						item.setName("Position 42");
+						item.setName("Sales Consultant");
 					}else if(item.getName().equals("04")){
 						item.setName("Sales Managers");
 					}else if(item.getName().equals("08")){
@@ -4657,6 +4846,7 @@ public class DashboardController {
 			chart.setData(attributes);
 			chart.setUnit("%");
 			chart.setRetention(true);
+			chart.setAvarage(true);
 			return chart;
 		}
 		case "32":
@@ -4718,7 +4908,7 @@ public class DashboardController {
 				list.get(5).setValue(data.getValue());
 				list.get(5).addData(data);
 			}
-		
+			
 			chart.setData(list);
 			
 			return chart;
@@ -4805,8 +4995,66 @@ public class DashboardController {
 			chart.setTitle("Dealers Enrolled YTD");
 			chart.setSubTitle("");
 			chart.setType("column_stack");
-			chart.setXaxisTitle("Total");
-			chart.setYaxisTitle("Total");
+			chart.setXaxisTitle(" # of  Dealers");
+			chart.setYaxisTitle("Total Enrolled");
+			
+			List<ChartData> list = new ArrayList<ChartData>();
+			list.add(new ChartData("Total Group A", 0));
+			list.add(new ChartData("Total Group B", 0));
+			list.add(new ChartData("Total Group C", 0));
+			list.add(new ChartData("Total Group D", 0));
+			list.add(new ChartData("Total Group E", 0));
+			
+			if(TTTAEnrolledDTO.size() > 0){
+				ChartData data = new ChartData();
+				data.setName(TTTAEnrolledDTO.get(0).getChild());
+				data.setValue(TTTAEnrolledDTO.get(0).getTotalGroupA());
+				list.get(0).setValue(data.getValue());
+				list.get(0).addData(data);
+				
+				data = new ChartData();
+				data.setName(TTTAEnrolledDTO.get(0).getChild());
+				data.setValue(TTTAEnrolledDTO.get(0).getTotalGroupB());
+				list.get(1).setValue(data.getValue());
+				list.get(1).addData(data);
+				
+				data = new ChartData();
+				data.setName(TTTAEnrolledDTO.get(0).getChild());
+				data.setValue(TTTAEnrolledDTO.get(0).getTotalGroupC());
+				list.get(2).setValue(data.getValue());
+				list.get(2).addData(data);
+				
+				data = new ChartData();
+				data.setName(TTTAEnrolledDTO.get(0).getChild());
+				data.setValue(TTTAEnrolledDTO.get(0).getTotalGroupD());
+				list.get(3).setValue(data.getValue());
+				list.get(3).addData(data);
+				
+				data = new ChartData();
+				data.setName(TTTAEnrolledDTO.get(0).getChild());
+				data.setValue(TTTAEnrolledDTO.get(0).getTotalGroupE());
+				list.get(4).setValue(data.getValue());
+				list.get(4).addData(data);
+				
+			}
+		
+			chart.setData(list);
+			
+			return chart;
+
+		}
+		case "35":
+		{
+			List<String> filters = new ArrayList<String>();
+			filters.add(territory);
+			// check for role, to know what data to display
+			List<TTTAEnrolledGraphDTO> TTTAEnrolledDTO = this.dashService.getTTTAEnrolledByChildTerritoryNotEnrolled(filters);
+			Chart chart = new Chart();
+			chart.setTitle("Dealers Not Enrolled YTD");
+			chart.setSubTitle("");
+			chart.setType("column_stack");
+			chart.setXaxisTitle(" # of  Dealers");
+			chart.setYaxisTitle("Total Not Enrolled");
 			
 			List<ChartData> list = new ArrayList<ChartData>();
 			list.add(new ChartData("Total Group A", 0));

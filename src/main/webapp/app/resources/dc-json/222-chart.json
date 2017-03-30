@@ -84,7 +84,7 @@
         }
     ],
     "unit": "%",
-    "avarage": false,
+    "avarage": true,
     "customer_first": false,
-    "retention": false
+    "retention": true
 }

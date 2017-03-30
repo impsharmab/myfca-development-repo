@@ -7,7 +7,7 @@
     "unit": "",
     "avarage": false,
     "customer_first": true,
-    "DelDisMan":true,
+    "cfdealDisMan":true,
     "data": [
         {
             "name": "Level 0",

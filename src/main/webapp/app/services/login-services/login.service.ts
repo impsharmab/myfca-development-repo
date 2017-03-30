@@ -28,13 +28,16 @@ export class LoginService {
 
     getLoginResponse(username, password): any {
         var url = "./login/token/";
-     //  var url = "http://172.25.32.162/myfcarewards/login/token/";
+        //  var url = "http://172.25.32.162/myfcarewards/login/token/";
         // var url = "http://172.24.16.75:9080/imiservices/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-      //    return this.http.post(url, body, { headers: headers })
-        return this.http.get(this.getLoginResponseUrl)
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
+
+      //  return this.http.post(url, body, { headers: headers })
+                return this.http.get(this.getLoginResponseUrl)
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError);

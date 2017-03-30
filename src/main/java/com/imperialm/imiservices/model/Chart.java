@@ -16,10 +16,11 @@ public class Chart {
 	private String xaxisTitle;
 	private String type;
 	private List<ChartData> data;
-	private String unit;
+	private String unit = "";
 	private boolean avarage = false;
 	private boolean customer_first = false;
 	private boolean retention = false;
+	private boolean cFDealDisMan = false;
 	//private JsonNode drilldownData;
 	
 	public Chart(){
@@ -28,7 +29,6 @@ public class Chart {
 		this.yaxisTitle = "";
 		this.xaxisTitle = "";
 		this.type = "";
-		this.unit = "";
 		this.data = new ArrayList<ChartData>();
 	}
 	

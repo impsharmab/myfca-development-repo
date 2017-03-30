@@ -35,7 +35,9 @@ var DashboardBodyComponent = (function () {
         this.pieButtons = {};
         this.chartRawData = {};
         this.unit = "";
+        this.drilldownAverageCount = 0;
         this.drillUptotalCount = 0;
+        this.drillupAverageCount = 0;
         this.charTypeJSON = {};
         this.chartObjects = {};
         this.statisticModelData = {};
@@ -44,8 +46,13 @@ var DashboardBodyComponent = (function () {
     DashboardBodyComponent.prototype.drillDown = function (e, chart, id) {
         var obj = this.unitAndAverage[id];
         this.drillUptotalCount = 0;
+        this.drillupAverageCount = 0;
         for (var i = 0; i < e.seriesOptions.data.length; i++) {
             this.totalCount = this.totalCount + e.seriesOptions.data[i][1];
+            this.drillupAverageCount = this.drillupAverageCount + 1;
+        }
+        if (obj.avarage) {
+            this.drillupAverageCount = this.drillUptotalCount / this.drillupAverageCount;
         }
         if (obj.unit == "$" && obj.avarage == false) {
             chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
@@ -53,8 +60,11 @@ var DashboardBodyComponent = (function () {
         else if (obj.unit == "$" && obj.avarage == true) {
             chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
         }
-        else if (obj.unit == "%") {
+        else if (obj.unit == "%" && obj.avarage == false) {
             chart.setTitle(null, { text: "Total " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+        }
+        else if (obj.unit == "%" && obj.avarage == true) {
+            chart.setTitle(null, { text: "Average " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
         }
         else {
             chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
@@ -66,6 +76,10 @@ var DashboardBodyComponent = (function () {
         var obj = this.unitAndAverage[id];
         for (var i = 0; i < e.seriesOptions.data.length; i++) {
             this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
+            this.drillupAverageCount = this.drillupAverageCount + 1;
+        }
+        if (obj.avarage) {
+            this.drillUptotalCount = this.drillUptotalCount / this.drillupAverageCount;
         }
         if (obj.unit == "$" && obj.avarage == false) {
             chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
@@ -73,8 +87,11 @@ var DashboardBodyComponent = (function () {
         else if (obj.unit == "$" && obj.avarage == true) {
             chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
         }
-        else if (obj.unit == "%") {
+        else if (obj.unit == "%" && obj.avarage == false) {
             chart.setTitle(null, { text: "Total " + Math.round(this.drillUptotalCount).toLocaleString() + obj.unit });
+        }
+        else if (obj.unit == "%" && obj.avarage == true) {
+            chart.setTitle(null, { text: "Average " + Math.round(this.drillUptotalCount).toLocaleString() + obj.unit });
         }
         else {
             chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
@@ -261,6 +278,12 @@ var DashboardBodyComponent = (function () {
         //console.log("this.chartObjects.customer_first :" + this.button)
     };
     DashboardBodyComponent.prototype.getChartJSONObject = function (obj, chartData) {
+        if (chartData.xaxisTitle == "") {
+            chartData.xaxisTitle = chartData.yaxisTitle;
+        }
+        else if (chartData.yaxisTitle == "") {
+            chartData.yaxisTitle = chartData.xaxisTitle;
+        }
         var unit; // = this.unit;
         var tileId = obj.id;
         if (chartData.unit == "$") {
@@ -383,7 +406,7 @@ var DashboardBodyComponent = (function () {
                 var pieButtons = new Array();
                 this.pieButtons[obj.id] = pieButtons;
                 for (var i = 0; i < chartData.data.length; i++) {
-                    i == 0 && !chartData.DelDisMan ? pieButtons.push("NAT") : "";
+                    i == 0 && !chartData.cfdealDisMan ? pieButtons.push("NAT") : "";
                     var dataObj = chartData.data[i];
                     categories.push(dataObj.name);
                     avagerCount = avagerCount + 1;
@@ -460,8 +483,11 @@ var DashboardBodyComponent = (function () {
                     else if (chartData.unit == "$" && chartData.avarage == true) {
                         chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
                     }
-                    else if (chartData.unit == "%") {
+                    else if (chartData.unit == "%" && chartData.avarage == false) {
                         chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+                    }
+                    else if (chartData.unit == "%" && chartData.avarage == true) {
+                        chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
                     }
                     else {
                         chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
@@ -626,8 +652,11 @@ var DashboardBodyComponent = (function () {
                     else if (chartData.unit == "$" && chartData.avarage == true) {
                         chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
                     }
-                    else if (chartData.unit == "%") {
+                    else if (chartData.unit == "%" && chartData.avarage == true) {
                         chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+                    }
+                    else if (chartData.unit == "%" && chartData.avarage == true) {
+                        chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
                     }
                     else {
                         chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
@@ -646,6 +675,8 @@ var DashboardBodyComponent = (function () {
                     borderWidth: 0,
                     dataLabels: {
                         enabled: false,
+                        overFlow: 'none',
+                        crop: false
                     }
                 };
                 chartObj.plotOptions["series"]["stacking"] = "normal";
@@ -745,11 +776,37 @@ var DashboardBodyComponent = (function () {
                 delete chartObj.xAxis.categories;
                 // delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
+                var total = 0;
+                var avagerCount = 0;
                 if (chartObj.series.length > 2) {
                     if (chartData.retention) {
                         for (var i = 0; i < chartObj.series.length; i++) {
                             var seriesObj = chartObj.series[i];
                             i == 2 ? seriesObj.visible = true : seriesObj.visible = false;
+                            if (seriesObj.visible) {
+                                for (var k = 0; k < seriesObj.data.length; k++) {
+                                    total = total + seriesObj.data[k].y;
+                                    avagerCount = avagerCount + 1;
+                                }
+                            }
+                        }
+                        if (chartData.avarage) {
+                            total = total / avagerCount;
+                        }
+                        if (chartData.unit == "$" && chartData.avarage == false) {
+                            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                        }
+                        else if (chartData.unit == "$" && chartData.avarage == true) {
+                            chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+                        }
+                        else if (chartData.unit == "%" && chartData.avarage == false) {
+                            chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+                        }
+                        else if (chartData.unit == "%" && chartData.avarage == true) {
+                            chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
+                        }
+                        else {
+                            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
                         }
                     }
                 }
@@ -939,8 +996,11 @@ var DashboardBodyComponent = (function () {
             else if (chartData.unit == "$" && chartData.avarage == true) {
                 chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
             }
-            else if (chartData.unit == "%") {
+            else if (chartData.unit == "%" && chartData.avarage == false) {
                 chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+            }
+            else if (chartData.unit == "%" && chartData.avarage == true) {
+                chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
             }
             else {
                 chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
@@ -1055,13 +1115,16 @@ var DashboardBodyComponent = (function () {
             total = total / avagerCount;
         }
         if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "<br> <p>Hello1</p>";
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
         }
         else if (chartData.unit == "$" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString() + "<br> <p>Hello2</p>";
+            chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
         }
-        else if (chartData.unit == "%") {
+        else if (chartData.unit == "%" && chartData.avarage == false) {
             chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+        }
+        else if (chartData.unit == "%" && chartData.avarage == true) {
+            chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
         }
         else {
             chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
@@ -1190,8 +1253,11 @@ var DashboardBodyComponent = (function () {
         else if (chartData.unit == "$" && chartData.avarage == true) {
             chartObject.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
         }
-        else if (chartData.unit == "%") {
+        else if (chartData.unit == "%" && chartData.avarage == false) {
             chartObject.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+        }
+        else if (chartData.unit == "%" && chartData.avarage == true) {
+            chartObject.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
         }
         else {
             chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
@@ -1226,8 +1292,11 @@ var DashboardBodyComponent = (function () {
         else if (obj.unit == "$" && obj.avarage == true) {
             event.target.chart.setTitle(null, { text: "Average " + obj.unit + Math.round(total).toLocaleString() });
         }
-        else if (obj.unit == "%") {
+        else if (obj.unit == "%" && obj.avarage == false) {
             event.target.chart.setTitle(null, { text: "Total " + Math.round(total).toLocaleString() + obj.unit });
+        }
+        else if (obj.unit == "%" && obj.avarage == true) {
+            event.target.chart.setTitle(null, { text: "Average " + Math.round(total).toLocaleString() + obj.unit });
         }
         else {
             event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.round(total).toLocaleString() });

@@ -5,12 +5,12 @@
     "yaxisTitle": "y-axis title",
     "type": "column_stack",
     "unit": "$",
-    "average": true,
-    "retention":true,
+    "avarage": false,
+    "retention":false,
     "data": [
         {
             "name": "Certified",
-            "value": "",
+            "value": "0",
             "data": [
                 {
                     "name": "CA",
@@ -398,7 +398,7 @@
         },
         {
             "name": "Certified Specialist",
-            "value": "",
+            "value": "0",
             "data": [
                 {
                     "name": "CA",
@@ -786,7 +786,7 @@
         },
         {
             "name": "Master Certified",
-            "value": "",
+            "value": "0",
             "data": [
                 {
                     "name": "CA",

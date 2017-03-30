@@ -662,7 +662,7 @@ public class MappingServiceImpl {
 				items.add(item.getName());
 				items.add(item.getDealerName());
 				items.add(item.getParentTerritory());
-				items.add(this.formatCurrency(item.getEarnings()));
+				items.add("$" + this.formatCurrency(item.getEarnings()));
 			}
 			data.add(items);
 		}

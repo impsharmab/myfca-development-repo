@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Compiler } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+
 
 import { User } from './user.interface';
 import { LoginService } from '../../services/login-services/login.service';
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
     private arraydata: any;
 
 
-    constructor(private loginService: LoginService, private router: Router, private http: Http) {
+    constructor(private loginService: LoginService, private router: Router, private http: Http, private _compiler: Compiler) {
+        this._compiler.clearCache();
     }
     ngOnInit() {
         this.user = {
@@ -53,7 +55,7 @@ export class LoginComponent implements OnInit {
                     // var delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
                     sessionStorage.setItem("selectedCodeData", JSON.stringify(
                         {
-                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0": poscodes.length > 0 ? poscodes[0] : 0 ,
+                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                             "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
                         }))
 

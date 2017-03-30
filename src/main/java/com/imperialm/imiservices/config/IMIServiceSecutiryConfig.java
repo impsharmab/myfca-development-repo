@@ -27,10 +27,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.imperialm.imiservices.filters.IMIServicesFilter;
 import com.imperialm.imiservices.security.JwtAuthenticationEntryPoint;
 import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
 import com.imperialm.imiservices.security.JwtDaoAuthenticationProvider;
@@ -80,6 +83,14 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
         authenticationManagerBuilder.authenticationProvider(customAuthenticationProvider());
     }
 	
+    @Bean
+    public CommonsMultipartResolver multipartResolver(){
+
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        Long maxFileSize = (long) 2097152;
+        resolver.setMaxUploadSizePerFile(maxFileSize);
+        return resolver;
+    }
 
 	@Bean
 	public AuthenticationProvider customAuthenticationProvider() {
@@ -97,6 +108,10 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
 		.logout().permitAll();
 	}*/
 	
+	/*@Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/*");
+    }*/
 	
 	@Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {

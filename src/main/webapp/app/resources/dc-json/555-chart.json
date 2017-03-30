@@ -4,6 +4,7 @@
     "yaxisTitle": "Total Winners",
     "xaxisTitle": "Dealer",
     "type": "column",
+    "cfdealDisMan": true,
     "data": [
         {
             "name": "26550",

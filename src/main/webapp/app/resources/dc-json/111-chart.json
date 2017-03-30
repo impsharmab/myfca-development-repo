@@ -4,7 +4,7 @@
   "yaxisTitle": "Total",
   "xaxisTitle": "Pillars QTD",
   "type": "pie",
-  "DelDisMan":false,
+  "cfdealDisMan":false,
   "data": [
     {
       "name": "Level 0",
