@@ -38,7 +38,26 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 		}
 		return result;
 	}
-
+        
+        @SuppressWarnings("unchecked")
+	@Override
+	public List<UserPositionCodeRoleDTO> getDealerCodePCRoleByUID(String uid, String dealerCode, String positionCode) {
+		List<UserPositionCodeRoleDTO> result = new ArrayList<UserPositionCodeRoleDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_DEALERCODE_PC_ROLE_BY_UID, UserPositionCodeRoleDTO.class);
+			query.setParameter(0, uid);
+                        query.setParameter(1, dealerCode);
+                        query.setParameter(2, positionCode);
+			List<UserPositionCodeRoleDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getDealerCodePCRoleBySid", ex);
+		}
+		return result;
+	}
+        
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getBCByDealerCode(String dealerCode) {

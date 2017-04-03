@@ -40,6 +40,7 @@ import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
@@ -184,16 +185,15 @@ public class DashboardController {
 			//keeps this as example
 			tableheaders.add("Name");
 			tableheaders.add("Dealership");
-			tableheaders.add("BusinessCenter");
+			tableheaders.add("Business Center");
 			tableheaders.add("Total Awards");
-			tableheaders.add("Survey Score");
 			
-			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 MTD Technicians Excellence Card Awards", tableheaders));
-			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 YTD Technicians Excellence Card Awards", tableheaders));
+			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 Technicians Excellence Card Awards MTD", tableheaders));
+			tabledataT.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listTechnicians, "Top 10 Technicians Excellence Card Awards YTD", tableheaders));
 			tabledataT.get(0).setTabName("MTD");
 			tabledataT.get(1).setTabName("YTD");
-			tabledataA.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listAdvisors, "Top 10 MTD Advisors Excellence Card Awards", tableheaders));
-			tabledataA.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listAdvisors, "Top 10 YTD Advisors Excellence Card Awards", tableheaders));
+			tabledataA.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listAdvisors, "Top 10 Advisors Excellence Card Awards MTD", tableheaders));
+			tabledataA.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listAdvisors, "Top 10 Advisors Excellence Card Awards YTD", tableheaders));
 			tabledataA.get(0).setTabName("MTD");
 			tabledataA.get(1).setTabName("YTD");
 			
@@ -721,6 +721,7 @@ public class DashboardController {
 			
 			Chart chart = this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Participants", "column_stack");
 			Chart chart2 = this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Participants", "column_stack");
+			Chart chart3 = this.mappingService.CertProfsExpertGraphDTOtoChartCert(list, "Participants Completed By Program", "", "", "Total Participants", "column_stack");
 			
 			filters = new ArrayList<String>();
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
@@ -756,12 +757,15 @@ public class DashboardController {
 			
 			Map<String, Double> mapValues = new HashMap<String, Double>();
 			Map<String, Double> mapValues2 = new HashMap<String, Double>();
+			Map<String, Double> mapValues3 = new HashMap<String, Double>();
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
+			Map<String, List<ChartData>> chartsMap3 = new HashMap<String, List<ChartData>>();
 	        for(CertProfsExpertGraphDTO item: list){
 	        	
 	        	List<ChartData> list2 = new ArrayList<ChartData>();
 				List<ChartData> list3 = new ArrayList<ChartData>();
+				List<ChartData> list4 = new ArrayList<ChartData>();
 				for(CertProfsExpertGraphDTO object: unfiltereList){
 					if(map.get(item.getParentTerritory()).contains(object.getChildTerritory())){
 						if(object.getCertType().contains("JEEP") && item.getCertType().contains("JEEP")){
@@ -775,6 +779,12 @@ public class DashboardController {
 							temp.setValue(object.getCert());
 							list3.add(temp);
 			        	}
+						else if(object.getCertType().contains("TECH") && item.getCertType().contains("TECH")){
+							ChartData temp = new ChartData();
+							temp.setName(object.getChildTerritory());
+							temp.setValue(object.getCert());
+							list4.add(temp);
+			        	}
 					}
 					if(item.getCertType().contains("JEEP")){
 						chartsMap.put(item.getParentTerritory(), list2);
@@ -782,6 +792,10 @@ public class DashboardController {
 					}else if(item.getCertType().contains("RAM")){
 						chartsMap2.put(item.getParentTerritory(), list3);
 						mapValues2.put(item.getParentTerritory(), (double)item.getCert());
+					}
+					else if(item.getCertType().contains("TECH")){
+						chartsMap3.put(item.getParentTerritory(), list4);
+						mapValues3.put(item.getParentTerritory(), (double)item.getCert());
 					}
 				}
 	        	
@@ -797,13 +811,16 @@ public class DashboardController {
 	        List<ChartData> list1 = new ArrayList<ChartData>();
 			list1.add(new ChartData("JEEP", 0));
 			list1.add(new ChartData("RAM", 0));
+			list1.add(new ChartData("TECH", 0));
 			
 			
 			List<ChartData> a = new ArrayList<ChartData>(chart.getData());
 			List<ChartData> b = new ArrayList<ChartData>(chart2.getData());
+			List<ChartData> c = new ArrayList<ChartData>(chart3.getData());
 			
 			double tempa =0;
 			double tempb =0;
+			double tempc =0;
 			for(ChartData item: a){
 				for(ChartData var: item.getData()){
 					if(var.getName().contains("JEEP"))
@@ -823,11 +840,23 @@ public class DashboardController {
 				item.setValue(mapValues2.get(item.getName()));
 				item.addDataList(chartsMap2.get(item.getName()));
 			}
+			
+			for(ChartData item: c){
+				for(ChartData var: item.getData()){
+					if(var.getName().contains("TECH"))
+						tempc += var.getValue();
+				}
+				item.setData(new ArrayList<ChartData>());
+				item.setValue(mapValues3.get(item.getName()));
+				item.addDataList(chartsMap3.get(item.getName()));
+			}
 
 			list1.get(0).setValue(tempa);
 			list1.get(1).setValue(tempb);
+			list1.get(2).setValue(tempc);
 			list1.get(0).setData(a);
 			list1.get(1).setData(b);
+			list1.get(2).setData(c);
 			
 			chart.setData(list1);
 			
@@ -875,8 +904,8 @@ public class DashboardController {
 			}
 			List<BrainBoostWinndersGraphDTO> sublist = this.dashService.getBrainBoostGraphAllDistricData(filters);
 			
-			Chart chart = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Exellence Card Award And Award Points YTD", "", "", "", "column_compound", "Awards");
-			Chart chart2 = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Exellence Card Award And Award Points YTD", "", "", "", "column_compound", "Awards");
+			Chart chart = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Exellence Card Award And Award Points YTD", "", "$s/Points", "", "column_compound", "Awards");
+			Chart chart2 = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Exellence Card Award And Award Points YTD", "", "$s/Points", "", "column_compound", "Awards");
 			
 		        
 				Map<String, Double> mapValues = new HashMap<String, Double>();
@@ -981,9 +1010,9 @@ public class DashboardController {
 			List<CertProfsWinnersGraphDTO> sublist = this.dashService.getCertProfsWinnersGraphAllDistricData(filters);
 			
 			
-			Chart chart = this.mappingService.CertProfsWinnersGraphDTOtoChart(listBC, "Certified Proffessionals - YTD Certifications", "", "", "Total Certification", "column_stack");
-			Chart chart2 = this.mappingService.CertProfsWinnersGraphDTOtoChart(listBC, "Certified Proffessionals - YTD Certifications", "", "", "Total Certification", "column_stack");
-			Chart chart3 = this.mappingService.CertProfsWinnersGraphDTOtoChart(listBC, "Certified Proffessionals - YTD Certifications", "", "", "Total Certification", "column_stack");
+			Chart chart = this.mappingService.CertProfsWinnersGraphDTOtoChart(listBC, "Certified Professionals - YTD Certifications", "", "", "Total Certifications", "column_stack");
+			Chart chart2 = this.mappingService.CertProfsWinnersGraphDTOtoChart(listBC, "Certified Professionals - YTD Certifications", "", "", "Total Certifications", "column_stack");
+			Chart chart3 = this.mappingService.CertProfsWinnersGraphDTOtoChart(listBC, "Certified Professionals - YTD Certifications", "", "", "Total Certifications", "column_stack");
 
 			Map<String, Double> mapValues = new HashMap<String, Double>();
 			Map<String, Double> mapValues2 = new HashMap<String, Double>();
@@ -1099,7 +1128,7 @@ public class DashboardController {
 			tableheaders.add("Survey Score");
 			
 			
-			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD Average Survey Scores", tableheaders));	
+			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD by Overall Survey Score", tableheaders));	
 			//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
 			tabledataA.get(0).setTabName("QTD");
 			//tabledataA.get(1).setTabName("YTD");
@@ -1126,7 +1155,7 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 				
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0");
 				
 				if(incentiveEligibleList.size()>0){
@@ -1163,7 +1192,7 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 				
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0");
 				
 				
@@ -1191,7 +1220,7 @@ public class DashboardController {
 			
 			TopTenChart topTenChart = new TopTenChart();
 			
-			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 TechniciansQTD by Overall Survey Score"); //, "Excellence Card Awards - Top 5 Technicians"
+			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians QTD by Overall Survey Score"); //, "Excellence Card Awards - Top 5 Technicians"
 			List<TopTenTableData> tabledataT = new ArrayList<TopTenTableData>();
 			
 			List<String> tableheaders = new ArrayList<String>();
@@ -1206,7 +1235,7 @@ public class DashboardController {
 			
 			//datatableT.setData(tabledataT);
 			
-			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD Average Survey Scores", tableheaders));	
+			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD by Overall Survey Score", tableheaders));	
 			//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
 			tabledataT.get(0).setTabName("QTD");
 			//tabledataT.get(1).setTabName("YTD");
@@ -1233,13 +1262,19 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 				
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0");
+				
+				TotalName avgYearsOfService  = new TotalName();
+				avgYearsOfService.setName("Average Years of Service of Technician");
+				avgYearsOfService.setTotal("0");
 				
 				if(incentiveEligibleList.size()>0){
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
 					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
+					avgYearsOfService.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getYearsOfService()));
+					
 				}
 				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
@@ -1264,14 +1299,18 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 				
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0");
 				
+				TotalName avgYearsOfService  = new TotalName();
+				avgYearsOfService.setName("Average Years of Service of Technician");
+				avgYearsOfService.setTotal("0");
 				
 				if(incentiveEligibleList.size()>0){
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
 					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
+					avgYearsOfService.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getYearsOfService()));
 				}
 				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
@@ -1405,8 +1444,8 @@ public class DashboardController {
 				list1st_Filtered = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(filters, "YTD");
 			
 			
-			Chart chart = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Total Dollars Earned", "column_compound");
-			Chart chart2 = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Total Dollars Earned", "column_compound");
+			Chart chart = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Dollars Earned", "column_compound");
+			Chart chart2 = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Dollars Earned", "column_compound");
 			
 						
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
@@ -1686,24 +1725,7 @@ public class DashboardController {
 		case "24":
 		{
 			TopTenChart topTenChart = new TopTenChart();
-			
-			if(type.equals("Participant")){
-			TotalName bal = new TotalName();
-			TotalName redeemed = new TotalName();
-			TotalName earned = new TotalName();
-			List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId());
-			if(RewardRedemptionDetails.size() > 0){
-			bal.setName("Balance");
-			redeemed.setName("Redeemed Points");
-			earned.setName("Earned Points");
-			bal.setTotal(this.formatCurrency(RewardRedemptionDetails.get(0).getBalancePoints()) + "pt");
-			earned.setTotal(this.formatCurrency(RewardRedemptionDetails.get(0).getEarnedPoints()) + "pt");
-			redeemed.setTotal(this.formatCurrency(RewardRedemptionDetails.get(0).getRedeemedPoints()) + "pt");
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
-			}
-			}
+			//nothing for higher levela
 			return topTenChart;
 		}
 		case "25":
@@ -1944,46 +1966,74 @@ public class DashboardController {
 				List<RetentionGraphDTO> RetentionGraphSalesManagerList = this.dashService.getRetentionGraphNATByPositionCode("04");
 				List<RetentionGraphDTO> RetentionGraphPartsManagerList = this.dashService.getRetentionGraphNATByPositionCode("08");
 				
-				DecimalFormat df = new DecimalFormat("#.0");
+				cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+				cartificationLevel.setTotal("0.0%");
+				
+				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setTotal("0.0%");
+				
+				totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+				totalCertifiedParticipants.setTotal("0.0%");
+				
+				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setTotal("0.0%");
+				
+				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
+				totalCertifiedSpecialistParticipants.setTotal("0.0%");
+				
+				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+				totalCertifiedLevelParticipants.setTotal("0.0%");
+				
+				
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
+				
+				DecimalFormat df = new DecimalFormat("0.0");
 				if(RetentionGraphServiceManagerList.size()>0){
 					cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
 					cartificationLevel.setTotal(df.format(RetentionGraphServiceManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
 				}
 				
 				if(RetentionGraphServiceAdvisorList.size()>0){
 					years.setName("Rolling 12 Month Retention % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
 				}
 				
 				if(RetentionGraphPartsManagerList.size()>0){
 					totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
 					totalCertifiedParticipants.setTotal(df.format(RetentionGraphPartsManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				}
 				
 				if(RetentionGraphPartsAdvisorList.size()>0){
 					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 				}
+				
 				
 				if(RetentionGraphServiceTechnicianList.size()>0){
 					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
 				}
+				
+				
 				if(RetentionGraphSalesManagerList.size()>0){
 					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
 				}
+				
 				if(RetentionGraphBLSCList.size()>0){
 					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
+				
 			}else if(type.equals("BC")){
 				String territory = BC;
 				List<RetentionGraphDTO> RetentionGraphServiceManagerList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "09");
@@ -1994,46 +2044,73 @@ public class DashboardController {
 				List<RetentionGraphDTO> RetentionGraphSalesManagerList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "04");
 				List<RetentionGraphDTO> RetentionGraphPartsManagerList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "08");
 				
-				DecimalFormat df = new DecimalFormat("#.0");
+				cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+				cartificationLevel.setTotal("0.0%");
+				
+				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setTotal("0.0%");
+				
+				totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+				totalCertifiedParticipants.setTotal("0.0%");
+				
+				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setTotal("0.0%");
+				
+				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
+				totalCertifiedSpecialistParticipants.setTotal("0.0%");
+				
+				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+				totalCertifiedLevelParticipants.setTotal("0.0%");
+				
+				
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
+				
+				DecimalFormat df = new DecimalFormat("0.0");
 				if(RetentionGraphServiceManagerList.size()>0){
 					cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
 					cartificationLevel.setTotal(df.format(RetentionGraphServiceManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
 				}
 				
 				if(RetentionGraphServiceAdvisorList.size()>0){
 					years.setName("Rolling 12 Month Retention % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
 				}
 				
 				if(RetentionGraphPartsManagerList.size()>0){
 					totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
 					totalCertifiedParticipants.setTotal(df.format(RetentionGraphPartsManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				}
 				
 				if(RetentionGraphPartsAdvisorList.size()>0){
 					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 				}
+				
 				
 				if(RetentionGraphServiceTechnicianList.size()>0){
 					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
 				}
+				
+				
 				if(RetentionGraphSalesManagerList.size()>0){
 					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
 				}
+				
 				if(RetentionGraphBLSCList.size()>0){
 					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 				
 			}
 			return topTenChart;
@@ -2995,6 +3072,70 @@ public class DashboardController {
 			
 			//special mapping for stacked column
 		}
+		case "36":
+		{
+			List<String> filters = new ArrayList<String>();
+			
+			filters.add("NAT");
+			
+			
+			List<SummaryProgramRewardGraphDTO> list1st = null;
+			List<SummaryProgramRewardGraphDTO> list1st_Filtered = null;
+			
+			//check if nat or not if nat pull list of childeren and continue if not start from their
+				list1st = this.dashService.getSummaryProgramRewardGraphByParentTerritoryYTD(filters);
+				
+				filters = new ArrayList<String>();
+				for(SummaryProgramRewardGraphDTO item: list1st){
+					if(!filters.contains(item.getChild()))
+						filters.add(item.getChild());
+				}
+				
+				//list1st = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(filters, "YTD");
+				list1st_Filtered = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(filters);
+			
+			
+			Chart chart = this.mappingService.SummaryProgramRewardGraphDTOtoChart(list1st_Filtered, "Summary YTD", "", "", "Total Earnings", "column");
+						
+			Map<String, List<String>> map = new HashMap<String, List<String>>();
+			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
+					for(SummaryProgramRewardGraphDTO item: list1st){
+						if(!map.containsKey(item.getChild())){
+							map.put(item.getChild(), new ArrayList<String>());
+							chartsMap.put(item.getChild(), new ArrayList<ChartData>());
+						}
+						List<String> temp = map.get(item.getChild());
+						if(type.equals("BC")){
+							//get users BC
+							if(item.getChild().contains(BC)){
+								temp.add(item.getChild());
+							}
+						}else{
+							temp.add(item.getChild());
+						}
+						map.put(item.getParent(), temp);
+						
+					}
+			List<SummaryProgramRewardGraphDTO> sublist = this.dashService.getSummaryProgramRewardGraphByParentTerritoryYTD(filters);
+			
+			for(SummaryProgramRewardGraphDTO item: list1st_Filtered){
+				List<ChartData> list = new ArrayList<ChartData>();
+				for(SummaryProgramRewardGraphDTO object: sublist){
+					if(map.get(item.getChild()).contains(object.getParent())){
+						ChartData data = new ChartData(object.getChild(), object.getEarnings());
+						list.add(data);
+					}
+					chartsMap.put(item.getChild(), list);
+				}
+			}
+			
+			List<ChartData> a = chart.getData();
+			for(ChartData item: a){
+				item.addDataList(chartsMap.get(item.getName()));
+			}
+			chart.setUnit("$");
+			return chart;
+		}
 		
 		default:
 			return "No such service call exists.";
@@ -3202,8 +3343,8 @@ public class DashboardController {
 			    }
 			}
 			
-			mtd.setName("Total Parts Earnings - MTD");
-			ytd.setName("Total Parts Earnings - YTD");
+			mtd.setName("Total Plans Earnings - MTD");
+			ytd.setName("Total Plans Earnings - YTD");
 			mtd.setTotal("$" + moneyStringMTD);
 			ytd.setTotal("$" + moneyStringYTD);
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
@@ -3435,6 +3576,7 @@ public class DashboardController {
 			// check for role, to know what data to display
 			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTOJEEP = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, "JEEP%");
 			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTORAM = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, "RAM%");
+			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTOTECH = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, "TECH%");
 			Chart chart = new Chart();
 			chart.setTitle("Participants Completed By Program");
 			chart.setSubTitle("");
@@ -3445,6 +3587,7 @@ public class DashboardController {
 			List<ChartData> list = new ArrayList<ChartData>();
 			list.add(new ChartData("JEEP", 0));
 			list.add(new ChartData("RAM", 0));
+			list.add(new ChartData("TECH", 0));
 			
 			if(CertProfsExpertGraphDTOJEEP.size() > 0){
 				ChartData data = new ChartData();
@@ -3460,6 +3603,14 @@ public class DashboardController {
 				data.setValue(CertProfsExpertGraphDTORAM.get(0).getCert());
 				list.get(1).setValue(data.getValue());
 				list.get(1).addData(data);
+			}
+			
+			if(CertProfsExpertGraphDTORAM.size() > 0){
+				ChartData data = new ChartData();
+				data.setName(CertProfsExpertGraphDTOTECH.get(0).getChildTerritory());
+				data.setValue(CertProfsExpertGraphDTOTECH.get(0).getCert());
+				list.get(2).setValue(data.getValue());
+				list.get(2).addData(data);
 			}
 		
 			chart.setData(list);
@@ -3478,7 +3629,7 @@ public class DashboardController {
 			chart.setTitle("Exellence Card Award And Award Points YTD");
 			chart.setSubTitle("");
 			chart.setType("column_compound");
-			chart.setXaxisTitle("");
+			chart.setXaxisTitle("$s/Points");
 			chart.setYaxisTitle("");
 			
 			List<ChartData> list = new ArrayList<ChartData>();
@@ -3509,10 +3660,10 @@ public class DashboardController {
 		{
 			
 			Chart chart = new Chart();
-			chart.setTitle("Certified Proffessionals - YTD Certifications");
+			chart.setTitle("Certified Professionals - YTD Certifications");
 			chart.setSubTitle("");
 			chart.setType("column_stack");
-			chart.setXaxisTitle("Total Certification");
+			chart.setXaxisTitle("Total Certifications");
 			chart.setYaxisTitle("");
 			
 			List<String> filters = new ArrayList<String>();
@@ -3579,7 +3730,7 @@ public class DashboardController {
 			tableheaders.add("Survey Score");
 			
 			
-			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD Average Survey Scores", tableheaders));	
+			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD by Overall Survey Score", tableheaders));	
 			//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
 			tabledataA.get(0).setTabName("QTD");
 			//tabledataA.get(1).setTabName("YTD");
@@ -3595,28 +3746,28 @@ public class DashboardController {
 			
 			List<String> filters = new ArrayList<String>(Arrays.asList(territory));
 			List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "13");
+			
+			TotalName incentiveEligible  = new TotalName();
+			incentiveEligible.setName("Total Technicians Incentive Eligible");
+			incentiveEligible.setTotal("0");
+		
+			TotalName qtdSurveyCount  = new TotalName();
+			qtdSurveyCount.setName("QTD Survey Count");
+			qtdSurveyCount.setTotal("0");
+		
+			TotalName avgSurveyCount  = new TotalName();
+			avgSurveyCount.setName("Average Quarterly Survey Score");
+			avgSurveyCount.setTotal("0");
+			
 			if(incentiveEligibleList.size()>0){
-				TotalName incentiveEligible  = new TotalName();
-				incentiveEligible.setName("Total Technicians Incentive Eligible");
-				incentiveEligible.setTotal("0");
-			
-				TotalName qtdSurveyCount  = new TotalName();
-				qtdSurveyCount.setName("QTD Survey Count");
-				qtdSurveyCount.setTotal("0");
-			
-				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
-				avgSurveyCount.setTotal("0");
-			
-			
 				incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 				qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
 				avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
 			}
 			
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
 			
 			}
 			
@@ -3625,8 +3776,7 @@ public class DashboardController {
 				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
 				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "13");
 				
-				if(incentiveEligibleList.size()>0){
-					
+				
 				TotalName enrolled  = new TotalName();
 				enrolled.setName("Total Advisor Enrolled");
 				enrolled.setTotal("0");
@@ -3641,25 +3791,26 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 				
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0");
 				
 				TotalName rank  = new TotalName();
 				rank.setName("Dealership Rank");
 				rank.setTotal("0");
 				
-				
+				if(incentiveEligibleList.size()>0){
 					enrolled.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTotalEnrollments()));
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
 					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
 					rank.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTTTARank()));
+			}
+				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(enrolled));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
-			}
 				
 			}
 			else if (type.equals("Participant")){
@@ -3668,24 +3819,24 @@ public class DashboardController {
 				//survey score
 				//survey count
 				
+				
+				TotalName incentiveEligible  = new TotalName();
+				incentiveEligible.setName("Incentive Eligible");
+				incentiveEligible.setTotal("N");
+				
+				TotalName qtdSurveyCount  = new TotalName();
+				qtdSurveyCount.setName("QTD Survey Count");
+				qtdSurveyCount.setTotal("0");
+				
+				TotalName avgSurveyCount  = new TotalName();
+				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setTotal("0");
+				
+				TotalName rank  = new TotalName();
+				rank.setName("Rank");
+				rank.setTotal("0");
+				
 				if(incentiveEligibleList.size() > 0){
-					
-					
-					TotalName incentiveEligible  = new TotalName();
-					incentiveEligible.setName("Incentive Eligible");
-					incentiveEligible.setTotal("N");
-					
-					TotalName qtdSurveyCount  = new TotalName();
-					qtdSurveyCount.setName("QTD Survey Count");
-					qtdSurveyCount.setTotal("0");
-					
-					TotalName avgSurveyCount  = new TotalName();
-					avgSurveyCount.setName("Average Quarterly survey score");
-					avgSurveyCount.setTotal("0");
-					
-					TotalName rank  = new TotalName();
-					rank.setName("Rank");
-					rank.setTotal("0");
 					
 					if(incentiveEligibleList.get(0).getIncentiveEligible()> 0){
 						incentiveEligible.setTotal("Y");
@@ -3694,13 +3845,13 @@ public class DashboardController {
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
 					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
 					rank.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getPartcipantRank()));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
 					
 				}
 				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
 			}
 			return topTenChart;
 		}
@@ -3729,7 +3880,7 @@ public class DashboardController {
 			
 			//datatableT.setData(tabledataT);
 			
-			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD Average Survey Scores", tableheaders));	
+			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD by Overall Survey Score", tableheaders));	
 			//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
 			tabledataT.get(0).setTabName("QTD");
 			//tabledataT.get(1).setTabName("YTD");
@@ -3746,7 +3897,44 @@ public class DashboardController {
 			
 			List<String> filters = new ArrayList<String>(Arrays.asList(territory));
 			List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "23");
-			if(incentiveEligibleList.size()>0){
+			
+			
+			TotalName incentiveEligible  = new TotalName();
+			incentiveEligible.setName("Total Technicians Incentive Eligible");
+			incentiveEligible.setTotal("0");
+		
+			TotalName qtdSurveyCount  = new TotalName();
+			qtdSurveyCount.setName("QTD Survey Count");
+			qtdSurveyCount.setTotal("0");
+		
+			TotalName avgSurveyCount  = new TotalName();
+			avgSurveyCount.setName("Average Quarterly Survey Score");
+			avgSurveyCount.setTotal("0");
+		
+			TotalName avgYearsOfService  = new TotalName();
+			avgYearsOfService.setName("Average Years of Service of Technician");
+			avgYearsOfService.setTotal("0");
+			
+			if(incentiveEligibleList.size()>0){			
+				incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
+				qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
+				avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
+				avgYearsOfService.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getYearsOfService()));
+			}
+			
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgYearsOfService));
+			
+			
+			}
+			
+			if(type.equals("Manager") || type.equals("Dealer")){
+				
+				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
+				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "23");
+				
 				TotalName incentiveEligible  = new TotalName();
 				incentiveEligible.setName("Total Technicians Incentive Eligible");
 				incentiveEligible.setTotal("0");
@@ -3756,57 +3944,36 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 			
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0");
-			
-			
-				incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
-				qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
-				avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
-			}
-			
-			
-			}
-			
-			if(type.equals("Manager") || type.equals("Dealer")){
 				
-				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
-				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "23");
+				TotalName avgYearsOfService  = new TotalName();
+				avgYearsOfService.setName("Average Years of Service of Technician");
+				avgYearsOfService.setTotal("0");
+				
+				TotalName rank  = new TotalName();
+				rank.setName("Dealership Rank");
+				rank.setTotal("0");
+				
+				TotalName enrolled  = new TotalName();
+				enrolled.setName("Total Technicians Enrolled");
+				enrolled.setTotal("0");
+				
 				if(incentiveEligibleList.size()>0){
-					TotalName incentiveEligible  = new TotalName();
-					incentiveEligible.setName("Total Technicians Incentive Eligible");
-					incentiveEligible.setTotal("0");
-				
-					TotalName qtdSurveyCount  = new TotalName();
-					qtdSurveyCount.setName("QTD Survey Count");
-					qtdSurveyCount.setTotal("0");
-				
-					TotalName avgSurveyCount  = new TotalName();
-					avgSurveyCount.setName("Average Quarterly survey score");
-					avgSurveyCount.setTotal("0");
-					
-					TotalName rank  = new TotalName();
-					rank.setName("Dealership Rank");
-					rank.setTotal("0");
-					
-					TotalName enrolled  = new TotalName();
-					rank.setName("Total Participants Enrolled");
-					rank.setTotal("0");
-				
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
 					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
 					rank.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTTTARank()));
 					enrolled.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTotalEnrollments()));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(enrolled));
+					avgYearsOfService.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getYearsOfService()));
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(enrolled));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgYearsOfService));
 				
 			}
 			else if (type.equals("Participant")){
@@ -3815,38 +3982,33 @@ public class DashboardController {
 				//survey score
 				//survey count
 				
-				if(incentiveEligibleList.size() > 0){
-					
-					
-					TotalName incentiveEligible  = new TotalName();
-					incentiveEligible.setName("# of level 3");
-					incentiveEligible.setTotal("0");
-					
-					TotalName qtdSurveyCount  = new TotalName();
-					qtdSurveyCount.setName("QTD Survey Count");
-					qtdSurveyCount.setTotal("0");
-					
-					TotalName avgSurveyCount  = new TotalName();
-					avgSurveyCount.setName("Average Quarterly survey score");
-					avgSurveyCount.setTotal("0");
-					
-					TotalName rank  = new TotalName();
-					rank.setName("Rank");
-					rank.setTotal("0");
-					
+				TotalName incentiveEligible  = new TotalName();
+				incentiveEligible.setName("# of level 3");
+				incentiveEligible.setTotal("0");
 				
+				TotalName qtdSurveyCount  = new TotalName();
+				qtdSurveyCount.setName("QTD Survey Count");
+				qtdSurveyCount.setTotal("0");
+				
+				TotalName avgSurveyCount  = new TotalName();
+				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setTotal("0");
+				
+				TotalName rank  = new TotalName();
+				rank.setName("Rank");
+				rank.setTotal("0");
+				
+				if(incentiveEligibleList.size() > 0){
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getLevel3Techs()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
 					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
 					rank.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getPartcipantRank()));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
-					
 				}
 				
-				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
 			}
 			
 			
@@ -3945,8 +4107,8 @@ public class DashboardController {
 				list1st_Filtered = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(filters, "YTD");
 			
 			
-			Chart chart = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Total Dollars Earned", "column_compound");
-			Chart chart2 = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Total Dollars Earned", "column_compound");
+			Chart chart = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Dollars Earned", "column_compound");
+			Chart chart2 = this.mappingService.SIRewardsYOYGraphDTOtoChart(list1st_Filtered, "Service Incentive Reward Earnings YTD", "", "", "Total Dollars Earned", "column_compound");
 			
 						
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
@@ -4167,15 +4329,15 @@ public class DashboardController {
 			TotalName earned = new TotalName();
 			List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim());
 			if(RewardRedemptionDetails.size() > 0){
-			bal.setName("Balance");
-			redeemed.setName("Redeemed Points");
-			earned.setName("Earned Points");
-			bal.setTotal(RewardRedemptionDetails.get(0).getBalancePoints() + "pt");
-			earned.setTotal(RewardRedemptionDetails.get(0).getEarnedPoints() + "pt");
-			redeemed.setTotal(RewardRedemptionDetails.get(0).getRedeemedPoints() + "pt");
+			bal.setName("Total Balance Points YTD");
+			redeemed.setName("Total Points Redeemed YTD");
+			earned.setName("Total Redemption Points Awarded YTD");
+			bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getBalancePoints()));
+			earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
+			redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(redeemed));
 			}
 			}
 			return topTenChart;
@@ -4728,74 +4890,116 @@ public class DashboardController {
 			
 			
 			if(type.equals("District") || type.equals("Dealer")){
+				cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+				cartificationLevel.setTotal("0.0%");
 				
-				DecimalFormat df = new DecimalFormat("#.0");
+				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setTotal("0.0%");
 				
+				totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+				totalCertifiedParticipants.setTotal("0.0%");
+				
+				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setTotal("0.0%");
+				
+				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
+				totalCertifiedSpecialistParticipants.setTotal("0.0%");
+				
+				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+				totalCertifiedLevelParticipants.setTotal("0.0%");
+				
+				
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
+				
+				DecimalFormat df = new DecimalFormat("0.0");
 				if(RetentionGraphServiceManagerList.size()>0){
 					cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
 					cartificationLevel.setTotal(df.format(RetentionGraphServiceManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
 				}
 				
 				if(RetentionGraphServiceAdvisorList.size()>0){
 					years.setName("Rolling 12 Month Retention % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
 				}
 				
 				if(RetentionGraphPartsManagerList.size()>0){
 					totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
 					totalCertifiedParticipants.setTotal(df.format(RetentionGraphPartsManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				}
 				
 				if(RetentionGraphPartsAdvisorList.size()>0){
 					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 				}
+				
 				
 				if(RetentionGraphServiceTechnicianList.size()>0){
 					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
 				}
+				
+				
 				if(RetentionGraphSalesManagerList.size()>0){
 					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
 				}
+				
 				if(RetentionGraphBLSCList.size()>0){
 					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
+				
 			}else if(type.equals("Manager")){
-				DecimalFormat df = new DecimalFormat("#.0");
+				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setTotal("0.0%");
+
+				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setTotal("0.0%");
+				
+				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
+				totalCertifiedSpecialistParticipants.setTotal("0.0%");
+				
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
+				
+				DecimalFormat df = new DecimalFormat("0.0");
 				
 				if(RetentionGraphServiceAdvisorList.size()>0){
 					years.setName("Rolling 12 Month Retention % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
 				}
-				
+
 				if(RetentionGraphPartsAdvisorList.size()>0){
 					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 				}
+				
 				
 				if(RetentionGraphServiceTechnicianList.size()>0){
 					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
 				}
-
+				
+			
+				
 				if(RetentionGraphBLSCList.size()>0){
 					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 			}
 			return topTenChart;
 		}
@@ -4862,6 +5066,7 @@ public class DashboardController {
 			chart.setXaxisTitle("Pillars QTD");
 			chart.setYaxisTitle("Total Pillars");
 			chart.setCustomer_first(true);
+			chart.setCFDealDisMan(true);
 			
 			List<ChartData> list = new ArrayList<ChartData>();
 			list.add(new ChartData("Level 0", 0));
@@ -5101,6 +5306,37 @@ public class DashboardController {
 			return chart;
 
 		}
+		case "36":
+		{
+			List<String> filters = new ArrayList<String>();
+			
+			//if type = distric get distric
+			filters.add(territory);
+			
+			List<SummaryProgramRewardGraphDTO> sublist = new ArrayList<SummaryProgramRewardGraphDTO>();
+			if(type.equals("Participant") || type.equals("Manager")){
+				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(territory);
+			}else{
+				sublist = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(filters);
+			}
+			
+			Chart chart = new Chart();
+			chart.setTitle("Summary YTD");
+			chart.setSubTitle("");
+			chart.setType("column");
+			chart.setXaxisTitle("");
+			chart.setYaxisTitle("Total Earnings");
+			if(sublist.size() > 0){
+				List<ChartData> list = new ArrayList<ChartData>();
+				ChartData chartData = new ChartData();	
+				chartData.setName(sublist.get(0).getChild());
+				chartData.setValue(sublist.get(0).getEarnings());
+				list.add(chartData);
+				chart.setData(list);
+			}
+			chart.setUnit("$");
+			return chart;
+		}
 		default:
 			return "No such service call exists.";
 		}
@@ -5109,7 +5345,7 @@ public class DashboardController {
 	
 	public String formatCurrency(int number){
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format(number);
+		String moneyString = formatter.format((int)number);
 		if (moneyString.endsWith(".00")) {
 		    int centsIndex = moneyString.lastIndexOf(".00");
 		    if (centsIndex != -1) {
@@ -5122,7 +5358,7 @@ public class DashboardController {
 	
 	public String formatCurrency(double number){
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format(number);
+		String moneyString = formatter.format((int)number);
 		if (moneyString.endsWith(".00")) {
 		    int centsIndex = moneyString.lastIndexOf(".00");
 		    if (centsIndex != -1) {

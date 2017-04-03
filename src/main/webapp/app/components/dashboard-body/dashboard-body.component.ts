@@ -338,11 +338,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       },
       // tooltip: {
       //   pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{'+unit+'}</b><b>{point.y}</b> <br/>',
-      //   shared: true
+      //   shared: false
       // },
 
       plotOptions: {
 
+      },
+      navigation: {
+        buttonOptions: {
+          align: 'left'
+        }
       },
       series: [
         // { visible:false }

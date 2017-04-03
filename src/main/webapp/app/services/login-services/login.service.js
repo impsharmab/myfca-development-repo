@@ -32,6 +32,18 @@ var LoginService = (function () {
     LoginService.prototype.getUsersData = function () {
         return this.userdata;
     };
+    LoginService.prototype.getSSOLoginResponse = function (ssotoken, ssopositioncode, ssodealercode) {
+        var url = "./login/token/" + ssotoken + "/" + ssopositioncode + "/" + ssodealercode;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
+        return this.http.get(url)
+            .map(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
     LoginService.prototype.getLoginResponse = function (username, password) {
         var url = "./login/token/";
         //  var url = "http://172.25.32.162/myfcarewards/login/token/";
@@ -41,8 +53,7 @@ var LoginService = (function () {
         headers.append('Content-Type', 'application/json');
         headers.append("Cache-Control", "no-cache");
         headers.append("Cache-Control", "no-store");
-        //  return this.http.post(url, body, { headers: headers })
-        return this.http.get(this.getLoginResponseUrl)
+        return this.http.post(url, body, { headers: headers })
             .map(function (response) {
             return response.json();
         })

@@ -17,6 +17,7 @@ import com.imperialm.imiservices.dto.MSERTopNDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
@@ -95,6 +96,19 @@ public class MappingServiceImpl {
 		chart.setYaxisTitle(yaxisTitle);
 				
 		chart.setData(this.SIRewardsDetailsGraphDTOtoChartData(SIRewardsDetailsGraphDTO, graph));
+		
+		return chart;
+	}
+	
+	public Chart SummaryProgramRewardGraphDTOtoChart(List<SummaryProgramRewardGraphDTO> SummaryProgramRewardGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
+		Chart chart = new Chart();
+		chart.setTitle(title);
+		chart.setSubTitle(subTitle);
+		chart.setType(type);
+		chart.setXaxisTitle(xaxisTitle);
+		chart.setYaxisTitle(yaxisTitle);
+				
+		chart.setData(this.SummaryProgramRewardGraphDTOtoChartData(SummaryProgramRewardGraphDTO));
 		
 		return chart;
 	}
@@ -251,6 +265,15 @@ public class MappingServiceImpl {
 			}
 		}
 		
+		return list;
+	}
+	
+	public List<ChartData> SummaryProgramRewardGraphDTOtoChartData(List<SummaryProgramRewardGraphDTO> SummaryProgramRewardGraphDTO){
+		List<ChartData> list = new ArrayList<ChartData>();
+
+			for (SummaryProgramRewardGraphDTO item : SummaryProgramRewardGraphDTO) {
+				list.add(this.SummaryProgramRewardGraphDTOtoChartDataAverageScore(item));
+			}
 		return list;
 	}
 	
@@ -455,6 +478,13 @@ public class MappingServiceImpl {
 		ChartData chartData = new ChartData();		
 		chartData.setName(SIRewardsDetailsGraphDTO.getParentTerritory());
 		chartData.setValue(SIRewardsDetailsGraphDTO.getAvgSurveyScore());
+		return chartData;
+	}
+	
+	public ChartData SummaryProgramRewardGraphDTOtoChartDataAverageScore(SummaryProgramRewardGraphDTO SummaryProgramRewardGraphDTO){
+		ChartData chartData = new ChartData();		
+		chartData.setName(SummaryProgramRewardGraphDTO.getChild());
+		chartData.setValue((int)SummaryProgramRewardGraphDTO.getEarnings());
 		return chartData;
 	}
 	

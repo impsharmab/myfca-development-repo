@@ -24,8 +24,8 @@ public interface MSERGraphDetailsDAO {
 	
 	public static String SELECT_DEALERCOUNT_BY_BC_OR_DISTRICT = "Select Count(Enrolled_Dealers) total, 'Total Dealers Enrolled' as 'name', '' as error From (Select MG.Parent, COUNT( DISTINCT Dealercode) Enrolled_Dealers From MSERGraphDetails MGD INNER JOIN MSERGraph MG ON MG.Child=MGD.DealerCode Where DealersEnrolled > 0 and MG.Parent like ?0 Group by MG.Parent) A";
 	public static String SELECT_PARTICIPANT_ENROLLED_BY_DEALERCODE = "SELECT CAST(ISNULL(COUNT(DISTINCT SID),0) as varchar(20)) total , 'Total Participants Enrolled' name, '' as error FROM [dbo].[MSERGraphDetails] where ParticipantsEnrolled > 0 AND DealerCode = ?0";
-	public static String SELECT_TOTAL_EARNINGS_YTD_BY_BC_OR_DISTRICT = "Select IsNull(CAST(SUM([EarningsYTD]) as varchar(20)),'0') 'total', 'Total Earnings YTD' as 'name', '' as error From (Select MG.Parent, EarningsYTD From MSERGraphDetails MGD INNER JOIN MSERGraph MG ON MG.Child=MGD.DealerCode Where MG.Parent like ?0) A";
-	public static String SELECT_TOTAL_EARNINGS_MTD_BY_BC_OR_DISTRICT = "Select IsNull(CAST(SUM([EarningsMTD]) as varchar(20)),'0') 'total', 'Total Earnings MTD' as 'name', '' as error From (Select MG.Parent, EarningsMTD From MSERGraphDetails MGD INNER JOIN MSERGraph MG ON MG.Child=MGD.DealerCode Where MG.Parent like ?0) A";
+	public static String SELECT_TOTAL_EARNINGS_YTD_BY_BC_OR_DISTRICT = "Select IsNull(CAST(SUM([EarningsYTD]) as varchar(20)),'0') 'total', 'Excellance Card Award YTD' as 'name', '' as error From (Select MG.Parent, EarningsYTD From MSERGraphDetails MGD INNER JOIN MSERGraph MG ON MG.Child=MGD.DealerCode Where MG.Parent like ?0) A";
+	public static String SELECT_TOTAL_EARNINGS_MTD_BY_BC_OR_DISTRICT = "Select IsNull(CAST(SUM([EarningsMTD]) as varchar(20)),'0') 'total', 'Excellance Card Award MTD' as 'name', '' as error From (Select MG.Parent, EarningsMTD From MSERGraphDetails MGD INNER JOIN MSERGraph MG ON MG.Child=MGD.DealerCode Where MG.Parent like ?0) A";
 	
 	
 	public TotalName getMSERParticipantEnrolledByDealerCode(String dealerCode);

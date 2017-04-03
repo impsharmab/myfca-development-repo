@@ -7,9 +7,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
@@ -25,7 +27,9 @@ import com.imperialm.imiservices.services.UserServiceImpl;
 
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.crypto.Mac;
 import javax.naming.AuthenticationException;
@@ -68,7 +72,6 @@ public class AuthenticationRestController {
         final String token = jwtTokenUtil.generateToken(user);
         List<UserPositionCodeRoleDTO> userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
         
-        
         List<String> positionCode = new ArrayList<String>();
         List<String> dealerCode = new ArrayList<String>();
         
@@ -77,6 +80,13 @@ public class AuthenticationRestController {
         	dealerCode.add(item.getDealerCode());
         }
         
+        Set<String> p = new LinkedHashSet<>(positionCode);
+        Set<String> d = new LinkedHashSet<>(dealerCode);
+        positionCode.clear();
+        dealerCode.clear();
+        
+        positionCode.addAll(p);
+        dealerCode.addAll(d);
         
         JwtAuthenticationResponse response =new JwtAuthenticationResponse(token);
         response.setPositionCode(positionCode);
@@ -103,6 +113,49 @@ public class AuthenticationRestController {
         }
     }
 
+    @RequestMapping(value = "/login/token/{token}/{positionCode}/{dealerCode}", method = RequestMethod.GET)
+    public ResponseEntity<?> createAuthenticationToken(@PathVariable(value="token") String token, @PathVariable(value="positionCode") String tokenPositionCode, @PathVariable(value="dealerCode")String tokenDealerCode) throws AuthenticationException {
+    	
+    	String username = jwtTokenUtil.getUsernameFromToken(token);
+        UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
+        
+        if(!jwtTokenUtil.validateToken(token, user)){
+	    	 //token is expired/invalid token
+        	return ResponseEntity.status(500).body("Invalid Token");
+	     }
+        
+        List<UserPositionCodeRoleDTO> userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
+        
+        
+        List<String> positionCode = new ArrayList<String>();
+        List<String> dealerCode = new ArrayList<String>();
+        
+        positionCode.add(tokenPositionCode);
+    	dealerCode.add(tokenDealerCode);
+        
+        for(UserPositionCodeRoleDTO item: userCodes){
+        	positionCode.add(item.getPositionCode());
+        	dealerCode.add(item.getDealerCode());
+        }
+        Set<String> p = new LinkedHashSet<>(positionCode);
+        Set<String> d = new LinkedHashSet<>(dealerCode);
+        positionCode.clear();
+        dealerCode.clear();
+        
+        positionCode.addAll(p);
+        dealerCode.addAll(d);
+        
+        JwtAuthenticationResponse response =new JwtAuthenticationResponse(token);
+        response.setPositionCode(positionCode);
+        response.setDealerCode(dealerCode);
+        response.setName(user.getUsername());
+        if(user.getUserId().toLowerCase().equals("dave")){
+        	response.setAdmin(true);
+        }
+        // Return the token
+        return ResponseEntity.ok(response);
+    }
+    
     
     public String get_SHA_512_SecurePassword(String passwordToHash, String   salt){
     	String generatedPassword = null;

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imperialm.imiservices.dao.SummaryProgramRewardDetailsDAO;
+import com.imperialm.imiservices.dao.SummaryProgramRewardGraphDAO;
 import com.imperialm.imiservices.dao.TTTAEnrollmentsSummaryDAO;
 import com.imperialm.imiservices.dao.TTTAEnrolledGraphDAO;
 import com.imperialm.imiservices.dao.CustomerFirstGraphDAO;
@@ -49,6 +51,7 @@ import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
@@ -143,6 +146,12 @@ public class DashboardServiceImpl {
 	
 	@Autowired
 	private TTTAEnrollmentsSummaryDAO TTTAEnrollmentsSummaryDAO;
+	
+	@Autowired
+	private SummaryProgramRewardGraphDAO SummaryProgramRewardGraphDAO;
+	
+	@Autowired
+	private SummaryProgramRewardDetailsDAO SummaryProgramRewardDetailsDAO;
 	
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
 		return this.dashboardDAO.findTilesListByRole(userRoleReq);
@@ -557,6 +566,18 @@ public class DashboardServiceImpl {
 	}
 	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCode(String dealerCode, String positionCode){
 		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsBySID(dealerCode, positionCode);
+	}
+	
+	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByParentTerritoryYTD(List<String> territory){
+		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByParentTerritoryYTD(territory);
+	}
+	
+	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(List<String> territory){
+		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByChildTerritoryYTD(territory);
+	}
+	
+	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory){
+		return this.SummaryProgramRewardDetailsDAO.getSummaryProgramRewardDetailsBySIDYTD(territory);
 	}
 	
 }

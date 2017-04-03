@@ -13,27 +13,61 @@ var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
 var login_service_1 = require("../../services/login-services/login.service");
 var LoginComponent = (function () {
-    function LoginComponent(loginService, router, http, _compiler) {
+    function LoginComponent(loginService, router, http, _compiler, activatedRoute) {
         this.loginService = loginService;
         this.router = router;
         this.http = http;
         this._compiler = _compiler;
+        this.activatedRoute = activatedRoute;
         this.sampleUsers = [];
         this.userdata = {};
-        this.responseUserdata = {
-            "data": {
-                "token": "",
-                "status": false
-            },
-            "error": ""
-        };
+        this.ssotoken = "";
+        this.ssodealercode = "";
+        this.ssopositioncode = "";
         this._compiler.clearCache();
     }
     LoginComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.user = {
             username: '',
             password: ''
         };
+        // this.ssoLoginInterface = {
+        //     ssotoken: "",
+        //     ssodealercode: "",
+        //     ssopositioncode: ""
+        // }
+        this.activatedRoute.queryParams.subscribe(function (params) {
+            _this.ssotoken = params['token'];
+            _this.ssodealercode = params['dc'];
+            _this.ssopositioncode = params['pc'];
+        });
+        if (this.ssotoken !== "") {
+            this.ssologin(this.ssotoken, this.ssopositioncode, this.ssodealercode);
+        }
+    };
+    LoginComponent.prototype.ssologin = function (ssotoken, ssopositioncode, ssodealercode) {
+        var _this = this;
+        this.loginService.getSSOLoginResponse(this.ssotoken, this.ssopositioncode, this.ssodealercode).subscribe(function (resUserData) {
+            _this.userdata = (resUserData);
+            if (resUserData["token"].length > 0) {
+                _this.loginService.setUserData(_this.userdata);
+                var poscodes = _this.userdata.positionCode;
+                var delcodes = _this.userdata.dealerCode;
+                sessionStorage.setItem("selectedCodeData", JSON.stringify({
+                    "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                    "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                }));
+                var url = ["myfcadashboard"];
+                _this.router.navigate(url);
+            }
+            else {
+                var url = ["login"];
+                _this.router.navigate(url);
+            }
+            // var msg = JSON.parse(resUserData["error"])["error"];
+            // alert(msg);
+        });
     };
     LoginComponent.prototype.login = function (username, password) {
         var _this = this;
@@ -67,7 +101,7 @@ LoginComponent = __decorate([
         moduleId: module.id,
         templateUrl: './loginform.html',
     }),
-    __metadata("design:paramtypes", [login_service_1.LoginService, router_1.Router, http_1.Http, core_1.Compiler])
+    __metadata("design:paramtypes", [login_service_1.LoginService, router_1.Router, http_1.Http, core_1.Compiler, router_1.ActivatedRoute])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

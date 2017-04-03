@@ -1,7 +1,8 @@
 import { Component, OnInit, Compiler } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, Params, ActivatedRoute } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { SSOLoginInterface } from './ssologin.interface'
 
 
 import { User } from './user.interface';
@@ -15,15 +16,19 @@ export class LoginComponent implements OnInit {
     form: FormGroup;
     private test: any;
     public user: User;
+    public ssoLoginInterface: SSOLoginInterface;
     sampleUsers = [];
     private tilesArray: any;
     private userdata: any = {};
     private menu: any;
     private banners: any;
     private arraydata: any;
+    private ssotoken: string = "";
+    private ssodealercode: string = "";
+    private ssopositioncode: string = "";
 
 
-    constructor(private loginService: LoginService, private router: Router, private http: Http, private _compiler: Compiler) {
+    constructor(private loginService: LoginService, private router: Router, private http: Http, private _compiler: Compiler, private activatedRoute: ActivatedRoute) {
         this._compiler.clearCache();
     }
     ngOnInit() {
@@ -31,16 +36,61 @@ export class LoginComponent implements OnInit {
             username: '',
             password: ''
         }
+
+        // this.ssoLoginInterface = {
+        //     ssotoken: "",
+        //     ssodealercode: "",
+        //     ssopositioncode: ""
+        // }
+
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            this.ssotoken = params['token'];
+            this.ssodealercode = params['dc'];
+            this.ssopositioncode = params['pc'];
+
+        });
+
+        if (this.ssotoken !== "") {
+            this.ssologin(
+                this.ssotoken,
+                this.ssopositioncode,
+                this.ssodealercode
+            )
+        }
     }
 
-    responseUserdata: any = {
-        "data": {
-            "token": "",
-            "status": false
-        },
-        "error": ""
-    };
+    private ssologin(ssotoken: string, ssopositioncode: string, ssodealercode: string) {
+        this.loginService.getSSOLoginResponse(
+            this.ssotoken,
+            this.ssopositioncode,
+            this.ssodealercode).subscribe(
+            (resUserData) => {
+                this.userdata = (resUserData)
+                if (resUserData["token"].length > 0) {
+                    this.loginService.setUserData(this.userdata);
+                    var poscodes: any = this.userdata.positionCode;
+                    var delcodes: any = this.userdata.dealerCode;
+                    sessionStorage.setItem("selectedCodeData", JSON.stringify(
+                        {
+                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                            "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                        }))
 
+                    let url = ["myfcadashboard"]
+                    this.router.navigate(url);
+
+                } else {
+                    let url = ["login"]
+                    this.router.navigate(url);
+                    // alert("invalid user");
+
+                    //alert(resUserData.error)
+                }
+                // var msg = JSON.parse(resUserData["error"])["error"];
+                // alert(msg);
+            }
+            )
+    }
 
     private login(username: string, password: string) {
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
