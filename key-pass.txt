@@ -1,0 +1,7 @@
+* Server name:  836393-TEST-WEB.imperialmarketing.com
+
+* Primary IP address:  23.253.198.75
+
+* Admin username:  836393-Admin
+
+* Admin password:  MQTm2fKhiR3I
