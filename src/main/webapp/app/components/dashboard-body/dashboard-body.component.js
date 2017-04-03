@@ -1324,7 +1324,8 @@ DashboardBodyComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-content",
-        templateUrl: "./dashboard-body.html"
+        templateUrl: "./dashboard-body.html",
+        styles: ['button:focus{ background-color: #0275d8; color: #fff}']
     }),
     __metadata("design:paramtypes", [dashboard_body_service_1.DashboardBodyService, ng_bootstrap_1.NgbModal])
 ], DashboardBodyComponent);

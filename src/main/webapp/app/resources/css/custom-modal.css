@@ -11,3 +11,13 @@
     width: 30%;
     height: 20%;
 }
+
+.modal-ok{
+    cursor: pointer;
+}
+
+.cust-f-btn{
+color: #000000; 
+     background-color: #e6f3ff; 
+     border-color: #0275d8; 
+}

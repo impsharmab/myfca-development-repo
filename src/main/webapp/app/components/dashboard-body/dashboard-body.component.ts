@@ -14,7 +14,8 @@ require('highcharts/modules/no-data-to-display')(Highcharts);
 @Component({
   moduleId: module.id,
   selector: "app-content",
-  templateUrl: "./dashboard-body.html"
+  templateUrl: "./dashboard-body.html",
+  styles: ['button:focus{ background-color: #0275d8; color: #fff}']
 })
 
 export class DashboardBodyComponent implements OnInit, OnDestroy {
