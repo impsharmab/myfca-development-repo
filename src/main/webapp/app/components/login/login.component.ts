@@ -1,11 +1,10 @@
-import { Component, OnInit, Compiler } from '@angular/core';
-import { Router, RouterOutlet, Params, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Compiler, OnDestroy } from '@angular/core';
+import { Router, RouterOutlet, ActivatedRoute, Params } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { SSOLoginInterface } from './ssologin.interface'
-
 
 import { User } from './user.interface';
+import { SSOLoginInterface } from './ssologin.interface'
 import { LoginService } from '../../services/login-services/login.service';
 
 @Component({
@@ -16,10 +15,11 @@ export class LoginComponent implements OnInit {
     form: FormGroup;
     private test: any;
     public user: User;
-    public ssoLoginInterface: SSOLoginInterface;
+    public ssouser: SSOLoginInterface;
     sampleUsers = [];
     private tilesArray: any;
     private userdata: any = {};
+    private ssouserdata: any = {};
     private menu: any;
     private banners: any;
     private arraydata: any;
@@ -27,8 +27,11 @@ export class LoginComponent implements OnInit {
     private ssodealercode: string = "";
     private ssopositioncode: string = "";
 
-
-    constructor(private loginService: LoginService, private router: Router, private http: Http, private _compiler: Compiler, private activatedRoute: ActivatedRoute) {
+    constructor(private loginService: LoginService,
+        private router: Router,
+        private http: Http,
+        private _compiler: Compiler,
+        private activatedRoute: ActivatedRoute) {
         this._compiler.clearCache();
     }
     ngOnInit() {
@@ -36,8 +39,7 @@ export class LoginComponent implements OnInit {
             username: '',
             password: ''
         }
-
-        // this.ssoLoginInterface = {
+        // this.ssouser = {
         //     ssotoken: "",
         //     ssodealercode: "",
         //     ssopositioncode: ""
@@ -49,7 +51,6 @@ export class LoginComponent implements OnInit {
             this.ssopositioncode = params['pc'];
 
         });
-
         if (this.ssotoken !== "") {
             this.ssologin(
                 this.ssotoken,
@@ -92,7 +93,9 @@ export class LoginComponent implements OnInit {
             )
     }
 
+
     private login(username: string, password: string) {
+        debugger
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
             (resUserData) => {
                 this.userdata = (resUserData)

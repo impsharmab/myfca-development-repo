@@ -25,14 +25,14 @@ export class DashboardBodyService {
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
-        var getNumberOfTilesServiceUrl: string = "services/notile/" + positioncodes + "/" + dealerlcodes;
-        //  var getNumberOfTilesServiceUrl: string = "http://172.25.32.162/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
-        // var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
+       // var getNumberOfTilesServiceUrl: string = "services/notile/" + positioncodes + "/" + dealerlcodes;
+          var getNumberOfTilesServiceUrl: string = "http://172.25.32.162/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
+        //var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
         //  var getNumberOfTilesServiceUrl: string = "./app/resources/json/cutomer-notiles.json";
         var headers = new Headers();
         headers.append('Authorization', validToken);
-        headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
         return this.http.get(getNumberOfTilesServiceUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -43,12 +43,12 @@ export class DashboardBodyService {
         var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
         var headers = new Headers();
         headers.append('Authorization', validToken);
-        headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
 
-        // var tileService = "./app/resources/dc-json/" + id + "-tile.json";
-        var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        //   var tileService = "http://172.25.32.162/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        //var tileService = "./app/resources/dc-json/" + id + "-tile.json";
+      //  var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+           var tileService = "http://172.25.32.162/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -59,12 +59,12 @@ export class DashboardBodyService {
         var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
         var headers = new Headers();
         headers.append('Authorization', validToken);
-        headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
-        var chartService = "./app/resources/dc-json/" + id + "-chart.json";
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
+        // var chartService = "./app/resources/dc-json/" + id + "-chart.json";
         // var chartService = "./app/resources/json/customer_first.json"; //retention
-        // var chartService = "http://172.25.32.162/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+          var chartService = "http://172.25.32.162/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        //var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);

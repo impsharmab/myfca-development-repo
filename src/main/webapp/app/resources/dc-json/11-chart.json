@@ -5,7 +5,7 @@
   "xaxisTitle": "",
   "type": "column_compound",
   "unit": "$",
-  "average": true,
+  "avarage": true,
   "data": [
     {
       "name": "CA",

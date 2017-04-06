@@ -9,6 +9,20 @@ body{
 	background-color:#f1f1f1!important;
 }
 
+.highcharts-drilldown-data-label text{
+  text-decoration:none !important;
+}
+
+/*.customer_btn{
+color:black;
+    background-color: #e6f2ff;
+    border-color: #01549b;
+}*/
+
+
+.activated{
+	background-color:#222;
+}
 nav .brand-logo {
 	color: #444;
 	display: block;
@@ -89,10 +103,11 @@ p {
    
 }
 .card .btn{
-
     font-size: 0.8rem!important;
-
+	padding: 0.5rem!important;
 }
+
+
 
 .card .card-action {
 

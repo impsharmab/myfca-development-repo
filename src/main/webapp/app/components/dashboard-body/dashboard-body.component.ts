@@ -15,7 +15,7 @@ require('highcharts/modules/no-data-to-display')(Highcharts);
   moduleId: module.id,
   selector: "app-content",
   templateUrl: "./dashboard-body.html",
-  styles: ['button:focus{ background-color: #0275d8; color: #fff}']
+  styles: ['button:focus { background:#025fb1; color: #fff; }']
 })
 
 export class DashboardBodyComponent implements OnInit, OnDestroy {
@@ -46,11 +46,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.drillupAverageCount = 0;
     for (var i = 0; i < e.seriesOptions.data.length; i++) {
       this.totalCount = this.totalCount + e.seriesOptions.data[i][1];
-      this.drillupAverageCount = this.drillupAverageCount + 1;
+      this.drilldownAverageCount = this.drilldownAverageCount + 1;
     }
 
     if (obj.avarage) {
-      this.drillupAverageCount = this.drillUptotalCount / this.drillupAverageCount;
+      this.totalCount = this.totalCount / this.drilldownAverageCount;
     }
     if (obj.unit == "$" && obj.avarage == false) {
       chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
@@ -66,7 +66,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
     }
     // chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
-
+    this.drillUptotalCount = 0;
+    this.drilldownAverageCount = 0;
   }
   private drillUptotalCount: any = 0;
   private drillupAverageCount = 0;
@@ -94,7 +95,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
     // chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
     this.totalCount = 0;
-
+    this.drilldownAverageCount = 0;
   }
   ngOnInit() {
     this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
@@ -283,10 +284,19 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       chartData.yaxisTitle = chartData.xaxisTitle
     }
 
-    var unit;// = this.unit;
+    // var unit;// = this.unit;
     var tileId = obj.id;
-    if (chartData.unit == "$") {
-      unit = chartData.unit;
+    var tooltip: string = "";
+    var dataLabels: string = "";
+    var stackLabels: string = "";
+    if (chartData.unit == "%") {
+      tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>{point.y}</b> <b>' + chartData.unit + '</b><br/>';
+      dataLabels = "{point.y}" + chartData.unit
+      stackLabels = '{total}' + chartData.unit
+    } else {
+      tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>' + chartData.unit + '</b><b>{point.y}</b> <br/>';
+      dataLabels = chartData.unit + "{point.y}"
+      stackLabels = chartData.unit + '{total}'
     }
     this.chartData = chartData;
 
@@ -329,30 +339,38 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           text: chartData.yaxisTitle
         },
         stackLabels: {
+          format: stackLabels,
           enabled: true,
           style: {
             fontSize: 10,
+
             //color: 'gray'
           }
         }
       },
-      // tooltip: {
-      //   pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{'+unit+'}</b><b>{point.y}</b> <br/>',
-      //   shared: false
-      // },
+      tooltip: {
+        pointFormat: tooltip,
+        shared: false
+      },
 
       plotOptions: {
+
+      },
+      series: [
+        // { visible:false }
+      ],
+      drilldown: {
+        // activeDataLabelStyle: {
+        //   "textDecoration": "none"
+        // }
+
 
       },
       navigation: {
         buttonOptions: {
           align: 'left'
         }
-      },
-      series: [
-        // { visible:false }
-      ],
-      drilldown: {}
+      }
 
     }; Highcharts.setOptions({
       lang: {
@@ -406,7 +424,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             dataLabels: {
               enabled: true,
-              format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+              allowOverlap: true,
+              overFlow: 'none',
+              crop: true,
+             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+              format: '<b>{point.name}</b>: <br>{point.y}',
               style: {
                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
               }
@@ -490,7 +512,18 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           data: chartDataValues
         }];
         chartObj.drilldown = {
-          "series": drilldownArray
+          "series": drilldownArray,
+          activeDataLabelStyle: {
+            "textDecoration": "none"
+
+          },
+          drillUpButton: {
+            relativeTo: 'spacingBox',
+            position: {
+              y: 0,
+              x: 0
+            }
+          }
         }
         if (chartDataValues.length > 0) {
           if (chartData.avarage) {
@@ -513,8 +546,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column":
         chartObj.chart.type = "column",
+
           //chartObj["legend"] = { enabled: false },
-          chartObj.plotOptions["pie"] =
+          chartObj.plotOptions["column"] =
           {
             plotBorderWidth: 0,
             allowPointSelect: true,
@@ -522,44 +556,68 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             size: '60%',
             dataLabels: {
               enabled: true,
-              format: '{point.name}: <br><b>{point.y}</b>',
-
+              //              format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+              format: dataLabels,
               allowOverlap: true,
               overFlow: 'none',
               crop: false,
-              rotation: 70,
-              y: 20,
+              rotation: -70,
+              y: -15,
+
               style: {
                 fontSize: '9px'
               }
             }
           }
+        chartObj.plotOptions["pie"] = {
+          plotBorderWidth: 0,
+          allowPointSelect: true,
+          cursor: 'pointer',
+          size: '60%',
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+            style: {
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            }
+          }
+        }
         chartObj.plotOptions["series"] = {
-
-
+          point: {
+            events: {
+              click: function (e, a, b) {
+                if (this.name.length > 3) {
+                  //alert(this.name)
+                  //alert(tileId)
+                  window.open("172.25.32.162/myfcarewards/services/data/" + tileId + "/" + this.name)
+                }
+              }
+            }
+          },
           events: {
-            legendItemClick: function (e) {
 
-              __this.lengendItemClick(e, this, tileId)
+
+            legendItemClick: function (e) {
+              __this.lengendItemClick(e, this, tileId, chartData.retention)
 
             }
           }
           // ,
           // showInLegend: true,
-          ,
-          pointPadding: 0.2,
-          borderWidth: 0,
-          dataLabels: {
-            enabled: true,
-            allowOverlap: true,
-            overFlow: 'none',
-            crop: false,
-            rotation: -70,
-            y: -15,
-            style: {
-              fontSize: '9px'
-            }
-          },
+          //,
+          // pointPadding: 0.2,
+          // borderWidth: 0,
+          // dataLabels: {
+          //   enabled: true,
+          //   allowOverlap: true,
+          //   overFlow: 'none',
+          //   crop: true,
+          //   rotation: -70,
+          //   y: -15,
+          //   style: {
+          //     fontSize: '9px'
+          //   }
+          // },
 
           // ,
           // legend: {
@@ -673,7 +731,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           data: chartDataValues
         }];
         chartObj.drilldown = {
-          "series": drilldownArray
+          "series": drilldownArray,
+          activeDataLabelStyle: {
+            "textDecoration": "none"
+          },
+          drillUpButton: {
+            relativeTo: 'spacingBox',
+            position: {
+              y: 0,
+              x: 0
+            }
+          }
         }
         if (chartDataValues.length > 0) {
           if (chartData.avarage) {
@@ -699,15 +767,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
           events: {
             legendItemClick: function (e) {
-              __this.lengendItemClick(e, this, tileId)
+              __this.lengendItemClick(e, this, tileId, chartData.retention)
 
             }
           },
           borderWidth: 0,
           dataLabels: {
             enabled: false,
-            overFlow: 'none',
-            crop: false
+            format: dataLabels,
+            overFlow: 'justify',
+            crop: true
 
           }
         }
@@ -746,17 +815,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
           events: {
             legendItemClick: function (e) {
-              __this.lengendItemClick(e, this, tileId)
+              __this.lengendItemClick(e, this, tileId, chartData.retention)
             }
           },
           pointPadding: 0.2,
           borderWidth: 0,
           dataLabels: {
             enabled: true,
-
+            format: dataLabels,
             allowOverlap: true,
             overFlow: 'none',
-            crop: false,
+            crop: true,
             rotation: -70,
             y: -15,
             style: {
@@ -792,21 +861,42 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column_stack":
         chartObj.chart.type = "column"
+        // chartObj.plotOptions["column"] = {
+        //   dataLabels: {
+        //     enabled: true,
+        //     format: dataLabels,
+
+        //   }
+        // }
+        //     chartObj.yAxis.stackLabels["style"] = {
+        //       color: 'black'
+        //     }, enabled: true, format: '{total} mm'
+        // }
+
+
+
         chartObj.plotOptions["column"] = {
 
           events: {
             legendItemClick: function (e) {
-              __this.lengendItemClick(e, this, tileId)
+              __this.lengendItemClick(e, this, tileId, chartData.retention)
+              //to toggle the retention
+              if (chartData.retention) {
+                for (var i = 0; i < e.target.chart.series.length; i++) {
+                  var seriesObj = e.target.chart.series[i];
+                  seriesObj.setVisible(false)
 
+                }
+              }
             }
           },
           stacking: 'normal',
           dataLabels: {
-            enabled: false,
-
+            //enabled: true,
+            format: dataLabels
           }
-        }
 
+        }
 
         // if (this.chartData["retention"] == true) {
         //   // for (var i = 0; i < chartObj["series"].length; i++) {           
@@ -887,7 +977,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var __this = this; chartObject.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } }
     chartObject.chart.renderTo = this.chartObjects[id].container.id;
     chartObject.chart.plotOptions = {
-      series: {
+      column: {
         pointPadding: 0.2,
         borderWidth: 0,
         dataLabels: {
@@ -898,26 +988,33 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         plotBorderWidth: 0,
         allowPointSelect: true,
         cursor: 'pointer',
-        size: '100%',
+        size: '60%',
         dataLabels: {
           enabled: true,
-          format: '{point.name}: <b>{point.y}</b>',
-
-          allowOverlap: true,
-          overFlow: 'none',
-          crop: false,
-          rotation: -0,
-          y: -20,
+          format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
           style: {
-            fontSize: '9px'
+            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
           }
         }
+        // dataLabels: {
+        //   enabled: true,
+        //   format: '{point.name}: <b>{point.y}</b>',
+
+        //   allowOverlap: true,
+        //   overFlow: 'none',
+        //   crop: true,
+        //   rotation: -0,
+        //   y: -20,
+        //   style: {
+        //     fontSize: '9px'
+        //   }
+
       }
     }
     if (chartType === "pie") {
       chartObject.tooltip = {
         pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-        shared: true
+        shared: false
 
       }
     } else {
@@ -1033,7 +1130,18 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       }
     }
     chartObj.drilldown = {
-      "series": drilldownArray
+      "series": drilldownArray,
+      activeDataLabelStyle: {
+        "textDecoration": "none"
+      },
+      drillUpButton: {
+        relativeTo: 'spacingBox',
+        position: {
+          y: 0,
+          x: 0
+        }
+      }
+
     }
     //  chartObj.xAxis.categories = categories;
     // for (var key in seriesJson) {
@@ -1163,7 +1271,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       data: chartDataValues
     }];
     chartObj.drilldown = {
-      "series": drilldownArray
+      "series": drilldownArray,
+      activeDataLabelStyle: {
+        "textDecoration": "none"
+      },
+      drillUpButton: {
+        relativeTo: 'spacingBox',
+        position: {
+          y: 0,
+          x: 0
+        }
+      }
     }
     if (chartData.avarage) {
       total = total / avagerCount;
@@ -1304,7 +1422,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       data: chartDataValues
     }];
     chartObject.drilldown = {
-      "series": drilldownArray
+      "series": drilldownArray,
+      activeDataLabelStyle: {
+        "textDecoration": "none"
+      },
+      drillUpButton: {
+        relativeTo: 'spacingBox',
+        position: {
+          y: 0,
+          x: 0
+        }
+      }
     }
     if (chartData.avarage) {
       total = total / avagerCount;
@@ -1325,27 +1453,56 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   }
 
-  private lengendItemClick(event: any, clickedSeries: any, id: any) {
+  private lengendItemClick(event: any, clickedSeries: any, id: any, retention: any) {
     var obj = this.unitAndAverage[id];
     var total = 0;
+    var seriesCount = 0;
     for (var i = 0; i < event.target.chart.series.length; i++) {
       var series = event.target.chart.series[i];
-      if (clickedSeries.name === series.name) {
-        if (!clickedSeries.visible) {
-          for (var j = 0; j < series.data.length; j++) {
-            var value = series.data[j].y;
-            total = total + value;
+      if (!retention) {
+        if (clickedSeries.name === series.name) {
+          if (!clickedSeries.visible) {
+            for (var j = 0; j < series.data.length; j++) {
+              var value = series.data[j].y;
+              total = total + value;
+              seriesCount = seriesCount + 1;
+            }
           }
-        }
-      } else {
-        if (series.visible) {
-          for (var j = 0; j < series.data.length; j++) {
-            var value = series.data[j].y;
-            total = total + value;
+        } else {
+          if (series.visible) {
+            for (var j = 0; j < series.data.length; j++) {
+              var value = series.data[j].y;
+              seriesCount = seriesCount + 1;
+              total = total + value;
+            }
           }
         }
       }
+      else {
+        if (clickedSeries.name === series.name) {
+          //if (!clickedSeries.visible) {
+          for (var j = 0; j < series.data.length; j++) {
+            var value = series.data[j].y;
+            total = total + value;
+            seriesCount = seriesCount + 1;
+          }
+        }
+
+        // } else {
+        //   if (series.visible) {
+        //     for (var j = 0; j < series.data.length; j++) {
+        //       var value = series.data[j].y;
+        //       seriesCount = seriesCount + 1;
+        //       total = total + value;
+        //     }
+        //   }
+        // }
+      }
     }
+    if (obj.avarage) {
+      total = total / seriesCount;
+    }
+
     if (obj.unit == "$" && obj.avarage == false) {
       event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.round(total).toLocaleString() });
     } else if (obj.unit == "$" && obj.avarage == true) {

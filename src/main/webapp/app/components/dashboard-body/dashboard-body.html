@@ -9,11 +9,10 @@
     <!--<p>The FCA Rewards Dashbaord is a here to provide you with quick to review information of all your vital sales data.</p>
     <p>Use the <a class="" href="#modal1"><i class="material-icons .md-14 ">info_outline</i></a> whenever you want to reference
       this menu again.</p>-->
-
-      <p>The FCA Rewards Dashboard is here to provide you with a quick review of all information vital to your sales data.</p>
+    <p>The FCA Rewards Dashboard is here to provide you with a quick review of all information vital to your sales data</p>
   </div>
   <div class="modal-footer">
-    <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat, modal-ok" (click)="c('Close click')">Get Started!</a>
+    <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat pointer-modal" (click)="c('Close click')">Get Started!</a>
     <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
   </div>
 </template>
@@ -30,7 +29,7 @@
     <datatable id="dataTable" [tableData]="statisticModelData"></datatable>
   </div>
   <div class="modal-footer">
-    <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat modal-ok" (click)="c('Close click')">Ok</a>
+    <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat" (click)="c('Close click')">Ok</a>
     <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
   </div>
 </template>
@@ -100,6 +99,7 @@
 <template ngbModalContainer></template>
 
 <section id="intro" class="intro-section">
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
   <div class="container">
     <!--- Row START -->
     <div *ngFor="let rowarray of tilesArray" class="row">
@@ -110,9 +110,10 @@
           <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
           <chart (drillup)="drillUp($event.originalEvent,$event.context,tile.id)" (drilldown)="drillDown($event.originalEvent,$event.context,tile.id)"
             (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 450px; max-width: 600px; min-height: 450px; max-height: 600px; margin: 0 auto"></chart>
-          <span *ngIf="showPieButton[tile.id] ">
+          <span *ngIf="showPieButton[tile.id]" class="button-nav">
         <!--<button  id="button" (click)="chartSwitchNAT(tile.id)">NAT</button>-->
-        <button id="button " class="cust-f-btn" style="margin:3px" *ngFor = "let buttonName of pieButtons[tile.id] "  (click)="chartSwitch(buttonName,tile.id)">{{buttonName}}</button>
+       &nbsp; <button id="button " style="margin-left:3.5px " class="customer_btn" *ngFor = "let buttonName of pieButtons[tile.id] "  (click)="chartSwitch(buttonName,tile.id)">{{buttonName}}</button>
+      
       </span>
           <!--<p *ngIf='errorInArray(contentBody[tile.id].data)'>
             <span style="color: red">Sorry Data is not available</span></p>-->
@@ -132,7 +133,7 @@
           && (errorInObject(contentBody[tile.id].top10_advisors)) 
           && (errorInObject(contentBody[tile.id].top10_technicians)) 
           && (errorInArray(contentBody[tile.id].top3))' style="text-align: center;">
-            No data to display. Please Visit Program Rules below for more information on earning.</p>
+            No data to display. Please visit Program Rules below for more information on earning.</p>
 
           <div class="data-group " *ngFor="let data of contentBody[tile.id].attribute ">
             <p class="data-point " *ngIf="emptyBadge(data.badgeUrl) ">{{data.value}}</p>
@@ -164,10 +165,18 @@
 
 
   </div>
+
 </section>
+
+
+
 
 <style>
   
   
-
+  .customer_btn {
+    color: black;
+    background-color: #e6f2ff;
+    border-color: #01549b;
+  }
 </style>

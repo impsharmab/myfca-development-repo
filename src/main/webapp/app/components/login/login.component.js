@@ -21,6 +21,7 @@ var LoginComponent = (function () {
         this.activatedRoute = activatedRoute;
         this.sampleUsers = [];
         this.userdata = {};
+        this.ssouserdata = {};
         this.ssotoken = "";
         this.ssodealercode = "";
         this.ssopositioncode = "";
@@ -32,7 +33,7 @@ var LoginComponent = (function () {
             username: '',
             password: ''
         };
-        // this.ssoLoginInterface = {
+        // this.ssouser = {
         //     ssotoken: "",
         //     ssodealercode: "",
         //     ssopositioncode: ""
@@ -71,6 +72,7 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.login = function (username, password) {
         var _this = this;
+        debugger;
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
             _this.userdata = (resUserData);
             // alert(resUserData["userID"]);
@@ -101,7 +103,11 @@ LoginComponent = __decorate([
         moduleId: module.id,
         templateUrl: './loginform.html',
     }),
-    __metadata("design:paramtypes", [login_service_1.LoginService, router_1.Router, http_1.Http, core_1.Compiler, router_1.ActivatedRoute])
+    __metadata("design:paramtypes", [login_service_1.LoginService,
+        router_1.Router,
+        http_1.Http,
+        core_1.Compiler,
+        router_1.ActivatedRoute])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map
