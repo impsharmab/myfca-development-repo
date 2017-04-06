@@ -563,19 +563,19 @@ public class MappingServiceImpl {
 		
 		chartData.setName(TTTAEnrolledGraphDTO.getChild());
 		
-		certified.setName("Total Group A");
+		certified.setName("Group A");
 		certified.setValue(TTTAEnrolledGraphDTO.getTotalGroupA());
 		
-		certifiedSpacialist.setName("Total Group B");
+		certifiedSpacialist.setName("Group B");
 		certifiedSpacialist.setValue(TTTAEnrolledGraphDTO.getTotalGroupB());
 		
-		masterCertified.setName("Total Group C");
+		masterCertified.setName("Group C");
 		masterCertified.setValue(TTTAEnrolledGraphDTO.getTotalGroupC());
 		
-		groupd.setName("Total Group D");
+		groupd.setName("Group D");
 		groupd.setValue(TTTAEnrolledGraphDTO.getTotalGroupD());
 		
-		groupe.setName("Total Group E");
+		groupe.setName("Group E");
 		groupe.setValue(TTTAEnrolledGraphDTO.getTotalGroupE());
 		
 		chartData.addData(certified);

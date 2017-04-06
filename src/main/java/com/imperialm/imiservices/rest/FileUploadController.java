@@ -12,7 +12,9 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 @Controller
 public class FileUploadController {
@@ -41,25 +43,24 @@ public class FileUploadController {
 	    }
 	    
 	    
-	   /* @GetMapping("/listFiles")
-	    public String listUploadedFiles() throws IOException {
+	    @GetMapping("/listFiles")
+	    public ResponseEntity<?> listUploadedFiles() throws IOException {
 
 	        File dir = new File("C:\\dashboardbanners");
 	        
 	        if (dir.isDirectory())
 	        {
-	            dir.listFiles()
-	            	if(!serverFile.exists()){
-	            		BufferedOutputStream stream = new BufferedOutputStream(
-	            				new FileOutputStream(serverFile));
-	            		stream.write(file.getBytes());
-	            		stream.close();
-	            		return ResponseEntity.ok("Uploaded");
+	        	List<String> files = new ArrayList<String>();
+	            File[] a = dir.listFiles();
+	            for(File b: a){
+	            	files.add(b.getName());
 	            }
+	            
+	            return ResponseEntity.ok(files);
 	        }
 	        
 	        return ResponseEntity.badRequest().body(HttpStatus.CONFLICT);
 	    }
-	    */
+	    
 
 }

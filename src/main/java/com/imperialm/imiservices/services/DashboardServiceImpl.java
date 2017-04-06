@@ -541,7 +541,7 @@ public class DashboardServiceImpl {
 	}
 	
 	public TotalName getTTTANATTopAdvisorEnrolledDealerCount(){
-		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopTechEnrolledDealerCount();
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopAdvisorEnrolledDealerCount();
 	}
 	
 	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory, String positionCode){

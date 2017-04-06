@@ -119,9 +119,25 @@ public class SSOController {
             	return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + positionCode, true);
             } else if ((dealerCode != null && !dealerCode.isEmpty()) && (positionCode == null || positionCode.isEmpty())) {
             	userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
+            	
             	if(userCodes.size() > 0){
             		return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + userCodes.get(0).getPositionCode() , true);
-            	}
+            	}else if(userCodes.size() == 0){
+                 	List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
+                 	if(territoryCheck.size() > 0){
+                 		if(territoryCheck.get(0).equalsIgnoreCase("nat")){
+                 			return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "90" , true);
+                 		}else if(territoryCheck.get(0).contains("-")){
+                 			return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "97" , true);
+                 		}else if(territoryCheck.get(0).length() == 2){
+                 			return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "8D" , true);
+                 		}/*else{
+                 			positionCode.add("01");
+                 			dealerCode.add(user.getUserId());
+                 		}*/
+                 	}
+                 }
+            	
             	return ResponseEntity.badRequest().body("Failed in getting position code");
             	
             } else if ((dealerCode == null || dealerCode.isEmpty()) && (positionCode != null && !positionCode.isEmpty())) {

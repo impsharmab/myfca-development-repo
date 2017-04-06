@@ -226,7 +226,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 		*/
 		if(tile25.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","www.mopar.com")); // RETENTION
+			this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","")); // RETENTION
 			}
 			
 			if(tile26.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 

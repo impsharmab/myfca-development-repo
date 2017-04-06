@@ -13,8 +13,8 @@ public class NoTile {
 	//private String tileURL;
 	private String programRules = "Program Rules";
 	private String programRulesUrl = "";
-	private String programSite = "Program Sites";
-	private String programSiteUrl;
+	private String programSite = "Program Site";
+	private String programSiteUrl = "";
 	
 	
 	
