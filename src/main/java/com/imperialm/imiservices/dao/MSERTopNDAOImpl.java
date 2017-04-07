@@ -73,16 +73,9 @@ public class MSERTopNDAOImpl implements MSERTopNDAO {
 			}
 			
 		} catch (final NoResultException ex) {
-			MSERTopNDTO = new MSERTopNDTO();
-			MSERTopNDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
 			logger.info("result in else " + MSERTopNDTO);
-			result.add(MSERTopNDTO);
-			
 		} catch (final Exception ex) {
-			MSERTopNDTO = new MSERTopNDTO();
 			logger.error("error occured in findTilesListByRole", ex);
-			MSERTopNDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(MSERTopNDTO);
 		}
 		return result;
 	}

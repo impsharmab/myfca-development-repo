@@ -36,7 +36,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//UB 9.1
 	private List<String> tile8 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","10","12","13","14","15","16","18","17","19","1F","20","22","23","24","25","26","27","28","29","2A","2B","2C","2D","2S","2T","30","31","32","33","34","35","36","37","38","39","3T","40","41","42","48","7M","7N","7P","7Q","ES","ET","IM"));
 	//UB 10.1
-	private List<String> tile9 = new ArrayList<String>(Arrays.asList("46","47","49","4N","4S","4T","50","52","56","60","64","65","6W","70","71","74","75","79","7A","7L","80","81","82","84","85","87","88","89","8D","8E","8V","90","94","98","99","CI","EA","EN","FL","LV","N1","N2","N3","N4","N5","N6","N7","N8","N9","SA","SB","SC","SD","SE","SF","U5","U6","UB","VT","WF","WP","01","02","03","04","05","06","07","10","17","19","1F","22","25","27","2C","2D","2S","2T","30","31","32","33","35","36","37","38","39","3T","40","41","7M","7N","7P","7Q"));
+	private List<String> tile9 = new ArrayList<String>(Arrays.asList("46","47","49","4N","4S","4T","50","52","56","60","64","65","6W","70","71","74","75","79","7A","7L","80","81","82","83","84","85","87","88","89","8D","8E","8U","8V","90","94","97","98","99","CI","EA","EN","FL","LV","N1","N2","N3","N4","N5","N6","N7","N8","N9","SA","SB","SC","SD","SE","SF","U5","U6","UB","VT","WF","WP","01","02","03","04","05","06","07","10","17","19","1F","22","25","27","2C","2D","2S","2T","30","31","32","33","35","36","37","38","39","3T","40","41","7M","7N","7P","7Q"));
 	//UB 11.1
 	private List<String> tile10 = new ArrayList<String>(Arrays.asList("46","47","49","4N","4S","4T","50","52","56","60","64","65","6W","70","71","74","75","79","7A","7L","80","81","82","83","84","85","87","88","89","8D","8E","8U","8V","90","94","97","98","99","CI","EA","EN","FL","LV","N1","N2","N3","N4","N5","N6","N7","N8","N9","SA","SB","SC","SD","SE","SF","U5","U6","UB","VT","WF","WP","01","02","03","04","05","06","07","10","17","19","1F","22","25","27","2C","2D","2S","2T","30","31","32","33","35","36","37","38","39","3T","40","41","7M","7N","7P","7Q"));
 	//UB 12.1
@@ -122,50 +122,50 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user) {
 		this.userTiles = new ArrayList<NoTile>();
 		if(tile1.contains(positionCode)){
-		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","www.mopar.com"));
+		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser"));
 		}
 		
 		if(tile2.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg","www.mopar.com"));
+		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg",""));
 		}
 		
 		if(tile3.contains(positionCode)){
-			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://fcarewardredemption.com"));
 			}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg",""));
 			}
 		
 		if(tile5.contains(positionCode)){
-			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","https://fcarewardredemption.com"));
 			}
 		if(tile6.contains(positionCode)){
-			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg",""));
 			}
 		
 		if(tile7.contains(positionCode)){
-			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg",""));
 			}
 		
 		if(tile8.contains(positionCode)){
-			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts.jpg","https://fcarewardredemption.com"));
 			}
 		
 		if(tile9.contains(positionCode)){
-			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg",""));
 			}
 		
 		if(tile10.contains(positionCode)){
-			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg",""));
 			}
 		
 		if(tile11.contains(positionCode)){
-			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm"));
 			}
 		
 		
 		if(tile12.contains(positionCode)){
-			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm"));
 			}
 		
 		/*if(tile13.contains(positionCode)){
@@ -173,50 +173,50 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		//enrolled not enrolled 2 tiles
 		if(tile14.contains(positionCode)){
-			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
-			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
-			//this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
-			//this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg",""));
+			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg",""));
+			//this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg",""));
+			//this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg",""));
 			}
 		
 		if(tile15.contains(positionCode)){
-			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","www.mopar.com")); //SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","https://fcarewardredemption.com")); //SERVICE INCENTIVE
 			}
 		
 		
 		if(tile16.contains(positionCode)){
-			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","www.mopar.com")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","")); // SERVICE INCENTIVE
 			}
 		
 		if(tile17.contains(positionCode)){
-			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","www.mopar.com")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","")); // SERVICE INCENTIVE
 			}
 		
 		/*if(tile18.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(21,"","chart", "","service-incentive.jpg","www.mopar.com")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(21,"","chart", "","service-incentive.jpg","")); // SERVICE INCENTIVE
 			}*/
 		
 		if(tile19.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(24,"","tile", "","rewards.jpg","www.mopar.com")); // REWARDRED
+			this.userTiles.add(new NoTile(24,"","tile", "","rewards.jpg","https://fcarewardredemption.com")); // REWARDRED
 			}
 		
 		if(tile20.contains(positionCode) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","www.mopar.com")); // REWARDRED
+			this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","")); // REWARDRED
 			}
 		
 		// SUMMARY
 		if(tile21.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(36,"","chart", "","blank.jpg","www.mopar.com")); // SUMMARY
+			this.userTiles.add(new NoTile(36,"","chart", "","FCASummary.jpg","")); // SUMMARY
 			}
 			
 			//Customer first
 			if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.jpg","www.mopar.com")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.jpg","")); // //customer first
 			}
 			
 			//customer first
 			if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.jpg","www.mopar.com")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.jpg","")); // //customer first
 			}
 			/*
 			//NOTHING
@@ -230,7 +230,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}
 			
 			if(tile26.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","www.mopar.com")); // RETENTION
+			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","")); // RETENTION
 			}
 			
 		
@@ -238,13 +238,13 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		
 		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","www.mopar.com"));
-			this.userTiles.add(new NoTile(4,"","tile", "","mser-logo.jpg","www.mopar.com"));
-			this.userTiles.add(new NoTile(5,"","tile", "","mser-logo.jpg","www.mopar.com"));
-			this.userTiles.add(new NoTile(6,"","tile", "","mser-logo.jpg","www.mopar.com"));
-			this.userTiles.add(new NoTile(7,"","tile", "","mser-logo.jpg","www.mopar.com"));
-			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","www.mopar.com"));
-			//this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","www.mopar.com"));
+			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser"));
+			this.userTiles.add(new NoTile(4,"","tile", "","MVP.jpg","https://www.moparser.com/mser"));
+			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","https://www.moparser.com/mser"));
+			this.userTiles.add(new NoTile(6,"","tile", "","blank.jpg","https://www.moparser.com/mser"));
+			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","https://www.moparser.com/mser"));
+			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","https://www.moparser.com/mser"));
+			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","https://www.moparser.com/mser"));
 		}
 		
 		

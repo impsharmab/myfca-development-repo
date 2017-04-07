@@ -1,6 +1,6 @@
 [
     {
-        "error": "",
+        "error": "", 
         "id": "99",
         "type": "chart",
         "tileOrder": 1,
@@ -13,6 +13,17 @@
     {
         "error": "",
         "id": "98",
+        "type": "chart",
+        "tileOrder": 1,
+        "tileName": "",
+        "tileHeaderImage": "mser-logo.jpg",
+        "programRules": "Program Rules",
+        "programSite": "Program Sites",
+        "programSiteUrl": "www.mopar.com"
+    },
+    {
+        "error": "", 
+        "id": "97",
         "type": "chart",
         "tileOrder": 1,
         "tileName": "",

@@ -1,0 +1,91 @@
+{
+    "title": "Customer First Pillars Completed QTD",
+    "subTitle": "",
+    "yaxisTitle": "Total Pillars",
+    "xaxisTitle": "Pillars QTD",
+    "type": "pie",
+    "data": [
+        {
+            "name": "Level 0",
+            "value": 0.0,
+            "data": [
+                {
+                    "name": "26550",
+                    "value": 0.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Performance",
+            "value": 0.0,
+            "data": [
+                {
+                    "name": "26550",
+                    "value": 0.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Process",
+            "value": 0.0,
+            "data": [
+                {
+                    "name": "26550",
+                    "value": 0.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Voice of Employee",
+            "value": 0.0,
+            "data": [
+                {
+                    "name": "26550",
+                    "value": 0.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Training",
+            "value": 0.0,
+            "data": [
+                {
+                    "name": "26550",
+                    "value": 0.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "Facility",
+            "value": 1.0,
+            "data": [
+                {
+                    "name": "26550",
+                    "value": 1.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "CFAFE Award Certification",
+            "value": 1.0,
+            "data": [
+                {
+                    "name": "26550",
+                    "value": 1.0,
+                    "data": []
+                }
+            ]
+        }
+    ],
+    "unit": "",
+    "avarage": false,
+    "customer_first": true,
+    "retention": false,
+    "cfdealDisMan": true
+}

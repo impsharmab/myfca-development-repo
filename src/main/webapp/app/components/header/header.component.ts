@@ -12,7 +12,7 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 
 export class HeaderComponent implements OnInit {
-    @Input() data: any;
+    @Input() data: any; 
     @Output("onProfileChange") profileChange = new EventEmitter<any>();
     private banners: any = new Array;
     @ViewChild("contactModal") private contactModal: TemplateRef<any>;
