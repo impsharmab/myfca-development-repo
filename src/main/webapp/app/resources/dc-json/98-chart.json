@@ -1,0 +1,893 @@
+{
+    "title": "Projected Service Incentive Earnings QTD",
+    "subTitle": "",
+    "yaxisTitle": "Projected Earnings",
+    "xaxisTitle": "Projected Earnings",
+    "type": "column",
+    "data": [
+        {
+            "name": "CA",
+            "value": 30940.0,
+            "data": [
+                {
+                    "name": "CA-D",
+                    "value": 1930.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-E",
+                    "value": 0.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-F",
+                    "value": 400.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-G",
+                    "value": 0.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-H",
+                    "value": 3360.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-J",
+                    "value": 2270.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-K",
+                    "value": 3330.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-L",
+                    "value": 2370.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-M",
+                    "value": 9990.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-N",
+                    "value": 6450.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-W",
+                    "value": 90.0,
+                    "data": []
+                },
+                {
+                    "name": "CA-Y",
+                    "value": 750.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "DN",
+            "value": 37500.0,
+            "data": [
+                {
+                    "name": "DN-A",
+                    "value": 1160.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-B",
+                    "value": 1130.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-C",
+                    "value": 320.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-D",
+                    "value": 3540.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-E",
+                    "value": 3140.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-F",
+                    "value": 810.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-G",
+                    "value": 9020.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-H",
+                    "value": 5400.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-I",
+                    "value": 1120.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-J",
+                    "value": 200.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-K",
+                    "value": 1940.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-L",
+                    "value": 500.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-M",
+                    "value": 1550.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-N",
+                    "value": 3370.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-P",
+                    "value": 1150.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-Q",
+                    "value": 1120.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-R",
+                    "value": 870.0,
+                    "data": []
+                },
+                {
+                    "name": "DN-S",
+                    "value": 1160.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "GL",
+            "value": 69730.0,
+            "data": [
+                {
+                    "name": "GL-A",
+                    "value": 10890.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-B",
+                    "value": 9700.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-C",
+                    "value": 9450.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-D",
+                    "value": 4770.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-E",
+                    "value": 5010.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-F",
+                    "value": 4330.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-G",
+                    "value": 550.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-I",
+                    "value": 1850.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-J",
+                    "value": 110.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-K",
+                    "value": 180.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-L",
+                    "value": 1260.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-M",
+                    "value": 4700.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-N",
+                    "value": 960.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-O",
+                    "value": 4800.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-P",
+                    "value": 1390.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-Q",
+                    "value": 710.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-R",
+                    "value": 4350.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-S",
+                    "value": 1420.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-U",
+                    "value": 1270.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-X",
+                    "value": 260.0,
+                    "data": []
+                },
+                {
+                    "name": "GL-Z",
+                    "value": 1770.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "MA",
+            "value": 57110.0,
+            "data": [
+                {
+                    "name": "MA-A",
+                    "value": 3560.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-B",
+                    "value": 1750.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-C",
+                    "value": 2810.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-D",
+                    "value": 2450.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-E",
+                    "value": 4840.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-F",
+                    "value": 1360.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-G",
+                    "value": 1840.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-H",
+                    "value": 6700.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-I",
+                    "value": 6350.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-J",
+                    "value": 2340.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-K",
+                    "value": 240.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-L",
+                    "value": 4470.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-M",
+                    "value": 5280.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-N",
+                    "value": 2610.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-O",
+                    "value": 950.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-P",
+                    "value": 6750.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-Q",
+                    "value": 1910.0,
+                    "data": []
+                },
+                {
+                    "name": "MA-R",
+                    "value": 900.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "MW",
+            "value": 41870.0,
+            "data": [
+                {
+                    "name": "MW-A",
+                    "value": 9110.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-B",
+                    "value": 4730.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-C",
+                    "value": 850.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-D",
+                    "value": 730.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-E",
+                    "value": 330.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-F",
+                    "value": 1150.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-G",
+                    "value": 1780.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-H",
+                    "value": 5180.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-I",
+                    "value": 3960.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-J",
+                    "value": 90.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-K",
+                    "value": 180.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-L",
+                    "value": 4400.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-M",
+                    "value": 910.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-N",
+                    "value": 1290.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-O",
+                    "value": 5210.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-P",
+                    "value": 870.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-Q",
+                    "value": 110.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-R",
+                    "value": 880.0,
+                    "data": []
+                },
+                {
+                    "name": "MW-S",
+                    "value": 110.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "NE",
+            "value": 53810.0,
+            "data": [
+                {
+                    "name": "NE-A",
+                    "value": 2820.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-B",
+                    "value": 1480.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-C",
+                    "value": 1440.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-D",
+                    "value": 5300.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-E",
+                    "value": 3060.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-F",
+                    "value": 2100.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-G",
+                    "value": 2190.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-H",
+                    "value": 6560.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-I",
+                    "value": 1420.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-J",
+                    "value": 1780.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-K",
+                    "value": 2990.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-L",
+                    "value": 1940.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-M",
+                    "value": 6030.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-N",
+                    "value": 4190.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-O",
+                    "value": 3220.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-P",
+                    "value": 170.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-Q",
+                    "value": 2120.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-R",
+                    "value": 1050.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-S",
+                    "value": 1590.0,
+                    "data": []
+                },
+                {
+                    "name": "NE-T",
+                    "value": 2360.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "SE",
+            "value": 79590.0,
+            "data": [
+                {
+                    "name": "SE-A",
+                    "value": 3880.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-B",
+                    "value": 6680.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-C",
+                    "value": 4320.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-D",
+                    "value": 5970.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-E",
+                    "value": 14580.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-F",
+                    "value": 2510.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-G",
+                    "value": 3500.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-H",
+                    "value": 5240.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-I",
+                    "value": 1710.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-J",
+                    "value": 4570.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-L",
+                    "value": 1470.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-M",
+                    "value": 1310.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-N",
+                    "value": 3800.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-O",
+                    "value": 790.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-P",
+                    "value": 4510.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-Q",
+                    "value": 3200.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-R",
+                    "value": 3460.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-S",
+                    "value": 2740.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-T",
+                    "value": 1610.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-U",
+                    "value": 3440.0,
+                    "data": []
+                },
+                {
+                    "name": "SE-Z",
+                    "value": 300.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "SW",
+            "value": 50970.0,
+            "data": [
+                {
+                    "name": "SW-A",
+                    "value": 4940.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-B",
+                    "value": 2350.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-C",
+                    "value": 3100.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-D",
+                    "value": 480.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-E",
+                    "value": 1780.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-F",
+                    "value": 1210.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-G",
+                    "value": 5000.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-H",
+                    "value": 4470.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-I",
+                    "value": 5560.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-J",
+                    "value": 2860.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-K",
+                    "value": 1120.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-L",
+                    "value": 980.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-M",
+                    "value": 5430.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-N",
+                    "value": 2890.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-Q",
+                    "value": 1720.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-R",
+                    "value": 610.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-S",
+                    "value": 2100.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-T",
+                    "value": 940.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-U",
+                    "value": 120.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-V",
+                    "value": 1810.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-X",
+                    "value": 220.0,
+                    "data": []
+                },
+                {
+                    "name": "SW-Y",
+                    "value": 1280.0,
+                    "data": []
+                }
+            ]
+        },
+        {
+            "name": "WE",
+            "value": 34820.0,
+            "data": [
+                {
+                    "name": "WE-A",
+                    "value": 2870.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-B",
+                    "value": 0.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-C",
+                    "value": 2120.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-D",
+                    "value": 1270.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-E",
+                    "value": 3540.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-F",
+                    "value": 930.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-G",
+                    "value": 1990.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-I",
+                    "value": 1780.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-J",
+                    "value": 3160.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-K",
+                    "value": 3150.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-L",
+                    "value": 3600.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-M",
+                    "value": 10310.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-N",
+                    "value": 100.0,
+                    "data": []
+                },
+                {
+                    "name": "WE-P",
+                    "value": 0.0,
+                    "data": []
+                }
+            ]
+        }
+    ],
+    "unit": "$",
+    "avarage": false,
+    "customer_first": false,
+    "retention": false,
+    "cfdealDisMan": false
+}

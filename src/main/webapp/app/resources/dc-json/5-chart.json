@@ -14,11 +14,11 @@
             "data": [
                 {
                     "name": "CA",
-                    "value": 50,
+                    "value": 5000,
                     "data": [
                         {
                             "name": "CA-A",
-                            "value": 50
+                            "value": 5000
                         },
                         {
                             "name": "CA-B",
@@ -60,11 +60,11 @@
                 },
                 {
                     "name": "DN",
-                    "value": 10,
+                    "value": 4800,
                     "data": [
                         {
                             "name": "DN-A",
-                            "value": 50
+                            "value": 9874
                         },
                         {
                             "name": "DN-B",
@@ -186,7 +186,7 @@
                 },
                 {
                     "name": "MW",
-                    "value": 50,
+                    "value": 5002,
                     "data": [
                         {
                             "name": "MW-A",
@@ -270,7 +270,7 @@
                 },
                 {
                     "name": "SE",
-                    "value": 50,
+                    "value": 1500,
                     "data": [
                         {
                             "name": "SE-A",
@@ -402,7 +402,7 @@
             "data": [
                 {
                     "name": "CA",
-                    "value": 50,
+                    "value": 4852,
                     "data": [
                         {
                             "name": "CA-A",
@@ -442,13 +442,13 @@
                         },
                         {
                             "name": "CA-I",
-                            "value": 50
+                            "value": 7412
                         }
                     ]
                 },
                 {
                     "name": "DN",
-                    "value": 10,
+                    "value": 6931,
                     "data": [
                         {
                             "name": "DN-A",
@@ -484,7 +484,7 @@
                         },
                         {
                             "name": "DN-I",
-                            "value": 50
+                            "value": 3451
                         }
                     ]
                 },
@@ -790,11 +790,11 @@
             "data": [
                 {
                     "name": "CA",
-                    "value": 50,
+                    "value": 8745,
                     "data": [
                         {
                             "name": "CA-A",
-                            "value": 50
+                            "value": 4895
                         },
                         {
                             "name": "CA-B",

@@ -47,7 +47,7 @@ var LoginService = (function () {
     LoginService.prototype.getLoginResponse = function (username, password) {
         //debugger
         var url = "./login/token/";
-        // var url = "http://172.25.32.162/myfcarewards/login/token/";
+        var url = "http://172.25.32.162/myfcarewards/login/token/";
         //var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         // var url = "http://172.24.16.75:9080/imiservices/login/token/";
         var body = { "username": username, "password": password };
@@ -55,7 +55,8 @@ var LoginService = (function () {
         headers.append('Content-Type', 'application/json');
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
-        return this.http.post(url, body, { headers: headers })
+        // return this.http.post(url, body, { headers: headers })
+        return this.http.get(this.getLoginResponseUrl)
             .map(function (response) {
             return response.json();
         })

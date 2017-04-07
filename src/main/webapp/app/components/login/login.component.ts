@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     public ssouser: SSOLoginInterface;
     sampleUsers = [];
     private tilesArray: any;
-    private userdata: any = {};
+    private userdata: any = {}; 
     private ssouserdata: any = {};
     private menu: any;
     private banners: any;
@@ -95,9 +95,9 @@ export class LoginComponent implements OnInit {
 
 
     private login(username: string, password: string) {
-        debugger
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
             (resUserData) => {
+                debugger;
                 this.userdata = (resUserData)
                 // alert(resUserData["userID"]);
                 if (resUserData["token"].length > 0) {

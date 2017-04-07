@@ -72,8 +72,8 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.login = function (username, password) {
         var _this = this;
-        debugger;
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
+            debugger;
             _this.userdata = (resUserData);
             // alert(resUserData["userID"]);
             if (resUserData["token"].length > 0) {

@@ -372,7 +372,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         }
       }
 
-    }; Highcharts.setOptions({
+    };
+    Highcharts.setOptions({
       lang: {
         thousandsSep: ',',
         drillUpText: '◁ Back'
@@ -427,7 +428,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               allowOverlap: true,
               overFlow: 'none',
               crop: true,
-             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+              // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
               format: '<b>{point.name}</b>: <br>{point.y}',
               style: {
                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
@@ -576,7 +577,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           size: '60%',
           dataLabels: {
             enabled: true,
-            format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+           // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+             format: '<b>{point.name}</b>: <br>{point.y}',
             style: {
               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
             }
@@ -763,6 +765,13 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "bar_compound":
         chartObj.chart.type = "bar";
+
+        // Highcharts.setOptions({
+        //   lang: {
+        //     thousandsSep: ','
+        //   }
+        // });
+
         chartObj.plotOptions["series"] = {
 
           events: {
@@ -991,7 +1000,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         size: '60%',
         dataLabels: {
           enabled: true,
-          format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+          //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+           format: '<b>{point.name}</b>: <br>{point.y}',
           style: {
             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
           }

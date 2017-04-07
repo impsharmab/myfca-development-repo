@@ -557,7 +557,8 @@ var DashboardBodyComponent = (function () {
                     size: '60%',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+                        // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+                        format: '<b>{point.name}</b>: <br>{point.y}',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
@@ -721,6 +722,11 @@ var DashboardBodyComponent = (function () {
                 break;
             case "bar_compound":
                 chartObj.chart.type = "bar";
+                // Highcharts.setOptions({
+                //   lang: {
+                //     thousandsSep: ','
+                //   }
+                // });
                 chartObj.plotOptions["series"] = {
                     events: {
                         legendItemClick: function (e) {
@@ -933,7 +939,8 @@ var DashboardBodyComponent = (function () {
                 size: '60%',
                 dataLabels: {
                     enabled: true,
-                    format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+                    //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+                    format: '<b>{point.name}</b>: <br>{point.y}',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
