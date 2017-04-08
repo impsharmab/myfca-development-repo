@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
             this.ssopositioncode = params['pc'];
 
         });
-        if (this.ssotoken !== "") {
+        if (this.ssotoken !== "" && this.ssotoken !==undefined) {
             this.ssologin(
                 this.ssotoken,
                 this.ssopositioncode,
@@ -96,11 +96,12 @@ export class LoginComponent implements OnInit {
 
     private login(username: string, password: string) {
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
+
             (resUserData) => {
                 debugger;
                 this.userdata = (resUserData)
                 // alert(resUserData["userID"]);
-                if (resUserData["token"].length > 0) {
+                if (resUserData["token"].length > 0) { 
                     this.loginService.setUserData(this.userdata);
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
@@ -122,8 +123,12 @@ export class LoginComponent implements OnInit {
                 }
                 // var msg = JSON.parse(resUserData["error"])["error"];
                 // alert(msg);
+            },
+            (error)=>{
+                alert("bad creds")
             }
         )
+
     }
 
     // if (poscodes === undefined)
@@ -148,34 +153,7 @@ export class LoginComponent implements OnInit {
     //                 sessionStorage.setItem("selectedCodeData", JSON.parse(sessionStorageSelectedObject))
 
 
-    //form submitted
-    // private login(username, password) {
-    //    // alert("username: " + username),
-    //    //   alert("password: " + password)
-    //     this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
-    //         (resUserData) => {
-    //             resUserData = this.userdata = (resUserData)
-    //           //  alert(resUserData.tokenresponse.data.token)
-    //             console.log("resUserData: " + resUserData["tokenresponse"]["data"]["token"])
-    //             if (resUserData.tokenresponse.data.status && resUserData["error"] === "" && resUserData["error"] !== null) {
-    //                 this.userdata["userID"] = resUserData["userID"];
-    //                 this.userdata["name"] = resUserData["name"];
-    //                 this.userdata["validToken"] = resUserData["tokenresponse"]["data"]["token"];
-    //                 this.loginService.setUserData(this.userdata);
-
-    //                 let url = ["myfcadashboard"]
-    //                 this.router.navigate(url);
-    //                 console.log("validToken" + resUserData["tokenresponse"]["data"]["token"])
-    //             } else {
-    //                 alert("error in response json " + resUserData.error)
-    //             }
-    //             //var msg = JSON.parse(resUserData["error"])["error"];
-    //             //alert(msg);
-
-    //         }
-
-    //     )
-    // }
+    
 }
 
 

@@ -54,8 +54,7 @@ var LoginService = (function () {
         headers.append('Content-Type', 'application/json');
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
-        // return this.http.post(url, body, { headers: headers })
-        return this.http.get(this.getLoginResponseUrl)
+        return this.http.post(url, body, { headers: headers })
             .map(function (response) {
             return response.json();
         })

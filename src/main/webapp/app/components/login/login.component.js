@@ -43,7 +43,7 @@ var LoginComponent = (function () {
             _this.ssodealercode = params['dc'];
             _this.ssopositioncode = params['pc'];
         });
-        if (this.ssotoken !== "") {
+        if (this.ssotoken !== "" && this.ssotoken !== undefined) {
             this.ssologin(this.ssotoken, this.ssopositioncode, this.ssodealercode);
         }
     };
@@ -94,6 +94,8 @@ var LoginComponent = (function () {
             }
             // var msg = JSON.parse(resUserData["error"])["error"];
             // alert(msg);
+        }, function (error) {
+            alert("bad creds");
         });
     };
     return LoginComponent;

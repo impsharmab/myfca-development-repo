@@ -49,8 +49,8 @@ export class LoginService {
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
 
-       // return this.http.post(url, body, { headers: headers })
-            return this.http.get(this.getLoginResponseUrl)
+        return this.http.post(url, body, { headers: headers })
+       //     return this.http.get(this.getLoginResponseUrl)
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError)
