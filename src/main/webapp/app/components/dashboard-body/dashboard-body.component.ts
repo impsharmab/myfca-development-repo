@@ -60,7 +60,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       chart.setTitle(null, { text: "Total " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
     } else if (obj.unit == "%" && obj.avarage == true) {
       chart.setTitle(null, { text: "Average " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
-
     } else {
       chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
 
@@ -125,6 +124,13 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         noData: "custom msg"
       }
     });
+    Highcharts.wrap(Highcharts, 'numberFormat', function (proceed) {
+      var ret = proceed.apply(0, [].slice.call(arguments, 1));
+            console.log("ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")"+ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+
+      return ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    });
+    //number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     this.initializeContent();
 
   }
@@ -298,12 +304,12 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var stackLabels: string = "";
     if (chartData.unit == "%") {
       tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>{point.y}</b> <b>' + chartData.unit + '</b><br/>';
-      dataLabels = "{point.y}" + chartData.unit
-      stackLabels = '{total}' + chartData.unit
+      dataLabels = "{point.y:.0f}" + chartData.unit
+      stackLabels = '{total:.0f}' + chartData.unit
     } else {
       tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>' + chartData.unit + '</b><b>{point.y}</b> <br/>';
-      dataLabels = chartData.unit + "{point.y}"
-      stackLabels = chartData.unit + '{total}'
+      dataLabels = chartData.unit + "{point.y:.0f}"
+      stackLabels = chartData.unit + '{total:.0f}'
     }
     this.chartData = chartData;
 
@@ -330,7 +336,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       //     enabled: false
       // },
       xAxis: {
+        min: 0,
+        //minRange: 1,
         type: 'category',
+
+        //max: 1000000,
         categories: [],
         labels: {
           style: {
@@ -342,12 +352,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       },
       yAxis: {
         min: 0,
+        minRange: 1,
+
         title: {
           text: chartData.yaxisTitle
         },
         stackLabels: {
           format: stackLabels,
           enabled: true,
+          overFlow: 'justify',
+          crop: true,
           style: {
             fontSize: 10
             //color: 'gray'
@@ -426,12 +440,12 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             dataLabels: {
               enabled: true,
-              padding:0,
+              padding: 0,
               allowOverlap: true,
               overFlow: 'none',
               crop: false,
               // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-              format: '<b>{point.name}</b>: <br>{point.y}',
+              format: '<b>{point.name}</b>: <br>{point.y:.0f}',
               style: {
                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
               }
@@ -554,10 +568,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             plotBorderWidth: 0,
             allowPointSelect: true,
             cursor: 'pointer',
-            size: '60%',
+            size: '90%',
             dataLabels: {
               enabled: true,
-              padding:0,
+              padding: 0,
               //              format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
               format: dataLabels,
               allowOverlap: true,
@@ -575,19 +589,19 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           plotBorderWidth: 0,
           allowPointSelect: true,
           cursor: 'pointer',
-          size: '60%',
+          size: '80%',
           dataLabels: {
             allowOverlap: true,
             enabled: true,
-            padding:0,
+            padding: 0,
             overFlow: 'justify',
             crop: false,
             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-            format: '<b>{point.name}</b>: <br>{point.y}',
+            format: '<b>{point.name}</b>: <br>{point.y:.0f}',
             style: {
-              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',              
-                fontSize: '8px'
-              
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+              fontSize: '8px'
+
             }
           }
         }
@@ -780,51 +794,24 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         // });
 
         chartObj.plotOptions["series"] = {
-
           events: {
             legendItemClick: function (e) {
               __this.lengendItemClick(e, this, tileId, chartData.retention)
-
             }
           },
           borderWidth: 0,
           dataLabels: {
             enabled: false,
-            padding:0,
+            padding: 0,
             format: dataLabels,
             overFlow: 'justify',
             crop: false
-
           }
         }
         chartObj.plotOptions["series"]["stacking"] = "normal";
         delete chartObj.xAxis.categories;
         //delete chartObj.yAxis;
         this.constructChartObject(chartData, chartObj);
-
-
-        //   var categories = [];
-        //   var seriesJson = {};
-        //   for (var i = 0; i < chartData.data.length; i++) {
-        //     var dataObj = chartData.data[i];
-        //     categories.push(dataObj.name);
-        //     for (var j = 0; j < dataObj.data.length; j++) {
-        //       var innerDataObj = dataObj.data[j];
-        //       if (seriesJson[innerDataObj.name] === undefined) {
-        //         seriesJson[innerDataObj.name] = [innerDataObj.value];
-        //       } else {
-        //         seriesJson[innerDataObj.name].push(innerDataObj.value)
-        //       }
-        //     }
-        //   }
-        // //  chartObj.xAxis.categories = categories;
-        //   for (var key in seriesJson) {
-        //     chartObj.series.push({
-        //       name: key,
-        //       data: seriesJson[key]
-        //     });
-        //   }
-
         break;
       case "column_compound":
         chartObj.chart.type = "column"
@@ -839,7 +826,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           borderWidth: 0,
           dataLabels: {
             enabled: true,
-            padding:0,
+            padding: 0,
             format: dataLabels,
             allowOverlap: true,
             overFlow: 'justify',
@@ -855,43 +842,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         delete chartObj.xAxis.categories;
         //delete chartObj.yAxis;
         this.constructChartObject(chartData, chartObj);
-        // var categories = [];
-        // var seriesJson = {};
-        // for (var i = 0; i < chartData.data.length; i++) {
-        //   var dataObj = chartData.data[i];
-        //   categories.push(dataObj.name);
-        //   for (var j = 0; j < dataObj.data.length; j++) {
-        //     var innerDataObj = dataObj.data[j];
-        //     if (seriesJson[innerDataObj.name] === undefined) {
-        //       seriesJson[innerDataObj.name] = [innerDataObj.value];
-        //     } else {
-        //       seriesJson[innerDataObj.name].push(innerDataObj.value)
-        //     }
-        //   }
-        // }
-        // chartObj.xAxis.categories = categories;
-        // for (var key in seriesJson) {
-        //   chartObj.series.push({
-        //     name: key,
-        //     data: seriesJson[key]
-        //   });
-        // }
         break;
       case "column_stack":
         chartObj.chart.type = "column"
-        // chartObj.plotOptions["column"] = {
-        //   dataLabels: {
-        //     enabled: true,
-        //     format: dataLabels,
-
-        //   }
-        // }
-        //     chartObj.yAxis.stackLabels["style"] = {
-        //       color: 'black'
-        //     }, enabled: true, format: '{total} mm'
-        // }
-
-
 
         chartObj.plotOptions["column"] = {
 
@@ -915,16 +868,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }
 
         }
-
-        // if (this.chartData["retention"] == true) {
-        //   // for (var i = 0; i < chartObj["series"].length; i++) {           
-        //   alert(chartObj["series"]["data"])
-        //   //alert( chartObj["series"]["visible"][i])//=false;
-
-        //   //}
-        // }
-        // alert(this.chartData.type)
-        //chartObj.series["visible"][2]=false;
 
         delete chartObj.xAxis.categories;
         // delete chartObj.yAxis;
@@ -960,34 +903,13 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             }
           }
         }
-        // var categories = [];
-        // var seriesJson = {};
-        // for (var i = 0; i < chartData.data.length; i++) {
-        //   var dataObj = chartData.data[i];
-        //   categories.push(dataObj.name);
-        //   for (var j = 0; j < dataObj.data.length; j++) {
-        //     var innerDataObj = dataObj.data[j];
-        //     if (seriesJson[innerDataObj.name] === undefined) {
-        //       seriesJson[innerDataObj.name] = [innerDataObj.value];
-        //     } else {
-        //       seriesJson[innerDataObj.name].push(innerDataObj.value)
-        //     }
-        //   }
-        // }
-        // chartObj.xAxis.categories = categories;
-        // for (var key in seriesJson) {
-        //   chartObj.series.push({
-        //     name: key,
-        //     data: seriesJson[key]
-        //   });
-        // }
+
         break;
     }
     return chartObj;
   }
 
   public chartChange(chartType: string, id: any): void {
-
     var chartObject = this.contentBody[id];
     // console.log(JSON.stringify(chartObject));
     // console.log(this.chartObjects[id].container.id);
@@ -999,47 +921,38 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         pointPadding: 0.2,
         borderWidth: 0,
         dataLabels: {
+
           allowOverlap: true,
-          padding:0,
+          padding: 0,
           enabled: true,
           crop: false,
           overFlow: 'justify',
           style: {
-                fontSize: '8px'
-              }
+            fontSize: '8px'
+          }
         }
       },
       pie: {
         plotBorderWidth: 0,
         allowPointSelect: true,
         cursor: 'pointer',
-        size: '60%',
+        size: '100%',
         dataLabels: {
           enabled: true,
-          padding:0,
+          padding: 0,
           allowOverlap: true,
           //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-          format: '<b>{point.name}</b>: <br>{point.y}',
+
+          //format: '<b>{point.name}</b>: <br>{point.y}',
           crop: false,
           overFlow: 'justify',
           style: {
             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-            fontSize:'8px',
+            fontSize: '8px',
 
           }
         }
-        // dataLabels: {
-        //   enabled: true,
-        //   format: '{point.name}: <b>{point.y}</b>',
 
-        //   allowOverlap: true,
-        //   overFlow: 'none',
-        //   crop: true,
-        //   rotation: -0,
-        //   y: -20,
-        //   style: {
-        //     fontSize: '9px'
-        //   }
 
       }
     }
@@ -1079,32 +992,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         var innerDataObj = dataObj.data[k];
         avagerCount = avagerCount + 1;
         total = total + innerDataObj.value;
-        //  console.log(innerDataObj.name);
-        //   var innerDataObject = {name:"",y:"",drilldown:""};
-
-        //   seriesObject.data.push(innerDataObject);
-        //   if (chartData.drilldownData[innerDataObj.name] === undefined) {
-        //     innerDataObject.drilldown = null;
-        //   } else {
-        //      innerDataObject.drilldown = chartData.drilldownData[innerDataObj.name].name;
-        //   }
-        // }
-        // var drilldownData = chartData.drilldownData[innerDataObj.name];
 
         var drilldownData = innerDataObj.data;
         if (drilldownData.length > 0) {
-          // var drillDownObj: any = {};
-          // drillDownObj.name = drilldownData.name;
-          // drillDownObj.id = drilldownData.name;
-          // drillDownObj.data = new Array();
-          // for (var j = 0; j < drilldownData.data.length; j++) {
-          //   var obj = drilldownData.data[j];
-          //   drillDownObj.data.push({
-          //     name: obj.name,
-          //     y: obj.value,
-          //     drilldown: null
-          //   });
-          // }
+
           var drillDownObj: any = {};
           var __this = this;
           drillDownObj.point = {
@@ -1209,7 +1100,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         borderWidth: 0,
         dataLabels: {
           enabled: true,
-          padding:0,
+          padding: 0,
         }
       },
       pie: {
@@ -1219,7 +1110,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         size: '100%',
         dataLabels: {
           enabled: true,
-          padding:0,
+          padding: 0,
           format: '{point.name}: <b>{point.y}</b>',
 
         }
@@ -1358,7 +1249,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         borderWidth: 0,
         dataLabels: {
           enabled: true,
-          padding:0,
+          padding: 0,
         }
       },
       pie: {
@@ -1368,7 +1259,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         size: '100%',
         dataLabels: {
           enabled: true,
-          padding:0,
+          padding: 0,
           format: '{point.name}: <b>{point.y}</b>'
         }
       }
@@ -1484,7 +1375,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     } else if (chartData.unit == "%" && chartData.avarage == true) {
       chartObject.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
     } else {
-      chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+      chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "\n Maruthi";
+
     }
     this.chartObjects[id] = new Highcharts.Chart(chartObject);
 

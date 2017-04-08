@@ -48,6 +48,12 @@ var DashboardBodyComponent = (function () {
                 noData: "custom msg"
             }
         });
+        Highcharts.wrap(Highcharts, 'numberFormat', function (proceed) {
+            var ret = proceed.apply(0, [].slice.call(arguments, 1));
+            console.log("ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ")" + ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            return ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        });
+        //number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.initializeContent();
     }
     DashboardBodyComponent.prototype.drillDown = function (e, chart, id) {
@@ -301,13 +307,13 @@ var DashboardBodyComponent = (function () {
         var stackLabels = "";
         if (chartData.unit == "%") {
             tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>{point.y}</b> <b>' + chartData.unit + '</b><br/>';
-            dataLabels = "{point.y}" + chartData.unit;
-            stackLabels = '{total}' + chartData.unit;
+            dataLabels = "{point.y:.0f}" + chartData.unit;
+            stackLabels = '{total:.0f}' + chartData.unit;
         }
         else {
             tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>' + chartData.unit + '</b><b>{point.y}</b> <br/>';
-            dataLabels = chartData.unit + "{point.y}";
-            stackLabels = chartData.unit + '{total}';
+            dataLabels = chartData.unit + "{point.y:.0f}";
+            stackLabels = chartData.unit + '{total:.0f}';
         }
         this.chartData = chartData;
         this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage };
@@ -333,7 +339,10 @@ var DashboardBodyComponent = (function () {
             //     enabled: false
             // },
             xAxis: {
+                min: 0,
+                //minRange: 1,
                 type: 'category',
+                //max: 1000000,
                 categories: [],
                 labels: {
                     style: {
@@ -343,12 +352,15 @@ var DashboardBodyComponent = (function () {
             },
             yAxis: {
                 min: 0,
+                minRange: 1,
                 title: {
                     text: chartData.yaxisTitle
                 },
                 stackLabels: {
                     format: stackLabels,
                     enabled: true,
+                    overFlow: 'justify',
+                    crop: true,
                     style: {
                         fontSize: 10
                     }
@@ -413,7 +425,7 @@ var DashboardBodyComponent = (function () {
                             overFlow: 'none',
                             crop: false,
                             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-                            format: '<b>{point.name}</b>: <br>{point.y}',
+                            format: '<b>{point.name}</b>: <br>{point.y:.0f}',
                             style: {
                                 color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             }
@@ -537,7 +549,7 @@ var DashboardBodyComponent = (function () {
                             plotBorderWidth: 0,
                             allowPointSelect: true,
                             cursor: 'pointer',
-                            size: '60%',
+                            size: '90%',
                             dataLabels: {
                                 enabled: true,
                                 padding: 0,
@@ -557,7 +569,7 @@ var DashboardBodyComponent = (function () {
                     plotBorderWidth: 0,
                     allowPointSelect: true,
                     cursor: 'pointer',
-                    size: '60%',
+                    size: '80%',
                     dataLabels: {
                         allowOverlap: true,
                         enabled: true,
@@ -565,7 +577,7 @@ var DashboardBodyComponent = (function () {
                         overFlow: 'justify',
                         crop: false,
                         // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-                        format: '<b>{point.name}</b>: <br>{point.y}',
+                        format: '<b>{point.name}</b>: <br>{point.y:.0f}',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
                             fontSize: '8px'
@@ -754,27 +766,6 @@ var DashboardBodyComponent = (function () {
                 delete chartObj.xAxis.categories;
                 //delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
-                //   var categories = [];
-                //   var seriesJson = {};
-                //   for (var i = 0; i < chartData.data.length; i++) {
-                //     var dataObj = chartData.data[i];
-                //     categories.push(dataObj.name);
-                //     for (var j = 0; j < dataObj.data.length; j++) {
-                //       var innerDataObj = dataObj.data[j];
-                //       if (seriesJson[innerDataObj.name] === undefined) {
-                //         seriesJson[innerDataObj.name] = [innerDataObj.value];
-                //       } else {
-                //         seriesJson[innerDataObj.name].push(innerDataObj.value)
-                //       }
-                //     }
-                //   }
-                // //  chartObj.xAxis.categories = categories;
-                //   for (var key in seriesJson) {
-                //     chartObj.series.push({
-                //       name: key,
-                //       data: seriesJson[key]
-                //     });
-                //   }
                 break;
             case "column_compound":
                 chartObj.chart.type = "column";
@@ -803,40 +794,9 @@ var DashboardBodyComponent = (function () {
                 delete chartObj.xAxis.categories;
                 //delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
-                // var categories = [];
-                // var seriesJson = {};
-                // for (var i = 0; i < chartData.data.length; i++) {
-                //   var dataObj = chartData.data[i];
-                //   categories.push(dataObj.name);
-                //   for (var j = 0; j < dataObj.data.length; j++) {
-                //     var innerDataObj = dataObj.data[j];
-                //     if (seriesJson[innerDataObj.name] === undefined) {
-                //       seriesJson[innerDataObj.name] = [innerDataObj.value];
-                //     } else {
-                //       seriesJson[innerDataObj.name].push(innerDataObj.value)
-                //     }
-                //   }
-                // }
-                // chartObj.xAxis.categories = categories;
-                // for (var key in seriesJson) {
-                //   chartObj.series.push({
-                //     name: key,
-                //     data: seriesJson[key]
-                //   });
-                // }
                 break;
             case "column_stack":
                 chartObj.chart.type = "column";
-                // chartObj.plotOptions["column"] = {
-                //   dataLabels: {
-                //     enabled: true,
-                //     format: dataLabels,
-                //   }
-                // }
-                //     chartObj.yAxis.stackLabels["style"] = {
-                //       color: 'black'
-                //     }, enabled: true, format: '{total} mm'
-                // }
                 chartObj.plotOptions["column"] = {
                     events: {
                         legendItemClick: function (e) {
@@ -856,14 +816,6 @@ var DashboardBodyComponent = (function () {
                         format: dataLabels
                     }
                 };
-                // if (this.chartData["retention"] == true) {
-                //   // for (var i = 0; i < chartObj["series"].length; i++) {           
-                //   alert(chartObj["series"]["data"])
-                //   //alert( chartObj["series"]["visible"][i])//=false;
-                //   //}
-                // }
-                // alert(this.chartData.type)
-                //chartObj.series["visible"][2]=false;
                 delete chartObj.xAxis.categories;
                 // delete chartObj.yAxis;
                 this.constructChartObject(chartData, chartObj);
@@ -901,27 +853,6 @@ var DashboardBodyComponent = (function () {
                         }
                     }
                 }
-                // var categories = [];
-                // var seriesJson = {};
-                // for (var i = 0; i < chartData.data.length; i++) {
-                //   var dataObj = chartData.data[i];
-                //   categories.push(dataObj.name);
-                //   for (var j = 0; j < dataObj.data.length; j++) {
-                //     var innerDataObj = dataObj.data[j];
-                //     if (seriesJson[innerDataObj.name] === undefined) {
-                //       seriesJson[innerDataObj.name] = [innerDataObj.value];
-                //     } else {
-                //       seriesJson[innerDataObj.name].push(innerDataObj.value)
-                //     }
-                //   }
-                // }
-                // chartObj.xAxis.categories = categories;
-                // for (var key in seriesJson) {
-                //   chartObj.series.push({
-                //     name: key,
-                //     data: seriesJson[key]
-                //   });
-                // }
                 break;
         }
         return chartObj;
@@ -953,13 +884,13 @@ var DashboardBodyComponent = (function () {
                 plotBorderWidth: 0,
                 allowPointSelect: true,
                 cursor: 'pointer',
-                size: '60%',
+                size: '100%',
                 dataLabels: {
                     enabled: true,
                     padding: 0,
                     allowOverlap: true,
                     //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-                    format: '<b>{point.name}</b>: <br>{point.y}',
+                    //format: '<b>{point.name}</b>: <br>{point.y}',
                     crop: false,
                     overFlow: 'justify',
                     style: {
@@ -1002,30 +933,8 @@ var DashboardBodyComponent = (function () {
                 var innerDataObj = dataObj.data[k];
                 avagerCount = avagerCount + 1;
                 total = total + innerDataObj.value;
-                //  console.log(innerDataObj.name);
-                //   var innerDataObject = {name:"",y:"",drilldown:""};
-                //   seriesObject.data.push(innerDataObject);
-                //   if (chartData.drilldownData[innerDataObj.name] === undefined) {
-                //     innerDataObject.drilldown = null;
-                //   } else {
-                //      innerDataObject.drilldown = chartData.drilldownData[innerDataObj.name].name;
-                //   }
-                // }
-                // var drilldownData = chartData.drilldownData[innerDataObj.name];
                 var drilldownData = innerDataObj.data;
                 if (drilldownData.length > 0) {
-                    // var drillDownObj: any = {};
-                    // drillDownObj.name = drilldownData.name;
-                    // drillDownObj.id = drilldownData.name;
-                    // drillDownObj.data = new Array();
-                    // for (var j = 0; j < drilldownData.data.length; j++) {
-                    //   var obj = drilldownData.data[j];
-                    //   drillDownObj.data.push({
-                    //     name: obj.name,
-                    //     y: obj.value,
-                    //     drilldown: null
-                    //   });
-                    // }
                     var drillDownObj = {};
                     var __this = this;
                     drillDownObj.point = {
@@ -1393,7 +1302,7 @@ var DashboardBodyComponent = (function () {
             chartObject.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
         }
         else {
-            chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+            chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "\n Maruthi";
         }
         this.chartObjects[id] = new Highcharts.Chart(chartObject);
     };
