@@ -41,6 +41,13 @@ var DashboardBodyComponent = (function () {
         this.charTypeJSON = {};
         this.chartObjects = {};
         this.statisticModelData = {};
+        Highcharts.setOptions({
+            lang: {
+                thousandsSep: ',',
+                drillUpText: '◁ Back',
+                noData: "custom msg"
+            }
+        });
         this.initializeContent();
     }
     DashboardBodyComponent.prototype.drillDown = function (e, chart, id) {
@@ -343,7 +350,7 @@ var DashboardBodyComponent = (function () {
                     format: stackLabels,
                     enabled: true,
                     style: {
-                        fontSize: 10,
+                        fontSize: 10
                     }
                 }
             },
@@ -360,12 +367,6 @@ var DashboardBodyComponent = (function () {
                 }
             }
         };
-        Highcharts.setOptions({
-            lang: {
-                thousandsSep: ',',
-                drillUpText: '◁ Back'
-            }
-        });
         var __this = this;
         switch (chartData.type) {
             // case "column":
@@ -407,9 +408,10 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
+                            padding: 0,
                             allowOverlap: true,
                             overFlow: 'none',
-                            crop: true,
+                            crop: false,
                             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
                             format: '<b>{point.name}</b>: <br>{point.y}',
                             style: {
@@ -538,15 +540,16 @@ var DashboardBodyComponent = (function () {
                             size: '60%',
                             dataLabels: {
                                 enabled: true,
+                                padding: 0,
                                 //              format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
                                 format: dataLabels,
                                 allowOverlap: true,
-                                overFlow: 'none',
+                                overFlow: 'justify',
                                 crop: false,
                                 rotation: -70,
                                 y: -15,
                                 style: {
-                                    fontSize: '9px'
+                                    fontSize: '8px'
                                 }
                             }
                         };
@@ -556,11 +559,16 @@ var DashboardBodyComponent = (function () {
                     cursor: 'pointer',
                     size: '60%',
                     dataLabels: {
+                        allowOverlap: true,
                         enabled: true,
+                        padding: 0,
+                        overFlow: 'justify',
+                        crop: false,
                         // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
                         format: '<b>{point.name}</b>: <br>{point.y}',
                         style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                            fontSize: '8px'
                         }
                     }
                 };
@@ -736,9 +744,10 @@ var DashboardBodyComponent = (function () {
                     borderWidth: 0,
                     dataLabels: {
                         enabled: false,
+                        padding: 0,
                         format: dataLabels,
                         overFlow: 'justify',
-                        crop: true
+                        crop: false
                     }
                 };
                 chartObj.plotOptions["series"]["stacking"] = "normal";
@@ -779,14 +788,15 @@ var DashboardBodyComponent = (function () {
                     borderWidth: 0,
                     dataLabels: {
                         enabled: true,
+                        padding: 0,
                         format: dataLabels,
                         allowOverlap: true,
-                        overFlow: 'none',
-                        crop: true,
+                        overFlow: 'justify',
+                        crop: false,
                         rotation: -70,
                         y: -15,
                         style: {
-                            fontSize: '9px'
+                            fontSize: '8px'
                         }
                     }
                 };
@@ -929,7 +939,14 @@ var DashboardBodyComponent = (function () {
                 pointPadding: 0.2,
                 borderWidth: 0,
                 dataLabels: {
-                    enabled: true
+                    allowOverlap: true,
+                    padding: 0,
+                    enabled: true,
+                    crop: false,
+                    overFlow: 'justify',
+                    style: {
+                        fontSize: '8px'
+                    }
                 }
             },
             pie: {
@@ -939,10 +956,15 @@ var DashboardBodyComponent = (function () {
                 size: '60%',
                 dataLabels: {
                     enabled: true,
+                    padding: 0,
+                    allowOverlap: true,
                     //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
                     format: '<b>{point.name}</b>: <br>{point.y}',
+                    crop: false,
+                    overFlow: 'justify',
                     style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                        fontSize: '8px',
                     }
                 }
             }
@@ -1107,7 +1129,8 @@ var DashboardBodyComponent = (function () {
                 pointPadding: 0.2,
                 borderWidth: 0,
                 dataLabels: {
-                    enabled: true
+                    enabled: true,
+                    padding: 0,
                 }
             },
             pie: {
@@ -1117,7 +1140,8 @@ var DashboardBodyComponent = (function () {
                 size: '100%',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.name}: <b>{point.y}</b>'
+                    padding: 0,
+                    format: '{point.name}: <b>{point.y}</b>',
                 }
             }
         };
@@ -1246,7 +1270,8 @@ var DashboardBodyComponent = (function () {
                 pointPadding: 0.2,
                 borderWidth: 0,
                 dataLabels: {
-                    enabled: true
+                    enabled: true,
+                    padding: 0,
                 }
             },
             pie: {
@@ -1256,6 +1281,7 @@ var DashboardBodyComponent = (function () {
                 size: '100%',
                 dataLabels: {
                     enabled: true,
+                    padding: 0,
                     format: '{point.name}: <b>{point.y}</b>'
                 }
             }

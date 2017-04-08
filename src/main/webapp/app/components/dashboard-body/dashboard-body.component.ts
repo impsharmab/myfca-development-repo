@@ -118,7 +118,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.chartRawData = {};
   }
   constructor(private service: DashboardBodyService, private modalService: NgbModal) {
+    Highcharts.setOptions({
+      lang: {
+        thousandsSep: ',',
+        drillUpText: '◁ Back',
+        noData: "custom msg"
+      }
+    });
     this.initializeContent();
+
   }
   reload() {
     this.tilesArray = [];
@@ -277,7 +285,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   }
   private chartData: any;
   getChartJSONObject(obj: any, chartData: any): any {
-
     if (chartData.xaxisTitle == "") {
       chartData.xaxisTitle = chartData.yaxisTitle
     } else if (chartData.yaxisTitle == "") {
@@ -342,8 +349,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           format: stackLabels,
           enabled: true,
           style: {
-            fontSize: 10,
-
+            fontSize: 10
             //color: 'gray'
           }
         }
@@ -373,12 +379,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       }
 
     };
-    Highcharts.setOptions({
-      lang: {
-        thousandsSep: ',',
-        drillUpText: '◁ Back'
-      }
-    });
+
     var __this = this;
     switch (chartData.type) {
       // case "column":
@@ -425,9 +426,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             dataLabels: {
               enabled: true,
+              padding:0,
               allowOverlap: true,
               overFlow: 'none',
-              crop: true,
+              crop: false,
               // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
               format: '<b>{point.name}</b>: <br>{point.y}',
               style: {
@@ -533,7 +535,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           if (chartData.unit == "$" && chartData.avarage == false) {
             chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
           } else if (chartData.unit == "$" && chartData.avarage == true) {
-
             chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
           } else if (chartData.unit == "%" && chartData.avarage == false) {
             chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
@@ -547,7 +548,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column":
         chartObj.chart.type = "column",
-
           //chartObj["legend"] = { enabled: false },
           chartObj.plotOptions["column"] =
           {
@@ -557,16 +557,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             size: '60%',
             dataLabels: {
               enabled: true,
+              padding:0,
               //              format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
               format: dataLabels,
               allowOverlap: true,
-              overFlow: 'none',
+              overFlow: 'justify',
               crop: false,
               rotation: -70,
               y: -15,
 
               style: {
-                fontSize: '9px'
+                fontSize: '8px'
               }
             }
           }
@@ -576,11 +577,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           cursor: 'pointer',
           size: '60%',
           dataLabels: {
+            allowOverlap: true,
             enabled: true,
-           // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-             format: '<b>{point.name}</b>: <br>{point.y}',
+            padding:0,
+            overFlow: 'justify',
+            crop: false,
+            // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+            format: '<b>{point.name}</b>: <br>{point.y}',
             style: {
-              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',              
+                fontSize: '8px'
+              
             }
           }
         }
@@ -783,9 +790,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           borderWidth: 0,
           dataLabels: {
             enabled: false,
+            padding:0,
             format: dataLabels,
             overFlow: 'justify',
-            crop: true
+            crop: false
 
           }
         }
@@ -831,14 +839,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           borderWidth: 0,
           dataLabels: {
             enabled: true,
+            padding:0,
             format: dataLabels,
             allowOverlap: true,
-            overFlow: 'none',
-            crop: true,
+            overFlow: 'justify',
+            crop: false,
             rotation: -70,
             y: -15,
             style: {
-              fontSize: '9px'
+              fontSize: '8px'
             }
           }
 
@@ -990,7 +999,14 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         pointPadding: 0.2,
         borderWidth: 0,
         dataLabels: {
-          enabled: true
+          allowOverlap: true,
+          padding:0,
+          enabled: true,
+          crop: false,
+          overFlow: 'justify',
+          style: {
+                fontSize: '8px'
+              }
         }
       },
       pie: {
@@ -1000,10 +1016,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         size: '60%',
         dataLabels: {
           enabled: true,
+          padding:0,
+          allowOverlap: true,
           //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-           format: '<b>{point.name}</b>: <br>{point.y}',
+          format: '<b>{point.name}</b>: <br>{point.y}',
+          crop: false,
+          overFlow: 'justify',
           style: {
-            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+            fontSize:'8px',
+
           }
         }
         // dataLabels: {
@@ -1186,7 +1208,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         pointPadding: 0.2,
         borderWidth: 0,
         dataLabels: {
-          enabled: true
+          enabled: true,
+          padding:0,
         }
       },
       pie: {
@@ -1196,7 +1219,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         size: '100%',
         dataLabels: {
           enabled: true,
-          format: '{point.name}: <b>{point.y}</b>'
+          padding:0,
+          format: '{point.name}: <b>{point.y}</b>',
+
         }
       }
     }
@@ -1332,7 +1357,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         pointPadding: 0.2,
         borderWidth: 0,
         dataLabels: {
-          enabled: true
+          enabled: true,
+          padding:0,
         }
       },
       pie: {
@@ -1342,6 +1368,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         size: '100%',
         dataLabels: {
           enabled: true,
+          padding:0,
           format: '{point.name}: <b>{point.y}</b>'
         }
       }
