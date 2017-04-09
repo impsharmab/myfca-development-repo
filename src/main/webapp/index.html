@@ -2,7 +2,11 @@
 
 <head>
 
-    <base href="/">
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+
+    <!--<base href="/">-->
     <!--<script>document.write('<base href="' + document.location + '" />');</script>-->
     <!--<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">-->
     <link rel="shortcut icon" href="app/resources/images/favicon.ico" />
@@ -18,7 +22,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+    <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
@@ -59,7 +63,7 @@
             <img class="refreshGlyphImg" src="app/resources/images/spinner/spinner.gif" />
         </div>
     </my-app>
-    
+
 </body>
 
 </html>
