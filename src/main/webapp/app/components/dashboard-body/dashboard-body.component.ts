@@ -606,7 +606,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                 }
               }
             }
-          },
+          }, 
           events: {
 
 

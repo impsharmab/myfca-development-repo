@@ -22,17 +22,20 @@ import com.imperialm.imiservices.util.IMIServicesConstants;
 public class IMIServiceWebController {
 
 	private static final Logger logger = LoggerFactory.getLogger(IMIServiceWebController.class);
-	
-	@RequestMapping(value= "/", method=RequestMethod.GET)
-	//@RequestMapping(method = RequestMethod.GET)
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	// @RequestMapping(method = RequestMethod.GET)
 	public String index() {
+		System.out.println("hello");
 		return IMIServicesConstants.INDEX_PAGE;
 	}
-	
-	@RequestMapping(value= "/datatable", method=RequestMethod.GET)
-	//@RequestMapping(method = RequestMethod.GET)
-	public String datatable(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
+
+	@RequestMapping(value = "/dtable", method = RequestMethod.GET)
+	// @RequestMapping(method = RequestMethod.GET)
+	public String datatable(Model model,
+			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
 		model.addAttribute("data", name);
+		System.out.println("dtable test");
 		return IMIServicesConstants.DATA_TABLE;
-	}	
+	}
 }
