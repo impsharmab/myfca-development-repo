@@ -33,31 +33,7 @@
     <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
   </div>
 </template>
-<!--<template #topModel let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <h4 class="modal-title">{{tableData.title}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
 
-    <ul class="collection" *ngFor="let tdata of tableData.tableData">
-      <li class="collection-header">
-        <h5>{{tdata.tableName}}</h5>
-      </li>
-      <li class="collection-item avatar" *ngFor="let data of tdata.data">
-        <i class="circle blue"> <span class="white-text-rank">{{data[0]}}</span></i>
-        <span class="title">{{data[1]}}</span>
-        <a href="#!" class="secondary-content">{{data[2]}}</a>
-      </li>
-    </ul>
-
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-  </div>
-</template>-->
 <template #topModel let-c="close" let-d="dismiss" ngbModalContainer>
   <div class="modal-header">
     <!--<h4 class="modal-title">{{tableData.advisorsTableName}}</h4>-->
@@ -109,7 +85,7 @@
         <div class="card-content" *ngIf="tile.type == 'chart'">
           <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
           <chart (drillup)="drillUp($event.originalEvent,$event.context,tile.id)" (drilldown)="drillDown($event.originalEvent,$event.context,tile.id)"
-            (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 450px; max-width: 600px; min-height: 450px; max-height: 600px; margin: 0 auto"></chart>
+            (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 450px; max-width: 605px; min-height: 450px; max-height: 605px; margin: 0 auto"></chart>
           <span *ngIf="showPieButton[tile.id]" class="button-nav">
         <!--<button  id="button" (click)="chartSwitchNAT(tile.id)">NAT</button>-->
        &nbsp; <button id="button " style="margin-left:3.5px " class="customer_btn" *ngFor = "let buttonName of pieButtons[tile.id] "  (click)="chartSwitch(buttonName,tile.id)">{{buttonName}}</button>
@@ -172,8 +148,6 @@
 
 
 <style>
-  
-  
   .customer_btn {
     color: black;
     background-color: #e6f2ff;

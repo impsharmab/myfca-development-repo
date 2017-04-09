@@ -13,19 +13,15 @@ import { LoginService } from '../../services/login-services/login.service';
 })
 export class LoginComponent implements OnInit {
     form: FormGroup;
-    private test: any;
     public user: User;
     public ssouser: SSOLoginInterface;
-    sampleUsers = [];
-    private tilesArray: any;
-    private userdata: any = {}; 
+    private userdata: any = {};
     private ssouserdata: any = {};
-    private menu: any;
-    private banners: any;
-    private arraydata: any;
     private ssotoken: string = "";
     private ssodealercode: string = "";
     private ssopositioncode: string = "";
+    private loginFailed: string = "";
+    private loginErrorMessage: string = "";
 
     constructor(private loginService: LoginService,
         private router: Router,
@@ -51,7 +47,7 @@ export class LoginComponent implements OnInit {
             this.ssopositioncode = params['pc'];
 
         });
-        if (this.ssotoken !== "" && this.ssotoken !==undefined) {
+        if (this.ssotoken !== "" && this.ssotoken !== undefined) {
             this.ssologin(
                 this.ssotoken,
                 this.ssopositioncode,
@@ -83,30 +79,33 @@ export class LoginComponent implements OnInit {
                 } else {
                     let url = ["login"]
                     this.router.navigate(url);
-                    // alert("invalid user");
-
-                    //alert(resUserData.error)
                 }
-                // var msg = JSON.parse(resUserData["error"])["error"];
-                // alert(msg);
             }
             )
     }
 
 
-    private login(username: string, password: string) {
+    private login() {
+        if (this.user.username.trim() === "" && this.user.password.trim() === "") {
+            this.loginFailed = "Login Failed";
+            this.loginErrorMessage = "Please enter your Username and Password";
+            return;
+        } else if (this.user.username.trim() === "" && this.user.password.trim() !== null) {
+            this.loginFailed = "Login Failed";
+            this.loginErrorMessage = "Please enter your Username";
+            return;
+        } else if (this.user.username.trim() !== null && this.user.password.trim() === "") {
+            this.loginFailed = "Login Failed";
+            this.loginErrorMessage = "Please enter your Password";
+            return;
+        }
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
-
             (resUserData) => {
-                debugger;
                 this.userdata = (resUserData)
-                // alert(resUserData["userID"]);
-                if (resUserData["token"].length > 0) { 
+                if (resUserData["token"].length > 0) {
                     this.loginService.setUserData(this.userdata);
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
-                    //var poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-                    // var delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
                     sessionStorage.setItem("selectedCodeData", JSON.stringify(
                         {
                             "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
@@ -116,44 +115,15 @@ export class LoginComponent implements OnInit {
                     let url = ["myfcadashboard"]
                     this.router.navigate(url);
 
-                } else {
-                    alert("invalid user");
-
-                    //alert(resUserData.error)
                 }
-                // var msg = JSON.parse(resUserData["error"])["error"];
-                // alert(msg);
             },
-            (error)=>{
-                alert("bad creds")
+            (error) => {
+                this.loginFailed = "Login Failed";
+                this.loginErrorMessage = "Please enter your valid username and password";
             }
         )
 
     }
-
-    // if (poscodes === undefined)
-    //                     var selectedPositionCode = 0;
-    //                 else if (poscodes.length > 0)
-    //                     selectedPositionCode = poscodes[0];
-
-    //                 if (delcodes === undefined)
-    //                     var selectedDealerCode = 0;
-    //                 else if (delcodes.length > 0)
-    //                     selectedDealerCode = delcodes[0];
-
-    //                 var sessionStorageSelectedObject = '{ "selectedPositionCode": selectedPositionCode, "selectedDealerCode": selectedDealerCode }';
-
-    //                 //sessionStorageSelectedObject.selectedPositionCode= poscodes === undefined ? 0 : poscodes.length > 0 ? poscodes[0] : 0;
-
-    //                 // JSON.stringify(
-    //                 //     {
-    //                 //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes.length > 0 ? poscodes[0] : 0,
-    //                 //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes.length > 0 ? delcodes[0] : 0
-    //                 //     })
-    //                 sessionStorage.setItem("selectedCodeData", JSON.parse(sessionStorageSelectedObject))
-
-
-    
 }
 
 

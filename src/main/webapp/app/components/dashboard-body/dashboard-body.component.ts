@@ -423,17 +423,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       //   // chartObj.yAxis.title.text = chartData.yaxisTitle;
       //   break;
       case "pie":
-        chartObj.chart.type = "pie"
-        // chartObj.plotOptions["series"] = {
-
-
-        //   pointPadding: 0.2,
-        //   borderWidth: 0,
-        //   dataLabels: {
-        //     enabled: true
-        //   }
-
-        // },
+        chartObj.chart.type = "pie"        
         chartObj.plotOptions = {
           pie: {
             allowPointSelect: false,

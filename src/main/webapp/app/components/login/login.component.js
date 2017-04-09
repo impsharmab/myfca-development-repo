@@ -19,12 +19,13 @@ var LoginComponent = (function () {
         this.http = http;
         this._compiler = _compiler;
         this.activatedRoute = activatedRoute;
-        this.sampleUsers = [];
         this.userdata = {};
         this.ssouserdata = {};
         this.ssotoken = "";
         this.ssodealercode = "";
         this.ssopositioncode = "";
+        this.loginFailed = "";
+        this.loginErrorMessage = "";
         this._compiler.clearCache();
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -66,22 +67,31 @@ var LoginComponent = (function () {
                 var url = ["login"];
                 _this.router.navigate(url);
             }
-            // var msg = JSON.parse(resUserData["error"])["error"];
-            // alert(msg);
         });
     };
-    LoginComponent.prototype.login = function (username, password) {
+    LoginComponent.prototype.login = function () {
         var _this = this;
+        if (this.user.username.trim() === "" && this.user.password.trim() === "") {
+            this.loginFailed = "Login Failed";
+            this.loginErrorMessage = "Please enter your Username and Password";
+            return;
+        }
+        else if (this.user.username.trim() === "" && this.user.password.trim() !== null) {
+            this.loginFailed = "Login Failed";
+            this.loginErrorMessage = "Please enter your Username";
+            return;
+        }
+        else if (this.user.username.trim() !== null && this.user.password.trim() === "") {
+            this.loginFailed = "Login Failed";
+            this.loginErrorMessage = "Please enter your Password";
+            return;
+        }
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
-            debugger;
             _this.userdata = (resUserData);
-            // alert(resUserData["userID"]);
             if (resUserData["token"].length > 0) {
                 _this.loginService.setUserData(_this.userdata);
                 var poscodes = _this.userdata.positionCode;
                 var delcodes = _this.userdata.dealerCode;
-                //var poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-                // var delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
                 sessionStorage.setItem("selectedCodeData", JSON.stringify({
                     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
@@ -89,13 +99,9 @@ var LoginComponent = (function () {
                 var url = ["myfcadashboard"];
                 _this.router.navigate(url);
             }
-            else {
-                alert("invalid user");
-            }
-            // var msg = JSON.parse(resUserData["error"])["error"];
-            // alert(msg);
         }, function (error) {
-            alert("bad creds");
+            _this.loginFailed = "Login Failed";
+            _this.loginErrorMessage = "Please enter your valid username and password";
         });
     };
     return LoginComponent;
