@@ -34,6 +34,7 @@ table {
 
 <script type='text/javascript'>//<![CDATA[
 $(window).load(function(){
+	window.history.pushState("string", "Title", "datatable");
 	$.ajax({
 		url: "/myfcarewards/services/data/${chartId}/${territory}",
 			//data: { signature: authHeader },

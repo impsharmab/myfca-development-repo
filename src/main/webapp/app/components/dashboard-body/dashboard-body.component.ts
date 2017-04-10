@@ -602,7 +602,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                 if (this.name.length > 3) {
                   //alert(this.name)
                   //alert(tileId)
-                  window.open("172.25.32.162/myfcarewards/services/data/" + tileId + "/" + this.name)
+                  var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                  window.open("http://localhost:9090/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name+ "&token=" + token)
                 }
               }
             }

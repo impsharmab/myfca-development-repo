@@ -90,10 +90,10 @@ public class IMIServiceWebController {
 	// RequestMethod.GET)
 	// @RequestMapping(method = RequestMethod.GET)
 	public String datatable(Model model, @RequestParam(value = "chartId") String id,
-			@RequestParam(value = "territory") String territory, HttpServletRequest request) {
+			@RequestParam(value = "territory") String territory, @RequestParam(value = "token") String token, HttpServletRequest request) {
 		UserDetailsImpl user = null;
 		try {
-			String token = request.getHeader(tokenHeader);
+			//String token = request.getHeader(tokenHeader);
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 			model.addAttribute("token", token);
