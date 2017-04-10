@@ -2,37 +2,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
 
 
-<script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<script type="text/javascript" language="javascript"
+	src="http://code.jquery.com/jquery-1.8.3.js"></script>
 
 <style type="text/css">
-    body {
-    font-size: 14px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #666;
+body {
+	font-size: 14px;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #666;
 }
 
 h4 {
-    font-size: 16px;
-    color: #dd007d;
+	font-size: 16px;
+	color: #dd007d;
 }
 
-table{
-    font-size: 14px;
-    font-family: Helvetica, Arial, sans-serif;
-    color: #666;
+table {
+	font-size: 14px;
+	font-family: Helvetica, Arial, sans-serif;
+	color: #666;
 }
-  </style>
+</style>
 
-  <title></title>
+<title></title>
 
 
 <script type='text/javascript'>//<![CDATA[
 $(window).load(function(){
+	$.ajax({
+		url: "/myfcarewards/services/data/${chartId}/${territory}",
+			//data: { signature: authHeader },
+				type: "GET",
+					beforeSend: function(xhr){xhr.setRequestHeader('Authorization', '${token}');},
+						success: function(data) { alert('Success!' + data); }
+});
+	
+	//$.get("/myfcarewards/services/data/${chartId}/${territory}", function(data, status){
+		//alert("Data: " + data + "\nStatus: " + status);
+		//});
+	
+	
 function fnFormatDetails(table_id, html) {
     var sOut = "<table id=\"exampleTable_" + table_id + "\">";
     sOut += html;
@@ -187,63 +201,67 @@ var iTableCounter = 1;
 
 
     });
-});//]]> 
+});
+
+//]]> 
 
 </script>
 
-  
+
 </head>
 
 <body>
-${data}
-<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+	${data}
+	<link rel="stylesheet" type="text/css"
+		href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
 
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript"
+		src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
 
-                
-<table id="exampleTable" class="display " cellspacing="0" width="100%">
-    <thead> 
-        <tr>
-            <th>Dealer</th>
-            <th>uConnect</th>
-            <th>Mopar Parts</th>
-            <th>WiAdvisor</th>
-            <th>Express Lane</th>
-            <th>Parts Coutner</th>
-            <th>Magnetti Marelli</th>
-            <th>MVP</th>
-            <th>Reward Total</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-    
-<div style="display:none">    
-    <table id="detailsTable" class="display " cellspacing="0" width="100%">
-        <thead> 
-            <tr>
 
-                <th>Particpant</th>
-                
-                <th>uConnect</th>
-                <th>Mopar Parts</th>
-                <th>WiAdvisor</th>
-                <th>Express Lane</th>
-                <th>Parts Coutner</th>
-                <th>Magnetti Marelli</th>
-                <th>MVP</th>
-                
-                
-                <th>Reward Total</th>
-              
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
-    
-    
+	<table id="exampleTable" class="display " cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Dealer</th>
+				<th>uConnect</th>
+				<th>Mopar Parts</th>
+				<th>WiAdvisor</th>
+				<th>Express Lane</th>
+				<th>Parts Coutner</th>
+				<th>Magnetti Marelli</th>
+				<th>MVP</th>
+				<th>Reward Total</th>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+	<div style="display: none">
+		<table id="detailsTable" class="display " cellspacing="0" width="100%">
+			<thead>
+				<tr>
+
+					<th>Particpant</th>
+
+					<th>uConnect</th>
+					<th>Mopar Parts</th>
+					<th>WiAdvisor</th>
+					<th>Express Lane</th>
+					<th>Parts Coutner</th>
+					<th>Magnetti Marelli</th>
+					<th>MVP</th>
+
+
+					<th>Reward Total</th>
+
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+	</div>
+
+
 </body>
 
 </html>

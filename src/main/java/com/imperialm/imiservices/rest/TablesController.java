@@ -52,7 +52,7 @@ public class TablesController {
 	    private UserServiceImpl userDetailsService;
 
 	
-	//@RequestMapping(value ="/services/data/{chartId}/{territory}", method = RequestMethod.GET)
+	@RequestMapping(value ="/services/data/{chartId}/{territory}", method = RequestMethod.GET)
 	public @ResponseBody Object findTilesListByRole(@PathVariable(value="chartId") String id, @PathVariable(value="territory") String territory, HttpServletRequest request) {
 		UserDetailsImpl user = null;
 		//get token extract user info and use for the calls
