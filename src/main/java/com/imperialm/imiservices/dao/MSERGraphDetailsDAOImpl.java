@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.imperialm.imiservices.dto.MSERDetailsGraphDTO;
+import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
 import com.imperialm.imiservices.model.response.TotalName;
 import com.imperialm.imiservices.util.IMIServicesUtil;
@@ -335,5 +337,21 @@ public class MSERGraphDetailsDAOImpl implements MSERGraphDetailsDAO {
 			result.add(TotalName);
 		}
 		return result.get(0);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MSERGraphDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode) {
+		List<MSERGraphDetailsDTO> result = new ArrayList<MSERGraphDetailsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_CODE, MSERGraphDetailsDTO.class);
+			query.setParameter(0, dealerCode);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + ex);
+		} catch (final Exception ex) {
+			logger.error("error occured in getMSERDetailsGraphByDealerCode", ex);
+		}
+		return result;
 	}
 }

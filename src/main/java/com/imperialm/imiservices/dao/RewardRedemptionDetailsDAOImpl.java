@@ -28,23 +28,15 @@ public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDA
 	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsByDealer(String dealerCode) {
 		List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();
 
-		RewardRedemptionDetailsDTO RewardRedemptionDetailsDTO = null;
-
 		try {
 			final Query query = this.em.createNativeQuery(GET_DETAILS_BY_DEALER, RewardRedemptionDetailsDTO.class);
-			query.setParameter(1, dealerCode);
+			query.setParameter(0, dealerCode);
 			List<RewardRedemptionDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			RewardRedemptionDetailsDTO = new RewardRedemptionDetailsDTO();
-			RewardRedemptionDetailsDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(RewardRedemptionDetailsDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getRewardRedemptionDetailsByDealer", ex);
-			RewardRedemptionDetailsDTO = new RewardRedemptionDetailsDTO();
-			RewardRedemptionDetailsDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(RewardRedemptionDetailsDTO);
 		}
 		return result;
 	}
@@ -53,29 +45,15 @@ public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDA
 	@Override
 	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsBySid(String sid) {
 		List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();
-
-		RewardRedemptionDetailsDTO RewardRedemptionDetailsDTO = null;
-
 		try {
 			final Query query = this.em.createNativeQuery(GET_DETAILS_BY_SID, RewardRedemptionDetailsDTO.class);
-			query.setParameter(1, sid);
+			query.setParameter(0, sid);
 			List<RewardRedemptionDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			RewardRedemptionDetailsDTO = new RewardRedemptionDetailsDTO();
-			RewardRedemptionDetailsDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(RewardRedemptionDetailsDTO);
-			logger.info("result in else " + result);
+			logger.info("result in else " + ex);
 		} catch (final Exception ex) {
 			logger.error("error occured in getRewardRedemptionDetailsBySid", ex);
-			RewardRedemptionDetailsDTO = new RewardRedemptionDetailsDTO();
-			RewardRedemptionDetailsDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(RewardRedemptionDetailsDTO);
-		}
-		if(result.size() == 0){
-			RewardRedemptionDetailsDTO = new RewardRedemptionDetailsDTO();
-			RewardRedemptionDetailsDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(RewardRedemptionDetailsDTO);
 		}
 		return result;
 	}

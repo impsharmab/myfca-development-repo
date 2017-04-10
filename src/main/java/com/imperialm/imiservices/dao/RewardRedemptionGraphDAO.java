@@ -8,7 +8,7 @@ public interface RewardRedemptionGraphDAO {
 
 	public static String SELECT_BY_PARENT_TERRITORY_LIST = "SELECT [Parent] 'parentTerritory', [Child] 'childTerritory', SUM([EarnedPoints]) 'earnedPoints', SUM([RedeemedPoints]) 'redeemedPoints', SUM([BalancePoints]) 'balancePoints', '' as 'program' FROM [dbo].[RewardRedemptionGraph] where [Parent] IN (?0) group by [Child], [Parent]";
 	public static String SELECT_BY_CHILD_TERRITORY_LIST = "SELECT [Parent] 'parentTerritory', [Child] 'childTerritory', SUM([EarnedPoints]) 'earnedPoints', SUM([RedeemedPoints]) 'redeemedPoints', SUM([BalancePoints]) 'balancePoints', '' as 'program' FROM [dbo].[RewardRedemptionGraph] where [Child] IN (?0) group by [Child], [Parent]";
-	public static String SELECT_BY_PARENT_TERRITORY_LIST_DISTICT_PARENT = "SELECT [Parent] 'parentTerritory', '' as 'childTerritory', SUM([EarnedPoints]) 'earnedPoints', SUM([RedeemedPoints]) 'redeemedPoints', SUM([BalancePoints]) 'balancePoints', [Program] 'program' FROM [dbo].[RewardRedemptionGraph] where [Parent] IN (?0)  AND Program = 'CCP' GROUP BY [Parent], [Program]";
+	public static String SELECT_BY_PARENT_TERRITORY_LIST_DISTICT_PARENT = "SELECT [Parent] 'parentTerritory', '' as 'childTerritory', SUM([EarnedPoints]) 'earnedPoints', SUM([RedeemedPoints]) 'redeemedPoints', SUM([BalancePoints]) 'balancePoints', '' as 'program' FROM [dbo].[RewardRedemptionGraph] where [Parent] IN (?0) GROUP BY [Parent]";
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByParentTerritoryList(List<String> list);
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByChildTerritoryList(List<String> list);
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByParentTerritoryListDistinct(List<String> list);

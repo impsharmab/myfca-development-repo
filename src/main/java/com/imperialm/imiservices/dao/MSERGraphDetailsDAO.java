@@ -2,6 +2,7 @@ package com.imperialm.imiservices.dao;
 
 import java.util.List;
 
+import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
 import com.imperialm.imiservices.model.response.TotalName;
 
 public interface MSERGraphDetailsDAO {
@@ -26,6 +27,9 @@ public interface MSERGraphDetailsDAO {
 	public static String SELECT_PARTICIPANT_ENROLLED_BY_DEALERCODE = "SELECT CAST(ISNULL(COUNT(DISTINCT SID),0) as varchar(20)) total , 'Total Participants Enrolled' name, '' as error FROM [dbo].[MSERGraphDetails] where ParticipantsEnrolled > 0 AND DealerCode = ?0";
 	public static String SELECT_TOTAL_EARNINGS_YTD_BY_BC_OR_DISTRICT = "Select IsNull(CAST(SUM([EarningsYTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards YTD' as 'name', '' as error From (Select MG.Parent, EarningsYTD From MSERGraphDetails MGD INNER JOIN MSERGraph MG ON MG.Child=MGD.DealerCode Where MG.Parent like ?0) A";
 	public static String SELECT_TOTAL_EARNINGS_MTD_BY_BC_OR_DISTRICT = "Select IsNull(CAST(SUM([EarningsMTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards MTD' as 'name', '' as error From (Select MG.Parent, EarningsMTD From MSERGraphDetails MGD INNER JOIN MSERGraph MG ON MG.Child=MGD.DealerCode Where MG.Parent like ?0) A";
+	
+	public static String SELECT_BY_DEALER_CODE = "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[PositionCode] 'positionCode' ,[Program] 'program' ,[ProgramGroup]'programGroup' ,[EarningsMTD] 'earningsMTD' ,[EarningsYTD] 'earningsYTD' ,[DealersEnrolled] 'dealersEnrolled' ,[ParticipantsEnrolled] 'participantsEnrolled', '' as error FROM [dbo].[MSERGraphDetails] where DealerCode = ?0";
+	public List<MSERGraphDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode);
 	
 	
 	public TotalName getMSERParticipantEnrolledByDealerCode(String dealerCode);

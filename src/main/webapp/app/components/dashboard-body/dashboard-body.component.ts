@@ -120,8 +120,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     Highcharts.setOptions({
       lang: {
         thousandsSep: ',',
-        drillUpText: '◁ Back',
-        noData: "custom msg"
+        drillUpText: '◁ Back'
+       // noData: "custom msg"
       }
     });
     Highcharts.wrap(Highcharts, 'numberFormat', function (proceed) {

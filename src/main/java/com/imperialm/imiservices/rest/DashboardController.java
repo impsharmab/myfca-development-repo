@@ -884,8 +884,12 @@ public class DashboardController {
 						tempa += var.getValue();
 				}
 				item.setData(new ArrayList<ChartData>());
-				item.setValue(mapValues.get(item.getName()));
-				item.addDataList(chartsMap.get(item.getName()));
+				//item.setValue(mapValues.get(item.getName()));
+				//item.addDataList(chartsMap.get(item.getName()));
+				if(mapValues.containsKey(item.getName()) && chartsMap.containsKey(item.getName())){
+					item.setValue(mapValues.get(item.getName()));
+					item.addDataList(chartsMap.get(item.getName()));
+				}
 			}
 
 			for(ChartData item: b){
@@ -894,8 +898,12 @@ public class DashboardController {
 						tempb += var.getValue();
 				}
 				item.setData(new ArrayList<ChartData>());
-				item.setValue(mapValues2.get(item.getName()));
-				item.addDataList(chartsMap2.get(item.getName()));
+				//item.setValue(mapValues2.get(item.getName()));
+				//item.addDataList(chartsMap2.get(item.getName()));
+				if(mapValues2.containsKey(item.getName()) && chartsMap2.containsKey(item.getName())){
+					item.setValue(mapValues2.get(item.getName()));
+					item.addDataList(chartsMap2.get(item.getName()));
+				}
 			}
 
 			for(ChartData item: c){
@@ -904,8 +912,10 @@ public class DashboardController {
 						tempc += var.getValue();
 				}
 				item.setData(new ArrayList<ChartData>());
-				item.setValue(mapValues3.get(item.getName()));
-				item.addDataList(chartsMap3.get(item.getName()));
+				if(mapValues3.containsKey(item.getName()) && chartsMap3.containsKey(item.getName())){
+					item.setValue(mapValues3.get(item.getName()));
+					item.addDataList(chartsMap3.get(item.getName()));
+				}
 			}
 
 			list1.get(0).setValue(tempa);

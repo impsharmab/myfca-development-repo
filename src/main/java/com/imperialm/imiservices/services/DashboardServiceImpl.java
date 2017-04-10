@@ -41,8 +41,10 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
 import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
+import com.imperialm.imiservices.dto.MSERDetailsGraphDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERGraphDTO;
+import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
 import com.imperialm.imiservices.dto.MSERTopNDTO;
 import com.imperialm.imiservices.dto.RetentionDetailsDTO;
 import com.imperialm.imiservices.dto.RetentionGraphDTO;
@@ -152,6 +154,7 @@ public class DashboardServiceImpl {
 	
 	@Autowired
 	private SummaryProgramRewardDetailsDAO SummaryProgramRewardDetailsDAO;
+	
 	
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
 		return this.dashboardDAO.findTilesListByRole(userRoleReq);
@@ -578,6 +581,10 @@ public class DashboardServiceImpl {
 	
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory){
 		return this.SummaryProgramRewardDetailsDAO.getSummaryProgramRewardDetailsBySIDYTD(territory);
+	}
+	
+	public List<MSERGraphDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode){
+		return this.MSERGraphDetailsDAO.getMSERGraphDetailsByDealerCode(dealerCode);
 	}
 	
 }

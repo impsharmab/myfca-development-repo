@@ -44,8 +44,7 @@ var DashboardBodyComponent = (function () {
         Highcharts.setOptions({
             lang: {
                 thousandsSep: ',',
-                drillUpText: '◁ Back',
-                noData: "custom msg"
+                drillUpText: '◁ Back'
             }
         });
         Highcharts.wrap(Highcharts, 'numberFormat', function (proceed) {

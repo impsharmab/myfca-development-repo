@@ -21,6 +21,8 @@ import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
 import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
+import com.imperialm.imiservices.dto.MSERGraphDTO;
+import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
@@ -185,7 +187,20 @@ public class TablesController {
 		{
 			/*List<MSERGraphDTO> listOfFirstLevel = this.dashService.getMSERGraphByTerritoryAndToggle("CA-H", "YTD");
 			List<MSERGraphDetailsDTO> listOfSecondLevel = this.dashService.getMSERGraphDetialsByDealerCode();*/
-			return null;
+			
+			List<MSERGraphDetailsDTO> result = new ArrayList<MSERGraphDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<MSERGraphDTO> sublist = this.dashService.getMSERGraphByTerritoryAndToggle(territory, "YTD");
+				for(MSERGraphDTO item: sublist){
+						List<MSERGraphDetailsDTO> participants = this.dashService.getMSERGraphDetailsByDealerCode(item.getChild());
+						result.addAll(participants);
+				}
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getMSERGraphDetailsByDealerCode(territory);
+			}
+			return result;
 		}
 		case "20":
 		{
