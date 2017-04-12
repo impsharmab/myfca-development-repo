@@ -121,12 +121,12 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       lang: {
         thousandsSep: ',',
         drillUpText: '◁ Back'
-       // noData: "custom msg"
+        // noData: "custom msg"
       }
     });
     Highcharts.wrap(Highcharts, 'numberFormat', function (proceed) {
       var ret = proceed.apply(0, [].slice.call(arguments, 1));
-            console.log("ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")"+ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+      console.log("ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ")" + ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
 
       return ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     });
@@ -187,6 +187,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         else {
           return false;
         }
+    } catch (e) {
+      return false;
+    }
+  }
+  isEmpty(data) {
+    try {
+      if (data.length == 0) {
+        return false;
+      } else {
+        return true;
+      }
     } catch (e) {
       return false;
     }
@@ -348,7 +359,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             //fontFamily: 'Verdana, sans-serif',
 
           }
-        }
+        },
+
       },
       yAxis: {
         min: 0,
@@ -366,7 +378,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             fontSize: 10
             //color: 'gray'
           }
-        }
+        },
+
       },
       tooltip: {
         pointFormat: tooltip,
@@ -423,17 +436,19 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       //   // chartObj.yAxis.title.text = chartData.yaxisTitle;
       //   break;
       case "pie":
-        chartObj.chart.type = "pie"        
+        chartObj.chart.type = "pie"
         chartObj.plotOptions = {
           pie: {
+            size: 200,
             allowPointSelect: false,
             cursor: 'pointer',
             dataLabels: {
               enabled: true,
               padding: 0,
               allowOverlap: true,
-              overFlow: 'none',
-              crop: false,
+              overFlow: 'justify',
+              crop: true,
+              distance: 5,
               // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
               format: '<b>{point.name}</b>: <br>{point.y:.0f}',
               style: {
@@ -575,6 +590,44 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               }
             }
           }
+        //   if(chartData.averageLine){
+        // plotLines: [{
+        //   color: 'red',
+        //   value: '299317',
+        //   width: '2',
+        //   zIndex: 2
+        // }]
+        // }
+        if (chartData.averageLine) {
+          chartObj.yAxis["plotLines"] = [{
+            color: 'red',
+            value: '299317',
+            width: '3',
+            zIndex: 2
+          }]
+
+        }
+
+
+        // yAxis: {
+        //             min: 0,
+        //             title: {
+        //                 text: 'Population (millions)',
+        //                 align: 'high'
+        //             },
+        //             labels: {
+        //                 overflow: 'justify'
+        //             },
+        //             plotLines: [{
+        //                 color: 'red',
+        //                 value: '15',
+        //                 width: '1',
+        //                 zIndex: 2
+        //             }]
+        //         },
+
+
+
         chartObj.plotOptions["pie"] = {
           plotBorderWidth: 0,
           allowPointSelect: true,
@@ -603,11 +656,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("http://localhost:9090/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name+ "&token=" + token)
+                  window.open("http://localhost:9090/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
               }
             }
-          }, 
+          },
           events: {
 
 
@@ -1366,7 +1419,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     } else if (chartData.unit == "%" && chartData.avarage == true) {
       chartObject.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
     } else {
-      chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "\n Maruthi";
+      chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
 
     }
     this.chartObjects[id] = new Highcharts.Chart(chartObject);

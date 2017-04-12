@@ -193,6 +193,19 @@ var DashboardBodyComponent = (function () {
             return false;
         }
     };
+    DashboardBodyComponent.prototype.isEmpty = function (data) {
+        try {
+            if (data.length == 0) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        catch (e) {
+            return false;
+        }
+    };
     DashboardBodyComponent.prototype.notEmptyBadge = function (data) {
         try {
             if ((data).length > 0) {
@@ -347,7 +360,7 @@ var DashboardBodyComponent = (function () {
                     style: {
                         fontSize: '7.5px'
                     }
-                }
+                },
             },
             yAxis: {
                 min: 0,
@@ -363,7 +376,7 @@ var DashboardBodyComponent = (function () {
                     style: {
                         fontSize: 10
                     }
-                }
+                },
             },
             tooltip: {
                 pointFormat: tooltip,
@@ -408,14 +421,16 @@ var DashboardBodyComponent = (function () {
                 chartObj.chart.type = "pie";
                 chartObj.plotOptions = {
                     pie: {
+                        size: 200,
                         allowPointSelect: false,
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
                             padding: 0,
                             allowOverlap: true,
-                            overFlow: 'none',
-                            crop: false,
+                            overFlow: 'justify',
+                            crop: true,
+                            distance: 5,
                             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
                             format: '<b>{point.name}</b>: <br>{point.y:.0f}',
                             style: {
@@ -557,6 +572,38 @@ var DashboardBodyComponent = (function () {
                                 }
                             }
                         };
+                //   if(chartData.averageLine){
+                // plotLines: [{
+                //   color: 'red',
+                //   value: '299317',
+                //   width: '2',
+                //   zIndex: 2
+                // }]
+                // }
+                if (chartData.averageLine) {
+                    chartObj.yAxis["plotLines"] = [{
+                            color: 'red',
+                            value: '299317',
+                            width: '3',
+                            zIndex: 2
+                        }];
+                }
+                // yAxis: {
+                //             min: 0,
+                //             title: {
+                //                 text: 'Population (millions)',
+                //                 align: 'high'
+                //             },
+                //             labels: {
+                //                 overflow: 'justify'
+                //             },
+                //             plotLines: [{
+                //                 color: 'red',
+                //                 value: '15',
+                //                 width: '1',
+                //                 zIndex: 2
+                //             }]
+                //         },
                 chartObj.plotOptions["pie"] = {
                     plotBorderWidth: 0,
                     allowPointSelect: true,
@@ -1295,7 +1342,7 @@ var DashboardBodyComponent = (function () {
             chartObject.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
         }
         else {
-            chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "\n Maruthi";
+            chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
         }
         this.chartObjects[id] = new Highcharts.Chart(chartObject);
     };

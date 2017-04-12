@@ -36,7 +36,7 @@ var DashboardBodyService = (function () {
         var dealerlcodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
         var getNumberOfTilesServiceUrl = "services/notile/" + positioncodes + "/" + dealerlcodes;
         //  var getNumberOfTilesServiceUrl: string = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
-        // var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
+        var getNumberOfTilesServiceUrl = "./app/resources/json/notiles.json";
         //  var getNumberOfTilesServiceUrl: string = "./app/resources/json/cutomer-notiles.json";
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
@@ -54,8 +54,8 @@ var DashboardBodyService = (function () {
         headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
-        //var tileService = "./app/resources/dc-json/" + id + "-tile.json";
-        var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        var tileService = "./app/resources/dc-json/" + id + "-tile.json";
+        //var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         //   var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers: headers })
             .map(function (response) { return response.json(); })
@@ -69,10 +69,10 @@ var DashboardBodyService = (function () {
         headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
-        //    var chartService = "./app/resources/dc-json/" + id + "-chart.json";
+        var chartService = "./app/resources/dc-json/" + id + "-chart.json";
         // var chartService = "./app/resources/json/customer_first.json"; //retention
         //var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        //var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);

@@ -14,7 +14,7 @@ export class PositionCodeComponent implements OnInit {
     
     @Output("onCancel") cancelEvent: EventEmitter<any> = new EventEmitter<any>();
     private code: Code;
-    private pcode: any = [];
+    private pcode: any = []; 
     private dcode: any = [];
     private codeData: any = { "selectedPositionCode": "", "selectedDealerCode": "" };
 

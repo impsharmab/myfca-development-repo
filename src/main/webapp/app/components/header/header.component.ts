@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     }
 
     private dropdownPositionCode() {
-        this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' });
+        this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' }); 
     }
 
 }

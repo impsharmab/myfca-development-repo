@@ -12,7 +12,8 @@ export class LoginService {
     private getUserServiceUrl: string = './app/resources/json/newUserDetail.json';
     private getBaseServiceUrl: string = 'services/userprofile';
 
-    private userdata = {}
+    private userdata: any = {}
+    
     constructor(private http: Http) { }
     setUserData(userdata: any) {
         sessionStorage.setItem("CurrentUser", "");
@@ -20,9 +21,12 @@ export class LoginService {
         sessionStorage.removeItem('selectedCodeData');
         sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
     }
+
     getUsersData() {
         return this.userdata;
     }
+
+    
 
     getSSOLoginResponse(ssotoken, ssodealercode, ssopositioncode): any {
         var url = "./login/token/" + ssotoken + "/" + ssopositioncode + "/" + ssodealercode;
@@ -40,7 +44,7 @@ export class LoginService {
         //debugger
         var url = "./login/token/";
         //  var url = "http://172.25.32.162/myfcarewards/login/token/";
-        // var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+         var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         // var url = "http://172.24.16.75:9080/imiservices/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
