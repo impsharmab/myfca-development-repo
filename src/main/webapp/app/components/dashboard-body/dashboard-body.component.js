@@ -49,7 +49,7 @@ var DashboardBodyComponent = (function () {
         });
         Highcharts.wrap(Highcharts, 'numberFormat', function (proceed) {
             var ret = proceed.apply(0, [].slice.call(arguments, 1));
-            console.log("ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ")" + ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            // console.log("ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ", ")" + ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
             return ret.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
         //number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -582,7 +582,7 @@ var DashboardBodyComponent = (function () {
                 // }
                 if (chartData.averageLine) {
                     chartObj.yAxis["plotLines"] = [{
-                            color: 'red',
+                            color: '#ff790c',
                             value: '299317',
                             width: '3',
                             zIndex: 2

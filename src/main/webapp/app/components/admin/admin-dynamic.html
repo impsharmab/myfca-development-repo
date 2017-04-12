@@ -98,12 +98,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="AccContent card-block{{acdata.order}}">
+                            <div class="AccContent content card-block{{acdata.order}}">
                                 <div class="card-block{{acdata.order}}" >
                                     <div class="row"*ngFor="let chapter of acdata.data;">
                                         <div class="col-sm-12 col-md-6">
                                             <div class="checkbox checkbox-primary">
-                                                <input id="{{chapter.name}}" value="{{acdata.order}}"  [(ngModel)]="opt[chapter.name]" type="checkbox" name="{{chapter.name}}" (change)="uncheckParent($event)" >
+                                                <input id="{{chapter.name}}" value="{{acdata.order}}"  [(ngModel)]="opt[chapter.name]" type="checkbox" name="{{chapter.name}}" >
                                                 <label for="{{chapter.name}}">{{chapter.title}}</label>
                                             </div>
                                         </div>

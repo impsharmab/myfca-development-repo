@@ -131,10 +131,12 @@
 
         <!--<div class="card-action " *ngIf="tile.type=='tile' ">-->
         <div class="card-action ">
-          <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer"><i class="fa fa-check-square " aria-hidden="true "></i>
-                {{tile.programRules}}</button>
-          <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
-                {{tile.programSite}}</button>
+          <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" 
+          (click)="window.open('  {{tile.programRulesUrl}}  ')"><i class="fa fa-check-square " aria-hidden="true "></i>
+                {{tile.programRules}} </button>
+          <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer"
+          (click)="window.open('tile.programSite')"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
+                {{tile.programSite}} </button>
         </div>
       </div>
     </div>

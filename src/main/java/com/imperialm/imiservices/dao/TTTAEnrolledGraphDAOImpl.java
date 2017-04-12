@@ -40,7 +40,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	}
 
 	@Override
-	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritory(List<String> list) {
+	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritory(String list) {
 		List<TTTAEnrolledGraphDTO> result = new ArrayList<TTTAEnrolledGraphDTO>();
 
 		try {
@@ -108,7 +108,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	}
 
 	@Override
-	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritoryNotEnrolled(List<String> list) {
+	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritoryNotEnrolled(String list) {
 		List<TTTAEnrolledGraphDTO> result = new ArrayList<TTTAEnrolledGraphDTO>();
 
 		try {

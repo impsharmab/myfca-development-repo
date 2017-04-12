@@ -507,7 +507,7 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledByParentTerritoryNotEnrolled(territory);
 	}
 	
-	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritory(List<String> territory){
+	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritory(String territory){
 		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledByChildTerritory(territory);
 	}
 	
@@ -519,7 +519,7 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledBCORDistrict(territory);
 	}
 	
-	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritoryNotEnrolled(List<String> territory){
+	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritoryNotEnrolled(String territory){
 		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledByChildTerritoryNotEnrolled(territory);
 	}
 	
