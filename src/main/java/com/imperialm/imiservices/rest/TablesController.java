@@ -21,6 +21,8 @@ import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
 import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
+import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
+import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 import com.imperialm.imiservices.dto.MSERGraphDTO;
 import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
@@ -117,10 +119,12 @@ public class TablesController {
 				for(CertProfsExpertGraphDTO item: sublist){
 						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "JEEP%"));
 						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "RAM%"));
+						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "TECH%"));
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
 				result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(territory, "JEEP%"));
 				result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(territory, "RAM%"));
+				result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(territory, "TECH%"));
 			}
 			return result;
 		}
@@ -168,15 +172,17 @@ public class TablesController {
 		}
 		case "16":
 		{
-			List<TTTAEnrolledDTO> listEnrolled = this.dashService.getTTTAEnrollmentsBC(true);
+			/*List<TTTAEnrolledDTO> listEnrolled = this.dashService.getTTTAEnrollmentsBC(true);
 			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", "", "column_compound");
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", "", "column_compound");*/
+			return null;
 		}
 		case "17":
 		{
-			List<TTTAEnrolledDTO> listNotEnrolled = this.dashService.getTTTAEnrollmentsBC(false);
+			/*List<TTTAEnrolledDTO> listNotEnrolled = this.dashService.getTTTAEnrollmentsBC(false);
 			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", "", "column_compound");
+			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", "", "column_compound");*/
+			return null;
 		}
 		case "18":
 		{
@@ -185,9 +191,6 @@ public class TablesController {
 		}
 		case "19":
 		{
-			/*List<MSERGraphDTO> listOfFirstLevel = this.dashService.getMSERGraphByTerritoryAndToggle("CA-H", "YTD");
-			List<MSERGraphDetailsDTO> listOfSecondLevel = this.dashService.getMSERGraphDetialsByDealerCode();*/
-			
 			List<MSERGraphDetailsDTO> result = new ArrayList<MSERGraphDetailsDTO>();
 			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
 				List<String> filters = new ArrayList<String>();
@@ -293,6 +296,22 @@ public class TablesController {
 		{
 			// NOT A Graph Chart
 			return null;
+		}
+		case "33":
+		{
+			List<CustomerFirstDetailsDTO> result = new ArrayList<CustomerFirstDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<CustomerFirstGraphDTO> sublist = this.dashService.getCustomerFirstGraphByParentTerritoryAndToggle(filters, "Percentage");
+				for(CustomerFirstGraphDTO item: sublist){
+						List<CustomerFirstDetailsDTO> participants = this.dashService.getCustomerFirstDetailsByDealerCodeAndToggle(item.getChildTerritory(), "Percentage");
+						result.addAll(participants);
+				}
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getCustomerFirstDetailsByDealerCodeAndToggle(territory, "Percentage");
+			}
+			return result;
 		}
 		default:
 			return "No such service call exists.";

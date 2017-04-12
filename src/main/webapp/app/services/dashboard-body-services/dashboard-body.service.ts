@@ -26,8 +26,8 @@ export class DashboardBodyService {
         var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
         var getNumberOfTilesServiceUrl: string = "services/notile/" + positioncodes + "/" + dealerlcodes;
-        //  var getNumberOfTilesServiceUrl: string = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
-         var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
+          var getNumberOfTilesServiceUrl: string = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
+        // var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
         //  var getNumberOfTilesServiceUrl: string = "./app/resources/json/cutomer-notiles.json";
         var headers = new Headers();
         headers.append('Authorization', validToken);
@@ -46,9 +46,9 @@ export class DashboardBodyService {
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
 
-        var tileService = "./app/resources/dc-json/" + id + "-tile.json";
-        //var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        //   var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        //var tileService = "./app/resources/dc-json/" + id + "-tile.json";
+        var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+           var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -61,9 +61,9 @@ export class DashboardBodyService {
         headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
-            var chartService = "./app/resources/dc-json/" + id + "-chart.json";
+         //   var chartService = "./app/resources/dc-json/" + id + "-chart.json";
         // var chartService = "./app/resources/json/customer_first.json"; //retention
-        //var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         //var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers })
             .map((response: Response) => response.json())

@@ -73,12 +73,12 @@ var LoginComponent = (function () {
         var _this = this;
         if (this.user.username.trim() === "" && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please enter your Username and Password";
+            this.loginErrorMessage = "Please enter your SID/TID and Password";
             return;
         }
         else if (this.user.username.trim() === "" && this.user.password.trim() !== null) {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please enter your Username";
+            this.loginErrorMessage = "Please enter your SID/TID";
             return;
         }
         else if (this.user.username.trim() !== null && this.user.password.trim() === "") {
@@ -101,7 +101,7 @@ var LoginComponent = (function () {
             }
         }, function (error) {
             _this.loginFailed = "Login Failed";
-            _this.loginErrorMessage = "Please enter your valid username and password";
+            _this.loginErrorMessage = "Please enter your valid SID/TID and password";
         });
     };
     return LoginComponent;
@@ -109,7 +109,7 @@ var LoginComponent = (function () {
 LoginComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        templateUrl: './loginform.html',
+        templateUrl: './clean-login.html',
     }),
     __metadata("design:paramtypes", [login_service_1.LoginService,
         router_1.Router,

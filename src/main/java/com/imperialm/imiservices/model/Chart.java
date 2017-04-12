@@ -21,6 +21,7 @@ public class Chart {
 	private boolean customer_first = false;
 	private boolean retention = false;
 	private boolean cFDealDisMan = false;
+	private boolean averageLine = false;
 	//private JsonNode drilldownData;
 	
 	public Chart(){

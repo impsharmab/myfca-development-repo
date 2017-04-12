@@ -2467,7 +2467,7 @@ public class DashboardController {
 				}
 				item.setData(new ArrayList<ChartData>());
 				item.setValue(mapValues3.get(item.getName()));
-				item.addDataList( chartsMap3.get(item.getName()));
+				item.addDataList(chartsMap3.get(item.getName()));
 			}
 
 
@@ -2506,7 +2506,7 @@ public class DashboardController {
 			for(ChartData item: g){
 				for(ChartData var: item.getData()){
 					if(var.getName().equals("CFAFE Award Certification"))
-						tempc = var.getValue();
+						tempg += var.getValue();
 				}
 				item.setData(new ArrayList<ChartData>());
 				item.setValue(mapValues7.get(item.getName()));
@@ -2554,7 +2554,7 @@ public class DashboardController {
 				}
 			}
 
-			List<CustomerFirstGraphDTO> listBC_unfiltered = this.dashService.getCustomerFirstGraphByParentTerritoryAndToggle(filters, "Total");
+			List<CustomerFirstGraphDTO> listBC_unfiltered = this.dashService.getCustomerFirstGraphByParentTerritoryAndToggle(filters, "Percentage");
 
 
 
@@ -3226,6 +3226,7 @@ public class DashboardController {
 				item.addDataList(chartsMap.get(item.getName()));
 			}
 			chart.setUnit("$");
+			chart.setAverageLine(true);
 			return chart;
 		}
 
@@ -3685,7 +3686,7 @@ public class DashboardController {
 			chart.setTitle("Expert Points Earned YTD");
 			chart.setSubTitle("");
 			chart.setType("column");
-			chart.setXaxisTitle("Dealer");
+			chart.setXaxisTitle("");
 			chart.setYaxisTitle("Total Points");
 			if(sublist.size() > 0){
 				List<ChartData> list = new ArrayList<ChartData>();
@@ -3803,12 +3804,12 @@ public class DashboardController {
 
 			List<ChartData> list = new ArrayList<ChartData>();
 
-			ChartData chartData = new ChartData();
+			//ChartData chartData = new ChartData();
 			ChartData certified = new ChartData();
 			ChartData certifiedSpacialist = new ChartData();
 			ChartData masterCertified = new ChartData();
 			if(CertProfsWinnersGraphDTO.size() > 0){	
-				chartData.setName(CertProfsWinnersGraphDTO.get(0).getChildTerritory());
+				//chartData.setName(CertProfsWinnersGraphDTO.get(0).getChildTerritory());
 
 				certified.setName("Certified");
 				certified.setValue(Double.parseDouble(CertProfsWinnersGraphDTO.get(0).getCertified()));
@@ -3834,16 +3835,16 @@ public class DashboardController {
 				masterCertified.addData(masterCertifiedInner);
 				
 				
-				chartData.addData(certified);
-				chartData.addData(certifiedSpacialist);
-				chartData.addData(masterCertified);
-				chartData.setValue(certified.getValue() + certifiedSpacialist.getValue() + masterCertified.getValue());
-				chartData.setName(CertProfsWinnersGraphDTO.get(0).getChildTerritory());
-				//list.add(certified);
-				//list.add(certifiedSpacialist);
-				//list.add(masterCertified);
-				list.add(chartData);
-				chart.setData(list);
+				//chartData.addData(certified);
+				//chartData.addData(certifiedSpacialist);
+				//chartData.addData(masterCertified);
+				//chartData.setValue(certified.getValue() + certifiedSpacialist.getValue() + masterCertified.getValue());
+				//chartData.setName(CertProfsWinnersGraphDTO.get(0).getChildTerritory());
+				list.add(certified);
+				list.add(certifiedSpacialist);
+				list.add(masterCertified);
+				//list.add(chartData);
+				//chart.setData(list);
 			}
 
 			chart.setData(list);		
@@ -3966,7 +3967,7 @@ public class DashboardController {
 
 				TotalName incentiveEligible  = new TotalName();
 				incentiveEligible.setName("Incentive Eligible");
-				incentiveEligible.setTotal("N");
+				incentiveEligible.setTotal("No");
 
 				TotalName qtdSurveyCount  = new TotalName();
 				qtdSurveyCount.setName("QTD Survey Count");
@@ -3983,7 +3984,7 @@ public class DashboardController {
 				if(incentiveEligibleList.size() > 0){
 
 					if(incentiveEligibleList.get(0).getIncentiveEligible()> 0){
-						incentiveEligible.setTotal("Y");
+						incentiveEligible.setTotal("Yes");
 					}
 
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
@@ -4477,17 +4478,24 @@ public class DashboardController {
 				TotalName redeemed = new TotalName();
 				TotalName earned = new TotalName();
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim());
+				
+				bal.setName("Total Balance Points YTD");
+				redeemed.setName("Total Points Redeemed YTD");
+				earned.setName("Total Redemption Points Awarded YTD");
+				
+				bal.setTotal("0");
+				earned.setTotal("0");
+				redeemed.setTotal("0");
+				
 				if(RewardRedemptionDetails.size() > 0){
-					bal.setName("Total Balance Points YTD");
-					redeemed.setName("Total Points Redeemed YTD");
-					earned.setName("Total Redemption Points Awarded YTD");
-					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getBalancePoints()));
+					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
 					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
 					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(redeemed));
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(redeemed));
 			}
 			return topTenChart;
 		}
@@ -4523,21 +4531,21 @@ public class DashboardController {
 					cartificationLevel.setName("Certified Master");
 					cartificationLevel.setTotal(CertProfsWinnersDetails.getMasterCertified() + "");
 					TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel);
-					tile.setBadgeTitle(tile.getName());
+					tile.setBadgeTitle("");
 					tile.setBadgeUrl("mastercertified.jpg");
 					topTenChart.addAttribute(tile);
 				}else if(CertProfsWinnersDetails.getCertifiedSpecalist() > 0){
 					cartificationLevel.setName("Certified Specialist");
 					cartificationLevel.setTotal(CertProfsWinnersDetails.getCertifiedSpecalist() + "");
 					TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel);
-					tile.setBadgeTitle(tile.getName());
+					tile.setBadgeTitle("");
 					tile.setBadgeUrl("certifiedspecialist.jpg");
 					topTenChart.addAttribute(tile);
 				}else if(CertProfsWinnersDetails.getCertified() > 0){
 					cartificationLevel.setName("Certified");
 					cartificationLevel.setTotal(CertProfsWinnersDetails.getCertified() + "");
 					TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel);
-					tile.setBadgeTitle(tile.getName());
+					tile.setBadgeTitle("");
 					tile.setBadgeUrl("cert-pro-badges.jpg");
 					topTenChart.addAttribute(tile);
 				}else{
@@ -4877,16 +4885,16 @@ public class DashboardController {
 
 				totalCertifiedSpecialistParticipants.setName("Total Experts Points Earned YTD");
 				totalCertifiedSpecialistParticipants.setTotal(0 + "");
-				cartificationLevel.setName("JEEP EXPERT COMPLETED");
-				cartificationLevel.setTotal("N");
-				dealershipMasterCertifiedRankWithinBC.setName("RAM EXPERT COMPLETED");
-				dealershipMasterCertifiedRankWithinBC.setTotal("N");
-				techExpert.setName("TECHNOLOGY EXPERT COMPLETED");
-				techExpert.setTotal("N");
+				cartificationLevel.setTotal("JEEP EXPERT COMPLETED");
+				cartificationLevel.setName("No");
+				dealershipMasterCertifiedRankWithinBC.setTotal("RAM EXPERT COMPLETED");
+				dealershipMasterCertifiedRankWithinBC.setName("No");
+				techExpert.setTotal("TECHNOLOGY EXPERT COMPLETED");
+				techExpert.setName("No");
 
 				TileAttribute1 jeepTile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel); 
-				TileAttribute1 ramTile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel); 
-				TileAttribute1 techTile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel); 
+				TileAttribute1 ramTile = this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC); 
+				TileAttribute1 techTile = this.mappingService.MapTotalNameToTileAttribute(techExpert); 
 
 				if(CertProfsExpertDetailsList.size()>0){
 					CertProfsExpertDetailsDTO CertProfsExpertDetailsDTO = CertProfsExpertDetailsList.get(0);
@@ -4899,7 +4907,7 @@ public class DashboardController {
 					if(CertProfsExpertDetailsDTO.getCert() > 0){
 						cartificationLevel.setTotal("Y");
 
-						jeepTile.setBadgeTitle(jeepTile.getName());
+						jeepTile.setBadgeTitle("Completed:Yes");
 						jeepTile.setBadgeUrl("JeepExpert.jpg");
 
 					}
@@ -4910,7 +4918,7 @@ public class DashboardController {
 					if(CertProfsExpertDetailsDTO.getCert() > 0){
 						dealershipMasterCertifiedRankWithinBC.setTotal("Y");
 
-						ramTile.setBadgeTitle(jeepTile.getName());
+						ramTile.setBadgeTitle("Completed:Yes");
 						ramTile.setBadgeUrl("RamExpert.jpg");
 					}
 				}
@@ -4920,7 +4928,7 @@ public class DashboardController {
 					if(CertProfsExpertDetailsDTO.getCert() > 0){
 						dealershipMasterCertifiedRankWithinBC.setTotal("Y");
 
-						techTile.setBadgeTitle(jeepTile.getName());
+						techTile.setBadgeTitle("Completed:Yes");
 						techTile.setBadgeUrl("TechnologyExpert.jpg");
 					}
 				}

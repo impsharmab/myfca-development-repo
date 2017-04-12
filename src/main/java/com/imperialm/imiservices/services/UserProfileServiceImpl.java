@@ -82,7 +82,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	
 	private List<NoTile> userTiles = new ArrayList<NoTile>();
 	
-	public UserProfileServiceImpl(UserProfileDAO userProfileDAO){
+	/*public UserProfileServiceImpl(UserProfileDAO userProfileDAO){
 		this.userProfileDAO = userProfileDAO;
 		
 		this.noTileList.add(new NoTile(2,"","tile", "","mser-logo.jpg","www.mopar.com"));
@@ -111,7 +111,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		//this.noTileList.add(new NoTile(24,"","tile", "","wiadvisor-logo.jpg","www.mopar.com"));
 		//this.noTileList.add(new NoTile(25,"","tile", "","wiadvisor-logo.jpg","www.mopar.com"));
 		
-	}
+	}*/
 
 	@Override
 	public UserProfileDTO getUserProfile(final InputRequest userRoleReq) {
@@ -122,50 +122,50 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user) {
 		this.userTiles = new ArrayList<NoTile>();
 		if(tile1.contains(positionCode)){
-		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser"));
+		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser", "rules"));
 		}
 		
 		if(tile2.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg",""));
+		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg","https://www.moparser.com/mser", "rules"));
 		}
 		
 		if(tile3.contains(positionCode)){
-			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://fcarewardredemption.com"));
+			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://fcarewardredemption.com","rules"));
 			}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg",""));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","https://fcarewardredemption.com","rules"));
 			}
 		
 		if(tile5.contains(positionCode)){
-			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","https://fcarewardredemption.com"));
+			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","https://fcarewardredemption.com","rules"));
 			}
 		if(tile6.contains(positionCode)){
-			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg",""));
+			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg","https://fcarewardredemption.com","rules"));
 			}
 		
 		if(tile7.contains(positionCode)){
-			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg",""));
+			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg","https://fcarewardredemption.com","rules"));
 			}
 		
 		if(tile8.contains(positionCode)){
-			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts.jpg","https://fcarewardredemption.com"));
+			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts.jpg","https://fcarewardredemption.com","rules"));
 			}
 		
 		if(tile9.contains(positionCode)){
-			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg",""));
+			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","https://fcarewardredemption.com","rules"));
 			}
 		
 		if(tile10.contains(positionCode)){
-			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg",""));
+			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg","https://fcarewardredemption.com","rules"));
 			}
 		
 		if(tile11.contains(positionCode)){
-			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm"));
+			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm","rules"));
 			}
 		
 		
 		if(tile12.contains(positionCode)){
-			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm"));
+			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm","rules"));
 			}
 		
 		/*if(tile13.contains(positionCode)){
@@ -173,23 +173,23 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		//enrolled not enrolled 2 tiles
 		if(tile14.contains(positionCode)){
-			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg",""));
-			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg",""));
+			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","rules"));
+			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","rules"));
 			//this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg",""));
 			//this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg",""));
 			}
 		
 		if(tile15.contains(positionCode)){
-			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","https://fcarewardredemption.com")); //SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","https://fcarewardredemption.com","rules")); //SERVICE INCENTIVE
 			}
 		
 		
 		if(tile16.contains(positionCode)){
-			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","https://fcarewardredemption.com","rules")); // SERVICE INCENTIVE
 			}
 		
 		if(tile17.contains(positionCode)){
-			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","https://fcarewardredemption.com","rules")); // SERVICE INCENTIVE
 			}
 		
 		/*if(tile18.contains(positionCode)){ 
@@ -197,26 +197,26 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		
 		if(tile19.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(24,"","tile", "","rewards.jpg","https://fcarewardredemption.com")); // REWARDRED
+			this.userTiles.add(new NoTile(24,"","tile", "","rewards.jpg","https://fcarewardredemption.com","rules")); // REWARDRED
 			}
 		
 		if(tile20.contains(positionCode) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","")); // REWARDRED
+			this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","https://fcarewardredemption.com","rules")); // REWARDRED
 			}
 		
 		// SUMMARY
 		if(tile21.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(36,"","chart", "","FCASummary.jpg","")); // SUMMARY
+			this.userTiles.add(new NoTile(36,"","chart", "","FCASummary.jpg","","")); // SUMMARY
 			}
 			
 			//Customer first
 			if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.jpg","")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.jpg","site","rules")); // //customer first
 			}
 			
 			//customer first
 			if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.jpg","")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.jpg","site","rules")); // //customer first
 			}
 			/*
 			//NOTHING
@@ -226,11 +226,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 		*/
 		if(tile25.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","")); // RETENTION
+			this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","","")); // RETENTION
 			}
 			
 			if(tile26.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","")); // RETENTION
+			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","","")); // RETENTION
 			}
 			
 		
@@ -238,13 +238,13 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		
 		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser"));
-			this.userTiles.add(new NoTile(4,"","tile", "","MVP.jpg","https://www.moparser.com/mser"));
-			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","https://www.moparser.com/mser"));
-			this.userTiles.add(new NoTile(6,"","tile", "","blank.jpg","https://www.moparser.com/mser"));
-			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","https://www.moparser.com/mser"));
-			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","https://www.moparser.com/mser"));
-			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","https://www.moparser.com/mser"));
+			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(6,"","tile", "","blank.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","https://www.moparser.com/mser","rules"));
 		}
 		
 		

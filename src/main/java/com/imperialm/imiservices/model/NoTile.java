@@ -18,12 +18,13 @@ public class NoTile {
 	
 	
 	
-	public NoTile(int id, String error, String type, String tileName, String tileHeaderImage, String programSiteUrl){
+	public NoTile(int id, String error, String type, String tileName, String tileHeaderImage, String programSiteUrl, String programRulesUrl){
 		this.id = id;
 		this.error = error;
 		this.type = type;
 		this.tileName = tileName;
 		this.tileHeaderImage = tileHeaderImage;
 		this.programSiteUrl = programSiteUrl;
+		this.programRulesUrl = programRulesUrl;
 	}
 }

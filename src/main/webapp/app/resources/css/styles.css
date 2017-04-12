@@ -9,16 +9,6 @@ body{
 	background-color:#f1f1f1!important;
 }
 
-.highcharts-drilldown-data-label text{
-  text-decoration:none !important;
-}
-
-/*.customer_btn{
-color:black;
-    background-color: #e6f2ff;
-    border-color: #01549b;
-}*/
-
 
 .activated{
 	background-color:#222;
@@ -84,6 +74,46 @@ p {
     /* text-align: center; */
 }
 
+/* Login Page */
+.login{
+	margin-top:100px;
+}
+.login-frame{
+	padding:20px;
+}
+.pageForm{
+float:left:	
+}
+.pageForm label {
+       padding-right: 20px;
+    text-align: right;
+    width: 200px;
+}
+
+.heading-line::after {
+    background: #e3e7ed none repeat scroll 0 0;
+    content: "";
+    display: block;
+    height: 1px;
+float:left;
+margin-bottom:20px;
+    width: 100%;
+    z-index: 1;
+}
+/*.heading-line h2 {
+    text-transform: uppercase;
+}*/
+.heading-line h1, .heading-line h2, .heading-line h3, .heading-line h4, .heading-line h5 {
+    background: #f5f7fa none repeat scroll 0 0;
+    display: inline-block;
+    margin: 0;
+    padding-right: 24px;
+    position: relative;
+    z-index: 2;
+}
+h2 {
+    font-size: 40px;
+}
 /* Card Style */
 .card .btn-info {
     background-color: #025aa5!important;

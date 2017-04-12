@@ -479,13 +479,13 @@ public class DashboardServiceImpl {
 		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsSUMByDealerCode(dealerCode);
 	}
 	
-	public List<CustomerFirstDetailsDTO> getCustomerFirstByParentAndToggle(List<String> territory, String toggle)
+	/*public List<CustomerFirstDetailsDTO> getCustomerFirstByParentAndToggle(List<String> territory, String toggle)
 	{
 		return this.CustomerFirstDetailsDAO.getCustomerFirstByParentAndToggle(territory, toggle);
 	}
 	public List<CustomerFirstDetailsDTO> getCustomerFirstByChildAndToggle(List<String> territory, String toggle){
 		return this.CustomerFirstDetailsDAO.getCustomerFirstByChildAndToggle(territory, toggle);
-	}
+	}*/
 	
 	public List<RetentionGraphDTO> getRetentionGraphNAT(){
 		return this.RetentionGraphDAO.getRetentionGraphNAT();
@@ -585,6 +585,10 @@ public class DashboardServiceImpl {
 	
 	public List<MSERGraphDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode){
 		return this.MSERGraphDetailsDAO.getMSERGraphDetailsByDealerCode(dealerCode);
+	}
+	
+	public List<CustomerFirstDetailsDTO> getCustomerFirstDetailsByDealerCodeAndToggle(String dealerCode, String toggle){
+		return this.CustomerFirstDetailsDAO.getCustomerFirstDetailsByDealerCodeAndToggle(dealerCode, toggle);
 	}
 	
 }

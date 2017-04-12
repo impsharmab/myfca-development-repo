@@ -9,7 +9,7 @@ import { LoginService } from '../../services/login-services/login.service';
 
 @Component({
     moduleId: module.id,
-    templateUrl: './loginform.html',
+    templateUrl: './clean-login.html',
 })
 export class LoginComponent implements OnInit {
     form: FormGroup;
@@ -88,11 +88,11 @@ export class LoginComponent implements OnInit {
     private login() {
         if (this.user.username.trim() === "" && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please enter your Username and Password";
+            this.loginErrorMessage = "Please enter your SID/TID and Password";
             return;
         } else if (this.user.username.trim() === "" && this.user.password.trim() !== null) {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please enter your Username";
+            this.loginErrorMessage = "Please enter your SID/TID";
             return;
         } else if (this.user.username.trim() !== null && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
@@ -120,7 +120,7 @@ export class LoginComponent implements OnInit {
             },
             (error) => {
                 this.loginFailed = "Login Failed";
-                this.loginErrorMessage = "Please enter your valid username and password";
+                this.loginErrorMessage = "Please enter your valid SID/TID and password";
             }
         )
 

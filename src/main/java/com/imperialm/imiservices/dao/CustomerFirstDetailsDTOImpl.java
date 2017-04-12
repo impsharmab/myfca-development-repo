@@ -57,4 +57,22 @@ public class CustomerFirstDetailsDTOImpl implements CustomerFirstDetailsDAO{
 		}
 		return result;
 	}
+
+	@Override
+	public List<CustomerFirstDetailsDTO> getCustomerFirstDetailsByDealerCodeAndToggle(String dealerCode,
+			String toggle) {
+		List<CustomerFirstDetailsDTO> result = new ArrayList<CustomerFirstDetailsDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_TOGGLE, CustomerFirstDetailsDTO.class);
+			query.setParameter(0, dealerCode);
+			query.setParameter(1, toggle);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getCustomerFirstDetailsByDealerCodeAndToggle", ex);
+		}
+		return result;
+	}
 }
