@@ -279,6 +279,9 @@ var DashboardBodyComponent = (function () {
             return false;
         }
     };
+    DashboardBodyComponent.prototype.openProgramRules = function (url) {
+        window.open(url);
+    };
     // options: any;
     // getJSONObject(jsonString: string) {
     //   //  debugger;
