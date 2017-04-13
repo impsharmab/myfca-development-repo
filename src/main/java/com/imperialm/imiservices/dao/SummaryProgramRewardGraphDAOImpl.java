@@ -58,4 +58,21 @@ public class SummaryProgramRewardGraphDAOImpl implements SummaryProgramRewardGra
 		return result;
 	}
 
+	@Override
+	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(String territory) {
+		List<SummaryProgramRewardGraphDTO> result = new ArrayList<SummaryProgramRewardGraphDTO>();
+
+		try {
+				final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_YTD_SINGLE, SummaryProgramRewardGraphDTO.class);
+				query.setParameter(0, territory);
+				List<SummaryProgramRewardGraphDTO> rows = query.getResultList();
+				result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getSummaryProgramRewardGraphByChildTerritoryYTD", ex);
+		}
+		return result;
+	}
+
 }

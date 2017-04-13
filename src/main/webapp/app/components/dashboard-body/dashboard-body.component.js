@@ -342,6 +342,8 @@ var DashboardBodyComponent = (function () {
             },
             colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
                 '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
+            // "colors": [   "#3498db", "#1abc9c", "#f39c12", "#d35400", "#f1c40f", "#2ecc71","#34495e","#e74c3c","#9b59b6"],
+            //   "colors": ["#0d80c7", "#0c669e", "#12689b", "#36a0ba", "#6fdcc9", "#3498db", "#1abc9c", "#f39c12", "#d35400"],
             title: {
                 text: chartData.title
             }, subtitle: {

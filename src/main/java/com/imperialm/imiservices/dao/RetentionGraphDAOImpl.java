@@ -96,6 +96,25 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 		}
 		return result;
 	}
+	
+	@Override
+	public List<RetentionGraphDTO> getRetentionGraphByChildTerritoryListAndPositionCode(String list,
+			String positionCode) {
+		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_AND_POSITIONCODE, RetentionGraphDTO.class);
+			query.setParameter(0, list);
+			query.setParameter(1, positionCode);
+			List<RetentionGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getRetentionGraphByChildTerritoryListAndPositionCode", ex);
+		}
+		return result;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

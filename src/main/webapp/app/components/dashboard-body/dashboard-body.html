@@ -123,9 +123,9 @@
               " (click)="openDataTable(contentBody[tile.id].top10_advisors) " style="cursor:pointer"><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_advisors.buttonName}}</button><br>
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_technicians) "
           (click)="openDataTable(contentBody[tile.id].top10_technicians) " style="cursor:pointer"><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_technicians.buttonName}}</button>
-        <div class="chart-controls " *ngIf="tile.type=='chart' && chartType(tile.id) ">
-          <a (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer"></i></a>
-          <a (click)="chartChange( 'column',tile.id) " alt="View Column Chart "><i class="fa fa-bar-chart
+        <div style="margin-bottom: 45; margin-top: -80" class="chart-controls " *ngIf="tile.type=='chart' && chartType(tile.id) ">
+          <a  (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i  class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer"></i></a>
+          <a  (click)="chartChange( 'column',tile.id) " alt="View Column Chart "><i  class="fa fa-bar-chart
               " aria-hidden="true " style="cursor:pointer"></i></a>
         </div>
 
@@ -163,5 +163,6 @@
     color: black;
     background-color: #e6f2ff;
     border-color: #01549b;
+    MARGIN-BOTTOM: 4;
   }
 </style>

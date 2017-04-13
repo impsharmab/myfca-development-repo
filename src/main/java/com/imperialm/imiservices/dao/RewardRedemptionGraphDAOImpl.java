@@ -76,4 +76,21 @@ public class RewardRedemptionGraphDAOImpl implements RewardRedemptionGraphDAO{
 		}
 		return result;
 	}
+
+	@Override
+	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByChildTerritory(String list) {
+		List<RewardRedemptionGraphDTO> result = new ArrayList<RewardRedemptionGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY, RewardRedemptionGraphDTO.class);
+			query.setParameter(0, list);
+			List<RewardRedemptionGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getRewardRedemptionGraphByChildTerritory", ex);
+		}
+		return result;
+	}
 }

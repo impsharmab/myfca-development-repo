@@ -14,8 +14,8 @@ declare var $: any;
 @Component({
     moduleId: module.id,
     selector: "app-admin",
-    templateUrl: "./admin-static.html",
-    //  templateUrl: "./admin1.html"
+    //    templateUrl: "./admin-static.html",
+    templateUrl: "./new-admin.html",
     providers: [NgbAccordionConfig]
 })
 

@@ -103,6 +103,24 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 		}
 		return result;
 	}
+
+
+	@Override
+	public List<CertProfsWinnersGraphDTO> getByChildTerritory(String list) {
+		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_SINGLE, CertProfsWinnersGraphDTO.class);
+			query.setParameter(0, list);
+			List<CertProfsWinnersGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getByChildTerritory", ex);
+		}
+		return result;
+	}
 	
 
 }

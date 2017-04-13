@@ -211,13 +211,13 @@ public class DashboardController {
 
 			//set attributes
 
-			TotalName years = new TotalName();
+			//TotalName years = new TotalName();
 			TotalName cartificationLevel = new TotalName();
 			TotalName totalCertifiedParticipants = new TotalName();
-			TotalName totalMasterCertifiedParticipants = new TotalName();
-			TotalName totalCertifiedSpecialistParticipants = new TotalName();
-			TotalName totalCertifiedLevelParticipants = new TotalName();
-			TotalName dealershipMasterCertifiedRankWithinBC = new TotalName();
+			//TotalName totalMasterCertifiedParticipants = new TotalName();
+			//TotalName totalCertifiedSpecialistParticipants = new TotalName();
+			//TotalName totalCertifiedLevelParticipants = new TotalName();
+			//TotalName dealershipMasterCertifiedRankWithinBC = new TotalName();
 
 
 
@@ -571,9 +571,14 @@ public class DashboardController {
 		}
 		case "8":
 		{
-			/*TotalName nav = new TotalName();
-			nav.setTotal("$" + this.formatCurrency(mtdearnings));
-			List<MSERTopNDTO> listELPMTD = this.dashService.getMSERTopTen("UConnect", 3, "UConnect Navigation", "MTD");*/
+			TotalName nav = new TotalName();
+			nav.setName("Total UConnect Navigation Activations MTD");
+			nav.setTotal("$0");
+			List<MSERTopNDTO> listELPMTD = this.dashService.getMSERTopTen("UConnect", 3, "UConnect Navigation", "MTD");
+			if(listELPMTD.size()>0){
+				nav.setTotal("$" + this.formatCurrency(listELPMTD.get(0).getQuantity()));
+			}
+			
 			//List<MSERTopNDTO> listELPYTD = this.dashService.getMSERTopTen("Top 3 Parts", 3, "Express Lane", "YTD");
 
 			TopTenChart topTenChart = new TopTenChart();
@@ -1449,8 +1454,8 @@ public class DashboardController {
 			}
 
 
-			mtd.setName("Total Parts Earnings - MTD");
-			ytd.setName("Total Parts Earnings - YTD");
+			mtd.setName("Total wiAdvisor Parts Earnings - MTD");
+			ytd.setName("Total wiAdvisor Parts Earnings - YTD");
 			mtd.setTotal("$" + this.formatCurrency(mtdearnings));
 			ytd.setTotal("$" + this.formatCurrency(ytdearnings));
 
@@ -3279,14 +3284,36 @@ public class DashboardController {
 			}else if(type.equals("Dealer")){
 
 				//MAKE ONEFO DEALER?
-				TotalName mtd = this.dashService.getParticipantExcellanceCardAwardMTD(user.getUserId().trim());
-				mtd.setTotal("$" + this.formatCurrency(Double.parseDouble(mtd.getTotal())));
+				TotalName mtd = new TotalName();
+				mtd.setName("Excellence Card Awards MTD");
+				mtd.setTotal("$0");
+				
+				List<MSERGraphDTO> mtdres = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(territory, "MTD");
+				
+				if(mtdres.size() > 0){
+					mtd.setTotal(this.formatCurrency(mtdres.get(0).getAmount()));
+				}
+				
+				//TotalName mtd = this.dashService.getParticipantExcellanceCardAwardMTD(user.getUserId().trim());
+				//mtd.setTotal("$" + this.formatCurrency(Double.parseDouble(mtd.getTotal())));
 
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+				
+				
+				TotalName ytd = new TotalName();
+				ytd.setName("Excellence Card Awards YTD");
+				ytd.setTotal("$0");
+				
+				List<MSERGraphDTO> ytdres = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(territory, "YTD");
+				
+				if(mtdres.size() > 0){
+					ytd.setTotal(this.formatCurrency(mtdres.get(0).getAmount()));
+				}
+				
+				
 
-
-				TotalName ytd = this.dashService.getParticipantExcellanceCardAwardYTD(user.getUserId().trim());
-				ytd.setTotal("$" + this.formatCurrency(Double.parseDouble(ytd.getTotal())));
+				//TotalName ytd = this.dashService.getParticipantExcellanceCardAwardYTD(user.getUserId().trim());
+				//ytd.setTotal("$" + this.formatCurrency(Double.parseDouble(ytd.getTotal())));
 
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
 
@@ -3650,37 +3677,35 @@ public class DashboardController {
 		}
 		case "9":
 		{
-			List<String> filters = new ArrayList<String>();
-			filters.add(territory);
-			List<BrainBoostWinndersGraphDTO> sublist = this.dashService.getBrainBoostWinndersGraphgetByChildTerritory(filters);
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
+			List<BrainBoostWinndersGraphDTO> sublist = this.dashService.getBrainBoostWinndersGraphgetByChildTerritory(territory);
 
 			Chart chart = new Chart();
 			chart.setTitle("YTD Winners");
 			chart.setSubTitle("");
 			chart.setType("column");
-			if(type.equals("Manager") || type.equals("Dealer")){
-				chart.setXaxisTitle("Dealer");
-			}else if(type.equals("District")){
-				chart.setXaxisTitle("District");
-			}
+			chart.setXaxisTitle("");
 			chart.setYaxisTitle("Total Winners");
-			if(sublist.size() > 0){
-				List<ChartData> list = new ArrayList<ChartData>();
+			
+			List<ChartData> list = new ArrayList<ChartData>();
+			for(BrainBoostWinndersGraphDTO item: sublist){
 				ChartData chartData = new ChartData();	
-				chartData.setName(sublist.get(0).getChildTerritory());
-				chartData.setValue(sublist.get(0).getWinners());
+				chartData.setName(item.getChildTerritory());
+				chartData.setValue(item.getWinners());
 				list.add(chartData);
-				chart.setData(list);
 			}
+			chart.setData(list);
 			return chart;
 		}
 		case "10":
 		{
-
-			List<String> filters = new ArrayList<String>();
-			//if type = distric get distric
-			filters.add(territory);
-			List<CertProfsExpertGraphDTO> sublist = this.dashService.getExpertPointsEarnedByChildTerritory(filters);
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
+			
+			List<CertProfsExpertGraphDTO> sublist = this.dashService.getExpertPointsEarnedByChildTerritory(territory);
 
 			Chart chart = new Chart();
 			chart.setTitle("Expert Points Earned YTD");
@@ -3688,24 +3713,29 @@ public class DashboardController {
 			chart.setType("column");
 			chart.setXaxisTitle("");
 			chart.setYaxisTitle("Total Points");
-			if(sublist.size() > 0){
-				List<ChartData> list = new ArrayList<ChartData>();
-				ChartData chartData = new ChartData();	
-				chartData.setName(sublist.get(0).getChildTerritory());
-				chartData.setValue(sublist.get(0).getTotalPoints());
+			
+			List<ChartData> list = new ArrayList<ChartData>();
+			
+			for(CertProfsExpertGraphDTO item: sublist){
+				ChartData chartData = new ChartData();
+				chartData.setName(item.getChildTerritory());
+				chartData.setValue(item.getTotalPoints());
 				list.add(chartData);
-				chart.setData(list);
 			}
+			
+			chart.setData(list);
+			
 			return chart;
 		}
 		case "11":
-		{
-			List<String> filters = new ArrayList<String>();
-			filters.add(territory);
+		{	
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
 			// check for role, to know what data to display
-			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTOJEEP = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, "JEEP%");
-			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTORAM = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, "RAM%");
-			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTOTECH = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, "TECH%");
+			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTOJEEP = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(territory, "JEEP%");
+			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTORAM = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(territory, "RAM%");
+			List<CertProfsExpertGraphDTO> CertProfsExpertGraphDTOTECH = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(territory, "TECH%");
 			Chart chart = new Chart();
 			chart.setTitle("Participants Completed By Program");
 			chart.setSubTitle("");
@@ -3717,31 +3747,38 @@ public class DashboardController {
 			list.add(new ChartData("JEEP", 0));
 			list.add(new ChartData("RAM", 0));
 			list.add(new ChartData("TECH", 0));
+			
+			int ramTotal = 0;
+			int jeepTotal = 0;
+			int techTotal = 0;
 
-			if(CertProfsExpertGraphDTOJEEP.size() > 0){
+			for(CertProfsExpertGraphDTO item: CertProfsExpertGraphDTOJEEP){
 				ChartData data = new ChartData();
-				data.setName(CertProfsExpertGraphDTOJEEP.get(0).getChildTerritory());
-				data.setValue(CertProfsExpertGraphDTOJEEP.get(0).getCert());
-				list.get(0).setValue(data.getValue());
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getCert());
+				jeepTotal += data.getValue();
 				list.get(0).addData(data);
 			}
-
-			if(CertProfsExpertGraphDTORAM.size() > 0){
+			list.get(0).setValue(jeepTotal);
+			
+			for(CertProfsExpertGraphDTO item: CertProfsExpertGraphDTORAM){
 				ChartData data = new ChartData();
-				data.setName(CertProfsExpertGraphDTORAM.get(0).getChildTerritory());
-				data.setValue(CertProfsExpertGraphDTORAM.get(0).getCert());
-				list.get(1).setValue(data.getValue());
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getCert());
+				ramTotal += data.getValue();
 				list.get(1).addData(data);
 			}
+			
+			list.get(1).setValue(ramTotal);
 
-			if(CertProfsExpertGraphDTORAM.size() > 0){
+			for(CertProfsExpertGraphDTO item: CertProfsExpertGraphDTOTECH){
 				ChartData data = new ChartData();
-				data.setName(CertProfsExpertGraphDTOTECH.get(0).getChildTerritory());
-				data.setValue(CertProfsExpertGraphDTOTECH.get(0).getCert());
-				list.get(2).setValue(data.getValue());
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getCert());
+				techTotal += data.getValue();
 				list.get(2).addData(data);
 			}
-
+			list.get(2).setValue(techTotal);
 			chart.setData(list);
 
 			return chart;
@@ -3749,10 +3786,11 @@ public class DashboardController {
 		}
 		case "12":
 		{
-			List<String> filters = new ArrayList<String>();
-			filters.add(territory);
-			// check for role, to know what data to display
-			List<BrainBoostWinndersGraphDTO> BrainBoostWinndersGraphDTO = this.dashService.getBrainBoostWinndersGraphgetByChildTerritory(filters);
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
+			
+			List<BrainBoostWinndersGraphDTO> BrainBoostWinndersGraphDTO = this.dashService.getBrainBoostWinndersGraphgetByChildTerritory(territory);
 
 			Chart chart = new Chart();
 			chart.setTitle("Exellence Card Awards And Award Points YTD");
@@ -3763,24 +3801,33 @@ public class DashboardController {
 
 			List<ChartData> list = new ArrayList<ChartData>();
 
-			ChartData chartData = new ChartData();
 			ChartData excellenceCard = new ChartData();
 			ChartData awardPoints = new ChartData();
-
-			if(BrainBoostWinndersGraphDTO.size()>0){
-				chartData.setName(BrainBoostWinndersGraphDTO.get(0).getChildTerritory());
-
-				excellenceCard.setName("Excellence Card");
-				excellenceCard.setValue(BrainBoostWinndersGraphDTO.get(0).getEarnings());
-
-				awardPoints.setName("Award Points");
-				awardPoints.setValue(BrainBoostWinndersGraphDTO.get(0).getPoints());
-
-				chartData.setValue(excellenceCard.getValue() + awardPoints.getValue());
-				chartData.addData(excellenceCard);
-				chartData.addData(awardPoints);
-				list.add(chartData);
+			excellenceCard.setName("Excellence Card");
+			awardPoints.setName("Award Points");
+			
+			
+			int excellenceCardTotal = 0;
+			int awardPointsTotal = 0;
+			
+			for(BrainBoostWinndersGraphDTO item: BrainBoostWinndersGraphDTO){
+				ChartData chartData = new ChartData();
+				chartData.setName(item.getChildTerritory());
+				chartData.setValue(item.getEarnings());
+				excellenceCardTotal += item.getEarnings();
+				excellenceCard.addData(chartData);
+				
+				ChartData chartData2 = new ChartData();
+				chartData2.setName(item.getChildTerritory());
+				chartData2.setValue(item.getPoints());
+				awardPointsTotal += item.getPoints();
+				awardPoints.addData(chartData2);
 			}
+			excellenceCard.setValue(excellenceCardTotal);
+			awardPoints.setValue(awardPointsTotal);
+			list.add(excellenceCard);
+			list.add(awardPoints);
+			
 			chart.setData(list);
 
 			return chart;
@@ -3794,12 +3841,13 @@ public class DashboardController {
 			chart.setType("column_stack");
 			chart.setXaxisTitle("Total Certifications");
 			chart.setYaxisTitle("");
-
-			List<String> filters = new ArrayList<String>();
-			filters.add(territory);
+			
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
+			
 			// check for role, to know what data to display
-			List<CertProfsWinnersGraphDTO> CertProfsWinnersGraphDTO = this.dashService.getCertProfsWinnersGraphByChildTerritory(filters);
-
+			List<CertProfsWinnersGraphDTO> CertProfsWinnersGraphDTO = this.dashService.getCertProfsWinnersGraphByChildTerritory(territory);
 
 
 			List<ChartData> list = new ArrayList<ChartData>();
@@ -3808,7 +3856,58 @@ public class DashboardController {
 			ChartData certified = new ChartData();
 			ChartData certifiedSpacialist = new ChartData();
 			ChartData masterCertified = new ChartData();
-			if(CertProfsWinnersGraphDTO.size() > 0){	
+			
+			int totalCertified = 0;
+			int totalCertifiedSpacialist = 0;
+			int totalMasterCertified =  0;
+			
+			certified.setName("Certified");
+			certifiedSpacialist.setName("Certified Spacialist");
+			masterCertified.setName("Master Certified");
+			
+			for(CertProfsWinnersGraphDTO item: CertProfsWinnersGraphDTO){	
+				//chartData.setName(CertProfsWinnersGraphDTO.get(0).getChildTerritory());
+
+				ChartData certifiedInner = new ChartData();
+				certifiedInner.setName(item.getChildTerritory());
+				certifiedInner.setValue(Double.parseDouble(item.getCertified()));
+				totalCertified += (int)Double.parseDouble(item.getCertified());
+				certified.addData(certifiedInner);
+
+
+				ChartData certifiedSpacialistInner = new ChartData();
+				certifiedSpacialistInner.setName(item.getChildTerritory());
+				certifiedSpacialistInner.setValue(Double.parseDouble(item.getCertifiedSpecalist()));
+				totalCertifiedSpacialist += (int)Double.parseDouble(item.getCertifiedSpecalist());
+				certifiedSpacialist.addData(certifiedSpacialistInner);
+
+				
+				ChartData masterCertifiedInner = new ChartData();
+				masterCertifiedInner.setName(item.getChildTerritory());
+				masterCertifiedInner.setValue(Double.parseDouble(item.getMasterCertified()));
+				totalMasterCertified += (int)Double.parseDouble(item.getMasterCertified());
+				masterCertified.addData(masterCertifiedInner);
+
+
+				//chartData.addData(certified);
+				//chartData.addData(certifiedSpacialist);
+				//chartData.addData(masterCertified);
+				//chartData.setValue(certified.getValue() + certifiedSpacialist.getValue() + masterCertified.getValue());
+				//chartData.setName(CertProfsWinnersGraphDTO.get(0).getChildTerritory());
+				
+				//list.add(chartData);
+				//chart.setData(list);
+			}
+			
+			certified.setValue(totalCertified);
+			certifiedSpacialist.setValue(totalCertifiedSpacialist);
+			masterCertified.setValue(totalMasterCertified);
+			
+			list.add(certified);
+			list.add(certifiedSpacialist);
+			list.add(masterCertified);
+			
+			/*if(CertProfsWinnersGraphDTO.size() > 0){	
 				//chartData.setName(CertProfsWinnersGraphDTO.get(0).getChildTerritory());
 
 				certified.setName("Certified");
@@ -3845,7 +3944,7 @@ public class DashboardController {
 				list.add(masterCertified);
 				//list.add(chartData);
 				//chart.setData(list);
-			}
+			}*/
 
 			chart.setData(list);		
 
@@ -3940,7 +4039,7 @@ public class DashboardController {
 				avgSurveyCount.setTotal("0");
 
 				TotalName rank  = new TotalName();
-				rank.setName("Dealership Rank");
+				rank.setName("Dealership BC Rank Based on Quarterly Survey Score");
 				rank.setTotal("0");
 
 				if(incentiveEligibleList.size()>0){
@@ -4102,7 +4201,7 @@ public class DashboardController {
 				avgYearsOfService.setTotal("0");
 
 				TotalName rank  = new TotalName();
-				rank.setName("Dealership Rank");
+				rank.setName("Dealership BC Rank Based on Quarterly Survey Score");
 				rank.setTotal("0");
 
 				TotalName enrolled  = new TotalName();
@@ -4496,15 +4595,23 @@ public class DashboardController {
 		case "23":
 		{
 			// check for role, to know what data to display //TODO: update this to sum
-			List<String> filters = new ArrayList<String>(Arrays.asList(territory));
-			List<RewardRedemptionGraphDTO> listOfFirstLevel = this.dashService.getRewardRedemptionGraphByChildTerritoryList(filters);
+			
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
+			
+			List<RewardRedemptionGraphDTO> listOfFirstLevel = this.dashService.getRewardRedemptionGraphByChildTerritory(territory);
 
 			List<ChartData> attributes = new ArrayList<ChartData>();
 
-			if(listOfFirstLevel.size() >0){
-				ChartData temp = new ChartData(territory, listOfFirstLevel.get(0).getEarnedPoints());
+			for(RewardRedemptionGraphDTO item: listOfFirstLevel){
+				ChartData temp = new ChartData(item.getChildTerritory(), item.getEarnedPoints());
 				attributes.add(temp);
 			}
+			/*if(listOfFirstLevel.size() >0){
+				ChartData temp = new ChartData(territory, listOfFirstLevel.get(0).getEarnedPoints());
+				attributes.add(temp);
+			}*/
 
 			Chart chart = new Chart("Total Program Points Earned YTD", "", "Total Points Earned", "", "column");
 			chart.setData(attributes);
@@ -4626,7 +4733,7 @@ public class DashboardController {
 						topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 
 						dealershipMasterCertifiedNationalRank.setName("Dealership Master Certified National Rank");
-						dealershipMasterCertifiedNationalRank.setTotal(CertProfsWinnersGraphDTO.getMasterCertBCCertRank() + "");
+						dealershipMasterCertifiedNationalRank.setTotal(CertProfsWinnersGraphDTO.getMasterCertNATCertRank() + "");
 						topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedNationalRank));
 
 						dealershipRankWithinBC.setName("Dealership BC Rank for Total Participants Receiving Certification");
@@ -4678,10 +4785,10 @@ public class DashboardController {
 				totalCertifiedSpecialistParticipants.setName("Total Winners YTD");
 				totalCertifiedSpecialistParticipants.setTotal(0 + "");
 
-				totalCertifiedLevelParticipants.setName("Total Excellence Card Dealership Awards YTD");
+				totalCertifiedLevelParticipants.setName("Total Excellence Card Awards YTD");
 				totalCertifiedLevelParticipants.setTotal(0 + "");
 
-				dealershipMasterCertifiedRankWithinBC.setName("Total Award Points Dealership Earned YTD ");
+				dealershipMasterCertifiedRankWithinBC.setName("Total Award Points Earned YTD ");
 				dealershipMasterCertifiedRankWithinBC.setTotal(0 + "");
 
 				if(BrainBoostWinndersGraphList.size() >0){
@@ -4703,11 +4810,11 @@ public class DashboardController {
 					totalCertifiedSpecialistParticipants.setTotal(BrainBoostWinndersGraphDTO.getWinners() + "");
 
 
-					totalCertifiedLevelParticipants.setName("Total Excellence Card Dealership Awards YTD");
+					totalCertifiedLevelParticipants.setName("Total Excellence Card Awards YTD");
 					totalCertifiedLevelParticipants.setTotal(BrainBoostWinndersGraphDTO.getEarnings() + "");
 
 
-					dealershipMasterCertifiedRankWithinBC.setName("Total Award Points Dealership Earned YTD ");
+					dealershipMasterCertifiedRankWithinBC.setName("Total Award Points Earned YTD ");
 					dealershipMasterCertifiedRankWithinBC.setTotal(BrainBoostWinndersGraphDTO.getPoints() + "");
 
 				}
@@ -4771,9 +4878,9 @@ public class DashboardController {
 				totalMasterCertifiedParticipants.setTotal("0");
 				totalCertifiedSpecialistParticipants.setName("Total Winners YTD");
 				totalCertifiedSpecialistParticipants.setTotal("0");
-				totalCertifiedLevelParticipants.setName("Total Excellence Card Dealership Awards YTD");
+				totalCertifiedLevelParticipants.setName("Total Excellence Card Awards YTD");
 				totalCertifiedLevelParticipants.setTotal("0");
-				dealershipMasterCertifiedRankWithinBC.setName("Total Award Points Dealership Earned YTD ");
+				dealershipMasterCertifiedRankWithinBC.setName("Total Award Points Earned YTD ");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0");
 
 				if(BrainBoostWinndersGraphList.size() >0){
@@ -4839,7 +4946,7 @@ public class DashboardController {
 				List<CertProfsExpertGraphDTO> CertProfsExpertGraphList = this.dashService.getExpertPointsEarnedByChildTerritory(list);
 				List<CertProfsExpertGraphDTO> CertProfsExpertGraphJEEPList = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(list, "JEEP%");
 				List<CertProfsExpertGraphDTO> CertProfsExpertGraphRAMList = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(list, "RAM%");
-				List<CertProfsExpertGraphDTO> CertProfsExpertGraphTECHList = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(list, "RAM%");
+				List<CertProfsExpertGraphDTO> CertProfsExpertGraphTECHList = this.dashService.getParticipantCompletedByProgramByChildTerritoryAndCertType(list, "TECH%");
 
 				totalCertifiedParticipants.setName("Total Participants Completed - JEEP");
 				totalCertifiedParticipants.setTotal("0");
@@ -4900,7 +5007,7 @@ public class DashboardController {
 
 
 				//TODO: check this only 1 is appearing
-				totalCertifiedLevelParticipants.setName("Dealership Rank in Business Center");
+				totalCertifiedLevelParticipants.setName("Dealership Rank in Business Center by Points Earned YTD");
 				totalCertifiedLevelParticipants.setTotal("-");
 
 				if(CertProfsExpertGraphRAMList.size() > 0){
@@ -4926,12 +5033,12 @@ public class DashboardController {
 
 				totalCertifiedSpecialistParticipants.setName("Total Experts Points Earned YTD");
 				totalCertifiedSpecialistParticipants.setTotal(0 + "");
-				cartificationLevel.setTotal("Jeep Expert Completed:");
-				cartificationLevel.setName("No");
-				dealershipMasterCertifiedRankWithinBC.setTotal("RAM Expert Completed:");
-				dealershipMasterCertifiedRankWithinBC.setName("No");
-				techExpert.setTotal("Technology Expert Completed:");
-				techExpert.setName("No");
+				cartificationLevel.setTotal("Jeep Expert");
+				cartificationLevel.setName(" Completed:No");
+				dealershipMasterCertifiedRankWithinBC.setTotal("RAM Expert");
+				dealershipMasterCertifiedRankWithinBC.setName("Completed:No");
+				techExpert.setTotal("Technology Expert");
+				techExpert.setName("Completed:No");
 
 				TileAttribute1 jeepTile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel); 
 				TileAttribute1 ramTile = this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC); 
@@ -5296,7 +5403,9 @@ public class DashboardController {
 		}
 		case "31":
 		{
-
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
 			//main chart model
 			Chart chart = new Chart("Retention % By Employee Type", "", "Retention %", "", "column_stack");
 
@@ -5310,16 +5419,18 @@ public class DashboardController {
 				attributes.add(new ChartData(programName, 0));
 			}
 
-			List<String> filters = new ArrayList<String>(Arrays.asList(territory));
 			for(ChartData item: attributes){
-				List<RetentionGraphDTO> innerList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(filters, item.getName());
-				ChartData chartD = new ChartData(territory, 0);
-				if(innerList.size() > 0){
-					chartD.setName(territory);
-					chartD.setValue(innerList.get(0).getPercentage());
-					item.setValue(innerList.get(0).getPercentage());
+				List<RetentionGraphDTO> innerList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, item.getName());
+				
+				double total = 0;
+				for(RetentionGraphDTO innerItem: innerList){
+					ChartData chartD = new ChartData(territory, 0);
+					chartD.setName(innerItem.getChildTerritory());
+					chartD.setValue(innerItem.getPercentage());
+					item.addData(chartD);
+					total += innerItem.getPercentage();
 				}
-
+				item.setValue(total);
 				if(item.getName().equals("09")){
 					item.setName("Service Managers");
 				}else if(item.getName().equals("14")){
@@ -5335,8 +5446,7 @@ public class DashboardController {
 				}else if(item.getName().equals("08")){
 					item.setName("Parts Managers");
 				}
-
-				item.addData(chartD);
+				
 			}
 			chart.setData(attributes);
 			chart.setUnit("%");
@@ -5346,10 +5456,11 @@ public class DashboardController {
 		}
 		case "32":
 		{
-			List<String> filters = new ArrayList<String>();
-			filters.add(territory);
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
 			// check for role, to know what data to display
-			List<CustomerFirstGraphDTO> CustomerFirstGraphDTO = this.dashService.getCustomerFirstGraphByChildTerritoryAndToggle(filters, "Total");
+			List<CustomerFirstGraphDTO> CustomerFirstGraphDTO = this.dashService.getCustomerFirstGraphByChildTerritoryAndToggle(territory, "Total");
 			Chart chart = new Chart();
 			chart.setTitle("Customer First Pillars Completed QTD");
 			chart.setSubTitle("");
@@ -5368,7 +5479,51 @@ public class DashboardController {
 			list.add(new ChartData("Facility", 0));
 			list.add(new ChartData("CFAFE Award Certification", 0));
 
-			if(CustomerFirstGraphDTO.size() > 0){
+			for(CustomerFirstGraphDTO item :CustomerFirstGraphDTO){
+				ChartData data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getNoCertification());
+				list.get(0).setValue(data.getValue());
+				list.get(0).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getPerformance());
+				list.get(1).setValue(data.getValue());
+				list.get(1).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getProcess());
+				list.get(2).setValue(data.getValue());
+				list.get(2).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getVoiceofEmployee());
+				list.get(3).setValue(data.getValue());
+				list.get(3).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getTraining());
+				list.get(4).setValue(data.getValue());
+				list.get(4).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getFacility());
+				list.get(5).setValue(data.getValue());
+				list.get(5).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getCFAFEAwardCertification());
+				list.get(6).setValue(data.getValue());
+				list.get(6).addData(data);
+			}
+			
+			/*if(CustomerFirstGraphDTO.size() > 0){
 				ChartData data = new ChartData();
 				data.setName(CustomerFirstGraphDTO.get(0).getChildTerritory());
 				data.setValue(CustomerFirstGraphDTO.get(0).getNoCertification());
@@ -5407,10 +5562,10 @@ public class DashboardController {
 
 				data = new ChartData();
 				data.setName(CustomerFirstGraphDTO.get(0).getChildTerritory());
-				data.setValue(CustomerFirstGraphDTO.get(0).getFacility());
+				data.setValue(CustomerFirstGraphDTO.get(0).getCFAFEAwardCertification());
 				list.get(6).setValue(data.getValue());
 				list.get(6).addData(data);
-			}
+			}*/
 
 			chart.setData(list);
 
@@ -5418,10 +5573,11 @@ public class DashboardController {
 		}
 		case "33":
 		{
-			List<String> filters = new ArrayList<String>();
-			filters.add(territory);
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
 			// check for role, to know what data to display
-			List<CustomerFirstGraphDTO> CustomerFirstGraphDTO = this.dashService.getCustomerFirstGraphByChildTerritoryAndToggle(filters, "Percentage");
+			List<CustomerFirstGraphDTO> CustomerFirstGraphDTO = this.dashService.getCustomerFirstGraphByChildTerritoryAndToggle(territory, "Percentage");
 			Chart chart = new Chart();
 			chart.setTitle("Customer First Pillars Completion Percentage");
 			chart.setSubTitle("");
@@ -5438,6 +5594,52 @@ public class DashboardController {
 			list.add(new ChartData("Facility", 0));
 			list.add(new ChartData("CFAFE Award Certification", 0));
 
+
+			for(CustomerFirstGraphDTO item: CustomerFirstGraphDTO){
+				ChartData data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getNoCertification());
+				list.get(0).setValue(data.getValue());
+				list.get(0).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getPerformance());
+				list.get(1).setValue(data.getValue());
+				list.get(1).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getProcess());
+				list.get(2).setValue(data.getValue());
+				list.get(2).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getVoiceofEmployee());
+				list.get(3).setValue(data.getValue());
+				list.get(3).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getTraining());
+				list.get(4).setValue(data.getValue());
+				list.get(4).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getFacility());
+				list.get(5).setValue(data.getValue());
+				list.get(5).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChildTerritory());
+				data.setValue(item.getCFAFEAwardCertification());
+				list.get(6).setValue(data.getValue());
+				list.get(6).addData(data);
+
+			}
+			/*
 			if(CustomerFirstGraphDTO.size() > 0){
 				ChartData data = new ChartData();
 				data.setName(CustomerFirstGraphDTO.get(0).getChildTerritory());
@@ -5481,7 +5683,7 @@ public class DashboardController {
 				list.get(6).setValue(data.getValue());
 				list.get(6).addData(data);
 
-			}
+			}*/
 
 			chart.setData(list);
 			chart.setAvarage(true);
@@ -5491,6 +5693,9 @@ public class DashboardController {
 		}
 		case "34":
 		{
+			if(type.equalsIgnoreCase("district")){
+				territory = territory.substring(0, 3) + "%";
+			}
 			// check for role, to know what data to display
 			List<TTTAEnrolledGraphDTO> TTTAEnrolledDTO = this.dashService.getTTTAEnrolledByChildTerritory(territory);
 			Chart chart = new Chart();
@@ -5507,7 +5712,40 @@ public class DashboardController {
 			list.add(new ChartData("Group D", 0));
 			list.add(new ChartData("Group E", 0));
 
-			if(TTTAEnrolledDTO.size() > 0){
+			for(TTTAEnrolledGraphDTO item: TTTAEnrolledDTO){
+				ChartData data = new ChartData();
+				data.setName(item.getChild());
+				data.setValue(item.getTotalGroupA());
+				list.get(0).setValue(data.getValue());
+				list.get(0).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChild());
+				data.setValue(item.getTotalGroupB());
+				list.get(1).setValue(data.getValue());
+				list.get(1).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChild());
+				data.setValue(item.getTotalGroupC());
+				list.get(2).setValue(data.getValue());
+				list.get(2).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChild());
+				data.setValue(item.getTotalGroupD());
+				list.get(3).setValue(data.getValue());
+				list.get(3).addData(data);
+
+				data = new ChartData();
+				data.setName(item.getChild());
+				data.setValue(item.getTotalGroupE());
+				list.get(4).setValue(data.getValue());
+				list.get(4).addData(data);
+
+			}
+			
+			/*if(TTTAEnrolledDTO.size() > 0){
 				ChartData data = new ChartData();
 				data.setName(TTTAEnrolledDTO.get(0).getChild());
 				data.setValue(TTTAEnrolledDTO.get(0).getTotalGroupA());
@@ -5538,7 +5776,7 @@ public class DashboardController {
 				list.get(4).setValue(data.getValue());
 				list.get(4).addData(data);
 
-			}
+			}*/
 
 			chart.setData(list);
 
@@ -5640,16 +5878,13 @@ public class DashboardController {
 		}
 		case "36":
 		{
-			List<String> filters = new ArrayList<String>();
-
-			//if type = distric get distric
-			filters.add(territory);
-
 			List<SummaryProgramRewardGraphDTO> sublist = new ArrayList<SummaryProgramRewardGraphDTO>();
-			if(type.equals("Participant") || type.equals("Manager")){
-				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(territory);
+			if(type.equals("District")){
+				sublist = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(territory.substring(0, 3) + "%");
 			}else{
-				sublist = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(filters);
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(territory);
 			}
 
 			Chart chart = new Chart();
@@ -5658,14 +5893,22 @@ public class DashboardController {
 			chart.setType("column");
 			chart.setXaxisTitle("");
 			chart.setYaxisTitle("Total Dollars Earned");
-			if(sublist.size() > 0){
+			/*if(sublist.size() > 0){
 				List<ChartData> list = new ArrayList<ChartData>();
 				ChartData chartData = new ChartData();	
 				chartData.setName(sublist.get(0).getChild());
 				chartData.setValue(sublist.get(0).getEarnings());
 				list.add(chartData);
 				chart.setData(list);
+			}*/
+			List<ChartData> list = new ArrayList<ChartData>();
+			for(SummaryProgramRewardGraphDTO item: sublist){
+				ChartData chartData = new ChartData();	
+				chartData.setName(item.getChild());
+				chartData.setValue(item.getEarnings());
+				list.add(chartData);
 			}
+			chart.setData(list);
 			chart.setUnit("$");
 			return chart;
 		}

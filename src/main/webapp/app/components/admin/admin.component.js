@@ -499,8 +499,8 @@ AdminComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-admin",
-        templateUrl: "./admin-static.html",
-        //  templateUrl: "./admin1.html"
+        //    templateUrl: "./admin-static.html",
+        templateUrl: "./new-admin.html",
         providers: [ng_bootstrap_1.NgbAccordionConfig]
     }),
     __metadata("design:paramtypes", [http_1.Http, admin_service_1.AdminService, core_1.ElementRef,

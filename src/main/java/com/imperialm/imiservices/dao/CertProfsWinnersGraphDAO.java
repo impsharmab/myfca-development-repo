@@ -13,10 +13,12 @@ public interface CertProfsWinnersGraphDAO {
 	public static String SELECT_BY_TERRITORY = "SELECT [Parent] 'parentTerritory' , [Child] as 'childTerritory' , [CertType] as certType , [Points] 'points' , [Certified] 'certified', [CertifiedSpecalist] 'certifiedSpecalist', [MasterCertified] 'masterCertified', [TotalCertified] 'totalCertified', [MasterCertBCCertRank] 'masterCertBCCertRank', [MasterCertNATCertRank] 'masterCertNATCertRank', [AllBCCertRank] 'allBCCertRank', [AllNATCertRank] 'allNATCertRank',  '' as error FROM [dbo].[CertProfsWinnersGraph] WHERE [Parent] IN (?0)";
 	
 	public static String SELECT_BY_CHILD_TERRITORY = "SELECT [Parent] 'parentTerritory', [Child] 'childTerritory' , [CertType] certType , [Points] 'points' , [Certified] 'certified', [CertifiedSpecalist] 'certifiedSpecalist', [MasterCertified] 'masterCertified', [TotalCertified] 'totalCertified', [MasterCertBCCertRank] 'masterCertBCCertRank', [MasterCertNATCertRank] 'masterCertNATCertRank', [AllBCCertRank] 'allBCCertRank', [AllNATCertRank] 'allNATCertRank',  '' as error FROM [dbo].[CertProfsWinnersGraph] WHERE [Child] IN (?0)";
+	public static String SELECT_BY_CHILD_TERRITORY_SINGLE = "SELECT [Parent] 'parentTerritory', [Child] 'childTerritory' , [CertType] certType , [Points] 'points' , [Certified] 'certified', [CertifiedSpecalist] 'certifiedSpecalist', [MasterCertified] 'masterCertified', [TotalCertified] 'totalCertified', [MasterCertBCCertRank] 'masterCertBCCertRank', [MasterCertNATCertRank] 'masterCertNATCertRank', [AllBCCertRank] 'allBCCertRank', [AllNATCertRank] 'allNATCertRank',  '' as error FROM [dbo].[CertProfsWinnersGraph] WHERE [Child] like ?0";
 	
 	public List<CertProfsWinnersGraphDTO> getBCCertifications(boolean filter);
 	public List<CertProfsWinnersGraphDTO>  getAllDistricData(List<String> list);
 	public List<CertProfsWinnersGraphDTO>  getByTerritory(List<String> list);
 	public List<CertProfsWinnersGraphDTO>  getByChildTerritory(List<String> list);
+	public List<CertProfsWinnersGraphDTO>  getByChildTerritory(String list);
 	
 }

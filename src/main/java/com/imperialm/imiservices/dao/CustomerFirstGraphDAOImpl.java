@@ -60,4 +60,22 @@ public class CustomerFirstGraphDAOImpl implements CustomerFirstGraphDAO{
 		return result;
 	}
 
+	@Override
+	public List<CustomerFirstGraphDTO> getCustomerFirstByChildTerritoryAndToggle(String territory, String toggle) {
+		// TODO Auto-generated method stub 
+		List<CustomerFirstGraphDTO> result = new ArrayList<CustomerFirstGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_SINGLE, CustomerFirstGraphDTO.class);
+			query.setParameter(0, territory);
+			query.setParameter(1, toggle);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getCustomerFirstByChildTerritoryAndToggle", ex);
+		}
+		return result;
+	}
+
 }

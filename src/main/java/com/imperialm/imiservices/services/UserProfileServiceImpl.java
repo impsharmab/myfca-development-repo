@@ -20,7 +20,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private UserProfileDAO userProfileDAO;
 	
 	//UR2.1
-	private List<String> tile1 = new ArrayList<String>(Arrays.asList("01","02","07","13","14","16","19","20","22","23","27","2S","32","33","34","35","36","37","39","3S","40","46","47","49","4S","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","ET","LV","N1","N2","SC","SD","UB","VT"));
+	private List<String> tile1 = new ArrayList<String>(Arrays.asList("01","02","07","13","14","16","17","19","20","22","23","27","2S","32","33","34","35","36","37","39","3S","40","46","47","49","4S","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","ET","LV","N1","N2","SC","SD","UB","VT"));
 	//UR3.1
 	private List<String> tile2 = new ArrayList<String>(Arrays.asList("46","47","49","4S","56","60","65","6W","70","71","74","7L","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","LV","N1","N2","SC","SD","UB","VT"));
 	//UB4.1
@@ -81,37 +81,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private List<NoTile> noTileList = new ArrayList<NoTile>();
 	
 	private List<NoTile> userTiles = new ArrayList<NoTile>();
-	
-	/*public UserProfileServiceImpl(UserProfileDAO userProfileDAO){
-		this.userProfileDAO = userProfileDAO;
-		
-		this.noTileList.add(new NoTile(2,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(19,"","chart", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(9,"","chart", "","brainboost.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(12,"","chart", "","brainboost.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(14,"","tile", "","topadvisor.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(15,"","tile", "","toptech.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(16,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(17,"","chart", "","toptech-topadv.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(3,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(4,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(5,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(6,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(7,"","tile", "","mser-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(20,"","chart", "","wiadvisor-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(21,"","chart", "","wiadvisor-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(22,"","chart", "","wiadvisor-logo.jpg","www.mopar.com"));
-		this.noTileList.add(new NoTile(23,"","chart", "","wiadvisor-logo.jpg","www.mopar.com"));
-		//this.noTileList.add(new NoTile(24,"","tile", "","wiadvisor-logo.jpg","www.mopar.com"));
-		//this.noTileList.add(new NoTile(25,"","tile", "","wiadvisor-logo.jpg","www.mopar.com"));
-		
-	}*/
 
 	@Override
 	public UserProfileDTO getUserProfile(final InputRequest userRoleReq) {
@@ -232,9 +201,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 			if(tile26.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
 			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","","")); // RETENTION
 			}
-			
-		
-		
 		
 		
 		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){

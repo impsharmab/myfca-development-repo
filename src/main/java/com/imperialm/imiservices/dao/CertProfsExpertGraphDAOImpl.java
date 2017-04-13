@@ -76,6 +76,23 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 	}
 	
 	@Override
+	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritory(String filters) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_POINTS_BY_CHILD_TERRITORY_SINGLE, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getExpertPointsEarnedByChildTerritory", ex);
+		}
+		return result;
+	}
+	
+	@Override
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritoryAsParent(List<String> filters) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
 
@@ -120,6 +137,25 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY_AND_CERT_TYPE, CertProfsExpertGraphDTO.class);
+			query.setParameter(0, filters);
+			query.setParameter(1, certType);
+			List<CertProfsExpertGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getParticipantCompletedByProgramByChildTerritoryAndCertType", ex);
+		}
+		return result;
+	}
+	
+	@Override
+	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritoryAndCertType(
+			String filters, String certType) {
+		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY_AND_CERT_TYPE_SINGLE, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
 			query.setParameter(1, certType);
 			List<CertProfsExpertGraphDTO> rows = query.getResultList();

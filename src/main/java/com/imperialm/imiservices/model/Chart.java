@@ -3,8 +3,6 @@ package com.imperialm.imiservices.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import lombok.Getter;
 import lombok.Setter;
 

@@ -230,6 +230,10 @@ public class DashboardServiceImpl {
 		 return this.BrainBoostWinndersGraphDAO.getByChildTerritory(list);
 	}
 	
+	public List<BrainBoostWinndersGraphDTO> getBrainBoostWinndersGraphgetByChildTerritory(String list){
+		 return this.BrainBoostWinndersGraphDAO.getByChildTerritory(list);
+	}
+	
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOBySID(String sID, String toggle){
 		 return this.BrainBoostWinnersDetailsDAO.getBrainBoostWinnersDetailsBySID(sID, toggle);
 	}
@@ -257,6 +261,11 @@ public class DashboardServiceImpl {
 		return this.CertProfsWinnersGraphDAO.getByChildTerritory(list);
 	}
 	
+	public List<CertProfsWinnersGraphDTO> getCertProfsWinnersGraphByChildTerritory(String list)
+	{
+		return this.CertProfsWinnersGraphDAO.getByChildTerritory(list);
+	}
+	
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarned(){
 		return this.CertProfsExpertGraphDAO.getExpertPointsEarned();
 	}
@@ -273,6 +282,10 @@ public class DashboardServiceImpl {
 		return this.CertProfsExpertGraphDAO.getExpertPointsEarnedByChildTerritory(filters);
 	}
 	
+	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritory(String filters){
+		return this.CertProfsExpertGraphDAO.getExpertPointsEarnedByChildTerritory(filters);
+	}
+	
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritoryAsParent(List<String> filters){
 		return this.CertProfsExpertGraphDAO.getExpertPointsEarnedByChildTerritoryAsParent(filters);
 	}
@@ -282,6 +295,10 @@ public class DashboardServiceImpl {
 	}
 	
 	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritoryAndCertType(List<String> filters, String certType){
+		return this.CertProfsExpertGraphDAO.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, certType);
+	}
+	
+	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritoryAndCertType(String filters, String certType){
 		return this.CertProfsExpertGraphDAO.getParticipantCompletedByProgramByChildTerritoryAndCertType(filters, certType);
 	}
 	
@@ -384,6 +401,10 @@ public class DashboardServiceImpl {
 		return this.RetentionGraphDAO.getRetentionGraphByChildTerritoryListAndPositionCode(list, positionCode);
 	}
 	
+	public List<RetentionGraphDTO> getRetentionGraphByChildTerritoryListAndPositionCode(String list, String positionCode){
+		return this.RetentionGraphDAO.getRetentionGraphByChildTerritoryListAndPositionCode(list, positionCode);
+	}
+	
 	public List<RetentionGraphDTO> getRetentionGraphNATByPositionCode(String positionCode){
 		return this.RetentionGraphDAO.getRetentionGraphNATByPositionCode(positionCode);
 	}
@@ -422,6 +443,10 @@ public class DashboardServiceImpl {
 	
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByChildTerritoryList(List<String> territory){
 		return this.RewardRedemptionGraphDAO.getRewardRedemptionGraphByChildTerritoryList(territory);
+	}
+	
+	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByChildTerritory(String territory){
+		return this.RewardRedemptionGraphDAO.getRewardRedemptionGraphByChildTerritory(territory);
 	}
 	
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByParentTerritoryList(List<String> territory){
@@ -496,6 +521,10 @@ public class DashboardServiceImpl {
 	}
 	
 	public List<CustomerFirstGraphDTO> getCustomerFirstGraphByChildTerritoryAndToggle(List<String> territory, String toggle){
+		return this.CustomerFirstGraphDAO.getCustomerFirstByChildTerritoryAndToggle(territory, toggle);
+	}
+	
+	public List<CustomerFirstGraphDTO> getCustomerFirstGraphByChildTerritoryAndToggle(String territory, String toggle){
 		return this.CustomerFirstGraphDAO.getCustomerFirstByChildTerritoryAndToggle(territory, toggle);
 	}
 	
@@ -576,6 +605,10 @@ public class DashboardServiceImpl {
 	}
 	
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(List<String> territory){
+		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByChildTerritoryYTD(territory);
+	}
+	
+	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(String territory){
 		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByChildTerritoryYTD(territory);
 	}
 	
