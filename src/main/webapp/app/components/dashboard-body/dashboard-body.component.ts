@@ -337,7 +337,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         type: ''
       },
       colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
-         '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
+        '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
       // "colors": [   "#3498db", "#1abc9c", "#f39c12", "#d35400", "#f1c40f", "#2ecc71","#34495e","#e74c3c","#9b59b6"],
       //   "colors": ["#0d80c7", "#0c669e", "#12689b", "#36a0ba", "#6fdcc9", "#3498db", "#1abc9c", "#f39c12", "#d35400"],
 
@@ -487,13 +487,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             drillDownObj.point = {
               events: {
                 click: function () {
-                  if (this.x != undefined)
-                    // modal trigger
-                    __this.service.getTableJson("").subscribe(
-                      (resUserData) => {
-                        __this.statisticModelData = resUserData;
-                        __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                      })
+                  if (this.x != undefined){
+                    var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  }
+                  // modal trigger
+                  // __this.service.getTableJson("").subscribe(
+                  //   (resUserData) => {
+                  //     __this.statisticModelData = resUserData;
+                  //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                  //   })
                 },
                 drilldown: function () {
                   var chart = this;
@@ -753,13 +756,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             drillDownObj.point = {
               events: {
                 click: function () {
-                  if (this.x != undefined)
-                    // modal trigger
-                    __this.service.getTableJson("").subscribe(
-                      (resUserData) => {
-                        __this.statisticModelData = resUserData;
-                        __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                      })
+                  if (this.x != undefined){
+                    var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  }// modal trigger
+                  // __this.service.getTableJson("").subscribe(
+                  //   (resUserData) => {
+                  //     __this.statisticModelData = resUserData;
+                  //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                  //   })
                 },
                 drilldown: function () {
                   var chart = this;
@@ -861,7 +866,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         chartObj.plotOptions["series"]["stacking"] = "normal";
         delete chartObj.xAxis.categories;
         //delete chartObj.yAxis;
-        this.constructChartObject(chartData, chartObj);
+        this.constructChartObject(chartData, chartObj, tileId);
         break;
       case "column_compound":
         chartObj.chart.type = "column"
@@ -891,7 +896,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         }
         delete chartObj.xAxis.categories;
         //delete chartObj.yAxis;
-        this.constructChartObject(chartData, chartObj);
+        this.constructChartObject(chartData, chartObj, tileId);
         break;
       case "column_stack":
         chartObj.chart.type = "column"
@@ -921,7 +926,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
         delete chartObj.xAxis.categories;
         // delete chartObj.yAxis;
-        this.constructChartObject(chartData, chartObj);
+        this.constructChartObject(chartData, chartObj, tileId);
         var total = 0;
         var avagerCount = 0;
         if (chartObj.series.length > 2) {
@@ -1023,7 +1028,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.chartObjects[id] = chartObj;
   }
   private statisticModelData: any = {};
-  private constructChartObject(chartData: any, chartObj: any) {
+  private constructChartObject(chartData: any, chartObj: any, tileId: any) {
 
     var categories = [];
     var seriesJsonObject = [];
@@ -1051,14 +1056,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           drillDownObj.point = {
             events: {
               click: function () {
-                if (this.x != undefined)
-                  // modal trigger
-                  // __this.modalService.open(__this.tableContent, { size: "lg" });
-                  __this.service.getTableJson("").subscribe(
-                    (resUserData) => {
-                      __this.statisticModelData = resUserData;
-                      __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                    })
+                if (this.x != undefined){
+                  var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                }// modal trigger
+                // __this.modalService.open(__this.tableContent, { size: "lg" });
+                // __this.service.getTableJson("").subscribe(
+                //   (resUserData) => {
+                //     __this.statisticModelData = resUserData;
+                //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                //   })
 
               },
               drilldown: function () {
@@ -1194,13 +1201,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         drillDownObj.point = {
           events: {
             click: function () {
-              if (this.x != undefined)
+              if (this.x != undefined){
+              var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger
-                __this.service.getTableJson("").subscribe(
-                  (resUserData) => {
-                    __this.statisticModelData = resUserData;
-                    __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                  })
+                // __this.service.getTableJson("").subscribe(
+                //   (resUserData) => {
+                //     __this.statisticModelData = resUserData;
+                //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                //   })
+              }
             },
             drilldown: function () {
               var chart = this;
@@ -1338,13 +1348,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         drillDownObj.point = {
           events: {
             click: function () {
-              if (this.x != undefined)
-                // modal trigger
-                __this.service.getTableJson("").subscribe(
-                  (resUserData) => {
-                    __this.statisticModelData = resUserData;
-                    __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                  })
+              if (this.x != undefined){
+                var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+              window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
+              }
+              // modal trigger
+              // __this.service.getTableJson("").subscribe(
+              //   (resUserData) => {
+              //     __this.statisticModelData = resUserData;
+              //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+              //   })
             },
             drilldown: function () {
               var chart = this;

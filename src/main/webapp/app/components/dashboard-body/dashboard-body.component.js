@@ -467,12 +467,16 @@ var DashboardBodyComponent = (function () {
                         drillDownObj.point = {
                             events: {
                                 click: function () {
-                                    if (this.x != undefined)
-                                        // modal trigger
-                                        __this.service.getTableJson("").subscribe(function (resUserData) {
-                                            __this.statisticModelData = resUserData;
-                                            __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                                        });
+                                    if (this.x != undefined) {
+                                        var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    }
+                                    // modal trigger
+                                    // __this.service.getTableJson("").subscribe(
+                                    //   (resUserData) => {
+                                    //     __this.statisticModelData = resUserData;
+                                    //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                                    //   })
                                 },
                                 drilldown: function () {
                                     var chart = this;
@@ -699,12 +703,15 @@ var DashboardBodyComponent = (function () {
                         drillDownObj.point = {
                             events: {
                                 click: function () {
-                                    if (this.x != undefined)
-                                        // modal trigger
-                                        __this.service.getTableJson("").subscribe(function (resUserData) {
-                                            __this.statisticModelData = resUserData;
-                                            __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                                        });
+                                    if (this.x != undefined) {
+                                        var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    } // modal trigger
+                                    // __this.service.getTableJson("").subscribe(
+                                    //   (resUserData) => {
+                                    //     __this.statisticModelData = resUserData;
+                                    //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                                    //   })
                                 },
                                 drilldown: function () {
                                     var chart = this;
@@ -810,7 +817,7 @@ var DashboardBodyComponent = (function () {
                 chartObj.plotOptions["series"]["stacking"] = "normal";
                 delete chartObj.xAxis.categories;
                 //delete chartObj.yAxis;
-                this.constructChartObject(chartData, chartObj);
+                this.constructChartObject(chartData, chartObj, tileId);
                 break;
             case "column_compound":
                 chartObj.chart.type = "column";
@@ -838,7 +845,7 @@ var DashboardBodyComponent = (function () {
                 };
                 delete chartObj.xAxis.categories;
                 //delete chartObj.yAxis;
-                this.constructChartObject(chartData, chartObj);
+                this.constructChartObject(chartData, chartObj, tileId);
                 break;
             case "column_stack":
                 chartObj.chart.type = "column";
@@ -863,7 +870,7 @@ var DashboardBodyComponent = (function () {
                 };
                 delete chartObj.xAxis.categories;
                 // delete chartObj.yAxis;
-                this.constructChartObject(chartData, chartObj);
+                this.constructChartObject(chartData, chartObj, tileId);
                 var total = 0;
                 var avagerCount = 0;
                 if (chartObj.series.length > 2) {
@@ -960,7 +967,7 @@ var DashboardBodyComponent = (function () {
     DashboardBodyComponent.prototype.saveChartInstance = function (chartObj, id) {
         this.chartObjects[id] = chartObj;
     };
-    DashboardBodyComponent.prototype.constructChartObject = function (chartData, chartObj) {
+    DashboardBodyComponent.prototype.constructChartObject = function (chartData, chartObj, tileId) {
         var categories = [];
         var seriesJsonObject = [];
         var drilldownArray = [];
@@ -985,13 +992,16 @@ var DashboardBodyComponent = (function () {
                     drillDownObj.point = {
                         events: {
                             click: function () {
-                                if (this.x != undefined)
-                                    // modal trigger
-                                    // __this.modalService.open(__this.tableContent, { size: "lg" });
-                                    __this.service.getTableJson("").subscribe(function (resUserData) {
-                                        __this.statisticModelData = resUserData;
-                                        __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                                    });
+                                if (this.x != undefined) {
+                                    var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                } // modal trigger
+                                // __this.modalService.open(__this.tableContent, { size: "lg" });
+                                // __this.service.getTableJson("").subscribe(
+                                //   (resUserData) => {
+                                //     __this.statisticModelData = resUserData;
+                                //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                                //   })
                             },
                             drilldown: function () {
                                 var chart = this;
@@ -1122,12 +1132,10 @@ var DashboardBodyComponent = (function () {
                 drillDownObj.point = {
                     events: {
                         click: function () {
-                            if (this.x != undefined)
-                                // modal trigger
-                                __this.service.getTableJson("").subscribe(function (resUserData) {
-                                    __this.statisticModelData = resUserData;
-                                    __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                                });
+                            if (this.x != undefined) {
+                                var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                            }
                         },
                         drilldown: function () {
                             var chart = this;
@@ -1261,12 +1269,16 @@ var DashboardBodyComponent = (function () {
                 drillDownObj.point = {
                     events: {
                         click: function () {
-                            if (this.x != undefined)
-                                // modal trigger
-                                __this.service.getTableJson("").subscribe(function (resUserData) {
-                                    __this.statisticModelData = resUserData;
-                                    __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
-                                });
+                            if (this.x != undefined) {
+                                var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                            }
+                            // modal trigger
+                            // __this.service.getTableJson("").subscribe(
+                            //   (resUserData) => {
+                            //     __this.statisticModelData = resUserData;
+                            //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
+                            //   })
                         },
                         drilldown: function () {
                             var chart = this;

@@ -47,7 +47,7 @@ ngOnDestroy(){
         //Insert a 'details' column to the table
         var nCloneTh = document.createElement('th');
         var nCloneTd = document.createElement('td');
-        nCloneTd.innerHTML = '<img src="http://i.imgur.com/SD7Dz.png">';
+        nCloneTd.innerHTML = '<img src="https://i.imgur.com/SD7Dz.png">';
         nCloneTd.className = "center";
 
         $('#'+this.randomId+' thead tr').each(function () {
@@ -95,7 +95,7 @@ ngOnDestroy(){
 
             if (oTable.fnIsOpen(nTr)) {
                 /* This row is already open - close it */
-                this.src = "http://i.imgur.com/SD7Dz.png";
+                this.src = "https://i.imgur.com/SD7Dz.png";
                 oTable.fnClose(nTr);
             }
             else {
@@ -111,7 +111,7 @@ ngOnDestroy(){
                 }
 
                 //  var detailsRowData = newRowData[rowIndex].details;
-                this.src = "http://i.imgur.com/d4ICC.png";
+                this.src = "https://i.imgur.com/d4ICC.png";
                 
                 oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
                 oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({

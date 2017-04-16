@@ -233,11 +233,11 @@ export class FooterComponent implements OnInit, PipeTransform {
         }
 
 
-        console.log("rawJsonObject::::::::::: " + a);
-        console.log("rawJsonObject::::::::::: " + participantArray)
-        console.log("headerObj::::::::::::::: " + pointArray)
+        // console.log("rawJsonObject::::::::::: " + a);
+        // console.log("rawJsonObject::::::::::: " + participantArray)
+        // console.log("headerObj::::::::::::::: " + pointArray)
 
-        console.log("rawJsonObject::::::::::: " + this.transform(participantArray));
+        // console.log("rawJsonObject::::::::::: " + this.transform(participantArray));
 
     }
     transform(value: any): any {

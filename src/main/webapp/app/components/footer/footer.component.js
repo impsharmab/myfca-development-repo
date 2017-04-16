@@ -215,10 +215,10 @@ var FooterComponent = (function () {
             pointArray.push(pointObject);
             var a = new Set(headerArray);
         }
-        console.log("rawJsonObject::::::::::: " + a);
-        console.log("rawJsonObject::::::::::: " + participantArray);
-        console.log("headerObj::::::::::::::: " + pointArray);
-        console.log("rawJsonObject::::::::::: " + this.transform(participantArray));
+        // console.log("rawJsonObject::::::::::: " + a);
+        // console.log("rawJsonObject::::::::::: " + participantArray)
+        // console.log("headerObj::::::::::::::: " + pointArray)
+        // console.log("rawJsonObject::::::::::: " + this.transform(participantArray));
     };
     FooterComponent.prototype.transform = function (value) {
         //     if (value !== undefined && value !== null) {

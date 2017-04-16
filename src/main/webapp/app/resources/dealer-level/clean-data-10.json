@@ -1,34 +1,29 @@
  {
     "headers": [
-        "Dealer",
-        "winners",        
-        "Total"
+        "Dealer",              
+        "Total Points"
     ],
     "data": [
         {
             "data": [
                 "<img src=\"http://i.imgur.com/SD7Dz.png\">",
-                "FRESNO CHRYSLER DODGE JEEP RAM",
-                "3",
+                "FRESNO CHRYSLER DODGE JEEP RAM",               
                 "3"
                 
             ],
             "innerData": {
                 "headers": [
-                    "Participant",                    
-                    "winners",
-                    "Total"
+                    "Participant",
+                    "Total Points"
                 ],
                 "data": [
                     [
-                        "Craig Kent",
-                        "1",
-                        "1"
+                        "Kristan Turner",                       
+                        "10"
                     ],
                     [
-                        "Nicole Boggio",
-                        "1",
-                        "1"                        
+                        "Ronald Zibulka",
+                        "105"                    
                     ],
                     [
                         "Nicole Boggio",

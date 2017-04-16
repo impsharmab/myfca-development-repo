@@ -35,7 +35,7 @@ var DashboardBodyService = (function () {
         var positioncodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
         var getNumberOfTilesServiceUrl = "services/notile/" + positioncodes + "/" + dealerlcodes;
-        // var getNumberOfTilesServiceUrl: string = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
+        var getNumberOfTilesServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
         // var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
         //  var getNumberOfTilesServiceUrl: string = "./app/resources/json/cutomer-notiles.json";
         var headers = new http_1.Headers();
@@ -56,7 +56,7 @@ var DashboardBodyService = (function () {
         // headers.append("Cache-Control", "no-store");
         //var tileService = "./app/resources/dc-json/" + id + "-tile.json";
         var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        //var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -71,14 +71,15 @@ var DashboardBodyService = (function () {
         // headers.append("Cache-Control", "no-store");
         //   var chartService = "./app/resources/dc-json/" + id + "-chart.json";
         // var chartService = "./app/resources/json/customer_first.json"; //retention
-        //var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        //var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     DashboardBodyService.prototype.getTableJson = function (id) {
         var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var chartService = "./app/resources/dealer-level/GL-A-Jeep-Ram-processed.json";
         var chartService = "./app/resources/dealer-level/GL-A-Jeep-Ram-processed.json";
         //var chartService = "services/tile/" + id;
         var headers = new http_1.Headers();
