@@ -15,7 +15,7 @@
         "name": "Charles Prohaska",
         "certType": "JEEP    ",
         "cert": 1,
-        "points": 400,
+        "points": 400, 
         "totalPoints": 400, 
         "sid": "S27423I"
     },
@@ -151,7 +151,7 @@
     },
     {
         "dealerCode": "51255",
-        "dealerName": "CANTON MI",
+        "dealerName": "Last CANTON MI",
         "name": "Romi",
         "certType": "RAM     ",
         "cert": 1,

@@ -662,7 +662,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("http://localhost:9090/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
               }
             }

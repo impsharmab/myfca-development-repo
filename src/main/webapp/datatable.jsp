@@ -8,7 +8,7 @@
 
 
 <script type="text/javascript" language="javascript"
-	src="http://code.jquery.com/jquery-1.8.3.js"></script>
+	src="https://code.jquery.com/jquery-1.8.3.js"></script>
 
 <style type="text/css">
 body {
@@ -99,7 +99,7 @@ var iTableCounter = 1;
         //Insert a 'details' column to the table
         var nCloneTh = document.createElement('th');
         var nCloneTd = document.createElement('td');
-        nCloneTd.innerHTML = '<img src="http://i.imgur.com/SD7Dz.png">';
+        nCloneTd.innerHTML = '<img src="https://i.imgur.com/SD7Dz.png">';
         nCloneTd.className = "center";
 
         $('#exampleTable thead tr').each(function () {
@@ -125,7 +125,7 @@ var iTableCounter = 1;
                 {
                    "mDataProp": null,
                    "sClass": "control center",
-                   "sDefaultContent": '<img src="http://i.imgur.com/SD7Dz.png">'
+                   "sDefaultContent": '<img src="https://i.imgur.com/SD7Dz.png">'
                 },
                 { "mDataProp": "dealer" },
 				
@@ -156,7 +156,7 @@ var iTableCounter = 1;
             
             if (oTable.fnIsOpen(nTr)) {
                 /* This row is already open - close it */
-                this.src = "http://i.imgur.com/SD7Dz.png";
+                this.src = "https://i.imgur.com/SD7Dz.png";
                 oTable.fnClose(nTr);
             }
             else {
@@ -164,7 +164,7 @@ var iTableCounter = 1;
                 var rowIndex = oTable.fnGetPosition( $(nTds).closest('tr')[0] ); 
 	            var detailsRowData = newRowData[rowIndex].details;
                
-                this.src = "http://i.imgur.com/d4ICC.png";
+                this.src = "https://i.imgur.com/d4ICC.png";
 				
                 oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
                 oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
@@ -214,7 +214,7 @@ var iTableCounter = 1;
 <body>
 	${data}
 	<link rel="stylesheet" type="text/css"
-		href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+		href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
 
 	<script type="text/javascript" language="javascript"
 		src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
@@ -261,9 +261,6 @@ var iTableCounter = 1;
 			<tbody></tbody>
 		</table>
 	</div>
-
-
 </body>
-
 </html>
 
