@@ -47,7 +47,7 @@
 
 					var tableData = getParsedJSON('${chartId}', data);
 
-					// var tableData = getJEEPRAMJSON(data);
+					//a var tableData = getJEEPRAMJSON(data);
 					 loadTableData(tableData);
 				}
 			});
