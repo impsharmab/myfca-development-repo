@@ -487,9 +487,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             drillDownObj.point = {
               events: {
                 click: function () {
-                  if (this.x != undefined){
+                  if (this.x != undefined) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }
                   // modal trigger
                   // __this.service.getTableJson("").subscribe(
@@ -754,11 +754,12 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             var drillDownObj: any = {};
             var __this = this;
             drillDownObj.point = {
+
               events: {
                 click: function () {
-                  if (this.x != undefined){
+                  if (this.x != undefined) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }// modal trigger
                   // __this.service.getTableJson("").subscribe(
                   //   (resUserData) => {
@@ -902,6 +903,18 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         chartObj.chart.type = "column"
 
         chartObj.plotOptions["column"] = {
+          point: {
+            events: {
+              click: function (e, a, b) {
+                if (this.name.length > 3) {
+                  //alert(this.name)
+                  //alert(tileId)
+                  var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                }
+              }
+            }
+          },
 
           events: {
             legendItemClick: function (e) {
@@ -1056,9 +1069,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           drillDownObj.point = {
             events: {
               click: function () {
-                if (this.x != undefined){
+                if (this.x != undefined) {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }// modal trigger
                 // __this.modalService.open(__this.tableContent, { size: "lg" });
                 // __this.service.getTableJson("").subscribe(
@@ -1201,9 +1214,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         drillDownObj.point = {
           events: {
             click: function () {
-              if (this.x != undefined){
-              var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
+              if (this.x != undefined) {
+                var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger
                 // __this.service.getTableJson("").subscribe(
                 //   (resUserData) => {
@@ -1348,9 +1361,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         drillDownObj.point = {
           events: {
             click: function () {
-              if (this.x != undefined){
+              if (this.x != undefined) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-              window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
+                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
               }
               // modal trigger
               // __this.service.getTableJson("").subscribe(

@@ -850,6 +850,18 @@ var DashboardBodyComponent = (function () {
             case "column_stack":
                 chartObj.chart.type = "column";
                 chartObj.plotOptions["column"] = {
+                    point: {
+                        events: {
+                            click: function (e, a, b) {
+                                if (this.name.length > 3) {
+                                    //alert(this.name)
+                                    //alert(tileId)
+                                    var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                }
+                            }
+                        }
+                    },
                     events: {
                         legendItemClick: function (e) {
                             __this.lengendItemClick(e, this, tileId, chartData.retention);

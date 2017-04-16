@@ -33,19 +33,30 @@
 
 	<script type='text/javascript'>
 		//<![CDATA[
+		//var chartId = ${chartId };
 		$(window).load(function () {
-			//window.history.pushState("string", "Title", "datatable");
+
 			$.ajax({
 				url: "/myfcarewards/services/data/${chartId}/${territory}",
 				//data: { signature: authHeader },
 				type: "GET",
 				beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', '${token}'); },
 				success: function (data) {
+					window.history.pushState("string", "Title", "datatable");
 					//alert('Success!' + data);
-					var tableData = getJEEPRAMJSON(data);
-					loadTableData(tableData);
+
+					var tableData = getParsedJSON('${chartId}', data);
+
+					// var tableData = getJEEPRAMJSON(data);
+					 loadTableData(tableData);
 				}
 			});
+			function getParsedJSON(id, data) {
+				switch (id) {
+					case '11' : return getJEEPRAMJSON(data)
+					case '12' : return getJEEPRAMJSON(data)
+				}
+			}
 
 			//$.get("/myfcarewards/services/data/${chartId}/${territory}", function(data, status){
 			//alert("Data: " + data + "\nStatus: " + status);
@@ -77,7 +88,9 @@
 				}
 
 				var innerDataObj = {};
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], "", "", ""], "innerData": innerDataObj })
+				var jeepTotal = 0;
+				var ramTotal = 0;
+
 				innerDataObj.headers = [
 					"Participant",
 					"Jeep",
@@ -90,10 +103,15 @@
 						return sid[key1] === ele.sid;
 					});
 					innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
+					jeepTotal = jeepTotal + innerData[0].points;
+					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
 				}
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal+ramTotal], "innerData": innerDataObj })
+
 			}
 			return tableData;
 		}
+
 		function loadTableData(tableData) {
 			function fnFormatDetails(table_id, html) {
 				var sOut = "<table id=\"exampleTable_" + table_id + "\">";
@@ -250,7 +268,6 @@
 		}
 
 //]]>
-
 	</script>
 
 
