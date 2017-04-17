@@ -487,7 +487,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             drillDownObj.point = {
               events: {
                 click: function () {
-                  if (this.x != undefined) {
+                  if (this.x != undefined && this.name.length>3) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }
@@ -607,16 +607,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         //   zIndex: 2
         // }]
         // }
-        if (chartData.averageLine) {
-          chartObj.yAxis["plotLines"] = [{
-            color: '#ff790c',
-            value: '299317',
-            width: '3',
-            zIndex: 2
-          }]
-
-        }
-
 
         // yAxis: {
         //             min: 0,
@@ -821,6 +811,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               x: 0
             }
           }
+        }
+        if (chartData.averageLine) {
+          var averageLinetotal = total / avagerCount;
+          chartObj.yAxis["plotLines"] = [{
+            color: '#ff790c',
+            value: averageLinetotal,
+            width: '3',
+            zIndex: 2
+          }]
+
         }
         if (chartDataValues.length > 0) {
           if (chartData.avarage) {
@@ -1214,7 +1214,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         drillDownObj.point = {
           events: {
             click: function () {
-              if (this.x != undefined) {
+              if (this.x != undefined && this.name>3) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger

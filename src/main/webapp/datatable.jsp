@@ -48,13 +48,26 @@
 					var tableData = getParsedJSON('${chartId}', data);
 
 					//a var tableData = getJEEPRAMJSON(data);
-					 loadTableData(tableData);
+					loadTableData(tableData);
 				}
 			});
 			function getParsedJSON(id, data) {
 				switch (id) {
-					case '11' : return getJEEPRAMJSON(data)
-					case '12' : return getJEEPRAMJSON(data)
+					case '9': return getChart9(data);
+					case '10': return getChart10(data);
+					case '11': return getChart11(data);
+					case '12': return getChart12(data);
+					case '13': return getChart13(data);
+					case '19': return getChart19(data);
+					case '20': return getChart20(data);
+					case '22': return getChart22(data);
+					case '23': return getChart23(data);
+					case '31': return getChart31(data);
+					case '32': return getChart32(data);
+					case '33': return getChart33(data);
+					case '34': return getChart34(data);
+					case '35': return getChart35(data);
+					case '36': return getChart36(data);
 				}
 			}
 
@@ -64,8 +77,51 @@
 
 
 		});
-		function getJEEPRAMJSON(jsonData) {
+		function getChart9(jsonData) {
+			var tableData = {};
+			tableData.headers = ["DEALER", "TOTAL WINNERS"];
+			tableData.data = [];
 
+			var delarName = {};
+			for (var i = 0; i < jsonData.length; i++) {
+				var obj = jsonData[i];
+				delarName[obj.dealerName] = obj.dealerName;
+			}
+			for (var key in delarName) {
+				var outerObj = {}
+
+				var outerData = jsonData.filter(function (ele, index, array) {
+					return delarName[key] === ele.dealerName;
+				});
+				var sid = {};
+				for (var k = 0; k < outerData.length; k++) {
+					var obj = outerData[k];
+					sid[obj.sid] = obj.sid;
+				}
+
+				var innerDataObj = {};
+				var ytdWinnersTotal = 0;
+
+				innerDataObj.headers = [
+					"Participant",
+					"Total Winners"
+				]
+				innerDataObj.data = [];
+				for (var key1 in sid) {
+					var innerData = outerData.filter(function (ele, index, array) {
+						return sid[key1] === ele.sid;
+					});
+					innerDataObj.data.push([innerData[0].name, innerData[0].winners]);
+					ytdWinnersTotal = ytdWinnersTotal + innerData[0].winners;
+					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
+				}
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], ytdWinnersTotal], "innerData": innerDataObj })
+
+			}
+			return tableData;
+
+		}
+		function getChart10(jsonData) {
 			var tableData = {};
 			tableData.headers = ["DEALER", "JEEP", "RAM", "TOTAL"];
 			tableData.data = [];
@@ -106,11 +162,189 @@
 					jeepTotal = jeepTotal + innerData[0].points;
 					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal+ramTotal], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
 
 			}
 			return tableData;
+
 		}
+		function getChart11(jsonData) {
+			var tableData = {};
+			tableData.headers = ["DEALER", "JEEP", "RAM", "TOTAL"];
+			tableData.data = [];
+
+			var delarName = {};
+			for (var i = 0; i < jsonData.length; i++) {
+				var obj = jsonData[i];
+				delarName[obj.dealerName] = obj.dealerName;
+			}
+			for (var key in delarName) {
+				var outerObj = {}
+
+				var outerData = jsonData.filter(function (ele, index, array) {
+					return delarName[key] === ele.dealerName;
+				});
+				var sid = {};
+				for (var k = 0; k < outerData.length; k++) {
+					var obj = outerData[k];
+					sid[obj.sid] = obj.sid;
+				}
+
+				var innerDataObj = {};
+				var jeepTotal = 0;
+				var ramTotal = 0;
+
+				innerDataObj.headers = [
+					"Participant",
+					"Jeep",
+					"Ram",
+					"Total"
+				]
+				innerDataObj.data = [];
+				for (var key1 in sid) {
+					var innerData = outerData.filter(function (ele, index, array) {
+						return sid[key1] === ele.sid;
+					});
+					innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
+					jeepTotal = jeepTotal + innerData[0].points;
+					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
+				}
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
+
+			}
+			return tableData;
+
+		}
+		function getChart12(jsonData) {
+
+		}
+		function getChart13(jsonData) {
+			var tableData = {};
+			tableData.headers = ["DEALER", "Certified", "Certified Specialist", "Master Certified", "Total Certification"];
+			tableData.data = [];
+
+			var delarName = {};
+			for (var i = 0; i < jsonData.length; i++) {
+				var obj = jsonData[i];
+				delarName[obj.dealerName] = obj.dealerName;
+			}
+			for (var key in delarName) {
+				var outerObj = {}
+
+				var outerData = jsonData.filter(function (ele, index, array) {
+					return delarName[key] === ele.dealerName;
+				});
+				var sid = {};
+				for (var k = 0; k < outerData.length; k++) {
+					var obj = outerData[k];
+					sid[obj.sid] = obj.sid;
+				}
+
+				var innerDataObj = {};
+				var totalCertified = 0;
+				var totalCertifiedSpecialist = 0;
+				var totalMasterCertified = 0;
+
+
+
+				innerDataObj.headers = [
+					"Participant",
+					"Certified", "Certified Specialist", "Master Certified", "Total Certification"
+				]
+				innerDataObj.data = [];
+				for (var key1 in sid) {
+					var innerData = outerData.filter(function (ele, index, array) {
+						return sid[key1] === ele.sid;
+					});
+					innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified, innerData[0].certified + innerData[0].certifiedSpecalist + innerData[0].masterCertified]);
+					totalCertified = totalCertified + innerData[0].certified;
+					totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[0].certifiedSpecalist;
+					totalMasterCertified = totalMasterCertified + innerData[0].masterCertified;
+
+				}
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], totalCertified, totalCertifiedSpecialist, totalMasterCertified, totalCertified + totalCertifiedSpecialist + totalMasterCertified], "innerData": innerDataObj })
+
+			}
+			return tableData;
+
+		}
+		function getChart19(jsonData) {
+
+		}
+		function getChart20(jsonData) {
+
+		}
+		function getChart22(jsonData) {
+
+		}
+		function getChart23(jsonData) {
+
+		}
+		function getChart31(jsonData) {
+
+		}
+		function getChart32(jsonData) {
+
+		}
+		function getChart33(jsonData) {
+
+		}
+		function getChart34(jsonData) {
+
+		}
+		function getChart35(jsonData) {
+
+		}
+		function getChart36(jsonData) {
+
+		}
+		// function getJEEPRAMJSON(jsonData) {
+
+		// 	var tableData = {};
+		// 	tableData.headers = ["DEALER", "JEEP", "RAM", "TOTAL"];
+		// 	tableData.data = [];
+
+		// 	var delarName = {};
+		// 	for (var i = 0; i < jsonData.length; i++) {
+		// 		var obj = jsonData[i];
+		// 		delarName[obj.dealerName] = obj.dealerName;
+		// 	}
+		// 	for (var key in delarName) {
+		// 		var outerObj = {}
+
+		// 		var outerData = jsonData.filter(function (ele, index, array) {
+		// 			return delarName[key] === ele.dealerName;
+		// 		});
+		// 		var sid = {};
+		// 		for (var k = 0; k < outerData.length; k++) {
+		// 			var obj = outerData[k];
+		// 			sid[obj.sid] = obj.sid;
+		// 		}
+
+		// 		var innerDataObj = {};
+		// 		var jeepTotal = 0;
+		// 		var ramTotal = 0;
+
+		// 		innerDataObj.headers = [
+		// 			"Participant",
+		// 			"Jeep",
+		// 			"Ram",
+		// 			"Total"
+		// 		]
+		// 		innerDataObj.data = [];
+		// 		for (var key1 in sid) {
+		// 			var innerData = outerData.filter(function (ele, index, array) {
+		// 				return sid[key1] === ele.sid;
+		// 			});
+		// 			innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
+		// 			jeepTotal = jeepTotal + innerData[0].points;
+		// 			ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
+		// 		}
+		// 		tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
+
+		// 	}
+		// 	return tableData;
+		// }
 
 		function loadTableData(tableData) {
 			function fnFormatDetails(table_id, html) {
