@@ -149,7 +149,7 @@
 					"Participant",
 					"Jeep",
 					"Ram",
-					
+
 					"Total Points Earned"
 				]
 				innerDataObj.data = [];
@@ -194,16 +194,16 @@
 				var ramTotal = 0;
 
 				innerDataObj.headers = [
-					"Participant","Jeep Expert Completed", "Ram Expert Completed"	]
+					"Participant", "Jeep Expert Completed", "Ram Expert Completed"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					//innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
-					innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points]);
-					jeepTotal = jeepTotal + innerData[0].points;
-					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
+					innerDataObj.data.push([innerData[0].name, innerData[0].cert, innerData[1] == undefined ? "" : innerData[1].cert]);
+					jeepTotal = jeepTotal + innerData[0].cert;
+					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].cert);
 				}
 				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
 
@@ -243,11 +243,11 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[0].earnings]);
+					innerDataObj.data.push([innerData[0].name, innerData[0].points, "$" + innerData[0].earnings]);
 					awardsPointTotal = awardsPointTotal + innerData[0].points;
 					earningsTotal = earningsTotal + innerData[0].earnings;
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], awardsPointTotal, earningsTotal], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], awardsPointTotal, "$" + earningsTotal], "innerData": innerDataObj })
 
 			}
 			return tableData;
@@ -284,7 +284,7 @@
 
 
 
-				innerDataObj.headers = ["Participant","Certified", "Certified Specialist", "Master Certified"]
+				innerDataObj.headers = ["Participant", "Certified", "Certified Specialist", "Master Certified"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
@@ -305,7 +305,7 @@
 		}
 		function getChart19(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "JEExpress Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "UConnect", "wiAdvisor", "Total"];
+			tableData.headers = ["Dealer", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "UConnect", "wiAdvisor", "Total"];
 			tableData.data = [];
 
 			var delarName = {};
@@ -326,20 +326,61 @@
 				}
 
 				var innerDataObj = {};
-				var jeepTotal = 0;
-				var ramTotal = 0;
+				var expressLaneTotal = 0;
+				var magnettiMarelliTotal = 0;
+				var moparPartsTotal = 0;
+				var mvpTotal = 0;
+				var partsCounter = 0;
+				var uConnectTotal = 0;
+				var wiAdvisor = 0;
+				var total = 0;
 
-				innerDataObj.headers = ["Dealer", "JEExpress Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "UConnect", "wiAdvisor", "Total"]
+				innerDataObj.headers = ["Participant",
+					"Express Lane",
+					"Magneti Marelli",
+					"Mopar Parts",
+					"MVP",
+					"Parts Counter",
+					"UConnect",
+					"wiAdvisor",
+					"Total"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push([innerData[0].name, innerData[0].earningsYTD, innerData[1].earningsYTD, innerData[2].earningsYTD, innerData[3].earningsYTD, innerData[4].earningsYTD, innerData[5].earningsYTD, innerData[6].earningsYTD, (innerData[0].earningsYTD + innerData[1].earningsYTD + innerData[2].earningsYTD + innerData[3].earningsYTD + innerData[4].earningsYTD + innerData[5].earningsYTD + innerData[6].earningsYTD)]);
-					// jeepTotal = jeepTotal + innerData[0].points;
-					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
+					console.log(innerData)
+					var rowData = [innerData[0].name];
+					var total = 0;
+					var programName = ["Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor"]
+					for (var j = 0; j < programName.length; j++) {
+						var obj = innerData.filter(function (ele, index, array) {
+							console.log(programName[j] + " === " + ele.program)
+							return programName[j] === ele.program;
+
+						});
+						console.log(obj)
+						var value = obj[0] === undefined ? 0 : obj[0].earningsYTD;
+						rowData.push(value)
+
+						total = total + value;
+					}
+					rowData.push(total)
+					innerDataObj.data.push(rowData)
+
+
+					expressLaneTotal = expressLaneTotal + rowData[1];
+					magnettiMarelliTotal = magnettiMarelliTotal + rowData[2];
+					moparPartsTotal = moparPartsTotal + rowData[3];
+					mvpTotal = mvpTotal + rowData[4];
+					partsCounter = partsCounter + rowData[5];
+					uConnectTotal = uConnectTotal + rowData[6];
+					wiAdvisor = wiAdvisor + rowData[7];
+
+					total = expressLaneTotal + magnettiMarelliTotal + moparPartsTotal + mvpTotal + partsCounter + uConnectTotal + wiAdvisor;
+
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], expressLaneTotal, magnettiMarelliTotal, moparPartsTotal, mvpTotal, partsCounter, uConnectTotal, wiAdvisor, total], "innerData": innerDataObj })
 
 			}
 			return tableData;
@@ -400,50 +441,57 @@
 
 		}
 		function getChart32(jsonData) {
-
-		}
-		function getChart33(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Level 0", "Performance", "Process", "Voice of Employee", "Training", "Facility", "CFAFE Award Certification", "Total"];
+			tableData.headers = ["Dealer",
+				"Level 0",
+				"Performance",
+				"Process",
+				"Voice of Employee",
+				"Training",
+				"Facility",
+				"CFAFE Award Certification",
+				"Total"];
 			tableData.data = [];
 
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+
+				tableData.data.push({
+					"data": [" ", obj.dealerName, obj.noCertification,
+						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
+						obj.facility, obj.cfafeawardCertification,
+						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
+						obj.facility + obj.cfafeawardCertification], "innerData": []
+				})
+
 			}
-			for (var key in delarName) {
-				var outerObj = {}
+			return tableData;
+		}
+		function getChart33(jsonData) {
+			var tableData = {};
+			tableData.headers = ["Dealer",
+				"Level 0",
+				"Performance",
+				"Process",
+				"Voice of Employee",
+				"Training",
+				"Facility",
+				"CFAFE Award Certification",
+				"Total"];
+			tableData.data = [];
 
-				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
-				});
-				var sid = {};
-				for (var k = 0; k < outerData.length; k++) {
-					var obj = outerData[k];
-					sid[obj.sid] = obj.sid;
-				}
+			var delarName = {};
+			for (var i = 0; i < jsonData.length; i++) {
+				var obj = jsonData[i];
 
-				var innerDataObj = {};
-				var total = 0;
-
-				innerDataObj.data = [];
-				for (var key1 in dealerCode) {
-					var innerData = outerData.filter(function (ele, index, array) {
-						return dealerCode[key1] === ele.dealerCode;
-					});
-					innerDataObj.data.push((Math.round(innerData[0].noCertification)),
-						(Math.round(innerData[0].performance)),
-						(Math.round(innerData[0].process)),
-						(Math.round(innerData[0].voiceofEmployee)),
-						(Math.round(innerData[0].training)),
-						(Math.round(innerData[0].facility)),
-						(Math.round(innerData[0].cfafeawardCertification),
-							Math.round(innerData[0].performance + innerData[0].process + innerData[0].voiceofEmployee + innerData[0].training + innerData[0].facility + innerData[0].cfafeawardCertification)));
-					total = totalEarnedDollars + Math.round(innerData[0].performance + innerData[0].process + innerData[0].voiceofEmployee + innerData[0].training + innerData[0].facility + innerData[0].cfafeawardCertification);
-					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
-				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], total], "innerData": innerDataObj })
+				tableData.data.push({
+					"data": [" ", obj.dealerName, obj.noCertification,
+						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
+						obj.facility, obj.cfafeawardCertification,
+						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
+						obj.facility + obj.cfafeawardCertification], "innerData": []
+				})
 
 			}
 			return tableData;
@@ -489,11 +537,11 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push([innerData[0].name, Math.round(innerData[0].earnings)]);
+					innerDataObj.data.push([innerData[0].name, "$" + Math.round(innerData[0].earnings)]);
 					totalEarnedDollars = totalEarnedDollars + Math.round(innerData[0].earnings);
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], totalEarnedDollars], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], "$" + totalEarnedDollars], "innerData": innerDataObj })
 
 			}
 			return tableData;
@@ -565,6 +613,13 @@
 
 			//Run On HTML Build
 			$(document).ready(function () {
+				$('#exampleTable').DataTable({
+					dom: 'Bfrtip',
+					buttons: [
+						'excel'
+					]
+
+				});
 
 				// you would probably be using templates here
 				detailsTableHtml = $("#detailsTable").html();
@@ -714,9 +769,34 @@
 
 
 	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
+
 
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js "></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js "></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+
+
+
+
+
+	<!--//code.jquery.com/jquery-1.12.4.js 
+https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js 
+https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js 
+//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js 
+//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js 
+//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js 
+//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js 
+//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js 
+//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js -->
 
 
 	<table id="exampleTable" class="display " cellspacing="0" width="100%">
