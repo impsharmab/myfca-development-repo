@@ -461,7 +461,7 @@
 					"data": [" ", obj.dealerName, obj.noCertification,
 						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
 						obj.facility, obj.cfafeawardCertification,
-						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
+						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training+
 						obj.facility + obj.cfafeawardCertification], "innerData": []
 				})
 
@@ -489,7 +489,7 @@
 					"data": [" ", obj.dealerName, obj.noCertification,
 						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
 						obj.facility, obj.cfafeawardCertification,
-						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
+						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training+
 						obj.facility + obj.cfafeawardCertification], "innerData": []
 				})
 
@@ -613,13 +613,6 @@
 
 			//Run On HTML Build
 			$(document).ready(function () {
-				$('#exampleTable').DataTable({
-					dom: 'Bfrtip',
-					buttons: [
-						'excel'
-					]
-
-				});
 
 				// you would probably be using templates here
 				detailsTableHtml = $("#detailsTable").html();
@@ -769,34 +762,9 @@
 
 
 	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
-
 
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js "></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js "></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
-
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
-
-
-
-
-
-	<!--//code.jquery.com/jquery-1.12.4.js 
-https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js 
-https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js 
-//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js 
-//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js 
-//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js 
-//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js 
-//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js 
-//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js -->
 
 
 	<table id="exampleTable" class="display " cellspacing="0" width="100%">
