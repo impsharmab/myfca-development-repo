@@ -55,7 +55,7 @@ var DashboardBodyService = (function () {
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
         //var tileService = "./app/resources/dc-json/" + id + "-tile.json";
-        var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        // var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers: headers })
             .map(function (response) { return response.json(); })
@@ -72,7 +72,7 @@ var DashboardBodyService = (function () {
         //   var chartService = "./app/resources/dc-json/" + id + "-chart.json";
         // var chartService = "./app/resources/json/customer_first.json"; //retention
         var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        //var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        // var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);

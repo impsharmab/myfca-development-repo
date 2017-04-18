@@ -15,6 +15,7 @@ public interface TTTAEnrollmentsDAO {
 	public static String COUNT_OF_SURVEY_TECHNICIAN = "select CAST(SUM([SurveyCount]) as varchar(20)) 'total' , 'Count of Surveys QTD' as name, '' as error from [TTTAEnrollments] WHERE [PositionCode] = 23";
 	public static String SELECT_BY_SID = "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[Enrollment] 'enrollment' ,[PositionCode] 'positionCode' ,[IncentiveEligible] 'incentiveEligible', [AvgSurveyScore] 'avgSurveyScore' ,[SurveyCount] 'surveyCount', [Level3Techs] 'level3Techs', [PartcipantRank] 'partcipantRank' ,[YearsOfService] 'yearsOfService' FROM [dbo].[TTTAEnrollments] where SID = ?0 and PositionCode = ?1";
 	public static String SELECT_BY_DEALERCODE = "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[Enrollment] 'enrollment' ,[PositionCode] 'positionCode' ,[IncentiveEligible] 'incentiveEligible', [AvgSurveyScore] 'avgSurveyScore' ,[SurveyCount] 'surveyCount', [Level3Techs] 'level3Techs', [PartcipantRank] 'partcipantRank' ,[YearsOfService] 'yearsOfService' FROM [dbo].[TTTAEnrollments] where DealerCode = ?0 and PositionCode = ?1";
+	public static String SELECT_BY_DEALERCODE_AND_ENROLLEMENT= "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[Enrollment] 'enrollment' ,[PositionCode] 'positionCode' ,[IncentiveEligible] 'incentiveEligible', [AvgSurveyScore] 'avgSurveyScore' ,[SurveyCount] 'surveyCount', [Level3Techs] 'level3Techs', [PartcipantRank] 'partcipantRank' ,[YearsOfService] 'yearsOfService' FROM [dbo].[TTTAEnrollments] where DealerCode = ?0 and Enrollment = ?1 and PositionCode = ?2 ";
 	public TotalName getTTTAEnrollmentCount();
 	public TotalName getTTTAIncentiveEligibleSUM();
 	public TotalName getTTTAAdvisorScoreAVG();
@@ -23,4 +24,5 @@ public interface TTTAEnrollmentsDAO {
 	public TotalName getTTTAAdvisorSurveyCount();
 	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsBySID(String sid, String positionCode);
 	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCode(String dealerCode, String positionCode);
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCodeAndEnrollement(String dealerCode, String enrollement, String positionCode);
 }

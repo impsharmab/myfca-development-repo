@@ -27,7 +27,7 @@ import com.imperialm.imiservices.util.IMIServicesConstants;
  *
  */
 @Controller
-
+@RequestMapping("/")
 public class IMIServiceWebController {
 
 	private static final Logger logger = LoggerFactory.getLogger(IMIServiceWebController.class);

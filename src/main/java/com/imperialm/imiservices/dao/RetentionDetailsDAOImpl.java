@@ -32,7 +32,7 @@ public class RetentionDetailsDAOImpl implements RetentionDetailsDAO {
 		
 		try {
 			final Query query = this.em.createNativeQuery(GET_RETENTION_DETAILS_BY_DEALER, RetentionDetailsDTO.class);
-			query.setParameter(1, dealersCode);
+			query.setParameter(0, dealersCode);
 			List<RetentionDetailsDTO> rows = query.getResultList();
 			result = rows;
 			

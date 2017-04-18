@@ -48,11 +48,9 @@
           <h4>{{tableDataObj.tableName}}</h4>
           <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Export to Excel" style="cursor:pointer">
           <table id="testTable" class="table table-hover table-striped bdt">
-
             <thead>
               <tr>
                 <th *ngFor="let thead of tableDataObj.tableHeader"><span class="sort-element">{{thead}}</span><span class="sort-icon fa"></span></th>
-
               </tr>
             </thead>
             <tbody>
@@ -114,8 +112,8 @@
           <div class="data-group " *ngFor="let data of contentBody[tile.id].attribute ">
             <p class="data-point " *ngIf="emptyBadge(data.badgeUrl) ">{{data.value}}</p>
             <p class="data-substitle " *ngIf="emptyBadge(data.badgeUrl) ">{{data.name}}</p>
-            <p class=" " *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc?id={{data.badgeUrl}} "></p>
-            <p class=" ">{{data.badgeTitle}}</p>
+            <p class="data-substitle " *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc?id={{data.badgeUrl}} "></p>
+            <p class="data-substitle ">{{data.badgeTitle}}</p>
           </div>
 
         </div>

@@ -19,5 +19,5 @@ public class CustomerFirstDetailsDTO implements Serializable {
 	@Id private double training;
 	@Id private double facility;
 	@Id private double cFAFEAwardCertification;
-	@Id private double toggle;
+	@Id private String toggle;
 }

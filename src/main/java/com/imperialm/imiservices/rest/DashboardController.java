@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
-import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
 import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
 import com.imperialm.imiservices.dto.BrainBoostWinnersDetailsDTO;
 import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
@@ -85,12 +83,6 @@ public class DashboardController {
 	@Autowired
 	private UserServiceImpl userDetailsService;
 
-	@Autowired
-	private UserPositionCodeRoleDAO userPositionCodeRoleDAO;
-
-	@Autowired
-	private DealerPersonnelPositionsDAO dealerPersonnelPositionsDAO;
-
 
 
 	@RequestMapping(value = "/services/tileslistbyrole", method = RequestMethod.GET)
@@ -121,7 +113,6 @@ public class DashboardController {
 
 	@RequestMapping(value ="/services/tile/{chartId}/{positionCode}/{dealerCode}", method = RequestMethod.GET)
 	public @ResponseBody Object findTilesListByRole(@PathVariable(value="chartId") String id, @PathVariable(value="positionCode") String positionCode, @PathVariable(value="dealerCode") String dealerCode, HttpServletRequest request) {
-		final InputRequest userRoleReq = new InputRequest("", "");
 		UserDetailsImpl user = null;
 		//get token extract user info and use for the calls
 		try{
@@ -1879,7 +1870,7 @@ public class DashboardController {
 			TotalName totalCertifiedParticipants = new TotalName();
 			TotalName totalMasterCertifiedParticipants = new TotalName();
 			TotalName totalCertifiedSpecialistParticipants = new TotalName();
-			TotalName totalCertifiedLevelParticipants = new TotalName();
+			//TotalName totalCertifiedLevelParticipants = new TotalName();
 			TotalName dealershipMasterCertifiedRankWithinBC = new TotalName();
 
 			List<SIRewardsDetailsDTO> SIRewardsDetailsList = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD");
@@ -2812,7 +2803,7 @@ public class DashboardController {
 			}
 
 			List<TTTAEnrolledGraphDTO> sublist = this.dashService.getTTTAEnrolledByParentTerritory(filters);
-			Map<String, List<String>> map = new HashMap<String, List<String>>();
+			//Map<String, List<String>> map = new HashMap<String, List<String>>();
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap3 = new HashMap<String, List<ChartData>>();
@@ -2999,7 +2990,7 @@ public class DashboardController {
 			}
 
 			List<TTTAEnrolledGraphDTO> sublist = this.dashService.getTTTAEnrolledByParentTerritoryNotEnrolled(filters);
-			Map<String, List<String>> map = new HashMap<String, List<String>>();
+			//Map<String, List<String>> map = new HashMap<String, List<String>>();
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap3 = new HashMap<String, List<ChartData>>();
@@ -3291,7 +3282,7 @@ public class DashboardController {
 				List<MSERGraphDTO> mtdres = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(territory, "MTD");
 				
 				if(mtdres.size() > 0){
-					mtd.setTotal(this.formatCurrency(mtdres.get(0).getAmount()));
+					mtd.setTotal("$" + this.formatCurrency(mtdres.get(0).getAmount()));
 				}
 				
 				//TotalName mtd = this.dashService.getParticipantExcellanceCardAwardMTD(user.getUserId().trim());
@@ -3306,8 +3297,8 @@ public class DashboardController {
 				
 				List<MSERGraphDTO> ytdres = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(territory, "YTD");
 				
-				if(mtdres.size() > 0){
-					ytd.setTotal(this.formatCurrency(mtdres.get(0).getAmount()));
+				if(ytdres.size() > 0){
+					ytd.setTotal("$" + this.formatCurrency(ytdres.get(0).getAmount()));
 				}
 				
 				
@@ -4931,7 +4922,7 @@ public class DashboardController {
 			String sid = user.getUserId();
 			TopTenChart topTenChart = new TopTenChart();
 
-			TotalName years = new TotalName();
+			//TotalName years = new TotalName();
 			TotalName cartificationLevel = new TotalName();
 			TotalName totalCertifiedParticipants = new TotalName();
 			TotalName totalMasterCertifiedParticipants = new TotalName();
@@ -5101,7 +5092,7 @@ public class DashboardController {
 			TotalName totalCertifiedParticipants = new TotalName();
 			TotalName totalMasterCertifiedParticipants = new TotalName();
 			TotalName totalCertifiedSpecialistParticipants = new TotalName();
-			TotalName totalCertifiedLevelParticipants = new TotalName();
+		//	TotalName totalCertifiedLevelParticipants = new TotalName();
 			TotalName dealershipMasterCertifiedRankWithinBC = new TotalName();
 
 			List<SIRewardsDetailsDTO> SIRewardsDetailsList = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD");
@@ -5910,6 +5901,7 @@ public class DashboardController {
 			}
 			chart.setData(list);
 			chart.setUnit("$");
+			chart.setAverageLine(true);
 			return chart;
 		}
 		default:

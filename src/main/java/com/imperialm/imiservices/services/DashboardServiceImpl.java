@@ -53,6 +53,7 @@ import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
@@ -600,6 +601,10 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsBySID(dealerCode, positionCode);
 	}
 	
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCode(String dealerCode, String positionCode, String enrollement){
+		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsByDealerCodeAndEnrollement(dealerCode, enrollement, positionCode);
+	}
+	
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByParentTerritoryYTD(List<String> territory){
 		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByParentTerritoryYTD(territory);
 	}
@@ -614,6 +619,10 @@ public class DashboardServiceImpl {
 	
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory){
 		return this.SummaryProgramRewardDetailsDAO.getSummaryProgramRewardDetailsBySIDYTD(territory);
+	}
+	
+	public List<SummaryProgramRewardDetailsDTO> getSummaryProgramRewardDetailsByDealerCodeYTD(String territory){
+		return this.SummaryProgramRewardDetailsDAO.getSummaryProgramRewardDetailsByDealerCodeYTD(territory);
 	}
 	
 	public List<MSERGraphDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode){

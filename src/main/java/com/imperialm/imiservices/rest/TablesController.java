@@ -25,10 +25,16 @@ import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
 import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 import com.imperialm.imiservices.dto.MSERGraphDTO;
 import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
+import com.imperialm.imiservices.dto.RetentionDetailsDTO;
+import com.imperialm.imiservices.dto.RetentionGraphDTO;
+import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
+import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.services.DashboardServiceImpl;
@@ -102,10 +108,12 @@ public class TablesController {
 				for(CertProfsExpertGraphDTO item: sublist){
 						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "JEEP%"));
 						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "RAM%"));
+						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "TECH%"));
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
 				result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(territory, "JEEP%"));
 				result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(territory, "RAM%"));
+				result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(territory, "TECH%"));
 			}
 			return result;
 		}
@@ -264,27 +272,20 @@ public class TablesController {
 			return filters;
 		}
 		case "23":
-		{
-			// check for role, to know what data to display
-			List<RewardRedemptionGraphDTO> list1st = null;
-			List<RewardRedemptionGraphDTO> list1st_Filtered = null;
-			List<String> filters = new ArrayList<String>();
-			//add user access territory
-			filters.add("NAT");
-			//check if nat or not if nat pull list of childeren and continue if not start from their
-				list1st = this.dashService.getRewardRedemptionGraphByParentTerritoryList(filters);
-				filters = new ArrayList<String>();
-				for(RewardRedemptionGraphDTO item: list1st){
-					if(!filters.contains(item.getChildTerritory()))
-						filters.add(item.getChildTerritory());
+		{	
+			List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<RewardRedemptionGraphDTO> sublist = this.dashService.getRewardRedemptionGraphByParentTerritoryList(Arrays.asList(territory));
+				for(RewardRedemptionGraphDTO item: sublist){
+						List<RewardRedemptionDetailsDTO> participants = this.dashService.getRewardRedemptionDetailsByDealer(item.getChildTerritory());
+						result.addAll(participants);
 				}
-				
-				list1st_Filtered = this.dashService.getRewardRedemptionGraphByParentTerritoryListDistinct(filters);
-			
-			
-			
-			List<RewardRedemptionGraphDTO> sublist = this.dashService.getRewardRedemptionGraphByParentTerritoryList(filters);
-			return filters;
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getRewardRedemptionDetailsByDealer(territory);
+			}
+			return result;
 		}
 		case "24":
 		{
@@ -296,6 +297,38 @@ public class TablesController {
 		{
 			// NOT A Graph Chart
 			return null;
+		}
+		case "31":
+		{
+			List<RetentionDetailsDTO> result = new ArrayList<RetentionDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<RetentionGraphDTO> sublist = this.dashService.getRetentionGraphByChildTerritoryList(filters);
+				for(RetentionGraphDTO item: sublist){
+						List<RetentionDetailsDTO> participants = this.dashService.getRetentionDetailsByDealerCode(item.getChildTerritory());
+						result.addAll(participants);
+				}
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getRetentionDetailsByDealerCode(territory);
+			}
+			return result;
+		}
+		case "32":
+		{
+			List<CustomerFirstDetailsDTO> result = new ArrayList<CustomerFirstDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<CustomerFirstGraphDTO> sublist = this.dashService.getCustomerFirstGraphByParentTerritoryAndToggle(filters, "Total");
+				for(CustomerFirstGraphDTO item: sublist){
+						List<CustomerFirstDetailsDTO> participants = this.dashService.getCustomerFirstDetailsByDealerCodeAndToggle(item.getChildTerritory(), "Total");
+						result.addAll(participants);
+				}
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getCustomerFirstDetailsByDealerCodeAndToggle(territory, "Total");
+			}
+			return result;
 		}
 		case "33":
 		{
@@ -310,6 +343,22 @@ public class TablesController {
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
 				 return this.dashService.getCustomerFirstDetailsByDealerCodeAndToggle(territory, "Percentage");
+			}
+			return result;
+		}	
+		case "36":
+		{
+			List<SummaryProgramRewardDetailsDTO> result = new ArrayList<SummaryProgramRewardDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<SummaryProgramRewardGraphDTO> sublist = this.dashService.getSummaryProgramRewardGraphByParentTerritoryYTD(filters);
+				for(SummaryProgramRewardGraphDTO item: sublist){
+						List<SummaryProgramRewardDetailsDTO> participants = this.dashService.getSummaryProgramRewardDetailsByDealerCodeYTD(item.getChild());
+						result.addAll(participants);
+				}
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getSummaryProgramRewardDetailsByDealerCodeYTD(territory);
 			}
 			return result;
 		}

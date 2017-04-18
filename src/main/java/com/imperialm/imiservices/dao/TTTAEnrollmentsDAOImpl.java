@@ -201,4 +201,24 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 		return result;
 	}
 
+	@Override
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCodeAndEnrollement(String dealerCode, String enrollement,
+			String positionCode) {
+		List<TTTAEnrollmentsDTO> result = new ArrayList<TTTAEnrollmentsDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_DEALERCODE_AND_ENROLLEMENT, TTTAEnrollmentsDTO.class);
+			query.setParameter(0, dealerCode);
+			query.setParameter(0, enrollement);
+			query.setParameter(2, positionCode);
+			List<TTTAEnrollmentsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getTTTAEnrollmentsByDealerCodeAndEnrollement", ex);
+		}
+		return result;
+	}
+
 }

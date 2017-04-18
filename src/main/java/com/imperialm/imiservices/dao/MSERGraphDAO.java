@@ -6,13 +6,13 @@ import com.imperialm.imiservices.dto.MSERGraphDTO;
 
 public interface MSERGraphDAO {
 
-	public static String SELECT_BC_FILTERED = "SELECT '' 'parent', [Child] 'child', '' as 'program', [toggle] 'toggle', SUM([Amount]) 'amount', '' as error FROM [mser2].[dbo].[MSERGraph] where Parent LIKE 'NAT' AND toggle LIKE 'YTD' group by Child, toggle order by child";
-	public static String SELECT_BY_PARENT_TERRITORY_AND_TOGGLE = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [mser2].[dbo].[MSERGraph] where Parent LIKE ?0 AND toggle LIKE ?1 order by child";
-	public static String SELECT_BY_CHILD_TERRITORY_AND_TOGGLE = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [mser2].[dbo].[MSERGraph] where Child LIKE ?0 AND toggle LIKE ?1 order by child";
+	public static String SELECT_BC_FILTERED = "SELECT '' 'parent', [Child] 'child', '' as 'program', [toggle] 'toggle', SUM([Amount]) 'amount', '' as error FROM [dbo].[MSERGraph] where Parent LIKE 'NAT' AND toggle LIKE 'YTD' group by Child, toggle order by child";
+	public static String SELECT_BY_PARENT_TERRITORY_AND_TOGGLE = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [dbo].[MSERGraph] where Parent LIKE ?0 AND toggle LIKE ?1 order by child";
+	public static String SELECT_BY_CHILD_TERRITORY_AND_TOGGLE = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [dbo].[MSERGraph] where Child LIKE ?0 AND toggle LIKE ?1 order by child";
 	public static String SELECT_DISTINCT_PROGRAM_BY_PARENT_TERRITORY_AND_TOGGLE = "SELECT DISTINCT [Program] 'program' FROM [dbo].[MSERGraph] where Parent LIKE ?0 AND toggle LIKE ?1";
-	public static String SELECT_BY_PARENT_TERRITORY_AND_TOGGLE_AND_PROGRAM = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [mser2].[dbo].[MSERGraph] where Parent LIKE ?0 AND toggle LIKE ?1 AND Program LIKE ?2 order by parent";
-	public static String SELECT_BC = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [mser2].[dbo].[MSERGraph] where Parent LIKE 'NAT' AND toggle LIKE 'YTD'";
-	public static String SELECT_DISTRIC_BY_BC = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [mser2].[dbo].[MSERGraph] where Parent IN (?0) AND toggle LIKE 'YTD'";
+	public static String SELECT_BY_PARENT_TERRITORY_AND_TOGGLE_AND_PROGRAM = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [dbo].[MSERGraph] where Parent LIKE ?0 AND toggle LIKE ?1 AND Program LIKE ?2 order by parent";
+	public static String SELECT_BC = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [dbo].[MSERGraph] where Parent LIKE 'NAT' AND toggle LIKE 'YTD'";
+	public static String SELECT_DISTRIC_BY_BC = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [dbo].[MSERGraph] where Parent IN (?0) AND toggle LIKE 'YTD'";
 	public static String SELECT_BY_PROGRAM_AND_TERRITORY_AND_TOGGLE = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [dbo].[MSERGraph] where Parent LIKE ?0 AND toggle LIKE ?1 AND Program LIKE ?2 order by parent";
 	
 	public static String SELECT_BY_CHILD_TERRITORY_PROGRAM_AND_TOGGLE = "SELECT [Parent] 'parent', [Child] 'child', [Program] 'program', [toggle] 'toggle', [Amount] 'amount', '' as error FROM [dbo].[MSERGraph] where Child LIKE ?0 AND toggle LIKE ?1 AND Program LIKE ?2 order by child";

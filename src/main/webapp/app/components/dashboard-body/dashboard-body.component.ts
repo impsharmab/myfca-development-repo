@@ -487,7 +487,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             drillDownObj.point = {
               events: {
                 click: function () {
-                  if (this.x != undefined && this.name.length>3) {
+                  if (this.x != undefined && this.name.length > 3) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }
@@ -599,34 +599,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               }
             }
           }
-        //   if(chartData.averageLine){
-        // plotLines: [{
-        //   color: 'red',
-        //   value: '299317',
-        //   width: '2',
-        //   zIndex: 2
-        // }]
-        // }
-
-        // yAxis: {
-        //             min: 0,
-        //             title: {
-        //                 text: 'Population (millions)',
-        //                 align: 'high'
-        //             },
-        //             labels: {
-        //                 overflow: 'justify'
-        //             },
-        //             plotLines: [{
-        //                 color: 'red',
-        //                 value: '15',
-        //                 width: '1',
-        //                 zIndex: 2
-        //             }]
-        //         },
-
-
-
         chartObj.plotOptions["pie"] = {
           plotBorderWidth: 0,
           allowPointSelect: true,
@@ -668,63 +640,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
             }
           }
-          // ,
-          // showInLegend: true,
-          //,
-          // pointPadding: 0.2,
-          // borderWidth: 0,
-          // dataLabels: {
-          //   enabled: true,
-          //   allowOverlap: true,
-          //   overFlow: 'none',
-          //   crop: true,
-          //   rotation: -70,
-          //   y: -15,
-          //   style: {
-          //     fontSize: '9px'
-          //   }
-          // },
-
-          // ,
-          // legend: {
-          //   enabled: false
-          // },
-
 
         }
 
-
-        // chartObject.chart.plotOptions = {
-        //   series: {
-        //     pointPadding: 0.2,
-        //     borderWidth: 0,
-        //     dataLabels: {
-        //       enabled: true
-        //     }
-        //   },
-        //   pie: {
-        //     plotBorderWidth: 0,
-        //     allowPointSelect: true,
-        //     cursor: 'pointer',
-        //     size: '100%',
-        //     dataLabels: {
-        //       enabled: true,
-        //       format: '{point.name}: <b>{point.y}</b>'
-        //     }
-        //   }
-        // }
-        // 
-        // chartObj.drilldown = {
-        //   activeAxisLabelStyle: {
-        //     textDecoration: 'none',
-        //     fontStyle: 'italic',
-        //     fontSize: 10
-        //   },
-        //   activeDataLabelStyle: {
-        //     textDecoration: 'none',
-        //     fontSize: 100
-        //   },
-        // }
         chartObj.xAxis["type"] = 'category';
         //chartObj.yAxis.stackLabels.style.fontSize= 100,
         delete chartObj.xAxis.categories;
@@ -850,6 +768,18 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         // });
 
         chartObj.plotOptions["series"] = {
+          point: {
+            events: {
+              click: function (e, a, b) {
+                if (this.name.length > 3) {
+                  //alert(this.name)
+                  //alert(tileId)
+                  var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                }
+              }
+            }
+          },
           events: {
             legendItemClick: function (e) {
               __this.lengendItemClick(e, this, tileId, chartData.retention)
@@ -872,7 +802,18 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       case "column_compound":
         chartObj.chart.type = "column"
         chartObj.plotOptions["series"] = {
-
+          point: {
+            events: {
+              click: function (e, a, b) {
+                if (this.name.length > 3) {
+                  //alert(this.name)
+                  //alert(tileId)
+                  var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                }
+              }
+            }
+          },
           events: {
             legendItemClick: function (e) {
               __this.lengendItemClick(e, this, tileId, chartData.retention)
@@ -1214,7 +1155,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         drillDownObj.point = {
           events: {
             click: function () {
-              if (this.x != undefined && this.name>3) {
+              if (this.x != undefined && this.name > 3) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger
