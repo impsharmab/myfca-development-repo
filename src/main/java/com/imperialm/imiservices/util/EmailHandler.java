@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.entities.User;
 
 import lombok.Getter;
 import lombok.Setter;

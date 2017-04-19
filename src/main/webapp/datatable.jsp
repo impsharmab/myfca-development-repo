@@ -9,6 +9,37 @@
 
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
 
+	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+	<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	 crossorigin="anonymous">
+	<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	 crossorigin="anonymous"></script>
+
+
+
+
+
+	<!--<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">-->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="app/resources/css/styles-datatable.css">
+
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+
+
 	<style type="text/css">
 		body {
 			font-size: 14px;
@@ -35,7 +66,6 @@
 		//<![CDATA[
 		//var chartId = ${chartId };
 		$(window).load(function () {
-
 			$.ajax({
 				url: "/myfcarewards/services/data/${chartId}/${territory}",
 				//data: { signature: authHeader },
@@ -44,13 +74,12 @@
 				success: function (data) {
 					window.history.pushState("string", "Title", "datatable");
 					//alert('Success!' + data);
-
 					var tableData = getParsedJSON('${chartId}', data);
-
 					//a var tableData = getJEEPRAMJSON(data);
 					loadTableData(tableData);
 				}
 			});
+
 			function getParsedJSON(id, data) {
 				switch (id) {
 					case '9': return getChart9(data);
@@ -70,18 +99,17 @@
 					case '36': return getChart36(data);
 				}
 			}
-
 			//$.get("/myfcarewards/services/data/${chartId}/${territory}", function(data, status){
 			//alert("Data: " + data + "\nStatus: " + status);
 			//});
-
-
 		});
 		function getChart9(jsonData) {
 			var tableData = {};
-			tableData.headers = ["DEALER", "TOTAL WINNERS"];
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			tableData.headers = ["Dealer", "TOTAL WINNERS"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -89,7 +117,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -98,32 +125,31 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var ytdWinnersTotal = 0;
-
-				innerDataObj.headers = ["Participant"]
+				innerDataObj.headers = ["","Participant"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].winners]);
-					innerDataObj.data.push([innerData[0].name]);
+					innerDataObj.data.push(["",innerData[0].name]);
 					ytdWinnersTotal = ytdWinnersTotal + innerData[0].winners;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], ytdWinnersTotal], "innerData": innerDataObj })
-
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(ytdWinnersTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
-
 		}
 		function getChart10(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Jeep", "Ram", "Total Points Earned"];
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			//tableData.headers = ["Dealer", "Jeep", "Ram", "Total Points Earned"];
+			tableData.headers = ["Dealer", "Total Points Earned"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -131,7 +157,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -140,16 +165,19 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var jeepTotal = 0;
 				var ramTotal = 0;
+				// innerDataObj.headers = [
+				// 	"Participant",
+				// 	"Jeep",
+				// 	"Ram",
+				// 	"Total Points Earned"
+				// ]
 
 				innerDataObj.headers = [
+					"",
 					"Participant",
-					"Jeep",
-					"Ram",
-
 					"Total Points Earned"
 				]
 				innerDataObj.data = [];
@@ -157,21 +185,24 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
+					// innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
+					innerDataObj.data.push(["",innerData[0].name, numberWithCommasNoDecimals(innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points))]);
+
 					jeepTotal = jeepTotal + innerData[0].points;
 					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
-
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
-
 		}
 		function getChart11(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			// tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
+			tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed", "Total"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -179,7 +210,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -188,34 +218,32 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var jeepTotal = 0;
 				var ramTotal = 0;
-
 				innerDataObj.headers = [
-					"Participant", "Jeep Expert Completed", "Ram Expert Completed"]
+					"","Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					//innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
-					innerDataObj.data.push([innerData[0].name, innerData[0].cert, innerData[1] == undefined ? "" : innerData[1].cert]);
+					innerDataObj.data.push(["",innerData[0].name, numberWithCommasNoDecimals(innerData[0].cert), innerData[1] == undefined ? 0 : numberWithCommasNoDecimals(innerData[1].cert), 0]);
 					jeepTotal = jeepTotal + innerData[0].cert;
 					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].cert);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
-
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal), numberWithCommasNoDecimals(ramTotal), 0, numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
-
 		}
 		function getChart12(jsonData) {
 			var tableData = {};
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 			tableData.headers = ["Dealer", "Award Points", "Excellence Card Awards"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -223,7 +251,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -232,34 +259,30 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var awardsPointTotal = 0;
 				var earningsTotal = 0;
-
-				innerDataObj.headers = ["Participant", "Award Points", "Excellence Card Awards"]
+				innerDataObj.headers = ["","Participant", "Award Points", "Excellence Card Awards"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push([innerData[0].name, innerData[0].points, "$" + innerData[0].earnings]);
+					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].points), "$" + numberWithCommasNoDecimals(innerData[0].earnings)]);
 					awardsPointTotal = awardsPointTotal + innerData[0].points;
 					earningsTotal = earningsTotal + innerData[0].earnings;
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], awardsPointTotal, "$" + earningsTotal], "innerData": innerDataObj })
-
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(awardsPointTotal), "$" + numberWithCommasNoDecimals(earningsTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
-
-
-
 		}
 		function getChart13(jsonData) {
 			var tableData = {};
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 			tableData.headers = ["DEALER", "Certified", "Certified Specialist", "Master Certified", "Total Certification"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -267,7 +290,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -276,38 +298,42 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var totalCertified = 0;
 				var totalCertifiedSpecialist = 0;
 				var totalMasterCertified = 0;
-
-
-
-				innerDataObj.headers = ["Participant", "Certified", "Certified Specialist", "Master Certified"]
+				innerDataObj.headers = [" ","Participant", "Certified", "Certified Specialist", "Master Certified"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified, innerData[0].certified + innerData[0].certifiedSpecalist + innerData[0].masterCertified]);
-					innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified]);
+					innerDataObj.data.push(["",innerData[0].name,
+					numberWithCommasNoDecimals(innerData[0].certified),
+					numberWithCommasNoDecimals(innerData[0].certifiedSpecalist),
+					numberWithCommasNoDecimals(innerData[0].masterCertified)]);
 					totalCertified = totalCertified + innerData[0].certified;
 					totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[0].certifiedSpecalist;
 					totalMasterCertified = totalMasterCertified + innerData[0].masterCertified;
-
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], totalCertified, totalCertifiedSpecialist, totalMasterCertified, totalCertified + totalCertifiedSpecialist + totalMasterCertified], "innerData": innerDataObj })
-
+				tableData.data.push({
+					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key],
+						numberWithCommasNoDecimals(totalCertified),
+						numberWithCommasNoDecimals(totalCertifiedSpecialist),
+						numberWithCommasNoDecimals(totalMasterCertified),
+						numberWithCommasNoDecimals(totalCertified + totalCertifiedSpecialist + totalMasterCertified)], "innerData": innerDataObj
+				})
 			}
 			return tableData;
-
 		}
 		function getChart19(jsonData) {
 			var tableData = {};
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 			tableData.headers = ["Dealer", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "UConnect", "wiAdvisor", "Total"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -315,7 +341,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -324,7 +349,6 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var expressLaneTotal = 0;
 				var magnettiMarelliTotal = 0;
@@ -334,7 +358,6 @@
 				var uConnectTotal = 0;
 				var wiAdvisor = 0;
 				var total = 0;
-
 				innerDataObj.headers = ["Participant",
 					"Express Lane",
 					"Magneti Marelli",
@@ -346,29 +369,28 @@
 					"Total"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
+					function numberWithCommasNoDecimals(x) {
+						return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					}
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					console.log(innerData)
+					//console.log(innerData)
 					var rowData = [innerData[0].name];
 					var total = 0;
 					var programName = ["Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor"]
 					for (var j = 0; j < programName.length; j++) {
 						var obj = innerData.filter(function (ele, index, array) {
-							console.log(programName[j] + " === " + ele.program)
+							//console.log(programName[j] + " === " + ele.program)
 							return programName[j] === ele.program;
-
 						});
-						console.log(obj)
-						var value = obj[0] === undefined ? 0 : obj[0].earningsYTD;
+						//console.log(obj)
+						var value = obj[0] === undefined ? 0 : Math.round(obj[0].earningsYTD);
 						rowData.push(value)
-
 						total = total + value;
 					}
-					rowData.push(total)
+					rowData.push("$" + total)
 					innerDataObj.data.push(rowData)
-
-
 					expressLaneTotal = expressLaneTotal + rowData[1];
 					magnettiMarelliTotal = magnettiMarelliTotal + rowData[2];
 					moparPartsTotal = moparPartsTotal + rowData[3];
@@ -376,15 +398,21 @@
 					partsCounter = partsCounter + rowData[5];
 					uConnectTotal = uConnectTotal + rowData[6];
 					wiAdvisor = wiAdvisor + rowData[7];
-
 					total = expressLaneTotal + magnettiMarelliTotal + moparPartsTotal + mvpTotal + partsCounter + uConnectTotal + wiAdvisor;
-
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], expressLaneTotal, magnettiMarelliTotal, moparPartsTotal, mvpTotal, partsCounter, uConnectTotal, wiAdvisor, total], "innerData": innerDataObj })
-
+				tableData.data.push({
+					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key],
+						"$" + numberWithCommasNoDecimals(expressLaneTotal),
+						"$" + numberWithCommasNoDecimals(magnettiMarelliTotal),
+						"$" + numberWithCommasNoDecimals(moparPartsTotal),
+						"$" + numberWithCommasNoDecimals(mvpTotal),
+						"$" + numberWithCommasNoDecimals(partsCounter),
+						"$" + numberWithCommasNoDecimals(uConnectTotal),
+						"$" + numberWithCommasNoDecimals(wiAdvisor),
+						"$" + numberWithCommasNoDecimals(total)], "innerData": innerDataObj
+				})
 			}
 			return tableData;
-
 		}
 		function getChart20(jsonData) {
 			//sir
@@ -394,9 +422,11 @@
 		}
 		function getChart23(jsonData) {
 			var tableData = {};
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
 			tableData.headers = ["Dealer", "TOTAL Points Earned"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -404,7 +434,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -413,11 +442,10 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var totalEarnedPoints = 0;
-
 				innerDataObj.headers = [
+					"",
 					"Participant",
 					"TOTAL Points Earned"
 				]
@@ -426,19 +454,104 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push([innerData[0].name, innerData[0].earnedPoints]);
+					innerDataObj.data.push(["",innerData[0].name, numberWithCommasNoDecimals(innerData[0].earnedPoints)]);
 					totalEarnedPoints = totalEarnedPoints + innerData[0].earnedPoints;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], totalEarnedPoints], "innerData": innerDataObj })
-
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(totalEarnedPoints)], "innerData": innerDataObj })
 			}
 			return tableData;
-
-
 		}
 		function getChart31(jsonData) {
-
+			var tableData = {};
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			tableData.headers = ["Dealer",
+				"09",
+				"13",
+				"23",
+				"08",
+				"14",
+				"04",
+				"42",
+				"Total"];
+			tableData.data = [];
+			var delarName = {};
+			for (var i = 0; i < jsonData.length; i++) {
+				var obj = jsonData[i];
+				delarName[obj.dealerName] = obj.dealerName;
+			}
+			for (var key in delarName) {
+				var outerObj = {}
+				var outerData = jsonData.filter(function (ele, index, array) {
+					return delarName[key] === ele.dealerName;
+				});
+				var sid = {};
+				for (var k = 0; k < outerData.length; k++) {
+					var obj = outerData[k];
+					sid[obj.sid] = obj.sid;
+				}
+				var innerDataObj = {};
+				var expressLaneTotal = 0;
+				var magnettiMarelliTotal = 0;
+				var moparPartsTotal = 0;
+				var mvpTotal = 0;
+				var partsCounter = 0;
+				var uConnectTotal = 0;
+				var wiAdvisor = 0;
+				var total = 0;
+				
+				innerDataObj.data = [];
+				for (var key1 in sid) {
+					
+					var innerData = outerData.filter(function (ele, index, array) {
+						return sid[key1] === ele.sid;
+					});
+					//console.log(innerData)
+					var rowData = [innerData[0].name];
+					var total = 0;
+					var programName = ["09",
+					"13",
+					"23",
+					"08",
+					"14",
+					"04",
+					"42",]
+					for (var j = 0; j < programName.length; j++) {
+						var obj = innerData.filter(function (ele, index, array) {
+							//console.log(programName[j] + " === " + ele.program)
+							return programName[j] === ele.program;
+						});
+						//console.log(obj)
+						var value = obj[0] === undefined ? 0 : Math.round(obj[0].percentage);
+						rowData.push(value)
+						total = total + value;
+					}
+					rowData.push("$" + total)
+					innerDataObj.data.push(rowData)
+					expressLaneTotal = expressLaneTotal + rowData[1];
+					magnettiMarelliTotal = magnettiMarelliTotal + rowData[2];
+					moparPartsTotal = moparPartsTotal + rowData[3];
+					mvpTotal = mvpTotal + rowData[4];
+					partsCounter = partsCounter + rowData[5];
+					uConnectTotal = uConnectTotal + rowData[6];
+					wiAdvisor = wiAdvisor + rowData[7];
+					total = expressLaneTotal + magnettiMarelliTotal + moparPartsTotal + mvpTotal + partsCounter + uConnectTotal + wiAdvisor;
+				}
+				tableData.data.push({
+					"data": ["", delarName[key],
+						"$" + numberWithCommasNoDecimals(expressLaneTotal),
+						"$" + numberWithCommasNoDecimals(magnettiMarelliTotal),
+						"$" + numberWithCommasNoDecimals(moparPartsTotal),
+						"$" + numberWithCommasNoDecimals(mvpTotal),
+						"$" + numberWithCommasNoDecimals(partsCounter),
+						"$" + numberWithCommasNoDecimals(uConnectTotal),
+						"$" + numberWithCommasNoDecimals(wiAdvisor),
+						"$" + numberWithCommasNoDecimals(total)], "innerData": innerDataObj
+				})
+			}
+			return tableData;
 		}
 		function getChart32(jsonData) {
 			var tableData = {};
@@ -452,19 +565,16 @@
 				"CFAFE Award Certification",
 				"Total"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-
 				tableData.data.push({
 					"data": [" ", obj.dealerName, obj.noCertification,
 						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
 						obj.facility, obj.cfafeawardCertification,
-						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training+
+						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
 						obj.facility + obj.cfafeawardCertification], "innerData": []
 				})
-
 			}
 			return tableData;
 		}
@@ -480,22 +590,23 @@
 				"CFAFE Award Certification",
 				"Total"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-
 				tableData.data.push({
-					"data": [" ", obj.dealerName, obj.noCertification,
-						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
-						obj.facility, obj.cfafeawardCertification,
-						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training+
-						obj.facility + obj.cfafeawardCertification], "innerData": []
+					"data": [" ", obj.dealerName,
+						obj.noCertification + "%",
+						obj.performance + "%",
+						obj.process + "%",
+						obj.voiceofEmployee + "%",
+						obj.training + "%",
+						obj.facility + "%",
+						obj.cfafeawardCertification + "%",
+						(obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
+							obj.facility + obj.cfafeawardCertification) + "%"], "innerData": []
 				})
-
 			}
 			return tableData;
-
 		}
 		function getChart34(jsonData) {
 			//total dealers enrolled
@@ -505,9 +616,11 @@
 		}
 		function getChart36(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "TOTAL Dollard Earned"];
+			function numberWithCommasNoDecimals(x) {
+				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+			tableData.headers = ["Dealer", "TOTAL Dollars Earned"];
 			tableData.data = [];
-
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
@@ -515,7 +628,6 @@
 			}
 			for (var key in delarName) {
 				var outerObj = {}
-
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
@@ -524,35 +636,29 @@
 					var obj = outerData[k];
 					sid[obj.sid] = obj.sid;
 				}
-
 				var innerDataObj = {};
 				var totalEarnedDollars = 0;
-
 				innerDataObj.headers = [
-					"Participant",
-					"TOTAL Dollard Earned"
+					"","Participant",
+					"TOTAL Dollars Earned"
 				]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push([innerData[0].name, "$" + Math.round(innerData[0].earnings)]);
-					totalEarnedDollars = totalEarnedDollars + Math.round(innerData[0].earnings);
+					innerDataObj.data.push(["",innerData[0].name, "$" + numberWithCommasNoDecimals(innerData[0].earnings)]);
+					totalEarnedDollars = totalEarnedDollars + (innerData[0].earnings);
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], "$" + totalEarnedDollars], "innerData": innerDataObj })
-
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], "$" + numberWithCommasNoDecimals(totalEarnedDollars)], "innerData": innerDataObj })
 			}
 			return tableData;
-
 		}
 		// function getJEEPRAMJSON(jsonData) {
-
 		// 	var tableData = {};
 		// 	tableData.headers = ["DEALER", "JEEP", "RAM", "TOTAL"];
 		// 	tableData.data = [];
-
 		// 	var delarName = {};
 		// 	for (var i = 0; i < jsonData.length; i++) {
 		// 		var obj = jsonData[i];
@@ -560,7 +666,6 @@
 		// 	}
 		// 	for (var key in delarName) {
 		// 		var outerObj = {}
-
 		// 		var outerData = jsonData.filter(function (ele, index, array) {
 		// 			return delarName[key] === ele.dealerName;
 		// 		});
@@ -569,11 +674,9 @@
 		// 			var obj = outerData[k];
 		// 			sid[obj.sid] = obj.sid;
 		// 		}
-
 		// 		var innerDataObj = {};
 		// 		var jeepTotal = 0;
 		// 		var ramTotal = 0;
-
 		// 		innerDataObj.headers = [
 		// 			"Participant",
 		// 			"Jeep",
@@ -590,11 +693,9 @@
 		// 			ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
 		// 		}
 		// 		tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], jeepTotal, ramTotal, jeepTotal + ramTotal], "innerData": innerDataObj })
-
 		// 	}
 		// 	return tableData;
 		// }
-
 		function loadTableData(tableData) {
 			function fnFormatDetails(table_id, html) {
 				var sOut = "<table id=\"exampleTable_" + table_id + "\">";
@@ -602,35 +703,27 @@
 				sOut += "</table>";
 				return sOut;
 			}
-
 			//////////////////////////////////////////////////////////// EXTERNAL DATA - Array of Objects 
-
-
 			var iTableCounter = 1;
 			var oTable;
 			var oInnerTable;
 			var detailsTableHtml;
-
 			//Run On HTML Build
 			$(document).ready(function () {
 
 				// you would probably be using templates here
 				detailsTableHtml = $("#detailsTable").html();
-
 				//Insert a 'details' column to the table
 				var nCloneTh = document.createElement('th');
 				var nCloneTd = document.createElement('td');
 				nCloneTd.innerHTML = '<img src="https://i.imgur.com/SD7Dz.png">';
 				nCloneTd.className = "center";
-
 				$('#exampleTable thead tr').each(function () {
 					this.insertBefore(nCloneTh, this.childNodes[0]);
 				});
-
 				$('#exampleTable tbody tr').each(function () {
 					this.insertBefore(nCloneTd.cloneNode(true), this.childNodes[0]);
 				});
-
 				var data = tableData.data === undefined ? [] : tableData.data;
 				var head = tableData.headers === undefined ? [] : tableData.headers;
 				var cloumns = [{ "title": "" }];
@@ -645,11 +738,9 @@
 					innerData[i] = dataObj.innerData;
 					dataset.push(dataObj.data)
 				}
-
-
 				//Initialse DataTables, with no sorting on the 'details' column
 				var oTable = $('#exampleTable').dataTable({
-
+					"pagingType": "full_numbers",
 					data: dataset,
 					columns: cloumns,
 					"bJQueryUI": true,
@@ -663,7 +754,6 @@
 					//        "sDefaultContent": '<img src="http://i.imgur.com/SD7Dz.png">'
 					//     },
 					//     { "mDataProp": "dealer" },
-
 					// 	{ "mDataProp": "uc" },
 					// 	{ "mDataProp": "mp" },
 					// 	{ "mDataProp": "wa" },
@@ -671,15 +761,12 @@
 					// 	{ "mDataProp": "pc" },
 					// 	{ "mDataProp": "mm" },
 					// 	{ "mDataProp": "mv" },
-
-
 					//     { "mDataProp": "total" }
 					// ],
 					"oLanguage": {
 						"sInfo": "_TOTAL_ entries"
 					},
 				});
-
 				/* Add event listener for opening and closing details
 				* Note that the indicator for showing which row is open is not controlled by DataTables,
 				* rather it is done here
@@ -687,7 +774,6 @@
 				$('#exampleTable tbody td img').live('click', function () {
 					var nTr = $(this).parents('tr')[0];
 					var nTds = this;
-
 					if (oTable.fnIsOpen(nTr)) {
 						/* This row is already open - close it */
 						this.src = "https://i.imgur.com/SD7Dz.png";
@@ -704,14 +790,11 @@
 							var obj = { "title": head[i] };
 							cloumns.push(obj)
 						}
-
-
 						//var detailsRowData = newRowData[rowIndex].details;
-
 						this.src = "https://i.imgur.com/d4ICC.png";
-
 						oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
 						oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
+							"pagingType": "full_numbers",
 							data: data,
 							columns: cloumns,
 							"bJQueryUI": true,
@@ -745,11 +828,9 @@
 						iTableCounter = iTableCounter + 1;
 					}
 				});
-
-
 			});
-		}
 
+		}
 //]]>
 	</script>
 
@@ -761,18 +842,16 @@
 
 
 
-	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
-
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<!--<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>-->
 
 
 
-	<table id="exampleTable" class="display " cellspacing="0" width="100%">
+	<table id="exampleTable" class="display paginate_button" cellspacing="0" width="100%">
 
 	</table>
 
 	<div style="display: none">
-		<table id="detailsTable" class="display " cellspacing="0" width="100%">
+		<table id="detailsTable" class="display paginate_button" cellspacing="0" width="100%">
 
 		</table>
 	</div>

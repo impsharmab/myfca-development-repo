@@ -1,23 +1,18 @@
 package com.imperialm.imiservices.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
-public class JwtTokenUtil implements Serializable {
+import org.springframework.beans.factory.annotation.Value;
 
-    private static final long serialVersionUID = -3301605591108950415L;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class JwtTokenReader {
+
+	private static final long serialVersionUID = -3301605591108950415L;
 
     static final String CLAIM_KEY_USERNAME = "sub";
     static final String CLAIM_KEY_CREATED = "created";
@@ -89,9 +84,9 @@ public class JwtTokenUtil implements Serializable {
         //return (created.before(lastPasswordReset));
     }
 
-    public String generateToken(UserDetailsImpl userDetails) {
+    public String generateToken(String userId) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put(CLAIM_KEY_USERNAME, userDetails.getUserId());
+        claims.put(CLAIM_KEY_USERNAME, userId);
         claims.put(CLAIM_KEY_CREATED, new Date());
         return generateToken(claims);
     }
@@ -122,13 +117,11 @@ public class JwtTokenUtil implements Serializable {
         return refreshedToken;
     }
 
-    public Boolean validateToken(String token, UserDetails userDetails) {
-    	UserDetailsImpl user = (UserDetailsImpl) userDetails;
+    public Boolean validateToken(String token, String userId) {
         final String username = getUsernameFromToken(token);
-        //final Date created = getCreatedDateFromToken(token);
-        //final Date expiration = getExpirationDateFromToken(token);
         return (
-                username.equals(user.getUserId())
+                username.equals(userId)
                         && !isTokenExpired(token));
     }
+	
 }

@@ -168,35 +168,6 @@ public class TablesController {
 			}
 			return result;
 		}
-		case "14":
-		{
-			//Normal Tile
-			return null;
-		}
-		case "15":
-		{
-			//Normal Tile
-			return null;
-		}
-		case "16":
-		{
-			/*List<TTTAEnrolledDTO> listEnrolled = this.dashService.getTTTAEnrollmentsBC(true);
-			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listEnrolled, "# of Dealers Enrolled YTD", "", "Total Enrolled", "", "column_compound");*/
-			return null;
-		}
-		case "17":
-		{
-			/*List<TTTAEnrolledDTO> listNotEnrolled = this.dashService.getTTTAEnrollmentsBC(false);
-			
-			return this.mappingService.MapTTTAEnrolledDTOtoChart(listNotEnrolled, "# of Dealers Not Enrolled YTD", "", "Total Enrolled", "", "column_compound");*/
-			return null;
-		}
-		case "18":
-		{
-			//Normal Tile
-			return null;
-		}
 		case "19":
 		{
 			List<MSERGraphDetailsDTO> result = new ArrayList<MSERGraphDetailsDTO>();
@@ -287,24 +258,13 @@ public class TablesController {
 			}
 			return result;
 		}
-		case "24":
-		{
-			//NOT A CHART
-			
-			return null;
-		}
-		case "25":
-		{
-			// NOT A Graph Chart
-			return null;
-		}
 		case "31":
 		{
 			List<RetentionDetailsDTO> result = new ArrayList<RetentionDetailsDTO>();
 			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
 				List<String> filters = new ArrayList<String>();
 				filters.add(territory);
-				List<RetentionGraphDTO> sublist = this.dashService.getRetentionGraphByChildTerritoryList(filters);
+				List<RetentionGraphDTO> sublist = this.dashService.getRetentionGraphByParentTerritoryList(filters);
 				for(RetentionGraphDTO item: sublist){
 						List<RetentionDetailsDTO> participants = this.dashService.getRetentionDetailsByDealerCode(item.getChildTerritory());
 						result.addAll(participants);

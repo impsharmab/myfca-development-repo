@@ -618,7 +618,7 @@ public class MappingServiceImpl {
 		facility.setValue(CustomerFirstGraphDTO.getFacility());
 		
 		CFAFEAwardCertification.setName("CFAFE Award Certification");
-		CFAFEAwardCertification.setValue(CustomerFirstGraphDTO.getFacility());
+		CFAFEAwardCertification.setValue(CustomerFirstGraphDTO.getCFAFEAwardCertification());
 		
 		
 		chartData.addData(certified);

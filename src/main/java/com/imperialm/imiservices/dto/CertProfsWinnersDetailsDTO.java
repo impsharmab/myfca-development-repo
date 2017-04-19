@@ -21,6 +21,7 @@ public class CertProfsWinnersDetailsDTO implements Serializable{
 	@Id private int masterCertified;
 	@Id private int totalCertified;
 	@Id private int yearsOfCertified;
+	@Id private String priorYearCertLevel;
 	@Id private String error;
 		    		  
 }

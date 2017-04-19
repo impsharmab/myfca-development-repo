@@ -1,0 +1,194 @@
+
+<!-- saved from url=(0115)file:///C:/Users/sharmab/Desktop/Bijay/dashboard/work/myfca-development-repo/src/main/webapp/app/exportToExcel.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+
+    <script type="text/javascript" language="javascript" src="./exportToExcel_files/jquery-1.8.3.js.download"></script>
+    <script src="./exportToExcel_files/jquery.dataTables.min.js.download"></script>
+    <script src="./exportToExcel_files/dataTables.buttons.min.js.download"></script>
+    <script src="./exportToExcel_files/buttons.flash.min.js.download"></script>
+    <script src="./exportToExcel_files/jszip.min.js.download"></script>
+    <script src="./exportToExcel_files/pdfmake.min.js.download"></script>
+    <script src="./exportToExcel_files/vfs_fonts.js.download"></script>
+    <script src="./exportToExcel_files/buttons.html5.min.js.download"></script>
+    <script src="./exportToExcel_files/buttons.print.min.js.download"></script>
+
+    <link rel="stylesheet" type="text/css" href="./exportToExcel_files/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="./exportToExcel_files/buttons.dataTables.min.css">
+
+
+
+    <!--//code.jquery.com/jquery-1.12.4.js
+https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js
+https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js
+//cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js
+//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js
+//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js
+//cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js
+//cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js
+//cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js
+
+https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css
+https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css-->
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Data export'
+                    }
+                ]
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="example_wrapper" class="dataTables_wrapper"><div class="dt-buttons"><a class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="example" href="file:///C:/Users/sharmab/Desktop/Bijay/dashboard/work/myfca-development-repo/src/main/webapp/app/exportToExcel.html#"><span>Excel</span></a></div><div id="example_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="example"></label></div><table id="example" class="display nowrap dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+        <thead>
+            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 264px;">Name</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 413px;">Position</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 194px;">Office</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 96px;">Age</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 181px;">Start date</th><th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 157px;">Salary</th></tr>
+        </thead>
+        <tfoot>
+            <tr><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
+        </tfoot>
+        <tbody>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        <tr role="row" class="odd">
+                <td class="sorting_1">Quinn Flynn</td>
+                <td>Support Lead</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2013/03/03</td>
+                <td>$342,000</td>
+            </tr><tr role="row" class="even">
+                <td class="sorting_1">Rhona Davidson</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+                <td>55</td>
+                <td>2010/10/14</td>
+                <td>$327,900</td>
+            </tr><tr role="row" class="odd">
+                <td class="sorting_1">Sakura Yamamoto</td>
+                <td>Support Engineer</td>
+                <td>Tokyo</td>
+                <td>37</td>
+                <td>2009/08/19</td>
+                <td>$139,575</td>
+            </tr><tr role="row" class="even">
+                <td class="sorting_1">Serge Baldwin</td>
+                <td>Data Coordinator</td>
+                <td>Singapore</td>
+                <td>64</td>
+                <td>2012/04/09</td>
+                <td>$138,575</td>
+            </tr><tr role="row" class="odd">
+                <td class="sorting_1">Shad Decker</td>
+                <td>Regional Director</td>
+                <td>Edinburgh</td>
+                <td>51</td>
+                <td>2008/11/13</td>
+                <td>$183,000</td>
+            </tr><tr role="row" class="even">
+                <td class="sorting_1">Shou Itou</td>
+                <td>Regional Marketing</td>
+                <td>Tokyo</td>
+                <td>20</td>
+                <td>2011/08/14</td>
+                <td>$163,000</td>
+            </tr><tr role="row" class="odd">
+                <td class="sorting_1">Sonya Frost</td>
+                <td>Software Engineer</td>
+                <td>Edinburgh</td>
+                <td>23</td>
+                <td>2008/12/13</td>
+                <td>$103,600</td>
+            </tr><tr role="row" class="even">
+                <td class="sorting_1">Suki Burks</td>
+                <td>Developer</td>
+                <td>London</td>
+                <td>53</td>
+                <td>2009/10/22</td>
+                <td>$114,500</td>
+            </tr><tr role="row" class="odd">
+                <td class="sorting_1">Tatyana Fitzpatrick</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>19</td>
+                <td>2010/03/17</td>
+                <td>$385,750</td>
+            </tr><tr role="row" class="even">
+                <td class="sorting_1">Thor Walton</td>
+                <td>Developer</td>
+                <td>New York</td>
+                <td>61</td>
+                <td>2013/08/11</td>
+                <td>$98,540</td>
+            </tr></tbody>
+    </table><div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 41 to 50 of 57 entries</div><div class="dataTables_paginate paging_simple_numbers" id="example_paginate"><a class="paginate_button previous" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_previous">Previous</a><span><a class="paginate_button " aria-controls="example" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="example" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="example" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="example" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button current" aria-controls="example" data-dt-idx="5" tabindex="0">5</a><a class="paginate_button " aria-controls="example" data-dt-idx="6" tabindex="0">6</a></span><a class="paginate_button next" aria-controls="example" data-dt-idx="7" tabindex="0" id="example_next">Next</a></div></div>
+
+
+</body></html>

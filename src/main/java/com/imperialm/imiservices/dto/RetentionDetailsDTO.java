@@ -10,10 +10,9 @@ import lombok.Setter;
 
 @Entity @Setter @Getter
 public class RetentionDetailsDTO implements Serializable {
-	@Id private int DealerCode;
-	@Id private String DealerName;
-	@Id private int PositionCode;
-	@Id private double Percentage;
-	@Id private String error;
+	@Id private String dealerCode;
+	@Id private String dealerName;
+	@Id private String positionCode;
+	@Id private double percentage;
 
 }

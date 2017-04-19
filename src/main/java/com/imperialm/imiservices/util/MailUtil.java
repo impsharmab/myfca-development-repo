@@ -145,12 +145,6 @@ public class MailUtil
 
   public static void checkGoodEmail(String input) throws Exception
   {
-      //if (input == null) throw new BadInputException("Sorry, null string is not a good email.");
-      int atIndex = input.indexOf('@');
-      int dotIndex = input.lastIndexOf('.');
-      //if ((atIndex == -1) || (dotIndex == -1) || (atIndex >= dotIndex))
-      //   throw new BadInputException("Error: '" + input + "' is not a valid email value. Please try again.");
-      // now check for content of the string
       byte[] s = input.getBytes();
       int length = s.length;
       byte b = 0;
@@ -221,26 +215,6 @@ public class MailUtil
         this.smtpPort = smtpPort;
     }
     
-  /*  public static void main(String[] args)
-    {
-        
-        MailUtil util = new MailUtil("imail.imperialm.com", "25", "cart", "shopper");
-        String from = "apteralifestyle@imperialm.com";
-        String to = "ctrevarthen@wowway.com";
-        String cc = " ";
-        String bcc = " ";
-        String subject = "Test";
-        String message = "Test Message";
-        try
-        {
-            util.sendMail(from, to, cc, bcc, subject, message);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-    }*/
 
     /**
      * @return the emailSubjectPrefix

@@ -98,6 +98,17 @@ public class UserProfileServiceImpl implements UserProfileService {
 		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg","https://www.moparser.com/mser", "rules"));
 		}
 		
+		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
+			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(6,"","tile", "","blank.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","https://www.moparser.com/mser","rules"));
+		}
+		
+		
 		if(tile3.contains(positionCode)){
 			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://fcarewardredemption.com","rules"));
 			}
@@ -203,15 +214,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}
 		
 		
-		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(6,"","tile", "","blank.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","https://www.moparser.com/mser","rules"));
-		}
+		
 		
 		
 		return userTiles;
