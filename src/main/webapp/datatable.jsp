@@ -127,14 +127,14 @@
 				}
 				var innerDataObj = {};
 				var ytdWinnersTotal = 0;
-				innerDataObj.headers = ["","Participant"]
+				innerDataObj.headers = ["", "Participant"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].winners]);
-					innerDataObj.data.push(["",innerData[0].name]);
+					innerDataObj.data.push(["", innerData[0].name]);
 					ytdWinnersTotal = ytdWinnersTotal + innerData[0].winners;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
@@ -186,7 +186,7 @@
 						return sid[key1] === ele.sid;
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
-					innerDataObj.data.push(["",innerData[0].name, numberWithCommasNoDecimals(innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points))]);
+					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points))]);
 
 					jeepTotal = jeepTotal + innerData[0].points;
 					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
@@ -222,14 +222,14 @@
 				var jeepTotal = 0;
 				var ramTotal = 0;
 				innerDataObj.headers = [
-					"","Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
+					"", "Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					//innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
-					innerDataObj.data.push(["",innerData[0].name, numberWithCommasNoDecimals(innerData[0].cert), innerData[1] == undefined ? 0 : numberWithCommasNoDecimals(innerData[1].cert), 0]);
+					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].cert), innerData[1] == undefined ? 0 : numberWithCommasNoDecimals(innerData[1].cert), 0]);
 					jeepTotal = jeepTotal + innerData[0].cert;
 					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].cert);
 				}
@@ -262,7 +262,7 @@
 				var innerDataObj = {};
 				var awardsPointTotal = 0;
 				var earningsTotal = 0;
-				innerDataObj.headers = ["","Participant", "Award Points", "Excellence Card Awards"]
+				innerDataObj.headers = ["", "Participant", "Award Points", "Excellence Card Awards"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
@@ -302,17 +302,17 @@
 				var totalCertified = 0;
 				var totalCertifiedSpecialist = 0;
 				var totalMasterCertified = 0;
-				innerDataObj.headers = [" ","Participant", "Certified", "Certified Specialist", "Master Certified"]
+				innerDataObj.headers = [" ", "Participant", "Certified", "Certified Specialist", "Master Certified"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified, innerData[0].certified + innerData[0].certifiedSpecalist + innerData[0].masterCertified]);
-					innerDataObj.data.push(["",innerData[0].name,
-					numberWithCommasNoDecimals(innerData[0].certified),
-					numberWithCommasNoDecimals(innerData[0].certifiedSpecalist),
-					numberWithCommasNoDecimals(innerData[0].masterCertified)]);
+					innerDataObj.data.push(["", innerData[0].name,
+						numberWithCommasNoDecimals(innerData[0].certified),
+						numberWithCommasNoDecimals(innerData[0].certifiedSpecalist),
+						numberWithCommasNoDecimals(innerData[0].masterCertified)]);
 					totalCertified = totalCertified + innerData[0].certified;
 					totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[0].certifiedSpecalist;
 					totalMasterCertified = totalMasterCertified + innerData[0].masterCertified;
@@ -327,11 +327,12 @@
 			}
 			return tableData;
 		}
+		function numberWithCommasNoDecimals(x) {
+			return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
 		function getChart19(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
+
 			tableData.headers = ["Dealer", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "UConnect", "wiAdvisor", "Total"];
 			tableData.data = [];
 			var delarName = {};
@@ -369,9 +370,7 @@
 					"Total"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
-					function numberWithCommasNoDecimals(x) {
-						return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					}
+
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
@@ -389,7 +388,7 @@
 						rowData.push(value)
 						total = total + value;
 					}
-					rowData.push("$" + total)
+					rowData.push(total)
 					innerDataObj.data.push(rowData)
 					expressLaneTotal = expressLaneTotal + rowData[1];
 					magnettiMarelliTotal = magnettiMarelliTotal + rowData[2];
@@ -399,6 +398,9 @@
 					uConnectTotal = uConnectTotal + rowData[6];
 					wiAdvisor = wiAdvisor + rowData[7];
 					total = expressLaneTotal + magnettiMarelliTotal + moparPartsTotal + mvpTotal + partsCounter + uConnectTotal + wiAdvisor;
+					for (var m = 1; m < rowData.length; m++) {
+						rowData[m] = "$" + numberWithCommasNoDecimals(rowData[m]);
+					}
 				}
 				tableData.data.push({
 					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key],
@@ -454,7 +456,7 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push(["",innerData[0].name, numberWithCommasNoDecimals(innerData[0].earnedPoints)]);
+					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].earnedPoints)]);
 					totalEarnedPoints = totalEarnedPoints + innerData[0].earnedPoints;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
@@ -462,11 +464,9 @@
 			}
 			return tableData;
 		}
+
 		function getChart31(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
 			tableData.headers = ["Dealer",
 				"09",
 				"13",
@@ -478,6 +478,8 @@
 				"Total"];
 			tableData.data = [];
 			var delarName = {};
+
+			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
 				delarName[obj.dealerName] = obj.dealerName;
@@ -487,69 +489,23 @@
 				var outerData = jsonData.filter(function (ele, index, array) {
 					return delarName[key] === ele.dealerName;
 				});
-				var sid = {};
-				for (var k = 0; k < outerData.length; k++) {
-					var obj = outerData[k];
-					sid[obj.sid] = obj.sid;
-				}
-				var innerDataObj = {};
-				var expressLaneTotal = 0;
-				var magnettiMarelliTotal = 0;
-				var moparPartsTotal = 0;
-				var mvpTotal = 0;
-				var partsCounter = 0;
-				var uConnectTotal = 0;
-				var wiAdvisor = 0;
+				var positionCodeArray = ["09", "13", "23", "08", "14", "04", "42"]
+				var rowData = [" "];
+				rowData.push(delarName[key]);
 				var total = 0;
-				
-				innerDataObj.data = [];
-				for (var key1 in sid) {
-					
-					var innerData = outerData.filter(function (ele, index, array) {
-						return sid[key1] === ele.sid;
+				for (var n = 0; n < positionCodeArray.length; n++) {
+					var data = outerData.filter(function (ele, index, array) {
+						return positionCodeArray[n] === ele.positionCode;
 					});
-					//console.log(innerData)
-					var rowData = [innerData[0].name];
-					var total = 0;
-					var programName = ["09",
-					"13",
-					"23",
-					"08",
-					"14",
-					"04",
-					"42",]
-					for (var j = 0; j < programName.length; j++) {
-						var obj = innerData.filter(function (ele, index, array) {
-							//console.log(programName[j] + " === " + ele.program)
-							return programName[j] === ele.program;
-						});
-						//console.log(obj)
-						var value = obj[0] === undefined ? 0 : Math.round(obj[0].percentage);
-						rowData.push(value)
-						total = total + value;
-					}
-					rowData.push("$" + total)
-					innerDataObj.data.push(rowData)
-					expressLaneTotal = expressLaneTotal + rowData[1];
-					magnettiMarelliTotal = magnettiMarelliTotal + rowData[2];
-					moparPartsTotal = moparPartsTotal + rowData[3];
-					mvpTotal = mvpTotal + rowData[4];
-					partsCounter = partsCounter + rowData[5];
-					uConnectTotal = uConnectTotal + rowData[6];
-					wiAdvisor = wiAdvisor + rowData[7];
-					total = expressLaneTotal + magnettiMarelliTotal + moparPartsTotal + mvpTotal + partsCounter + uConnectTotal + wiAdvisor;
+					rowData.push(Math.round(data[0].percentage)+"%")
+					total = Math.round(total + data[0].percentage);
 				}
+
+				rowData.push(total+"%");
 				tableData.data.push({
-					"data": ["", delarName[key],
-						"$" + numberWithCommasNoDecimals(expressLaneTotal),
-						"$" + numberWithCommasNoDecimals(magnettiMarelliTotal),
-						"$" + numberWithCommasNoDecimals(moparPartsTotal),
-						"$" + numberWithCommasNoDecimals(mvpTotal),
-						"$" + numberWithCommasNoDecimals(partsCounter),
-						"$" + numberWithCommasNoDecimals(uConnectTotal),
-						"$" + numberWithCommasNoDecimals(wiAdvisor),
-						"$" + numberWithCommasNoDecimals(total)], "innerData": innerDataObj
+					"data": rowData, "innerData": []
 				})
+
 			}
 			return tableData;
 		}
@@ -639,7 +595,7 @@
 				var innerDataObj = {};
 				var totalEarnedDollars = 0;
 				innerDataObj.headers = [
-					"","Participant",
+					"", "Participant",
 					"TOTAL Dollars Earned"
 				]
 				innerDataObj.data = [];
@@ -647,7 +603,7 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push(["",innerData[0].name, "$" + numberWithCommasNoDecimals(innerData[0].earnings)]);
+					innerDataObj.data.push(["", innerData[0].name, "$" + numberWithCommasNoDecimals(innerData[0].earnings)]);
 					totalEarnedDollars = totalEarnedDollars + (innerData[0].earnings);
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
