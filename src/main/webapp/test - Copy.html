@@ -1,13 +1,31 @@
 
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-
+  <meta name="googlebot" content="noindex, nofollow"> 
 
 <script type="text/javascript" language="javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+<!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+
+    <!--<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
+
+    <script type="text/javascript" language="javascript" src="./tableToExcel.js"></script>
 
 <style type="text/css">
     body {
@@ -17,7 +35,7 @@
 }
 
 h4 {
-    font-size: 16px;
+    font-size: 16px; 
     color: #dd007d;
 }
 
@@ -77,6 +95,16 @@ var iTableCounter = 1;
 
     //Run On HTML Build
     $(document).ready(function () {
+        // $('#exampleTable').DataTable({
+        //         dom: 'Bfrtip',
+        //         buttons: [
+        //             // {
+        //             //     extend: 'excelHtml5',
+        //             //     title: 'Data export'
+        //             // }
+        //             'copy', 'csv', 'excel', 'pdf', 'print'
+        //         ]
+        //     });
         
         // you would probably be using templates here
         detailsTableHtml = $("#detailsTable").html();
@@ -97,7 +125,15 @@ var iTableCounter = 1;
         
        
         //Initialse DataTables, with no sorting on the 'details' column
-        var oTable = $('#exampleTable').dataTable({
+        var oTable = $('#exampleTable, detailsTable ').dataTable({
+            dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Data export'
+                    }
+                    //'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
 		
 		"scrollY": "600px",
         "scrollX": true,
@@ -153,6 +189,14 @@ var iTableCounter = 1;
 				
                 oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
                 oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
+                    dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Data export'
+                    }
+                    //'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
                     "bJQueryUI": true,
                     "bFilter": false,
                     "aaData": detailsRowData,
@@ -190,19 +234,28 @@ var iTableCounter = 1;
 });//]]> 
 
 </script>
+<style>
+.datatable-margin-class{
+    margin:20px;
+}
 
+</style>
   
 </head>
 
 <body>
 
-<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
-
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
 
-                
-<table id="exampleTable" class="display " cellspacing="0" width="100%">
+
+<fieldset class="datatable-margin-class"> 
+
+    
+   
+    
+    <!--<input type="button" onclick="tableToExcel('exampleTable', 'W3C Example Table')" value="Export to Excel" style="cursor:pointer">          -->
+
+<table id="exampleTable" class="display nowrap datatable-margin-class" cellspacing="0" width="100%">
     <thead> 
         <tr>
             <th>Dealer</th>
@@ -220,7 +273,7 @@ var iTableCounter = 1;
 </table>
     
 <div style="display:none">    
-    <table id="detailsTable" class="display " cellspacing="0" width="100%">
+    <table id="detailsTable" class="display nowrap" cellspacing="0" width="100%">
         <thead> 
             <tr>
 
@@ -243,7 +296,7 @@ var iTableCounter = 1;
     </table>
 </div>
     
-    
+ </fieldset>   
 </body>
 
 </html>

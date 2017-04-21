@@ -41,7 +41,7 @@ export class LoginService {
         //debugger
         var url = "./login/token/";
         //  var url = "http://172.25.32.162/myfcarewards/login/token/";
-        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        var url = "https://test.myfcarewards.com/newDBmyfcarewards/login/token/";
         // var url = "http://172.24.16.75:9080/imiservices/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();

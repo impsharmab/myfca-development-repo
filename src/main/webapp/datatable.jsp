@@ -2,10 +2,12 @@
 <html>
 
 <head>
+	<title>Dealer Page</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
 
+	<link rel="shortcut icon" href="app/resources/images/favicon.ico" />
 
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
 
@@ -67,7 +69,7 @@
 		//var chartId = ${chartId };
 		$(window).load(function () {
 			$.ajax({
-				url: "/myfcarewards/services/data/${chartId}/${territory}",
+				url: "/newDBmyfcarewards/services/data/${chartId}/${territory}",
 				//data: { signature: authHeader },
 				type: "GET",
 				beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', '${token}'); },
@@ -103,12 +105,12 @@
 			//alert("Data: " + data + "\nStatus: " + status);
 			//});
 		});
+		function numberWithCommasNoDecimals(x) {
+			return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
 		function getChart9(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
-			tableData.headers = ["Dealer", "TOTAL WINNERS"];
+			tableData.headers = ["Dealer", "Total Winners"];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -144,9 +146,6 @@
 		}
 		function getChart10(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
 			//tableData.headers = ["Dealer", "Jeep", "Ram", "Total Points Earned"];
 			tableData.headers = ["Dealer", "Total Points Earned"];
 			tableData.data = [];
@@ -197,9 +196,6 @@
 		}
 		function getChart11(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
 			// tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
 			tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed", "Total"];
 			tableData.data = [];
@@ -239,9 +235,6 @@
 		}
 		function getChart12(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
 			tableData.headers = ["Dealer", "Award Points", "Excellence Card Awards"];
 			tableData.data = [];
 			var delarName = {};
@@ -278,9 +271,6 @@
 		}
 		function getChart13(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
 			tableData.headers = ["DEALER", "Certified", "Certified Specialist", "Master Certified", "Total Certification"];
 			tableData.data = [];
 			var delarName = {};
@@ -311,10 +301,10 @@
 					// innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified, innerData[0].certified + innerData[0].certifiedSpecalist + innerData[0].masterCertified]);
 					innerDataObj.data.push(["", innerData[0].name,
 						numberWithCommasNoDecimals(innerData[0].certified),
-						numberWithCommasNoDecimals(innerData[0].certifiedSpecalist),
+						numberWithCommasNoDecimals(innerData[0].certifiedSpecialist),
 						numberWithCommasNoDecimals(innerData[0].masterCertified)]);
 					totalCertified = totalCertified + innerData[0].certified;
-					totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[0].certifiedSpecalist;
+					totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[0].certifiedSpecialist;
 					totalMasterCertified = totalMasterCertified + innerData[0].masterCertified;
 				}
 				tableData.data.push({
@@ -326,9 +316,6 @@
 				})
 			}
 			return tableData;
-		}
-		function numberWithCommasNoDecimals(x) {
-			return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
 		function getChart19(jsonData) {
 			var tableData = {};
@@ -424,10 +411,7 @@
 		}
 		function getChart23(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
-			tableData.headers = ["Dealer", "TOTAL Points Earned"];
+			tableData.headers = ["Dealer", "Total Points Earned"];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -449,7 +433,7 @@
 				innerDataObj.headers = [
 					"",
 					"Participant",
-					"TOTAL Points Earned"
+					"Total Points Earned"
 				]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
@@ -467,15 +451,15 @@
 
 		function getChart31(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer",
-				"09",
-				"13",
-				"23",
-				"08",
-				"14",
-				"04",
-				"42",
-				"Total"];
+			tableData.headers = [
+				"Dealer",
+				"Service Managers",
+				"Service Advisors",
+				"Service Technicians",
+				"Parts Managers",
+				"Parts Advisors",
+				"Sales Managers",
+				"Sales Consultant"];
 			tableData.data = [];
 			var delarName = {};
 
@@ -497,11 +481,11 @@
 					var data = outerData.filter(function (ele, index, array) {
 						return positionCodeArray[n] === ele.positionCode;
 					});
-					rowData.push(Math.round(data[0].percentage)+"%")
-					total = Math.round(total + data[0].percentage);
+					rowData.push(Math.round(data[0].percentage) + "%")
+					//total = Math.round(total + data[0].percentage);
 				}
 
-				rowData.push(total+"%");
+				//rowData.push(total+"%");
 				tableData.data.push({
 					"data": rowData, "innerData": []
 				})
@@ -572,10 +556,7 @@
 		}
 		function getChart36(jsonData) {
 			var tableData = {};
-			function numberWithCommasNoDecimals(x) {
-				return (x).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			}
-			tableData.headers = ["Dealer", "TOTAL Dollars Earned"];
+			tableData.headers = ["Dealer", "Total Dollars Earned"];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -596,7 +577,7 @@
 				var totalEarnedDollars = 0;
 				innerDataObj.headers = [
 					"", "Participant",
-					"TOTAL Dollars Earned"
+					"Total Dollars Earned"
 				]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
@@ -795,22 +776,30 @@
 
 <body>
 
-
+	<style>
+		.datatable-margin-class {
+			margin: 20px;
+		}
+	</style>
 
 
 	<!--<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>-->
 
 
-
-	<table id="exampleTable" class="display paginate_button" cellspacing="0" width="100%">
-
-	</table>
-
-	<div style="display: none">
-		<table id="detailsTable" class="display paginate_button" cellspacing="0" width="100%">
+	<fieldset class="datatable-margin-class">
+		<!--<h5><b>
+		Territory: ${territory}
+	</b></h5>-->
+		<table id="exampleTable" class="display paginate_button datatable-margin-class" cellspacing="0" width="100%">
 
 		</table>
-	</div>
+
+		<div style="display: none">
+			<table id="detailsTable" class="display paginate_button" cellspacing="0" width="100%">
+
+			</table>
+		</div>
+	</fieldset>
 </body>
 
 </html>

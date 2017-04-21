@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
 import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
@@ -540,7 +541,7 @@ public class MappingServiceImpl {
 		certified.setValue(Double.parseDouble(CertProfsWinnersGraphDTO.getCertified()));
 		
 		certifiedSpacialist.setName("Certified Spacialist");
-		certifiedSpacialist.setValue(Double.parseDouble(CertProfsWinnersGraphDTO.getCertifiedSpecalist()));
+		certifiedSpacialist.setValue(Double.parseDouble(CertProfsWinnersGraphDTO.getCertifiedSpecialist()));
 		
 		masterCertified.setName("Master Certified");
 		masterCertified.setValue(Double.parseDouble(CertProfsWinnersGraphDTO.getMasterCertified()));
@@ -636,14 +637,15 @@ public class MappingServiceImpl {
 		ChartData chartData = new ChartData();
 		ChartData certified = new ChartData();
 		ChartData certifiedSpacialist = new ChartData();
-		
+		String currentYear = new DateTime().getYear() + "";
+		String lastYear = (new DateTime().getYear() -1) + "";
 		chartData.setName(SIRewardsYOYGraphDTO.getParentTerritory());
 		
-		certified.setName("2016");
-		certified.setValue(SIRewardsYOYGraphDTO.getEarnings2016YTD());
+		certified.setName(lastYear);
+		certified.setValue(SIRewardsYOYGraphDTO.getLastYearEarnings());
 		
-		certifiedSpacialist.setName("2017");
-		certifiedSpacialist.setValue(SIRewardsYOYGraphDTO.getEarnings2017YTD());
+		certifiedSpacialist.setName(currentYear);
+		certifiedSpacialist.setValue(SIRewardsYOYGraphDTO.getCurrentYearEarnings());
 		
 		chartData.addData(certified);
 		chartData.addData(certifiedSpacialist);

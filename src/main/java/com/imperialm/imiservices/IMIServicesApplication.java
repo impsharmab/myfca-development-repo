@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
 public class IMIServicesApplication {
-
 	public static void main(final String[] args) {
 		SpringApplication.run(IMIServicesApplication.class, args);
 	}

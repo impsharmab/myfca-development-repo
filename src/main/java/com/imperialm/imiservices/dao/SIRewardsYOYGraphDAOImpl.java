@@ -28,7 +28,6 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 	@Override
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggle(String territory, String toggle) {
 		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
-		SIRewardsYOYGraphDTO SIRewardsYOYGraphDTO = null;
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_AND_TOGGLE, SIRewardsYOYGraphDTO.class);
 			query.setParameter(0, territory);
@@ -36,15 +35,9 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 			List<SIRewardsYOYGraphDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			SIRewardsYOYGraphDTO = new SIRewardsYOYGraphDTO();
-			SIRewardsYOYGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(SIRewardsYOYGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getSIRewardsYOYGraphByTerritoryAndToggle", ex);
-			SIRewardsYOYGraphDTO = new SIRewardsYOYGraphDTO();
-			SIRewardsYOYGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(SIRewardsYOYGraphDTO);
 		}
 		return result;
 	}
@@ -53,7 +46,6 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggle(List<String> territory,
 			String toggle) {
 		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
-		SIRewardsYOYGraphDTO SIRewardsYOYGraphDTO = null;
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_LIST_AND_TOGGLE, SIRewardsYOYGraphDTO.class);
 			query.setParameter(0, territory);
@@ -61,15 +53,9 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 			List<SIRewardsYOYGraphDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			SIRewardsYOYGraphDTO = new SIRewardsYOYGraphDTO();
-			SIRewardsYOYGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(SIRewardsYOYGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getSIRewardsYOYGraphByTerritoryAndToggle", ex);
-			SIRewardsYOYGraphDTO = new SIRewardsYOYGraphDTO();
-			SIRewardsYOYGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(SIRewardsYOYGraphDTO);
 		}
 		return result;
 	}
@@ -77,8 +63,7 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 	@Override
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(List<String> territory,
 			String toggle) {
-		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
-		SIRewardsYOYGraphDTO SIRewardsYOYGraphDTO = null;
+		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();		
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_LIST_AND_TOGGLE_DISTICT_PARENT, SIRewardsYOYGraphDTO.class);
 			query.setParameter(0, territory);
@@ -86,15 +71,26 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 			List<SIRewardsYOYGraphDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
-			SIRewardsYOYGraphDTO = new SIRewardsYOYGraphDTO();
-			SIRewardsYOYGraphDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			result.add(SIRewardsYOYGraphDTO);
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getSIRewardsYOYGraphByTerritoryAndToggle", ex);
-			SIRewardsYOYGraphDTO = new SIRewardsYOYGraphDTO();
-			SIRewardsYOYGraphDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(SIRewardsYOYGraphDTO);
+		}
+		return result;
+	}
+
+	@Override
+	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByChildAndToggle(String territory, String toggle) {
+		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_AND_TOGGLE, SIRewardsYOYGraphDTO.class);
+			query.setParameter(0, territory);
+			query.setParameter(1, toggle);
+			List<SIRewardsYOYGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getSIRewardsYOYGraphByChildAndToggle", ex);
 		}
 		return result;
 	}

@@ -125,9 +125,13 @@ public class TablesController {
 				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
 				List<CertProfsExpertGraphDTO> sublist = this.dashService.getExpertPointsEarnedByParentTerritory(filters);
 				for(CertProfsExpertGraphDTO item: sublist){
+					if(item.getCertType().contains("JEEP")){
 						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "JEEP%"));
+					}else if (item.getCertType().contains("RAM")){
 						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "RAM%"));
+					}else if (item.getCertType().contains("TECH")){
 						result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(item.getChildTerritory(), "TECH%"));
+					}
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
 				result.addAll(this.dashService.getCertProfsExpertDetailsByDealerCodeANDCertType(territory, "JEEP%"));

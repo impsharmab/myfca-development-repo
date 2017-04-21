@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.imperialm</groupId>
-	<artifactId>myfcarewards</artifactId>
+	<artifactId>newDBmyfcarewards</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>myfcarewards</name>
+	<name>newDBmyfcarewards</name>
 	<description>Imperial Dashboard</description>
 
 	<parent>

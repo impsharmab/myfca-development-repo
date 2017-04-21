@@ -338,7 +338,19 @@ var DashboardBodyComponent = (function () {
         // console.log("this.chartObjects.customer_first :" + chartData.data)
         var chartObj = {
             chart: {
-                type: ''
+                type: '',
+                zoomType: 'x',
+                // panning: true,
+                // panKey: 'shift',
+                resetZoomButton: {
+                    position: {
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -10,
+                        y: 10
+                    },
+                    relativeTo: 'chart'
+                }
             },
             colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
                 '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
@@ -465,11 +477,12 @@ var DashboardBodyComponent = (function () {
                         var drillDownObj = {};
                         var __this = this;
                         drillDownObj.point = {
+                            cursor: 'pointer',
                             events: {
                                 click: function () {
                                     if (this.x != undefined && this.name.length > 3) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                        window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     }
                                     // modal trigger
                                     // __this.service.getTableJson("").subscribe(
@@ -602,13 +615,14 @@ var DashboardBodyComponent = (function () {
                 };
                 chartObj.plotOptions["series"] = {
                     point: {
+                        cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
                                 if (this.name.length > 3) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -638,11 +652,12 @@ var DashboardBodyComponent = (function () {
                         var drillDownObj = {};
                         var __this = this;
                         drillDownObj.point = {
+                            cursor: 'pointer',
                             events: {
                                 click: function () {
                                     if (this.x != undefined) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                        window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     } // modal trigger
                                     // __this.service.getTableJson("").subscribe(
                                     //   (resUserData) => {
@@ -747,13 +762,14 @@ var DashboardBodyComponent = (function () {
                 // });
                 chartObj.plotOptions["series"] = {
                     point: {
+                        cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
                                 if (this.name.length > 3) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -781,13 +797,14 @@ var DashboardBodyComponent = (function () {
                 chartObj.chart.type = "column";
                 chartObj.plotOptions["series"] = {
                     point: {
+                        cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
                                 if (this.name.length > 3) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -821,13 +838,14 @@ var DashboardBodyComponent = (function () {
                 chartObj.chart.type = "column";
                 chartObj.plotOptions["column"] = {
                     point: {
+                        cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
                                 if (this.name.length > 3) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -972,11 +990,12 @@ var DashboardBodyComponent = (function () {
                     var drillDownObj = {};
                     var __this = this;
                     drillDownObj.point = {
+                        cursor: 'pointer',
                         events: {
                             click: function () {
                                 if (this.x != undefined) {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 } // modal trigger
                                 // __this.modalService.open(__this.tableContent, { size: "lg" });
                                 // __this.service.getTableJson("").subscribe(
@@ -1112,11 +1131,12 @@ var DashboardBodyComponent = (function () {
                 var drillDownObj = {};
                 var __this = this;
                 drillDownObj.point = {
+                    cursor: 'pointer',
                     events: {
                         click: function () {
                             if (this.x != undefined && this.name > 3) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                                window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
                         },
                         drilldown: function () {
@@ -1249,11 +1269,12 @@ var DashboardBodyComponent = (function () {
                 var drillDownObj = {};
                 var __this = this;
                 drillDownObj.point = {
+                    cursor: 'pointer',
                     events: {
                         click: function () {
                             if (this.x != undefined) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                                window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
                             // modal trigger
                             // __this.service.getTableJson("").subscribe(

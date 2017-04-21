@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imperialm.imiservices.dao.MSERDetailsDAO;
+import com.imperialm.imiservices.dao.MSERDetailsGraphDAO;
 import com.imperialm.imiservices.dao.SummaryProgramRewardDetailsDAO;
 import com.imperialm.imiservices.dao.SummaryProgramRewardGraphDAO;
 import com.imperialm.imiservices.dao.TTTAEnrollmentsSummaryDAO;
@@ -41,6 +43,7 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
 import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
+import com.imperialm.imiservices.dto.MSERDetailsDTO;
 import com.imperialm.imiservices.dto.MSERDetailsGraphDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MSERGraphDTO;
@@ -156,6 +159,11 @@ public class DashboardServiceImpl {
 	@Autowired
 	private SummaryProgramRewardDetailsDAO SummaryProgramRewardDetailsDAO;
 	
+	@Autowired
+	private MSERDetailsGraphDAO MSERDetailsGraphDAO;
+	
+	@Autowired
+	private MSERDetailsDAO MSERDetailsDAO;
 	
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
 		return this.dashboardDAO.findTilesListByRole(userRoleReq);
@@ -335,6 +343,18 @@ public class DashboardServiceImpl {
 		return this.MSERGraphDAO.getAllDistricData(list);
 	}
 	
+	public List<MSERDetailsGraphDTO> getMSERDetailsGraphByParentAndToggle(String territory){
+		return this.MSERDetailsGraphDAO.getMSERDetailsGraphByParent(territory);
+	}
+	
+	public List<MSERDetailsGraphDTO> getMSERDetailsGraphByChildAndToggle(String territory){
+		return this.MSERDetailsGraphDAO.getMSERDetailsGraphByChild(territory);
+	}
+	
+	public List<MSERDetailsDTO> getMSERDetailsBySID(String territory){
+		return this.MSERDetailsDAO.getMSERDetailsBySID(territory);
+	}
+	
 	public List<MSERGraphDTO> getMSERGraphByTerritoryAndToggle(String territory, String toggle){
 		return this.MSERGraphDAO.getMSERGraphByTerritoryAndToggle(territory, toggle);
 	}
@@ -368,6 +388,10 @@ public class DashboardServiceImpl {
 	
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByTerritoryAndToggle(String territory, String toggle){
 		return this.SIRewardsDetailsGraphDAO.getSIRewardsDetailsGraphByTerritoryAndToggle(territory, toggle);
+	}
+	
+	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByChildTerritoryAndToggle(String territory, String toggle){
+		return this.SIRewardsDetailsGraphDAO.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, toggle);
 	}
 	
 	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCode(String dealerCode){
@@ -424,6 +448,10 @@ public class DashboardServiceImpl {
 	
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggle(String territory, String toggle){
 		return this.SIRewardsYOYGraphDAO.getSIRewardsYOYGraphByTerritoryAndToggle(territory, toggle);
+	}
+	
+	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByChildAndToggle(String territory, String toggle){
+		return this.SIRewardsYOYGraphDAO.getSIRewardsYOYGraphByChildAndToggle(territory, toggle);
 	}
 	
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(List<String> territory, String toggle){

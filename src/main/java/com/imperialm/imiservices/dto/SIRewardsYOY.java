@@ -1,8 +1,6 @@
 package com.imperialm.imiservices.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-
 public class SIRewardsYOY implements Serializable{
 	private String territory;
 	private double _2015ytdEarnings;

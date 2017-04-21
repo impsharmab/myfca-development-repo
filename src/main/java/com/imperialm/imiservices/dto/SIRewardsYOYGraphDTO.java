@@ -13,8 +13,7 @@ public class SIRewardsYOYGraphDTO implements Serializable {
 	@Id private String parentTerritory;
 	@Id private String childTerritory;
 	@Id private String toggle;
-	@Id private double earnings2016YTD;
+	@Id private double lastYearEarnings;
 	@Id private int bCDealerRank;
-	@Id private double earnings2017YTD;
-	@Id private String error;
+	@Id private double currentYearEarnings;
 }

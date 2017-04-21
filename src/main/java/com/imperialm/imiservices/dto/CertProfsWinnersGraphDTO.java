@@ -21,7 +21,7 @@ public class CertProfsWinnersGraphDTO implements Serializable {
 	@Id
 	private String certified;
 	@Id
-	private String certifiedSpecalist;
+	private String certifiedSpecialist;
 	@Id
 	private String masterCertified;
 	@Id

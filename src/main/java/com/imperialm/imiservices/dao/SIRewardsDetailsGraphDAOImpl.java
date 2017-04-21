@@ -97,5 +97,24 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 		}
 		return result;
 	}
+
+
+	@Override
+	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByChildTerritoryAndToggle(String territory,
+			String toggle) {
+		List<SIRewardsDetailsGraphDTO> result = new ArrayList<SIRewardsDetailsGraphDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_LIST_AND_TOGGLE_SINGLE, SIRewardsDetailsGraphDTO.class);
+			query.setParameter(0, territory);
+			query.setParameter(1, toggle);
+			List<SIRewardsDetailsGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getSIRewardsDetailsGraphByChildTerritoryAndToggle", ex);
+		}
+		return result;
+	}
 	
 }

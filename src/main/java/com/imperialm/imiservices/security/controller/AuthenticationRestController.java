@@ -80,6 +80,22 @@ public class AuthenticationRestController {
         	dealerCode.add(item.getDealerCode());
         }
         
+        if(userCodes.size() == 0){
+        	List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
+        	if(territoryCheck.size() > 0){
+        		if(territoryCheck.get(0).equalsIgnoreCase("nat")){
+        			positionCode.add("90");
+        		}else if(territoryCheck.get(0).contains("-")){
+        			positionCode.add("97");
+        		}else if(territoryCheck.get(0).trim().length() == 2){
+        			positionCode.add("8D");
+        		}/*else{
+        			positionCode.add("01");
+        			dealerCode.add(user.getUserId());
+        		}*/
+        	}
+        }
+        
         Set<String> p = new LinkedHashSet<>(positionCode);
         Set<String> d = new LinkedHashSet<>(dealerCode);
         positionCode.clear();
