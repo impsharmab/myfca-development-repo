@@ -32,7 +32,7 @@ var LoginService = (function () {
         return this.userdata;
     };
     LoginService.prototype.getSSOLoginResponse = function (ssotoken, ssodealercode, ssopositioncode) {
-        var url = "./login/token/" + ssotoken + "/" + ssopositioncode + "/" + ssodealercode;
+        var url = "./login/token/" + ssotoken + "/" + ssodealercode + "/" + ssopositioncode;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append("Cache-Control", "no-cache");
@@ -47,13 +47,13 @@ var LoginService = (function () {
         //debugger
         var url = "./login/token/";
         //  var url = "http://172.25.32.162/myfcarewards/login/token/";
-        var url = "https://test.myfcarewards.com/newDBmyfcarewards/login/token/";
+        //  var url = "https://test.myfcarewards.com/newDBmyfcarewards/login/token/";
         // var url = "http://172.24.16.75:9080/imiservices/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.post(url, body, { headers: headers })
             .map(function (response) {
             return response.json();

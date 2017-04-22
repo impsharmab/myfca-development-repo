@@ -49,6 +49,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.drilldownAverageCount = this.drilldownAverageCount + 1;
     }
 
+    if (obj.averageLine) {
+      var averageLinetotal = this.totalCount / this.drilldownAverageCount;
+      chart.yAxis["plotLines"] = [{
+        color: '#ff790c',
+        value: averageLinetotal,
+        width: '3',
+        zIndex: 2
+      }]
+
+    }
     if (obj.avarage) {
       this.totalCount = this.totalCount / this.drilldownAverageCount;
     }
@@ -76,6 +86,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     for (var i = 0; i < e.seriesOptions.data.length; i++) {
       this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
       this.drillupAverageCount = this.drillupAverageCount + 1;
+    }
+    if (obj.averageLine) {
+      var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;
+      chart.yAxis["plotLines"] = [{
+        color: '#ff790c',
+        value: averageLinetotal,
+        width: '3',
+        zIndex: 2
+      }]
+
     }
     if (obj.avarage) {
       this.drillUptotalCount = this.drillUptotalCount / this.drillupAverageCount;
@@ -327,7 +347,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
     this.chartData = chartData;
 
-    this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage };
+    this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage, averageLine: chartData.averageLine };
     this.showPieButton[obj.id] = chartData.customer_first;
     // this.bc = this.bc[obj.id] = { data: chartData.data };
     // alert("unit " + unit);
@@ -338,7 +358,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         zoomType: 'x',
         // panning: true,
         // panKey: 'shift',
-            resetZoomButton: {
+        resetZoomButton: {
           position: {
             align: 'right', // by default
             verticalAlign: 'top', // by default
@@ -383,7 +403,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       yAxis: {
         min: 0,
         minRange: 1,
-
+        allowDecimals: false,
         title: {
           text: chartData.yaxisTitle
         },
@@ -511,7 +531,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                 click: function () {
                   if (this.x != undefined && this.name.length > 3) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }
                   // modal trigger
                   // __this.service.getTableJson("").subscribe(
@@ -650,7 +670,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
               }
             }
@@ -690,7 +710,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                 click: function () {
                   if (this.x != undefined) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }// modal trigger
                   // __this.service.getTableJson("").subscribe(
                   //   (resUserData) => {
@@ -799,7 +819,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
               }
             }
@@ -834,7 +854,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
               }
             }
@@ -877,7 +897,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
               }
             }
@@ -1039,7 +1059,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               click: function () {
                 if (this.x != undefined) {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                  window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
+                  window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }// modal trigger
                 // __this.modalService.open(__this.tableContent, { size: "lg" });
                 // __this.service.getTableJson("").subscribe(
@@ -1185,7 +1205,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             click: function () {
               if (this.x != undefined && this.name > 3) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
+                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger
                 // __this.service.getTableJson("").subscribe(
                 //   (resUserData) => {
@@ -1333,7 +1353,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             click: function () {
               if (this.x != undefined) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
+                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
               }
               // modal trigger
               // __this.service.getTableJson("").subscribe(

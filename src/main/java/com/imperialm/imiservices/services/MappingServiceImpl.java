@@ -503,7 +503,7 @@ public class MappingServiceImpl {
 		
 		chartData.setName(BrainBoostWinndersGraphDTO.getParentTerritory());
 		
-		excellenceCard.setName("Excellence Card");
+		excellenceCard.setName("Exellence Card Awards");
 		excellenceCard.setValue(BrainBoostWinndersGraphDTO.getEarnings());
 		
 		awardPoints.setName("Award Points");

@@ -2,16 +2,22 @@
 <html>
 
 <head>
-	<title>Dealer Page</title>
+	<title>Details Page</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
 
 	<link rel="shortcut icon" href="app/resources/images/favicon.ico" />
 
-	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
+	<!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
 
-	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
+
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -21,17 +27,14 @@
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
 
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	 crossorigin="anonymous">
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	 crossorigin="anonymous">-->
 	<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
 	 crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-	 crossorigin="anonymous"></script>
-
-
-
+	 crossorigin="anonymous"></script>-->
 
 
 	<!--<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">-->
@@ -69,7 +72,7 @@
 		//var chartId = ${chartId };
 		$(window).load(function () {
 			$.ajax({
-				url: "/newDBmyfcarewards/services/data/${chartId}/${territory}",
+				url: "/myfcarewards/services/data/${chartId}/${territory}",
 				//data: { signature: authHeader },
 				type: "GET",
 				beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', '${token}'); },
@@ -185,12 +188,15 @@
 						return sid[key1] === ele.sid;
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
-					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points))]);
+					for (var y = 0; y < innerData.length; y++) {
+						innerDataObj.data.push(["", innerData[y].name, numberWithCommasNoDecimals(innerData[y].points)]);
+						jeepTotal = jeepTotal + innerData[y].points;
+						//ramTotal = ramTotal + (innerData[y] == undefined ? 0 : innerData[1].points);
+					}
 
-					jeepTotal = jeepTotal + innerData[0].points;
-					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].points);
+
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -299,13 +305,16 @@
 						return sid[key1] === ele.sid;
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified, innerData[0].certified + innerData[0].certifiedSpecalist + innerData[0].masterCertified]);
-					innerDataObj.data.push(["", innerData[0].name,
-						numberWithCommasNoDecimals(innerData[0].certified),
-						numberWithCommasNoDecimals(innerData[0].certifiedSpecialist),
-						numberWithCommasNoDecimals(innerData[0].masterCertified)]);
-					totalCertified = totalCertified + innerData[0].certified;
-					totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[0].certifiedSpecialist;
-					totalMasterCertified = totalMasterCertified + innerData[0].masterCertified;
+					for (var x = 0; x < innerData.length; x++) {
+						innerDataObj.data.push(["", innerData[x].name,
+							numberWithCommasNoDecimals(innerData[x].certified),
+							numberWithCommasNoDecimals(innerData[x].certifiedSpecialist),
+							numberWithCommasNoDecimals(innerData[x].masterCertified)]);
+						totalCertified = totalCertified + innerData[x].certified;
+						totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[x].certifiedSpecialist;
+						totalMasterCertified = totalMasterCertified + innerData[x].masterCertified;
+					}
+
 				}
 				tableData.data.push({
 					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key],
@@ -677,6 +686,16 @@
 				}
 				//Initialse DataTables, with no sorting on the 'details' column
 				var oTable = $('#exampleTable').dataTable({
+					dom: 'Bfrtip',
+					buttons: [
+						{
+							extend: 'excelHtml5'
+							// ,
+							// title: 'Data export'
+						}
+						//'copy', 'csv', 'excel', 'pdf', 'print'
+					], "scrollY": "600px",
+					"scrollX": true,
 					"pagingType": "full_numbers",
 					data: dataset,
 					columns: cloumns,
@@ -731,6 +750,15 @@
 						this.src = "https://i.imgur.com/d4ICC.png";
 						oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
 						oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
+							dom: 'Bfrtip',
+							buttons: [
+								{
+									extend: 'excelHtml5'
+									// ,
+									// title: 'Data export'
+								}
+								//'copy', 'csv', 'excel', 'pdf', 'print'
+							],
 							"pagingType": "full_numbers",
 							data: data,
 							columns: cloumns,

@@ -482,7 +482,7 @@ var DashboardBodyComponent = (function () {
                                 click: function () {
                                     if (this.x != undefined && this.name.length > 3) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                        window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     }
                                     // modal trigger
                                     // __this.service.getTableJson("").subscribe(
@@ -622,7 +622,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -657,7 +657,7 @@ var DashboardBodyComponent = (function () {
                                 click: function () {
                                     if (this.x != undefined) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                        window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     } // modal trigger
                                     // __this.service.getTableJson("").subscribe(
                                     //   (resUserData) => {
@@ -769,7 +769,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -804,7 +804,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -845,7 +845,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -995,7 +995,7 @@ var DashboardBodyComponent = (function () {
                             click: function () {
                                 if (this.x != undefined) {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 } // modal trigger
                                 // __this.modalService.open(__this.tableContent, { size: "lg" });
                                 // __this.service.getTableJson("").subscribe(
@@ -1136,7 +1136,7 @@ var DashboardBodyComponent = (function () {
                         click: function () {
                             if (this.x != undefined && this.name > 3) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
                         },
                         drilldown: function () {
@@ -1274,7 +1274,7 @@ var DashboardBodyComponent = (function () {
                         click: function () {
                             if (this.x != undefined) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                window.open("https://test.myfcarewards.com/newDBmyfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
                             // modal trigger
                             // __this.service.getTableJson("").subscribe(
