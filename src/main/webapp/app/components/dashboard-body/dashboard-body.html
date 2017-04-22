@@ -133,7 +133,7 @@
           (click)="window.open('<strong>{{tile.programSiteUrl}}</strong>')"><i class="fa fa-check-square " aria-hidden="true "></i>
                 {{tile.programRules}} </button>-->
           <!--<button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer"
-          (click)="window.open('tile.programSite')"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
+          (click)="openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
                 {{tile.programSite}} </button>-->
 
           <a *ngIf="isEmpty(tile.programRulesUrl)" class="btn btn-primary btn-sm " style="cursor:pointer" href="{{tile.programRulesUrl}}"

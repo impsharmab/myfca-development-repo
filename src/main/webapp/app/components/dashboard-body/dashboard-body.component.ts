@@ -222,6 +222,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       return false;
     }
   }
+  openProgramSite(url: any) {
+    window.open(url)
+  }
   notEmptyBadge(data: any): boolean {
     try {
       if ((data).length > 0) {
