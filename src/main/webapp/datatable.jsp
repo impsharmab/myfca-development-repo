@@ -6,18 +6,15 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
-
 	<link rel="shortcut icon" href="app/resources/images/favicon.ico" />
 
-	<!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
-
-	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>-->
-
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+	
+	<!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+	
+	<!--<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">-->
 
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -25,6 +22,7 @@
 	<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.27/build/vfs_fonts.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
+
 
 
 	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
@@ -40,7 +38,8 @@
 	<!--<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">-->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="app/resources/css/styles-datatable.css">
+	<!--<link rel="stylesheet" type="text/css" href="app/resources/css/styles-datatables.css">-->
+
 
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 
@@ -688,20 +687,27 @@
 				var oTable = $('#exampleTable').dataTable({
 					dom: 'Bfrtip',
 					buttons: [
+						'pageLength',
+						
+						
 						{
 							extend: 'excelHtml5'
 							// ,
 							// title: 'Data export'
 						}
 						//'copy', 'csv', 'excel', 'pdf', 'print'
-					], "scrollY": "600px",
+					],
+
+					"scrollY": "600px",
 					"scrollX": true,
 					"pagingType": "full_numbers",
+					"bLengthChange": true,
+					"bInfo": false,
 					data: dataset,
 					columns: cloumns,
-					"bJQueryUI": true,
+					//"bJQueryUI": true,
 					// "aaData": newRowData,
-					// "bPaginate": false,
+					 "bPaginate": true,
 					"destroy": true,
 					// "aoColumns": [
 					//     {
@@ -752,6 +758,8 @@
 						oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
 							dom: 'Bfrtip',
 							buttons: [
+								'pageLength',
+								
 								{
 									extend: 'excelHtml5'
 									// ,
@@ -760,9 +768,13 @@
 								//'copy', 'csv', 'excel', 'pdf', 'print'
 							],
 							"pagingType": "full_numbers",
+							"bInfo": false,
+							"bLengthChange": true,
+							 "bPaginate": true,
+					
 							data: data,
 							columns: cloumns,
-							"bJQueryUI": true,
+							//"bJQueryUI": true,
 							"bFilter": false,
 							//     "aaData": detailsRowData,
 							"bSort": true, // disables sorting
@@ -818,12 +830,12 @@
 		<!--<h5><b>
 		Territory: ${territory}
 	</b></h5>-->
-		<table id="exampleTable" class="display paginate_button datatable-margin-class" cellspacing="0" width="100%">
+		<table id="exampleTable" class="display  datatable-margin-class" cellspacing="0" width="100%">
 
 		</table>
 
 		<div style="display: none">
-			<table id="detailsTable" class="display paginate_button" cellspacing="0" width="100%">
+			<table id="detailsTable" class="display " cellspacing="0" width="100%">
 
 			</table>
 		</div>

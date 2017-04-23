@@ -63,6 +63,15 @@ var DashboardBodyComponent = (function () {
             this.totalCount = this.totalCount + e.seriesOptions.data[i][1];
             this.drilldownAverageCount = this.drilldownAverageCount + 1;
         }
+        if (obj.averageLine) {
+            var averageLinetotal = this.totalCount / this.drilldownAverageCount;
+            chart.yAxis["plotLines"] = [{
+                    color: '#ff790c',
+                    value: averageLinetotal,
+                    width: '3',
+                    zIndex: 2
+                }];
+        }
         if (obj.avarage) {
             this.totalCount = this.totalCount / this.drilldownAverageCount;
         }
@@ -91,6 +100,15 @@ var DashboardBodyComponent = (function () {
         for (var i = 0; i < e.seriesOptions.data.length; i++) {
             this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
             this.drillupAverageCount = this.drillupAverageCount + 1;
+        }
+        if (obj.averageLine) {
+            var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;
+            chart.yAxis["plotLines"] = [{
+                    color: '#ff790c',
+                    value: averageLinetotal,
+                    width: '3',
+                    zIndex: 2
+                }];
         }
         if (obj.avarage) {
             this.drillUptotalCount = this.drillUptotalCount / this.drillupAverageCount;
@@ -205,6 +223,9 @@ var DashboardBodyComponent = (function () {
         catch (e) {
             return false;
         }
+    };
+    DashboardBodyComponent.prototype.openProgramSite = function (url) {
+        window.open(url);
     };
     DashboardBodyComponent.prototype.notEmptyBadge = function (data) {
         try {
@@ -331,7 +352,7 @@ var DashboardBodyComponent = (function () {
             stackLabels = chartData.unit + '{total:.0f}';
         }
         this.chartData = chartData;
-        this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage };
+        this.unitAndAverage[obj.id] = { unit: chartData.unit, avarage: chartData.avarage, averageLine: chartData.averageLine };
         this.showPieButton[obj.id] = chartData.customer_first;
         // this.bc = this.bc[obj.id] = { data: chartData.data };
         // alert("unit " + unit);
@@ -382,6 +403,7 @@ var DashboardBodyComponent = (function () {
             yAxis: {
                 min: 0,
                 minRange: 1,
+                allowDecimals: false,
                 title: {
                     text: chartData.yaxisTitle
                 },

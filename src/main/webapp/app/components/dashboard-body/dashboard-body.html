@@ -129,20 +129,20 @@
 
         <!--<div class="card-action " *ngIf="tile.type=='tile' ">-->
         <div class="card-action ">
-          <!--<button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" 
-          (click)="window.open('<strong>{{tile.programSiteUrl}}</strong>')"><i class="fa fa-check-square " aria-hidden="true "></i>
-                {{tile.programRules}} </button>-->
-          <!--<button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer"
+          <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" 
+          (click)="openProgramSite(tile.programRulesUrl)"><i class="fa fa-check-square " aria-hidden="true "></i>
+                {{tile.programRules}} </button>
+          <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer"
           (click)="openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
-                {{tile.programSite}} </button>-->
+                {{tile.programSite}} </button>
 
-          <a *ngIf="isEmpty(tile.programRulesUrl)" class="btn btn-primary btn-sm " style="cursor:pointer" href="{{tile.programRulesUrl}}"
+          <!--<a *ngIf="isEmpty(tile.programRulesUrl)" class="btn btn-primary btn-sm " style="cursor:pointer" href="{{tile.programRulesUrl}}"
             target="_blank"><i class="fa fa-check-square " aria-hidden="true "></i>
                 {{tile.programRules}}</a>
 
           <a *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" href="{{tile.programSiteUrl}}"
             target="_blank"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
-                {{tile.programSite}} </a>
+                {{tile.programSite}} </a>-->
         </div>
       </div>
     </div>

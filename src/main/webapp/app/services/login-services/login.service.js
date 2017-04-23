@@ -12,14 +12,10 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
 require("./../rxjs-operators");
-var sha256 = require('app/resources/js/sha256.js');
-//const sha256=require('https://raw.githubusercontent.com/emn178/js-sha256/master/src/sha256.js');
 var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
         this.getLoginResponseUrl = './app/resources/json/token_response.json';
-        this.getUserServiceUrl = './app/resources/json/newUserDetail.json';
-        this.getBaseServiceUrl = 'services/userprofile';
         this.userdata = {};
     }
     LoginService.prototype.setUserData = function (userdata) {
@@ -35,8 +31,8 @@ var LoginService = (function () {
         var url = "./login/token/" + ssotoken + "/" + ssodealercode + "/" + ssopositioncode;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
         return this.http.get(url)
             .map(function (response) {
             return response.json();
@@ -44,16 +40,13 @@ var LoginService = (function () {
             .catch(this.handleError);
     };
     LoginService.prototype.getLoginResponse = function (username, password) {
-        //debugger
         var url = "./login/token/";
-        //  var url = "http://172.25.32.162/myfcarewards/login/token/";
-        //  var url = "https://test.myfcarewards.com/newDBmyfcarewards/login/token/";
-        // var url = "http://172.24.16.75:9080/imiservices/login/token/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
         return this.http.post(url, body, { headers: headers })
             .map(function (response) {
             return response.json();
