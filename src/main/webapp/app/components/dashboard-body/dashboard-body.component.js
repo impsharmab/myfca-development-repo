@@ -502,7 +502,7 @@ var DashboardBodyComponent = (function () {
                             cursor: 'pointer',
                             events: {
                                 click: function () {
-                                    if (this.x != undefined && this.name.length > 3) {
+                                    if (this.x != undefined && this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                         window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     }
@@ -640,7 +640,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3) {
+                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -677,7 +677,7 @@ var DashboardBodyComponent = (function () {
                             cursor: 'pointer',
                             events: {
                                 click: function () {
-                                    if (this.x != undefined) {
+                                    if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                         window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     } // modal trigger
@@ -787,7 +787,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3) {
+                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -822,7 +822,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3) {
+                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -863,7 +863,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3) {
+                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -1015,7 +1015,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function () {
-                                if (this.x != undefined) {
+                                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 } // modal trigger
@@ -1156,7 +1156,7 @@ var DashboardBodyComponent = (function () {
                     cursor: 'pointer',
                     events: {
                         click: function () {
-                            if (this.x != undefined && this.name > 3) {
+                            if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
@@ -1294,7 +1294,7 @@ var DashboardBodyComponent = (function () {
                     cursor: 'pointer',
                     events: {
                         click: function () {
-                            if (this.x != undefined) {
+                            if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }

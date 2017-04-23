@@ -52,7 +52,7 @@
             <ul class="nav">
                 <li class="nav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
-                    Welcome, <a class="utility-nav active" style="cursor:pointer" (click)="dashboardPage()">{{data.name}}</a>
+                    Welcome, <a class="utility-nav active" style="cursor:pointer" (click)="dashboardPage()">{{data.name}}</a> 
                 </li>
                 <li class="nav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
@@ -61,7 +61,7 @@
                 </li>
                 <li class="nav-item">
                     <!--<a *ngIf="booleanAdmin" class="utility-nav active" (click)="admin()">Admin </a>-->
-                    <a *ngIf="booleanAdmin" class="utility-nav active" (click)="admin()" style="cursor:pointer">Admin </a>
+                    <a *ngIf="booleanAdmin" class="utility-nav active" routerLink="/admin" style="cursor:pointer">Admin </a>
                 </li>
                 <li class="nav-item">
                     <a class="utility-nav" (click)="contactUs()" style="cursor:pointer">Contact Us</a>

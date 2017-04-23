@@ -23,11 +23,12 @@
             $('#example, #jk').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
-                    // {
-                    //     extend: 'excelHtml5',
-                    //     title: 'Data export to Excel'
-                    // }
-                     'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                        extend: 'excelHtml5',
+                        title: 'Data export to Excel',
+                        name:'Export'
+                    }
+                    
                 ]
             });
         });

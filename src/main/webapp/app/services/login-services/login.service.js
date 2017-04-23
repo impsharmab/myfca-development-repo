@@ -31,8 +31,8 @@ var LoginService = (function () {
         var url = "./login/token/" + ssotoken + "/" + ssodealercode + "/" + ssopositioncode;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(url)
             .map(function (response) {
             return response.json();
@@ -41,12 +41,12 @@ var LoginService = (function () {
     };
     LoginService.prototype.getLoginResponse = function (username, password) {
         var url = "./login/token/";
-        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        //  var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.post(url, body, { headers: headers })
             .map(function (response) {
             return response.json();

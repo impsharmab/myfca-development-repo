@@ -1,194 +1,196 @@
-[
-  {
-    "accordionTitle": "MSER",
-    "order": "1",
-    "data": [
-      {
-        "name": "mser-opt1",
-        "title": "Total Dealers Enrolled",
-        "checked": false
-      },
-      {
-        "name": "mser-opt2",
-        "title": "Excellence Cards Awards MTD",
-        "checked": false
-      },
-      {
-        "name": "mser-opt3",
-        "title": "Excellence Cards Awards YTD",
-        "checked": false
-      }
-    ]
-  },
-  {
-    "accordionTitle": "MSER Graph",
-    "order": "2",
-    "data": [
-      {
-        "name": "mser-opt1",
-        "title": "uConnect",
-        "checked": false
-      },
-      {
-        "name": "mser-opt2",
-        "title": "wiAdvisor",
-        "checked": false
-      },
-      {
-        "name": "mser-opt3",
-        "title": "Express Lane",
-        "checked": false
-      },
-      {
-        "name": "mser-opt4",
-        "title": "Parts Counter",
-        "checked": false
-      },
-      {
-        "name": "mser-opt5",
-        "title": "Magenti Marelli",
-        "checked": false
-      },
-      {
-        "name": "mser-opt6",
-        "title": "MVP",
-        "checked": false
-      },
-      {
-        "name": "mser-opt7",
-        "title": "Mopar Parts",
-        "checked": false
-      }
-    ]
-  },
-  {
-    "accordionTitle": "Top Tech",
-    "order": "3",
-    "data": [
-      {
-        "name": "mser-opt1",
-        "title": "Total Dealers Enrolled",
-        "checked": false
-      },
-      {
-        "name": "mser-opt2",
-        "title": "Top Performers",
-        "checked": false
-      },
-      {
-        "name": "mser-opt3",
-        "title": "Count of Surveys QTD",
-        "checked": false
-      },
-      {
-        "name": "mser-opt4",
-        "title": "Average Quarterly Survey Score",
-        "checked": false
-      }
-    ]
-  },
-  {
-    "accordionTitle": "Top Advisor",
-    "order": "4",
-    "data": [
-      {
-        "name": "mser-opt1",
-        "title": "Total Dealers Enrolled",
-        "checked": false
-      },
-      {
-        "name": "mser-opt2",
-        "title": "Count of Surveys QTD",
-        "checked": false
-      },
-      {
-        "name": "mser-opt3",
-        "title": "Incentive Eligible Advisors",
-        "checked": false
-      },
-      {
-        "name": "mser-opt4",
-        "title": "Average Quarterly Survey Score",
-        "checked": false
-      }
-    ]
-  },
-  {
-    "accordionTitle": "Top Tech/Advisor Graph",
-    "order": "5",
-    "data": [
-      {
-        "name": "mser-opt1",
-        "title": "Total Dealers Enrolled",
-        "checked": false
-      },
-      {
-        "name": "mser-opt2",
-        "title": "Count of Surveys QTD",
-        "checked": false
-      },
-      {
-        "name": "mser-opt3",
-        "title": "Incentive Eligible Advisors",
-        "checked": false
-      },
-      {
-        "name": "mser-opt4",
-        "title": "Average Quarterly Survey Score",
-        "checked": false
-      }
-    ]
-  },
-  {
-    "accordionTitle": "Retention",
-    "order": "6",
-    "data": [
-      {
-        "name": "mser-opt1",
-        "title": "Total Dealers Enrolled",
-        "checked": false
-      },
-      {
-        "name": "mser-opt2",
-        "title": "Count of Surveys QTD",
-        "checked": false
-      },
-      {
-        "name": "mser-opt3",
-        "title": "Incentive Eligible Advisors",
-        "checked": false
-      },
-      {
-        "name": "mser-opt4",
-        "title": "Average Quarterly Survey Score",
-        "checked": false
-      }
-    ]
-  },
-  {
-    "accordionTitle": "Retention Graph",
-    "order": "7",
-    "data": [
-      {
-        "name": "mser-opt1",
-        "title": "Total Dealers Enrolled",
-        "checked": false
-      },
-      {
-        "name": "mser-opt2",
-        "title": "Count of Surveys QTD",
-        "checked": false
-      },
-      {
-        "name": "mser-opt3",
-        "title": "Incentive Eligible Advisors",
-        "checked": false
-      },
-      {
-        "name": "mser-opt4",
-        "title": "Average Quarterly Survey Score",
-        "checked": false
-      }
-    ]
-  }
-]
+{
+  "positioncode": "Group1",
+  "chooseView": "BC",
+  "permissions": [
+    {
+      "name": "MSER",
+      "order": "1",
+      "checked": true,
+      "attributes": [
+        {
+          "name": "Total Dealers Enrolled",
+          "checked": false
+        },
+        {
+          "name": "Excellence Cards Awards MTD",
+          "checked": false
+        },
+        {
+          "title": "Excellence Cards Awards YTD",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "accordionTitle": "MSER Graph",
+      "order": "2",
+      "data": [
+        {
+          "name": "mser-opt1",
+          "title": "uConnect",
+          "checked": false
+        },
+        {
+          "name": "mser-opt2",
+          "title": "wiAdvisor",
+          "checked": false
+        },
+        {
+          "name": "mser-opt3",
+          "title": "Express Lane",
+          "checked": false
+        },
+        {
+          "name": "mser-opt4",
+          "title": "Parts Counter",
+          "checked": false
+        },
+        {
+          "name": "mser-opt5",
+          "title": "Magenti Marelli",
+          "checked": false
+        },
+        {
+          "name": "mser-opt6",
+          "title": "MVP",
+          "checked": false
+        },
+        {
+          "name": "mser-opt7",
+          "title": "Mopar Parts",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "accordionTitle": "Top Tech",
+      "order": "3",
+      "data": [
+        {
+          "name": "mser-opt1",
+          "title": "Total Dealers Enrolled",
+          "checked": false
+        },
+        {
+          "name": "mser-opt2",
+          "title": "Top Performers",
+          "checked": false
+        },
+        {
+          "name": "mser-opt3",
+          "title": "Count of Surveys QTD",
+          "checked": false
+        },
+        {
+          "name": "mser-opt4",
+          "title": "Average Quarterly Survey Score",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "accordionTitle": "Top Advisor",
+      "order": "4",
+      "data": [
+        {
+          "name": "mser-opt1",
+          "title": "Total Dealers Enrolled",
+          "checked": false
+        },
+        {
+          "name": "mser-opt2",
+          "title": "Count of Surveys QTD",
+          "checked": false
+        },
+        {
+          "name": "mser-opt3",
+          "title": "Incentive Eligible Advisors",
+          "checked": false
+        },
+        {
+          "name": "mser-opt4",
+          "title": "Average Quarterly Survey Score",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "accordionTitle": "Top Tech/Advisor Graph",
+      "order": "5",
+      "data": [
+        {
+          "name": "mser-opt1",
+          "title": "Total Dealers Enrolled",
+          "checked": false
+        },
+        {
+          "name": "mser-opt2",
+          "title": "Count of Surveys QTD",
+          "checked": false
+        },
+        {
+          "name": "mser-opt3",
+          "title": "Incentive Eligible Advisors",
+          "checked": false
+        },
+        {
+          "name": "mser-opt4",
+          "title": "Average Quarterly Survey Score",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "accordionTitle": "Retention",
+      "order": "6",
+      "data": [
+        {
+          "name": "mser-opt1",
+          "title": "Total Dealers Enrolled",
+          "checked": false
+        },
+        {
+          "name": "mser-opt2",
+          "title": "Count of Surveys QTD",
+          "checked": false
+        },
+        {
+          "name": "mser-opt3",
+          "title": "Incentive Eligible Advisors",
+          "checked": false
+        },
+        {
+          "name": "mser-opt4",
+          "title": "Average Quarterly Survey Score",
+          "checked": false
+        }
+      ]
+    },
+    {
+      "accordionTitle": "Retention Graph",
+      "order": "7",
+      "data": [
+        {
+          "name": "mser-opt1",
+          "title": "Total Dealers Enrolled",
+          "checked": false
+        },
+        {
+          "name": "mser-opt2",
+          "title": "Count of Surveys QTD",
+          "checked": false
+        },
+        {
+          "name": "mser-opt3",
+          "title": "Incentive Eligible Advisors",
+          "checked": false
+        },
+        {
+          "name": "mser-opt4",
+          "title": "Average Quarterly Survey Score",
+          "checked": false
+        }
+      ]
+    }
+  ]
+}
