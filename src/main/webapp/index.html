@@ -2,238 +2,79 @@
 
 <head>
 
-    <!--<script>
+	<!--<script>
         document.write('<base href="' + document.location + '" />');
     </script>-->
 
 
-    <base href="/">
-    <!--<script>document.write('<base href="' + document.location + '" />');</script>-->
-    <!--<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">-->
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <link rel="shortcut icon" href="app/resources/images/favicon.ico" />
-    <title>MyFcaDashboard</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="app/resources/js/es5-shim.js"></script>
-    <script src="app/resources/js/es6-shim.js"></script>
-    <!--<link href="app/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="app/resources/bootstrap/js/bootstrap.js" rel="stylesheet">-->
-
-    <!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>-->
-    <script>
-        //download.js v4.2, by dandavis; 2008-2016. [CCBY2] see http://danml.com/download.html for tests/usage
-// v1 landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
-// v2 added named files via a[download], msSaveBlob, IE (10+) support, and window.URL support for larger+faster saves than dataURLs
-// v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support. 3.1 improved safari handling.
-// v4 adds AMD/UMD, commonJS, and plain browser support
-// v4.1 adds url download capability via solo URL argument (same domain/CORS only)
-// v4.2 adds semantic variable names, long (over 2MB) dataURL support, and hidden by default temp anchors
-// https://github.com/rndme/download
-
-(function (root, factory) {
-	if (typeof define === 'function' && define.amd) {
-		// AMD. Register as an anonymous module.
-		define([], factory);
-	} else if (typeof exports === 'object') {
-		// Node. Does not work with strict CommonJS, but
-		// only CommonJS-like environments that support module.exports,
-		// like Node.
-		module.exports = factory();
-	} else {
-		// Browser globals (root is window)
-		root.download = factory();
-  }
-}(this, function () {
-
-	return function download(data, strFileName, strMimeType) {
-
-		var self = window, // this script is only for browsers anyway...
-			defaultMime = "application/octet-stream", // this default mime also triggers iframe downloads
-			mimeType = strMimeType || defaultMime,
-			payload = data,
-			url = !strFileName && !strMimeType && payload,
-			anchor = document.createElement("a"),
-			toString = function(a){return String(a);},
-			myBlob = (self.Blob || self.MozBlob || self.WebKitBlob || toString),
-			fileName = strFileName || "download",
-			blob,
-			reader;
-			myBlob= myBlob.call ? myBlob.bind(self) : Blob ;
-	  
-		if(String(this)==="true"){ //reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
-			payload=[payload, mimeType];
-			mimeType=payload[0];
-			payload=payload[1];
-		}
+	<base href="/">
+	<!--<script>document.write('<base href="' + document.location + '" />');</script>-->
+	<!--<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">-->
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="shortcut icon" href="app/resources/images/favicon.ico" />
+	<title>MyFcaDashboard</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="app/resources/js/es5-shim.js"></script>
+	<script src="app/resources/js/es6-shim.js"></script>
+	<!--<link href="app/resources/bootstrap/css/bootstrap.css" rel="stylesheet">-->
 
 
-		if(url && url.length< 2048){ // if no filename and no mime, assume a url was passed as the only argument
-			fileName = url.split("/").pop().split("?")[0];
-			anchor.href = url; // assign href prop to temp anchor
-		  	if(anchor.href.indexOf(url) !== -1){ // if the browser determines that it's a potentially valid url path:
-        		var ajax=new XMLHttpRequest();
-        		ajax.open( "GET", url, true);
-        		ajax.responseType = 'blob';
-        		ajax.onload= function(e){ 
-				  download(e.target.response, fileName, defaultMime);
-				};
-        		setTimeout(function(){ ajax.send();}, 0); // allows setting custom ajax headers using the return:
-			    return ajax;
-			} // end if valid url?
-		} // end if url?
+	<!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>-->
 
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 
-		//go ahead and download dataURLs right away
-		if(/^data\:[\w+\-]+\/[\w+\-]+[,;]/.test(payload)){
-		
-			if(payload.length > (1024*1024*1.999) && myBlob !== toString ){
-				payload=dataUrlToBlob(payload);
-				mimeType=payload.type || defaultMime;
-			}else{			
-				return navigator.msSaveBlob ?  // IE10 can't do a[download], only Blobs:
-					navigator.msSaveBlob(dataUrlToBlob(payload), fileName) :
-					saver(payload) ; // everyone else can save dataURLs un-processed
-			}
-			
-		}//end if dataURL passed?
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<script src="app/resources/js/bootstrap.js"/>
 
-		blob = payload instanceof myBlob ?
-			payload :
-			new myBlob([payload], {type: mimeType}) ;
+	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
+	<link rel="stylesheet" href="app/resources/bootstrap/bootstrap.css" />
+	<link rel="stylesheet" href="app/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
 
-		function dataUrlToBlob(strUrl) {
-			var parts= strUrl.split(/[:;,]/),
-			type= parts[1],
-			decoder= parts[2] == "base64" ? atob : decodeURIComponent,
-			binData= decoder( parts.pop() ),
-			mx= binData.length,
-			i= 0,
-			uiArr= new Uint8Array(mx);
+	<!--<script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>-->
 
-			for(i;i<mx;++i) uiArr[i]= binData.charCodeAt(i);
+	<link rel="stylesheet" href="app/resources/css/scrolling-nav.css" />
+	<link rel="stylesheet" href="app/resources/css/carousel.css" />
+	<link rel="stylesheet" href="app/resources/css/admin.css" />
+	<link rel="stylesheet" href="app/resources/css/styles.css" />
+	<link rel="stylesheet" href="app/resources/css/spinner.css" />
+	<link rel="stylesheet" href="app/resources/css/custom-modal.css" />
+	<!--<script src="app/resources/js/exportToExcel.js" />-->
+	<script src="app/resources/js/tableToExcel.js" />
 
-			return new myBlob([uiArr], {type: type});
-		 }
-
-		function saver(url, winMode){
-
-			if ('download' in anchor) { //html5 A[download]
-				anchor.href = url;
-				anchor.setAttribute("download", fileName);
-				anchor.className = "download-js-link";
-				anchor.innerHTML = "downloading...";
-				anchor.style.display = "none";
-				document.body.appendChild(anchor);
-				setTimeout(function() {
-					anchor.click();
-					document.body.removeChild(anchor);
-					if(winMode===true){setTimeout(function(){ self.URL.revokeObjectURL(anchor.href);}, 250 );}
-				}, 66);
-				return true;
-			}
-
-			// handle non-a[download] safari as best we can:
-			if(/(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\//.test(navigator.userAgent)) {
-				url=url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
-				if(!window.open(url)){ // popup blocked, offer direct download:
-					if(confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")){ location.href=url; }
-				}
-				return true;
-			}
-
-			//do iframe dataURL download (old ch+FF):
-			var f = document.createElement("iframe");
-			document.body.appendChild(f);
-
-			if(!winMode){ // force a mime that will download:
-				url="data:"+url.replace(/^data:([\w\/\-\+]+)/, defaultMime);
-			}
-			f.src=url;
-			setTimeout(function(){ document.body.removeChild(f); }, 333);
-
-		}//end saver
-
-
-
-
-		if (navigator.msSaveBlob) { // IE10+ : (has Blob, but not a[download] or URL)
-			return navigator.msSaveBlob(blob, fileName);
-		}
-
-		if(self.URL){ // simple fast and modern way using Blob and URL:
-			saver(self.URL.createObjectURL(blob), true);
-		}else{
-			// handle non-Blob()+non-URL browsers:
-			if(typeof blob === "string" || blob.constructor===toString ){
-				try{
-					return saver( "data:" +  mimeType   + ";base64,"  +  self.btoa(blob)  );
-				}catch(y){
-					return saver( "data:" +  mimeType   + "," + encodeURIComponent(blob)  );
-				}
-			}
-
-			// Blob but not URL support:
-			reader=new FileReader();
-			reader.onload=function(e){
-				saver(this.result);
-			};
-			reader.readAsDataURL(blob);
-		}
-		return true;
-	}; /* end download() */
-}));
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
-    <link rel="stylesheet" href="app/resources/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" href="app/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
-
-    <!--<script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>-->
-
-    <link rel="stylesheet" href="app/resources/css/scrolling-nav.css" />
-    <link rel="stylesheet" href="app/resources/css/carousel.css" />
-    <link rel="stylesheet" href="app/resources/css/admin.css" />
-    <link rel="stylesheet" href="app/resources/css/styles.css" />
-    <link rel="stylesheet" href="app/resources/css/spinner.css" />
-    <link rel="stylesheet" href="app/resources/css/custom-modal.css" />
-    <!--<script src="app/resources/js/exportToExcel.js" />-->
-    <script src="app/resources/js/tableToExcel.js" />
-
-    <script src="node_modules/core-js/client/shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="systemjs.config.js"></script>
-    <!--<script src="node_modules/es5-shim/es5-shim.js"></script>
+	<script src="node_modules/core-js/client/shim.min.js"></script>
+	<script src="node_modules/zone.js/dist/zone.js"></script>
+	<script src="node_modules/reflect-metadata/Reflect.js"></script>
+	<script src="node_modules/systemjs/dist/system.src.js"></script>
+	<script src="node_modules/rxjs/bundles/Rx.js"></script>
+	<script src="systemjs.config.js"></script>
+	<!--<script src="node_modules/es5-shim/es5-shim.js"></script>
     <script src="node_modules/es6-shim/es6-shim.js"></script>-->
+	
 
 
-    <script>
-        System.import('app').catch(function (err) {
-            console.error(err);
-        });
-    </script>
+	<script>
+		System.import('app').catch(function (err) {
+			console.error(err);
+		});
+	</script>
 
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-    <my-app>
-        <div style="display: flex; justify-content: center;">
-            <img class="refreshGlyphImg" src="app/resources/images/spinner/spinner.gif" />
-        </div>
-    </my-app>
+	<my-app>
+		<div style="display: flex; justify-content: center;">
+			<img class="refreshGlyphImg" src="app/resources/images/spinner/spinner.gif" />
+		</div>
+	</my-app>
 
 </body>
 

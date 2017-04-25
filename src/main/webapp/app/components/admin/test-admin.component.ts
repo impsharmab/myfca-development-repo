@@ -16,6 +16,7 @@ export class TestAdminComponent implements OnInit {
     private positioncode: any;
     private roles: any;
     private adminData: any;
+    private data: any;
     constructor(private adminService: AdminService) { }
     ngOnInit() {
         this.getPositionCode();
@@ -45,7 +46,8 @@ export class TestAdminComponent implements OnInit {
         this.adminService.getAdminData().subscribe(
             (adminData) => {
                 this.adminData = adminData.permissions;
-                // alert(roles[0])
+                // this.data = this.adminData.data;
+                // console.log(adminData.permissions[0].name)
 
             }
         )

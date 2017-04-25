@@ -479,16 +479,17 @@
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerCode;
 			}
 			for (var key in delarName) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return delarName[key] === ele.dealerCode;
 				});
 				var positionCodeArray = ["09", "13", "23", "08", "14", "04", "42"]
 				var rowData = [" "];
-				rowData.push(delarName[key]);
+
+				rowData.push(outerData[0].dealerName);
 				var total = 0;
 				for (var n = 0; n < positionCodeArray.length; n++) {
 					var data = outerData.filter(function (ele, index, array) {

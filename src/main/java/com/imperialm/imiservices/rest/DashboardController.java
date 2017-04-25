@@ -336,7 +336,7 @@ public class DashboardController {
 					moneyStringYTD = moneyStringYTD.substring(1, centsIndex);
 				}
 			}
-
+			
 			mtd.setName("Total Mopar Parts Earnings - MTD");
 			ytd.setName("Total Mopar Parts Earnings - YTD");
 			mtd.setTotal("$" + moneyStringMTD);
@@ -2050,11 +2050,11 @@ public class DashboardController {
 				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
 				totalCertifiedLevelParticipants.setTotal("0.0%");
 
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
@@ -2086,12 +2086,12 @@ public class DashboardController {
 
 
 				if(RetentionGraphSalesManagerList.size()>0){
-					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 
@@ -2128,11 +2128,11 @@ public class DashboardController {
 				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
 				totalCertifiedLevelParticipants.setTotal("0.0%");
 
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
@@ -2164,12 +2164,12 @@ public class DashboardController {
 
 
 				if(RetentionGraphSalesManagerList.size()>0){
-					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 
@@ -4564,8 +4564,9 @@ public class DashboardController {
 
 			List<CertProfsWinnersDetailsDTO> CertProfsWinnersDetailsList = this.dashService.getCertProfsWinnersDetailsBySID(sid);
 
+				
 			
-				if(type.equals("Participant")){
+				if(type.equals("Participant") || type.equals("Manager")){
 					years.setName("Years Certified");
 					years.setTotal("0");
 					
@@ -4573,7 +4574,7 @@ public class DashboardController {
 					currentYearsPoints.setTotal("0");
 					
 					cartificationLevelPrior.setName("Not Certified");
-					cartificationLevelPrior.setTotal("No Certification");
+					cartificationLevelPrior.setTotal("No Record to Display”");
 					
 					if(CertProfsWinnersDetailsList.size() > 0){
 						CertProfsWinnersDetailsDTO CertProfsWinnersDetails = CertProfsWinnersDetailsList.get(0);
@@ -4601,7 +4602,7 @@ public class DashboardController {
 							topTenChart.addAttribute(tile);
 						}else{
 							cartificationLevelPrior.setName("Not Certified");
-							cartificationLevelPrior.setTotal("No Certification");
+							cartificationLevelPrior.setTotal("No Record to Display”");
 						}
 						years.setTotal(CertProfsWinnersDetails.getYearsOfCertified()+ "");
 						currentYearsPoints.setTotal(this.formatNumbers(CertProfsWinnersDetails.getPoints()));
@@ -4609,9 +4610,11 @@ public class DashboardController {
 					}else{
 						topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior));
 					}
-					
+
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(currentYearsPoints));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
+					if(type.equals("Participant")){
+						topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
+					}
 				}
 
 
@@ -4624,6 +4627,8 @@ public class DashboardController {
 				totalMasterCertifiedParticipants.setName("Total Master Certified Participants");
 				totalCertifiedSpecialistParticipants.setName("Total Certified Specialist Participants");
 				totalCertifiedLevelParticipants.setName("Total Certified Level Participants");
+				
+				
 				
 				totalCertifiedParticipants.setTotal("0");
 				totalMasterCertifiedParticipants.setTotal("0");
@@ -4666,16 +4671,6 @@ public class DashboardController {
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedNationalRank));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipRankWithinBC));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipNationalRank));
-				}
-				
-				if(type.equals("Manager")){
-					
-					currentYearsPoints.setName("Current Year’s Program Points");
-					currentYearsPoints.setTotal("0");
-					
-					if(CertProfsWinnersDetailsList.size() > 0){
-						currentYearsPoints.setTotal(this.formatCurrency(CertProfsWinnersDetailsList.get(0).getPoints()));
-					}
 				}
 
 			}
@@ -5219,11 +5214,11 @@ public class DashboardController {
 				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
 				totalCertifiedLevelParticipants.setTotal("0.0%");
 
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
@@ -5255,12 +5250,12 @@ public class DashboardController {
 
 
 				if(RetentionGraphSalesManagerList.size()>0){
-					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for for Sales Managers");
+					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 
@@ -5282,7 +5277,7 @@ public class DashboardController {
 				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
@@ -5306,7 +5301,7 @@ public class DashboardController {
 
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 

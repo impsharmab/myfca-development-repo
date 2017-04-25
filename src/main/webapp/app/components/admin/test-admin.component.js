@@ -37,7 +37,8 @@ var TestAdminComponent = (function () {
         var _this = this;
         this.adminService.getAdminData().subscribe(function (adminData) {
             _this.adminData = adminData.permissions;
-            // alert(roles[0])
+            // this.data = this.adminData.data;
+            // console.log(adminData.permissions[0].name)
         });
     };
     return TestAdminComponent;
