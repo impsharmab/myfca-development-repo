@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.MSERGraphDTO;
@@ -119,6 +120,7 @@ public class MSERGraphDAOImpl implements MSERGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable("getMSERGraphByChildTerritoryAndToggleAndProgram")
 	public List<MSERGraphDTO> getMSERGraphByChildTerritoryAndToggleAndProgram(String territory, String toggle,
 			String program) {
 		List<MSERGraphDTO> result = new ArrayList<MSERGraphDTO>();

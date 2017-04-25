@@ -23,6 +23,8 @@ import { TestAdminComponent } from "./components/admin/test-admin.component";
 import { AdminRootPageComponent } from "./components/admin/admin-rootpage.component";
 import { TableComponent } from "./components/table/table.component";
 import { PositionCodeComponent } from "./components/positioncode/positioncode.component";
+import { ProfileRootPageComponent } from "./components/profile/profile-rootpage.component";
+import { ProfileComponent } from "./components/profile/profile.component";
 
 
 //importing services
@@ -33,6 +35,7 @@ import { LoginService } from "./services/login-services/login.service"
 import { BannerService } from "./services/banner-services/banner.service"
 import { AdminService } from "./services/admin-services/admin.service"
 import { PositionCodeService } from "./services/positioncode-services/positioncode.service"
+import {ProfileService} from "./services/profile-service/profile.service"
 
 @NgModule({
     imports: [
@@ -53,7 +56,8 @@ import { PositionCodeService } from "./services/positioncode-services/positionco
         NgbActiveModal,
         BannerService,
         AdminService,
-        PositionCodeService
+        PositionCodeService,
+        ProfileService
     ],
 
     declarations: [
@@ -69,7 +73,9 @@ import { PositionCodeService } from "./services/positioncode-services/positionco
         TestAdminComponent,
         AdminRootPageComponent,
         TableComponent,
-        PositionCodeComponent
+        PositionCodeComponent,
+        ProfileRootPageComponent,
+        ProfileComponent
     ],
 
     bootstrap: [AppComponent]

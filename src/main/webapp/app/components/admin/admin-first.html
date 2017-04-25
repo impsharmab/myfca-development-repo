@@ -2,7 +2,6 @@
     $('#accordion').collapse({
         toggle: false
     })
-
 </script>
 <section id="admin" class="admin-section">
     <div class="container admin-container">
@@ -11,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <h1>Admin</h1>
-                    </div>
+                    </div> 
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
@@ -19,42 +18,34 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!--<div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-6">
 
                         <div class="box">
                             <h4>Individual</h4>
                             <label>Enter SID/TID</label>
                             <input type="text" class="form-control" />
                         </div>
-                    </div>-->
+                    </div>
                     <div class="col-sm-12 col-md-6">
                         <div class="box">
                             <h4>Group</h4>
                             <label>Position Code</label>
-
                             <select class="form-control">
-                                 <option  value="" *ngFor="let code of positioncode"> {{code}}</option>                                    
+                                    <option value="0">Select Group</option>
+                                    <option value="1">Group 1</option>
+                                    <option value="2">Group 2</option>
                                 </select>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="box">
-                            <h4>Roles</h4>
-                            <label>Choose View</label>
-                            <select class="form-control">
-                                <option  value="" *ngFor="let role of roles">{{role}}</option>                                
-                            </select>
-                        </div>
-                    </div>
 
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <!--<hr />-->
+                    <div class="col-sm-12 col-md-12">
+                        <hr />
                     </div>
                 </div>
                 <div class="row">
-                    <!--<div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-6">
                         <h3>Choose view</h3>
                         <select class="form-control">
                                 <option value="1">Executive</option>
@@ -64,7 +55,7 @@
                                 <option value="5">Manager</option>
                                 <option value="6">Participant</option>
                             </select>
-                    </div>-->
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
@@ -75,57 +66,7 @@
                     <div class="col-sm-12 col-md-12">
                         <h3>Tile Selection</h3>
                         <div id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="card" *ngFor="let admin of adminData">
-                                <div class="card-header" role="tab" id="headingOne" >
-                                    <div class="row" >
-                                        <div class="col-sm-10 col-md-10">
-                                            <div class="checkbox checkbox-primary" >
-                                                <input type="checkbox" id="mser" />
-                                                <label for="mser" >{{admin.name}}</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-2 col-md-2">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="accordion-control">
-                                                    +
-                                                </a>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" >
-                                    <div class="card-block">
-                                        <div class="row">
-                                            <div class="col-sm-12 col-md-12">
-                                                <label class="lbl-sm">Attributes</label>
-                                            </div>
-                                        </div>
-                                        <div class="row" *ngFor="let data of admin.data">
-                                            <div class="col-sm-12 col-md-6" >
-                                                <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" id="mser-opt1" />
-                                                    <label for="mser-opt1" >{{data.name}}</label>
-                                                </div>
-                                            </div>
-                                            <!--<div class="col-sm-12 col-md-6">
-                                                <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" id="mser-opt2" />
-                                                    <label for="mser-opt2">Excellence Cards Awards MTD</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-md-6">
-                                                <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" id="mser-opt3" />
-                                                    <label for="mser-opt3">Excellence Cards Awards YTD</label>
-                                                </div>
-                                            </div>-->
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--<div class="card">
+                            <div class="card">
                                 <div class="card-header" role="tab" id="headingOne">
 
                                     <div class="row">
@@ -535,8 +476,8 @@
                                         </div>
 
                                     </div>
-                                </div> 
-                            </div>-->
+                                </div>
+                            </div>
                         </div>
                     </div>
 

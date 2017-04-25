@@ -61,6 +61,10 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.dropdownPositionCode = function () {
         this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' });
     };
+    HeaderComponent.prototype.profile = function () {
+        var profileUrl = ["profile"];
+        this.router.navigate(profileUrl);
+    };
     return HeaderComponent;
 }());
 __decorate([

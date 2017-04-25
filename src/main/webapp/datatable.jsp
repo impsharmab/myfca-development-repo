@@ -709,7 +709,7 @@
 					"scrollX": true,
 					"pagingType": "full_numbers",
 					"bLengthChange": true,
-					"bInfo": false,
+					"bInfo": true,
 					data: dataset,
 					columns: cloumns,
 					//"bJQueryUI": true,
@@ -775,7 +775,7 @@
 								//'copy', 'csv', 'excel', 'pdf', 'print'
 							],
 							"pagingType": "full_numbers",
-							"bInfo": false,
+							"bInfo": true,
 							"bLengthChange": true,
 							 "bPaginate": true,
 					

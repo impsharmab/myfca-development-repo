@@ -84,21 +84,44 @@ p {
 .pageForm{
 float:left:	
 }
-.pageForm label {
-       padding-right: 20px;
-    text-align: right;
-    width: 200px;
+.admin-margin{
+	margin-top:60px;
 }
+.pageForm label {
+	padding-right: 20px;
+	text-align: right;
+	width: 200px;
+}
+.pageTitle .heading-xl {
+	color: #fff;
+	display: inline-block;
+	font-size: 40px;
+	margin: 0;
+	vertical-align: middle;
+}
+.pageTitle {
+	background: #536ea4 none repeat scroll 0 0;
+	line-height: 100px;
+	padding: 20px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+#inlineFormInputGroup{
 
+width:200px;
+}
+.card-block {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
 .heading-line::after {
-    background: #e3e7ed none repeat scroll 0 0;
-    content: "";
-    display: block;
-    height: 1px;
-float:left;
-margin-bottom:20px;
-    width: 100%;
-    z-index: 1;
+	background: #e3e7ed none repeat scroll 0 0;
+	content: "";
+	display: block;
+	height: 1px;
+	float:left;
+	margin-bottom:20px;
+	width: 100%;
+	z-index: 1;
 }
 /*.heading-line h2 {
     text-transform: uppercase;
@@ -111,13 +134,20 @@ margin-bottom:20px;
     position: relative;
     z-index: 2;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Oswald","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    line-height: 1.25em;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
 h2 {
     font-size: 40px;
 }
 /* Card Style */
 .card .btn-info {
-    background-color: #025aa5!important;
-    border-color: #025aa5!important;
+    background-color: #536ea4!important;
+    border-color: #536ea4!important;
     color: #fff;
 }
 .card .btn-lg, .card .btn-group-lg > .btn {
@@ -160,7 +190,11 @@ h2 {
 	margin-bottom:40px;
 }
 
-
+.form-actions {
+	width: 33%;
+	text-align:right;
+	margin:20px 0px 0px 0px;
+}
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
     position: absolute;
@@ -459,6 +493,12 @@ padding: 0.45em;
     max-width: none;
     width: 98%;
 }*/
+.cancel{
+    margin-left: 200;
+}
+.update{
+    margin-left: 120;
+}
 
 .vanilla-button{
 	background-color:none;

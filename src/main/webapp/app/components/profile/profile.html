@@ -1,0 +1,102 @@
+<section class="intro-section admin-margin " id="intro">
+
+    <div class="page-title">
+        <div class="pageTitle">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12">
+                        <h1 class="heading-xl">
+                            Your Profile
+                        </h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+
+        <article class="card animated fadeInUp">
+
+            <div class="card-block">
+
+                <div class="content-row row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <!--<form class="pageForm">
+                            <label>Change Display Name</label>
+                            <input id="username" pattern="[A-Z]{3}[0-9]{4}" type="text" value="Bijay Sharma"><br>
+                            <label>Change Email Address</label>
+                            <input id="username" pattern="[A-Z]{3}[0-9]{4}" type="text" value="Bijay@imperial.com">
+                            <br> <br> <br>
+                            <label>Change Password</label>
+                            <input id="passwordInput" pattern="[A-Z]{3}[0-9]{4}" type="text">
+
+                            <br>
+                            <label>Confirm Password</label>
+                            <input id="passwordInput" pattern="[A-Z]{3}[0-9]{4}" type="text">
+                            <br>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal">Cancel</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal">Update</button>
+                            </div>
+
+                        </form>-->
+                        <form class="pageForm" #changeInformation="ngForm">
+                            <h6>Change your Information</h6>
+                            <label>Change Display Name</label>
+                            <input id="username" name="username" type="text" [(ngModel)]="profiledata.name"><br>
+                            <label>Change Email Address</label>
+                            <input id="email" name="email"  type="text" [(ngModel)]="profiledata.email">
+                            <div class="form-actions">
+                                <button type="cancel" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal">Cancel</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="postProfileData()">Update</button>
+                            </div>
+
+                        </form>
+                        <form class="pageForm" id="changePassword">
+                            <h6>Change your password</h6>
+                            <label>Change Password</label>
+                            <input id="passwordInput" name="password1"  type="password" [(ngModel)]="profiledata.password1">
+
+                            <br>
+                            <label>Confirm Password</label>
+                            <input id="passwordInput" name="password2" type="password" [(ngModel)]="profiledata.password2">
+                            <br>
+
+                            <div class="form-actions">
+                                <button type="cancel" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal">Cancel</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeUserPassword()">Update</button>
+                            </div>
+
+                        </form>
+
+                        <!--<div id="updateProgramsModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">-->
+
+                                <!-- Modal content-->
+                                <!--<div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">×</button>
+                                        <h4 class="modal-title">Login Failed</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Please provide a valid SID or TID, and password.</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>-->
+
+
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

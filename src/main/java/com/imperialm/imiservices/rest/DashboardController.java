@@ -946,7 +946,6 @@ public class DashboardController {
 
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
-			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
 			for(BrainBoostWinndersGraphDTO item: listBC_unfiltered){
 				if(type.equals("BC")){
 					//get users BC
@@ -959,7 +958,6 @@ public class DashboardController {
 				if(!map.containsKey(item.getParentTerritory())){
 					map.put(item.getParentTerritory(), new ArrayList<String>());
 					chartsMap.put(item.getParentTerritory(), new ArrayList<ChartData>());
-					chartsMap2.put(item.getParentTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
 				if(type.equals("BC")){
@@ -974,49 +972,38 @@ public class DashboardController {
 			}
 			List<BrainBoostWinndersGraphDTO> sublist = this.dashService.getBrainBoostGraphAllDistricData(filters);
 
-			Chart chart = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Exellence Card Awards And Award Points YTD", "", "$s/Points", "", "column_compound", "Awards");
-			Chart chart2 = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Exellence Card Awards And Award Points YTD", "", "$s/Points", "", "column_compound", "Awards");
+			Chart chart = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Award Points YTD", "", "Points", "", "column", "Awards");
 
 
 			Map<String, Double> mapValues = new HashMap<String, Double>();
-			Map<String, Double> mapValues2 = new HashMap<String, Double>();
 			for(BrainBoostWinndersGraphDTO item: listBC){
 				List<ChartData> list = new ArrayList<ChartData>();
-				List<ChartData> list2 = new ArrayList<ChartData>();
 				for(BrainBoostWinndersGraphDTO object: sublist){
 					if(map.get(item.getParentTerritory()).contains(object.getParentTerritory())){
 
 						ChartData temp = new ChartData();
 						temp.setName(object.getParentTerritory());
-						temp.setValue(object.getEarnings());
+						temp.setValue(object.getPoints());
 
 						list.add(temp);
-						temp = new ChartData();
-						temp.setName(object.getParentTerritory());
-						temp.setValue(object.getPoints());
-						list2.add(temp);
-
 					}
 					chartsMap.put(item.getParentTerritory(), list);
-					chartsMap2.put(item.getParentTerritory(), list2);
-					mapValues.put(item.getParentTerritory(), (double)item.getEarnings());
-					mapValues2.put(item.getParentTerritory(), (double)item.getPoints());
+					mapValues.put(item.getParentTerritory(), (double)item.getPoints());
 				}
 			}
 
 			List<ChartData> list1 = new ArrayList<ChartData>();
-			list1.add(new ChartData("Exellence Card Awards", 0));
 			list1.add(new ChartData("Award Points", 0));
 
 
 			List<ChartData> a = new ArrayList<ChartData>(chart.getData());
-			List<ChartData> b = new ArrayList<ChartData>(chart2.getData());
+			
 
 			double tempa =0;
-			double tempb =0;
+
 			for(ChartData item: a){
 				for(ChartData var: item.getData()){
-					if(var.getName().equals("Exellence Card Awards"))
+					if(var.getName().equals("Award Points"))
 						tempa = var.getValue();
 				}
 				item.setData(new ArrayList<ChartData>());
@@ -1024,20 +1011,8 @@ public class DashboardController {
 				item.addDataList(chartsMap.get(item.getName()));
 			}
 
-			for(ChartData item: b){
-				for(ChartData var: item.getData()){
-					if(var.getName().equals("Award Points"))
-						tempb = var.getValue();
-				}
-				item.setData(new ArrayList<ChartData>());
-				item.setValue(mapValues2.get(item.getName()));
-				item.addDataList(chartsMap2.get(item.getName()));
-			}
-
 			list1.get(0).setValue(tempa);
-			list1.get(1).setValue(tempb);
 			list1.get(0).setData(a);
-			list1.get(1).setData(b);
 
 			chart.setData(list1);
 
@@ -1204,7 +1179,7 @@ public class DashboardController {
 
 			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD by Overall Survey Score", tableheaders));	
 			//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
-			tabledataA.get(0).setTabName("QTD");
+			tabledataA.get(0).setTabName("");
 			//tabledataA.get(1).setTabName("YTD");
 			datatableA.setData(tabledataA);
 
@@ -1318,7 +1293,7 @@ public class DashboardController {
 
 			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD by Overall Survey Score", tableheaders));	
 			//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
-			tabledataT.get(0).setTabName("QTD");
+			tabledataT.get(0).setTabName("");
 			//tabledataT.get(1).setTabName("YTD");
 			datatableT.setData(tabledataT);
 
@@ -2200,7 +2175,7 @@ public class DashboardController {
 
 			//Create first level of the chart
 			//Get Distinct program names
-			List<String> programs = new ArrayList<String>(Arrays.asList("09","14","23","13","42","04","08"));
+			List<String> programs = new ArrayList<String>(Arrays.asList("09","23","14","13","42","04","08"));
 
 			List<ChartData> attributes = new ArrayList<ChartData>();
 
@@ -2765,6 +2740,7 @@ public class DashboardController {
 			chart.setData(list1);
 			chart.setAvarage(true);
 			chart.setUnit("%");
+			chart.setRetention(true);
 			return chart;
 
 			//special mapping for stacked column
@@ -3805,39 +3781,27 @@ public class DashboardController {
 			List<BrainBoostWinndersGraphDTO> BrainBoostWinndersGraphDTO = this.dashService.getBrainBoostWinndersGraphgetByChildTerritory(territory);
 
 			Chart chart = new Chart();
-			chart.setTitle("Exellence Card Awards And Award Points YTD");
+			chart.setTitle("Award Points YTD");
 			chart.setSubTitle("");
-			chart.setType("column_compound");
-			chart.setXaxisTitle("$s/Points");
+			chart.setType("column");
+			chart.setXaxisTitle("Points");
 			chart.setYaxisTitle("");
 
 			List<ChartData> list = new ArrayList<ChartData>();
 
-			ChartData excellenceCard = new ChartData();
 			ChartData awardPoints = new ChartData();
-			excellenceCard.setName("Exellence Card Awards");
 			awardPoints.setName("Award Points");
 
-
-			int excellenceCardTotal = 0;
 			int awardPointsTotal = 0;
 
 			for(BrainBoostWinndersGraphDTO item: BrainBoostWinndersGraphDTO){
 				ChartData chartData = new ChartData();
 				chartData.setName(item.getChildTerritory());
-				chartData.setValue(item.getEarnings());
-				excellenceCardTotal += item.getEarnings();
-				excellenceCard.addData(chartData);
-
-				ChartData chartData2 = new ChartData();
-				chartData2.setName(item.getChildTerritory());
-				chartData2.setValue(item.getPoints());
+				chartData.setValue(item.getPoints());
 				awardPointsTotal += item.getPoints();
-				awardPoints.addData(chartData2);
+				awardPoints.addData(chartData);
 			}
-			excellenceCard.setValue(excellenceCardTotal);
 			awardPoints.setValue(awardPointsTotal);
-			list.add(excellenceCard);
 			list.add(awardPoints);
 
 			chart.setData(list);
@@ -3988,7 +3952,7 @@ public class DashboardController {
 
 				tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD by Overall Survey Score", tableheaders));	
 				//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
-				tabledataA.get(0).setTabName("QTD");
+				tabledataA.get(0).setTabName("");
 				//tabledataA.get(1).setTabName("YTD");
 				datatableA.setData(tabledataA);
 
@@ -4143,7 +4107,7 @@ public class DashboardController {
 
 				tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD by Overall Survey Score", tableheaders));	
 				//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
-				tabledataT.get(0).setTabName("QTD");
+				tabledataT.get(0).setTabName("");
 				//tabledataT.get(1).setTabName("YTD");
 				datatableT.setData(tabledataT);
 
@@ -5322,7 +5286,7 @@ public class DashboardController {
 
 			//Create first level of the chart
 			//Get Distinct program names
-			List<String> programs = new ArrayList<String>(Arrays.asList("09","14","23","13","42","04","08"));
+			List<String> programs = new ArrayList<String>(Arrays.asList("09","23","14","13","42","04","08"));
 
 			List<ChartData> attributes = new ArrayList<ChartData>();
 
@@ -5599,6 +5563,7 @@ public class DashboardController {
 			chart.setData(list);
 			chart.setAvarage(true);
 			chart.setUnit("%");
+			chart.setRetention(true);
 
 			return chart;
 		}

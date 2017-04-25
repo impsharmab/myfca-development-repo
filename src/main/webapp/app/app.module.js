@@ -28,6 +28,8 @@ var test_admin_component_1 = require("./components/admin/test-admin.component");
 var admin_rootpage_component_1 = require("./components/admin/admin-rootpage.component");
 var table_component_1 = require("./components/table/table.component");
 var positioncode_component_1 = require("./components/positioncode/positioncode.component");
+var profile_rootpage_component_1 = require("./components/profile/profile-rootpage.component");
+var profile_component_1 = require("./components/profile/profile.component");
 //importing services
 var dashboard_body_service_1 = require("./services/dashboard-body-services/dashboard-body.service");
 var footer_service_1 = require("./services/footer-services/footer.service");
@@ -36,6 +38,7 @@ var login_service_1 = require("./services/login-services/login.service");
 var banner_service_1 = require("./services/banner-services/banner.service");
 var admin_service_1 = require("./services/admin-services/admin.service");
 var positioncode_service_1 = require("./services/positioncode-services/positioncode.service");
+var profile_service_1 = require("./services/profile-service/profile.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -60,7 +63,8 @@ AppModule = __decorate([
             ng_bootstrap_2.NgbActiveModal,
             banner_service_1.BannerService,
             admin_service_1.AdminService,
-            positioncode_service_1.PositionCodeService
+            positioncode_service_1.PositionCodeService,
+            profile_service_1.ProfileService
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -75,7 +79,9 @@ AppModule = __decorate([
             test_admin_component_1.TestAdminComponent,
             admin_rootpage_component_1.AdminRootPageComponent,
             table_component_1.TableComponent,
-            positioncode_component_1.PositionCodeComponent
+            positioncode_component_1.PositionCodeComponent,
+            profile_rootpage_component_1.ProfileRootPageComponent,
+            profile_component_1.ProfileComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })

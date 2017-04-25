@@ -936,7 +936,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           if (chartData.retention) {
             for (var i = 0; i < chartObj.series.length; i++) {
               var seriesObj: any = chartObj.series[i];
-              i == 2 ? seriesObj.visible = true : seriesObj.visible = false;
+              i == 1 ? seriesObj.visible = true : seriesObj.visible = false;
               if (seriesObj.visible) {
                 for (var k = 0; k < seriesObj.data.length; k++) {
                   total = total + seriesObj.data[k].y;

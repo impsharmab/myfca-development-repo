@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { Http } from '@angular/http';
 import { HeaderService } from '../../services/header-services/header.service';
-import { NgbModal, ModalDismissReasons,NgbModalRef,NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { Router, RouterOutlet } from '@angular/router';
 })
 
 export class HeaderComponent implements OnInit {
-    @Input() data: any; 
+    @Input() data: any;
     @Output("onProfileChange") profileChange = new EventEmitter<any>();
     private banners: any = new Array;
     @ViewChild("contactModal") private contactModal: TemplateRef<any>;
@@ -22,16 +22,16 @@ export class HeaderComponent implements OnInit {
     private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
     private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
 
-    constructor(public activeModal: NgbActiveModal,private http: Http, private headerService: HeaderService, private modalService: NgbModal, private router: Router) {
+    constructor(public activeModal: NgbActiveModal, private http: Http, private headerService: HeaderService, private modalService: NgbModal, private router: Router) {
 
     }
-    private positionCodeCancel(){	
+    private positionCodeCancel() {
         this.positioncodeModal.close();
-    }	
-    private positionCodeSubmit(c:any){	
+    }
+    private positionCodeSubmit(c: any) {
         // alert("1");	
-       c();
-        this.profileChange.emit("")		
+        c();
+        this.profileChange.emit("")
     }
     ngOnInit() {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
@@ -65,7 +65,13 @@ export class HeaderComponent implements OnInit {
     }
 
     private dropdownPositionCode() {
-        this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' }); 
+        this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' });
+    }
+
+
+    private profile() {
+        let profileUrl = ["profile"]
+        this.router.navigate(profileUrl);
     }
 
 }

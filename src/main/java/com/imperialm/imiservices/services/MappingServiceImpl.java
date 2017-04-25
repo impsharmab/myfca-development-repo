@@ -498,18 +498,18 @@ public class MappingServiceImpl {
 	
 	public ChartData BrainBoostWinndersGraphDTOtoChartDataAwards(BrainBoostWinndersGraphDTO BrainBoostWinndersGraphDTO){
 		ChartData chartData = new ChartData();
-		ChartData excellenceCard = new ChartData();
+		//ChartData excellenceCard = new ChartData();
 		ChartData awardPoints = new ChartData();
 		
 		chartData.setName(BrainBoostWinndersGraphDTO.getParentTerritory());
 		
-		excellenceCard.setName("Exellence Card Awards");
-		excellenceCard.setValue(BrainBoostWinndersGraphDTO.getEarnings());
+		//excellenceCard.setName("Exellence Card Awards");
+		//excellenceCard.setValue(BrainBoostWinndersGraphDTO.getEarnings());
 		
 		awardPoints.setName("Award Points");
 		awardPoints.setValue(BrainBoostWinndersGraphDTO.getPoints());
 		
-		chartData.addData(excellenceCard);
+		//chartData.addData(excellenceCard);
 		chartData.addData(awardPoints);
 		
 		return chartData;
