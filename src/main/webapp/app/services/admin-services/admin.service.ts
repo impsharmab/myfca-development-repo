@@ -8,13 +8,29 @@ export class AdminService {
 
     constructor(private http: Http) { }
 
-    getAdminData(FormData) {
+
+    getPositionCode() {
         var headers = new Headers();
         headers.append('Authorization', "");
+        var getPositionCodeUrl = "./app/components/admin/positioncode-array.json";
+        return this.http.get(getPositionCodeUrl, { headers })
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
+    getRoles() {
+        var headers = new Headers();
+        headers.append('Authorization', "");
+        var getPositionCodeUrl = "./app/components/admin/admin-chooseview.json";
+        return this.http.get(getPositionCodeUrl, { headers })
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
 
-          var adminService = "./app/resources/json/admin-data.json";
-       // var tileService = "services/tile/" + id;
-        return this.http.get(adminService, { headers }) //headers should be in object
+    getAdminData() {
+        var headers = new Headers();
+        headers.append('Authorization', "");
+        var adminService = "./app/components/admin/test-admin.json";
+        return this.http.get(adminService, { headers }) 
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }

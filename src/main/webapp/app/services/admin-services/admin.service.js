@@ -16,12 +16,27 @@ var AdminService = (function () {
     function AdminService(http) {
         this.http = http;
     }
-    AdminService.prototype.getAdminData = function (FormData) {
+    AdminService.prototype.getPositionCode = function () {
         var headers = new http_1.Headers();
         headers.append('Authorization', "");
-        var adminService = "./app/resources/json/admin-data.json";
-        // var tileService = "services/tile/" + id;
-        return this.http.get(adminService, { headers: headers }) //headers should be in object
+        var getPositionCodeUrl = "./app/components/admin/positioncode-array.json";
+        return this.http.get(getPositionCodeUrl, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    AdminService.prototype.getRoles = function () {
+        var headers = new http_1.Headers();
+        headers.append('Authorization', "");
+        var getPositionCodeUrl = "./app/components/admin/admin-chooseview.json";
+        return this.http.get(getPositionCodeUrl, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    AdminService.prototype.getAdminData = function () {
+        var headers = new http_1.Headers();
+        headers.append('Authorization', "");
+        var adminService = "./app/components/admin/test-admin.json";
+        return this.http.get(adminService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };

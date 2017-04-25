@@ -1,32 +1,4 @@
-<html>
-
-<head>
-
-    <!--<script>
-        document.write('<base href="' + document.location + '" />');
-    </script>-->
-
-
-    <base href="/">
-    <!--<script>document.write('<base href="' + document.location + '" />');</script>-->
-    <!--<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">-->
-    <meta http-equiv="cache-control" content="max-age=0" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="expires" content="0" />
-    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-    <meta http-equiv="pragma" content="no-cache" />
-    <link rel="shortcut icon" href="app/resources/images/favicon.ico" />
-    <title>MyFcaDashboard</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="app/resources/js/es5-shim.js"></script>
-    <script src="app/resources/js/es6-shim.js"></script>
-    <!--<link href="app/resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="app/resources/bootstrap/js/bootstrap.js" rel="stylesheet">-->
-
-    <!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>-->
-    <script>
-        //download.js v4.2, by dandavis; 2008-2016. [CCBY2] see http://danml.com/download.html for tests/usage
+//download.js v4.2, by dandavis; 2008-2016. [CCBY2] see http://danml.com/download.html for tests/usage
 // v1 landed a FF+Chrome compat way of downloading strings to local un-named files, upgraded to use a hidden frame and optional mime
 // v2 added named files via a[download], msSaveBlob, IE (10+) support, and window.URL support for larger+faster saves than dataURLs
 // v3 added dataURL and Blob Input, bind-toggle arity, and legacy dataURL fallback was improved with force-download mime and base64 support. 3.1 improved safari handling.
@@ -188,53 +160,3 @@
 		return true;
 	}; /* end download() */
 }));
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
-    <link rel="stylesheet" href="app/resources/bootstrap/bootstrap.css" />
-    <link rel="stylesheet" href="app/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
-
-    <!--<script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>-->
-
-    <link rel="stylesheet" href="app/resources/css/scrolling-nav.css" />
-    <link rel="stylesheet" href="app/resources/css/carousel.css" />
-    <link rel="stylesheet" href="app/resources/css/admin.css" />
-    <link rel="stylesheet" href="app/resources/css/styles.css" />
-    <link rel="stylesheet" href="app/resources/css/spinner.css" />
-    <link rel="stylesheet" href="app/resources/css/custom-modal.css" />
-    <!--<script src="app/resources/js/exportToExcel.js" />-->
-    <script src="app/resources/js/tableToExcel.js" />
-
-    <script src="node_modules/core-js/client/shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <script src="node_modules/rxjs/bundles/Rx.js"></script>
-    <script src="systemjs.config.js"></script>
-    <!--<script src="node_modules/es5-shim/es5-shim.js"></script>
-    <script src="node_modules/es6-shim/es6-shim.js"></script>-->
-
-
-    <script>
-        System.import('app').catch(function (err) {
-            console.error(err);
-        });
-    </script>
-
-</head>
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-    <my-app>
-        <div style="display: flex; justify-content: center;">
-            <img class="refreshGlyphImg" src="app/resources/images/spinner/spinner.gif" />
-        </div>
-    </my-app>
-
-</body>
-
-</html>

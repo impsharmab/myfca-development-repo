@@ -318,7 +318,8 @@ export class AdminComponent implements OnInit {
 
 
         console.log(JSON.stringify(datas));
-        this.adminService.getAdminData(datas)
+       // this.adminService.getAdminData(datas)
+          this.adminService.getAdminData()
             .subscribe(
 
             resUserData => {

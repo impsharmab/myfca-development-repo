@@ -24,7 +24,7 @@ var spinner_component_1 = require("./components/spinner/spinner.component");
 var login_component_1 = require("./components/login/login.component");
 var dashboard_body_component_modal_1 = require("./components/dashboard-body/dashboard-body.component.modal");
 var banner_component_1 = require("./components/banner/banner.component");
-var admin_component_1 = require("./components/admin/admin.component");
+var test_admin_component_1 = require("./components/admin/test-admin.component");
 var admin_rootpage_component_1 = require("./components/admin/admin-rootpage.component");
 var table_component_1 = require("./components/table/table.component");
 var positioncode_component_1 = require("./components/positioncode/positioncode.component");
@@ -72,7 +72,7 @@ AppModule = __decorate([
             spinner_component_1.SpinnerComponent,
             dashboard_body_component_modal_1.NgbdModalContent,
             banner_component_1.BannerComponent,
-            admin_component_1.AdminComponent,
+            test_admin_component_1.TestAdminComponent,
             admin_rootpage_component_1.AdminRootPageComponent,
             table_component_1.TableComponent,
             positioncode_component_1.PositionCodeComponent

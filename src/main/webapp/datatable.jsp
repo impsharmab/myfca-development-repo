@@ -276,7 +276,7 @@
 		}
 		function getChart13(jsonData) {
 			var tableData = {};
-			tableData.headers = ["DEALER", "Certified", "Certified Specialist", "Master Certified", "Total Certification"];
+			tableData.headers = ["Dealer", "Certified", "Certified Specialist", "Master Certified", "Total Certifications"];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -448,8 +448,13 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].earnedPoints)]);
-					totalEarnedPoints = totalEarnedPoints + innerData[0].earnedPoints;
+
+					for (var z = 0; z < innerData.length; z++) {
+						innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[z].earnedPoints)]);
+					totalEarnedPoints = totalEarnedPoints + innerData[z].earnedPoints;
+					}
+					// innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].earnedPoints)]);
+					// totalEarnedPoints = totalEarnedPoints + innerData[0].earnedPoints;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
 				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(totalEarnedPoints)], "innerData": innerDataObj })
@@ -489,6 +494,7 @@
 					var data = outerData.filter(function (ele, index, array) {
 						return positionCodeArray[n] === ele.positionCode;
 					});
+					
 					rowData.push(Math.round(data[0].percentage) + "%")
 					//total = Math.round(total + data[0].percentage);
 				}

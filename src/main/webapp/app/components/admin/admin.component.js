@@ -282,7 +282,8 @@ var AdminComponent = (function () {
                 ]
             };
         console.log(JSON.stringify(datas));
-        this.adminService.getAdminData(datas)
+        // this.adminService.getAdminData(datas)
+        this.adminService.getAdminData()
             .subscribe(function (resUserData) {
             resUserData = datas = JSON.stringify(resUserData);
             console.log(resUserData);

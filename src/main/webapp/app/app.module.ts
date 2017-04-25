@@ -19,7 +19,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoginComponent } from "./components/login/login.component";
 import { NgbdModalContent } from "./components/dashboard-body/dashboard-body.component.modal";
 import { BannerComponent } from "./components/banner/banner.component";
-import { AdminComponent } from "./components/admin/admin.component";
+import { TestAdminComponent } from "./components/admin/test-admin.component";
 import { AdminRootPageComponent } from "./components/admin/admin-rootpage.component";
 import { TableComponent } from "./components/table/table.component";
 import { PositionCodeComponent } from "./components/positioncode/positioncode.component";
@@ -66,7 +66,7 @@ import { PositionCodeService } from "./services/positioncode-services/positionco
         SpinnerComponent,
         NgbdModalContent,
         BannerComponent,
-        AdminComponent,
+        TestAdminComponent,
         AdminRootPageComponent,
         TableComponent,
         PositionCodeComponent
