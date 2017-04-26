@@ -519,8 +519,8 @@
 				"Voice of Employee",
 				"Training",
 				"Facility",
-				"CFAFE Award Certification",
-				"Total"];
+				"CFAFE Award Certification"
+				];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -529,8 +529,7 @@
 					"data": [" ", obj.dealerName, obj.noCertification,
 						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
 						obj.facility, obj.cfafeawardCertification,
-						obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
-						obj.facility + obj.cfafeawardCertification], "innerData": []
+						], "innerData": []
 				})
 			}
 			return tableData;
@@ -544,8 +543,8 @@
 				"Voice of Employee",
 				"Training",
 				"Facility",
-				"CFAFE Award Certification",
-				"Total"];
+				"CFAFE Award Certification"
+				];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -558,9 +557,8 @@
 						obj.voiceofEmployee + "%",
 						obj.training + "%",
 						obj.facility + "%",
-						obj.cfafeawardCertification + "%",
-						(obj.noCertification + obj.performance + obj.process + obj.voiceofEmployee + obj.training +
-							obj.facility + obj.cfafeawardCertification) + "%"], "innerData": []
+						obj.cfafeawardCertification + "%"
+						], "innerData": []
 				})
 			}
 			return tableData;

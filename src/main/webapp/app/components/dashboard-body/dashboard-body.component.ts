@@ -810,8 +810,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         // chartObj.yAxis.title.text = chartData.yaxisTitle;
         break;
       case "bar_compound":
-
-
       chartObj.chart["marginRight"]=60
         //marginRight: 100,
         chartObj.chart.type = "bar";
