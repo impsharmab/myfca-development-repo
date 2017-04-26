@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.imperialm.imiservices.dao.MSERDetailsDAO;
-import com.imperialm.imiservices.dao.MSERDetailsGraphDAO;
+import com.imperialm.imiservices.dao.MyFCAMserRankingDetailsDAO;
+import com.imperialm.imiservices.dao.MyFCAMserRankingDAO;
 import com.imperialm.imiservices.dao.SummaryProgramRewardDetailsDAO;
 import com.imperialm.imiservices.dao.SummaryProgramRewardGraphDAO;
 import com.imperialm.imiservices.dao.TTTAEnrollmentsSummaryDAO;
@@ -25,12 +25,12 @@ import com.imperialm.imiservices.dao.RetentionDetailsDAO;
 import com.imperialm.imiservices.dao.RetentionGraphDAO;
 import com.imperialm.imiservices.dao.SIRewardsDetailsDAO;
 import com.imperialm.imiservices.dao.SIRewardsDetailsGraphDAO;
-import com.imperialm.imiservices.dao.MSERGraphDAO;
+import com.imperialm.imiservices.dao.MyfcaMSERTotalEarningsDAO;
 import com.imperialm.imiservices.dao.TTTAEnrolledDAO;
 import com.imperialm.imiservices.dao.TTTAEnrollmentsDAO;
 import com.imperialm.imiservices.dao.DashboardDAO;
 import com.imperialm.imiservices.dao.MSEREarningsDAO;
-import com.imperialm.imiservices.dao.MSERGraphDetailsDAO;
+import com.imperialm.imiservices.dao.MyfcaMSERTotalEarningsDetailsDAO;
 import com.imperialm.imiservices.dao.BrainBoostWinndersGraphDAO;	
 import com.imperialm.imiservices.dao.CertProfsExpertGraphDAO;
 import com.imperialm.imiservices.dao.CertProfsWinnersGraphDAO;
@@ -43,12 +43,12 @@ import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
 import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 import com.imperialm.imiservices.dto.DashboardDTO;
-import com.imperialm.imiservices.dto.MSERDetailsDTO;
-import com.imperialm.imiservices.dto.MSERDetailsGraphDTO;
+import com.imperialm.imiservices.dto.MyFCAMserRankingDetailsDTO;
+import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
-import com.imperialm.imiservices.dto.MSERGraphDTO;
-import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
-import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDetailsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
 import com.imperialm.imiservices.dto.RetentionDetailsDTO;
 import com.imperialm.imiservices.dto.RetentionGraphDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
@@ -66,7 +66,7 @@ import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.response.TotalName;
-import com.imperialm.imiservices.dao.MSERTopNDAO;
+import com.imperialm.imiservices.dao.MyfcaMSERTopNDAO;
 import com.imperialm.imiservices.dao.TTTATopNDAO;
 
 @Service // implements DashboardService
@@ -79,10 +79,10 @@ public class DashboardServiceImpl {
 	private MSEREarningsDAO MSEREarningsDAO;
 	
 	@Autowired
-	private MSERTopNDAO MSERTopNDAO;
+	private MyfcaMSERTopNDAO MyfcaMSERTopNDAO;
 	
 	@Autowired
-	private MSERGraphDetailsDAO MSERGraphDetailsDAO;
+	private MyfcaMSERTotalEarningsDetailsDAO MyfcaMSERTotalEarningsDetailsDAO;
 	
 	@Autowired
 	private BrainBoostWinndersGraphDAO BrainBoostWinndersGraphDAO;
@@ -106,7 +106,7 @@ public class DashboardServiceImpl {
 	private TTTAEnrolledDAO TTTAEnrolledDAO;
 	
 	@Autowired
-	private MSERGraphDAO MSERGraphDAO;
+	private MyfcaMSERTotalEarningsDAO MyfcaMSERTotalEarningsDAO;
 	
 	@Autowired
 	private SIRewardsDetailsGraphDAO SIRewardsDetailsGraphDAO;
@@ -160,10 +160,10 @@ public class DashboardServiceImpl {
 	private SummaryProgramRewardDetailsDAO SummaryProgramRewardDetailsDAO;
 	
 	@Autowired
-	private MSERDetailsGraphDAO MSERDetailsGraphDAO;
+	private MyFCAMserRankingDAO MyFCAMserRankingDAO;
 	
 	@Autowired
-	private MSERDetailsDAO MSERDetailsDAO;
+	private MyFCAMserRankingDetailsDAO MyFCAMserRankingDetailsDAO;
 	
 	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
 		return this.dashboardDAO.findTilesListByRole(userRoleReq);
@@ -178,49 +178,49 @@ public class DashboardServiceImpl {
 		 return this.MSEREarningsDAO.getEarningsByRole(userRoleReq);
 	}
 	
-	public List<MSERTopNDTO> getMSERTopTen(String type, int rows, String name, String period){
-		 return this.MSERTopNDAO.getTopNByType(type, rows, name, period);
+	public List<MyfcaMSERTopNDTO> getMSERTopTen(String type, int rows, String name, String period){
+		 return this.MyfcaMSERTopNDAO.getTopNByType(type, rows, name, period);
 	}
 	
 	public TotalName getMTDByProgramAndProgramgroup(String name, String program, String programgroup){
-		 return this.MSERGraphDetailsDAO.getMTDByProgramAndProgramgroup(name, program, programgroup);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getMTDByProgramAndProgramgroup(name, program, programgroup);
 	}
 	
 	public TotalName getMSEREnrolledDealersCount(){
-		 return this.MSERGraphDetailsDAO.getMSEREnrolledDealersCount();
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getMSEREnrolledDealersCount();
 	}
 	
 	public TotalName getDealersCountWithPercentage(){
-		 return this.MSERGraphDetailsDAO.getDealersCountWithPercentage();
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getDealersCountWithPercentage();
 	}
 	
 	public TotalName getMSERDealersCountByBCOrDistrict(String territory){
-		 return this.MSERGraphDetailsDAO.getMSERDealersCountByBCOrDistrict(territory);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getMSERDealersCountByBCOrDistrict(territory);
 	}
 	
 	public TotalName getMSEREarningsYTDByBCOrDistrict(String territory){
-		 return this.MSERGraphDetailsDAO.getMSEREarningsYTDByBCOrDistrict(territory);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getMSEREarningsYTDByBCOrDistrict(territory);
 	}
 	
 	public TotalName getMSEREarningsMTDByBCOrDistrict(String territory){
-		 return this.MSERGraphDetailsDAO.getMSEREarningsMTDByBCOrDistrict(territory);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getMSEREarningsMTDByBCOrDistrict(territory);
 	}
 	
 	public TotalName getMSERParticipantEnrolledByDealerCode(String dealerCode){
-		 return this.MSERGraphDetailsDAO.getMSERParticipantEnrolledByDealerCode(dealerCode);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getMSERParticipantEnrolledByDealerCode(dealerCode);
 	}
 	
 	
 	public TotalName getYTDByProgramAndProgramgroup(String name, String program, String programgroup){
-		 return this.MSERGraphDetailsDAO.getYTDByProgramAndProgramgroup(name, program, programgroup);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getYTDByProgramAndProgramgroup(name, program, programgroup);
 	}
 	
 	public TotalName getParticipantExcellanceCardAwardMTD(String sid){
-		 return this.MSERGraphDetailsDAO.getParticipantExcellanceCardAwardMTD(sid);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getParticipantExcellanceCardAwardMTD(sid);
 	}
 	
 	public TotalName getParticipantExcellanceCardAwardYTD(String sid){
-		 return this.MSERGraphDetailsDAO.getParticipantExcellanceCardAwardYTD(sid);
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getParticipantExcellanceCardAwardYTD(sid);
 	}
 	
 	public List<BrainBoostWinndersGraphDTO> getBrainBoostGraphBCData(boolean filter){
@@ -335,51 +335,51 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrolledDAO.getTTTAEnrollmentsBC(enrolled);
 	}
 	
-	public List<MSERGraphDTO> getMSERGraphBCData(boolean filter){
-		return this.MSERGraphDAO.getBCEarnings(filter);
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphBCData(boolean filter){
+		return this.MyfcaMSERTotalEarningsDAO.getBCEarnings(filter);
 	}
 	
-	public List<MSERGraphDTO> getMSERGraphAllDistricData(List<String> list){
-		return this.MSERGraphDAO.getAllDistricData(list);
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphAllDistricData(List<String> list){
+		return this.MyfcaMSERTotalEarningsDAO.getAllDistricData(list);
 	}
 	
-	public List<MSERDetailsGraphDTO> getMSERDetailsGraphByParentAndToggle(String territory){
-		return this.MSERDetailsGraphDAO.getMSERDetailsGraphByParent(territory);
+	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByParentAndToggle(String territory){
+		return this.MyFCAMserRankingDAO.getMSERDetailsGraphByParent(territory);
 	}
 	
-	public List<MSERDetailsGraphDTO> getMSERDetailsGraphByChildAndToggle(String territory){
-		return this.MSERDetailsGraphDAO.getMSERDetailsGraphByChild(territory);
+	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByChildAndToggle(String territory){
+		return this.MyFCAMserRankingDAO.getMSERDetailsGraphByChild(territory);
 	}
 	
-	public List<MSERDetailsDTO> getMSERDetailsBySID(String territory){
-		return this.MSERDetailsDAO.getMSERDetailsBySID(territory);
+	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsBySID(String territory){
+		return this.MyFCAMserRankingDetailsDAO.getMSERDetailsBySID(territory);
 	}
 	
-	public List<MSERGraphDTO> getMSERGraphByTerritoryAndToggle(String territory, String toggle){
-		return this.MSERGraphDAO.getMSERGraphByTerritoryAndToggle(territory, toggle);
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByTerritoryAndToggle(String territory, String toggle){
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphByTerritoryAndToggle(territory, toggle);
 	}
-	public List<MSERGraphDTO> getMSERGraphByTerritoryAndToggleAndProgram(String territory, String toggle, String program){
-		return this.MSERGraphDAO.getMSERGraphByTerritoryAndToggleAndProgram(territory, toggle, program);
-	}
-	
-	public List<MSERGraphDTO> getMSERGraphByChildTerritoryAndToggleAndProgram(String territory, String toggle, String program){
-		return this.MSERGraphDAO.getMSERGraphByChildTerritoryAndToggleAndProgram(territory, toggle, program);
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByTerritoryAndToggleAndProgram(String territory, String toggle, String program){
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphByTerritoryAndToggleAndProgram(territory, toggle, program);
 	}
 	
-	public List<MSERGraphDTO> getMSERGraphByChildTerritoryAndToggle(String territory, String toggle){
-		return this.MSERGraphDAO.getMSERGraphByChildTerritoryAndToggle(territory, toggle);
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByChildTerritoryAndToggleAndProgram(String territory, String toggle, String program){
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphByChildTerritoryAndToggleAndProgram(territory, toggle, program);
+	}
+	
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByChildTerritoryAndToggle(String territory, String toggle){
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphByChildTerritoryAndToggle(territory, toggle);
 	}
 	
 	public List<String> getMSERGraphDistinctProgramsByParentTerritoryAndToggle(String territory, String toggle){
-		return this.MSERGraphDAO.getMSERGraphDistinctProgramsByParentTerritoryAndToggle(territory, toggle);
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphDistinctProgramsByParentTerritoryAndToggle(territory, toggle);
 	}
 	
-	public List<MSERGraphDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggle(String territory, String toggle){
-		return this.MSERGraphDAO.getMSERGraphProgramsSUMByParentTerritoryAndToggle(territory, toggle);
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggle(String territory, String toggle){
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphProgramsSUMByParentTerritoryAndToggle(territory, toggle);
 	}
 	
-	public List<MSERGraphDTO> getMSERGraphProgramsSUMByChildTerritoryAndToggle(String territory, String toggle){
-		return this.MSERGraphDAO.getMSERGraphProgramsSUMByChildTerritoryAndToggle(territory, toggle);
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByChildTerritoryAndToggle(String territory, String toggle){
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphProgramsSUMByChildTerritoryAndToggle(territory, toggle);
 	}
 	
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByTerritoryAndToggle(List<String> territory, String toggle){
@@ -653,8 +653,8 @@ public class DashboardServiceImpl {
 		return this.SummaryProgramRewardDetailsDAO.getSummaryProgramRewardDetailsByDealerCodeYTD(territory);
 	}
 	
-	public List<MSERGraphDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode){
-		return this.MSERGraphDetailsDAO.getMSERGraphDetailsByDealerCode(dealerCode);
+	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode){
+		return this.MyfcaMSERTotalEarningsDetailsDAO.getMSERGraphDetailsByDealerCode(dealerCode);
 	}
 	
 	public List<CustomerFirstDetailsDTO> getCustomerFirstDetailsByDealerCodeAndToggle(String dealerCode, String toggle){

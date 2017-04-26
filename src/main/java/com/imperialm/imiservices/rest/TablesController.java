@@ -23,8 +23,8 @@ import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
 import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
-import com.imperialm.imiservices.dto.MSERGraphDTO;
-import com.imperialm.imiservices.dto.MSERGraphDetailsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDetailsDTO;
 import com.imperialm.imiservices.dto.RetentionDetailsDTO;
 import com.imperialm.imiservices.dto.RetentionGraphDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
@@ -174,13 +174,13 @@ public class TablesController {
 		}
 		case "19":
 		{
-			List<MSERGraphDetailsDTO> result = new ArrayList<MSERGraphDetailsDTO>();
+			List<MyfcaMSERTotalEarningsDetailsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDetailsDTO>();
 			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
 				List<String> filters = new ArrayList<String>();
 				filters.add(territory);
-				List<MSERGraphDTO> sublist = this.dashService.getMSERGraphByTerritoryAndToggle(territory, "YTD");
-				for(MSERGraphDTO item: sublist){
-						List<MSERGraphDetailsDTO> participants = this.dashService.getMSERGraphDetailsByDealerCode(item.getChild());
+				List<MyfcaMSERTotalEarningsDTO> sublist = this.dashService.getMSERGraphByTerritoryAndToggle(territory, "YTD");
+				for(MyfcaMSERTotalEarningsDTO item: sublist){
+						List<MyfcaMSERTotalEarningsDetailsDTO> participants = this.dashService.getMSERGraphDetailsByDealerCode(item.getChild());
 						result.addAll(participants);
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){

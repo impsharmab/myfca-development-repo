@@ -2,7 +2,7 @@ package com.imperialm.imiservices.dao;
 
 import java.util.List;
 
-import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
 

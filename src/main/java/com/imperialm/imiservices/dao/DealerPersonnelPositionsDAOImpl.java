@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DealerPersonnelPositionsDAOImpl implements DealerPersonnelPositionsDAO{
 	
-	private static Logger logger = LoggerFactory.getLogger(MSERGraphDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(MyfcaMSERTotalEarningsDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

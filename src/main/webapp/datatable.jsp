@@ -201,8 +201,9 @@
 		}
 		function getChart11(jsonData) {
 			var tableData = {};
-			// tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
-			tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed", "Total"];
+			 tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
+			//tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed", "Total"];
+
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -222,19 +223,20 @@
 				var innerDataObj = {};
 				var jeepTotal = 0;
 				var ramTotal = 0;
-				innerDataObj.headers = [
-					"", "Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
+				//innerDataObj.headers = ["", "Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
+				innerDataObj.headers = ["", "Participant", "Jeep Expert Completed", "Ram Expert Completed"]
+				
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
 					//innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
-					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].cert), innerData[1] == undefined ? 0 : numberWithCommasNoDecimals(innerData[1].cert), 0]);
+					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].cert), innerData[1] == undefined ? 0 : numberWithCommasNoDecimals(innerData[1].cert)]);
 					jeepTotal = jeepTotal + innerData[0].cert;
 					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].cert);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal), numberWithCommasNoDecimals(ramTotal), 0, numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal), numberWithCommasNoDecimals(ramTotal), numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}

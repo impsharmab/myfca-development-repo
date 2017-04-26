@@ -359,6 +359,7 @@ var DashboardBodyComponent = (function () {
         // console.log("this.chartObjects.customer_first :" + chartData.data)
         var chartObj = {
             chart: {
+                //marginRight: 100,
                 type: '',
                 zoomType: 'x',
                 // panning: true,
@@ -411,9 +412,10 @@ var DashboardBodyComponent = (function () {
                 },
                 stackLabels: {
                     format: stackLabels,
+                    //format: stackLabels,
                     enabled: true,
-                    overFlow: 'justify',
-                    crop: true,
+                    overFlow: 'none',
+                    crop: false,
                     style: {
                         fontSize: 10
                     }
@@ -778,12 +780,9 @@ var DashboardBodyComponent = (function () {
                 // chartObj.yAxis.title.text = chartData.yaxisTitle;
                 break;
             case "bar_compound":
+                chartObj.chart["marginRight"] = 60;
+                //marginRight: 100,
                 chartObj.chart.type = "bar";
-                // Highcharts.setOptions({
-                //   lang: {
-                //     thousandsSep: ','
-                //   }
-                // });
                 chartObj.plotOptions["series"] = {
                     point: {
                         cursor: 'pointer',
@@ -807,9 +806,9 @@ var DashboardBodyComponent = (function () {
                     dataLabels: {
                         enabled: false,
                         padding: 0,
-                        format: dataLabels,
-                        overFlow: 'justify',
-                        crop: false
+                        // format: dataLabels,
+                        //overFlow: 'justify',
+                        crop: true
                     }
                 };
                 chartObj.plotOptions["series"]["stacking"] = "normal";

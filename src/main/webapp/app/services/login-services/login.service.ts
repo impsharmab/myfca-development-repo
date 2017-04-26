@@ -34,7 +34,7 @@ export class LoginService {
 
     getLoginResponse(username, password): any {
         var url = "./login/token/";
-       // var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+      //  var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');

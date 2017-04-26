@@ -13,8 +13,8 @@ import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 import com.imperialm.imiservices.dto.MSEREarningsDTO;
-import com.imperialm.imiservices.dto.MSERGraphDTO;
-import com.imperialm.imiservices.dto.MSERTopNDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
@@ -48,7 +48,7 @@ public class MappingServiceImpl {
 	}
 	
 	
-	public Chart MapMSERGraphDTOtoChart(List<MSERGraphDTO> MSERGraphDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
+	public Chart MapMSERGraphDTOtoChart(List<MyfcaMSERTotalEarningsDTO> MyfcaMSERTotalEarningsDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
 		Chart chart = new Chart();
 		chart.setTitle(title);
 		chart.setSubTitle(subTitle);
@@ -56,7 +56,7 @@ public class MappingServiceImpl {
 		chart.setXaxisTitle(xaxisTitle);
 		chart.setYaxisTitle(yaxisTitle);
 		
-		chart.setData(this.MapMSERGraphDTOtoChartData(MSERGraphDTO));
+		chart.setData(this.MapMSERGraphDTOtoChartData(MyfcaMSERTotalEarningsDTO));
 		
 		return chart;
 	}
@@ -217,10 +217,10 @@ public class MappingServiceImpl {
 	}
 	
 	
-	public List<ChartData> MapMSERGraphDTOtoChartData(List<MSERGraphDTO> MSERGraphDTO){
+	public List<ChartData> MapMSERGraphDTOtoChartData(List<MyfcaMSERTotalEarningsDTO> MyfcaMSERTotalEarningsDTO){
 		List<ChartData> list = new ArrayList<ChartData>();
 		
-		for (MSERGraphDTO Earning : MSERGraphDTO) {
+		for (MyfcaMSERTotalEarningsDTO Earning : MyfcaMSERTotalEarningsDTO) {
 			list.add(this.MapMSERGraphDTOtoChartData(Earning));
 		}
 		
@@ -390,10 +390,10 @@ public class MappingServiceImpl {
 		return chartData;
 	}
 	
-	public ChartData MapMSERGraphDTOtoChartData(MSERGraphDTO MSERGraphDTO){
+	public ChartData MapMSERGraphDTOtoChartData(MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO){
 		ChartData chartData = new ChartData();
 		
-		chartData.setName(MSERGraphDTO.getChild());
+		chartData.setName(MyfcaMSERTotalEarningsDTO.getChild());
 		
 		List<ChartData> data = new ArrayList<ChartData>();
 		ChartData MoparParts , mvp, MagnetiMarelli, PartsCounter, ExpressLane, wiAdvisor, uConnect;
@@ -406,20 +406,20 @@ public class MappingServiceImpl {
 		ExpressLane = new ChartData("Express Lane", 0);
 		uConnect = new ChartData("uConnect", 0);
 		
-		if(MSERGraphDTO.getProgram().equals("Express Lane")){
-			ExpressLane.setValue(MSERGraphDTO.getAmount());
-    	}else if(MSERGraphDTO.getProgram().equals("Magneti Marelli")){
-    		MagnetiMarelli.setValue(MSERGraphDTO.getAmount());
-    	}else if(MSERGraphDTO.getProgram().equals("Mopar Parts")){
-    		MoparParts.setValue(MSERGraphDTO.getAmount());
-    	}else if(MSERGraphDTO.getProgram().equals("MVP")){
-    		mvp.setValue(MSERGraphDTO.getAmount());
-    	}else if(MSERGraphDTO.getProgram().equals("Part Counter")){
-    		PartsCounter.setValue(MSERGraphDTO.getAmount());
-    	}else if(MSERGraphDTO.getProgram().equals("wiAdvisor")){
-    		wiAdvisor.setValue(MSERGraphDTO.getAmount());
-    	}else if(MSERGraphDTO.getProgram().equals("uConnect")){
-    		uConnect.setValue(MSERGraphDTO.getAmount());
+		if(MyfcaMSERTotalEarningsDTO.getProgram().equals("Express Lane")){
+			ExpressLane.setValue(MyfcaMSERTotalEarningsDTO.getAmount());
+    	}else if(MyfcaMSERTotalEarningsDTO.getProgram().equals("Magneti Marelli")){
+    		MagnetiMarelli.setValue(MyfcaMSERTotalEarningsDTO.getAmount());
+    	}else if(MyfcaMSERTotalEarningsDTO.getProgram().equals("Mopar Parts")){
+    		MoparParts.setValue(MyfcaMSERTotalEarningsDTO.getAmount());
+    	}else if(MyfcaMSERTotalEarningsDTO.getProgram().equals("MVP")){
+    		mvp.setValue(MyfcaMSERTotalEarningsDTO.getAmount());
+    	}else if(MyfcaMSERTotalEarningsDTO.getProgram().equals("Part Counter")){
+    		PartsCounter.setValue(MyfcaMSERTotalEarningsDTO.getAmount());
+    	}else if(MyfcaMSERTotalEarningsDTO.getProgram().equals("wiAdvisor")){
+    		wiAdvisor.setValue(MyfcaMSERTotalEarningsDTO.getAmount());
+    	}else if(MyfcaMSERTotalEarningsDTO.getProgram().equals("uConnect")){
+    		uConnect.setValue(MyfcaMSERTotalEarningsDTO.getAmount());
     	}
 		
 		
@@ -680,15 +680,15 @@ public class MappingServiceImpl {
 		return topTenTableData;
 	}
 	
-	public TopTenTableData MapMSERTopNDTOtoTopTenTableData(List<MSERTopNDTO> MSERTopNDTO, String tableName, List<String> tableHeader){
+	public TopTenTableData MapMSERTopNDTOtoTopTenTableData(List<MyfcaMSERTopNDTO> MyfcaMSERTopNDTO, String tableName, List<String> tableHeader){
 		TopTenTableData topTenTableData = new TopTenTableData();
 		
 		topTenTableData.setTableHeader(tableHeader);
 		topTenTableData.setTableName(tableName);
 		
 		List<Object> data = new ArrayList<Object>();
-		if(MSERTopNDTO.size() == 10){
-		for(MSERTopNDTO item: MSERTopNDTO){
+		if(MyfcaMSERTopNDTO.size() == 10){
+		for(MyfcaMSERTopNDTO item: MyfcaMSERTopNDTO){
 			List<Object> items = new ArrayList<Object>();
 			if(item.getError().equals("") || item.getError().equals(null)){
 				items.add(item.getName());
@@ -699,7 +699,7 @@ public class MappingServiceImpl {
 			data.add(items);
 		}
 		}else{
-			for(MSERTopNDTO item: MSERTopNDTO){
+			for(MyfcaMSERTopNDTO item: MyfcaMSERTopNDTO){
 				List<Object> items = new ArrayList<Object>();
 				if(item.getError().equals("") || item.getError().equals(null)){
 					items.add(item.getName());
