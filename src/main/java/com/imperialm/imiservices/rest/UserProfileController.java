@@ -249,30 +249,6 @@ public class UserProfileController {
 		}
 	}
 
-	@RequestMapping(value = "/UserProfile/TextAlerts", method = RequestMethod.POST)
-	public @ResponseBody Object setTextAlerts(@RequestBody TwoStringItems object ,HttpServletRequest request) {
-
-
-		UserDetailsImpl user = null;
-		//get token extract user info and use for the calls
-		try{
-			String token = request.getHeader(tokenHeader);
-			String username = jwtTokenUtil.getUsernameFromToken(token);
-			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
-			if(!jwtTokenUtil.validateToken(token, user)){
-				//token is expired/invalid token
-				return ResponseEntity.status(500).body("Invalid Token");
-			}
-		}catch(Exception e){
-			//token is expired/invalid token
-			return ResponseEntity.status(500).body("Failed to check Token");
-		}
-
-		return userDAOImpl.setTextAlert(object, user.getUserId());
-
-	}
-
-
 
 
 }

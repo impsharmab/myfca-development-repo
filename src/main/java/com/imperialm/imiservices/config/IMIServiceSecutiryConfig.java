@@ -3,6 +3,10 @@
  */
 package com.imperialm.imiservices.config;
 
+import java.text.DateFormat;
+import java.util.Arrays;
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 
@@ -13,6 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpMethod;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,6 +31,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.RememberMeServices;
@@ -61,6 +70,20 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler = new JwtAuthenticationEntryPoint();
 
+    @Bean
+    public CacheManager cacheManager() {
+        SimpleCacheManager cacheManager = new SimpleCacheManager();
+        cacheManager.setCaches(Arrays.asList(
+          new ConcurrentMapCache("getMSERGraphByChildTerritoryAndToggleAndProgram")));
+        return cacheManager;
+    }
+    
+    @CacheEvict(allEntries = true, value = "getMSERGraphByChildTerritoryAndToggleAndProgram")
+    @Scheduled(fixedDelay = 10 * 60 * 1000 ,  initialDelay = 500)
+    public void reportCacheEvict() {
+        System.out.println("Flush Cache " + new Date().toString());
+    }
+    
     
 
    /* @Bean

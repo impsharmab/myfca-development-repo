@@ -1318,7 +1318,7 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("QTD Survey Score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0.0%");
 
 				TotalName avgYearsOfService  = new TotalName();
@@ -2010,63 +2010,63 @@ public class DashboardController {
 				List<RetentionGraphDTO> RetentionGraphSalesManagerList = this.dashService.getRetentionGraphNATByPositionCode("04");
 				List<RetentionGraphDTO> RetentionGraphPartsManagerList = this.dashService.getRetentionGraphNATByPositionCode("08");
 
-				cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+				cartificationLevel.setName("Rolling 12-Months Retention Percentage % for Service Managers");
 				cartificationLevel.setTotal("0.0%");
 
-				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 				years.setTotal("0.0%");
 
-				totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+				totalCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Managers");
 				totalCertifiedParticipants.setTotal("0.0%");
 
-				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 				totalMasterCertifiedParticipants.setTotal("0.0%");
 
-				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+				totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
+				totalCertifiedLevelParticipants.setName("Rolling 12-Months Retention Percentage % for Sales Managers");
 				totalCertifiedLevelParticipants.setTotal("0.0%");
 
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
 				if(RetentionGraphServiceManagerList.size()>0){
-					cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+					cartificationLevel.setName("Rolling 12-Months Retention Percentage % for Service Managers");
 					cartificationLevel.setTotal(df.format(RetentionGraphServiceManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphServiceAdvisorList.size()>0){
-					years.setName("Rolling 12 Month Retention % for Service Advisors");
+					years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphPartsManagerList.size()>0){
-					totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+					totalCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Managers");
 					totalCertifiedParticipants.setTotal(df.format(RetentionGraphPartsManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphPartsAdvisorList.size()>0){
-					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+					totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 
 				if(RetentionGraphServiceTechnicianList.size()>0){
-					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+					totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
 				}
 
 
 				if(RetentionGraphSalesManagerList.size()>0){
-					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
+					totalCertifiedLevelParticipants.setName("Rolling 12-Months Retention Percentage % for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 
@@ -2080,71 +2080,71 @@ public class DashboardController {
 
 			}else if(type.equals("BC")){
 				String territory = BC;
-				List<RetentionGraphDTO> RetentionGraphServiceManagerList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "09");
-				List<RetentionGraphDTO> RetentionGraphPartsAdvisorList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "14");
-				List<RetentionGraphDTO> RetentionGraphServiceTechnicianList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "23");
-				List<RetentionGraphDTO> RetentionGraphServiceAdvisorList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "13");
-				List<RetentionGraphDTO> RetentionGraphBLSCList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "42");
-				List<RetentionGraphDTO> RetentionGraphSalesManagerList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "04");
-				List<RetentionGraphDTO> RetentionGraphPartsManagerList = this.dashService.getRetentionGraphBCByBcAndPositionCodeByPositionCode(territory, "08");
+				List<RetentionGraphDTO> RetentionGraphServiceManagerList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "09");
+				List<RetentionGraphDTO> RetentionGraphPartsAdvisorList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "14");
+				List<RetentionGraphDTO> RetentionGraphServiceTechnicianList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "23");
+				List<RetentionGraphDTO> RetentionGraphServiceAdvisorList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "13");
+				List<RetentionGraphDTO> RetentionGraphBLSCList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "42");
+				List<RetentionGraphDTO> RetentionGraphSalesManagerList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "04");
+				List<RetentionGraphDTO> RetentionGraphPartsManagerList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "08");
 
-				cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+				cartificationLevel.setName("Rolling 12-Months Retention Percentage % for Service Managers");
 				cartificationLevel.setTotal("0.0%");
 
-				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 				years.setTotal("0.0%");
 
-				totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+				totalCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Managers");
 				totalCertifiedParticipants.setTotal("0.0%");
 
-				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 				totalMasterCertifiedParticipants.setTotal("0.0%");
 
-				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+				totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
+				totalCertifiedLevelParticipants.setName("Rolling 12-Months Retention Percentage % for Sales Managers");
 				totalCertifiedLevelParticipants.setTotal("0.0%");
 
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
 				if(RetentionGraphServiceManagerList.size()>0){
-					cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+					cartificationLevel.setName("Rolling 12-Months Retention Percentage % for Service Managers");
 					cartificationLevel.setTotal(df.format(RetentionGraphServiceManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphServiceAdvisorList.size()>0){
-					years.setName("Rolling 12 Month Retention % for Service Advisors");
+					years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphPartsManagerList.size()>0){
-					totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+					totalCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Managers");
 					totalCertifiedParticipants.setTotal(df.format(RetentionGraphPartsManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphPartsAdvisorList.size()>0){
-					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+					totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 
 				if(RetentionGraphServiceTechnicianList.size()>0){
-					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+					totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
 				}
 
 
 				if(RetentionGraphSalesManagerList.size()>0){
-					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
+					totalCertifiedLevelParticipants.setName("Rolling 12-Months Retention Percentage % for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 
@@ -3239,7 +3239,7 @@ public class DashboardController {
 				List<MSERDetailsDTO> MSERDetailsDTOlist = this.dashService.getMSERDetailsBySID(territory);
 				
 				TotalName rank = new TotalName();
-				rank.setName("Participant BC Rank");
+				rank.setName("Ranking within BC by Excellence Card Awards MTD");
 				rank.setTotal("0");
 				if(MSERDetailsDTOlist.size()>0){
 					rank.setTotal(this.formatNumbers(MSERDetailsDTOlist.get(0).getBCRank()));
@@ -3291,7 +3291,7 @@ public class DashboardController {
 				
 				List<MSERDetailsGraphDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChildAndToggle(territory);
 				TotalName rank = new TotalName();
-				rank.setName("Dealership BC Rank");
+				rank.setName("Ranking within BC by Excellence Card Awards MTD");
 				rank.setTotal("0");
 				if(MSERDetailsGraphDTOlist.size()>0){
 					rank.setTotal(this.formatNumbers(MSERDetailsGraphDTOlist.get(0).getBCRank()));
@@ -3319,7 +3319,7 @@ public class DashboardController {
 				List<MSERDetailsDTO> MSERDetailsDTOlist = this.dashService.getMSERDetailsBySID(territory);
 				
 				TotalName rank = new TotalName();
-				rank.setName("Manager BC Rank");
+				rank.setName("Ranking within BC by Excellence Card Awards MTD");
 				rank.setTotal("0");
 				if(MSERDetailsDTOlist.size()>0){
 					rank.setTotal(this.formatNumbers(MSERDetailsDTOlist.get(0).getBCRank()));
@@ -3327,7 +3327,7 @@ public class DashboardController {
 
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
 
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
+				//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
 				
 			}else if(type.equals("District")){
 
@@ -3385,7 +3385,7 @@ public class DashboardController {
 				
 				List<MSERDetailsGraphDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChildAndToggle(territory);
 				TotalName rank = new TotalName();
-				rank.setName("District BC Rank");
+				rank.setName("Ranking within BC by Excellence Card Awards MTD");
 				rank.setTotal("0");
 				if(MSERDetailsGraphDTOlist.size()>0){
 					rank.setTotal(this.formatNumbers(MSERDetailsGraphDTOlist.get(0).getBCRank()));
@@ -4124,7 +4124,7 @@ public class DashboardController {
 
 
 				TotalName incentiveEligible  = new TotalName();
-				incentiveEligible.setName("Total Technicians Incentive Eligible");
+				incentiveEligible.setName("Total Technicians Incentive Eligible this Quarter");
 				incentiveEligible.setTotal("0");
 
 				TotalName qtdSurveyCount  = new TotalName();
@@ -4136,7 +4136,7 @@ public class DashboardController {
 				avgSurveyCount.setTotal("0.0%");
 
 				TotalName avgYearsOfService  = new TotalName();
-				avgYearsOfService.setName("Average Years of Service of Technician");
+				avgYearsOfService.setName("Average Year's of Service of Technicians");
 				avgYearsOfService.setTotal("0");
 
 
@@ -4162,7 +4162,7 @@ public class DashboardController {
 				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "23");
 
 				TotalName incentiveEligible  = new TotalName();
-				incentiveEligible.setName("Total Technicians Incentive Eligible");
+				incentiveEligible.setName("Total Technicians Incentive Eligible this Quarter");
 				incentiveEligible.setTotal("0");
 
 				TotalName qtdSurveyCount  = new TotalName();
@@ -4174,7 +4174,7 @@ public class DashboardController {
 				avgSurveyCount.setTotal("0.0%");
 
 				TotalName avgYearsOfService  = new TotalName();
-				avgYearsOfService.setName("Average Years of Service of Technician");
+				avgYearsOfService.setName("Average Year's of Service of Technicians");
 				avgYearsOfService.setTotal("0");
 
 				TotalName rank  = new TotalName();
@@ -4486,7 +4486,7 @@ public class DashboardController {
 				TotalName earned = new TotalName();
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim());
 
-				bal.setName("Total Balance Points YTD");
+				bal.setName("Total Current Point Balance YTD");
 				redeemed.setName("Total Points Redeemed YTD");
 				earned.setName("Total Redemption Points Awarded YTD");
 
@@ -4538,7 +4538,7 @@ public class DashboardController {
 					currentYearsPoints.setTotal("0");
 					
 					cartificationLevelPrior.setName("Not Certified");
-					cartificationLevelPrior.setTotal("No Record to Display”");
+					cartificationLevelPrior.setTotal("No Record to Display");
 					
 					if(CertProfsWinnersDetailsList.size() > 0){
 						CertProfsWinnersDetailsDTO CertProfsWinnersDetails = CertProfsWinnersDetailsList.get(0);
@@ -4662,10 +4662,10 @@ public class DashboardController {
 				List<BrainBoostWinndersGraphDTO> BrainBoostWinndersGraphList = this.dashService.getBrainBoostWinndersGraphgetByChildTerritory(list);
 				List<BrainBoostWinnersDetailsDTO> BrainBoostWinnersDetailsDTOListMTD = this.dashService.getBrainBoostWinnersDetailsDTOSUMByDealerCode(dealerCode, "MTD");
 
-				totalCertifiedParticipants.setName("Total Participants MTD");
+				totalCertifiedParticipants.setName("Total Participants Last Month");
 				totalCertifiedParticipants.setTotal(0 + "");
 
-				totalMasterCertifiedParticipants.setName("Total Winners MTD");
+				totalMasterCertifiedParticipants.setName("Total Winners Last Month");
 				totalMasterCertifiedParticipants.setTotal(0 + "");
 
 
@@ -4709,7 +4709,7 @@ public class DashboardController {
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
+				//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 
 			}
@@ -5163,63 +5163,63 @@ public class DashboardController {
 
 
 			if(type.equals("District") || type.equals("Dealer")){
-				cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+				cartificationLevel.setName("Rolling 12-Months Retention Percentage % for Service Managers");
 				cartificationLevel.setTotal("0.0%");
 
-				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 				years.setTotal("0.0%");
 
-				totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+				totalCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Managers");
 				totalCertifiedParticipants.setTotal("0.0%");
 
-				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 				totalMasterCertifiedParticipants.setTotal("0.0%");
 
-				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+				totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
+				totalCertifiedLevelParticipants.setName("Rolling 12-Months Retention Percentage % for Sales Managers");
 				totalCertifiedLevelParticipants.setTotal("0.0%");
 
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
 				if(RetentionGraphServiceManagerList.size()>0){
-					cartificationLevel.setName("Rolling 12 Month Retention % for Service Managers");
+					cartificationLevel.setName("Rolling 12-Months Retention Percentage % for Service Managers");
 					cartificationLevel.setTotal(df.format(RetentionGraphServiceManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphServiceAdvisorList.size()>0){
-					years.setName("Rolling 12 Month Retention % for Service Advisors");
+					years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphPartsManagerList.size()>0){
-					totalCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Managers");
+					totalCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Managers");
 					totalCertifiedParticipants.setTotal(df.format(RetentionGraphPartsManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphPartsAdvisorList.size()>0){
-					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+					totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 
 				if(RetentionGraphServiceTechnicianList.size()>0){
-					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+					totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
 				}
 
 
 				if(RetentionGraphSalesManagerList.size()>0){
-					totalCertifiedLevelParticipants.setName("Rolling 12 Month Retention % for Sales Managers");
+					totalCertifiedLevelParticipants.setName("Rolling 12-Months Retention Percentage % for Sales Managers");
 					totalCertifiedLevelParticipants.setTotal(df.format(RetentionGraphSalesManagerList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 
@@ -5232,40 +5232,40 @@ public class DashboardController {
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 
 			}else if(type.equals("Manager")){
-				years.setName("Rolling 12 Month Retention % for Service Advisors");
+				years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 				years.setTotal("0.0%");
 
-				totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+				totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 				totalMasterCertifiedParticipants.setTotal("0.0%");
 
-				totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+				totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 				totalCertifiedSpecialistParticipants.setTotal("0.0%");
 
-				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+				dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 				dealershipMasterCertifiedRankWithinBC.setTotal("0.0%");
 
 				DecimalFormat df = new DecimalFormat("0.0");
 
 				if(RetentionGraphServiceAdvisorList.size()>0){
-					years.setName("Rolling 12 Month Retention % for Service Advisors");
+					years.setName("Rolling 12-Months Retention Percentage % for Service Advisors");
 					years.setTotal(df.format(RetentionGraphServiceAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 				if(RetentionGraphPartsAdvisorList.size()>0){
-					totalMasterCertifiedParticipants.setName("Rolling 12 Month Retention % for Parts Advisors");
+					totalMasterCertifiedParticipants.setName("Rolling 12-Months Retention Percentage % for Parts Advisors");
 					totalMasterCertifiedParticipants.setTotal(df.format(RetentionGraphPartsAdvisorList.get(0).getPercentage()) + "%");
 				}
 
 
 				if(RetentionGraphServiceTechnicianList.size()>0){
-					totalCertifiedSpecialistParticipants.setName("Rolling 12 Month Retention % for Service Technicians");
+					totalCertifiedSpecialistParticipants.setName("Rolling 12-Months Retention Percentage % for Service Technicians");
 					totalCertifiedSpecialistParticipants.setTotal(df.format(RetentionGraphServiceTechnicianList.get(0).getPercentage()) + "%");
 				}
 
 
 
 				if(RetentionGraphBLSCList.size()>0){
-					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12 Month Retention % for Sales Consultants");
+					dealershipMasterCertifiedRankWithinBC.setName("Rolling 12-Months Retention Percentage % for Sales Consultants");
 					dealershipMasterCertifiedRankWithinBC.setTotal(df.format(RetentionGraphBLSCList.get(0).getPercentage()) + "%");
 				}
 

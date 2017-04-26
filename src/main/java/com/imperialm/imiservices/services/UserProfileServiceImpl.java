@@ -102,7 +102,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser","rules"));
 			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","https://www.moparser.com/mser","rules"));
 			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(6,"","tile", "","blank.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg","https://www.moparser.com/mser","rules"));
 			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","https://www.moparser.com/mser","rules"));
 			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","https://www.moparser.com/mser","rules"));
 			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","https://www.moparser.com/mser","rules"));

@@ -55,7 +55,7 @@
                     Welcome, <a class="utility-nav active" style="cursor:pointer" (click)="dashboardPage()">{{data.name}}</a>
                 </li>
             </ul>
-            <ul class="nav-utility">
+            <ul class="nav-utility" style="margin-top: 5px">
                 <li class="nav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">

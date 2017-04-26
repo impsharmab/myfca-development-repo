@@ -21,11 +21,37 @@ nav .brand-logo {
   
 }
 .nav{
+ display: block;
+    float: left;
+    width: 100%;
+		height:25px;
+}
+.nav-utility{ 
+	
+	height:25px;
+	display:block;
 	float:right;
+	text-align:right;
+}
+.nav-utility {
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding-right: 0;
+	text-align:right;
+}
+.nav-utility .nav-item{
+	width:auto;
+	float:left;
+	
 }
 nav .nav-item{
 	font-size:.75em;
 }
+
+.nav .active{
+	font-weight:bold;
+}
+
 .brand-logo  img{
 
   width:100%;

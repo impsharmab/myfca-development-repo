@@ -51,24 +51,25 @@
                             <label>Change Email Address</label>
                             <input id="email" name="email"  type="text" [(ngModel)]="profiledata.email">
                             <div class="form-actions">
-                                <button type="cancel" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal">Cancel</button>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="postProfileData()">Update</button>
+                                <button type="reset" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style="cursor:pointer">Cancel</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="postProfileData()" style="cursor:pointer">Update</button>
                             </div>
 
                         </form>
+
                         <form class="pageForm" id="changePassword">
-                            <h6>Change your password</h6>
+                            <h6>Change your password</h6> 
                             <label>Change Password</label>
                             <input id="passwordInput" name="password1"  type="password" [(ngModel)]="profiledata.password1">
 
                             <br>
                             <label>Confirm Password</label>
                             <input id="passwordInput" name="password2" type="password" [(ngModel)]="profiledata.password2">
-                            <br>
+                            <br/>
 
                             <div class="form-actions">
-                                <button type="cancel" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal">Cancel</button>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeUserPassword()">Update</button>
+                                <button type="reset" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style="cursor:pointer">Cancel</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeUserPassword()" style="cursor:pointer">Update</button>
                             </div>
 
                         </form>
