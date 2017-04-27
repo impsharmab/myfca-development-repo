@@ -10,6 +10,9 @@ import { ProfileData } from './profile.interface'
 })
 export class ProfileComponent implements OnInit {
     private profiledata: ProfileData;
+    private _password: any;
+    private successPasswordChangeMessage: string = "";
+    private passwordNotMatched: string = "";
     ngOnInit() {
         this.profiledata = {
             "email": "",
@@ -37,7 +40,7 @@ export class ProfileComponent implements OnInit {
     }
 
     private postProfileData() {
-        debugger
+
         this.profileService.postProfileData(this.profiledata.name, this.profiledata.email).subscribe(
 
             (error) => {
@@ -46,9 +49,15 @@ export class ProfileComponent implements OnInit {
         )
     }
     private changeUserPassword() {
-        debugger
+        if (this.profiledata.password1.trim() !== this.profiledata.password2.trim()) {
+            this.passwordNotMatched = "Password does not match, please enter the same password";
+            return;
+        }
         this.profileService.changeUserPassword(this.profiledata.password1).subscribe(
-
+            (password) => {
+                this._password = (password);
+                this.successPasswordChangeMessage = "Your profile settings are updated";
+            },
             (error) => {
                 alert("error in pw change")
 

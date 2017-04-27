@@ -69,7 +69,7 @@ nav .nav-item{
         font-size: 16px;
     margin-top: -22px;
     background: #fff;
-    float: left;
+    /*float: left;*/
     padding: 0 7px;
     color:#222;
 }
@@ -131,6 +131,22 @@ margin: 5px;
 }
 .card-block .checkbox{
     padding:0.2em;
+}
+
+#project-icon {
+  height: auto;
+  max-width: 187px;
+  margin-top:10px;
+}
+
+#project-description {
+  margin: 0;
+  padding: 0;
+}
+
+.ui-autocomplete-input{
+  padding: 0px 5px;
+  font-size:14px;
 }
 /**/
 @media only screen and (max-width : 992px) {

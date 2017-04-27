@@ -9,10 +9,6 @@
 	<link rel="shortcut icon" href="app/resources/images/favicon.ico" />
 
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
-	
-	<!--<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
-	
-	<!--<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">-->
 
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
@@ -25,24 +21,9 @@
 
 
 
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-	 crossorigin="anonymous">-->
-	<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
-
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-	 crossorigin="anonymous"></script>-->
-
-
-	<!--<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">-->
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="app/resources/css/styles-datatables.css">
-
-
-	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-
 
 	<style type="text/css">
 		body {
@@ -169,13 +150,7 @@
 				var innerDataObj = {};
 				var jeepTotal = 0;
 				var ramTotal = 0;
-				// innerDataObj.headers = [
-				// 	"Participant",
-				// 	"Jeep",
-				// 	"Ram",
-				// 	"Total Points Earned"
-				// ]
-
+				
 				innerDataObj.headers = [
 					"",
 					"Participant",
@@ -201,7 +176,7 @@
 		}
 		function getChart11(jsonData) {
 			var tableData = {};
-			 tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
+			tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
 			//tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed", "Total"];
 
 			tableData.data = [];
@@ -225,7 +200,7 @@
 				var ramTotal = 0;
 				//innerDataObj.headers = ["", "Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
 				innerDataObj.headers = ["", "Participant", "Jeep Expert Completed", "Ram Expert Completed"]
-				
+
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
@@ -330,7 +305,7 @@
 		function getChart19(jsonData) {
 			var tableData = {};
 
-			tableData.headers = ["Dealer", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "UConnect", "wiAdvisor", "Total"];
+			tableData.headers = ["Dealer", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor", "Total"];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -453,7 +428,7 @@
 
 					for (var z = 0; z < innerData.length; z++) {
 						innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[z].earnedPoints)]);
-					totalEarnedPoints = totalEarnedPoints + innerData[z].earnedPoints;
+						totalEarnedPoints = totalEarnedPoints + innerData[z].earnedPoints;
 					}
 					// innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].earnedPoints)]);
 					// totalEarnedPoints = totalEarnedPoints + innerData[0].earnedPoints;
@@ -474,7 +449,7 @@
 				"Parts Managers",
 				"Parts Advisors",
 				"Sales Managers",
-				"Sales Consultant"];
+				"Sales Consultants"];
 			tableData.data = [];
 			var delarName = {};
 
@@ -497,7 +472,7 @@
 					var data = outerData.filter(function (ele, index, array) {
 						return positionCodeArray[n] === ele.positionCode;
 					});
-					
+
 					rowData.push(Math.round(data[0].percentage) + "%")
 					//total = Math.round(total + data[0].percentage);
 				}
@@ -520,7 +495,7 @@
 				"Training",
 				"Facility",
 				"CFAFE Award Certification"
-				];
+			];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -529,7 +504,7 @@
 					"data": [" ", obj.dealerName, obj.noCertification,
 						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
 						obj.facility, obj.cfafeawardCertification,
-						], "innerData": []
+					], "innerData": []
 				})
 			}
 			return tableData;
@@ -544,7 +519,7 @@
 				"Training",
 				"Facility",
 				"CFAFE Award Certification"
-				];
+			];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -558,7 +533,7 @@
 						obj.training + "%",
 						obj.facility + "%",
 						obj.cfafeawardCertification + "%"
-						], "innerData": []
+					], "innerData": []
 				})
 			}
 			return tableData;
@@ -695,14 +670,13 @@
 					dom: 'Bfrtip',
 					buttons: [
 						'pageLength',
-						
-						
+
+
 						{
 							extend: 'excelHtml5'
-							// ,
-							// title: 'Data export'
+							
 						}
-						//'copy', 'csv', 'excel', 'pdf', 'print'
+						
 					],
 
 					"scrollY": "600px",
@@ -711,27 +685,10 @@
 					"bLengthChange": true,
 					"bInfo": true,
 					data: dataset,
-					columns: cloumns,
-					//"bJQueryUI": true,
-					// "aaData": newRowData,
-					 "bPaginate": true,
+					columns: cloumns,					
+					"bPaginate": true,
 					"destroy": true,
-					// "aoColumns": [
-					//     {
-					//        "mDataProp": null,
-					//        "sClass": "control center",
-					//        "sDefaultContent": '<img src="http://i.imgur.com/SD7Dz.png">'
-					//     },
-					//     { "mDataProp": "dealer" },
-					// 	{ "mDataProp": "uc" },
-					// 	{ "mDataProp": "mp" },
-					// 	{ "mDataProp": "wa" },
-					// 	{ "mDataProp": "el" },
-					// 	{ "mDataProp": "pc" },
-					// 	{ "mDataProp": "mm" },
-					// 	{ "mDataProp": "mv" },
-					//     { "mDataProp": "total" }
-					// ],
+					
 					"oLanguage": {
 						"sInfo": "_TOTAL_ entries"
 					},
@@ -759,54 +716,32 @@
 							var obj = { "title": head[i] };
 							cloumns.push(obj)
 						}
-						//var detailsRowData = newRowData[rowIndex].details;
+						
 						this.src = "https://i.imgur.com/d4ICC.png";
 						oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
 						oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
 							dom: 'Bfrtip',
 							buttons: [
 								'pageLength',
-								
+
 								{
-									extend: 'excelHtml5'
-									// ,
-									// title: 'Data export'
-								}
-								//'copy', 'csv', 'excel', 'pdf', 'print'
+									extend: 'excelHtml5'									
+								}								
 							],
 							"pagingType": "full_numbers",
 							"bInfo": true,
 							"bLengthChange": true,
-							 "bPaginate": true,
-					
+							"bPaginate": true,
+
 							data: data,
 							columns: cloumns,
-							//"bJQueryUI": true,
 							"bFilter": false,
-							//     "aaData": detailsRowData,
-							"bSort": true, // disables sorting
-							//     "aoColumns": [
-							//     { "mDataProp": "name" },
-							// 					{ "mDataProp": "uc" },
-							// { "mDataProp": "mp" },
-							// { "mDataProp": "wa" },
-							// { "mDataProp": "el" },
-							// { "mDataProp": "pc" },
-							// { "mDataProp": "mm" },
-							// { "mDataProp": "mv" },
-							//     { "mDataProp": "reward" }
-							// ],
+							"bSort": true,
 							"bPaginate": false,
 							"oLanguage": {
 								"sInfo": "_TOTAL_ entries"
 							},
 							"fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-								/*
-							  var imgLink = aData['pic']; 
-							  var imgTag = '<img width="100px" src="' + imgLink + '"/>';
-							  $('td:eq(0)', nRow).html(imgTag);  
-							 return nRow;
-							 */
 							}
 						});
 						iTableCounter = iTableCounter + 1;
@@ -829,21 +764,12 @@
 		}
 	</style>
 
-
-	<!--<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>-->
-
-
 	<fieldset class="datatable-margin-class">
-		<!--<h5><b>
-		Territory: ${territory}
-	</b></h5>-->
 		<table id="exampleTable" class="display  datatable-margin-class" cellspacing="0" width="100%">
-
 		</table>
 
 		<div style="display: none">
 			<table id="detailsTable" class="display " cellspacing="0" width="100%">
-
 			</table>
 		</div>
 	</fieldset>

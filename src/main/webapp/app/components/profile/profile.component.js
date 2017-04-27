@@ -13,6 +13,8 @@ var profile_service_1 = require("../../services/profile-service/profile.service"
 var ProfileComponent = (function () {
     function ProfileComponent(profileService) {
         this.profileService = profileService;
+        this.successPasswordChangeMessage = "";
+        this.passwordNotMatched = "";
     }
     ProfileComponent.prototype.ngOnInit = function () {
         this.profiledata = {
@@ -34,13 +36,19 @@ var ProfileComponent = (function () {
         });
     };
     ProfileComponent.prototype.postProfileData = function () {
-        debugger;
         this.profileService.postProfileData(this.profiledata.name, this.profiledata.email).subscribe(function (error) {
         });
     };
     ProfileComponent.prototype.changeUserPassword = function () {
-        debugger;
-        this.profileService.changeUserPassword(this.profiledata.password1).subscribe(function (error) {
+        var _this = this;
+        if (this.profiledata.password1.trim() !== this.profiledata.password2.trim()) {
+            this.passwordNotMatched = "Password does not match, please enter the same password";
+            return;
+        }
+        this.profileService.changeUserPassword(this.profiledata.password1).subscribe(function (password) {
+            _this._password = (password);
+            _this.successPasswordChangeMessage = "Your profile settings are updated";
+        }, function (error) {
             alert("error in pw change");
         });
     };

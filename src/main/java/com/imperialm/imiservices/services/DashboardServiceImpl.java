@@ -661,4 +661,9 @@ public class DashboardServiceImpl {
 		return this.CustomerFirstDetailsDAO.getCustomerFirstDetailsByDealerCodeAndToggle(dealerCode, toggle);
 	}
 	
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram(String territory,
+			String toggle, String program) {
+		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram(territory, toggle, program);
+	}
+	
 }

@@ -104,7 +104,7 @@ export class LoginComponent implements OnInit {
                 this.userdata = (resUserData)
                 if (resUserData["token"].length > 0) {
                     this.loginService.setUserData(this.userdata);
-                    
+
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
                     sessionStorage.setItem("selectedCodeData", JSON.stringify(
@@ -116,7 +116,7 @@ export class LoginComponent implements OnInit {
                     let url = ["myfcadashboard"]
                     this.router.navigate(url);
 
-                } 
+                }
             },
             (error) => {
                 this.loginFailed = "Login Failed";

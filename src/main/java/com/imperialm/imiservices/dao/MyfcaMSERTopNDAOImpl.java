@@ -58,11 +58,17 @@ public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 
 		MyfcaMSERTopNDTO MyfcaMSERTopNDTO = null;
 		try {
-			if(name == null || period == null){
-			final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE, MyfcaMSERTopNDTO.class);
-			query.setParameter(1, rows);
-			query.setParameter(2, type);
-			result = query.getResultList();
+			if(name == null && period == null){
+				final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE, MyfcaMSERTopNDTO.class);
+				query.setParameter(1, rows);
+				query.setParameter(2, type);
+				result = query.getResultList();
+			}else if(name == null && period != null){
+				final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE_PERIOD, MyfcaMSERTopNDTO.class);
+				query.setParameter(1, rows);
+				query.setParameter(2, type);
+				query.setParameter(3, period);
+				result = query.getResultList();
 			}else{
 				final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE_NAME_PERIOD, MyfcaMSERTopNDTO.class);
 				query.setParameter(1, rows);
@@ -71,7 +77,7 @@ public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 				query.setParameter(4, period);
 				result = query.getResultList();
 			}
-			
+
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + MyfcaMSERTopNDTO);
 		} catch (final Exception ex) {

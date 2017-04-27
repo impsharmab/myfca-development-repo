@@ -214,6 +214,25 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 		}
 		return result;
 	}
+
+	@Override
+	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram(String territory,
+			String toggle, String program) {
+		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_AND_TOGGLE_AND_PROGRAM_SUM, MyfcaMSERTotalEarningsDTO.class);
+			query.setParameter(0, territory);
+			query.setParameter(1, toggle);
+			query.setParameter(2, program);
+			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram", ex);
+		}
+		return result;
+	}
 	
 	
 }

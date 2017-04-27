@@ -1,3 +1,11 @@
+<script>
+var func=function(){
+
+}
+
+
+</script>
+
 <section class="intro-section admin-margin " id="intro">
 
     <div class="page-title">
@@ -6,9 +14,9 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12">
-                        <h1 class="heading-xl">
-                            Your Profile
-                        </h1>
+                        <h2 class="heading-xl" >
+                            Update User Profile
+                        </h2>
                     </div>
 
                 </div>
@@ -46,30 +54,34 @@
                         </form>-->
                         <form class="pageForm" #changeInformation="ngForm">
                             <h6>Change your Information</h6>
-                            <label>Change Display Name</label>
+                            <label>Name:</label>
                             <input id="username" name="username" type="text" [(ngModel)]="profiledata.name"><br>
-                            <label>Change Email Address</label>
-                            <input id="email" name="email"  type="text" [(ngModel)]="profiledata.email">
+                            <label>Email:</label>
+                            <input id="email" name="email" type="text" [(ngModel)]="profiledata.email">
                             <div class="form-actions">
                                 <button type="reset" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style="cursor:pointer">Cancel</button>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="postProfileData()" style="cursor:pointer">Update</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="postProfileData()"
+                                    style="cursor:pointer">Update</button>
                             </div>
 
                         </form>
 
                         <form class="pageForm" id="changePassword">
-                            <h6>Change your password</h6> 
-                            <label>Change Password</label>
-                            <input id="passwordInput" name="password1"  type="password" [(ngModel)]="profiledata.password1">
+                            <h6>Change your Password</h6>
+                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successPasswordChangeMessage}}</p>
+                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{passwordNotMatched}}</p>
+                            <label>New Password:</label>
+                            <input id="passwordInput" name="password1" type="password" [(ngModel)]="profiledata.password1">
 
                             <br>
-                            <label>Confirm Password</label>
+                            <label>Confirm Password:</label>
                             <input id="passwordInput" name="password2" type="password" [(ngModel)]="profiledata.password2">
                             <br/>
 
                             <div class="form-actions">
                                 <button type="reset" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style="cursor:pointer">Cancel</button>
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeUserPassword()" style="cursor:pointer">Update</button>
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeUserPassword()"
+                                    style="cursor:pointer">Update</button>
                             </div>
 
                         </form>
@@ -77,8 +89,8 @@
                         <!--<div id="updateProgramsModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">-->
 
-                                <!-- Modal content-->
-                                <!--<div class="modal-content">
+                        <!-- Modal content-->
+                        <!--<div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">×</button>
                                         <h4 class="modal-title">Login Failed</h4>

@@ -260,6 +260,8 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 			
 		} catch (final Exception ex) {
 			TotalName = new TotalName();
+			TotalName.setName("Total Dealers Enrolled");
+			TotalName.setName("0");
 			logger.error("error occured in getMSERDealersCountByBCOrDistrict", ex);
 			TotalName.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
 			result.add(TotalName);

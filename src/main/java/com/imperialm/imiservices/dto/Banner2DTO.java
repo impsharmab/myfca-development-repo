@@ -10,15 +10,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity @Getter @Setter
-public class BannerMappingsDTO implements Serializable {
-	@Id private int bannerMappingID;
+public class Banner2DTO implements Serializable {
 	@Id private int bannerID;
-	@Id private int roleID;
-	@Id private int OrderBy;
+	@Id private int name;
+	@Id private int fileName;
 	@Id private Date createdDate;
-	@Id private String CreatedBy;
-	@Id private Date datetime;
+	@Id private String createdBy;
+	@Id private Date updatedDate;
 	@Id private String updatedBy;
 	@Id private String delFlag;
-	@Id private String businessCenter;
 }

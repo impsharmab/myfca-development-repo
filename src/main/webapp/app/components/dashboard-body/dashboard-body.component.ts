@@ -49,16 +49,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.drilldownAverageCount = this.drilldownAverageCount + 1;
     }
 
-    // if (obj.averageLine) {
-    //   var averageLinetotal = this.totalCount / this.drilldownAverageCount;
-    //   chart.yAxis["plotLines"] = [{
-    //     color: '#ff790c',
-    //     value: averageLinetotal,
-    //     width: '3',
-    //     zIndex: 2
-    //   }]
+    if (obj.averageLine) {
+      var averageLinetotal = this.totalCount / this.drilldownAverageCount;
+      chart.yAxis["plotLines"] = [{
+        color: '#ff790c',
+        value: averageLinetotal,
+        width: '3',
+        zIndex: 2
+      }]
 
-    // }
+    }
     if (obj.avarage) {
       this.totalCount = this.totalCount / this.drilldownAverageCount;
     }
@@ -87,16 +87,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
       this.drillupAverageCount = this.drillupAverageCount + 1;
     }
-    // if (obj.averageLine) {
-    //   var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;
-    //   chart.yAxis["plotLines"] = [{
-    //     color: '#ff790c',
-    //     value: averageLinetotal,
-    //     width: '3',
-    //     zIndex: 2
-    //   }]
+    if (obj.averageLine) {
+      var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;
+      chart.yAxis["plotLines"] = [{
+        color: '#ff790c',
+        value: averageLinetotal,
+        width: '3',
+        zIndex: 2
+      }]
 
-    // }
+    }
     if (obj.avarage) {
       this.drillUptotalCount = this.drillUptotalCount / this.drillupAverageCount;
     }
@@ -781,16 +781,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             }
           }
         }
-        // if (chartData.averageLine) {
-        //   var averageLinetotal = total / avagerCount;
-        //   chartObj.yAxis["plotLines"] = [{
-        //     color: '#ff790c',
-        //     value: averageLinetotal,
-        //     width: '3',
-        //     zIndex: 2
-        //   }]
+        if (chartData.averageLine) {
+          var averageLinetotal = total / avagerCount;
+          chartObj.yAxis["plotLines"] = [{
+            color: '#ff790c',
+            value: averageLinetotal,
+            width: '3',
+            zIndex: 2
+          }]
 
-        // }
+        }
         if (chartDataValues.length > 0) {
           if (chartData.avarage) {
             total = total / avagerCount;

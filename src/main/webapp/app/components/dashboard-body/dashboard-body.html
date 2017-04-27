@@ -103,11 +103,22 @@
             </li>
 
           </ul>
-          <p *ngIf='(errorInArray(contentBody[tile.id].attribute)) 
+          <p *ngIf='(tile.id !=14 && tile.id !=15
+          && errorInArray(contentBody[tile.id].attribute)) 
           && (errorInObject(contentBody[tile.id].top10_advisors)) 
           && (errorInObject(contentBody[tile.id].top10_technicians)) 
           && (errorInArray(contentBody[tile.id].top3))' style="text-align: center;">
             No data to display. Please visit Program Rules below for more information on earning.</p>
+
+          <p *ngIf="((tile.id==14) && (errorInArray(contentBody[tile.id].attribute)) 
+          && (errorInObject(contentBody[tile.id].top10_advisors)) 
+          && (errorInObject(contentBody[tile.id].top10_technicians)) 
+          && (errorInArray(contentBody[tile.id].top3)) || 
+          (tile.id==15) && (errorInArray(contentBody[tile.id].attribute)) 
+          && (errorInObject(contentBody[tile.id].top10_advisors)) 
+          && (errorInObject(contentBody[tile.id].top10_technicians)) 
+          && (errorInArray(contentBody[tile.id].top3)))    ">
+          Enrollment Period has ended. Please read the program rules below regarding future Enrollment</p>
 
           <div class="data-group " *ngFor="let data of contentBody[tile.id].attribute ">
             <p class="data-point " *ngIf="emptyBadge(data.badgeUrl) ">{{data.value}}</p>
@@ -122,18 +133,16 @@
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_technicians) "
           (click)="openDataTable(contentBody[tile.id].top10_technicians) " style="cursor:pointer"><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_technicians.buttonName}}</button>
         <div style="margin-bottom: 45; margin-top: -80" class="chart-controls " *ngIf="tile.type=='chart' && chartType(tile.id) ">
-          <a  (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i  class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer"></i></a>
-          <a  (click)="chartChange( 'column',tile.id) " alt="View Column Chart "><i  class="fa fa-bar-chart
+          <a (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i  class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer"></i></a>
+          <a (click)="chartChange( 'column',tile.id) " alt="View Column Chart "><i  class="fa fa-bar-chart
               " aria-hidden="true " style="cursor:pointer"></i></a>
         </div>
 
         <!--<div class="card-action " *ngIf="tile.type=='tile' ">-->
         <div class="card-action ">
-          <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" 
-          (click)="openProgramSite(tile.programRulesUrl)"><i class="fa fa-check-square " aria-hidden="true "></i>
+          <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramSite(tile.programRulesUrl)"><i class="fa fa-check-square " aria-hidden="true "></i>
                 {{tile.programRules}} </button>
-          <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer"
-          (click)="openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
+          <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
                 {{tile.programSite}} </button>
 
           <!--<a *ngIf="isEmpty(tile.programRulesUrl)" class="btn btn-primary btn-sm " style="cursor:pointer" href="{{tile.programRulesUrl}}"
