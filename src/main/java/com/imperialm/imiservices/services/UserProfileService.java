@@ -24,6 +24,6 @@ public interface UserProfileService {
 	
 //	public List<NoTile> getNoTiles();
 	
-	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user);
+	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc);
 
 }

@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Directive, Input, ViewChild } from '@ang
 import { Router } from '@angular/router';
 
 import { AdminService } from '../../services/admin-services/admin.service';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { Admin } from './admin.interface';
 
 declare var $: any;
@@ -18,11 +19,13 @@ export class TestAdminComponent implements OnInit {
     private roles: any;
     private adminData: any;
     private data: any;
-    constructor(private adminService: AdminService) { }
+    constructor(private adminService: AdminService, private cookieService: CookieService) { }
     ngOnInit() {
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
+        this.setCookie();
+        this.getCookie();
 
         $('#accordion').collapse({
             toggle: false
@@ -30,33 +33,9 @@ export class TestAdminComponent implements OnInit {
 
 
         $(function () {
-            var availablePCs = [
-                "Executive",
-                "BC",
-                "District Manager",
-                "Dealer",
-                "Manager",
-                "Participant"
-            ];
-            var availableBCs = [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-                "13",
-                "14",
-                "15",
-                "16",
-                "17"
-            ];
+            var availablePCs = ["Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"];
+            var availableBCs = ["CA", "DN", "GL", "MA", "MW", "NE", "SE", "SW", "WE"];
+
             $("#position-code-filter-input").autocomplete({
                 source: availablePCs
             });
@@ -141,5 +120,21 @@ export class TestAdminComponent implements OnInit {
             }
         )
     }
+
+    setCookie(name?: string) {
+        this.cookieService.put('test', "hari");
+
+    }
+
+    getCookie(name?: string) {
+        var y = this.cookieService.get('test');
+        //alert(y)
+
+    }
+
+
+
 }
+
+
 

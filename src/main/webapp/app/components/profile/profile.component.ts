@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
     private _password: any;
     private successPasswordChangeMessage: string = "";
     private passwordNotMatched: string = "";
+    private errorPassWordChange: string = "";
     ngOnInit() {
         this.profiledata = {
             "email": "",
@@ -59,7 +60,7 @@ export class ProfileComponent implements OnInit {
                 this.successPasswordChangeMessage = "Your profile settings are updated";
             },
             (error) => {
-                alert("error in pw change")
+                this.errorPassWordChange = "Error in password change";
 
             }
         )

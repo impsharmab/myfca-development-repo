@@ -417,7 +417,7 @@ var DashboardBodyComponent = (function () {
                     overFlow: 'none',
                     crop: false,
                     style: {
-                        fontSize: 10
+                        fontSize: 10,
                     }
                 },
             },
@@ -506,7 +506,7 @@ var DashboardBodyComponent = (function () {
                             cursor: 'pointer',
                             events: {
                                 click: function () {
-                                    if (this.x != undefined && this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                    if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                         window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     }
@@ -644,7 +644,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -788,7 +788,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -823,7 +823,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -864,7 +864,7 @@ var DashboardBodyComponent = (function () {
                         cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;

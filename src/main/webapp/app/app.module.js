@@ -39,6 +39,7 @@ var banner_service_1 = require("./services/banner-services/banner.service");
 var admin_service_1 = require("./services/admin-services/admin.service");
 var positioncode_service_1 = require("./services/positioncode-services/positioncode.service");
 var profile_service_1 = require("./services/profile-service/profile.service");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -64,7 +65,8 @@ AppModule = __decorate([
             banner_service_1.BannerService,
             admin_service_1.AdminService,
             positioncode_service_1.PositionCodeService,
-            profile_service_1.ProfileService
+            profile_service_1.ProfileService,
+            cookies_service_1.CookieService
         ],
         declarations: [
             app_component_1.AppComponent,

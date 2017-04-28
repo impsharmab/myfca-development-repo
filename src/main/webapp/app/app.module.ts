@@ -35,7 +35,8 @@ import { LoginService } from "./services/login-services/login.service"
 import { BannerService } from "./services/banner-services/banner.service"
 import { AdminService } from "./services/admin-services/admin.service"
 import { PositionCodeService } from "./services/positioncode-services/positioncode.service"
-import {ProfileService} from "./services/profile-service/profile.service"
+import { ProfileService } from "./services/profile-service/profile.service"
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import {ProfileService} from "./services/profile-service/profile.service"
         BannerService,
         AdminService,
         PositionCodeService,
-        ProfileService
+        ProfileService,
+        CookieService
     ],
 
     declarations: [

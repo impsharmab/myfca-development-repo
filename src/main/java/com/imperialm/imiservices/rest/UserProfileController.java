@@ -93,11 +93,12 @@ public class UserProfileController {
 	@RequestMapping(value = "/services/notile/{positionCode}/{dealerCode}", method = RequestMethod.GET)
 	public @ResponseBody Object getNoTile(@PathVariable(value="positionCode") String positionCode, @PathVariable(value="dealerCode") String dealerCode, HttpServletRequest request) {
 
-
+		String tokenToPass = "";
 		UserDetailsImpl user = null;
 		//get token extract user info and use for the calls
 		try{
 			String token = request.getHeader(tokenHeader);
+			tokenToPass = token;
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 			if(!jwtTokenUtil.validateToken(token, user)){
@@ -109,7 +110,7 @@ public class UserProfileController {
 			return "Failed to check Token";
 		}
 
-		return this.userprofileService.getuserTiles(positionCode, dealerCode, user);
+		return this.userprofileService.getuserTiles(positionCode, dealerCode, user, tokenToPass, positionCode, dealerCode);
 
 	}
 

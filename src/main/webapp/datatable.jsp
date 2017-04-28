@@ -217,7 +217,7 @@
 		}
 		function getChart12(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Award Points", "Excellence Card Awards"];
+			tableData.headers = ["Dealer", "Award Points"];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -237,17 +237,17 @@
 				var innerDataObj = {};
 				var awardsPointTotal = 0;
 				var earningsTotal = 0;
-				innerDataObj.headers = ["", "Participant", "Award Points", "Excellence Card Awards"]
+				innerDataObj.headers = ["", "Participant", "Award Points"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].points), "$" + numberWithCommasNoDecimals(innerData[0].earnings)]);
+					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].points)]);
 					awardsPointTotal = awardsPointTotal + innerData[0].points;
 					earningsTotal = earningsTotal + innerData[0].earnings;
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(awardsPointTotal), "$" + numberWithCommasNoDecimals(earningsTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(awardsPointTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}

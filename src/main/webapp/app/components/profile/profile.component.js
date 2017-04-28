@@ -15,6 +15,7 @@ var ProfileComponent = (function () {
         this.profileService = profileService;
         this.successPasswordChangeMessage = "";
         this.passwordNotMatched = "";
+        this.errorPassWordChange = "";
     }
     ProfileComponent.prototype.ngOnInit = function () {
         this.profiledata = {
@@ -49,7 +50,7 @@ var ProfileComponent = (function () {
             _this._password = (password);
             _this.successPasswordChangeMessage = "Your profile settings are updated";
         }, function (error) {
-            alert("error in pw change");
+            _this.errorPassWordChange = "Error in password change";
         });
     };
     return ProfileComponent;

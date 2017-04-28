@@ -88,10 +88,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 	}
 	
 	
-	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user) {
+	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc) {
 		this.userTiles = new ArrayList<NoTile>();
 		if(tile1.contains(positionCode)){
-		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser", "rules"));
+		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "rules"));
 		}
 		
 		if(tile2.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
@@ -99,13 +99,13 @@ public class UserProfileServiceImpl implements UserProfileService {
 		}
 		
 		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","https://www.moparser.com/mser","rules"));
-			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","https://www.moparser.com/mser","rules"));
+			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
+			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
+			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
+			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
+			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=","rules"));
+			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
+			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
 		}
 		
 		

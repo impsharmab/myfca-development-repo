@@ -10,45 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var admin_service_1 = require("../../services/admin-services/admin.service");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var TestAdminComponent = (function () {
-    function TestAdminComponent(adminService) {
+    function TestAdminComponent(adminService, cookieService) {
         this.adminService = adminService;
+        this.cookieService = cookieService;
     }
     TestAdminComponent.prototype.ngOnInit = function () {
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
+        this.setCookie();
+        this.getCookie();
         $('#accordion').collapse({
             toggle: false
         });
         $(function () {
-            var availablePCs = [
-                "Executive",
-                "BC",
-                "District Manager",
-                "Dealer",
-                "Manager",
-                "Participant"
-            ];
-            var availableBCs = [
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-                "9",
-                "10",
-                "11",
-                "12",
-                "13",
-                "14",
-                "15",
-                "16",
-                "17"
-            ];
+            var availablePCs = ["Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"];
+            var availableBCs = ["CA", "DN", "GL", "MA", "MW", "NE", "SE", "SW", "WE"];
             $("#position-code-filter-input").autocomplete({
                 source: availablePCs
             });
@@ -121,6 +100,13 @@ var TestAdminComponent = (function () {
             // console.log(adminData.permissions[0].name)
         });
     };
+    TestAdminComponent.prototype.setCookie = function (name) {
+        this.cookieService.put('test', "hari");
+    };
+    TestAdminComponent.prototype.getCookie = function (name) {
+        var y = this.cookieService.get('test');
+        //alert(y)
+    };
     return TestAdminComponent;
 }());
 TestAdminComponent = __decorate([
@@ -129,7 +115,7 @@ TestAdminComponent = __decorate([
         selector: "app-admin",
         templateUrl: "./test-admin-uploadimage.html"
     }),
-    __metadata("design:paramtypes", [admin_service_1.AdminService])
+    __metadata("design:paramtypes", [admin_service_1.AdminService, cookies_service_1.CookieService])
 ], TestAdminComponent);
 exports.TestAdminComponent = TestAdminComponent;
 //# sourceMappingURL=test-admin.component.js.map

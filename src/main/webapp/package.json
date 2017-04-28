@@ -26,6 +26,7 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.18",
     "angular-datatables": "^2.1.0",
     "angular-in-memory-web-api": "~0.1.15",
+    "angular2-cookie": "^1.2.6",
     "angular2-highcharts": "^0.4.3",
     "angular2-jwt": "^0.1.25",
     "angular2-localstorage": "^0.4.0",

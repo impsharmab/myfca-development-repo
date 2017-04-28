@@ -41,6 +41,7 @@
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       '@ng-bootstrap/ng-bootstrap': 'node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
+      'angular2-cookie':            'npm:angular2-cookie'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
@@ -63,9 +64,12 @@
         defaultExtension: 'js'
       },
       'highcharts': {
-        main: './highstock.src.js', //paid? lisence
-
+        main: './highstock.src.js',
          defaultExtension: 'js'
+      },
+      'angular2-cookie': {
+        main: './core.js',
+        defaultExtension: 'js'
       }
     }
   });

@@ -454,7 +454,7 @@ public class DashboardController {
 		}
 		case "6":
 		{
-			List<MyfcaMSERTopNDTO> listPCPMTD = this.dashService.getMSERTopTen("Top3Parts", 3,"Part Counter" , "MTD");
+			List<MyfcaMSERTopNDTO> listPCPMTD = this.dashService.getMSERTopTen("Top3Parts", 3,"Parts Counter" , "MTD");
 			//List<MSERTopNDTO> listPCPYTD = this.dashService.getMSERTopTen("Top3Parts", 3,"Part Counter" , "YTD");
 
 			TopTenChart topTenChart = new TopTenChart();
@@ -950,7 +950,7 @@ public class DashboardController {
 			}
 			List<BrainBoostWinndersGraphDTO> sublist = this.dashService.getBrainBoostGraphAllDistricData(filters);
 
-			Chart chart = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Award Points YTD", "", "Points", "", "column", "Awards");
+			Chart chart = this.mappingService.BrainBoostWinndersGraphDTOtoChart(listBC, "Award Points YTD", "", "Total Points", "Award Points", "column", "Awards");
 
 
 			Map<String, Double> mapValues = new HashMap<String, Double>();
@@ -1186,13 +1186,13 @@ public class DashboardController {
 
 				TotalName avgSurveyCount  = new TotalName();
 				avgSurveyCount.setName("Average Quarterly Survey Score");
-				avgSurveyCount.setTotal("0");
-
+				avgSurveyCount.setTotal("0.0%");
+				DecimalFormat df = new DecimalFormat("0.0");
 				if(incentiveEligibleList.size()>0){
 					//dealerscount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTotalEnrollments()));
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
-					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
+					avgSurveyCount.setTotal(df.format(incentiveEligibleList.get(0).getAvgSurveyScore()));
 				}
 
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
@@ -1223,14 +1223,14 @@ public class DashboardController {
 
 				TotalName avgSurveyCount  = new TotalName();
 				avgSurveyCount.setName("Average Quarterly Survey Score");
-				avgSurveyCount.setTotal("0");
+				avgSurveyCount.setTotal("0.0%");
 
-
+				DecimalFormat df = new DecimalFormat("0.0");
 				if(incentiveEligibleList.size()>0){
 					//dealerscount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTotalEnrollments()));
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
-					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()));
+					avgSurveyCount.setTotal(df.format(incentiveEligibleList.get(0).getAvgSurveyScore()) + "%");
 				}
 
 				//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
@@ -1334,7 +1334,7 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("QTD Survey Score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0.0%");
 
 				TotalName avgYearsOfService  = new TotalName();
@@ -3762,8 +3762,8 @@ public class DashboardController {
 			chart.setTitle("Award Points YTD");
 			chart.setSubTitle("");
 			chart.setType("column");
-			chart.setXaxisTitle("Points");
-			chart.setYaxisTitle("");
+			chart.setXaxisTitle("Total Points");
+			chart.setYaxisTitle("Award Points");
 
 			//List<ChartData> list = new ArrayList<ChartData>();
 
@@ -3946,7 +3946,7 @@ public class DashboardController {
 				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "13");
 
 				TotalName incentiveEligible  = new TotalName();
-				incentiveEligible.setName("Total Advisor Incentive Eligible");
+				incentiveEligible.setName("Total Advisors Incentive Eligible");
 				incentiveEligible.setTotal("0");
 
 				TotalName qtdSurveyCount  = new TotalName();
@@ -3956,11 +3956,11 @@ public class DashboardController {
 				TotalName avgSurveyCount  = new TotalName();
 				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0.0%");
-
+				DecimalFormat df = new DecimalFormat("0.0");
 				if(incentiveEligibleList.size()>0){
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
-					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()) + "%");
+					avgSurveyCount.setTotal(df.format(incentiveEligibleList.get(0).getAvgSurveyScore()) + "%");
 				}
 
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
@@ -3976,12 +3976,12 @@ public class DashboardController {
 
 
 				TotalName enrolled  = new TotalName();
-				enrolled.setName("Total Advisor Enrolled");
+				enrolled.setName("Total Advisors Enrolled");
 				enrolled.setTotal("0");
 
 
 				TotalName incentiveEligible  = new TotalName();
-				incentiveEligible.setName("Total Advisor Incentive Eligible");
+				incentiveEligible.setName("Total Advisors Incentive Eligible");
 				incentiveEligible.setTotal("0");
 
 				TotalName qtdSurveyCount  = new TotalName();
@@ -3995,12 +3995,12 @@ public class DashboardController {
 				TotalName rank  = new TotalName();
 				rank.setName("Dealership BC Rank Based on Quarterly Survey Score");
 				rank.setTotal("0");
-
+				DecimalFormat df = new DecimalFormat("0.0");
 				if(incentiveEligibleList.size()>0){
 					enrolled.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTotalEnrollments()));
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
-					avgSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getAvgSurveyScore()) + "%");
+					avgSurveyCount.setTotal(df.format(incentiveEligibleList.get(0).getAvgSurveyScore()) + "%");
 					rank.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTTTARank()));
 
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
@@ -4027,7 +4027,7 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("Average Quarterly survey score");
+				avgSurveyCount.setName("QTD Survey Score");
 				avgSurveyCount.setTotal("0.0%");
 
 				TotalName rank  = new TotalName();
@@ -4110,7 +4110,7 @@ public class DashboardController {
 				qtdSurveyCount.setTotal("0");
 
 				TotalName avgSurveyCount  = new TotalName();
-				avgSurveyCount.setName("QTD Survey Score");
+				avgSurveyCount.setName("Average Quarterly Survey Score");
 				avgSurveyCount.setTotal("0.0%");
 
 				TotalName avgYearsOfService  = new TotalName();
@@ -4162,7 +4162,7 @@ public class DashboardController {
 				TotalName enrolled  = new TotalName();
 				enrolled.setName("Total Technicians Enrolled");
 				enrolled.setTotal("0");
-
+				
 				if(incentiveEligibleList.size()>0){
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
@@ -4464,7 +4464,7 @@ public class DashboardController {
 				TotalName earned = new TotalName();
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim());
 
-				bal.setName("Total Current Point Balance YTD");
+				bal.setName("Total Current Point Balance");
 				redeemed.setName("Total Points Redeemed YTD");
 				earned.setName("Total Redemption Points Awarded YTD");
 
@@ -4487,7 +4487,7 @@ public class DashboardController {
 				TotalName earned = new TotalName();
 				List<RewardRedemptionGraphDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionGraphByChildTerritory(dealerCode);
 
-				bal.setName("Total Current Point Balance YTD");
+				bal.setName("Total Current Point Balance");
 				redeemed.setName("Total Points Redeemed YTD");
 				earned.setName("Total Redemption Points Awarded YTD");
 
@@ -4883,18 +4883,24 @@ public class DashboardController {
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
 
 				//TODO: check this only 1 is appearing
-				totalCertifiedLevelParticipants.setName("Dealership Rank in Business Center by Points Earned YTD");
+				totalCertifiedLevelParticipants.setName("Dealership National Rank in Business Center by Total Points Earned Across All Programs YTD");
 				totalCertifiedLevelParticipants.setTotal("-");
+				
+				dealershipMasterCertifiedRankWithinBC.setName("Dealership National Rank by Total Points Earned Across All Programs YTD");
+				dealershipMasterCertifiedRankWithinBC.setTotal("-");
 
 				if(CertProfsExpertGraphRAMList.size() > 0){
 					CertProfsExpertGraphDTO CertProfsExpertGraphDTO = CertProfsExpertGraphRAMList.get(0);
 					totalCertifiedLevelParticipants.setTotal(this.formatNumbers(CertProfsExpertGraphDTO.getBCPointRank()));
+					dealershipMasterCertifiedRankWithinBC.setTotal(this.formatNumbers(CertProfsExpertGraphDTO.getNATPointRank()));
 				}else if (CertProfsExpertGraphJEEPList.size() > 0){
 					CertProfsExpertGraphDTO CertProfsExpertGraphDTO = CertProfsExpertGraphJEEPList.get(0);
 					totalCertifiedLevelParticipants.setTotal(this.formatNumbers(CertProfsExpertGraphDTO.getBCPointRank()));
+					dealershipMasterCertifiedRankWithinBC.setTotal(this.formatNumbers(CertProfsExpertGraphDTO.getNATPointRank()));
 				}else if (CertProfsExpertGraphTECHList.size() > 0){
 					CertProfsExpertGraphDTO CertProfsExpertGraphDTO = CertProfsExpertGraphTECHList.get(0);
 					totalCertifiedLevelParticipants.setTotal(this.formatNumbers(CertProfsExpertGraphDTO.getBCPointRank()));
+					dealershipMasterCertifiedRankWithinBC.setTotal(this.formatNumbers(CertProfsExpertGraphDTO.getNATPointRank()));
 				}
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
 
