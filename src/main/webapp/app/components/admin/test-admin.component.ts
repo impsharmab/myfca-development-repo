@@ -129,7 +129,6 @@ export class TestAdminComponent implements OnInit {
     getCookie(name?: string) {
         var y = this.cookieService.get('test');
         //alert(y)
-
     }
 
 

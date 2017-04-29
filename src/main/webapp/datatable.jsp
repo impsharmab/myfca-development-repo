@@ -150,7 +150,7 @@
 				var innerDataObj = {};
 				var jeepTotal = 0;
 				var ramTotal = 0;
-				
+
 				innerDataObj.headers = [
 					"",
 					"Participant",
@@ -199,7 +199,7 @@
 				var jeepTotal = 0;
 				var ramTotal = 0;
 				//innerDataObj.headers = ["", "Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
-				innerDataObj.headers = ["", "Participant", "Jeep Expert Completed", "Ram Expert Completed"]
+				innerDataObj.headers = [" ", "Participant", "Jeep Expert Completed", "Ram Expert Completed"]
 
 				innerDataObj.data = [];
 				for (var key1 in sid) {
@@ -207,9 +207,29 @@
 						return sid[key1] === ele.sid;
 					});
 					//innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
-					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].cert), innerData[1] == undefined ? 0 : numberWithCommasNoDecimals(innerData[1].cert)]);
-					jeepTotal = jeepTotal + innerData[0].cert;
-					ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].cert);
+
+					var rowData = [""]
+					rowData.push(innerData[0].name)
+
+					var programsArray = ["JEEP", "RAM"]
+					for (var r = 0; r < programsArray.length; r++) {
+						var programObj = innerData.filter(function (ele, index, array) {
+							console.log(programsArray[r] === ele.certType.trim())
+							return programsArray[r] === ele.certType.trim();
+
+						});
+						var value = 0;
+
+						for (var p = 0; p < programObj.length; p++) {
+							value = value + programObj[p].cert
+						}
+						rowData.push(value)
+						//console.log(programObj)
+					}
+					console.log(rowData)
+					innerDataObj.data.push(rowData);
+					jeepTotal = jeepTotal + (rowData[2] == undefined ? 0 : rowData[2]);
+					ramTotal = ramTotal + (rowData[3] == undefined ? 0 : rowData[3]);
 				}
 				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal), numberWithCommasNoDecimals(ramTotal), numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
 			}
@@ -320,7 +340,7 @@
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
 					var obj = outerData[k];
-					sid[obj.sid] = obj.sid;
+					sid[obj.sid.trim()] = obj.sid.trim();
 				}
 				var innerDataObj = {};
 				var expressLaneTotal = 0;
@@ -337,14 +357,14 @@
 					"Mopar Parts",
 					"MVP",
 					"Parts Counter",
-					"UConnect",
+					"Uconnect",
 					"wiAdvisor",
 					"Total"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 
 					var innerData = outerData.filter(function (ele, index, array) {
-						return sid[key1] === ele.sid;
+						return sid[key1] === ele.sid.trim();
 					});
 					//console.log(innerData)
 					var rowData = [innerData[0].name];
@@ -355,8 +375,13 @@
 							//console.log(programName[j] + " === " + ele.program)
 							return programName[j] === ele.program;
 						});
+
+						var value = 0;
 						//console.log(obj)
-						var value = obj[0] === undefined ? 0 : Math.round(obj[0].earningsYTD);
+						for (var t = 0; t < obj.length; t++) {
+							value = value + (obj[t] === undefined ? 0 : Math.round(obj[t].earningsYTD));
+						}
+
 						rowData.push(value)
 						total = total + value;
 					}
@@ -674,9 +699,9 @@
 
 						{
 							extend: 'excelHtml5'
-							
+
 						}
-						
+
 					],
 
 					"scrollY": "600px",
@@ -685,10 +710,10 @@
 					"bLengthChange": true,
 					"bInfo": true,
 					data: dataset,
-					columns: cloumns,					
+					columns: cloumns,
 					"bPaginate": true,
 					"destroy": true,
-					
+
 					"oLanguage": {
 						"sInfo": "_TOTAL_ entries"
 					},
@@ -716,7 +741,7 @@
 							var obj = { "title": head[i] };
 							cloumns.push(obj)
 						}
-						
+
 						this.src = "https://i.imgur.com/d4ICC.png";
 						oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
 						oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
@@ -725,8 +750,8 @@
 								'pageLength',
 
 								{
-									extend: 'excelHtml5'									
-								}								
+									extend: 'excelHtml5'
+								}
 							],
 							"pagingType": "full_numbers",
 							"bInfo": true,

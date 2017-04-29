@@ -41,7 +41,7 @@ var LoginService = (function () {
     };
     LoginService.prototype.getLoginResponse = function (username, password) {
         var url = "./login/token/";
-        //var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');

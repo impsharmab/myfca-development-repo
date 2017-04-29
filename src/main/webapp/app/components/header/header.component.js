@@ -72,6 +72,10 @@ __decorate([
     __metadata("design:type", Object)
 ], HeaderComponent.prototype, "data", void 0);
 __decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], HeaderComponent.prototype, "retweetIconHide", void 0);
+__decorate([
     core_1.Output("onProfileChange"),
     __metadata("design:type", Object)
 ], HeaderComponent.prototype, "profileChange", void 0);

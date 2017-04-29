@@ -20,7 +20,7 @@ const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: "myfcadashboard",
+        path: "myfcadashboard", 
         component: RootPageComponent
     },
     {

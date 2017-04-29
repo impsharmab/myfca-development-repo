@@ -106,7 +106,7 @@ export class AdminComponent implements OnInit {
                 value: "participant"
             },
         ]
-        this.selectRole = this.role[0];
+        this.selectRole = this.role[0]; 
     }
     ngOnInit() {
         // this.getAccordionData();
