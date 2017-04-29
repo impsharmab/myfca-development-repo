@@ -77,7 +77,7 @@
   <div class="container">
     <!--- Row START -->
     <div *ngFor="let rowarray of tilesArray" class="row">
-      <div class="col-sm card" *ngFor="let tile of rowarray">
+      <div *ngFor="let tile of rowarray; let i = index;" class="{{(rowarray.length%2==1) && (rowarray.length== i+1) ? 'col-sm-6 card':'col-sm card'}}" >
         <div class="image-frame">{{tile.tileName}}<img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
         <!--<div class="image-frame">{{tile.tileName}}<img src="app/resources/images/body/{{tile.tileHeaderImage}}"> </div>-->
         <div class="card-content" *ngIf="tile.type == 'chart'">
