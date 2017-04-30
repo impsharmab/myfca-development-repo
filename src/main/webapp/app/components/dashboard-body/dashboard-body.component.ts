@@ -535,7 +535,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           if (drilldownData.length > 0) {
             var drillDownObj: any = {};
             var __this = this;
-            drillDownObj.point = {
+            drillDownObj.point = { 
               cursor: 'pointer',
               events: {
 
