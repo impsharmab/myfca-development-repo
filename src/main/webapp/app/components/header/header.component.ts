@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { HeaderService } from '../../services/header-services/header.service';
 import { NgbModal, ModalDismissReasons, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterOutlet } from '@angular/router';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Component({
     moduleId: module.id,
@@ -18,14 +19,29 @@ export class HeaderComponent implements OnInit {
     private banners: any = new Array;
     @ViewChild("contactModal") private contactModal: TemplateRef<any>;
     @ViewChild("positioncodeModal") private positioncodeModal: NgbModalRef;
-
-    private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-    private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
-    private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
-
-    constructor(public activeModal: NgbActiveModal, private http: Http, private headerService: HeaderService, private modalService: NgbModal, private router: Router) {
+    constructor(public activeModal: NgbActiveModal,
+        private http: Http,
+        private headerService: HeaderService,
+        private modalService: NgbModal,
+        private router: Router,
+        private cookieService: CookieService) {
 
     }
+
+    // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+    // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+    // private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
+
+    private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+    private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
+    private booleanAdmin: any = JSON.parse(this.cookieService.get("CurrentUser")).admin;
+
+
+    //  var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+    //     var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
+    //     var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
+
+    
     private positionCodeCancel() {
         this.positioncodeModal.close();
     }
@@ -35,7 +51,9 @@ export class HeaderComponent implements OnInit {
         this.profileChange.emit("")
     }
     ngOnInit() {
-        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+        //this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+        this.data = JSON.parse(this.cookieService.get("CurrentUser"))
+        
 
     }
 
@@ -49,9 +67,12 @@ export class HeaderComponent implements OnInit {
     // }
 
     private logout() {
-        sessionStorage.removeItem('CurrentUser');
-        sessionStorage.removeItem('selectedCodeData');
-        sessionStorage.clear();
+        // sessionStorage.removeItem('CurrentUser');
+        // sessionStorage.removeItem('selectedCodeData');
+        // sessionStorage.clear();
+        this.cookieService.remove('CurrentUser');
+        this.cookieService.remove('selectedCodeData');
+        this.cookieService.removeAll();
         let loginUrl = ["login"]
         this.router.navigate(loginUrl);
     }

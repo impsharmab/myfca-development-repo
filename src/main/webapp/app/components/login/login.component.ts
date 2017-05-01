@@ -2,10 +2,14 @@ import { Component, OnInit, Compiler, OnDestroy } from '@angular/core';
 import { Router, RouterOutlet, ActivatedRoute, Params } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+//import { CookieStorage } from 'cookie-storage';
 
-import { User } from './user.interface';
+import { User } from './user.interface'; 
 import { SSOLoginInterface } from './ssologin.interface'
 import { LoginService } from '../../services/login-services/login.service';
+
+//const cookieStorage = new CookieStorage();
 
 @Component({
     moduleId: module.id,
@@ -27,7 +31,8 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private http: Http,
         private _compiler: Compiler,
-        private activatedRoute: ActivatedRoute) {
+        private activatedRoute: ActivatedRoute,
+        private cookieService: CookieService) {
         this._compiler.clearCache();
     }
     ngOnInit() {
@@ -67,6 +72,13 @@ export class LoginComponent implements OnInit {
                     this.loginService.setUserData(this.userdata);
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
+
+                    //cookieStorage.setItem("selectedCodeData", JSON.stringify(
+                        // {
+                        //     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                        //     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                        // }))
+
                     sessionStorage.setItem("selectedCodeData", JSON.stringify(
                         {
                             "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
@@ -107,11 +119,17 @@ export class LoginComponent implements OnInit {
 
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
-                    sessionStorage.setItem("selectedCodeData", JSON.stringify(
+                    this.cookieService.put("selectedCodeData", JSON.stringify(
                         {
                             "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                             "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
                         }))
+                    // sessionStorage.setItem("selectedCodeData", JSON.stringify(
+                        
+                    //     {
+                    //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                    //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                    //     }))
 
                     let url = ["myfcadashboard"]
                     this.router.navigate(url);

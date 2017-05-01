@@ -10,16 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var Observable_1 = require("rxjs/Observable");
 require("./../rxjs-operators");
 var ProfileService = (function () {
-    function ProfileService(http) {
+    function ProfileService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         this.getProfileServiceUrl = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Profile/';
         this.getPasswordServiceUrl = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Password/';
     }
     ProfileService.prototype.getProfileData = function () {
-        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
         return this.http.get(this.getProfileServiceUrl, { headers: headers })
@@ -28,7 +31,8 @@ var ProfileService = (function () {
     };
     ProfileService.prototype.postProfileData = function (name, email) {
         debugger;
-        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "name": name, "email": email };
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
@@ -38,7 +42,8 @@ var ProfileService = (function () {
     };
     ProfileService.prototype.changeUserPassword = function (password) {
         debugger;
-        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        //        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "item": password };
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
@@ -62,7 +67,7 @@ var ProfileService = (function () {
 }());
 ProfileService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, cookies_service_1.CookieService])
 ], ProfileService);
 exports.ProfileService = ProfileService;
 //# sourceMappingURL=profile.service.js.map

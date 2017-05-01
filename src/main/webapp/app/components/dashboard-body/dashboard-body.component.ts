@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { DashboardBodyService } from '../../services/dashboard-body-services/dashboard-body.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+
 const Highcharts = require('highcharts');
 
 import { NgbdModalContent } from './dashboard-body.component.modal'
@@ -117,7 +119,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.drilldownAverageCount = 0;
   }
   ngOnInit() {
-    this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+   // this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+    this.data = JSON.parse(this.cookieService.get("CurrentUser"))
+
     this.modalService.open(this.model, { size: "lg" });
   }
   ngOnDestroy() {
@@ -136,7 +140,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.pieButtons = {};
     this.chartRawData = {};
   }
-  constructor(private service: DashboardBodyService, private modalService: NgbModal) {
+  constructor(private service: DashboardBodyService, private modalService: NgbModal, private cookieService: CookieService) {
     Highcharts.setOptions({
       lang: {
         thousandsSep: ',',

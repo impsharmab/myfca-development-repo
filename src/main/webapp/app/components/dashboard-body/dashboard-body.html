@@ -77,7 +77,7 @@
   <div class="container">
     <!--- Row START -->
     <div *ngFor="let rowarray of tilesArray" class="row">
-      <div *ngFor="let tile of rowarray; let i = index;" class="{{(rowarray.length%2==1) && (rowarray.length== i+1) ? 'col-sm-6 card':'col-sm card'}}" >
+      <div *ngFor="let tile of rowarray; let i = index;" class="{{(rowarray.length%2==1) && (rowarray.length== i+1) ? 'col-sm-6 card':'col-sm card'}}">
         <div class="image-frame">{{tile.tileName}}<img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
         <!--<div class="image-frame">{{tile.tileName}}<img src="app/resources/images/body/{{tile.tileHeaderImage}}"> </div>-->
         <div class="card-content" *ngIf="tile.type == 'chart'">
@@ -103,22 +103,25 @@
             </li>
 
           </ul>
-          <p *ngIf='(tile.id !=14 && tile.id !=15
+          <p *ngIf='(tile.id !=14 
+          && tile.id !=15
           && errorInArray(contentBody[tile.id].attribute)) 
           && (errorInObject(contentBody[tile.id].top10_advisors)) 
           && (errorInObject(contentBody[tile.id].top10_technicians)) 
           && (errorInArray(contentBody[tile.id].top3))' style="text-align: center;">
             No data to display. Please visit Program Rules below for more information on earning.</p>
 
-          <p *ngIf="((tile.id==14) && (errorInArray(contentBody[tile.id].attribute)) 
+          <p *ngIf="((tile.id==14) 
+          && (errorInArray(contentBody[tile.id].attribute)) 
           && (errorInObject(contentBody[tile.id].top10_advisors)) 
           && (errorInObject(contentBody[tile.id].top10_technicians)) 
-          && (errorInArray(contentBody[tile.id].top3)) || 
-          (tile.id==15) && (errorInArray(contentBody[tile.id].attribute)) 
+          && (errorInArray(contentBody[tile.id].top3)) 
+          || (tile.id==15) 
+          && (errorInArray(contentBody[tile.id].attribute)) 
           && (errorInObject(contentBody[tile.id].top10_advisors)) 
           && (errorInObject(contentBody[tile.id].top10_technicians)) 
-          && (errorInArray(contentBody[tile.id].top3)))    ">
-          Enrollment Period has ended. Please read the program rules below regarding future Enrollment</p>
+          && (errorInArray(contentBody[tile.id].top3)))" style="text-align: center;">
+            Enrollment Period has ended. Please read the program rules below regarding future Enrollment.</p>
 
           <div class="data-group " *ngFor="let data of contentBody[tile.id].attribute ">
             <p class="data-point " *ngIf="emptyBadge(data.badgeUrl) ">{{data.value}}</p>

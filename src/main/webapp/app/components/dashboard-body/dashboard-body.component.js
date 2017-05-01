@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var dashboard_body_service_1 = require("../../services/dashboard-body-services/dashboard-body.service");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var Highcharts = require('highcharts');
 // const Highcharts3d = require('highcharts/highcharts-3d.src');
 // Highcharts3d(Highcharts)
@@ -19,9 +20,10 @@ require('highcharts/modules/drilldown')(Highcharts);
 require('highcharts/modules/no-data-to-display')(Highcharts);
 // require('../../resources/js/data.js')(Highcharts);
 var DashboardBodyComponent = (function () {
-    function DashboardBodyComponent(service, modalService) {
+    function DashboardBodyComponent(service, modalService, cookieService) {
         this.service = service;
         this.modalService = modalService;
+        this.cookieService = cookieService;
         this.contentBody = {};
         this.tableData = {
             "buttonName": "",
@@ -133,7 +135,8 @@ var DashboardBodyComponent = (function () {
         this.drilldownAverageCount = 0;
     };
     DashboardBodyComponent.prototype.ngOnInit = function () {
-        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        // this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+        this.data = JSON.parse(this.cookieService.get("CurrentUser"));
         this.modalService.open(this.model, { size: "lg" });
     };
     DashboardBodyComponent.prototype.ngOnDestroy = function () {
@@ -1470,7 +1473,7 @@ DashboardBodyComponent = __decorate([
         templateUrl: "./dashboard-body.html",
         styles: ['button:focus { background:#025fb1; color: #fff; }']
     }),
-    __metadata("design:paramtypes", [dashboard_body_service_1.DashboardBodyService, ng_bootstrap_1.NgbModal])
+    __metadata("design:paramtypes", [dashboard_body_service_1.DashboardBodyService, ng_bootstrap_1.NgbModal, cookies_service_1.CookieService])
 ], DashboardBodyComponent);
 exports.DashboardBodyComponent = DashboardBodyComponent;
 //# sourceMappingURL=dashboard-body.component.js.map

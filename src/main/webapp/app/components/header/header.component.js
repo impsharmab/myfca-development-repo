@@ -13,19 +13,27 @@ var http_1 = require("@angular/http");
 var header_service_1 = require("../../services/header-services/header.service");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var router_1 = require("@angular/router");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var HeaderComponent = (function () {
-    function HeaderComponent(activeModal, http, headerService, modalService, router) {
+    function HeaderComponent(activeModal, http, headerService, modalService, router, cookieService) {
         this.activeModal = activeModal;
         this.http = http;
         this.headerService = headerService;
         this.modalService = modalService;
         this.router = router;
+        this.cookieService = cookieService;
         this.profileChange = new core_1.EventEmitter();
         this.banners = new Array;
-        this.poscodes = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-        this.delcodes = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
-        this.booleanAdmin = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
+        // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+        // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+        // private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
+        this.poscodes = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+        this.delcodes = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
+        this.booleanAdmin = JSON.parse(this.cookieService.get("CurrentUser")).admin;
     }
+    //  var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+    //     var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
+    //     var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
     HeaderComponent.prototype.positionCodeCancel = function () {
         this.positioncodeModal.close();
     };
@@ -35,7 +43,8 @@ var HeaderComponent = (function () {
         this.profileChange.emit("");
     };
     HeaderComponent.prototype.ngOnInit = function () {
-        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        //this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+        this.data = JSON.parse(this.cookieService.get("CurrentUser"));
     };
     HeaderComponent.prototype.contactUs = function () {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
@@ -44,9 +53,12 @@ var HeaderComponent = (function () {
     //     this.profileChange.emit(value);
     // }
     HeaderComponent.prototype.logout = function () {
-        sessionStorage.removeItem('CurrentUser');
-        sessionStorage.removeItem('selectedCodeData');
-        sessionStorage.clear();
+        // sessionStorage.removeItem('CurrentUser');
+        // sessionStorage.removeItem('selectedCodeData');
+        // sessionStorage.clear();
+        this.cookieService.remove('CurrentUser');
+        this.cookieService.remove('selectedCodeData');
+        this.cookieService.removeAll();
         var loginUrl = ["login"];
         this.router.navigate(loginUrl);
     };
@@ -93,7 +105,12 @@ HeaderComponent = __decorate([
         selector: "app-header",
         templateUrl: "./header.html"
     }),
-    __metadata("design:paramtypes", [ng_bootstrap_1.NgbActiveModal, http_1.Http, header_service_1.HeaderService, ng_bootstrap_1.NgbModal, router_1.Router])
+    __metadata("design:paramtypes", [ng_bootstrap_1.NgbActiveModal,
+        http_1.Http,
+        header_service_1.HeaderService,
+        ng_bootstrap_1.NgbModal,
+        router_1.Router,
+        cookies_service_1.CookieService])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.component.js.map

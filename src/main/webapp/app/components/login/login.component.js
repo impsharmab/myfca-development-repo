@@ -11,14 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var http_1 = require("@angular/http");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var login_service_1 = require("../../services/login-services/login.service");
+//const cookieStorage = new CookieStorage();
 var LoginComponent = (function () {
-    function LoginComponent(loginService, router, http, _compiler, activatedRoute) {
+    function LoginComponent(loginService, router, http, _compiler, activatedRoute, cookieService) {
         this.loginService = loginService;
         this.router = router;
         this.http = http;
         this._compiler = _compiler;
         this.activatedRoute = activatedRoute;
+        this.cookieService = cookieService;
         this.userdata = {};
         this.ssouserdata = {};
         this.ssotoken = "";
@@ -56,6 +59,11 @@ var LoginComponent = (function () {
                 _this.loginService.setUserData(_this.userdata);
                 var poscodes = _this.userdata.positionCode;
                 var delcodes = _this.userdata.dealerCode;
+                //cookieStorage.setItem("selectedCodeData", JSON.stringify(
+                // {
+                //     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                //     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                // }))
                 sessionStorage.setItem("selectedCodeData", JSON.stringify({
                     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
@@ -92,10 +100,15 @@ var LoginComponent = (function () {
                 _this.loginService.setUserData(_this.userdata);
                 var poscodes = _this.userdata.positionCode;
                 var delcodes = _this.userdata.dealerCode;
-                sessionStorage.setItem("selectedCodeData", JSON.stringify({
+                _this.cookieService.put("selectedCodeData", JSON.stringify({
                     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
                 }));
+                // sessionStorage.setItem("selectedCodeData", JSON.stringify(
+                //     {
+                //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                //     }))
                 var url = ["myfcadashboard"];
                 _this.router.navigate(url);
             }
@@ -115,7 +128,8 @@ LoginComponent = __decorate([
         router_1.Router,
         http_1.Http,
         core_1.Compiler,
-        router_1.ActivatedRoute])
+        router_1.ActivatedRoute,
+        cookies_service_1.CookieService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

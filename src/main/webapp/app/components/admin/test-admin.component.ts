@@ -122,13 +122,12 @@ export class TestAdminComponent implements OnInit {
     }
 
     setCookie(name?: string) {
-        this.cookieService.put('test', "hari");
+        this.cookieService.put('test', "hari jhdkjhdskja 67");
 
     }
-
     getCookie(name?: string) {
         var y = this.cookieService.get('test');
-        //alert(y)
+        alert(y)
     }
 
 

@@ -1,20 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable'
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+//import { CookieStorage } from 'cookie-storage';
 import './../rxjs-operators';
+
+//const cookieStorage = new CookieStorage();
 
 @Injectable()
 export class LoginService {
     private getLoginResponseUrl: string = './app/resources/json/token_response.json';
-    
+
     private userdata: any = {}
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private cookieService: CookieService) { }
     setUserData(userdata: any) {
-        sessionStorage.setItem("CurrentUser", "");
-        sessionStorage.removeItem('CurrentUser');
-        sessionStorage.removeItem('selectedCodeData');
-        sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
+        // sessionStorage.setItem("CurrentUser", "");
+        // sessionStorage.removeItem('CurrentUser');
+        // sessionStorage.removeItem('selectedCodeData');
+        // sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
+        this.cookieService.put("CurrentUser", "");
+        this.cookieService.remove('CurrentUser');
+        this.cookieService.remove('selectedCodeData');
+        this.cookieService.put("CurrentUser", JSON.stringify(userdata));
+        console.log(this.cookieService.get("CurrentUser"))
+
+
     }
 
     getUsersData() {
@@ -34,7 +45,7 @@ export class LoginService {
 
     getLoginResponse(username, password): any {
         var url = "./login/token/";
-       //var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');

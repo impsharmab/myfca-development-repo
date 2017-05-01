@@ -1,8 +1,9 @@
-import { Component, OnInit ,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 //import {AbstractControl,FORM_DIRECTIVES } from '@angular/common';
 import { Code } from './code.interface';
 import { PositionCodeService } from '../../services/positioncode-services/positioncode.service'
 import { DashboardBodyService } from '../../services/dashboard-body-services/dashboard-body.service'
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @Component({
     selector: 'position-code',
@@ -10,22 +11,26 @@ import { DashboardBodyService } from '../../services/dashboard-body-services/das
     // directives:[FORM_DIRECTIVES]
 })
 export class PositionCodeComponent implements OnInit {
+
+    constructor(private positionCodeService: PositionCodeService,
+        private dashboardBodyService: DashboardBodyService,
+        private cookieService: CookieService) { }
+
     @Output("onSubmit") submitEvent: EventEmitter<any> = new EventEmitter<any>();
-    
+
     @Output("onCancel") cancelEvent: EventEmitter<any> = new EventEmitter<any>();
     private code: Code;
-    private pcode: any = []; 
+    private pcode: any = [];
     private dcode: any = [];
     private codeData: any = { "selectedPositionCode": "", "selectedDealerCode": "" };
 
-    private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-    private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
-
-    constructor(private positionCodeService: PositionCodeService, private dashboardBodyService: DashboardBodyService) { }
+    // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+    // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+    private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+    private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
 
     ngOnInit() {
         //this.code.dealerCode=selectedPositionCode;
-
         this.code = {
             selectedPositionCode: '',
             selectedDealerCode: ''

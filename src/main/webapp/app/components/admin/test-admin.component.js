@@ -101,11 +101,11 @@ var TestAdminComponent = (function () {
         });
     };
     TestAdminComponent.prototype.setCookie = function (name) {
-        this.cookieService.put('test', "hari");
+        this.cookieService.put('test', "hari jhdkjhdskja 67");
     };
     TestAdminComponent.prototype.getCookie = function (name) {
         var y = this.cookieService.get('test');
-        //alert(y)
+        alert(y);
     };
     return TestAdminComponent;
 }());

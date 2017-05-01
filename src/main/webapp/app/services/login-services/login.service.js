@@ -11,18 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
+//import { CookieStorage } from 'cookie-storage';
 require("./../rxjs-operators");
+//const cookieStorage = new CookieStorage();
 var LoginService = (function () {
-    function LoginService(http) {
+    function LoginService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
         this.getLoginResponseUrl = './app/resources/json/token_response.json';
         this.userdata = {};
     }
     LoginService.prototype.setUserData = function (userdata) {
-        sessionStorage.setItem("CurrentUser", "");
-        sessionStorage.removeItem('CurrentUser');
-        sessionStorage.removeItem('selectedCodeData');
-        sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
+        // sessionStorage.setItem("CurrentUser", "");
+        // sessionStorage.removeItem('CurrentUser');
+        // sessionStorage.removeItem('selectedCodeData');
+        // sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
+        this.cookieService.put("CurrentUser", "");
+        this.cookieService.remove('CurrentUser');
+        this.cookieService.remove('selectedCodeData');
+        this.cookieService.put("CurrentUser", JSON.stringify(userdata));
+        console.log(this.cookieService.get("CurrentUser"));
     };
     LoginService.prototype.getUsersData = function () {
         return this.userdata;
@@ -41,7 +50,7 @@ var LoginService = (function () {
     };
     LoginService.prototype.getLoginResponse = function (username, password) {
         var url = "./login/token/";
-        //var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -69,7 +78,7 @@ var LoginService = (function () {
 }());
 LoginService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, cookies_service_1.CookieService])
 ], LoginService);
 exports.LoginService = LoginService;
 //# sourceMappingURL=login.service.js.map

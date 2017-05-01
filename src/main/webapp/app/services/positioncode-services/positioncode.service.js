@@ -10,22 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 require("./../rxjs-operators");
 var PositionCodeService = (function () {
-    function PositionCodeService(http) {
+    function PositionCodeService(http, cookieService) {
         this.http = http;
+        this.cookieService = cookieService;
     }
     PositionCodeService.prototype.setCodeData = function (codeData) {
-        this.selectedCodeData = sessionStorage.setItem("selectedCodeData", JSON.stringify(codeData));
+        //  this.selectedCodeData = sessionStorage.setItem("selectedCodeData", JSON.stringify(codeData))
+        this.selectedCodeData = this.cookieService.put("selectedCodeData", JSON.stringify(codeData));
     };
     PositionCodeService.prototype.getCodeData = function () {
-        return JSON.parse(sessionStorage.getItem("selectedCodeData"));
+        //return JSON.parse(sessionStorage.getItem("selectedCodeData"));
+        return JSON.parse(this.cookieService.get("selectedCodeData"));
     };
     return PositionCodeService;
 }());
 PositionCodeService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, cookies_service_1.CookieService])
 ], PositionCodeService);
 exports.PositionCodeService = PositionCodeService;
 //# sourceMappingURL=positioncode.service.js.map

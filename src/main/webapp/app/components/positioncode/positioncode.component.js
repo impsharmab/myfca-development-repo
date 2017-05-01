@@ -11,17 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var positioncode_service_1 = require("../../services/positioncode-services/positioncode.service");
 var dashboard_body_service_1 = require("../../services/dashboard-body-services/dashboard-body.service");
+var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var PositionCodeComponent = (function () {
-    function PositionCodeComponent(positionCodeService, dashboardBodyService) {
+    function PositionCodeComponent(positionCodeService, dashboardBodyService, cookieService) {
         this.positionCodeService = positionCodeService;
         this.dashboardBodyService = dashboardBodyService;
+        this.cookieService = cookieService;
         this.submitEvent = new core_1.EventEmitter();
         this.cancelEvent = new core_1.EventEmitter();
         this.pcode = [];
         this.dcode = [];
         this.codeData = { "selectedPositionCode": "", "selectedDealerCode": "" };
-        this.poscodes = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-        this.delcodes = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+        // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+        // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+        this.poscodes = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+        this.delcodes = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
     }
     PositionCodeComponent.prototype.ngOnInit = function () {
         //this.code.dealerCode=selectedPositionCode;
@@ -76,7 +80,9 @@ PositionCodeComponent = __decorate([
         selector: 'position-code',
         templateUrl: 'app/components/positioncode/positioncode.html',
     }),
-    __metadata("design:paramtypes", [positioncode_service_1.PositionCodeService, dashboard_body_service_1.DashboardBodyService])
+    __metadata("design:paramtypes", [positioncode_service_1.PositionCodeService,
+        dashboard_body_service_1.DashboardBodyService,
+        cookies_service_1.CookieService])
 ], PositionCodeComponent);
 exports.PositionCodeComponent = PositionCodeComponent;
 //# sourceMappingURL=positioncode.component.js.map
