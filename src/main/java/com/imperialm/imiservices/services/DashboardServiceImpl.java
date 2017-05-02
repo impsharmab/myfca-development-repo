@@ -215,12 +215,12 @@ public class DashboardServiceImpl {
 		 return this.MyfcaMSERTotalEarningsDetailsDAO.getYTDByProgramAndProgramgroup(name, program, programgroup);
 	}
 	
-	public TotalName getParticipantExcellanceCardAwardMTD(String sid){
-		 return this.MyfcaMSERTotalEarningsDetailsDAO.getParticipantExcellanceCardAwardMTD(sid);
+	public TotalName getParticipantExcellanceCardAwardMTD(String sid, String dealerCode){
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getParticipantExcellanceCardAwardMTD(sid, dealerCode);
 	}
 	
-	public TotalName getParticipantExcellanceCardAwardYTD(String sid){
-		 return this.MyfcaMSERTotalEarningsDetailsDAO.getParticipantExcellanceCardAwardYTD(sid);
+	public TotalName getParticipantExcellanceCardAwardYTD(String sid, String dealerCode){
+		 return this.MyfcaMSERTotalEarningsDetailsDAO.getParticipantExcellanceCardAwardYTD(sid, dealerCode);
 	}
 	
 	public List<BrainBoostWinndersGraphDTO> getBrainBoostGraphBCData(boolean filter){
@@ -243,8 +243,8 @@ public class DashboardServiceImpl {
 		 return this.BrainBoostWinndersGraphDAO.getByChildTerritory(list);
 	}
 	
-	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOBySID(String sID, String toggle){
-		 return this.BrainBoostWinnersDetailsDAO.getBrainBoostWinnersDetailsBySID(sID, toggle);
+	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOBySID(String sID, String toggle, String dealerCode){
+		 return this.BrainBoostWinnersDetailsDAO.getBrainBoostWinnersDetailsBySID(sID, toggle, dealerCode);
 	}
 	
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOByDealerCode(String dealerCode, String toggle){
@@ -351,8 +351,8 @@ public class DashboardServiceImpl {
 		return this.MyFCAMserRankingDAO.getMSERDetailsGraphByChild(territory);
 	}
 	
-	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsBySID(String territory){
-		return this.MyFCAMserRankingDetailsDAO.getMSERDetailsBySID(territory);
+	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsBySID(String territory, String dealerCode){
+		return this.MyFCAMserRankingDetailsDAO.getMSERDetailsBySID(territory, dealerCode);
 	}
 	
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByTerritoryAndToggle(String territory, String toggle){
@@ -398,16 +398,16 @@ public class DashboardServiceImpl {
 		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCode(dealerCode);
 	}
 	
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID){
-		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySID(sID);
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID, String dealerCode){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySID(sID, dealerCode);
 	}
 	
 	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggle(String dealerCode, String toggle){
 		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCodeAndToggle(dealerCode, toggle);
 	}
 	
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySIDAndToggle(String sID, String toggle){
-		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySIDAndToggle(sID, toggle);
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySIDAndToggle(String sID, String toggle, String dealerCode){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySIDAndToggle(sID, toggle, dealerCode);
 	}
 	
 	public List<RetentionGraphDTO> getRetentionGraphByParentTerritoryList(List<String> list){
@@ -486,15 +486,15 @@ public class DashboardServiceImpl {
 		return this.RewardRedemptionDetailsDAO.getRewardRedemptionDetailsByDealer(dealerCode);
 	}
 	
-	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsBySid(String sid){
-		return this.RewardRedemptionDetailsDAO.getRewardRedemptionDetailsBySid(sid);
+	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsBySid(String sid, String dealerCode){
+		return this.RewardRedemptionDetailsDAO.getRewardRedemptionDetailsBySid(sid, dealerCode);
 	}	
 	
 	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsByDealerCode(String dealerCode){
 		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsByDealerCode(dealerCode);
 	}
-	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsBySID(String sid){
-		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsBySID(sid);
+	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsBySID(String sid, String dealerCode){
+		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsBySID(sid, dealerCode);
 	}
 	
 	public List<UserPositionCodeRoleDTO> getDealerCodePCRoleBySid(String sid){
@@ -521,12 +521,12 @@ public class DashboardServiceImpl {
 		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsByDealerCodeANDCertType(dealerCode, certType);
 	}
 	
-	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsBySIDANDCertType(String sid, String certType){
-		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsBySIDANDCertType(sid, certType);
+	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsBySIDANDCertType(String sid, String certType, String dealerCode){
+		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsBySIDANDCertType(sid, certType, dealerCode);
 	}
 	
-	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySID(String sid){
-		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsSUMBySID(sid);
+	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySID(String sid, String dealerCode){
+		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsSUMBySID(sid, dealerCode);
 	}
 	
 	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMByDealerCode(String dealerCode){
@@ -605,8 +605,8 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopAdvisorEnrolledDealerCount();
 	}
 	
-	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory, String positionCode){
-		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(territory, positionCode);
+	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrict(String territory){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(territory);
 	}
 	
 	
@@ -622,11 +622,11 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrollmentsSummaryDAO.getTTTAEnrollmentsSummarySUMByParentAndPositionCode(territories, positionCode);
 	}
 	
-	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsBySID(String sid, String positionCode){
-		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsBySID(sid, positionCode);
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsBySID(String sid, String positionCode, String  dealerCode){
+		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsBySID(sid, positionCode,  dealerCode);
 	}
 	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCode(String dealerCode, String positionCode){
-		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsBySID(dealerCode, positionCode);
+		return this.TTTAEnrollmentsDAO.getTTTAEnrollmentsByDealerCode(dealerCode, positionCode);
 	}
 	
 	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCode(String dealerCode, String positionCode, String enrollement){
@@ -645,8 +645,8 @@ public class DashboardServiceImpl {
 		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByChildTerritoryYTD(territory);
 	}
 	
-	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory){
-		return this.SummaryProgramRewardDetailsDAO.getSummaryProgramRewardDetailsBySIDYTD(territory);
+	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory, String dealerCode){
+		return this.SummaryProgramRewardDetailsDAO.getSummaryProgramRewardDetailsBySIDYTD(territory, dealerCode);
 	}
 	
 	public List<SummaryProgramRewardDetailsDTO> getSummaryProgramRewardDetailsByDealerCodeYTD(String territory){

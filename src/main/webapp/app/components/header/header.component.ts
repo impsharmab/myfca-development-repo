@@ -28,20 +28,20 @@ export class HeaderComponent implements OnInit {
 
     }
 
-    // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-    // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
-    // private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
+    private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+    private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+    private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
 
-    private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
-    private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
-    private booleanAdmin: any = JSON.parse(this.cookieService.get("CurrentUser")).admin;
+    // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+    // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
+    // private booleanAdmin: any = JSON.parse(this.cookieService.get("CurrentUser")).admin;
 
 
     //  var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
     //     var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
     //     var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
 
-    
+
     private positionCodeCancel() {
         this.positioncodeModal.close();
     }
@@ -51,9 +51,9 @@ export class HeaderComponent implements OnInit {
         this.profileChange.emit("")
     }
     ngOnInit() {
-        //this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
-        this.data = JSON.parse(this.cookieService.get("CurrentUser"))
-        
+        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+        //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
+
 
     }
 
@@ -67,14 +67,16 @@ export class HeaderComponent implements OnInit {
     // }
 
     private logout() {
-        // sessionStorage.removeItem('CurrentUser');
-        // sessionStorage.removeItem('selectedCodeData');
-        // sessionStorage.clear();
-        this.cookieService.remove('CurrentUser');
-        this.cookieService.remove('selectedCodeData');
-        this.cookieService.removeAll();
-        let loginUrl = ["login"]
-        this.router.navigate(loginUrl);
+        sessionStorage.removeItem('CurrentUser');
+        sessionStorage.removeItem('selectedCodeData');
+        sessionStorage.clear();
+        // this.cookieService.remove('CurrentUser');
+        // this.cookieService.remove('selectedCodeData');
+         this.cookieService.removeAll();
+        // let loginUrl = ["login"]
+        // this.router.navigate(loginUrl);
+        window.open("https://dealerconnect.chrysler.com/login/login.html", '_self')
+
     }
 
     private admin() {
@@ -95,6 +97,10 @@ export class HeaderComponent implements OnInit {
     private profile() {
         let profileUrl = ["profile"]
         this.router.navigate(profileUrl);
+    }
+
+    private endEmulation() {
+
     }
 
 }

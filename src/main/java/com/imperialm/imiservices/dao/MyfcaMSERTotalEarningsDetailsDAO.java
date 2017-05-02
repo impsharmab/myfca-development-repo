@@ -20,8 +20,8 @@ public interface MyfcaMSERTotalEarningsDetailsDAO {
 	
 	public static String PARTICIPANT_ENROLLED_BY_DEALERCODE = "select CAST(ISNULL(COUNT( DISTINCT ER.[SID]), '0') as varchar(20)) 'total', 'Total Participants Enrolled' as name, '' as error from [MyfcaMSERTotalEarningsDetails] ER, [MyfcaMSERTotalEarningsDetails] EM where ER.[DealersEnrolled] = 1 AND ER.[DealerCode] = ?0";
 	
-	public static String MTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsMTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards MTD' as 'name', '' as error from [MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0";
-	public static String YTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsYTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards YTD' as 'name', '' as error from [MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0";
+	public static String MTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsMTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards MTD' as 'name', '' as error from [MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0 AND [DealerCode] = ?1";
+	public static String YTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsYTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards YTD' as 'name', '' as error from [MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0 AND [DealerCode] = ?1";
 	
 	public static String SELECT_DEALERCOUNT_BY_BC_OR_DISTRICT = "Select '0' as 'total', 'Total Dealers Enrolled' as 'name', ?0 as error";
 	public static String SELECT_PARTICIPANT_ENROLLED_BY_DEALERCODE = "SELECT CAST(ISNULL(COUNT(DISTINCT SID),0) as varchar(20)) total , 'Total Participants Enrolled' name, '' as error FROM [dbo].[MyfcaMSERTotalEarningsDetails] where ParticipantsEnrolled > 0 AND DealerCode = ?0";
@@ -42,8 +42,8 @@ public interface MyfcaMSERTotalEarningsDetailsDAO {
 	public TotalName getMSEREnrolledDealersCount();
 	public TotalName getExcellanceCardAwardYTDNAT();
 	public TotalName getExcellanceCardAwardMTDNAT();
-	public TotalName getParticipantExcellanceCardAwardMTD(String sid);
-	public TotalName getParticipantExcellanceCardAwardYTD(String sid);
+	public TotalName getParticipantExcellanceCardAwardMTD(String sid, String dealerCode);
+	public TotalName getParticipantExcellanceCardAwardYTD(String sid, String dealerCode);
 	public TotalName getDealersCountWithPercentage();
 	public TotalName getMTDByProgramAndProgramgroup(String name, String program, String programgroup);
 	public TotalName getYTDByProgramAndProgramgroup(String name, String program, String programgroup);

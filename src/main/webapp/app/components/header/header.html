@@ -54,8 +54,12 @@
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     Welcome, <a class="utility-nav active" style="cursor:pointer" (click)="dashboardPage()">{{data.name}}</a>
                 </li>
-            </ul>
+            </ul> 
             <ul class="sav-utility" style="margin-top: 5px">
+                <li class="sav-item " >
+                    <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
+                    <a class=" utility-nav" (click)="endEmulation()" style="cursor:pointer; color:red ">End Emulation</a>
+                </li>
                 <li class="sav-item " [hidden]="retweetIconHide">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">

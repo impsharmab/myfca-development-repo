@@ -2,7 +2,9 @@ package com.imperialm.imiservices.rest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -179,8 +181,14 @@ public class TablesController {
 				List<String> filters = new ArrayList<String>();
 				filters.add(territory);
 				List<MyfcaMSERTotalEarningsDTO> sublist = this.dashService.getMSERGraphByTerritoryAndToggle(territory, "YTD");
+				Set<String> p = new LinkedHashSet<>();
+				
 				for(MyfcaMSERTotalEarningsDTO item: sublist){
-						List<MyfcaMSERTotalEarningsDetailsDTO> participants = this.dashService.getMSERGraphDetailsByDealerCode(item.getChild());
+					p.add(item.getChild());
+			}
+				
+				for(String item: p){
+						List<MyfcaMSERTotalEarningsDetailsDTO> participants = this.dashService.getMSERGraphDetailsByDealerCode(item);
 						result.addAll(participants);
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){

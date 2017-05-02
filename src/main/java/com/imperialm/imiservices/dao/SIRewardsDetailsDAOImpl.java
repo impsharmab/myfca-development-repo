@@ -42,11 +42,12 @@ public class SIRewardsDetailsDAOImpl implements SIRewardsDetailsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID) {
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID, String dealerCode) {
 		List<SIRewardsDetailsDTO> result = new ArrayList<SIRewardsDetailsDTO>();
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID, SIRewardsDetailsDTO.class);
 			query.setParameter(0, sID);
+			query.setParameter(1, dealerCode);
 			List<SIRewardsDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
@@ -78,12 +79,13 @@ public class SIRewardsDetailsDAOImpl implements SIRewardsDetailsDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySIDAndToggle(String sID, String toggle) {
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySIDAndToggle(String sID, String toggle, String dealerCode) {
 		List<SIRewardsDetailsDTO> result = new ArrayList<SIRewardsDetailsDTO>();
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID_AND_TOGGLE, SIRewardsDetailsDTO.class);
 			query.setParameter(0, sID);
 			query.setParameter(1, toggle);
+			query.setParameter(2, dealerCode);
 			List<SIRewardsDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {

@@ -9,14 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var admin_service_1 = require("../../services/admin-services/admin.service");
 var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var TestAdminComponent = (function () {
-    function TestAdminComponent(adminService, cookieService) {
+    function TestAdminComponent(adminService, cookieService, router) {
         this.adminService = adminService;
         this.cookieService = cookieService;
+        this.router = router;
     }
     TestAdminComponent.prototype.ngOnInit = function () {
+        this.emulateuser = {
+            sid: ''
+        };
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
@@ -101,11 +106,53 @@ var TestAdminComponent = (function () {
         });
     };
     TestAdminComponent.prototype.setCookie = function (name) {
-        this.cookieService.put('test', "hari jhdkjhdskja 67");
+        this.cookieService.put('test', "test test test");
     };
     TestAdminComponent.prototype.getCookie = function (name) {
         var y = this.cookieService.get('test');
-        alert(y);
+        // alert(y)
+    };
+    TestAdminComponent.prototype.emulateUser = function () {
+        var _this = this;
+        this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(function (emulateUserData) {
+            _this.emulateUserData = emulateUserData;
+            debugger;
+            console.log(emulateUserData);
+            if (emulateUserData["token"].length > 0) {
+                sessionStorage.clear();
+                _this.adminService.setEmulateUserData(_this.emulateUserData);
+                var poscodes = _this.emulateUserData.positionCode;
+                var delcodes = _this.emulateUserData.dealerCode;
+                // this.cookieService.put("selectedCodeData", JSON.stringify(
+                //     {
+                //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                //     }))
+                sessionStorage.setItem("selectedCodeData", JSON.stringify({
+                    "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                    "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                }));
+                var url = ["myfcadashboard"];
+                _this.router.navigate(url);
+            }
+        });
+    };
+    TestAdminComponent.prototype.endEmulateUser = function () {
+        this.cookieService.get("adminToken");
+        this.adminService.setEndEmulateUserData(this.endEmulateUserData);
+        var poscodes = this.emulateUserData.positionCode;
+        var delcodes = this.emulateUserData.dealerCode;
+        // this.cookieService.put("selectedCodeData", JSON.stringify(
+        //     {
+        //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+        //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+        //     }))
+        sessionStorage.setItem("selectedCodeData", JSON.stringify({
+            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+            "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+        }));
+        var url = ["myfcadashboard"];
+        this.router.navigate(url);
     };
     return TestAdminComponent;
 }());
@@ -115,7 +162,7 @@ TestAdminComponent = __decorate([
         selector: "app-admin",
         templateUrl: "./test-admin-uploadimage.html"
     }),
-    __metadata("design:paramtypes", [admin_service_1.AdminService, cookies_service_1.CookieService])
+    __metadata("design:paramtypes", [admin_service_1.AdminService, cookies_service_1.CookieService, router_1.Router])
 ], TestAdminComponent);
 exports.TestAdminComponent = TestAdminComponent;
 //# sourceMappingURL=test-admin.component.js.map

@@ -1,7 +1,9 @@
 {
-  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJEYXZlIiwiY3JlYXRlZCI6MTQ4ODM5NjcxNDg4MywiZXhwIjoxNDg5MDAxNTE0fQ.m-UY1jy87oL4ckT9_DsUeLcxx3a7lsurN4aatOVIelBPT4fl-x8qR_h1UuVKP6gJWc30DzGCt4W_07jlq0OAOw",
-  "name": "Dave Skiff",
-  "positionCode": ["34","43"],
-  "dealerCode": ["fs","re"],
-  "admin": true
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUNTI5N1NLIiwiY3JlYXRlZCI6MTQ5MzY4NjQyMDYxMywiZXhwIjoxNDk0MjkxMjIwfQ.X16wMPxoXYq7x47_xSEMAWmVK_9m6A18sJIgP5x2_XHfxilCaRIAQMh3IT0tTHIVWPA2M3kW02TeLcP2DsYCvA",
+  "name": "STACY Metcalf",
+  "positionCode": [
+    "90"
+  ],
+  "dealerCode": [],
+  "admin": false
 }

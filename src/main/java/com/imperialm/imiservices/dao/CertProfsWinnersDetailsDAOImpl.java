@@ -43,12 +43,13 @@ public class CertProfsWinnersDetailsDAOImpl implements CertProfsWinnersDetailsDA
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsBySID(String sID) {
+	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsBySID(String sID, String dealerCode) {
 		List<CertProfsWinnersDetailsDTO> result = new ArrayList<CertProfsWinnersDetailsDTO>();
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID, CertProfsWinnersDetailsDTO.class);
 			query.setParameter(0, sID);
+			query.setParameter(1, dealerCode);
 			List<CertProfsWinnersDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {

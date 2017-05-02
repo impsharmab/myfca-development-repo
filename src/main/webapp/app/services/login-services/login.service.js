@@ -23,15 +23,20 @@ var LoginService = (function () {
         this.userdata = {};
     }
     LoginService.prototype.setUserData = function (userdata) {
-        // sessionStorage.setItem("CurrentUser", "");
-        // sessionStorage.removeItem('CurrentUser');
-        // sessionStorage.removeItem('selectedCodeData');
-        // sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
-        this.cookieService.put("CurrentUser", "");
-        this.cookieService.remove('CurrentUser');
-        this.cookieService.remove('selectedCodeData');
-        this.cookieService.put("CurrentUser", JSON.stringify(userdata));
-        console.log(this.cookieService.get("CurrentUser"));
+        sessionStorage.setItem("CurrentUser", "");
+        sessionStorage.removeItem('CurrentUser');
+        sessionStorage.removeItem('selectedCodeData');
+        sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
+        // this.cookieService.put("CurrentUser", "");
+        // this.cookieService.remove('CurrentUser');
+        // this.cookieService.remove('selectedCodeData');
+        // this.cookieService.put("CurrentUser", JSON.stringify(userdata));
+        // console.log(this.cookieService.get("CurrentUser"))
+        this.cookieService.put("token", "");
+        this.cookieService.remove('token');
+        this.cookieService.put("token", JSON.stringify(userdata.token));
+        console.log(this.cookieService.get("token"));
+        // alert("token" + this.cookieService.get("token"))
     };
     LoginService.prototype.getUsersData = function () {
         return this.userdata;
@@ -50,13 +55,29 @@ var LoginService = (function () {
     };
     LoginService.prototype.getLoginResponse = function (username, password) {
         var url = "./login/token/";
-        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        // var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
         return this.http.post(url, body, { headers: headers })
+            .map(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    LoginService.prototype.getRefreshLoginResponse = function (token) {
+        debugger;
+        // var url = "./login/tokenrefresh";
+        var url = "app/resources/json/token_response.json";
+        // var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        var headers = new http_1.Headers();
+        // headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', token);
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
+        return this.http.get(url, { headers: headers })
             .map(function (response) {
             return response.json();
         })

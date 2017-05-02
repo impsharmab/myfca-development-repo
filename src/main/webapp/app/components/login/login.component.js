@@ -33,6 +33,7 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.ngOnInit = function () {
         var _this = this;
+        //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         this.user = {
             username: '',
             password: ''
@@ -50,6 +51,7 @@ var LoginComponent = (function () {
         if (this.ssotoken !== "" && this.ssotoken !== undefined) {
             this.ssologin(this.ssotoken, this.ssopositioncode, this.ssodealercode);
         }
+        this.refreshLogin();
     };
     LoginComponent.prototype.ssologin = function (ssotoken, ssopositioncode, ssodealercode) {
         var _this = this;
@@ -59,11 +61,11 @@ var LoginComponent = (function () {
                 _this.loginService.setUserData(_this.userdata);
                 var poscodes = _this.userdata.positionCode;
                 var delcodes = _this.userdata.dealerCode;
-                //cookieStorage.setItem("selectedCodeData", JSON.stringify(
-                // {
-                //     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
-                //     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
-                // }))
+                // this.cookieService.put("selectedCodeData", JSON.stringify(
+                //     {
+                //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                //     }))
                 sessionStorage.setItem("selectedCodeData", JSON.stringify({
                     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
@@ -76,6 +78,38 @@ var LoginComponent = (function () {
                 _this.router.navigate(url);
             }
         });
+    };
+    LoginComponent.prototype.refreshLogin = function () {
+        var _this = this;
+        debugger;
+        var user = this.cookieService.get("token");
+        if (user !== undefined) {
+            debugger;
+            // alert(user)
+            if (user !== undefined && user.length > 1) {
+                this.loginService.getRefreshLoginResponse(user).subscribe(function (refreshTokenData) {
+                    _this.refreshTokenData = (refreshTokenData);
+                    if (refreshTokenData.token.length > 1) {
+                        _this.loginService.setUserData(_this.refreshTokenData);
+                        var poscodes = _this.refreshTokenData.positionCode;
+                        var delcodes = _this.refreshTokenData.dealerCode;
+                        sessionStorage.setItem("selectedCodeData", JSON.stringify({
+                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                            "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                        }));
+                        var url = ["myfcadashboard"];
+                        _this.router.navigate(url);
+                    }
+                    else {
+                        _this.cookieService.remove("CurrentUser");
+                        _this.cookieService.remove("selectedCodeData");
+                        _this.cookieService.removeAll();
+                    }
+                }, function (error) {
+                    alert("error in refreshing");
+                });
+            }
+        }
     };
     LoginComponent.prototype.login = function () {
         var _this = this;
@@ -96,19 +130,20 @@ var LoginComponent = (function () {
         }
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(function (resUserData) {
             _this.userdata = (resUserData);
+            console.log(resUserData);
             if (resUserData["token"].length > 0) {
                 _this.loginService.setUserData(_this.userdata);
                 var poscodes = _this.userdata.positionCode;
                 var delcodes = _this.userdata.dealerCode;
-                _this.cookieService.put("selectedCodeData", JSON.stringify({
-                    "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
-                    "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
-                }));
-                // sessionStorage.setItem("selectedCodeData", JSON.stringify(
+                // this.cookieService.put("selectedCodeData", JSON.stringify(
                 //     {
                 //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                 //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
                 //     }))
+                sessionStorage.setItem("selectedCodeData", JSON.stringify({
+                    "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                    "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                }));
                 var url = ["myfcadashboard"];
                 _this.router.navigate(url);
             }

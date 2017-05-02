@@ -5,7 +5,7 @@ import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 //import { CookieStorage } from 'cookie-storage';
 
-import { User } from './user.interface'; 
+import { User } from './user.interface';
 import { SSOLoginInterface } from './ssologin.interface'
 import { LoginService } from '../../services/login-services/login.service';
 
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     private ssopositioncode: string = "";
     private loginFailed: string = "";
     private loginErrorMessage: string = "";
+    private refreshTokenData: any;
 
     constructor(private loginService: LoginService,
         private router: Router,
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
         this._compiler.clearCache();
     }
     ngOnInit() {
+        //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         this.user = {
             username: '',
             password: ''
@@ -59,6 +61,9 @@ export class LoginComponent implements OnInit {
                 this.ssodealercode
             )
         }
+        this.refreshLogin();
+
+
     }
 
     private ssologin(ssotoken: string, ssopositioncode: string, ssodealercode: string) {
@@ -73,11 +78,11 @@ export class LoginComponent implements OnInit {
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
 
-                    //cookieStorage.setItem("selectedCodeData", JSON.stringify(
-                        // {
-                        //     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
-                        //     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
-                        // }))
+                    // this.cookieService.put("selectedCodeData", JSON.stringify(
+                    //     {
+                    //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                    //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                    //     }))
 
                     sessionStorage.setItem("selectedCodeData", JSON.stringify(
                         {
@@ -94,6 +99,47 @@ export class LoginComponent implements OnInit {
                 }
             }
             )
+    }
+
+    private refreshLogin() {
+        debugger
+        var user = this.cookieService.get("token");
+        if (user !== undefined) {
+            debugger
+           // alert(user)
+           
+           if (user !== undefined && user.length > 1) {
+                this.loginService.getRefreshLoginResponse(user).subscribe(
+                    (refreshTokenData) => {
+                        this.refreshTokenData = (refreshTokenData)
+                        if (refreshTokenData.token.length > 1) {
+
+                            this.loginService.setUserData(this.refreshTokenData);
+
+                            var poscodes: any = this.refreshTokenData.positionCode;
+                            var delcodes: any = this.refreshTokenData.dealerCode;
+                            sessionStorage.setItem("selectedCodeData", JSON.stringify(
+
+                                {
+                                    "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                                    "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                                }))
+
+                            let url = ["myfcadashboard"]
+                            this.router.navigate(url);
+                        } else {
+                            this.cookieService.remove("CurrentUser")
+                            this.cookieService.remove("selectedCodeData")
+                            this.cookieService.removeAll();
+                        }
+                    },
+                    (error) => {
+                        alert("error in refreshing")
+                    }
+
+                )
+            }
+        }
     }
 
 
@@ -114,22 +160,23 @@ export class LoginComponent implements OnInit {
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
             (resUserData) => {
                 this.userdata = (resUserData)
+                console.log(resUserData)
                 if (resUserData["token"].length > 0) {
                     this.loginService.setUserData(this.userdata);
 
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
-                    this.cookieService.put("selectedCodeData", JSON.stringify(
-                        {
-                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
-                            "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
-                        }))
-                    // sessionStorage.setItem("selectedCodeData", JSON.stringify(
-                        
+                    // this.cookieService.put("selectedCodeData", JSON.stringify(
                     //     {
                     //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                     //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
                     //     }))
+                    sessionStorage.setItem("selectedCodeData", JSON.stringify(
+
+                        {
+                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                            "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                        }))
 
                     let url = ["myfcadashboard"]
                     this.router.navigate(url);

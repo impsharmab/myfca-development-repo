@@ -294,13 +294,14 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 	}
 
 	@Override
-	public TotalName getParticipantExcellanceCardAwardMTD(String sid) {
+	public TotalName getParticipantExcellanceCardAwardMTD(String sid, String dealerCode) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
 		TotalName TotalName = null;
 		try {
 			final Query query = this.em.createNativeQuery(MTD_EXCELLANCE_CARD_AWARD, TotalName.class);
 			query.setParameter(0, sid);
+			query.setParameter(1, dealerCode);
 			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			TotalName = new TotalName();
@@ -318,13 +319,14 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 	}
 
 	@Override
-	public TotalName getParticipantExcellanceCardAwardYTD(String sid) {
+	public TotalName getParticipantExcellanceCardAwardYTD(String sid, String dealerCode) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
 		TotalName TotalName = null;
 		try {
 			final Query query = this.em.createNativeQuery(YTD_EXCELLANCE_CARD_AWARD, TotalName.class);
 			query.setParameter(0, sid);
+			query.setParameter(1, dealerCode);
 			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			TotalName = new TotalName();

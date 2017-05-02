@@ -25,12 +25,13 @@ public class SummaryProgramRewardDetailsDAOImpl implements SummaryProgramRewardD
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory) {
+	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory, String dealerCode) {
 		List<SummaryProgramRewardGraphDTO> result = new ArrayList<SummaryProgramRewardGraphDTO>();
 
 		try {
 				final Query query = this.em.createNativeQuery(SELECT_BY_SID_YTD, SummaryProgramRewardGraphDTO.class);
 				query.setParameter(0, territory);
+				query.setParameter(1, dealerCode);
 				List<SummaryProgramRewardGraphDTO> rows = query.getResultList();
 				result = rows;
 		} catch (final NoResultException ex) {

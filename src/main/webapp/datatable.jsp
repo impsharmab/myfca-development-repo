@@ -379,7 +379,7 @@
 						var value = 0;
 						//console.log(obj)
 						for (var t = 0; t < obj.length; t++) {
-							value = value + (obj[t] === undefined ? 0 : Math.round(obj[t].earningsYTD));
+							value = value + (obj[t] === undefined ? 0 : Math.floor(obj[t].earningsYTD));
 						}
 
 						rowData.push(value)
@@ -498,8 +498,8 @@
 						return positionCodeArray[n] === ele.positionCode;
 					});
 
-					rowData.push(Math.round(data[0].percentage) + "%")
-					//total = Math.round(total + data[0].percentage);
+					rowData.push(Math.floor(data[0].percentage) + "%")
+					//total = Math.floor(total + data[0].percentage);
 				}
 
 				//rowData.push(total+"%");

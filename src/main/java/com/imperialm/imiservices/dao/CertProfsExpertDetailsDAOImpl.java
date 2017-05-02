@@ -42,13 +42,14 @@ public class CertProfsExpertDetailsDAOImpl implements CertProfsExpertDetailsDAO{
 	}
 
 	@Override
-	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsBySIDANDCertType(String sid, String certType) {
+	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsBySIDANDCertType(String sid, String certType, String dealerCode) {
 		List<CertProfsExpertDetailsDTO> result = new ArrayList<CertProfsExpertDetailsDTO>();
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID_AND_CERT_TYPE, CertProfsExpertDetailsDTO.class);
 			query.setParameter(0, sid);
 			query.setParameter(1, certType);
+			query.setParameter(2, dealerCode);
 			List<CertProfsExpertDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
@@ -60,12 +61,13 @@ public class CertProfsExpertDetailsDAOImpl implements CertProfsExpertDetailsDAO{
 	}
 
 	@Override
-	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySID(String sid) {
+	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySID(String sid, String dealerCode) {
 		List<CertProfsExpertDetailsDTO> result = new ArrayList<CertProfsExpertDetailsDTO>();
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID_SUM, CertProfsExpertDetailsDTO.class);
 			query.setParameter(0, sid);
+			query.setParameter(1, dealerCode);
 			List<CertProfsExpertDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {

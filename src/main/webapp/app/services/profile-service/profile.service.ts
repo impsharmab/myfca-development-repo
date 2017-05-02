@@ -24,8 +24,8 @@ export class ProfileService {
 
     postProfileData(name: string, email: string) {
         debugger
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "name": name, "email": email };
         var headers = new Headers();
         headers.append('Authorization', validToken);
@@ -36,8 +36,8 @@ export class ProfileService {
 
     changeUserPassword(password: string) {
         debugger
-        //        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+//        var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "item": password };
         var headers = new Headers();
         headers.append('Authorization', validToken);

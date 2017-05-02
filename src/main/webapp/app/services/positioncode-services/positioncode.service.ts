@@ -10,11 +10,11 @@ export class PositionCodeService {
     constructor(private http: Http, private cookieService: CookieService) { }
 
     setCodeData(codeData: any) {
-        //  this.selectedCodeData = sessionStorage.setItem("selectedCodeData", JSON.stringify(codeData))
-        this.selectedCodeData = this.cookieService.put("selectedCodeData", JSON.stringify(codeData))
+          this.selectedCodeData = sessionStorage.setItem("selectedCodeData", JSON.stringify(codeData))
+        //this.selectedCodeData = this.cookieService.put("selectedCodeData", JSON.stringify(codeData))
     }
     getCodeData() {
-        //return JSON.parse(sessionStorage.getItem("selectedCodeData"));
-        return JSON.parse(this.cookieService.get("selectedCodeData"));
+        return JSON.parse(sessionStorage.getItem("selectedCodeData"));
+        //return JSON.parse(this.cookieService.get("selectedCodeData")); 
     }
 }

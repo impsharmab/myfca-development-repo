@@ -22,11 +22,11 @@ var PositionCodeComponent = (function () {
         this.pcode = [];
         this.dcode = [];
         this.codeData = { "selectedPositionCode": "", "selectedDealerCode": "" };
-        // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-        // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
-        this.poscodes = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
-        this.delcodes = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
+        this.poscodes = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+        this.delcodes = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
     }
+    // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+    // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
     PositionCodeComponent.prototype.ngOnInit = function () {
         //this.code.dealerCode=selectedPositionCode;
         this.code = {

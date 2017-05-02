@@ -165,13 +165,14 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsBySID(String sid, String positionCode) {
+	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsBySID(String sid, String positionCode,  String dealerCode) {
 		List<TTTAEnrollmentsDTO> result = new ArrayList<TTTAEnrollmentsDTO>();
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID, TTTAEnrollmentsDTO.class);
 			query.setParameter(0, sid);
 			query.setParameter(1, positionCode);
+			query.setParameter(2,  dealerCode);
 			List<TTTAEnrollmentsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {

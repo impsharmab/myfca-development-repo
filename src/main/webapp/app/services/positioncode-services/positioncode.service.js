@@ -18,12 +18,12 @@ var PositionCodeService = (function () {
         this.cookieService = cookieService;
     }
     PositionCodeService.prototype.setCodeData = function (codeData) {
-        //  this.selectedCodeData = sessionStorage.setItem("selectedCodeData", JSON.stringify(codeData))
-        this.selectedCodeData = this.cookieService.put("selectedCodeData", JSON.stringify(codeData));
+        this.selectedCodeData = sessionStorage.setItem("selectedCodeData", JSON.stringify(codeData));
+        //this.selectedCodeData = this.cookieService.put("selectedCodeData", JSON.stringify(codeData))
     };
     PositionCodeService.prototype.getCodeData = function () {
-        //return JSON.parse(sessionStorage.getItem("selectedCodeData"));
-        return JSON.parse(this.cookieService.get("selectedCodeData"));
+        return JSON.parse(sessionStorage.getItem("selectedCodeData"));
+        //return JSON.parse(this.cookieService.get("selectedCodeData")); 
     };
     return PositionCodeService;
 }());

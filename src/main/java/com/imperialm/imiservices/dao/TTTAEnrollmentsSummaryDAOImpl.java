@@ -114,15 +114,13 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory,
-			String positionCode) {
+	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
 		TotalName TotalName = null;
 		try {
-			final Query query = this.em.createNativeQuery(SELECT_NUMBER_OF_DEALERS_ENROLLED_BY_BC_DISTRICT_AND_POSITIONCODE, TotalName.class);
+			final Query query = this.em.createNativeQuery(SELECT_NUMBER_OF_DEALERS_ENROLLED_BY_BC_DISTRICT, TotalName.class);
 			query.setParameter(0, territory);
-			query.setParameter(1, positionCode);
 			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			TotalName = new TotalName();

@@ -1,9 +1,10 @@
 import { Component, ElementRef, OnInit, Directive, Input, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet, ActivatedRoute, Params } from '@angular/router';
 
 import { AdminService } from '../../services/admin-services/admin.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { Admin } from './admin.interface';
+import { EmulateUserInterface } from './emulate-user.interface'
 
 declare var $: any;
 @Component({
@@ -19,8 +20,15 @@ export class TestAdminComponent implements OnInit {
     private roles: any;
     private adminData: any;
     private data: any;
-    constructor(private adminService: AdminService, private cookieService: CookieService) { }
+    private emulateuser: EmulateUserInterface;
+    private emulateUserData: any;
+    private endEmulateUserData: any;
+    constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
     ngOnInit() {
+
+        this.emulateuser = {
+            sid: ''
+        }
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
@@ -122,17 +130,83 @@ export class TestAdminComponent implements OnInit {
     }
 
     setCookie(name?: string) {
-        this.cookieService.put('test', "hari jhdkjhdskja 67");
+        this.cookieService.put('test', "test test test");
 
     }
     getCookie(name?: string) {
         var y = this.cookieService.get('test');
-        alert(y)
+        // alert(y)
     }
 
+    emulateUser() {
+        this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
+            (emulateUserData) => {
+                this.emulateUserData = emulateUserData;
+                debugger
+                console.log(emulateUserData)
+                if (emulateUserData["token"].length > 0) {
+                    sessionStorage.clear();
+                    this.adminService.setEmulateUserData(this.emulateUserData);
 
+                    var poscodes: any = this.emulateUserData.positionCode;
+                    var delcodes: any = this.emulateUserData.dealerCode;
+                    // this.cookieService.put("selectedCodeData", JSON.stringify(
+                    //     {
+                    //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                    //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                    //     }))
+
+
+                    sessionStorage.setItem("selectedCodeData", JSON.stringify(
+
+                        {
+                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                            "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+                        }))
+
+                    let url = ["myfcadashboard"]
+                    this.router.navigate(url);
+
+                }
+
+            }
+        )
+
+
+    }
+
+    endEmulateUser() {
+        this.cookieService.get("adminToken")
+       
+        this.adminService.setEndEmulateUserData(this.endEmulateUserData);
+
+        var poscodes: any = this.emulateUserData.positionCode;
+        var delcodes: any = this.emulateUserData.dealerCode;
+        // this.cookieService.put("selectedCodeData", JSON.stringify(
+        //     {
+        //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+        //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+        //     }))
+
+
+        sessionStorage.setItem("selectedCodeData", JSON.stringify(
+
+            {
+                "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
+                "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
+            }))
+
+        let url = ["myfcadashboard"]
+        this.router.navigate(url);
+
+    }
 
 }
+       
+
+
+
+
 
 
 

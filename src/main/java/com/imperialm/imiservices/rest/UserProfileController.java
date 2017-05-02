@@ -3,7 +3,6 @@
  */
 package com.imperialm.imiservices.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,37 +23,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
 import com.imperialm.imiservices.dao.UserDAOImpl;
-import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UserProfileDTO;
 import com.imperialm.imiservices.dto.UsersDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
-import com.imperialm.imiservices.model.NoTile;
 import com.imperialm.imiservices.model.OneItem;
-import com.imperialm.imiservices.model.TwoStringItems;
 import com.imperialm.imiservices.model.UserIdEmail;
 import com.imperialm.imiservices.model.UserProfile;
 import com.imperialm.imiservices.security.JwtTokenUtil;
-import com.imperialm.imiservices.services.DashboardServiceImpl;
 import com.imperialm.imiservices.services.UserProfileService;
-import com.imperialm.imiservices.services.UserService;
 import com.imperialm.imiservices.services.UserServiceImpl;
 import com.imperialm.imiservices.util.EmailHandler;
 
-/**
- * @author Dheerajr
- *
- */
 @RestController
 public class UserProfileController {
 
 	@Value("${jwt.header}")
 	private String tokenHeader;
 
-	@Autowired
-	private UserServiceImpl userService;
+	/*@Autowired
+	private UserServiceImpl userService;*/
 
 	@Autowired
 	private UserDAOImpl userDAOImpl;
@@ -68,9 +57,9 @@ public class UserProfileController {
 	@Autowired
     private EmailHandler emailHandler;
 
-	public UserProfileController(UserServiceImpl userService){
+	/*public UserProfileController(UserServiceImpl userService){
 		this.userService = userService;
-	}
+	}*/
 	private static Logger logger = LoggerFactory.getLogger(UserProfileController.class);
 	@Autowired
 	private UserProfileService userprofileService;

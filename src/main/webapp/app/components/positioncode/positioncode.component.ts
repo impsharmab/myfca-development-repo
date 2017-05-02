@@ -24,10 +24,10 @@ export class PositionCodeComponent implements OnInit {
     private dcode: any = [];
     private codeData: any = { "selectedPositionCode": "", "selectedDealerCode": "" };
 
-    // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-    // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
-    private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
-    private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
+    private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+    private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+    // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+    // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
 
     ngOnInit() {
         //this.code.dealerCode=selectedPositionCode;
@@ -35,7 +35,7 @@ export class PositionCodeComponent implements OnInit {
             selectedPositionCode: '',
             selectedDealerCode: ''
         }
-        this.code = this.positionCodeService.getCodeData()
+        this.code = this.positionCodeService.getCodeData() 
         this.pcode = this.poscodes;
         this.dcode = this.delcodes;
         // this.defaultPositionDealerCode();

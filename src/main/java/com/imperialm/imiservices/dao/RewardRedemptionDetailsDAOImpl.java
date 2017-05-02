@@ -43,11 +43,12 @@ public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDA
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsBySid(String sid) {
+	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsBySid(String sid, String dealerCode) {
 		List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();
 		try {
-			final Query query = this.em.createNativeQuery(GET_DETAILS_BY_SID, RewardRedemptionDetailsDTO.class);
+			final Query query = this.em.createNativeQuery(GET_DETAILS_BY_SID_AND_DEALERCODE, RewardRedemptionDetailsDTO.class);
 			query.setParameter(0, sid);
+			query.setParameter(1, dealerCode);
 			List<RewardRedemptionDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {

@@ -119,7 +119,7 @@ public class AuthenticationRestController {
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(tokenHeader);
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
+        UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username.trim());
 
         if (jwtTokenUtil.canTokenBeRefreshed(token)) {
             String refreshedToken = jwtTokenUtil.refreshToken(token);

@@ -20,7 +20,7 @@ public interface TTTAEnrollmentsSummaryDAO {
 	//take the size
 	//public static String SELECT_NUMBER_OF_DEALERS_ENROLLED_BY_BC_DISTRICT_AND_POSITIONCODE = "SELECT [Child] FROM [dbo].[TTTAEnrollmentsSummary] INNER JOIN [dbo].[TTTAEnrollments] on [Child] = DealerCode where [Parent] like ?0 and [TTTAEnrollments].PositionCode = ?1 and Enrollment = 'E' group by Child";
 	
-	public static String SELECT_NUMBER_OF_DEALERS_ENROLLED_BY_BC_DISTRICT_AND_POSITIONCODE = "Select IsNull(CAST(COUNT([Child]) as varchar(20)),'0') 'total', 'Total Dealers Enrolled' as 'name', '' as error From (SELECT [Child] FROM [dbo].[TTTAEnrollmentsSummary] INNER JOIN [dbo].[TTTAEnrollments] on [Child] = DealerCode where [Parent] like ?0 and [TTTAEnrollments].PositionCode = ?1 and Enrollment = 'E' group by Child) A";
+	public static String SELECT_NUMBER_OF_DEALERS_ENROLLED_BY_BC_DISTRICT = "Select IsNull(CAST(COUNT([Child]) as varchar(20)),'0') 'total', 'Total Dealers Enrolled' as 'name', '' as error From (SELECT [Child] FROM [dbo].[TTTAEnrollmentsSummary] INNER JOIN [dbo].[TTTAEnrollments] on [Child] = DealerCode where [Parent] like ?0 and Enrollment = 'E' group by Child) A";
 	
 	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByChildAndPositionCode(List<String> territories, String positionCode);
 	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByParentAndPositionCode(List<String> territories, String positionCode);
@@ -29,7 +29,7 @@ public interface TTTAEnrollmentsSummaryDAO {
 	public TotalName getTTTANATTopAdvisorEnrolledDealerCount();
 	public TotalName getTTTANATTopTechEnrolledIncentiveEligible();
 	public TotalName getTTTANATTopAdvisorEnrolledIncentiveEligible();
-	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory, String positionCode);
+	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory);
 	
 	
 }

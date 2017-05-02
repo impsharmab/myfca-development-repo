@@ -24,13 +24,13 @@ var HeaderComponent = (function () {
         this.cookieService = cookieService;
         this.profileChange = new core_1.EventEmitter();
         this.banners = new Array;
-        // private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
-        // private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
-        // private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
-        this.poscodes = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
-        this.delcodes = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
-        this.booleanAdmin = JSON.parse(this.cookieService.get("CurrentUser")).admin;
+        this.poscodes = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+        this.delcodes = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
+        this.booleanAdmin = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
     }
+    // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
+    // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
+    // private booleanAdmin: any = JSON.parse(this.cookieService.get("CurrentUser")).admin;
     //  var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
     //     var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
     //     var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
@@ -43,8 +43,8 @@ var HeaderComponent = (function () {
         this.profileChange.emit("");
     };
     HeaderComponent.prototype.ngOnInit = function () {
-        //this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
-        this.data = JSON.parse(this.cookieService.get("CurrentUser"));
+        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
     };
     HeaderComponent.prototype.contactUs = function () {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
@@ -53,14 +53,15 @@ var HeaderComponent = (function () {
     //     this.profileChange.emit(value);
     // }
     HeaderComponent.prototype.logout = function () {
-        // sessionStorage.removeItem('CurrentUser');
-        // sessionStorage.removeItem('selectedCodeData');
-        // sessionStorage.clear();
-        this.cookieService.remove('CurrentUser');
-        this.cookieService.remove('selectedCodeData');
+        sessionStorage.removeItem('CurrentUser');
+        sessionStorage.removeItem('selectedCodeData');
+        sessionStorage.clear();
+        // this.cookieService.remove('CurrentUser');
+        // this.cookieService.remove('selectedCodeData');
         this.cookieService.removeAll();
-        var loginUrl = ["login"];
-        this.router.navigate(loginUrl);
+        // let loginUrl = ["login"]
+        // this.router.navigate(loginUrl);
+        window.open("https://dealerconnect.chrysler.com/login/login.html", '_self');
     };
     HeaderComponent.prototype.admin = function () {
         var adminUrl = ["admin"];
@@ -76,6 +77,8 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.profile = function () {
         var profileUrl = ["profile"];
         this.router.navigate(profileUrl);
+    };
+    HeaderComponent.prototype.endEmulation = function () {
     };
     return HeaderComponent;
 }());

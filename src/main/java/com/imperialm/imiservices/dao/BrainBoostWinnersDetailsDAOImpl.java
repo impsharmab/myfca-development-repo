@@ -42,13 +42,14 @@ public class BrainBoostWinnersDetailsDAOImpl implements BrainBoostWinnersDetails
 
 	@SuppressWarnings("unused")
 	@Override
-	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsBySID(String sID, String toggle) {
+	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsBySID(String sID, String toggle, String dealerCode) {
 		List<BrainBoostWinnersDetailsDTO> result = new ArrayList<BrainBoostWinnersDetailsDTO>();
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID, BrainBoostWinnersDetailsDTO.class);
 			query.setParameter(0, sID);
 			query.setParameter(1, toggle);
+			query.setParameter(2, dealerCode);
 			List<BrainBoostWinnersDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {

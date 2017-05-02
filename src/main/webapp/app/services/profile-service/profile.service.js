@@ -31,8 +31,8 @@ var ProfileService = (function () {
     };
     ProfileService.prototype.postProfileData = function (name, email) {
         debugger;
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "name": name, "email": email };
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
@@ -42,8 +42,8 @@ var ProfileService = (function () {
     };
     ProfileService.prototype.changeUserPassword = function (password) {
         debugger;
-        //        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        //        var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "item": password };
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);

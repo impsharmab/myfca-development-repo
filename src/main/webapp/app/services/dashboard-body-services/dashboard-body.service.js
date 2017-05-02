@@ -34,14 +34,14 @@ var DashboardBodyService = (function () {
         return this.userdata;
     };
     DashboardBodyService.prototype.getNumberOfTiltes = function () {
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        // var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
-        // var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
-        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
-        var positioncodes = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
-        var dealerlcodes = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
-        // var getNumberOfTilesServiceUrl: string = "services/notile/" + positioncodes + "/" + dealerlcodes;
-        var getNumberOfTilesServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var positioncodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
+        var dealerlcodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
+        // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        // var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
+        // var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
+        var getNumberOfTilesServiceUrl = "services/notile/" + positioncodes + "/" + dealerlcodes;
+        //var getNumberOfTilesServiceUrl: string = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
         // var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
@@ -52,30 +52,30 @@ var DashboardBodyService = (function () {
             .catch(this.handleError);
     };
     DashboardBodyService.prototype.getTilteJson = function (id) {
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        // var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
-        // var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
-        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
-        var positioncodes = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
-        var dealerlcodes = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var positioncodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
+        var dealerlcodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
+        // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        // var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
+        // var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
         //var tileService = "./app/resources/dc-json/" + id + "-tile.json";
         var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        // var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     DashboardBodyService.prototype.getChartJson = function (id) {
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        // var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
-        // var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
-        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
-        var positioncodes = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
-        var dealerlcodes = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var positioncodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
+        var dealerlcodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
+        // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        // var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
+        // var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
@@ -83,7 +83,7 @@ var DashboardBodyService = (function () {
         //   var chartService = "./app/resources/dc-json/" + id + "-chart.json";
         // var chartService = "./app/resources/json/customer_first.json"; //retention
         var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        // var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);

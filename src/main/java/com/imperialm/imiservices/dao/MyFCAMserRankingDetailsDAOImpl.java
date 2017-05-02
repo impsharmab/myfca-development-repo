@@ -23,12 +23,13 @@ public class MyFCAMserRankingDetailsDAOImpl implements MyFCAMserRankingDetailsDA
 	private EntityManager em;
 	
 	@Override
-	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsBySID(String territory) {
+	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsBySID(String territory, String dealerCode) {
 		List<MyFCAMserRankingDetailsDTO> result = new ArrayList<MyFCAMserRankingDetailsDTO>();
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID, MyFCAMserRankingDetailsDTO.class);
 			query.setParameter(0, territory);
+			query.setParameter(1, dealerCode);
 			List<MyFCAMserRankingDetailsDTO> rows = query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {
