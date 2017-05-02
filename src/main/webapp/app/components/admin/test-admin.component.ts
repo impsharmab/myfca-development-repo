@@ -144,28 +144,34 @@ export class TestAdminComponent implements OnInit {
                 this.emulateUserData = emulateUserData;
                 debugger
                 console.log(emulateUserData)
-                if (emulateUserData["token"].length > 0) {
-                    sessionStorage.clear();
-                    this.adminService.setEmulateUserData(this.emulateUserData);
+                if (emulateUserData["item"].length > 0) {
+                    // this.adminService.setEmulateUserData(this.emulateUserData);
+                    var adminToken = this.cookieService.get("token");
+                    this.cookieService.put("adminToken", adminToken); 
+                    this.cookieService.put("token", emulateUserData.item);
+                    
+                    let url = ["login"]
+                    this.router.navigate(url);
 
-                    var poscodes: any = this.emulateUserData.positionCode;
-                    var delcodes: any = this.emulateUserData.dealerCode;
-                    // this.cookieService.put("selectedCodeData", JSON.stringify(
+                    // this.cookieService.put("adminToken", this.);
+
+
+                    //sessionStorage.clear();
+
+
+                    // this.adminService.setEmulateUserData(this.emulateUserData);
+                    // var poscodes: any = this.emulateUserData.positionCode;
+                    // var delcodes: any = this.emulateUserData.dealerCode;
+
+                    // sessionStorage.setItem("selectedCodeData", JSON.stringify(
+
                     //     {
                     //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                     //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
                     //     }))
 
-
-                    sessionStorage.setItem("selectedCodeData", JSON.stringify(
-
-                        {
-                            "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
-                            "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
-                        }))
-
-                    let url = ["myfcadashboard"]
-                    this.router.navigate(url);
+                    // let url = ["myfcadashboard"]
+                    // this.router.navigate(url);
 
                 }
 
@@ -177,9 +183,7 @@ export class TestAdminComponent implements OnInit {
 
     endEmulateUser() {
         this.cookieService.get("adminToken")
-       
         this.adminService.setEndEmulateUserData(this.endEmulateUserData);
-
         var poscodes: any = this.emulateUserData.positionCode;
         var delcodes: any = this.emulateUserData.dealerCode;
         // this.cookieService.put("selectedCodeData", JSON.stringify(
@@ -202,7 +206,7 @@ export class TestAdminComponent implements OnInit {
     }
 
 }
-       
+
 
 
 

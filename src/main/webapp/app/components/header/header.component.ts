@@ -16,9 +16,10 @@ export class HeaderComponent implements OnInit {
     @Input() data: any;
     @Input() retweetIconHide: any;
     @Output("onProfileChange") profileChange = new EventEmitter<any>();
-    private banners: any = new Array;
     @ViewChild("contactModal") private contactModal: TemplateRef<any>;
     @ViewChild("positioncodeModal") private positioncodeModal: NgbModalRef;
+    private banners: any = new Array;
+    private adminToken: any = "";
     constructor(public activeModal: NgbActiveModal,
         private http: Http,
         private headerService: HeaderService,
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit {
     private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
     private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
     private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
+    private booleanAdminToken: any = this.cookieService.get("adminToken");
 
     // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
     // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
@@ -52,8 +54,6 @@ export class HeaderComponent implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
-        //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
-
 
     }
 
@@ -72,7 +72,7 @@ export class HeaderComponent implements OnInit {
         sessionStorage.clear();
         // this.cookieService.remove('CurrentUser');
         // this.cookieService.remove('selectedCodeData');
-         this.cookieService.removeAll();
+        this.cookieService.removeAll();
         // let loginUrl = ["login"]
         // this.router.navigate(loginUrl);
         window.open("https://dealerconnect.chrysler.com/login/login.html", '_self')
@@ -100,8 +100,33 @@ export class HeaderComponent implements OnInit {
     }
 
     private endEmulation() {
+        var adminToken = this.cookieService.get("adminToken");
+        this.cookieService.remove("adminToken")
+        this.cookieService.remove("token");
+        this.cookieService.removeAll();
+        sessionStorage.clear();
+        window.sessionStorage.clear();
+        //document.sessionStorage.clear();
+        document
+        this.cookieService.put("token", adminToken)
+        debugger
+        // this.cookieService.put(adminToken, "")
+        
+
+        // this.adminToken = adminToken;
+        let url = ["login"]
+        this.router.navigate(url); 
+        // this.booleanEndEmulation();
+        // alert(this.booleanAdminToken)
 
     }
+
+    // booleanEndEmulation() {
+    //     var booleanAdminToken = this.cookieService.get("adminToken");
+    //     if (booleanAdminToken !== undefined || booleanAdminToken.length > 1) {
+    //         this.booleanAdminToken = true;
+    //     }
+    // }
 
 }
 

@@ -25,9 +25,9 @@ export class LoginService {
         // this.cookieService.put("CurrentUser", JSON.stringify(userdata));
         // console.log(this.cookieService.get("CurrentUser"))
 
-        this.cookieService.put("token", "");
-        this.cookieService.remove('token');
-        this.cookieService.put("token", JSON.stringify(userdata.token));
+        
+       // this.cookieService.removeAll();
+        this.cookieService.put("token", (userdata.token));
         console.log(this.cookieService.get("token"))
        // alert("token" + this.cookieService.get("token"))
     }
@@ -57,7 +57,7 @@ export class LoginService {
         // headers.append("Cache-Control", "no-store");
 
         return this.http.post(url, body, { headers: headers })
-            //     return this.http.get(this.getLoginResponseUrl)
+            //     return this.http.get(this.getLoginResponseUrl) 
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError)
@@ -65,13 +65,11 @@ export class LoginService {
     }
     getRefreshLoginResponse(token) {
         debugger
-        // var url = "./login/tokenrefresh";
-        var url = "app/resources/json/token_response.json"
-        
-       // var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        var url = "./login/tokenrefresh/";
        
         var headers = new Headers();
-       // headers.append('Content-Type', 'application/json');
+        headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);
 
         // headers.append("Cache-Control", "no-cache");

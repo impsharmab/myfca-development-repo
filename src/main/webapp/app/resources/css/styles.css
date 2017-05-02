@@ -30,9 +30,15 @@
 }
 .sav-utility .sav-item {
     width: auto;
-    float: left;
+    /*float: left;*/
     font-size: .75em;
+    Display:inline-block;
 }
+.sav-utility .sav-item {
+Float:none;
+
+}
+
 .sav .active {
     font-weight: bold;
 }

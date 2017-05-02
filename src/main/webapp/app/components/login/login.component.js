@@ -84,10 +84,9 @@ var LoginComponent = (function () {
         debugger;
         var user = this.cookieService.get("token");
         if (user !== undefined) {
-            debugger;
-            // alert(user)
             if (user !== undefined && user.length > 1) {
                 this.loginService.getRefreshLoginResponse(user).subscribe(function (refreshTokenData) {
+                    alert(refreshTokenData.token);
                     _this.refreshTokenData = (refreshTokenData);
                     if (refreshTokenData.token.length > 1) {
                         _this.loginService.setUserData(_this.refreshTokenData);
@@ -101,9 +100,6 @@ var LoginComponent = (function () {
                         _this.router.navigate(url);
                     }
                     else {
-                        _this.cookieService.remove("CurrentUser");
-                        _this.cookieService.remove("selectedCodeData");
-                        _this.cookieService.removeAll();
                     }
                 }, function (error) {
                     alert("error in refreshing");

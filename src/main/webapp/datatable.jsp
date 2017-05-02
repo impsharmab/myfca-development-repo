@@ -93,7 +93,7 @@
 		}
 		function getChart9(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Total Winners"];
+			tableData.headers = ["Dealership", "Dealer Code","Total Winners"];
 			tableData.data = [];
 			var delarName = {};
 			for (var i = 0; i < jsonData.length; i++) {
@@ -176,7 +176,9 @@
 		}
 		function getChart11(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
+			// tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
+			tableData.headers = ["Dealer", "Ram Expert Completed"];
+			
 			//tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed", "Total"];
 
 			tableData.data = [];
@@ -199,7 +201,8 @@
 				var jeepTotal = 0;
 				var ramTotal = 0;
 				//innerDataObj.headers = ["", "Participant", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed"]
-				innerDataObj.headers = [" ", "Participant", "Jeep Expert Completed", "Ram Expert Completed"]
+				// innerDataObj.headers = [" ", "Participant", "Jeep Expert Completed", "Ram Expert Completed"]
+				innerDataObj.headers = [" ", "Participant", "Ram Expert Completed"]
 
 				innerDataObj.data = [];
 				for (var key1 in sid) {
@@ -211,7 +214,7 @@
 					var rowData = [""]
 					rowData.push(innerData[0].name)
 
-					var programsArray = ["JEEP", "RAM"]
+					var programsArray = [ "RAM"]
 					for (var r = 0; r < programsArray.length; r++) {
 						var programObj = innerData.filter(function (ele, index, array) {
 							console.log(programsArray[r] === ele.certType.trim())
@@ -228,10 +231,12 @@
 					}
 					console.log(rowData)
 					innerDataObj.data.push(rowData);
-					jeepTotal = jeepTotal + (rowData[2] == undefined ? 0 : rowData[2]);
-					ramTotal = ramTotal + (rowData[3] == undefined ? 0 : rowData[3]);
+					//jeepTotal = jeepTotal + (rowData[1] == undefined ? 0 : rowData[1]);
+					ramTotal = ramTotal + (rowData[2] == undefined ? 0 : rowData[2]);
+					//ramTotal = ramTotal + (rowData[2] == undefined ? 0 : rowData[2]);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal), numberWithCommasNoDecimals(ramTotal), numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
+				// tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal), numberWithCommasNoDecimals(ramTotal), numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(ramTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}

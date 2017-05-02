@@ -23,4 +23,9 @@ public class SIRewardsDetailsDTO implements Serializable {
 	@Id private int level1;
 	@Id private int totalSurveys;
 	@Id private int bCAdvisorRankEarnings;
+	@Id private int trainingQualified;
+	@Id private double dealerTarget;
+	@Id private String positionCode;
+	@Id private String reportQuarter;
+	@Id private int advisorSurveys;
 }

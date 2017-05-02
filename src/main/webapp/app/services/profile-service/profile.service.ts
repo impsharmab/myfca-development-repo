@@ -12,8 +12,8 @@ export class ProfileService {
 
     getProfileData() {
 
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token; 
+       // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
 
         var headers = new Headers();
         headers.append('Authorization', validToken);

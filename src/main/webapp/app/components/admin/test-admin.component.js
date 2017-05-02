@@ -118,21 +118,12 @@ var TestAdminComponent = (function () {
             _this.emulateUserData = emulateUserData;
             debugger;
             console.log(emulateUserData);
-            if (emulateUserData["token"].length > 0) {
-                sessionStorage.clear();
-                _this.adminService.setEmulateUserData(_this.emulateUserData);
-                var poscodes = _this.emulateUserData.positionCode;
-                var delcodes = _this.emulateUserData.dealerCode;
-                // this.cookieService.put("selectedCodeData", JSON.stringify(
-                //     {
-                //         "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
-                //         "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
-                //     }))
-                sessionStorage.setItem("selectedCodeData", JSON.stringify({
-                    "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
-                    "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
-                }));
-                var url = ["myfcadashboard"];
+            if (emulateUserData["item"].length > 0) {
+                // this.adminService.setEmulateUserData(this.emulateUserData);
+                var adminToken = _this.cookieService.get("token");
+                _this.cookieService.put("adminToken", adminToken);
+                _this.cookieService.put("token", emulateUserData.item);
+                var url = ["login"];
                 _this.router.navigate(url);
             }
         });

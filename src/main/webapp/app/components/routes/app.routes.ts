@@ -19,8 +19,8 @@ const routes: Routes = [
         path: "login",
         component: LoginComponent
     },
-    {
-        path: "myfcadashboard", 
+    { 
+        path: "myfcadashboard",
         component: RootPageComponent
     },
     {

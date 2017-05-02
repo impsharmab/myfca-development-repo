@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -178,8 +179,8 @@ public class DashboardController {
 			List<MyfcaMSERTopNDTO> listTechniciansYTD = this.dashService.getMSERTopTen(typeST, 10, null, "YTD");
 
 			TopTenChart topTenChart = new TopTenChart();
-			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians Excellence Card Awards"); //, "Excellence Card Awards - Top 5 Technicians"
-			TopTenDataTable datatableA = new TopTenDataTable("TOP 10 Advisors Excellence Card Awards");
+			TopTenDataTable datatableT = new TopTenDataTable("TOP 10 Technicians By Excellence Card Awards"); //, "Excellence Card Awards - Top 5 Technicians"
+			TopTenDataTable datatableA = new TopTenDataTable("TOP 10 Advisors By Excellence Card Awards");
 			List<TopTenTableData> tabledataA = new ArrayList<TopTenTableData>();
 			List<TopTenTableData> tabledataT = new ArrayList<TopTenTableData>();
 
@@ -551,14 +552,6 @@ public class DashboardController {
 		}
 		case "8":
 		{
-			TotalName nav = new TotalName();
-			nav.setName("Total UConnect Navigation Activations MTD");
-			nav.setTotal("$0");
-			List<MyfcaMSERTopNDTO> listELPMTD = this.dashService.getMSERTopTen("UConnect", 3, "UConnect Navigation", "MTD");
-			if(listELPMTD.size()>0){
-				nav.setTotal("$" + this.formatCurrency(listELPMTD.get(0).getQuantity()));
-			}
-
 			//List<MSERTopNDTO> listELPYTD = this.dashService.getMSERTopTen("Top3Parts", 3, "Express Lane", "YTD");
 
 			TopTenChart topTenChart = new TopTenChart();
@@ -577,8 +570,8 @@ public class DashboardController {
 
 			TotalName mtd = new TotalName();
 			TotalName ytd = new TotalName();
-			List<MyfcaMSERTopNDTO> listMTD = this.dashService.getMSERTopTen("Total Earnings", 1, "UConnect", "MTD");
-			List<MyfcaMSERTopNDTO> listYTD = this.dashService.getMSERTopTen("Total Earnings", 1, "UConnect", "YTD");
+			List<MyfcaMSERTopNDTO> listMTD = this.dashService.getMSERTopTen("Total Earnings", 1, "Uconnect", "MTD");
+			List<MyfcaMSERTopNDTO> listYTD = this.dashService.getMSERTopTen("Total Earnings", 1, "Uconnect", "YTD");
 			double mtdearnings = 0;
 			double ytdearnings = 0;
 			if(listMTD.size()>0){
@@ -588,12 +581,32 @@ public class DashboardController {
 				ytdearnings = listYTD.get(0).getEarnings();
 			}
 
-			mtd.setName("Total UConnect Earnings - MTD");
-			ytd.setName("Total UConnect Earnings - YTD");
+			mtd.setName("Total Uconnect Navigation Activation Earnings MTD");
+			ytd.setName("Total Uconnect Navigation Activation Earnings YTD");
 			mtd.setTotal("$" + this.formatCurrency(mtdearnings));
 			ytd.setTotal("$" + this.formatCurrency(ytdearnings));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
+			
+			
+			
+			TotalName nav = new TotalName();
+			nav.setName("Total Uconnect Navigation Activations MTD");
+			nav.setTotal("$0");
+			List<MyfcaMSERTopNDTO> listELPMTD = this.dashService.getMSERTopTen("Total Count", 3, "Uconnect-NAVACT", "MTD");
+			if(listELPMTD.size()>0){
+				nav.setTotal("$" + this.formatCurrency(listELPMTD.get(0).getQuantity()));
+			}
+			
+			TotalName navy = new TotalName();
+			navy.setName("Total Uconnect Navigation Activations YTD");
+			navy.setTotal("$0");
+			List<MyfcaMSERTopNDTO> listELPYTD = this.dashService.getMSERTopTen("Total Count", 3, "Uconnect-NAVACT", "YTD");
+			if(listELPYTD.size()>0){
+				navy.setTotal("$" + this.formatCurrency(listELPYTD.get(0).getQuantity()));
+			}
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(nav));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(navy));
 
 			//topTenChart.setTop3(datatable.getData());
 
@@ -1192,7 +1205,7 @@ public class DashboardController {
 					//dealerscount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getTotalEnrollments()));
 					incentiveEligible.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getIncentiveEligible()));
 					qtdSurveyCount.setTotal(this.formatNumbers(incentiveEligibleList.get(0).getSurveyCount()));
-					avgSurveyCount.setTotal(df.format(incentiveEligibleList.get(0).getAvgSurveyScore()));
+					avgSurveyCount.setTotal(df.format(incentiveEligibleList.get(0).getAvgSurveyScore()) + "%");
 				}
 
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
@@ -1427,14 +1440,16 @@ public class DashboardController {
 				if(item.getChild() != null && !filters.contains(item.getChild()))
 					filters.add(item.getChild());
 			}
-
+			Collections.sort(filters);
 			//main chart model
 			Chart chart = new Chart("Total Earnings YTD", "", "Total Earnings", "", "bar_compound");
 
 			//Create first level of the chart
 			//Get Distinct program names
 			List<String> programs = this.dashService.getMSERGraphDistinctProgramsByParentTerritoryAndToggle("NAT", "YTD");
-
+			
+			Collections.sort(programs);
+			
 			List<ChartData> attributes = new ArrayList<ChartData>();
 
 			for(String programName: programs){
@@ -3294,7 +3309,7 @@ public class DashboardController {
 				dealerscount.setTotal(this.formatCurrency(Integer.parseInt(dealerscount.getTotal())));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 				
-				List<MyFCAMserRankingDetailsDTO> MSERDetailsDTOlist = this.dashService.getMSERDetailsBySID(territory, dealerCode);
+				List<MyFCAMserRankingDetailsDTO> MSERDetailsDTOlist = this.dashService.getMSERDetailsBySID(user.getUserId().trim(), dealerCode);
 				
 				TotalName rank = new TotalName();
 				rank.setName("Ranking within BC by Excellence Card Awards MTD");
@@ -4353,8 +4368,12 @@ public class DashboardController {
 
 			ChartData excellenceCard = new ChartData();
 			ChartData awardPoints = new ChartData();
-			excellenceCard.setName("2016");
-			awardPoints.setName("2017");
+			
+			String currentYear = new DateTime().getYear() + "";
+			String lastYear = (new DateTime().getYear() -1) + "";
+			
+			excellenceCard.setName(lastYear);
+			awardPoints.setName(currentYear);
 			int excellenceCardTotal = 0;
 			int awardPointsTotal = 0;
 
@@ -4912,12 +4931,12 @@ public class DashboardController {
 
 				totalCertifiedSpecialistParticipants.setName("Total Experts Points Earned YTD");
 				totalCertifiedSpecialistParticipants.setTotal(0 + "");
-				cartificationLevel.setTotal("Jeep Expert");
-				cartificationLevel.setName(" Completed:No");
-				dealershipMasterCertifiedRankWithinBC.setTotal("RAM Expert");
-				dealershipMasterCertifiedRankWithinBC.setName("Completed:No");
-				techExpert.setTotal("Technology Expert");
-				techExpert.setName("Completed:No");
+				cartificationLevel.setTotal("No");
+				cartificationLevel.setName("Jeep Expert Completed");
+				dealershipMasterCertifiedRankWithinBC.setTotal("No");
+				dealershipMasterCertifiedRankWithinBC.setName("RAM Expert Completed");
+				techExpert.setTotal("No");
+				techExpert.setName("Technology Expert Completed");
 
 				TileAttribute1 jeepTile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevel); 
 				TileAttribute1 ramTile = this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC); 
@@ -4972,9 +4991,10 @@ public class DashboardController {
 		}
 		case "29":
 		{
-			String sid = user.getUserId();
+			String sid = user.getUserId().trim();
 			TopTenChart topTenChart = new TopTenChart();
 
+			TotalName eligibleSurveys = new TotalName();
 			TotalName years = new TotalName();
 			TotalName cartificationLevel = new TotalName();
 			TotalName totalCertifiedParticipants = new TotalName();
@@ -4986,16 +5006,32 @@ public class DashboardController {
 			List<SIRewardsDetailsDTO> SIRewardsDetailsList = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD", dealerCode);
 			List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode);
 
+			eligibleSurveys.setName("Eligible Surveys");
+			eligibleSurveys.setTotal("0");
+			
+			
 			if(type.equals("Participant")){
+				
+				cartificationLevel.setName("Level 0 training completed");
+				cartificationLevel.setTotal("No");
+				dealershipMasterCertifiedRankWithinBC.setName("Level 1 training completed");
+				dealershipMasterCertifiedRankWithinBC.setTotal("No");
+				years.setName("Incentive Eligible");
+				cartificationLevel.setTotal("$0");
+				
+				totalCertifiedSpecialistParticipants.setName("QTD Survey Score");
+				totalCertifiedSpecialistParticipants.setTotal("0");
+				
+				totalCertifiedParticipants.setName("Total Earnings YTD");
+				totalCertifiedParticipants.setTotal("$0");
+				
+				totalMasterCertifiedParticipants.setName("BC Rank");
+				totalMasterCertifiedParticipants.setTotal("0");
+				
 				if(SIRewardsDetailsList.size()>0){
 					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsList.get(0);
 
-					cartificationLevel.setName("Level 0 training completed");
-					cartificationLevel.setTotal("No");
-					dealershipMasterCertifiedRankWithinBC.setName("Level 1 training completed");
-					dealershipMasterCertifiedRankWithinBC.setTotal("No");
-					years.setName("Incentive Eligible");
-					cartificationLevel.setTotal("$0");
+					eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getEligibleSurveys()));
 
 					if(SIRewardsDetailsDTO.getLevel0() > 0){
 						cartificationLevel.setTotal("Yes");
@@ -5004,57 +5040,28 @@ public class DashboardController {
 						dealershipMasterCertifiedRankWithinBC.setTotal("Yes");
 					}
 					if(SIRewardsDetailsDTO.getIncentiveQualified() > 0){
-						int total = SIRewardsDetailsDTO.getEligibleSurveys() * 10;
-
-						NumberFormat formatter = NumberFormat.getCurrencyInstance();
-						String moneyStringMTD = formatter.format(total);
-						if (moneyStringMTD.endsWith(".00")) {
-							int centsIndex = moneyStringMTD.lastIndexOf(".00");
-							if (centsIndex != -1) {
-								moneyStringMTD = moneyStringMTD.substring(1, centsIndex);
-							}
-						}
-
-						years.setTotal("$" + moneyStringMTD);
+						years.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getEligibleSurveys() * 10));
 					}
 
+					totalCertifiedSpecialistParticipants.setTotal((int)SIRewardsDetailsDTO.getSurveyScore() + "");
+					
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
-
-					totalCertifiedSpecialistParticipants.setName("QTD Survey Score");
-					totalCertifiedSpecialistParticipants.setTotal((int)SIRewardsDetailsDTO.getSurveyScore() + "");
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-
 
 				}
 
 				if(SIRewardsDetailsListYTD.size()>0){
 					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListYTD.get(0);
 
-					totalCertifiedParticipants.setName("Total Earnings YTD");
-					int total = (int)SIRewardsDetailsDTO.getProjectedEarnings();
-					NumberFormat formatter = NumberFormat.getCurrencyInstance();
-					String moneyStringMTD = formatter.format(total);
-					if (moneyStringMTD.endsWith(".00")) {
-						int centsIndex = moneyStringMTD.lastIndexOf(".00");
-						if (centsIndex != -1) {
-							moneyStringMTD = moneyStringMTD.substring(1, centsIndex);
-						}
-					}
-
-					totalCertifiedParticipants.setTotal("$" + moneyStringMTD);
-
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
-
-
-					totalMasterCertifiedParticipants.setName(sid + " BC Rank");
+					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
 					totalMasterCertifiedParticipants.setTotal(SIRewardsDetailsDTO.getBCAdvisorRankEarnings() + "");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 
 				}
-
-
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 
 			}
 
@@ -5062,37 +5069,34 @@ public class DashboardController {
 				List<String> filters = new ArrayList<String>();
 				filters.add(dealerCode);
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
+				
+				
+				totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
+				totalCertifiedSpecialistParticipants.setTotal("0");
+				
+				totalCertifiedParticipants.setName("Total Earnings YTD");
+				totalCertifiedParticipants.setTotal("$0");
+
+				totalMasterCertifiedParticipants.setName("Dealership BC Rank");
+				totalMasterCertifiedParticipants.setTotal("-");
+				
+				
 				if(SIRewardsDetailsGraphList.size() > 0){
 					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
-					totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
 					totalCertifiedSpecialistParticipants.setTotal((int)SIRewardsDetailsGraphDTO.getAvgSurveyScore() + "");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-
-
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
+				
 				SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "YTD");
 				if(SIRewardsDetailsGraphList.size() > 0){
 					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
-					totalCertifiedParticipants.setName("Total Earnings YTD");
-					int total = (int)SIRewardsDetailsGraphDTO.getProjectedEarnings();
-					NumberFormat formatter = NumberFormat.getCurrencyInstance();
-					String moneyStringMTD = formatter.format(total);
-					if (moneyStringMTD.endsWith(".00")) {
-						int centsIndex = moneyStringMTD.lastIndexOf(".00");
-						if (centsIndex != -1) {
-							moneyStringMTD = moneyStringMTD.substring(1, centsIndex);
-						}
-					}
-
-					totalCertifiedParticipants.setTotal("$" + moneyStringMTD);
-
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
-
-					totalMasterCertifiedParticipants.setName("Dealership BC Rank");
-					totalMasterCertifiedParticipants.setTotal(SIRewardsDetailsGraphDTO.getBCDlearRankEarnings() + "");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
-
+					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+					totalMasterCertifiedParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getBCDlearRankEarnings()));
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 			}
 
 			if(type.equals("Manager")){
@@ -5100,42 +5104,35 @@ public class DashboardController {
 				List<String> filters = new ArrayList<String>();
 				filters.add(dealerCode);
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
+				
+				totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
+				totalCertifiedSpecialistParticipants.setTotal("0");
+				
+				totalCertifiedParticipants.setName("Total Earnings YTD");
+				totalCertifiedParticipants.setTotal("$0");
+				
+				totalMasterCertifiedParticipants.setName("BC Rank");
+				totalMasterCertifiedParticipants.setTotal("-");
+				
 				if(SIRewardsDetailsGraphList.size() > 0){
 					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
-					totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
 					totalCertifiedSpecialistParticipants.setTotal((int)SIRewardsDetailsGraphDTO.getAvgSurveyScore() + "");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-
-
 				}
 
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
+				
 				if(SIRewardsDetailsListYTD.size()>0){
 					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListYTD.get(0);
-
-					totalCertifiedParticipants.setName("Total Earnings YTD");
-					int total = (int)SIRewardsDetailsDTO.getProjectedEarnings();
-					NumberFormat formatter = NumberFormat.getCurrencyInstance();
-					String moneyStringMTD = formatter.format(total);
-					if (moneyStringMTD.endsWith(".00")) {
-						int centsIndex = moneyStringMTD.lastIndexOf(".00");
-						if (centsIndex != -1) {
-							moneyStringMTD = moneyStringMTD.substring(1, centsIndex);
-						}
-					}
-
-					totalCertifiedParticipants.setTotal("$" + moneyStringMTD);
-
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
 				}
-
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+				
 				if(SIRewardsDetailsList.size()>0){
 					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsList.get(0);
-
-					totalMasterCertifiedParticipants.setName(sid + " BC Rank");
 					totalMasterCertifiedParticipants.setTotal(SIRewardsDetailsDTO.getBCAdvisorRankEarnings() + "");
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
-
 				}
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
 
 			}
 

@@ -24,9 +24,11 @@ var HeaderComponent = (function () {
         this.cookieService = cookieService;
         this.profileChange = new core_1.EventEmitter();
         this.banners = new Array;
+        this.adminToken = "";
         this.poscodes = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
         this.delcodes = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
         this.booleanAdmin = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
+        this.booleanAdminToken = this.cookieService.get("adminToken");
     }
     // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
     // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
@@ -44,7 +46,6 @@ var HeaderComponent = (function () {
     };
     HeaderComponent.prototype.ngOnInit = function () {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
-        //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
     };
     HeaderComponent.prototype.contactUs = function () {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
@@ -79,6 +80,22 @@ var HeaderComponent = (function () {
         this.router.navigate(profileUrl);
     };
     HeaderComponent.prototype.endEmulation = function () {
+        var adminToken = this.cookieService.get("adminToken");
+        this.cookieService.remove("adminToken");
+        this.cookieService.remove("token");
+        this.cookieService.removeAll();
+        sessionStorage.clear();
+        window.sessionStorage.clear();
+        //document.sessionStorage.clear();
+        document;
+        this.cookieService.put("token", adminToken);
+        debugger;
+        // this.cookieService.put(adminToken, "")
+        // this.adminToken = adminToken;
+        var url = ["login"];
+        this.router.navigate(url);
+        // this.booleanEndEmulation();
+        // alert(this.booleanAdminToken)
     };
     return HeaderComponent;
 }());

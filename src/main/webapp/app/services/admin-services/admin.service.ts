@@ -13,13 +13,14 @@ export class AdminService {
     setEmulateUserData(emulateuserData) {
         var adminToken = this.cookieService.get("token");
         this.cookieService.put("adminToken", adminToken);
-        sessionStorage.setItem("CurrentUser", "");
-        sessionStorage.removeItem('CurrentUser');
-        sessionStorage.removeItem('selectedCodeData');
-        sessionStorage.setItem("CurrentUser", JSON.stringify(emulateuserData));
+        this.cookieService.put("token", emulateuserData.item);
+        // sessionStorage.setItem("CurrentUser", "");
+        // sessionStorage.removeItem('CurrentUser');
+        // sessionStorage.removeItem('selectedCodeData');
+        // sessionStorage.setItem("CurrentUser", JSON.stringify(emulateuserData));
 
 
-    }
+    } 
 
     setEndEmulateUserData(endEmulateUserData) {
 
@@ -52,9 +53,9 @@ export class AdminService {
     }
 
     getEmulateUserData(sid: string) {
-        var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
+        //var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
         // var getEmulateUserDataUrl = "service/Admin/?id="+sid;
-        // var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/service/Admin/"+sid;
+         var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/Admin/"+sid;
 
 
 

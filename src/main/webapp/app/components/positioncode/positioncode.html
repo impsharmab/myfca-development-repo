@@ -32,7 +32,7 @@
         <div>
             <label></label>
             <div *ngIf="pcode.length>1">
-                <p>Select your position code
+                <p>Select your Position Code:
                     <select [(ngModel)]="code.selectedPositionCode" (change)="selectPositionCode(code.selectedPositionCode)" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let pcode of pcode" [ngValue]="pcode" >{{pcode}} </option>
             </select> 
@@ -45,7 +45,7 @@
         <div>
             <label></label> 
             <div *ngIf="dcode.length>1">
-                <p>Select your dealer code
+                <p>Select your Dealer Code:
                     <select [(ngModel)]="code.selectedDealerCode" (change)="selectDealerCode(code.selectedDealerCode)" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let dcode of dcode" [ngValue]="dcode" >{{dcode}}</option>
             </select> 

@@ -21,8 +21,8 @@ var ProfileService = (function () {
         this.getPasswordServiceUrl = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Password/';
     }
     ProfileService.prototype.getProfileData = function () {
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        var validToken = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
         return this.http.get(this.getProfileServiceUrl, { headers: headers })

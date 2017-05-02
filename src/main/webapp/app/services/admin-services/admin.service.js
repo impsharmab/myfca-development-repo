@@ -21,10 +21,11 @@ var AdminService = (function () {
     AdminService.prototype.setEmulateUserData = function (emulateuserData) {
         var adminToken = this.cookieService.get("token");
         this.cookieService.put("adminToken", adminToken);
-        sessionStorage.setItem("CurrentUser", "");
-        sessionStorage.removeItem('CurrentUser');
-        sessionStorage.removeItem('selectedCodeData');
-        sessionStorage.setItem("CurrentUser", JSON.stringify(emulateuserData));
+        this.cookieService.put("token", emulateuserData.item);
+        // sessionStorage.setItem("CurrentUser", "");
+        // sessionStorage.removeItem('CurrentUser');
+        // sessionStorage.removeItem('selectedCodeData');
+        // sessionStorage.setItem("CurrentUser", JSON.stringify(emulateuserData));
     };
     AdminService.prototype.setEndEmulateUserData = function (endEmulateUserData) {
     };
@@ -53,9 +54,9 @@ var AdminService = (function () {
             .catch(this.handleError);
     };
     AdminService.prototype.getEmulateUserData = function (sid) {
-        var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
+        //var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
         // var getEmulateUserDataUrl = "service/Admin/?id="+sid;
-        // var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/service/Admin/"+sid;
+        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/Admin/" + sid;
         var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');

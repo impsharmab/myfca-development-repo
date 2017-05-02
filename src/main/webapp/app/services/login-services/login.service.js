@@ -32,9 +32,8 @@ var LoginService = (function () {
         // this.cookieService.remove('selectedCodeData');
         // this.cookieService.put("CurrentUser", JSON.stringify(userdata));
         // console.log(this.cookieService.get("CurrentUser"))
-        this.cookieService.put("token", "");
-        this.cookieService.remove('token');
-        this.cookieService.put("token", JSON.stringify(userdata.token));
+        // this.cookieService.removeAll();
+        this.cookieService.put("token", (userdata.token));
         console.log(this.cookieService.get("token"));
         // alert("token" + this.cookieService.get("token"))
     };
@@ -69,11 +68,10 @@ var LoginService = (function () {
     };
     LoginService.prototype.getRefreshLoginResponse = function (token) {
         debugger;
-        // var url = "./login/tokenrefresh";
-        var url = "app/resources/json/token_response.json";
-        // var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        var url = "./login/tokenrefresh/";
         var headers = new http_1.Headers();
-        // headers.append('Content-Type', 'application/json');
+        headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");

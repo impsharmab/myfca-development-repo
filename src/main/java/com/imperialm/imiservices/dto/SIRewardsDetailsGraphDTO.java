@@ -16,4 +16,8 @@ public class SIRewardsDetailsGraphDTO implements Serializable {
 	@Id private double avgSurveyScore;
 	@Id private double projectedEarnings;
 	@Id private int bCDlearRankEarnings;
+	@Id private int incentiveQualified;
+	@Id private int trainingQualified;
+	@Id private int EligibleSurveys;
+	@Id private int totalSurveys;
 }

@@ -724,27 +724,27 @@ public class MappingServiceImpl {
 	
 	public String formatCurrency(int number){
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format(number);
+		String moneyString = formatter.format((int)number);
 		if (moneyString.endsWith(".00")) {
-		    int centsIndex = moneyString.lastIndexOf(".00");
-		    if (centsIndex != -1) {
-		    	moneyString = moneyString.substring(1, centsIndex);
-		    }
+			int centsIndex = moneyString.lastIndexOf(".00");
+			if (centsIndex != -1) {
+				moneyString = moneyString.substring(1, centsIndex);
+			}
 		}
-		
+
 		return moneyString;
 	}
-	
+
 	public String formatCurrency(double number){
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format(number);
+		String moneyString = formatter.format((int)number);
 		if (moneyString.endsWith(".00")) {
-		    int centsIndex = moneyString.lastIndexOf(".00");
-		    if (centsIndex != -1) {
-		    	moneyString = moneyString.substring(1, centsIndex);
-		    }
+			int centsIndex = moneyString.lastIndexOf(".00");
+			if (centsIndex != -1) {
+				moneyString = moneyString.substring(1, centsIndex);
+			}
 		}
-		
+
 		return moneyString;
 	}
 	

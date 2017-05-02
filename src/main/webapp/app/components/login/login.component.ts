@@ -105,21 +105,17 @@ export class LoginComponent implements OnInit {
         debugger
         var user = this.cookieService.get("token");
         if (user !== undefined) {
-            debugger
-           // alert(user)
-           
+
            if (user !== undefined && user.length > 1) {
                 this.loginService.getRefreshLoginResponse(user).subscribe(
                     (refreshTokenData) => {
+                        alert(refreshTokenData.token)
                         this.refreshTokenData = (refreshTokenData)
                         if (refreshTokenData.token.length > 1) {
-
                             this.loginService.setUserData(this.refreshTokenData);
-
                             var poscodes: any = this.refreshTokenData.positionCode;
                             var delcodes: any = this.refreshTokenData.dealerCode;
                             sessionStorage.setItem("selectedCodeData", JSON.stringify(
-
                                 {
                                     "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
                                     "selectedDealerCode": delcodes === undefined ? 0 : delcodes[0] === "" ? "0" : delcodes.length > 0 ? delcodes[0] : 0
@@ -128,9 +124,9 @@ export class LoginComponent implements OnInit {
                             let url = ["myfcadashboard"]
                             this.router.navigate(url);
                         } else {
-                            this.cookieService.remove("CurrentUser")
-                            this.cookieService.remove("selectedCodeData")
-                            this.cookieService.removeAll();
+                            // this.cookieService.remove("CurrentUser")
+                            // this.cookieService.remove("selectedCodeData")
+                            // this.cookieService.removeAll();
                         }
                     },
                     (error) => {
