@@ -14,9 +14,9 @@ var func=function(){
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12">
-                        <h2 class="heading-xl" >
+                        <h3 class="heading-xl" >
                             Update User Profile Page
-                        </h2>
+                        </h3>
                     </div>
 
                 </div>
@@ -54,13 +54,15 @@ var func=function(){
                         </form>-->
                         <form class="pageForm" #changeInformation="ngForm">
                             <h6>Change your Information</h6>
+                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successProfileChangeMessage}}</p>                            
+                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorProfileChange}}</p> 
                             <label>Name:</label>
                             <input id="username" name="username" type="text" [(ngModel)]="profiledata.name"><br>
                             <label>Email:</label>
                             <input id="email" name="email" type="text" [(ngModel)]="profiledata.email">
                             <div class="form-actions">
                                 <!--<button type="reset" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style="cursor:pointer">Cancel</button>-->
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="postProfileData()"
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeProfileData()"
                                     style="cursor:pointer">Update</button>
                             </div>
 

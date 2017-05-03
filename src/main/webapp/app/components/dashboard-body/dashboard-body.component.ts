@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 const Highcharts = require('highcharts');
+declare var $ : any;
 
 import { NgbdModalContent } from './dashboard-body.component.modal'
 // const Highcharts3d = require('highcharts/highcharts-3d.src');
@@ -123,6 +124,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
 
     this.modalService.open(this.model, { size: "lg" });
+
+   
+		$(document).ready(function () {
+			var elementHeights = $('.data - group').map(function () {
+				return $(this).height();
+			}).get();
+			var maxHeight = Math.max.apply(null, elementHeights);
+			$('.data-group').height(maxHeight);
+		});
+	
   }
   ngOnDestroy() {
     this.tilesArray = [];

@@ -138,6 +138,13 @@ var DashboardBodyComponent = (function () {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
         //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
         this.modalService.open(this.model, { size: "lg" });
+        $(document).ready(function () {
+            var elementHeights = $('.data - group').map(function () {
+                return $(this).height();
+            }).get();
+            var maxHeight = Math.max.apply(null, elementHeights);
+            $('.data-group').height(maxHeight);
+        });
     };
     DashboardBodyComponent.prototype.ngOnDestroy = function () {
         this.tilesArray = [];

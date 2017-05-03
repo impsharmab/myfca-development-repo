@@ -8,6 +8,7 @@
                         <h1>Admin</h1>
                     </div>
                 </div>
+                <!--user emulation start-->
                 <div class="row">
 
                     <div class="col-sm-12 col-md-8">
@@ -19,7 +20,7 @@
                                     <div class="position-code-filter">
                                         <input id="emulate-user-sid" name="emulate-user-sid" [(ngModel)]="emulateuser.sid">
                                         <br />
-                                        <br>                                        
+                                        <br>
                                         <button type="button" class="btn btn-primary btn-sm" (click)="emulateUser()">Emulate User</button>
                                     </div>
                                 </div>
@@ -27,7 +28,9 @@
                         </div>
                     </div>
                 </div>
+                <!--user emulation end-->
 
+                <!--Add Image to Banner start-->
                 <div class="row">
 
                     <div class="col-sm-12 col-md-8">
@@ -35,15 +38,11 @@
                             <h4>Add Image to Banner</h4>
                             <div class="row">
                                 <div class="col-sm-12 col-md-6">
-                                    <label>Select a Role</label>
-                                    <div class="position-code-filter">
-                                        <input id="position-code-filter-input-2">
-                                    </div>
+                                    <label>Select Role</label>
+                                    <div id="positionCodeImage"></div>
 
                                     <label>Select a Business Center</label>
-                                    <div class="business-center-input">
-                                        <input id="business-center-input">
-                                    </div>
+                                    <div id="businessCenterImage"></div>
 
                                     <label>Enter an Order Number</label>
                                     <input type="text">
@@ -74,6 +73,9 @@
                         </div>
                     </div>
                 </div>
+                <!--Add Image to Banner end-->
+                
+                <!--Configuration Image to Banner end-->
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
 
@@ -83,7 +85,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Role</th>
+                                        <th>Roles</th>
                                         <th>Business Center</th>
                                         <th>Image Name</th>
                                         <th>Order</th>
@@ -109,9 +111,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>18</td>
+                                        <td>Service Advisors</td>
                                         <td>NA</td>
-                                        <td>FileName.png</td>
+                                        <td>fcaRewards.png</td>
                                         <td>1</td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
@@ -121,9 +123,9 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>18</td>
+                                        <td>Service Advisors</td>
                                         <td>CA</td>
-                                        <td>Picture.jpeg</td>
+                                        <td>Chrysler.jpeg</td>
                                         <td>1</td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
@@ -133,9 +135,9 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>65</td>
-                                        <td>CA</td>
-                                        <td>Cars.jpeg</td>
+                                        <td>Service Advisors</td>
+                                        <td>DN</td>
+                                        <td>TopTech.jpeg</td>
                                         <td>1</td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></button>
@@ -149,8 +151,10 @@
 
                         </div>
                     </div>
-
                 </div>
+                <!--Configuration Image to Banner end-->
+
+
 
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
@@ -641,3 +645,8 @@
     </div>
 
 </section>
+<style type="text/css">
+    .box label {
+        float: none;
+    }
+</style>

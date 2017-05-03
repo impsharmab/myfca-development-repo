@@ -81,6 +81,12 @@ var TestAdminComponent = (function () {
                     .append("<div>" + item.label + "</div>")
                     .appendTo(ul);
             };
+            $('#positionCodeImage').magicSuggest({
+                data: ["Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"]
+            });
+            $('#businessCenterImage').magicSuggest({
+                data: ["NAT", "CA", "DN", "GL", "MA", "MW", "NE", "SE", "SW", "WE"]
+            });
         });
     };
     TestAdminComponent.prototype.getPositionCode = function () {

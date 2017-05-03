@@ -94,9 +94,17 @@ export class TestAdminComponent implements OnInit {
                         .appendTo(ul);
                 };
 
+            $('#positionCodeImage').magicSuggest({
+                data: ["Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"]
+
+            });
+
+            $('#businessCenterImage').magicSuggest({
+                data: ["NAT", "CA", "DN", "GL", "MA", "MW", "NE", "SE", "SW", "WE"]
+
+            });
+
         });
-
-
 
     }
 
@@ -147,9 +155,9 @@ export class TestAdminComponent implements OnInit {
                 if (emulateUserData["item"].length > 0) {
                     // this.adminService.setEmulateUserData(this.emulateUserData);
                     var adminToken = this.cookieService.get("token");
-                    this.cookieService.put("adminToken", adminToken); 
+                    this.cookieService.put("adminToken", adminToken);
                     this.cookieService.put("token", emulateUserData.item);
-                    
+
                     let url = ["login"]
                     this.router.navigate(url);
 

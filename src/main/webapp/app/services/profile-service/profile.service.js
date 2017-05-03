@@ -29,7 +29,7 @@ var ProfileService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    ProfileService.prototype.postProfileData = function (name, email) {
+    ProfileService.prototype.changeProfileData = function (name, email) {
         debugger;
         var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;

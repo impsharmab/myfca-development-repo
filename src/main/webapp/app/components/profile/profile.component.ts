@@ -10,10 +10,14 @@ import { ProfileData } from './profile.interface'
 })
 export class ProfileComponent implements OnInit {
     private profiledata: ProfileData;
+    private profileChangeData: any;
     private _password: any;
     private successPasswordChangeMessage: string = "";
     private passwordNotMatched: string = "";
     private errorPassWordChange: string = "";
+    private successProfileChangeMessage: string = "";
+    private errorProfileChangeMessage: string = "";
+
     ngOnInit() {
         this.profiledata = {
             "email": "",
@@ -34,18 +38,18 @@ export class ProfileComponent implements OnInit {
                 // alert(profiledata.email)
             },
             (error) => {
-
             }
         )
-
     }
 
-    private postProfileData() {
-
-        this.profileService.postProfileData(this.profiledata.name, this.profiledata.email).subscribe(
-
+    private changeProfileData() {
+        this.profileService.changeProfileData(this.profiledata.name, this.profiledata.email).subscribe(
+            (profileChangeData) => {
+                this.profileChangeData = (profileChangeData);
+                this.successProfileChangeMessage = "Your Profile Settings are Updated";
+            },
             (error) => {
-
+                this.errorProfileChangeMessage = "Error in profile change";
             }
         )
     }
@@ -57,7 +61,7 @@ export class ProfileComponent implements OnInit {
         this.profileService.changeUserPassword(this.profiledata.password1).subscribe(
             (password) => {
                 this._password = (password);
-                this.successPasswordChangeMessage = "Your profile settings are updated";
+                this.successPasswordChangeMessage = "Your Profile Password is Updated";
             },
             (error) => {
                 this.errorPassWordChange = "Error in password change";

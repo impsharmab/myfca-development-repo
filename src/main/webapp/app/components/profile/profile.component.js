@@ -16,6 +16,8 @@ var ProfileComponent = (function () {
         this.successPasswordChangeMessage = "";
         this.passwordNotMatched = "";
         this.errorPassWordChange = "";
+        this.successProfileChangeMessage = "";
+        this.errorProfileChangeMessage = "";
     }
     ProfileComponent.prototype.ngOnInit = function () {
         this.profiledata = {
@@ -36,8 +38,13 @@ var ProfileComponent = (function () {
         }, function (error) {
         });
     };
-    ProfileComponent.prototype.postProfileData = function () {
-        this.profileService.postProfileData(this.profiledata.name, this.profiledata.email).subscribe(function (error) {
+    ProfileComponent.prototype.changeProfileData = function () {
+        var _this = this;
+        this.profileService.changeProfileData(this.profiledata.name, this.profiledata.email).subscribe(function (profileChangeData) {
+            _this.profileChangeData = (profileChangeData);
+            _this.successProfileChangeMessage = "Your Profile Settings are Updated";
+        }, function (error) {
+            _this.errorProfileChangeMessage = "Error in profile change";
         });
     };
     ProfileComponent.prototype.changeUserPassword = function () {
@@ -48,7 +55,7 @@ var ProfileComponent = (function () {
         }
         this.profileService.changeUserPassword(this.profiledata.password1).subscribe(function (password) {
             _this._password = (password);
-            _this.successPasswordChangeMessage = "Your profile settings are updated";
+            _this.successPasswordChangeMessage = "Your Profile Password is Updated";
         }, function (error) {
             _this.errorPassWordChange = "Error in password change";
         });

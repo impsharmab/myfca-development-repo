@@ -123,9 +123,10 @@ p {} .button-collapse {
 .pageTitle .heading-xl {
     color: #fff;
     display: inline-block;
-    font-size: 40px;
+    /*font-size: 40px;*/
     margin: 0;
     vertical-align: middle;
+    margin-left: -175;
 }
 .pageTitle {
     background: #536ea4 none repeat scroll 0 0;
@@ -262,6 +263,7 @@ footer.page-footer {
 .image-frame img {
     text-align: left;
     float: left;
+    height:40px;
 }
 .data-point {
     font-size: 1.4em;

@@ -22,7 +22,7 @@ export class ProfileService {
             .catch(this.handleError);
     }
 
-    postProfileData(name: string, email: string) {
+    changeProfileData(name: string, email: string) {
         debugger
          var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
