@@ -11,18 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
-import com.imperialm.imiservices.dao.UserProgramRolesDAO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
-import com.imperialm.imiservices.entities.User;
 import com.imperialm.imiservices.security.JwtAuthenticationRequest;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.security.service.JwtAuthenticationResponse;
-import com.imperialm.imiservices.services.UserService;
 import com.imperialm.imiservices.services.UserServiceImpl;
 
 import java.security.MessageDigest;
@@ -31,7 +27,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.crypto.Mac;
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 

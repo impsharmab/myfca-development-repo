@@ -19,12 +19,12 @@ import java.util.Iterator;
 import java.util.List;
 
 @Controller
-public class FileUploadController {
+public class FileController {
 
-	@Value("${images.shared.folder}")
+	@Value("${images.shared.folder.banner}")
 	private String imagePath;
 
-	@RequestMapping(value="/imageUpload", method = RequestMethod.POST)
+	@RequestMapping(value="/services/files/imageUpload", method = RequestMethod.POST)
 	public ResponseEntity<?> UploadFile(MultipartHttpServletRequest request) throws IOException {
 
 		Iterator<String> itr=request.getFileNames();
@@ -48,7 +48,7 @@ public class FileUploadController {
 	}
 
 
-	@GetMapping("/listFiles")
+	@GetMapping("/services/files/listFiles")
 	public ResponseEntity<?> listUploadedFiles() throws IOException {
 
 		File dir = new File(imagePath);
@@ -67,7 +67,7 @@ public class FileUploadController {
 		return ResponseEntity.badRequest().body(HttpStatus.CONFLICT);
 	}
 
-	@RequestMapping(value = "/files/{file_name:.+}", method = RequestMethod.GET)
+	@RequestMapping(value = "/services/files/get/{file_name:.+}", method = RequestMethod.GET)
 	@ResponseBody
 	public FileSystemResource getFile(@PathVariable("file_name") String fileName) {
 		return new FileSystemResource(imagePath + fileName);

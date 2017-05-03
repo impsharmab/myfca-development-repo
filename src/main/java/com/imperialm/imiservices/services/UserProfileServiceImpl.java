@@ -7,7 +7,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.imperialm.imiservices.dao.UserProfileDAO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UserProfileDTO;
 import com.imperialm.imiservices.dto.request.InputRequest;
@@ -15,9 +14,6 @@ import com.imperialm.imiservices.model.NoTile;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
-
-	@Autowired
-	private UserProfileDAO userProfileDAO;
 	
 	//UR2.1
 	private List<String> tile1 = new ArrayList<String>(Arrays.asList("01","02","07","08","09","13","14","16","17","19","20","22","23","27","2S","32","33","34","35","36","37","39","3S","40","46","47","49","4S","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","ET","LV","N1","N2","SC","SD","UB","VT"));
@@ -81,11 +77,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private List<NoTile> noTileList = new ArrayList<NoTile>();
 	
 	private List<NoTile> userTiles = new ArrayList<NoTile>();
-
-	@Override
-	public UserProfileDTO getUserProfile(final InputRequest userRoleReq) {
-		return this.userProfileDAO.getUserProfile(userRoleReq);
-	}
 	
 	
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc) {

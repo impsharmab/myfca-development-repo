@@ -54,7 +54,7 @@ var LoginService = (function () {
     };
     LoginService.prototype.getLoginResponse = function (username, password) {
         var url = "./login/token/";
-        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        // var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -68,8 +68,8 @@ var LoginService = (function () {
     };
     LoginService.prototype.getRefreshLoginResponse = function (token) {
         debugger;
-        var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
-        //var url = "./login/tokenrefresh/";
+        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        var url = "./login/tokenrefresh/";
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);

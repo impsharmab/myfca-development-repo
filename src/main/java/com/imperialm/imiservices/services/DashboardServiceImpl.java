@@ -355,6 +355,10 @@ public class DashboardServiceImpl {
 		return this.MyFCAMserRankingDetailsDAO.getMSERDetailsBySID(territory, dealerCode);
 	}
 	
+	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsSUMBySID(String territory, String dealerCode){
+		return this.MyFCAMserRankingDetailsDAO.getMSERDetailsSUMBySID(territory, dealerCode);
+	}
+	
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByTerritoryAndToggle(String territory, String toggle){
 		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphByTerritoryAndToggle(territory, toggle);
 	}
@@ -394,20 +398,20 @@ public class DashboardServiceImpl {
 		return this.SIRewardsDetailsGraphDAO.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, toggle);
 	}
 	
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCode(String dealerCode){
+	/*public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCode(String dealerCode){
 		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCode(dealerCode);
+	}*/
+	
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID, String dealerCode, String quarter){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySID(sID, dealerCode, quarter);
 	}
 	
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID, String dealerCode){
-		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySID(sID, dealerCode);
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggle(String dealerCode, String toggle, String quarter){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCodeAndToggle(dealerCode, toggle, quarter);
 	}
 	
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggle(String dealerCode, String toggle){
-		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCodeAndToggle(dealerCode, toggle);
-	}
-	
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySIDAndToggle(String sID, String toggle, String dealerCode){
-		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySIDAndToggle(sID, toggle, dealerCode);
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySIDAndToggle(String sID, String toggle, String dealerCode, String quarter){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySIDAndToggle(sID, toggle, dealerCode, quarter);
 	}
 	
 	public List<RetentionGraphDTO> getRetentionGraphByParentTerritoryList(List<String> list){
@@ -492,6 +496,10 @@ public class DashboardServiceImpl {
 	
 	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsByDealerCode(String dealerCode){
 		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsByDealerCode(dealerCode);
+	}
+	
+	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsByDealerCodeGroupBySID(String dealerCode){
+		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsByDealerCodeGroupBySID(dealerCode);
 	}
 	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsBySID(String sid, String dealerCode){
 		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsBySID(sid, dealerCode);
@@ -655,6 +663,14 @@ public class DashboardServiceImpl {
 	
 	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode){
 		return this.MyfcaMSERTotalEarningsDetailsDAO.getMSERGraphDetailsByDealerCode(dealerCode);
+	}
+	
+	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsBySID(String sid, String dealerCode){
+		return this.MyfcaMSERTotalEarningsDetailsDAO.getMSERGraphDetailsBySID(sid, dealerCode);
+	}
+	
+	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsSUMBySID(String sid, String dealerCode){
+		return this.MyfcaMSERTotalEarningsDetailsDAO.getMSERGraphDetailsSUMBySID(sid, dealerCode);
 	}
 	
 	public List<CustomerFirstDetailsDTO> getCustomerFirstDetailsByDealerCodeAndToggle(String dealerCode, String toggle){

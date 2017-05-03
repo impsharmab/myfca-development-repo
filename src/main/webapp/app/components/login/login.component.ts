@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
            if (user !== undefined && user.length > 1) {
                 this.loginService.getRefreshLoginResponse(user).subscribe(
                     (refreshTokenData) => {
-                        alert(refreshTokenData.token)
+                        //alert(refreshTokenData.token)
                         this.refreshTokenData = (refreshTokenData)
                         if (refreshTokenData.token.length > 1) {
                             this.loginService.setUserData(this.refreshTokenData);

@@ -5,8 +5,7 @@ package com.imperialm.imiservices.rest;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,26 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.security.JwtTokenUtil;
-import com.imperialm.imiservices.services.DashboardServiceImpl;
-import com.imperialm.imiservices.services.MappingServiceImpl;
 import com.imperialm.imiservices.services.UserServiceImpl;
 import com.imperialm.imiservices.util.IMIServicesConstants;
 
-/**
- * @author Dheerajr
- *
- */
+
 @Controller
 @RequestMapping("/")
 public class IMIServiceWebController {
-
-	private static final Logger logger = LoggerFactory.getLogger(IMIServiceWebController.class);
-
-	@Autowired
-	private DashboardServiceImpl dashService;
-
-	@Autowired
-	private MappingServiceImpl mappingService;
 
 	@Value("${jwt.header}")
 	private String tokenHeader;
@@ -48,16 +34,17 @@ public class IMIServiceWebController {
 	private UserServiceImpl userDetailsService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	// @RequestMapping(method = RequestMethod.GET)
 	public String index() {
 		return IMIServicesConstants.INDEX_PAGE;
+	}
+	
+	@RequestMapping(value = "/healthcheck.html", method = RequestMethod.GET)
+	public String healthcheck() {
+		return "healthcheck.html";
 	}
 
 	
 	@RequestMapping(value = "/datatable", method = RequestMethod.GET)
-	// @RequestMapping(value = "/services/data/{chartId}/{territory}", method =
-	// RequestMethod.GET)
-	// @RequestMapping(method = RequestMethod.GET)
 	public String datatable(Model model, @RequestParam(value = "chartId") String id,
 			@RequestParam(value = "territory") String territory, @RequestParam(value = "token") String token, HttpServletRequest request) {
 		UserDetailsImpl user = null;

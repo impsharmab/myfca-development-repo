@@ -20,8 +20,8 @@ public interface MyfcaMSERTotalEarningsDetailsDAO {
 	
 	public static String PARTICIPANT_ENROLLED_BY_DEALERCODE = "select CAST(ISNULL(COUNT( DISTINCT ER.[SID]), '0') as varchar(20)) 'total', 'Total Participants Enrolled' as name, '' as error from [MyfcaMSERTotalEarningsDetails] ER, [MyfcaMSERTotalEarningsDetails] EM where ER.[DealersEnrolled] = 1 AND ER.[DealerCode] = ?0";
 	
-	public static String MTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsMTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards MTD' as 'name', '' as error from [MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0 AND [DealerCode] = ?1";
-	public static String YTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsYTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards YTD' as 'name', '' as error from [MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0 AND [DealerCode] = ?1";
+	public static String MTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsMTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards MTD' as 'name', '' as error from [dbo].[MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0 AND [DealerCode] = ?1";
+	public static String YTD_EXCELLANCE_CARD_AWARD = "select IsNull(CAST(SUM([EarningsYTD]) as varchar(20)),'0') 'total', 'Excellence Card Awards YTD' as 'name', '' as error from [dbo].[MyfcaMSERTotalEarningsDetails] where [SID] LIKE ?0 AND [DealerCode] = ?1";
 	
 	public static String SELECT_DEALERCOUNT_BY_BC_OR_DISTRICT = "Select '0' as 'total', 'Total Dealers Enrolled' as 'name', ?0 as error";
 	public static String SELECT_PARTICIPANT_ENROLLED_BY_DEALERCODE = "SELECT CAST(ISNULL(COUNT(DISTINCT SID),0) as varchar(20)) total , 'Total Participants Enrolled' name, '' as error FROM [dbo].[MyfcaMSERTotalEarningsDetails] where ParticipantsEnrolled > 0 AND DealerCode = ?0";
@@ -29,7 +29,11 @@ public interface MyfcaMSERTotalEarningsDetailsDAO {
 	public static String SELECT_TOTAL_EARNINGS_MTD_BY_BC_OR_DISTRICT = "Select IsNull(CAST(SUM([Amount]) as varchar(20)),'0') 'total', 'Excellence Card Awards MTD' as 'name', '' as error From (SELECT SUM([Amount]) Amount FROM [dbo].[MyfcaMSERTotalEarnings] where child = ?0 and toggle = 'mtd' group by Child) A";
 	
 	public static String SELECT_BY_DEALER_CODE = "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[PositionCode] 'positionCode' ,[Program] 'program' ,[ProgramGroup]'programGroup' ,[EarningsMTD] 'earningsMTD' ,[EarningsYTD] 'earningsYTD' ,[DealersEnrolled] 'dealersEnrolled' ,[ParticipantsEnrolled] 'participantsEnrolled', '' as error FROM [dbo].[MyfcaMSERTotalEarningsDetails] where DealerCode = ?0";
+	public static String SELECT_BY_SID = "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[PositionCode] 'positionCode' ,[Program] 'program' ,[ProgramGroup]'programGroup' ,[EarningsMTD] 'earningsMTD' ,[EarningsYTD] 'earningsYTD' ,[DealersEnrolled] 'dealersEnrolled' ,[ParticipantsEnrolled] 'participantsEnrolled', '' as error FROM [dbo].[MyfcaMSERTotalEarningsDetails] where SID = ?0 and DealerCode = ?1";
+	public static String SELECT_SUM_BY_SID = "SELECT [DealerCode] 'dealerCode' ,'' as 'dealerName' ,[SID] 'sID' ,'' as 'name' ,'' as 'positionCode' ,'' as 'program' ,'' as'programGroup' ,SUM([EarningsMTD]) 'earningsMTD' , SUM([EarningsYTD]) 'earningsYTD' , SUM([DealersEnrolled]) 'dealersEnrolled' , SUM([ParticipantsEnrolled]) 'participantsEnrolled', '' as error FROM [dbo].[MyfcaMSERTotalEarningsDetails] where SID = ?0 and DealerCode = ?1 group by sid, DealerCode";
 	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsByDealerCode(String dealerCode);
+	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsBySID(String sid, String dealerCode);
+	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsSUMBySID(String sid, String dealerCode);
 	
 	
 	public TotalName getMSERParticipantEnrolledByDealerCode(String dealerCode);

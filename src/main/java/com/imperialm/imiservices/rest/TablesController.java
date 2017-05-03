@@ -8,8 +8,6 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,24 +33,16 @@ import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
-import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
-import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.services.DashboardServiceImpl;
-import com.imperialm.imiservices.services.MappingServiceImpl;
 import com.imperialm.imiservices.services.UserServiceImpl;
 
 @RestController
 public class TablesController {
 
-	private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
-
 	@Autowired
 	private DashboardServiceImpl dashService;
-	
-	@Autowired
-	private MappingServiceImpl mappingService;
 	
 	  @Value("${jwt.header}")
 	    private String tokenHeader;
@@ -166,11 +156,11 @@ public class TablesController {
 				filters.add(territory);
 				List<CertProfsWinnersGraphDTO> sublist = this.dashService.getCertProfsWinnersGraphByTerritory(filters);
 				for(CertProfsWinnersGraphDTO item: sublist){
-						List<CertProfsWinnersDetailsDTO> participants = this.dashService.getCertProfsWinnersDetailsByDealerCode(item.getChildTerritory());
+						List<CertProfsWinnersDetailsDTO> participants = this.dashService.getCertProfsWinnersDetailsByDealerCodeGroupBySID(item.getChildTerritory());
 						result.addAll(participants);
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
-				 return this.dashService.getCertProfsWinnersDetailsByDealerCode(territory);
+				 return this.dashService.getCertProfsWinnersDetailsByDealerCodeGroupBySID(territory);
 			}
 			return result;
 		}
@@ -200,7 +190,6 @@ public class TablesController {
 		{
 			// check for role, to know what data to display
 			List<SIRewardsYOYGraphDTO> list1st = null;
-			List<SIRewardsYOYGraphDTO> list1st_Filtered = null;
 			List<String> filters = new ArrayList<String>();
 			
 			//check if nat or not if nat pull list of childeren and continue if not start from their

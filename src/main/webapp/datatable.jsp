@@ -94,6 +94,10 @@
 		function numberWithCommasDecimals(x) {
 			return (x).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		}
+		function numberWithPercentage(x) {
+			return (x).toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
 		function getChart9(jsonData) {
 			var tableData = {};
 			tableData.headers = ["Dealer Code", "Dealership", "Total Winners"];
@@ -128,7 +132,7 @@
 					ytdWinnersTotal = ytdWinnersTotal + innerData[0].winners;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasDecimals(ytdWinnersTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasNoDecimals(ytdWinnersTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -171,12 +175,12 @@
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].points, innerData[1] == undefined ? "" : innerData[1].points, innerData[0].points + (innerData[1] == undefined ? 0 : innerData[1].points)]);
 					for (var y = 0; y < innerData.length; y++) {
-						innerDataObj.data.push(["", innerData[y].name, numberWithCommasDecimals(innerData[y].points)]);
+						innerDataObj.data.push(["", innerData[y].name, numberWithCommasNoDecimals(innerData[y].points)]);
 						jeepTotal = jeepTotal + innerData[y].points;
 						//ramTotal = ramTotal + (innerData[y] == undefined ? 0 : innerData[1].points);
 					}
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasDecimals(jeepTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasNoDecimals(jeepTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -244,7 +248,7 @@
 					//ramTotal = ramTotal + (rowData[2] == undefined ? 0 : rowData[2]);
 				}
 				// tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasDecimals(jeepTotal), numberWithCommasDecimals(ramTotal), numberWithCommasDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasDecimals(ramTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasNoDecimals(ramTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -278,11 +282,11 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push(["", innerData[0].name, numberWithCommasDecimals(innerData[0].points)]);
+					innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[0].points)]);
 					awardsPointTotal = awardsPointTotal + innerData[0].points;
 					earningsTotal = earningsTotal + innerData[0].earnings;
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasDecimals(awardsPointTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasNoDecimals(awardsPointTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -321,9 +325,9 @@
 					// innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified, innerData[0].certified + innerData[0].certifiedSpecalist + innerData[0].masterCertified]);
 					for (var x = 0; x < innerData.length; x++) {
 						innerDataObj.data.push(["", innerData[x].name,
-							numberWithCommasDecimals(innerData[x].certified),
-							numberWithCommasDecimals(innerData[x].certifiedSpecialist),
-							numberWithCommasDecimals(innerData[x].masterCertified)]);
+							numberWithCommasNoDecimals(innerData[x].certified),
+							numberWithCommasNoDecimals(innerData[x].certifiedSpecialist),
+							numberWithCommasNoDecimals(innerData[x].masterCertified)]);
 						totalCertified = totalCertified + innerData[x].certified;
 						totalCertifiedSpecialist = totalCertifiedSpecialist + innerData[x].certifiedSpecialist;
 						totalMasterCertified = totalMasterCertified + innerData[x].masterCertified;
@@ -333,10 +337,10 @@
 				tableData.data.push({
 					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key],
 						delarName[key],
-						numberWithCommasDecimals(totalCertified),
-						numberWithCommasDecimals(totalCertifiedSpecialist),
-						numberWithCommasDecimals(totalMasterCertified),
-						numberWithCommasDecimals(totalCertified + totalCertifiedSpecialist + totalMasterCertified)], "innerData": innerDataObj
+						numberWithCommasNoDecimals(totalCertified),
+						numberWithCommasNoDecimals(totalCertifiedSpecialist),
+						numberWithCommasNoDecimals(totalMasterCertified),
+						numberWithCommasNoDecimals(totalCertified + totalCertifiedSpecialist + totalMasterCertified)], "innerData": innerDataObj
 				})
 			}
 			return tableData;
@@ -467,14 +471,14 @@
 					});
 
 					for (var z = 0; z < innerData.length; z++) {
-						innerDataObj.data.push(["", innerData[0].name, numberWithCommasDecimals(innerData[z].earnedPoints)]);
+						innerDataObj.data.push(["", innerData[0].name, numberWithCommasNoDecimals(innerData[z].earnedPoints)]);
 						totalEarnedPoints = totalEarnedPoints + innerData[z].earnedPoints;
 					}
 					// innerDataObj.data.push(["", innerData[0].name, numberWithCommasDecimals(innerData[0].earnedPoints)]);
 					// totalEarnedPoints = totalEarnedPoints + innerData[0].earnedPoints;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">",dealerCode[key], delarName[key],  numberWithCommasDecimals(totalEarnedPoints)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">",dealerCode[key], delarName[key],  numberWithCommasNoDecimals(totalEarnedPoints)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}

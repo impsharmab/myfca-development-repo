@@ -86,7 +86,7 @@ var LoginComponent = (function () {
         if (user !== undefined) {
             if (user !== undefined && user.length > 1) {
                 this.loginService.getRefreshLoginResponse(user).subscribe(function (refreshTokenData) {
-                    alert(refreshTokenData.token);
+                    //alert(refreshTokenData.token)
                     _this.refreshTokenData = (refreshTokenData);
                     if (refreshTokenData.token.length > 1) {
                         _this.loginService.setUserData(_this.refreshTokenData);

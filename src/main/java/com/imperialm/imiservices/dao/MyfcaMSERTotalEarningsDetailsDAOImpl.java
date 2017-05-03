@@ -358,4 +358,36 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		}
 		return result;
 	}
+
+	@Override
+	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsBySID(String sid, String dealerCode) {
+		List<MyfcaMSERTotalEarningsDetailsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDetailsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_SID, MyfcaMSERTotalEarningsDetailsDTO.class);
+			query.setParameter(0, sid);
+			query.setParameter(1, dealerCode);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + ex);
+		} catch (final Exception ex) {
+			logger.error("error occured in getMSERGraphDetailsBySID", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsSUMBySID(String sid, String dealerCode) {
+		List<MyfcaMSERTotalEarningsDetailsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDetailsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_SUM_BY_SID, MyfcaMSERTotalEarningsDetailsDTO.class);
+			query.setParameter(0, sid);
+			query.setParameter(1, dealerCode);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + ex);
+		} catch (final Exception ex) {
+			logger.error("error occured in getMSERGraphDetailsSUMBySID", ex);
+		}
+		return result;
+	}
 }

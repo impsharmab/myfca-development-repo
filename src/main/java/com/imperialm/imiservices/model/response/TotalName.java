@@ -13,4 +13,14 @@ public class TotalName implements Serializable {
 	@Id private String name;
 	@Id private String total;
 	@Id private String error;
+	
+	public TotalName(String name, String total){
+		this.name = name;
+		this.total = total;
+	}
+	
+	public TotalName(){
+		this.name = "";
+		this.total = "";
+	}
 }

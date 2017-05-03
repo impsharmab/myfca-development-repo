@@ -17,16 +17,28 @@ var TestAdminComponent = (function () {
         this.adminService = adminService;
         this.cookieService = cookieService;
         this.router = router;
+        this.errorUploadImageMessage = "";
     }
     TestAdminComponent.prototype.ngOnInit = function () {
         this.emulateuser = {
             sid: ''
         };
+        this.uploadImage = {
+            dashBoardBannersID: 0,
+            image: "",
+            roleId: 0,
+            orderBy: 0,
+            bc: "",
+            link: "",
+            createdDate: new Date,
+            createdBy: "",
+            updatedDate: new Date,
+            updatedBy: "",
+            delFlag: ""
+        };
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
-        this.setCookie();
-        this.getCookie();
         $('#accordion').collapse({
             toggle: false
         });
@@ -111,13 +123,13 @@ var TestAdminComponent = (function () {
             // console.log(adminData.permissions[0].name)
         });
     };
-    TestAdminComponent.prototype.setCookie = function (name) {
-        this.cookieService.put('test', "test test test");
-    };
-    TestAdminComponent.prototype.getCookie = function (name) {
-        var y = this.cookieService.get('test');
-        // alert(y)
-    };
+    // setCookie(name?: string) {
+    //     this.cookieService.put('test', "test test test");
+    // }
+    // getCookie(name?: string) {
+    //     var y = this.cookieService.get('test');
+    //     // alert(y)
+    // }
     TestAdminComponent.prototype.emulateUser = function () {
         var _this = this;
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(function (emulateUserData) {
@@ -150,6 +162,20 @@ var TestAdminComponent = (function () {
         }));
         var url = ["myfcadashboard"];
         this.router.navigate(url);
+    };
+    TestAdminComponent.prototype.addBanner = function () {
+        var _this = this;
+        alert("hello");
+        debugger;
+        this.adminService.addBanner(this.uploadImage.roleId, this.uploadImage.bc, this.uploadImage.orderBy, this.uploadImage.image).subscribe(function (addBannerData) {
+            _this.addBannerData = addBannerData;
+            debugger;
+            console.log(addBannerData);
+            alert(addBannerData);
+        }, function (error) {
+            alert("Error in uploading images");
+            _this.errorUploadImageMessage = "Error in uploading images";
+        });
     };
     return TestAdminComponent;
 }());

@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -19,15 +17,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dao.UserDAOImpl;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.dto.UserProfileDTO;
 import com.imperialm.imiservices.dto.UsersDTO;
-import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.model.OneItem;
 import com.imperialm.imiservices.model.UserIdEmail;
 import com.imperialm.imiservices.model.UserProfile;
@@ -57,27 +52,8 @@ public class UserProfileController {
 	@Autowired
     private EmailHandler emailHandler;
 
-	/*public UserProfileController(UserServiceImpl userService){
-		this.userService = userService;
-	}*/
-	private static Logger logger = LoggerFactory.getLogger(UserProfileController.class);
 	@Autowired
 	private UserProfileService userprofileService;
-
-	@RequestMapping(value = "/services/userprofiletest", method = RequestMethod.GET)
-	public @ResponseBody UserProfileDTO getUserProfileTest(@RequestParam("id") final String userID,
-			@RequestParam("key") final String password) {
-		final InputRequest userRoleReq = new InputRequest(userID, password);
-		return this.userprofileService.getUserProfile(userRoleReq);
-	}
-
-	@RequestMapping(value = "/services/userprofile", method = RequestMethod.POST)
-	public @ResponseBody UserProfileDTO getUserProfile(@RequestParam("id") final String userID,
-			@RequestParam("key") final String password) {
-		final InputRequest userRoleReq = new InputRequest(userID, password);
-		return this.userprofileService.getUserProfile(userRoleReq);
-	}
-
 
 	@RequestMapping(value = "/services/notile/{positionCode}/{dealerCode}", method = RequestMethod.GET)
 	public @ResponseBody Object getNoTile(@PathVariable(value="positionCode") String positionCode, @PathVariable(value="dealerCode") String dealerCode, HttpServletRequest request) {

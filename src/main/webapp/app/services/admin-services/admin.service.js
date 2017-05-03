@@ -65,6 +65,24 @@ var AdminService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    AdminService.prototype.addBanner = function (roleID, bc, orderBy, image) {
+        // debugger
+        // var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
+        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        // var body = {
+        //     "dashBoardBannersID": 0, "image": image, "roleID": roleID, "orderBy": orderBy, "businessCenter": bc,
+        //     "link": "", "createdDate": null, "createdBy": "", "updatedDate": null, "updatedBy": "", "delFlag": ""
+        // };
+        // var headers = new Headers();
+        // headers.append('Content-Type', 'application/json');
+        // headers.append('Authorization', 'validToken');
+        // // headers.append("Cache-Control", "no-cache");
+        // // headers.append("Cache-Control", "no-store");
+        // return this.http.post(getAddBannerUrl, body, { headers: headers })           
+        //     .map((response: Response) =>
+        //         response.json())
+        //     .catch(this.handleError)
+    };
     AdminService.prototype.handleError = function (error) {
         var errMsg = "";
         if (error instanceof http_1.Response) {

@@ -5,6 +5,7 @@ import { AdminService } from '../../services/admin-services/admin.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { Admin } from './admin.interface';
 import { EmulateUserInterface } from './emulate-user.interface'
+import { UploadImageInterface } from './admin-uploadImage.interface'
 
 declare var $: any;
 @Component({
@@ -13,27 +14,40 @@ declare var $: any;
     templateUrl: "./test-admin-uploadimage.html"
 
 })
-
-
 export class TestAdminComponent implements OnInit {
     private positioncode: any;
     private roles: any;
     private adminData: any;
     private data: any;
     private emulateuser: EmulateUserInterface;
+    private uploadImage: UploadImageInterface;
     private emulateUserData: any;
     private endEmulateUserData: any;
+    private addBannerData: any;
+    private errorUploadImageMessage: string = "";
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
     ngOnInit() {
 
         this.emulateuser = {
             sid: ''
         }
+        this.uploadImage = {
+            dashBoardBannersID: 0,
+            image: "",
+            roleId: 0,
+            orderBy: 0,
+            bc: "",
+            link: "",
+            createdDate: new Date,
+            createdBy: "",
+            updatedDate: new Date,
+            updatedBy: "",
+            delFlag: ""
+
+        }
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
-        this.setCookie();
-        this.getCookie();
 
         $('#accordion').collapse({
             toggle: false
@@ -106,6 +120,9 @@ export class TestAdminComponent implements OnInit {
 
         });
 
+
+
+
     }
 
     getPositionCode() {
@@ -132,19 +149,21 @@ export class TestAdminComponent implements OnInit {
                 this.adminData = adminData.permissions;
                 // this.data = this.adminData.data;
                 // console.log(adminData.permissions[0].name)
+                
+                
 
             }
         )
     }
 
-    setCookie(name?: string) {
-        this.cookieService.put('test', "test test test");
+    // setCookie(name?: string) {
+    //     this.cookieService.put('test', "test test test");
 
-    }
-    getCookie(name?: string) {
-        var y = this.cookieService.get('test');
-        // alert(y)
-    }
+    // }
+    // getCookie(name?: string) {
+    //     var y = this.cookieService.get('test');
+    //     // alert(y)
+    // }
 
     emulateUser() {
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
@@ -210,6 +229,24 @@ export class TestAdminComponent implements OnInit {
 
         let url = ["myfcadashboard"]
         this.router.navigate(url);
+
+    }
+
+    addBanner() {        
+        alert("hello")
+        debugger
+        this.adminService.addBanner(this.uploadImage.roleId, this.uploadImage.bc, this.uploadImage.orderBy, this.uploadImage.image).subscribe(
+            (addBannerData) => {
+                this.addBannerData = addBannerData;
+                debugger
+                console.log(addBannerData)
+                 alert(addBannerData)
+            },
+            (error) => {
+                alert("Error in uploading images");
+                this.errorUploadImageMessage = "Error in uploading images";
+            }
+        )
 
     }
 

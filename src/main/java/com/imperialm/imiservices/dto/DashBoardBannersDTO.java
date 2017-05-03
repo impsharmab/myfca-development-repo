@@ -6,8 +6,16 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity @Getter @Setter
 public class DashBoardBannersDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1199994986873985319L;
+	
 	@Id private int dashBoardBannersID;
 	@Id private String image;
 	@Id private int roleID;

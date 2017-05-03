@@ -7,7 +7,7 @@
     </script>-->
 
 
-	<base href="/">
+	<base href="/myfcarewards/">
 	<!-- myfcarewards<script>document.write('<base href="' + document.location + '" />');</script>-->
 	<!--<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">-->
 	<meta http-equiv="cache-control" content="max-age=0" />
@@ -76,6 +76,25 @@
 		});
 
 	</script>-->
+	<script>
+    function a() {
+        var formData = new FormData();
+        formData.append('file', $('#file')[0].files[0]);
+        $.ajax({
+            url: 'https://test.myfcarewards.com/myfcarewards/imageUpload',
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                console.log(data);
+                alert(data);
+            }
+        });
+
+    }
+
+</script>
 
 </head>
 

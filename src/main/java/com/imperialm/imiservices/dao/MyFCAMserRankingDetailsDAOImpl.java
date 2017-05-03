@@ -39,5 +39,23 @@ public class MyFCAMserRankingDetailsDAOImpl implements MyFCAMserRankingDetailsDA
 		}
 		return result;
 	}
+
+	@Override
+	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsSUMBySID(String territory, String dealerCode) {
+		List<MyFCAMserRankingDetailsDTO> result = new ArrayList<MyFCAMserRankingDetailsDTO>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_SUM_BY_SID, MyFCAMserRankingDetailsDTO.class);
+			query.setParameter(0, territory);
+			query.setParameter(1, dealerCode);
+			List<MyFCAMserRankingDetailsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getMSERDetailsBySID", ex);
+		}
+		return result;
+	}
 	
 }
