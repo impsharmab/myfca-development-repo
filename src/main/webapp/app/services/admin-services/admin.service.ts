@@ -20,7 +20,7 @@ export class AdminService {
         // sessionStorage.setItem("CurrentUser", JSON.stringify(emulateuserData));
 
 
-    } 
+    }
 
     setEndEmulateUserData(endEmulateUserData) {
 
@@ -55,9 +55,7 @@ export class AdminService {
     getEmulateUserData(sid: string) {
         //var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
         // var getEmulateUserDataUrl = "service/Admin/?id="+sid;
-         var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/Admin/"+sid;
-
-
+        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/Admin/" + sid;
 
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();

@@ -1,27 +1,24 @@
 package com.imperialm.imiservices.security;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -3301605591108950415L;
-
-    static final String CLAIM_KEY_USERNAME = "sub";
-    static final String CLAIM_KEY_CREATED = "created";
-
 
     @Value("${jwt.secret}")
     private String secret;
@@ -32,47 +29,51 @@ public class JwtTokenUtil implements Serializable {
     public String getUsernameFromToken(String token) {
         String username;
         try {
-            final Claims claims = getClaimsFromToken(token);
-            username = claims.getSubject();
+            final DecodedJWT jwt = getVerifiedToken(token);
+            username = jwt.getSubject();
         } catch (Exception e) {
             username = null;
         }
         return username;
     }
-
+    
     public Date getCreatedDateFromToken(String token) {
-        Date created;
-        try {
-            final Claims claims = getClaimsFromToken(token);
-            created = new Date((Long) claims.get(CLAIM_KEY_CREATED));
-        } catch (Exception e) {
-            created = null;
-        }
-        return created;
+    	Date created;
+    	try {
+    		final DecodedJWT jwt = getVerifiedToken(token);
+    		created = jwt.getIssuedAt();
+    	} catch (Exception e) {
+    		created = null;
+    	}
+    	return created;
     }
-
+    
     public Date getExpirationDateFromToken(String token) {
-        Date expiration;
-        try {
-            final Claims claims = getClaimsFromToken(token);
-            expiration = claims.getExpiration();
-        } catch (Exception e) {
-            expiration = null;
-        }
-        return expiration;
+    	Date expiration;
+    	try {
+    		final DecodedJWT jwt = getVerifiedToken(token);
+    		expiration = jwt.getExpiresAt();
+    	} catch (Exception e) {
+    		expiration = null;
+    	}
+    	return expiration;
     }
+    
 
-    private Claims getClaimsFromToken(String token) {
-        Claims claims;
-        try {
-            claims = Jwts.parser()
-                    .setSigningKey(secret)
-                    .parseClaimsJws(token)
-                    .getBody();
-        } catch (Exception e) {
-            claims = null;
+    
+    private DecodedJWT getVerifiedToken(String token){
+    	DecodedJWT jwt = null;
+    	try {
+        	Algorithm algorithm = Algorithm.HMAC512(secret);
+            JWTVerifier verifier = JWT.require(algorithm)
+                .build(); //Reusable verifier instance
+            jwt = verifier.verify(token);
+        } catch (UnsupportedEncodingException exception){
+            //UTF-8 encoding not supported
+        } catch (JWTVerificationException exception){
+            //Invalid signature/claims
         }
-        return claims;
+    	return jwt;
     }
 
     private Date generateExpirationDate() {
@@ -85,30 +86,51 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String generateToken(UserDetailsImpl userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        claims.put(CLAIM_KEY_USERNAME, userDetails.getUserId().trim());
-        claims.put(CLAIM_KEY_CREATED, new Date());
-        return generateToken(claims);
+        String token = "";
+    	try {
+    		Date created = new Date(System.currentTimeMillis());
+    		Date exp = this.generateExpirationDate();
+    		
+    	    Algorithm algorithm = Algorithm.HMAC512(secret);
+    	    token = JWT.create().withSubject(userDetails.getUserId().trim())
+    	    		.withIssuedAt(created)
+    	    		.withExpiresAt(exp)
+    	        .sign(algorithm);
+    	} catch (Exception exception){
+			String e = exception.getMessage();
+    		System.out.println(e);
+    	}
+    	return token;
+    }
+    
+
+    String generateToken(String user) {
+    	String token = "";
+    	try {
+    		Date created = new Date(System.currentTimeMillis());
+    		Date exp = this.generateExpirationDate();
+
+    		Algorithm algorithm = Algorithm.HMAC512(secret);
+    		token = JWT.create().withSubject(user)
+    				.withIssuedAt(created)
+    				.withExpiresAt(exp)
+    				.sign(algorithm);
+    	} catch (Exception exception){
+    		String e = exception.getMessage();
+    		System.out.println(e);
+    	}
+    	return token;
     }
 
-    String generateToken(Map<String, Object> claims) {
-        return Jwts.builder()
-                .setClaims(claims)
-                .setExpiration(generateExpirationDate())
-                .signWith(SignatureAlgorithm.HS512, secret)
-                .compact();
-    }
 
     public Boolean canTokenBeRefreshed(String token) {
         return (!isTokenExpired(token));
     }
-
+    
     public String refreshToken(String token) {
         String refreshedToken;
         try {
-            final Claims claims = getClaimsFromToken(token);
-            claims.put(CLAIM_KEY_CREATED, new Date());
-            refreshedToken = generateToken(claims);
+            refreshedToken = generateToken(getUsernameFromToken(token));
         } catch (Exception e) {
             refreshedToken = null;
         }

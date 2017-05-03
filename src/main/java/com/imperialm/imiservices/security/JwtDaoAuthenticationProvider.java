@@ -9,7 +9,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.services.UserServiceImpl;
 public class JwtDaoAuthenticationProvider extends DaoAuthenticationProvider {
 
 	@Override

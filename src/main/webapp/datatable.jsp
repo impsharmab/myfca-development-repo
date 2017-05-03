@@ -93,17 +93,19 @@
 		}
 		function getChart9(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealership", "Dealer Code","Total Winners"];
+			tableData.headers = ["Dealership", "Dealer Code", "Total Winners"];
 			tableData.data = [];
 			var delarName = {};
+			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -123,24 +125,27 @@
 					ytdWinnersTotal = ytdWinnersTotal + innerData[0].winners;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(ytdWinnersTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], dealerCode[key], numberWithCommasNoDecimals(ytdWinnersTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
 		function getChart10(jsonData) {
 			var tableData = {};
 			//tableData.headers = ["Dealer", "Jeep", "Ram", "Total Points Earned"];
-			tableData.headers = ["Dealer", "Total Points Earned"];
+			tableData.headers = ["Dealer", "DealerCode", "Total Points Earned"];
 			tableData.data = [];
 			var delarName = {};
+			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
+
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -167,30 +172,30 @@
 						jeepTotal = jeepTotal + innerData[y].points;
 						//ramTotal = ramTotal + (innerData[y] == undefined ? 0 : innerData[1].points);
 					}
-
-
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], dealerCode[key], numberWithCommasNoDecimals(jeepTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
 		function getChart11(jsonData) {
 			var tableData = {};
 			// tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Total"];
-			tableData.headers = ["Dealer", "Ram Expert Completed"];
-			
+			tableData.headers = ["Dealer", "Dealer Code", "Ram Expert Completed"];
+
 			//tableData.headers = ["Dealer", "Jeep Expert Completed", "Ram Expert Completed", "Tech Expert Completed", "Total"];
 
 			tableData.data = [];
 			var delarName = {};
+			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -214,7 +219,7 @@
 					var rowData = [""]
 					rowData.push(innerData[0].name)
 
-					var programsArray = [ "RAM"]
+					var programsArray = ["RAM"]
 					for (var r = 0; r < programsArray.length; r++) {
 						var programObj = innerData.filter(function (ele, index, array) {
 							console.log(programsArray[r] === ele.certType.trim())
@@ -236,23 +241,25 @@
 					//ramTotal = ramTotal + (rowData[2] == undefined ? 0 : rowData[2]);
 				}
 				// tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(jeepTotal), numberWithCommasNoDecimals(ramTotal), numberWithCommasNoDecimals(jeepTotal + ramTotal)], "innerData": innerDataObj })
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(ramTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], dealerCode[key], numberWithCommasNoDecimals(ramTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
 		function getChart12(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Award Points"];
+			tableData.headers = ["Dealer", "Dealer Code", "Award Points"];
 			tableData.data = [];
 			var delarName = {};
+			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -272,23 +279,26 @@
 					awardsPointTotal = awardsPointTotal + innerData[0].points;
 					earningsTotal = earningsTotal + innerData[0].earnings;
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(awardsPointTotal)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], dealerCode[key], numberWithCommasNoDecimals(awardsPointTotal)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
 		function getChart13(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Certified", "Certified Specialist", "Master Certified", "Total Certifications"];
+			tableData.headers = ["Dealer", "Dealer Code", "Certified", "Certified Specialist", "Master Certified", "Total Certifications"];
 			tableData.data = [];
 			var delarName = {};
+			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
+
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -319,6 +329,7 @@
 				}
 				tableData.data.push({
 					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key],
+						dealerCode[key],
 						numberWithCommasNoDecimals(totalCertified),
 						numberWithCommasNoDecimals(totalCertifiedSpecialist),
 						numberWithCommasNoDecimals(totalMasterCertified),
@@ -329,18 +340,19 @@
 		}
 		function getChart19(jsonData) {
 			var tableData = {};
-
-			tableData.headers = ["Dealer", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor", "Total"];
+			tableData.headers = ["Dealer", "Dealer Code", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor", "Total"];
 			tableData.data = [];
-			var delarName = {};
+			var dealerCode = {};
+			var dealerName = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
+				dealerName[obj.dealerCode] = obj.dealerName;
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -356,15 +368,8 @@
 				var uConnectTotal = 0;
 				var wiAdvisor = 0;
 				var total = 0;
-				innerDataObj.headers = ["Participant",
-					"Express Lane",
-					"Magneti Marelli",
-					"Mopar Parts",
-					"MVP",
-					"Parts Counter",
-					"Uconnect",
-					"wiAdvisor",
-					"Total"]
+				innerDataObj.headers = ["Participant", "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect",
+					"wiAdvisor", "Total"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 
@@ -405,7 +410,9 @@
 					}
 				}
 				tableData.data.push({
-					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key],
+					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">",
+						dealerName[key],
+						dealerCode[key],
 						"$" + numberWithCommasNoDecimals(expressLaneTotal),
 						"$" + numberWithCommasNoDecimals(magnettiMarelliTotal),
 						"$" + numberWithCommasNoDecimals(moparPartsTotal),
@@ -426,17 +433,19 @@
 		}
 		function getChart23(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Total Points Earned"];
+			tableData.headers = ["Dealer", "DealerCode", "Total Points Earned"];
 			tableData.data = [];
 			var delarName = {};
+			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -464,7 +473,7 @@
 					// totalEarnedPoints = totalEarnedPoints + innerData[0].earnedPoints;
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], numberWithCommasNoDecimals(totalEarnedPoints)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], dealerCode[key], numberWithCommasNoDecimals(totalEarnedPoints)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -518,6 +527,7 @@
 		function getChart32(jsonData) {
 			var tableData = {};
 			tableData.headers = ["Dealer",
+				"Dealer Code",
 				"Level 0",
 				"Performance",
 				"Process",
@@ -531,7 +541,7 @@
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
 				tableData.data.push({
-					"data": [" ", obj.dealerName, obj.noCertification,
+					"data": [" ", obj.dealerCode, obj.dealerName, obj.noCertification,
 						obj.performance, obj.process, obj.voiceofEmployee, obj.training,
 						obj.facility, obj.cfafeawardCertification,
 					], "innerData": []
@@ -541,7 +551,9 @@
 		}
 		function getChart33(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer",
+			tableData.headers = [
+				"Dealer Code",
+				"Dealer",
 				"Level 0",
 				"Performance",
 				"Process",
@@ -555,7 +567,9 @@
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
 				tableData.data.push({
-					"data": [" ", obj.dealerName,
+					"data": [" ",
+						obj.dealerCode,
+						obj.dealerName,
 						obj.noCertification + "%",
 						obj.performance + "%",
 						obj.process + "%",
@@ -576,17 +590,20 @@
 		}
 		function getChart36(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer", "Total Dollars Earned"];
+			tableData.headers = ["Dealer Code", "Dealer", "Total Dollars Earned"];
 			tableData.data = [];
 			var delarName = {};
+			var dealerCode={};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerName] = obj.dealerName;
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
+				
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerName;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {
@@ -608,7 +625,7 @@
 					totalEarnedDollars = totalEarnedDollars + (innerData[0].earnings);
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", delarName[key], "$" + numberWithCommasNoDecimals(totalEarnedDollars)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">",dealerCode[key], delarName[key], "$" + numberWithCommasNoDecimals(totalEarnedDollars)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}

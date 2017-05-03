@@ -16,6 +16,7 @@ public class DashBoardBannersDTO implements Serializable {
 	@Id private String link;
 	@Id private Date createdDate;
 	@Id private String createdBy;
-	@Id private String updatedDate;
-
+	@Id private Date updatedDate;
+	@Id private String updatedBy;
+	@Id private String delFlag;
 }
