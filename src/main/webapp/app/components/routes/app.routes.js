@@ -11,6 +11,7 @@ var root_page_component_1 = require("../root-page/root-page.component");
 var login_component_1 = require("../login/login.component");
 var admin_rootpage_component_1 = require("../admin/admin-rootpage.component");
 var profile_rootpage_component_1 = require("../profile/profile-rootpage.component");
+//import { AdminComponent } from "../admin/admin.component";
 var routes = [
     {
         path: '',

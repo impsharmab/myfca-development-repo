@@ -183,7 +183,8 @@ TestAdminComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-admin",
-        templateUrl: "./test-admin-uploadimage.html"
+        // templateUrl: "./test-admin-uploadimage.html"
+        templateUrl: "./upload-image.html"
     }),
     __metadata("design:paramtypes", [admin_service_1.AdminService, cookies_service_1.CookieService, router_1.Router])
 ], TestAdminComponent);

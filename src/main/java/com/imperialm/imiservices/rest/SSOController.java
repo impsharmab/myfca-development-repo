@@ -90,13 +90,16 @@ public class SSOController {
      */
     @RequestMapping(value = "/sp/acs.saml",  method = RequestMethod.POST)
     public Object processSingleSignOnToken(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-
+    	logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SAML REQUEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         Map userDetailMap = null;
         userDetailMap = processSAMLResponse(request);
         String userId = (String) userDetailMap.get("UID");
-        String dealerCode = (String) userDetailMap.get("DealerCode");
-        String positionCode = (String) userDetailMap.get("PositionCode");
-
+        String dealerCode = (String) userDetailMap.get("Dealer Code");
+        String positionCode = (String) userDetailMap.get("Position Code");
+        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! USERID FROM DEALERCONNECT" + userId);
+        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DEALERCODE FROM DEALERCONNECT" + dealerCode);
+        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! POSITIONCODE FROM DEALERCONNECT" + positionCode);
+        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         List<String> posCode = new ArrayList<String>();
         List<String> dlrCode = new ArrayList<String>();
 

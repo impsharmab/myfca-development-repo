@@ -64,6 +64,8 @@
                         </form>
                     </div>
 
+
+
                     <div class="col-sm-12 col-md-4">
                         <div class="box">
                             <h4>Add an Image</h4>
@@ -85,7 +87,21 @@
                     </div>
                 </div>
                 <!--Add Image to Banner end-->
-
+                <div class="row">
+                    <div class="col-sm-12 col-md-8">
+                        <!--<form #addTestBanner="ngForm" novalidate (ngSubmit)="addBanner()">-->
+                        <div class="box">
+                            <h4>Add Image to Banner</h4>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <input id="orderBy" name="orderBy" [(ngModel)]="uploadImage.orderBy">
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="addBanner()">test Banner</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--</form>-->
+                    </div>
+                </div>
                 <!--Configuration Image to Banner end-->
                 <div class="row">
                     <div class="col-sm-12 col-md-12">

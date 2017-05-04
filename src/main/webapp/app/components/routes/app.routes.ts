@@ -6,7 +6,7 @@ import { RootPageComponent } from '../root-page/root-page.component';
 import { LoginComponent } from "../login/login.component";
 import { AdminRootPageComponent } from "../admin/admin-rootpage.component";
 import { ProfileRootPageComponent } from "../profile/profile-rootpage.component";
-import { AdminComponent } from "../admin/admin.component";
+//import { AdminComponent } from "../admin/admin.component";
 
 
 const routes: Routes = [

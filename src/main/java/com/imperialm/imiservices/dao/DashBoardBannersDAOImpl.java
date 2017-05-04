@@ -42,7 +42,6 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 	@Override
 	public List<DashBoardBannersDTO> getAllBannersForAdmin() {
 		List<DashBoardBannersDTO> result = new ArrayList<DashBoardBannersDTO>();
-
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BANNER_FOR_ADMIN, DashBoardBannersDTO.class);
 			result = query.getResultList();

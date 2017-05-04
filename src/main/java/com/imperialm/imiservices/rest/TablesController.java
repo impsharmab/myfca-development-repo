@@ -2,6 +2,8 @@ package com.imperialm.imiservices.rest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,7 +31,9 @@ import com.imperialm.imiservices.dto.RetentionDetailsDTO;
 import com.imperialm.imiservices.dto.RetentionGraphDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
@@ -188,60 +192,35 @@ public class TablesController {
 		}
 		case "20":
 		{
-			// check for role, to know what data to display
-			List<SIRewardsYOYGraphDTO> list1st = null;
-			List<String> filters = new ArrayList<String>();
-			
-			//check if nat or not if nat pull list of childeren and continue if not start from their
-				list1st = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle("NAT", "YTD");
-				
-				
-			List<SIRewardsYOYGraphDTO> sublist = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(filters, "YTD");
-
-			return filters;
-		}
-		case "21":
-		{
-			// check for role, to know what data to display
-			List<SIRewardsDetailsGraphDTO> list1st = null;
-			List<SIRewardsDetailsGraphDTO> list1st_Filtered = null;
-			List<String> filters = new ArrayList<String>();
-			
-			//check if nat or not if nat pull list of childeren and continue if not start from their
-				list1st = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle("NAT", "QTD");
-				
-				for(SIRewardsDetailsGraphDTO item: list1st){
-					if(!filters.contains(item.getChildTerritory()))
-						filters.add(item.getChildTerritory());
+			List<SIRewardsYOYDetailsDTO> result = new ArrayList<SIRewardsYOYDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<SIRewardsYOYGraphDTO> sublist = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(territory, "YTD");
+				for(SIRewardsYOYGraphDTO item: sublist){
+						//List<SIRewardsYOYDetailsDTO> participants = this.dashService.getSIre(item.getChildTerritory(), "YTD");
+						//result.addAll(participants);
 				}
-				
-				//list1st = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(filters, "YTD");
-				list1st_Filtered = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggleFilterParent(filters, "QTD");
-			
-			
-			
-			List<SIRewardsDetailsGraphDTO> sublist = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle(filters, "QTD");
-			
-			return filters;
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getRewardRedemptionDetailsByDealer(territory);
+			}
+			return result;
 		}
 		case "22":
 		{
-			// check for role, to know what data to display
-			List<SIRewardsDetailsGraphDTO> list1st = null;
-			List<SIRewardsDetailsGraphDTO> list1st_Filtered = null;
-			List<String> filters = new ArrayList<String>();
-			
-			//check if nat or not if nat pull list of childeren and continue if not start from their
-				list1st = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle("NAT", "QTD");
-				
-				//list1st = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(filters, "YTD");
-				list1st_Filtered = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggleFilterParent(filters, "QTD");
-			
-			
-			
-			List<SIRewardsDetailsGraphDTO> sublist = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle(filters, "QTD");
-			
-			return filters;
+			List<SIRewardsDetailsDTO> result = new ArrayList<SIRewardsDetailsDTO>();
+			if(territory.length() >= 4 && territory.length() <= 5 && territory.contains("-")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(territory);
+				List<SIRewardsDetailsGraphDTO> sublist = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle(territory, "QTD");
+				for(SIRewardsDetailsGraphDTO item: sublist){
+						List<SIRewardsDetailsDTO> participants = this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(item.getChildTerritory(), "QTD", this.getCurrentQuarter());
+						result.addAll(participants);
+				}
+			}else if (territory.length() > 4 && !territory.contains("-")){
+				 return this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(territory, "QTD", this.getCurrentQuarter());
+			}
+			return result;
 		}
 		case "23":
 		{	
@@ -328,5 +307,18 @@ public class TablesController {
 		}
 	}
 
+	public String getCurrentQuarter(){
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return (cal.get(Calendar.YEAR)) + "Q" + ((cal.get(Calendar.MONTH) / 3) + 1);
+	}
+
+	public String getCurrentYear(){
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return (cal.get(Calendar.YEAR))+"";
+	}
 	
 }

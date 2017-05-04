@@ -2,9 +2,10 @@ import { Component, OnInit, Input, ViewChild, TemplateRef, Output, EventEmitter 
 import { Http } from '@angular/http';
 import { HeaderService } from '../../services/header-services/header.service';
 import { NgbModal, ModalDismissReasons, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet, ActivatedRoute, Params } from '@angular/router';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
+declare var $: any;
 @Component({
     moduleId: module.id,
     selector: "app-header",
@@ -15,6 +16,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 export class HeaderComponent implements OnInit {
     @Input() data: any;
     @Input() retweetIconHide: any;
+    @Input() enablePointer: any;
     @Output("onProfileChange") profileChange = new EventEmitter<any>();
     @ViewChild("contactModal") private contactModal: TemplateRef<any>;
     @ViewChild("positioncodeModal") private positioncodeModal: NgbModalRef;
@@ -54,8 +56,15 @@ export class HeaderComponent implements OnInit {
     }
     ngOnInit() {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
-
+        if (!this.enablePointer) {
+            $(document).ready(function () {
+                $("#enablePointer").css( "cursor", "pointer");
+                $("#enablePointer").css( "text-decoration", "underline");
+            });
+        }
     }
+
+
 
     private contactUs() {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
@@ -111,11 +120,11 @@ export class HeaderComponent implements OnInit {
         this.cookieService.put("token", adminToken)
         debugger
         // this.cookieService.put(adminToken, "")
-        
+
 
         // this.adminToken = adminToken;
         let url = ["login"]
-        this.router.navigate(url); 
+        this.router.navigate(url);
         // this.booleanEndEmulation();
         // alert(this.booleanAdminToken)
 

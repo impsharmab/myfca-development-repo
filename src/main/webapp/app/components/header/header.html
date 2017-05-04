@@ -1,3 +1,11 @@
+<!--<script>
+    if (enablePointer) {
+        $(document).ready(function () {
+            $("#enablePointer").css("cursor", "pointer");
+        });
+    }
+</script>-->
+
 <template #contactModal let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title"> </h4>
@@ -52,7 +60,7 @@
             <ul class="sav">
                 <li class="sav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
-                    Welcome, <a class="utility-nav active" style="cursor:pointer" (click)="dashboardPage()">{{data.name}}</a>
+                    Welcome, <a  id="enablePointer" class="utility-nav active"  (click)="dashboardPage()">{{data.name}}</a>
                 </li>
             </ul>
             <ul class="sav-utility" style="margin-top: 5px">
@@ -60,7 +68,7 @@
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     <a *ngIf="booleanAdminToken" class=" utility-nav" (click)="endEmulation()" style="cursor:pointer; color:red ">End Emulation</a>
                 </li>
-                <li class="sav-item " [hidden]="retweetIconHide"> 
+                <li class="sav-item " [hidden]="retweetIconHide">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">
                         <span><img src = "https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=retweet.png"  alt="Retweet"  width="25" height="25"></span></a>

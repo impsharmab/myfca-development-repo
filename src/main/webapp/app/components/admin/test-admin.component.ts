@@ -11,7 +11,8 @@ declare var $: any;
 @Component({
     moduleId: module.id,
     selector: "app-admin",
-    templateUrl: "./test-admin-uploadimage.html"
+    // templateUrl: "./test-admin-uploadimage.html"
+    templateUrl: "./upload-image.html"
 
 })
 export class TestAdminComponent implements OnInit {

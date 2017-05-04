@@ -18,35 +18,36 @@ export class AdminService {
         // sessionStorage.removeItem('CurrentUser');
         // sessionStorage.removeItem('selectedCodeData');
         // sessionStorage.setItem("CurrentUser", JSON.stringify(emulateuserData));
-
-
     }
 
     setEndEmulateUserData(endEmulateUserData) {
 
     }
 
-    getPositionCode() {
+    getPositionCode() {        
+        var getPositionCodeUrl = "./app/components/admin/positioncode-array.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-        var getPositionCodeUrl = "./app/components/admin/positioncode-array.json";
+
         return this.http.get(getPositionCodeUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
     getRoles() {
+         var getPositionCodeUrl = "./app/components/admin/admin-chooseview.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-        var getPositionCodeUrl = "./app/components/admin/admin-chooseview.json";
+       
         return this.http.get(getPositionCodeUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
 
     getAdminData() {
+         var adminService = "./app/components/admin/test-admin.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-        var adminService = "./app/components/admin/test-admin.json";
+       
         return this.http.get(adminService, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -66,23 +67,23 @@ export class AdminService {
             .catch(this.handleError);
     }
     addBanner(roleID, bc, orderBy, image) {
-        // debugger
-        // var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
-        // var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        // var body = {
-        //     "dashBoardBannersID": 0, "image": image, "roleID": roleID, "orderBy": orderBy, "businessCenter": bc,
-        //     "link": "", "createdDate": null, "createdBy": "", "updatedDate": null, "updatedBy": "", "delFlag": ""
-        // };
-        // var headers = new Headers();
-        // headers.append('Content-Type', 'application/json');
-        // headers.append('Authorization', 'validToken');
-        // // headers.append("Cache-Control", "no-cache");
-        // // headers.append("Cache-Control", "no-store");
+        debugger
+        var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var body = {
+            "dashBoardBannersID": 0, "image": image, "roleID": roleID, "orderBy": orderBy, "businessCenter": bc,
+            "link": "", "createdDate": null, "createdBy": "", "updatedDate": null, "updatedBy": "", "delFlag": ""
+        };
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'validToken');
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
 
-        // return this.http.post(getAddBannerUrl, body, { headers: headers })           
-        //     .map((response: Response) =>
-        //         response.json())
-        //     .catch(this.handleError)
+        return this.http.post(getAddBannerUrl, body, { headers: headers })           
+            .map((response: Response) =>
+                response.json())
+            .catch(this.handleError)
 
     }
 

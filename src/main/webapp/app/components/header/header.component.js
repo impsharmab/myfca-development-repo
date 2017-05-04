@@ -46,6 +46,12 @@ var HeaderComponent = (function () {
     };
     HeaderComponent.prototype.ngOnInit = function () {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        if (!this.enablePointer) {
+            $(document).ready(function () {
+                $("#enablePointer").css("cursor", "pointer");
+                $("#enablePointer").css("text-decoration", "underline");
+            });
+        }
     };
     HeaderComponent.prototype.contactUs = function () {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
@@ -107,6 +113,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], HeaderComponent.prototype, "retweetIconHide", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], HeaderComponent.prototype, "enablePointer", void 0);
 __decorate([
     core_1.Output("onProfileChange"),
     __metadata("design:type", Object)

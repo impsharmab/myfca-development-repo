@@ -4301,18 +4301,10 @@ public class DashboardController {
 			TopTenChart topTenChart = new TopTenChart();
 
 			if(type.equals("Participant") || type.equals("Manager")){
-				TotalName bal = new TotalName();
-				TotalName redeemed = new TotalName();
-				TotalName earned = new TotalName();
+				TotalName bal = new TotalName("Total Current Point Balance","0");
+				TotalName redeemed = new TotalName("Total Points Redeemed YTD","0");
+				TotalName earned = new TotalName("Total Redemption Points Awarded YTD","0");
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim(), dealerCode);
-
-				bal.setName("Total Current Point Balance");
-				redeemed.setName("Total Points Redeemed YTD");
-				earned.setName("Total Redemption Points Awarded YTD");
-
-				bal.setTotal("0");
-				earned.setTotal("0");
-				redeemed.setTotal("0");
 
 				if(RewardRedemptionDetails.size() > 0){
 					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
@@ -4324,18 +4316,12 @@ public class DashboardController {
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(redeemed));
 			}else if (type.equals("Dealer")){
-				TotalName bal = new TotalName();
-				TotalName redeemed = new TotalName();
-				TotalName earned = new TotalName();
+				
+				TotalName bal = new TotalName("Total Current Point Balance","0");
+				TotalName redeemed = new TotalName("Total Points Redeemed YTD","0");
+				TotalName earned = new TotalName("Total Redemption Points Awarded YTD","0");
+			
 				List<RewardRedemptionGraphDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionGraphByChildTerritory(dealerCode);
-
-				bal.setName("Total Current Point Balance");
-				redeemed.setName("Total Points Redeemed YTD");
-				earned.setName("Total Redemption Points Awarded YTD");
-
-				bal.setTotal("0");
-				earned.setTotal("0");
-				redeemed.setTotal("0");
 
 				if(RewardRedemptionDetails.size() > 0){
 					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
