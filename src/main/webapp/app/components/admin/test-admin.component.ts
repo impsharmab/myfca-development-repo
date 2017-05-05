@@ -11,8 +11,8 @@ declare var $: any;
 @Component({
     moduleId: module.id,
     selector: "app-admin",
-    // templateUrl: "./test-admin-uploadimage.html"
-    templateUrl: "./upload-image.html"
+    templateUrl: "./test-admin-uploadimage.html"
+    // templateUrl: "./upload-image.html"
 
 })
 export class TestAdminComponent implements OnInit {
@@ -26,9 +26,14 @@ export class TestAdminComponent implements OnInit {
     private endEmulateUserData: any;
     private addBannerData: any;
     private errorUploadImageMessage: string = "";
+    private id: any;
+    private bc: any;
+    private imagelist: any = [];
+    private projects: any = [];
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
-    ngOnInit() {
 
+    ngOnInit() {
+        var self = this;
         this.emulateuser = {
             sid: ''
         }
@@ -36,8 +41,9 @@ export class TestAdminComponent implements OnInit {
             dashBoardBannersID: 0,
             image: "",
             roleId: 0,
+            selectedRoleId: [],
             orderBy: 0,
-            bc: "",
+            bc: [],
             link: "",
             createdDate: new Date,
             createdBy: "",
@@ -49,7 +55,8 @@ export class TestAdminComponent implements OnInit {
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
-
+        this.getImageList(self);
+        
         $('#accordion').collapse({
             toggle: false
         });
@@ -71,59 +78,112 @@ export class TestAdminComponent implements OnInit {
             $("#business-center-filter-input").autocomplete({
                 source: availableBCs
             });
-            var projects = [
-                {
-                    value: "feature1",
-                    label: "Feature 1",
-                    icon: "Feature1.jpg"
-                },
-                {
-                    value: "feature2",
-                    label: "Feature 2",
-                    icon: "Feature2.jpg"
-                },
-                {
-                    value: "feature3",
-                    label: "Feature 3",
-                    icon: "Feature3.jpg"
-                }
-            ];
-
-            $("#project").autocomplete({
-                minLength: 0,
-                source: projects,
-                focus: function (event, ui) {
-                    $("#project").val(ui.item.label);
-                    return false;
-                },
-                select: function (event, ui) {
-                    $("#project").val(ui.item.label);
-                    $("#project-id").val(ui.item.value);
-                    $("#project-icon").attr("src", "app/components/admin/images/" + ui.item.icon);
-                    return false;
-                }
-            })
-                .autocomplete("instance")._renderItem = function (ul, item) {
-                    return $("<li>")
-                        .append("<div>" + item.label + "</div>")
-                        .appendTo(ul);
-                };
-
-            $('#positionCodeImage').magicSuggest({
-                data: ["Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"]
-
+            var id = $('#roleId').magicSuggest({
+                allowFreeEntries: false,
+                valueField: 'roleid',
+                displayField: 'name',
+                data: [{ roleid: 1, name: "Executive" }, { roleid: 12, name: "BC" }, { roleid: 11, name: "District Manager" }, { roleid: 10, name: "Dealer" }, { roleid: 5, name: "Manager" }, { roleid: 9, name: "Participant" }]
             });
 
-            $('#businessCenterImage').magicSuggest({
+            $(id).on('selectionchange', function (e, m) {
+                self.setRole(this.getValue());
+            })
+
+            var bc = $('#bc').magicSuggest({
+                allowFreeEntries: false,
                 data: ["NAT", "CA", "DN", "GL", "MA", "MW", "NE", "SE", "SW", "WE"]
 
             });
+
+            $(bc).on('selectionchange', function (e, m) {
+                self.setBC(this.getValue());
+            })
+
 
         });
 
 
 
 
+    }
+
+    testMethod() {
+        for (var k = 0; k < this.imagelist.length; k++) {
+            this.projects.push({
+                value: this.imagelist[k],
+                label: this.imagelist[k],
+                icon: this.imagelist[k]
+            }
+            )
+        }
+        // var projects = [
+        //     {
+        //         value: "JeepExpert.jpg",
+        //         label: "JeepExpert.jpg",
+        //         icon: "JeepExpert.jpg"
+        //     },
+        //     {
+        //         value: "feature2",
+        //         label: "Feature 2",
+        //         icon: "Feature2.jpg"
+        //     },
+        //     {
+        //         value: "feature3",
+        //         label: "Feature 3",
+        //         icon: "Feature3.jpg"
+        //     }
+        // ];
+
+        $("#project").autocomplete({
+            minLength: 0,
+            source: this.projects,
+            focus: function (event, ui) {
+                $("#project").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#project").val(ui.item.label);
+                $("#project-id").val(ui.item.value);
+                $("#project-icon").attr("src", "https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=" + ui.item.icon);
+                return false;
+            }
+        })
+            .autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append("<div>" + item.label + "</div>")
+                    .appendTo(ul);
+            };
+
+    }
+    getImageList(self) {
+        this.adminService.getImageList().subscribe(
+            (imagelist) => {
+                this.imagelist = imagelist;
+                console.log(imagelist)
+                console.log(this.imagelist)
+                self.testMethod();
+            }
+        )
+    }
+
+    setRole(b) {
+        var a = [];
+        if (!Array.isArray(b)) {
+            a.push(b)
+        } else {
+            a = b;
+        }
+        this.uploadImage.selectedRoleId = a;
+    }
+
+    setBC(b) {
+        var a = [];
+        if (!Array.isArray(b)) {
+            a.push(b)
+        } else {
+            a = b;
+        }
+        this.uploadImage.bc = a;
     }
 
     getPositionCode() {
@@ -150,21 +210,14 @@ export class TestAdminComponent implements OnInit {
                 this.adminData = adminData.permissions;
                 // this.data = this.adminData.data;
                 // console.log(adminData.permissions[0].name)
-                
-                
+
+
 
             }
         )
     }
-
-    // setCookie(name?: string) {
-    //     this.cookieService.put('test', "test test test");
-
-    // }
-    // getCookie(name?: string) {
-    //     var y = this.cookieService.get('test');
-    //     // alert(y)
-    // }
+    //dealer=10, partic=9, execut=1, bc=12, dis=11, dealman=5
+    //"Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"
 
     emulateUser() {
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
@@ -233,21 +286,26 @@ export class TestAdminComponent implements OnInit {
 
     }
 
-    addBanner() {        
-        alert("hello")
-        debugger
-        this.adminService.addBanner(this.uploadImage.roleId, this.uploadImage.bc, this.uploadImage.orderBy, this.uploadImage.image).subscribe(
-            (addBannerData) => {
-                this.addBannerData = addBannerData;
-                debugger
-                console.log(addBannerData)
-                 alert(addBannerData)
-            },
-            (error) => {
-                alert("Error in uploading images");
-                this.errorUploadImageMessage = "Error in uploading images";
+    addBannerImage() {
+
+        for (var i = 0; i < this.uploadImage.bc.length; i++) {
+            for (var j = 0; j < this.uploadImage.selectedRoleId.length; j++) {
+                this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
+                    (addBannerData) => {
+                        this.addBannerData = addBannerData;
+                        debugger
+                        console.log(addBannerData)
+                        alert(addBannerData)
+                    },
+                    (error) => {
+                        alert("Error in uploading images");
+                        this.errorUploadImageMessage = "Error in uploading images";
+                    }
+                )
             }
-        )
+        }
+
+
 
     }
 

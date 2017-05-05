@@ -1154,7 +1154,7 @@ public class DashboardController {
 
 			tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD by Overall Survey Score", tableheaders));	
 			//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
-			tabledataA.get(0).setTabName("QTD");
+			tabledataA.get(0).setTabName("");
 			//tabledataA.get(1).setTabName("YTD");
 			datatableA.setData(tabledataA);
 
@@ -1268,7 +1268,7 @@ public class DashboardController {
 
 			tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD by Overall Survey Score", tableheaders));	
 			//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
-			tabledataT.get(0).setTabName("QTD");
+			tabledataT.get(0).setTabName("");
 			//tabledataT.get(1).setTabName("YTD");
 			datatableT.setData(tabledataT);
 
@@ -1998,18 +1998,17 @@ public class DashboardController {
 				double total = 0;
 				for(String filter: filters){
 					List<String> in = new ArrayList<String>(Arrays.asList(filter));
+					List<RetentionGraphDTO> innerListTotal = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(in, item.getName());
 					List<RetentionGraphDTO> innerList = this.dashService.getRetentionGraphByParentTerritoryListAndPositionCode(in, item.getName());
 					ChartData chartD = new ChartData(filter, total);
 					for(RetentionGraphDTO a: innerList){
-						total += a.getPercentage();
 						if((type.equals("BC") && filter.equals(BC)) || type.equals("Executive")){
 							chartD.addData(new ChartData(a.getChildTerritory(), a.getPercentage()));
 						}
-						/*}else if(type.equals("Executive")){
-							chartD.addData(new ChartData(a.getChildTerritory(), a.getPercentage()));
-						}*/
 					}
-					total = total/innerList.size();
+					if(innerListTotal.size() > 0){
+						total = innerListTotal.get(0).getPercentage();
+					}
 					chartD.setValue(total);
 					total = 0;
 					// with out b =0; java skips the next line
@@ -3770,7 +3769,7 @@ public class DashboardController {
 
 				tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Advisors QTD by Overall Survey Score", tableheaders));	
 				//tabledataA.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Advisors YTD Average Survey Scores", tableheaders));
-				tabledataA.get(0).setTabName("QTD");
+				tabledataA.get(0).setTabName("");
 				//tabledataA.get(1).setTabName("YTD");
 				datatableA.setData(tabledataA);
 
@@ -3925,7 +3924,7 @@ public class DashboardController {
 
 				tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsQTD, "Top 10 Technicians QTD by Overall Survey Score", tableheaders));	
 				//tabledataT.add(this.mappingService.MapTTTATopNDTOtoTopTenTableData(listAdvisorsYTD, "Top 10 Technicians YTD Average Survey Scores", tableheaders));
-				tabledataT.get(0).setTabName("QTD");
+				tabledataT.get(0).setTabName("");
 				//tabledataT.get(1).setTabName("YTD");
 				datatableT.setData(tabledataT);
 
@@ -4300,39 +4299,51 @@ public class DashboardController {
 		{
 			TopTenChart topTenChart = new TopTenChart();
 
-			if(type.equals("Participant") || type.equals("Manager")){
-				TotalName bal = new TotalName("Total Current Point Balance","0");
-				TotalName redeemed = new TotalName("Total Points Redeemed YTD","0");
-				TotalName earned = new TotalName("Total Redemption Points Awarded YTD","0");
-				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim(), dealerCode);
-
-				if(RewardRedemptionDetails.size() > 0){
-					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
-					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
-					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
-				}
-
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(redeemed));
-			}else if (type.equals("Dealer")){
-				
-				TotalName bal = new TotalName("Total Current Point Balance","0");
-				TotalName redeemed = new TotalName("Total Points Redeemed YTD","0");
-				TotalName earned = new TotalName("Total Redemption Points Awarded YTD","0");
+			TotalName bal = new TotalName("Total Current Point Balance","0");
+			TotalName redeemed = new TotalName("Total Points Redeemed YTD","0");
+			TotalName earned = new TotalName("Total Redemption Points Awarded YTD","0");
+			TotalName ccp = new TotalName("Total Certified Professionals Points YTD","0");
+			TotalName ttta = new TotalName("Total Top Tech/Top Advisor Points YTD","0");
 			
-				List<RewardRedemptionGraphDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionGraphByChildTerritory(dealerCode);
-
+			if(type.equals("Participant") || type.equals("Manager")){
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim(), dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsCCP = this.dashService.getRewardRedemptionDetailsCCPBySid(user.getUserId().trim(), dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsCCPBySid(user.getUserId().trim(), dealerCode);
+				
 				if(RewardRedemptionDetails.size() > 0){
 					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
 					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
 					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
 				}
-
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(redeemed));
+				if(RewardRedemptionDetailsCCP.size() > 0){
+					ccp.setTotal(this.formatNumbers(RewardRedemptionDetailsCCP.get(0).getEarnedPoints() - RewardRedemptionDetailsCCP.get(0).getRedeemedPoints()));
+				}
+				if(RewardRedemptionDetailsTTTA.size() > 0){
+					ttta.setTotal(this.formatNumbers(RewardRedemptionDetailsTTTA.get(0).getEarnedPoints() - RewardRedemptionDetailsCCP.get(0).getRedeemedPoints()));
+				}
+			}else if (type.equals("Dealer")){
+				List<RewardRedemptionGraphDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionGraphByChildTerritory(dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsCCP = this.dashService.getRewardRedemptionDetailsCCPByDealer(dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsCCPBySid(user.getUserId().trim(), dealerCode);
+				if(RewardRedemptionDetails.size() > 0){
+					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
+					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
+					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
+				}
+				if(RewardRedemptionDetailsCCP.size() > 0){
+					ccp.setTotal(this.formatNumbers(RewardRedemptionDetailsCCP.get(0).getEarnedPoints() - RewardRedemptionDetailsCCP.get(0).getRedeemedPoints()));
+				}
+				if(RewardRedemptionDetailsTTTA.size() > 0){
+					ttta.setTotal(this.formatNumbers(RewardRedemptionDetailsTTTA.get(0).getEarnedPoints() - RewardRedemptionDetailsCCP.get(0).getRedeemedPoints()));
+				}
 			}
+			
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(earned));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(bal));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(redeemed));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ccp));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ttta));
+			
 			return topTenChart;
 		}
 		case "25":
@@ -4366,7 +4377,7 @@ public class DashboardController {
 					
 					cartificationLevelPrior.setName("Not Certified");
 					cartificationLevelPrior.setTotal("No Record to Display");
-					
+					boolean displayNotCertified = false;
 					if(CertProfsWinnersDetailsList.size() > 0){
 						CertProfsWinnersDetailsDTO CertProfsWinnersDetails = CertProfsWinnersDetailsList.get(0);
 						
@@ -4394,10 +4405,13 @@ public class DashboardController {
 						}else{
 							cartificationLevelPrior.setName("Not Certified");
 							cartificationLevelPrior.setTotal("No Record to Display”");
-							topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior));
+							displayNotCertified = true;
 						}
 						years.setTotal(CertProfsWinnersDetails.getYearsOfCertified()+ "");
 						currentYearsPoints.setTotal(this.formatNumbers(CertProfsWinnersDetails.getPoints()));
+					}
+					if(displayNotCertified){
+						topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior));
 					}
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(currentYearsPoints));
 					if(type.equals("Participant")){
@@ -4405,57 +4419,56 @@ public class DashboardController {
 					}
 				}
 
+				if(type.equals("Dealer") || type.equals("Manager")){
+					List<String> list = new ArrayList<String>();
+					list.add(dealerCode);
+					List<CertProfsWinnersGraphDTO> CertProfsWinnersGraphDTOList = this.dashService.getCertProfsWinnersGraphByChildTerritory(list);
 
-			if(type.equals("Dealer") || type.equals("Manager")){
-				List<String> list = new ArrayList<String>();
-				list.add(dealerCode);
-				List<CertProfsWinnersGraphDTO> CertProfsWinnersGraphDTOList = this.dashService.getCertProfsWinnersGraphByChildTerritory(list);
+					totalCertifiedParticipants.setName("Total Certified Participants");
+					totalMasterCertifiedParticipants.setName("Total Master Certified Participants");
+					totalCertifiedSpecialistParticipants.setName("Total Certified Specialist Participants");
+					totalCertifiedLevelParticipants.setName("Total Certified Level Participants");
 
-				totalCertifiedParticipants.setName("Total Certified Participants");
-				totalMasterCertifiedParticipants.setName("Total Master Certified Participants");
-				totalCertifiedSpecialistParticipants.setName("Total Certified Specialist Participants");
-				totalCertifiedLevelParticipants.setName("Total Certified Level Participants");
-				
-				
-				
-				totalCertifiedParticipants.setTotal("0");
-				totalMasterCertifiedParticipants.setTotal("0");
-				totalCertifiedSpecialistParticipants.setTotal("0");
-				totalCertifiedLevelParticipants.setTotal("0");
-				
-				if(CertProfsWinnersGraphDTOList.size() >0){
-					CertProfsWinnersGraphDTO CertProfsWinnersGraphDTO = CertProfsWinnersGraphDTOList.get(0);
-					totalCertifiedParticipants.setTotal(CertProfsWinnersGraphDTO.getTotalCertified() + "");
-					totalMasterCertifiedParticipants.setTotal(CertProfsWinnersGraphDTO.getMasterCertified() + "");
-					totalCertifiedSpecialistParticipants.setTotal(CertProfsWinnersGraphDTO.getCertifiedSpecialist() + "");
-					totalCertifiedLevelParticipants.setTotal(CertProfsWinnersGraphDTO.getCertified() + "");
-				}
-				
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
 
-				if(type.equals("Dealer")){
-					dealershipMasterCertifiedRankWithinBC.setName("Dealership Master Certified BC Rank");
-					dealershipMasterCertifiedNationalRank.setName("Dealership Master Certified National Rank");
-					dealershipRankWithinBC.setName("Dealership BC Rank for Total Participants Receiving Certification");
-					dealershipNationalRank.setName("Dealership National Rank for Total Participants Receiving Certification");
 
-					dealershipMasterCertifiedRankWithinBC.setTotal("-");
-					dealershipMasterCertifiedNationalRank.setTotal("-");
-					dealershipRankWithinBC.setTotal("-");
-					dealershipNationalRank.setTotal("-");
+					totalCertifiedParticipants.setTotal("0");
+					totalMasterCertifiedParticipants.setTotal("0");
+					totalCertifiedSpecialistParticipants.setTotal("0");
+					totalCertifiedLevelParticipants.setTotal("0");
 
 					if(CertProfsWinnersGraphDTOList.size() >0){
 						CertProfsWinnersGraphDTO CertProfsWinnersGraphDTO = CertProfsWinnersGraphDTOList.get(0);
-						dealershipMasterCertifiedRankWithinBC.setTotal(CertProfsWinnersGraphDTO.getMasterCertBCCertRank() + "");
-						dealershipMasterCertifiedNationalRank.setTotal(CertProfsWinnersGraphDTO.getMasterCertNATCertRank() + "");						
-						dealershipRankWithinBC.setTotal(CertProfsWinnersGraphDTO.getAllBCCertRank() + "");
-						dealershipNationalRank.setTotal(CertProfsWinnersGraphDTO.getAllNATCertRank() + "");
+						totalCertifiedParticipants.setTotal(CertProfsWinnersGraphDTO.getTotalCertified() + "");
+						totalMasterCertifiedParticipants.setTotal(CertProfsWinnersGraphDTO.getMasterCertified() + "");
+						totalCertifiedSpecialistParticipants.setTotal(CertProfsWinnersGraphDTO.getCertifiedSpecialist() + "");
+						totalCertifiedLevelParticipants.setTotal(CertProfsWinnersGraphDTO.getCertified() + "");
 					}
 
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
+
+					if(type.equals("Dealer")){
+						dealershipMasterCertifiedRankWithinBC.setName("Dealership Master Certified BC Rank");
+						dealershipMasterCertifiedNationalRank.setName("Dealership Master Certified National Rank");
+						dealershipRankWithinBC.setName("Dealership BC Rank for Total Participants Receiving Certification");
+						dealershipNationalRank.setName("Dealership National Rank for Total Participants Receiving Certification");
+
+						dealershipMasterCertifiedRankWithinBC.setTotal("-");
+						dealershipMasterCertifiedNationalRank.setTotal("-");
+						dealershipRankWithinBC.setTotal("-");
+						dealershipNationalRank.setTotal("-");
+
+						if(CertProfsWinnersGraphDTOList.size() >0){
+							CertProfsWinnersGraphDTO CertProfsWinnersGraphDTO = CertProfsWinnersGraphDTOList.get(0);
+							dealershipMasterCertifiedRankWithinBC.setTotal(CertProfsWinnersGraphDTO.getMasterCertBCCertRank() + "");
+							dealershipMasterCertifiedNationalRank.setTotal(CertProfsWinnersGraphDTO.getMasterCertNATCertRank() + "");						
+							dealershipRankWithinBC.setTotal(CertProfsWinnersGraphDTO.getAllBCCertRank() + "");
+							dealershipNationalRank.setTotal(CertProfsWinnersGraphDTO.getAllNATCertRank() + "");
+						}
+
+						topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedNationalRank));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipRankWithinBC));
 					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipNationalRank));
@@ -5442,11 +5455,8 @@ public class DashboardController {
 				sublist = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(territory.substring(0, 3) + "%");
 			}else if(type.equals("Dealer")){
 				sublist = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(dealerCode);
-			}
-				else{
-				List<String> filters = new ArrayList<String>();
-				filters.add(territory);
-				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(territory, dealerCode);
+			}else{				
+				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(user.getUserId().trim(), dealerCode);
 			}
 
 			Chart chart = new Chart();

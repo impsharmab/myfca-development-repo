@@ -29,6 +29,12 @@ var AdminService = (function () {
     };
     AdminService.prototype.setEndEmulateUserData = function (endEmulateUserData) {
     };
+    AdminService.prototype.getImageList = function () {
+        var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
+        return this.http.get(getImageListUrl)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     AdminService.prototype.getPositionCode = function () {
         var getPositionCodeUrl = "./app/components/admin/positioncode-array.json";
         var headers = new http_1.Headers();
@@ -56,7 +62,7 @@ var AdminService = (function () {
     AdminService.prototype.getEmulateUserData = function (sid) {
         //var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
         // var getEmulateUserDataUrl = "service/Admin/?id="+sid;
-        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/Admin/" + sid;
+        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
         var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');

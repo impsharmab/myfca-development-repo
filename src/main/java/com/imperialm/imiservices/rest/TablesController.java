@@ -198,11 +198,11 @@ public class TablesController {
 				filters.add(territory);
 				List<SIRewardsYOYGraphDTO> sublist = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(territory, "YTD");
 				for(SIRewardsYOYGraphDTO item: sublist){
-						//List<SIRewardsYOYDetailsDTO> participants = this.dashService.getSIre(item.getChildTerritory(), "YTD");
+						List<SIRewardsYOYDetailsDTO> participants = this.dashService.getSIRewardsYOYDetailsByDealerCodeAndToggle(item.getChildTerritory(), "YTD");
 						//result.addAll(participants);
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
-				 return this.dashService.getRewardRedemptionDetailsByDealer(territory);
+				 return this.dashService.getSIRewardsYOYDetailsByDealerCodeAndToggle(territory, "YTD");
 			}
 			return result;
 		}

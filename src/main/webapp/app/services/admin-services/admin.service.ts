@@ -24,7 +24,14 @@ export class AdminService {
 
     }
 
-    getPositionCode() {        
+    getImageList() {
+        var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
+        return this.http.get(getImageListUrl)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
+
+    getPositionCode() {
         var getPositionCodeUrl = "./app/components/admin/positioncode-array.json";
         var headers = new Headers();
         headers.append('Authorization', "");
@@ -34,20 +41,20 @@ export class AdminService {
             .catch(this.handleError);
     }
     getRoles() {
-         var getPositionCodeUrl = "./app/components/admin/admin-chooseview.json";
+        var getPositionCodeUrl = "./app/components/admin/admin-chooseview.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-       
+
         return this.http.get(getPositionCodeUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
 
     getAdminData() {
-         var adminService = "./app/components/admin/test-admin.json";
+        var adminService = "./app/components/admin/test-admin.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-       
+
         return this.http.get(adminService, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -56,7 +63,7 @@ export class AdminService {
     getEmulateUserData(sid: string) {
         //var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
         // var getEmulateUserDataUrl = "service/Admin/?id="+sid;
-        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/Admin/" + sid;
+        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
 
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
@@ -80,7 +87,7 @@ export class AdminService {
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
 
-        return this.http.post(getAddBannerUrl, body, { headers: headers })           
+        return this.http.post(getAddBannerUrl, body, { headers: headers })
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError)

@@ -485,7 +485,7 @@ public class MappingServiceImpl {
 	public ChartData SummaryProgramRewardGraphDTOtoChartDataAverageScore(SummaryProgramRewardGraphDTO SummaryProgramRewardGraphDTO){
 		ChartData chartData = new ChartData();		
 		chartData.setName(SummaryProgramRewardGraphDTO.getChild());
-		chartData.setValue((int)SummaryProgramRewardGraphDTO.getEarnings());
+		chartData.setValue(SummaryProgramRewardGraphDTO.getEarnings());
 		return chartData;
 	}
 	

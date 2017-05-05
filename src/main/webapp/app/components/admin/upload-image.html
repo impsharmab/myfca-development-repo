@@ -15,38 +15,38 @@
                 <!--Add Image to Banner start-->
                 <div class="row">
                     <div class="col-sm-12 col-md-8">
-                        
-                            <div class="box">
-                                <h4>Add Image to Banner</h4>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <label>Select Role</label>
+                        <div class="box">
+                            <h4>Add Image to Banner</h4>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <label>Select Role</label>
+                                    <input id="positionCodeImage" name="roleId" [(ngModel)]="uploadImage.roleId">
 
-                                        <input id="positionCodeImage" name="roleId" [(ngModel)]="uploadImage.roleId">
-                                        <label>Select a Business Center</label>
+                                    <label>Select a Business Center</label>
+                                    <input id="businessCenterImage" name="bc" [(ngModel)]="uploadImage.bc">
 
-                                        <input id="businessCenterImage" name="bc" [(ngModel)]="uploadImage.bc">
-                                        <label>Enter an Order Number</label>
-                                        <input type="text" id="orderBy" name="orderBy" [(ngModel)]="uploadImage.orderBy">
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <label>Select an Image</label>
-                                        <input id="project">
-                                        <input type="hidden" id="project-id" name="image" [(ngModel)]="uploadImage.image">
-                                        <img id="project-icon" src="" class="ui-state-default" alt="">
-                                        <p id="project-description"></p>
-                                        <br />
-                                        <button type="submit" class="btn btn-primary btn-sm" onsubmit="event.preventDefault()">Add to Banner</button>
-                                    </div>
+                                    <label>Enter an Order Number</label>
+                                    <input type="text" id="orderBy" name="orderBy" [(ngModel)]="uploadImage.orderBy">
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label>Select an Image</label>
+                                    <input id="project">
+
+                                    <input type="hidden" id="project-id" name="image" [(ngModel)]="uploadImage.image">
+                                    <img id="project-icon" src="" class="ui-state-default" alt="">
+                                    <p id="project-description"></p>
+
+                                    <br />
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="addBanner()" >Add to Banner</button>
                                 </div>
                             </div>
-                        
+                        </div>
                     </div>
 
 
 
                     <div class="col-sm-12 col-md-4">
-                        <form #addBanner="ngForm" novalidate (ngSubmit)="addBanner()">
+                        <
                             <div class="box">
                                 <h4>Add an Image</h4>
                                 <br />
@@ -64,7 +64,7 @@
 
 
                             </div>
-                        </form>
+                       
                     </div>
 
                 </div>

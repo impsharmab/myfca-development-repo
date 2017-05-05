@@ -347,7 +347,7 @@
 		}
 		function getChart19(jsonData) {
 			var tableData = {};
-			tableData.headers = ["Dealer Code", "Dealer",  "Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor", "Total"];
+			tableData.headers = ["Dealer Code", "Dealer",  "Express Lane", "Magneti Marelli-MSER", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor (non-MVP)", "Total"];
 			tableData.data = [];
 			var dealerCode = {};
 			var dealerName = {};
@@ -375,7 +375,7 @@
 				var uConnectTotal = 0;
 				var wiAdvisor = 0;
 				var total = 0;
-				innerDataObj.headers = ["Participant","Express Lane","Magneti Marelli","Mopar Parts","MVP","Parts Counter","Uconnect","wiAdvisor","Total"]
+				innerDataObj.headers = ["Participant","Express Lane","Magneti Marelli-MSER","Mopar Parts","MVP","Parts Counter","Uconnect","wiAdvisor (non-MVP)","Total"]
 				innerDataObj.data = [];
 				for (var key1 in sid) {
 					var innerData = outerData.filter(function (ele, index, array) {
@@ -384,7 +384,7 @@
 					//console.log(innerData)
 					var rowData = [innerData[0].name];
 					var total = 0;
-					var programName = ["Express Lane", "Magneti Marelli", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor"]
+					var programName = ["Express Lane", "Magneti Marelli-MSER", "Mopar Parts", "MVP", "Parts Counter", "Uconnect", "wiAdvisor (non-MVP)"]
 					for (var j = 0; j < programName.length; j++) {
 						var obj = innerData.filter(function (ele, index, array) {
 							//console.log(programName[j] + " === " + ele.program)
@@ -486,6 +486,7 @@
 		function getChart31(jsonData) {
 			var tableData = {};
 			tableData.headers = [
+				"Dealer Code",
 				"Dealer",
 				"Service Managers",
 				"Service Advisors",
@@ -497,20 +498,22 @@
 			tableData.data = [];
 			var delarName = {};
 
-			var delarName = {};
+			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
 				delarName[obj.dealerCode] = obj.dealerCode;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
 			}
-			for (var key in delarName) {
+			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return delarName[key] === ele.dealerCode;
+					return dealerCode[key] === ele.dealerCode;
 				});
 				var positionCodeArray = ["09", "13", "23", "08", "14", "04", "42"]
 				var rowData = [" "];
 
-				rowData.push(outerData[0].dealerName);
+				rowData.push(outerData[0].dealerCode);
+				rowData.push(outerData[1].dealerName);
 				var total = 0;
 				for (var n = 0; n < positionCodeArray.length; n++) {
 					var data = outerData.filter(function (ele, index, array) {

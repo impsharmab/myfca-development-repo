@@ -34,21 +34,21 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-8">
-                        <form #addBanner="ngForm" novalidate (ngSubmit)="addBanner()">
+                        
                             <div class="box">
                                 <h4>Add Image to Banner</h4>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <label>Select Role</label>
                                         <!--<div id="positionCodeImage" ></div>-->
-                                        <input id="positionCodeImage" name="roleId" [(ngModel)]="uploadImage.roleId">
+                                        <input id="roleId" name="roleId" >
 
                                         <label>Select a Business Center</label>
                                         <!--<div id="businessCenterImage"></div>-->
-                                        <input id="businessCenterImage" name="bc" [(ngModel)]="uploadImage.bc">
+                                        <input id="bc" name="bc" >
 
                                         <label>Enter an Order Number</label>
-                                        <input type="text" id="orderBy" name="orderBy" [(ngModel)]="uploadImage.orderBy">
+                                        <input type="text"  name="orderBy" [(ngModel)]="uploadImage.orderBy">
                                     </div>
                                     <div class="col-sm-12 col-md-6">
                                         <label>Select an Image</label>
@@ -57,11 +57,11 @@
                                         <img id="project-icon" src="" class="ui-state-default" alt="">
                                         <p id="project-description"></p>
                                         <br />
-                                        <button type="submit" class="btn btn-primary btn-sm" onsubmit="event.preventDefault()">Add to Banner</button>
+                                        <button type="button" class="btn btn-primary btn-sm" (click)="addBannerImage()">Add to Banner</button>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        
                     </div>
 
 
@@ -87,9 +87,9 @@
                     </div>
                 </div>
                 <!--Add Image to Banner end-->
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-sm-12 col-md-8">
-                        <!--<form #addTestBanner="ngForm" novalidate (ngSubmit)="addBanner()">-->
+                        
                         <div class="box">
                             <h4>Add Image to Banner</h4>
                             <div class="row">
@@ -99,9 +99,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!--</form>-->
+                        
                     </div>
-                </div>
+                </div>-->
                 <!--Configuration Image to Banner end-->
                 <div class="row">
                     <div class="col-sm-12 col-md-12">

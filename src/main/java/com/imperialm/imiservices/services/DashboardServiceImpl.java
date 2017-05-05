@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imperialm.imiservices.dao.SIRewardsYOYDetailsDAO;
 import com.imperialm.imiservices.dao.MyFCAMserRankingDetailsDAO;
 import com.imperialm.imiservices.dao.MyFCAMserRankingDAO;
 import com.imperialm.imiservices.dao.SummaryProgramRewardDetailsDAO;
@@ -55,6 +56,7 @@ import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
@@ -72,6 +74,9 @@ import com.imperialm.imiservices.dao.TTTATopNDAO;
 @Service // implements DashboardService
 public class DashboardServiceImpl {
 
+	@Autowired
+	private SIRewardsYOYDetailsDAO SIRewardsYOYDetailsDAO;
+	
 	@Autowired
 	private DashboardDAO dashboardDAO;
 	
@@ -677,9 +682,28 @@ public class DashboardServiceImpl {
 		return this.CustomerFirstDetailsDAO.getCustomerFirstDetailsByDealerCodeAndToggle(dealerCode, toggle);
 	}
 	
-	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram(String territory,
-			String toggle, String program) {
-		return this.MyfcaMSERTotalEarningsDAO.getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram(territory, toggle, program);
+	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsCCPByDealer(String dealerCode) {
+		return this.RewardRedemptionDetailsDAO.getRewardRedemptionDetailsCCPByDealer(dealerCode);
+	}
+	
+	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsCCPBySid(String sid, String dealerCode) {
+		return this.RewardRedemptionDetailsDAO.getRewardRedemptionDetailsCCPBySid(sid, dealerCode);
+	}
+	
+	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsTTTAByDealer(String dealerCode) {
+		return this.RewardRedemptionDetailsDAO.getRewardRedemptionDetailsTTTAByDealer(dealerCode);
+	}
+	
+	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsTTTABySid(String sid, String dealerCode) {
+		return this.RewardRedemptionDetailsDAO.getRewardRedemptionDetailsTTTABySid(sid, dealerCode);
+	}
+	
+	public List<SIRewardsYOYDetailsDTO> getSIRewardsYOYDetailsBySIDAndToggle(String sid, String dealerCode, String toggle) {
+		return this.SIRewardsYOYDetailsDAO.getSIRewardsYOYDetailsBySIDAndToggle(sid, dealerCode, toggle);
+	}
+	
+	public List<SIRewardsYOYDetailsDTO> getSIRewardsYOYDetailsByDealerCodeAndToggle(String dealerCode, String toggle) {
+		return this.SIRewardsYOYDetailsDAO.getSIRewardsYOYDetailsByDealerCodeAndToggle( dealerCode, toggle);
 	}
 	
 }

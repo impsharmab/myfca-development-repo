@@ -18,8 +18,11 @@ var TestAdminComponent = (function () {
         this.cookieService = cookieService;
         this.router = router;
         this.errorUploadImageMessage = "";
+        this.imagelist = [];
+        this.projects = [];
     }
     TestAdminComponent.prototype.ngOnInit = function () {
+        var self = this;
         this.emulateuser = {
             sid: ''
         };
@@ -27,8 +30,9 @@ var TestAdminComponent = (function () {
             dashBoardBannersID: 0,
             image: "",
             roleId: 0,
+            selectedRoleId: [],
             orderBy: 0,
-            bc: "",
+            bc: [],
             link: "",
             createdDate: new Date,
             createdBy: "",
@@ -39,6 +43,7 @@ var TestAdminComponent = (function () {
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
+        this.getImageList(self);
         $('#accordion').collapse({
             toggle: false
         });
@@ -57,49 +62,97 @@ var TestAdminComponent = (function () {
             $("#business-center-filter-input").autocomplete({
                 source: availableBCs
             });
-            var projects = [
-                {
-                    value: "feature1",
-                    label: "Feature 1",
-                    icon: "Feature1.jpg"
-                },
-                {
-                    value: "feature2",
-                    label: "Feature 2",
-                    icon: "Feature2.jpg"
-                },
-                {
-                    value: "feature3",
-                    label: "Feature 3",
-                    icon: "Feature3.jpg"
-                }
-            ];
-            $("#project").autocomplete({
-                minLength: 0,
-                source: projects,
-                focus: function (event, ui) {
-                    $("#project").val(ui.item.label);
-                    return false;
-                },
-                select: function (event, ui) {
-                    $("#project").val(ui.item.label);
-                    $("#project-id").val(ui.item.value);
-                    $("#project-icon").attr("src", "app/components/admin/images/" + ui.item.icon);
-                    return false;
-                }
-            })
-                .autocomplete("instance")._renderItem = function (ul, item) {
-                return $("<li>")
-                    .append("<div>" + item.label + "</div>")
-                    .appendTo(ul);
-            };
-            $('#positionCodeImage').magicSuggest({
-                data: ["Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"]
+            var id = $('#roleId').magicSuggest({
+                allowFreeEntries: false,
+                valueField: 'roleid',
+                displayField: 'name',
+                data: [{ roleid: 1, name: "Executive" }, { roleid: 12, name: "BC" }, { roleid: 11, name: "District Manager" }, { roleid: 10, name: "Dealer" }, { roleid: 5, name: "Manager" }, { roleid: 9, name: "Participant" }]
             });
-            $('#businessCenterImage').magicSuggest({
+            $(id).on('selectionchange', function (e, m) {
+                self.setRole(this.getValue());
+            });
+            var bc = $('#bc').magicSuggest({
+                allowFreeEntries: false,
                 data: ["NAT", "CA", "DN", "GL", "MA", "MW", "NE", "SE", "SW", "WE"]
             });
+            $(bc).on('selectionchange', function (e, m) {
+                self.setBC(this.getValue());
+            });
         });
+    };
+    TestAdminComponent.prototype.testMethod = function () {
+        for (var k = 0; k < this.imagelist.length; k++) {
+            this.projects.push({
+                value: this.imagelist[k],
+                label: this.imagelist[k],
+                icon: this.imagelist[k]
+            });
+        }
+        // var projects = [
+        //     {
+        //         value: "JeepExpert.jpg",
+        //         label: "JeepExpert.jpg",
+        //         icon: "JeepExpert.jpg"
+        //     },
+        //     {
+        //         value: "feature2",
+        //         label: "Feature 2",
+        //         icon: "Feature2.jpg"
+        //     },
+        //     {
+        //         value: "feature3",
+        //         label: "Feature 3",
+        //         icon: "Feature3.jpg"
+        //     }
+        // ];
+        $("#project").autocomplete({
+            minLength: 0,
+            source: this.projects,
+            focus: function (event, ui) {
+                $("#project").val(ui.item.label);
+                return false;
+            },
+            select: function (event, ui) {
+                $("#project").val(ui.item.label);
+                $("#project-id").val(ui.item.value);
+                $("#project-icon").attr("src", "https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=" + ui.item.icon);
+                return false;
+            }
+        })
+            .autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<div>" + item.label + "</div>")
+                .appendTo(ul);
+        };
+    };
+    TestAdminComponent.prototype.getImageList = function (self) {
+        var _this = this;
+        this.adminService.getImageList().subscribe(function (imagelist) {
+            _this.imagelist = imagelist;
+            console.log(imagelist);
+            console.log(_this.imagelist);
+            self.testMethod();
+        });
+    };
+    TestAdminComponent.prototype.setRole = function (b) {
+        var a = [];
+        if (!Array.isArray(b)) {
+            a.push(b);
+        }
+        else {
+            a = b;
+        }
+        this.uploadImage.selectedRoleId = a;
+    };
+    TestAdminComponent.prototype.setBC = function (b) {
+        var a = [];
+        if (!Array.isArray(b)) {
+            a.push(b);
+        }
+        else {
+            a = b;
+        }
+        this.uploadImage.bc = a;
     };
     TestAdminComponent.prototype.getPositionCode = function () {
         var _this = this;
@@ -123,13 +176,8 @@ var TestAdminComponent = (function () {
             // console.log(adminData.permissions[0].name)
         });
     };
-    // setCookie(name?: string) {
-    //     this.cookieService.put('test', "test test test");
-    // }
-    // getCookie(name?: string) {
-    //     var y = this.cookieService.get('test');
-    //     // alert(y)
-    // }
+    //dealer=10, partic=9, execut=1, bc=12, dis=11, dealman=5
+    //"Executive", "BC", "District Manager", "Dealer", "Manager", "Participant"
     TestAdminComponent.prototype.emulateUser = function () {
         var _this = this;
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(function (emulateUserData) {
@@ -163,19 +211,21 @@ var TestAdminComponent = (function () {
         var url = ["myfcadashboard"];
         this.router.navigate(url);
     };
-    TestAdminComponent.prototype.addBanner = function () {
+    TestAdminComponent.prototype.addBannerImage = function () {
         var _this = this;
-        alert("hello");
-        debugger;
-        this.adminService.addBanner(this.uploadImage.roleId, this.uploadImage.bc, this.uploadImage.orderBy, this.uploadImage.image).subscribe(function (addBannerData) {
-            _this.addBannerData = addBannerData;
-            debugger;
-            console.log(addBannerData);
-            alert(addBannerData);
-        }, function (error) {
-            alert("Error in uploading images");
-            _this.errorUploadImageMessage = "Error in uploading images";
-        });
+        for (var i = 0; i < this.uploadImage.bc.length; i++) {
+            for (var j = 0; j < this.uploadImage.selectedRoleId.length; j++) {
+                this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(function (addBannerData) {
+                    _this.addBannerData = addBannerData;
+                    debugger;
+                    console.log(addBannerData);
+                    alert(addBannerData);
+                }, function (error) {
+                    alert("Error in uploading images");
+                    _this.errorUploadImageMessage = "Error in uploading images";
+                });
+            }
+        }
     };
     return TestAdminComponent;
 }());
@@ -183,8 +233,7 @@ TestAdminComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: "app-admin",
-        // templateUrl: "./test-admin-uploadimage.html"
-        templateUrl: "./upload-image.html"
+        templateUrl: "./test-admin-uploadimage.html"
     }),
     __metadata("design:paramtypes", [admin_service_1.AdminService, cookies_service_1.CookieService, router_1.Router])
 ], TestAdminComponent);

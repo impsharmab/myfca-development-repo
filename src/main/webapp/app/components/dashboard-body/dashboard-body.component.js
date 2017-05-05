@@ -57,6 +57,41 @@ var DashboardBodyComponent = (function () {
         //number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.initializeContent();
     }
+    DashboardBodyComponent.prototype.ngOnInit = function () {
+        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
+        this.modalService.open(this.model, { size: "lg" });
+        $(document).ready(function () {
+            var elementHeights = $('.data - group').map(function () {
+                return $(this).height();
+            }).get();
+            var maxHeight = Math.max.apply(null, elementHeights);
+            $('.data-group').height(maxHeight);
+        });
+        function numberWithPercentage(x) {
+            return (x).toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+    };
+    DashboardBodyComponent.prototype.numberWithPercentage = function (x) {
+        return (x).toFixed(1);
+        //  return Math.floor(x);
+    };
+    DashboardBodyComponent.prototype.ngOnDestroy = function () {
+        this.tilesArray = [];
+        this.contentBody = {};
+        this.tableData = {
+            "buttonName": "",
+            "title": "",
+            "tableData": []
+        };
+        this.unitAndAverage = {};
+        this.showPieButton = {};
+        this.bc;
+        this.totalCount = 0;
+        this.avarage = 0;
+        this.pieButtons = {};
+        this.chartRawData = {};
+    };
     DashboardBodyComponent.prototype.drillDown = function (e, chart, id) {
         var obj = this.unitAndAverage[id];
         this.drillUptotalCount = 0;
@@ -78,21 +113,21 @@ var DashboardBodyComponent = (function () {
             this.totalCount = this.totalCount / this.drilldownAverageCount;
         }
         if (obj.unit == "$" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
         }
         else if (obj.unit == "$" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
         }
         else if (obj.unit == "%" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
         }
         else if (obj.unit == "%" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + Math.round(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Average " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
         }
         else {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
         }
-        // chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+        // chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
         this.drillUptotalCount = 0;
         this.drilldownAverageCount = 0;
     };
@@ -116,51 +151,23 @@ var DashboardBodyComponent = (function () {
             this.drillUptotalCount = this.drillUptotalCount / this.drillupAverageCount;
         }
         if (obj.unit == "$" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
         }
         else if (obj.unit == "$" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+            chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
         }
         else if (obj.unit == "%" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + Math.round(this.drillUptotalCount).toLocaleString() + obj.unit });
+            chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit });
         }
         else if (obj.unit == "%" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + Math.round(this.drillUptotalCount).toLocaleString() + obj.unit });
+            chart.setTitle(null, { text: "Average " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit });
         }
         else {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
         }
-        // chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() });
+        // chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
         this.totalCount = 0;
         this.drilldownAverageCount = 0;
-    };
-    DashboardBodyComponent.prototype.ngOnInit = function () {
-        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
-        //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
-        this.modalService.open(this.model, { size: "lg" });
-        $(document).ready(function () {
-            var elementHeights = $('.data - group').map(function () {
-                return $(this).height();
-            }).get();
-            var maxHeight = Math.max.apply(null, elementHeights);
-            $('.data-group').height(maxHeight);
-        });
-    };
-    DashboardBodyComponent.prototype.ngOnDestroy = function () {
-        this.tilesArray = [];
-        this.contentBody = {};
-        this.tableData = {
-            "buttonName": "",
-            "title": "",
-            "tableData": []
-        };
-        this.unitAndAverage = {};
-        this.showPieButton = {};
-        this.bc;
-        this.totalCount = 0;
-        this.avarage = 0;
-        this.pieButtons = {};
-        this.chartRawData = {};
     };
     DashboardBodyComponent.prototype.reload = function () {
         this.tilesArray = [];
@@ -352,9 +359,9 @@ var DashboardBodyComponent = (function () {
         var dataLabels = "";
         var stackLabels = "";
         if (chartData.unit == "%") {
-            tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>{point.y:.0f}</b> <b>' + chartData.unit + '</b><br/>';
-            dataLabels = "{point.y:.0f}" + chartData.unit;
-            stackLabels = '{total:.0f}' + chartData.unit;
+            tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>{point.y}</b> <b>' + chartData.unit + '</b><br/>';
+            dataLabels = "{point.y}" + chartData.unit;
+            stackLabels = '{total}' + chartData.unit;
         }
         else {
             tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>' + chartData.unit + '</b><b>{point.y:.0f}</b> <br/>';
@@ -427,7 +434,8 @@ var DashboardBodyComponent = (function () {
                     overFlow: 'none',
                     crop: false,
                     style: {
-                        fontSize: 10,
+                        fontSize: '9px',
+                        fontWeight: 'bold'
                     }
                 },
             },
@@ -591,19 +599,19 @@ var DashboardBodyComponent = (function () {
                         total = total / avagerCount;
                     }
                     if (chartData.unit == "$" && chartData.avarage == false) {
-                        chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
                     }
                     else if (chartData.unit == "$" && chartData.avarage == true) {
-                        chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+                        chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
                     }
                     else if (chartData.unit == "%" && chartData.avarage == false) {
-                        chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+                        chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
                     }
                     else if (chartData.unit == "%" && chartData.avarage == true) {
-                        chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
+                        chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
                     }
                     else {
-                        chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
                     } // chartObj.yAxis.title.text = chartData.yaxisTitle;
                 }
                 break;
@@ -627,7 +635,8 @@ var DashboardBodyComponent = (function () {
                                 rotation: -70,
                                 y: -15,
                                 style: {
-                                    fontSize: '8px'
+                                    fontSize: '9px',
+                                    fontWeight: 'bold'
                                 }
                             }
                         };
@@ -648,7 +657,8 @@ var DashboardBodyComponent = (function () {
                         tooltip: tooltip,
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-                            fontSize: '8px'
+                            fontSize: '9px',
+                            fontWeight: 'bold'
                         }
                     }
                 };
@@ -775,19 +785,19 @@ var DashboardBodyComponent = (function () {
                         total = total / avagerCount;
                     }
                     if (chartData.unit == "$" && chartData.avarage == false) {
-                        chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
                     }
                     else if (chartData.unit == "$" && chartData.avarage == true) {
-                        chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+                        chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
                     }
                     else if (chartData.unit == "%" && chartData.avarage == true) {
-                        chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+                        chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
                     }
                     else if (chartData.unit == "%" && chartData.avarage == true) {
-                        chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
+                        chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
                     }
                     else {
-                        chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
                     }
                 }
                 // chartObj.yAxis.title.text = chartData.yaxisTitle;
@@ -862,7 +872,8 @@ var DashboardBodyComponent = (function () {
                         rotation: -70,
                         y: -15,
                         style: {
-                            fontSize: '8px'
+                            fontSize: '9px',
+                            fontWeight: 'bold'
                         }
                     }
                 };
@@ -925,19 +936,19 @@ var DashboardBodyComponent = (function () {
                             total = total / avagerCount;
                         }
                         if (chartData.unit == "$" && chartData.avarage == false) {
-                            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
                         }
                         else if (chartData.unit == "$" && chartData.avarage == true) {
-                            chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+                            chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
                         }
                         else if (chartData.unit == "%" && chartData.avarage == false) {
-                            chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+                            chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
                         }
                         else if (chartData.unit == "%" && chartData.avarage == true) {
-                            chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
+                            chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
                         }
                         else {
-                            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
                         }
                     }
                 }
@@ -964,7 +975,8 @@ var DashboardBodyComponent = (function () {
                     crop: false,
                     overFlow: 'justify',
                     style: {
-                        fontSize: '8px'
+                        fontSize: '9px',
+                        fontWeight: 'bold'
                     }
                 }
             },
@@ -983,7 +995,8 @@ var DashboardBodyComponent = (function () {
                     overFlow: 'justify',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-                        fontSize: '8px',
+                        fontSize: '9px',
+                        fontWeight: 'bold'
                     }
                 }
             }
@@ -1112,19 +1125,19 @@ var DashboardBodyComponent = (function () {
                 total = total / avagerCount;
             }
             if (chartData.unit == "$" && chartData.avarage == false) {
-                chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
             }
             else if (chartData.unit == "$" && chartData.avarage == true) {
-                chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+                chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
             }
             else if (chartData.unit == "%" && chartData.avarage == false) {
-                chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+                chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
             }
             else if (chartData.unit == "%" && chartData.avarage == true) {
-                chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
+                chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
             }
             else {
-                chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+                chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
             }
         }
     };
@@ -1247,19 +1260,19 @@ var DashboardBodyComponent = (function () {
             total = total / avagerCount;
         }
         if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
         }
         else if (chartData.unit == "$" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+            chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
         }
         else if (chartData.unit == "%" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+            chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
         }
         else if (chartData.unit == "%" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
+            chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
         }
         else {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
         }
         // {series.name}
         this.chartObjects[id] = new Highcharts.Chart(chartObj);
@@ -1397,19 +1410,19 @@ var DashboardBodyComponent = (function () {
             total = total / avagerCount;
         }
         if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+            chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
         }
         else if (chartData.unit == "$" && chartData.avarage == true) {
-            chartObject.subtitle.text = "Average " + chartData.unit + Math.round(total).toLocaleString();
+            chartObject.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
         }
         else if (chartData.unit == "%" && chartData.avarage == false) {
-            chartObject.subtitle.text = "Total " + Math.round(total).toLocaleString() + chartData.unit;
+            chartObject.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
         }
         else if (chartData.unit == "%" && chartData.avarage == true) {
-            chartObject.subtitle.text = "Average " + Math.round(total).toLocaleString() + chartData.unit;
+            chartObject.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
         }
         else {
-            chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
+            chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
         }
         this.chartObjects[id] = new Highcharts.Chart(chartObject);
     };
@@ -1454,19 +1467,19 @@ var DashboardBodyComponent = (function () {
             total = total / seriesCount;
         }
         if (obj.unit == "$" && obj.avarage == false) {
-            event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.round(total).toLocaleString() });
+            event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(total).toLocaleString() });
         }
         else if (obj.unit == "$" && obj.avarage == true) {
-            event.target.chart.setTitle(null, { text: "Average " + obj.unit + Math.round(total).toLocaleString() });
+            event.target.chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(total).toLocaleString() });
         }
         else if (obj.unit == "%" && obj.avarage == false) {
-            event.target.chart.setTitle(null, { text: "Total " + Math.round(total).toLocaleString() + obj.unit });
+            event.target.chart.setTitle(null, { text: "Total " + this.numberWithPercentage(total).toLocaleString() + obj.unit });
         }
         else if (obj.unit == "%" && obj.avarage == true) {
-            event.target.chart.setTitle(null, { text: "Average " + Math.round(total).toLocaleString() + obj.unit });
+            event.target.chart.setTitle(null, { text: "Average " + this.numberWithPercentage(total).toLocaleString() + obj.unit });
         }
         else {
-            event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.round(total).toLocaleString() });
+            event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(total).toLocaleString() });
         }
     };
     return DashboardBodyComponent;
@@ -1492,7 +1505,7 @@ DashboardBodyComponent = __decorate([
         moduleId: module.id,
         selector: "app-content",
         templateUrl: "./dashboard-body.html",
-        styles: ['button:focus { background:#025fb1; color: #fff; }']
+        styles: ['button:focus { backgfloor:#025fb1; color: #fff; }']
     }),
     __metadata("design:paramtypes", [dashboard_body_service_1.DashboardBodyService, ng_bootstrap_1.NgbModal, cookies_service_1.CookieService])
 ], DashboardBodyComponent);

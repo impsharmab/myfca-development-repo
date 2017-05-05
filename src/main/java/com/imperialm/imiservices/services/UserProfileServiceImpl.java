@@ -182,12 +182,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 			//Customer first
 			if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.jpg","site","rules")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","site","rules")); // //customer first
 			}
 			
 			//customer first
 			if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.jpg","site","rules")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","site","rules")); // //customer first
 			}
 			/*
 			//NOTHING
