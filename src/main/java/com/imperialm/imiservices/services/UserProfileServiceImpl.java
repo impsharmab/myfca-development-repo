@@ -82,61 +82,61 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc) {
 		this.userTiles = new ArrayList<NoTile>();
 		if(tile1.contains(positionCode)){
-		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "rules"));
+		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "services/loadrsc?id=2017MSERRules"));
 		}
 		
 		if(tile2.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg","https://www.moparser.com/mser", "rules"));
+		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "services/loadrsc?id=2017MSERRules"));
 		}
 		
 		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
-			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
-			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
-			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
-			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=","rules"));
-			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
-			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"rules"));
+			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules"));
+			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules"));
+			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules"));
+			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules"));
+			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=","services/loadrsc?id=2017MSERRules"));
+			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules"));
+			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules"));
 		}
 		
 		
 		if(tile3.contains(positionCode)){
-			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://cms.chrysler.fcaperformanceinstitute.com/","rules"));
 			}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","https://cms.chrysler.fcaperformanceinstitute.com/","rules"));
 			}
 		
 		if(tile5.contains(positionCode)){
-			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","https://cms.chrysler.fcaperformanceinstitute.com/resources/-in-cdjrresourceclassifications/cdjr-resource-classifications/recognition-programs-expert-programs-ram-expert","rules"));
 			}
 		if(tile6.contains(positionCode)){
-			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg","https://cms.chrysler.fcaperformanceinstitute.com/resources/-in-cdjrresourceclassifications/cdjr-resource-classifications/recognition-programs-expert-programs-ram-expert","rules"));
 			}
 		
 		if(tile7.contains(positionCode)){
-			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg","https://cms.chrysler.fcaperformanceinstitute.com/resources/-in-cdjrresourceclassifications/cdjr-resource-classifications/recognition-programs-expert-programs-ram-expert","rules"));
 			}
 		
 		if(tile8.contains(positionCode)){
-			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts.jpg","https://brainboost.meap.me/","rules"));
 			}
 		
 		if(tile9.contains(positionCode)){
-			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","https://brainboost.meap.me/","rules"));
 			}
 		
 		if(tile10.contains(positionCode)){
-			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg","https://fcarewardredemption.com","rules"));
+			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts.jpg","https://brainboost.meap.me/","rules"));
 			}
 		
 		if(tile11.contains(positionCode)){
-			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm","rules"));
+			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm","services/loadrsc?id=2017TopTechTopAdvisorRules"));
 			}
 		
 		
 		if(tile12.contains(positionCode)){
-			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm","rules"));
+			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm","services/loadrsc?id=2017TopTechTopAdvisorRules"));
 			}
 		
 		/*if(tile13.contains(positionCode)){
@@ -144,23 +144,23 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		//enrolled not enrolled 2 tiles
 		if(tile14.contains(positionCode)){
-			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","rules"));
-			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","rules"));
+			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","services/loadrsc?id=2017TopTechTopAdvisorRules"));
+			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","services/loadrsc?id=2017TopTechTopAdvisorRules"));
 			//this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg",""));
 			//this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg",""));
 			}
 		
 		if(tile15.contains(positionCode)){
-			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","https://fcarewardredemption.com","rules")); //SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","https://fcarewardredemption.com","services/loadrsc?id=2017Q2SIRRules")); //SERVICE INCENTIVE
 			}
 		
 		
 		if(tile16.contains(positionCode)){
-			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","https://fcarewardredemption.com","rules")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","https://fcarewardredemption.com","services/loadrsc?id=2017Q2SIRRules")); // SERVICE INCENTIVE
 			}
 		
 		if(tile17.contains(positionCode)){
-			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","https://fcarewardredemption.com","rules")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","https://fcarewardredemption.com","services/loadrsc?id=2017Q2SIRRules")); // SERVICE INCENTIVE
 			}
 		
 		/*if(tile18.contains(positionCode)){ 
@@ -182,12 +182,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 			//Customer first
 			if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","site","rules")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","services/loadrsc?id=CFAFEDealerAnnouncementProgramRules")); // //customer first
 			}
 			
 			//customer first
 			if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","site","rules")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","services/loadrsc?id=CFAFEDealerAnnouncementProgramRules")); // //customer first
 			}
 			/*
 			//NOTHING
@@ -203,10 +203,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 			if(tile26.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
 			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","","")); // RETENTION
 			}
-		
-		
-		
-		
 		
 		return userTiles;
 	}

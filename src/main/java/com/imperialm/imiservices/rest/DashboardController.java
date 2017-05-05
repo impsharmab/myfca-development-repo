@@ -1580,7 +1580,6 @@ public class DashboardController {
 			list1.get(1).setData(b);
 
 			chart.setData(list1);
-			chart.setAvarage(true);
 			chart.setUnit("$");
 			return chart;
 		}
@@ -1798,6 +1797,50 @@ public class DashboardController {
 		case "29":
 		{
 			TopTenChart topTenChart = new TopTenChart();
+			
+			TotalName eligibleSurveys = new TotalName("Eligible Surveys", "0");
+			TotalName dealerAdvocacy = new TotalName("Dealer Advocacy Score","0");
+			TotalName dealerTarget = new TotalName("Dealer Target Score","0");
+			TotalName trainingCompleted = new TotalName("Traning Completed", "No");
+			TotalName advisorsIncentiveQualified = new TotalName("Advisors Incentive Qualified QTD", "0"); 
+			TotalName incentiveEligible = new TotalName("Incentive Eligible", "No"); 
+			TotalName projectedEarnings = new TotalName("Projected Earnings QTD", "$0");
+			TotalName totalEarningsYTD = new TotalName("Total earnings YTD ","$0");
+			TotalName managersAndDirectorsQualified = new TotalName("Managers and Directors Qualified QTD","0");
+			TotalName qtdSureveyScore = new TotalName("QTD Survey Score ", "0");
+			TotalName dealerRank = new TotalName("Dealership Rank in Business Center Based on YTD Earnings", "-");
+			TotalName managerRank = new TotalName("Manager Rank in Business Center Based on YTD Earnings", "-");
+			TotalName advisorRank = new TotalName("Advisor rank in Business Center Based on YTD Earnings", "-");
+			
+			
+			if(type.equals("BC")){
+				List<String> filters = new ArrayList<String>();
+				filters.add(BC);
+				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
+				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphListYTD = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "YTD");
+				
+				/*totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
+				totalCertifiedSpecialistParticipants.setTotal("0");
+				*/
+/*
+				totalMasterCertifiedParticipants.setName("Dealership BC Rank");
+				totalMasterCertifiedParticipants.setTotal("-");
+	*/			
+				if(SIRewardsDetailsGraphList.size() > 0){
+					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
+					eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getEligibleSurveys()));
+				}
+				
+				if(SIRewardsDetailsGraphListYTD.size() > 0){
+					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
+					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+				}
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalEarningsYTD));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(managersAndDirectorsQualified));
+			}
+			
+			
 			return topTenChart;
 		}
 		case "30":
@@ -4377,7 +4420,7 @@ public class DashboardController {
 					
 					cartificationLevelPrior.setName("Not Certified");
 					cartificationLevelPrior.setTotal("No Record to Display");
-					boolean displayNotCertified = false;
+					boolean displayNotCertified = true;
 					if(CertProfsWinnersDetailsList.size() > 0){
 						CertProfsWinnersDetailsDTO CertProfsWinnersDetails = CertProfsWinnersDetailsList.get(0);
 						
@@ -4405,7 +4448,8 @@ public class DashboardController {
 						}else{
 							cartificationLevelPrior.setName("Not Certified");
 							cartificationLevelPrior.setTotal("No Record to Display”");
-							displayNotCertified = true;
+							displayNotCertified = false;
+							topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior));
 						}
 						years.setTotal(CertProfsWinnersDetails.getYearsOfCertified()+ "");
 						currentYearsPoints.setTotal(this.formatNumbers(CertProfsWinnersDetails.getPoints()));
@@ -4817,77 +4861,71 @@ public class DashboardController {
 			TotalName eligibleSurveys = new TotalName("Eligible Surveys", "0");
 			TotalName dealerAdvocacy = new TotalName("Dealer Advocacy Score","0");
 			TotalName dealerTarget = new TotalName("Dealer Target Score","0");
-			TotalName projectedEarnings = new TotalName("Projected Earnings QTD ", "$0");
-			TotalName years = new TotalName();
+			TotalName trainingCompleted = new TotalName("Traning Completed", "No");
+			TotalName advisorsIncentiveQualified = new TotalName("Advisors Incentive Qualified QTD", "0"); 
+			TotalName incentiveEligible = new TotalName("Incentive Eligible", "No"); 
+			TotalName projectedEarnings = new TotalName("Projected Earnings QTD", "$0");
+			TotalName totalEarningsYTD = new TotalName("Total earnings YTD ","$0");
+			TotalName managersAndDirectorsQualified = new TotalName("Managers and Directors Qualified QTD","0");
+			TotalName qtdSureveyScore = new TotalName("QTD Survey Score ", "0");
+			TotalName dealerRank = new TotalName("Dealership Rank in Business Center Based on YTD Earnings", "-");
+			TotalName managerRank = new TotalName("Manager Rank in Business Center Based on YTD Earnings", "-");
+			TotalName advisorRank = new TotalName("Advisor rank in Business Center Based on YTD Earnings", "-");
+			
+		
+			/*
 			TotalName cartificationLevel = new TotalName();
 			TotalName totalCertifiedParticipants = new TotalName();
 			TotalName totalMasterCertifiedParticipants = new TotalName();
 			TotalName totalCertifiedSpecialistParticipants = new TotalName();
 			//	TotalName totalCertifiedLevelParticipants = new TotalName();
 			TotalName dealershipMasterCertifiedRankWithinBC = new TotalName();
-
+			 */
 			String qy = this.getCurrentQuarter();
 			String year = this.getCurrentYear();
-			List<SIRewardsDetailsDTO> SIRewardsDetailsList = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD", dealerCode, this.getCurrentQuarter());
-			List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode, this.getCurrentYear());
 			
 			
 			if(type.equals("Participant")){
-				
-				cartificationLevel.setName("Level 0 training completed");
+				List<SIRewardsDetailsDTO> SIRewardsDetailsListQTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD", dealerCode, this.getCurrentQuarter());
+				List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode, this.getCurrentYear());
+				/*cartificationLevel.setName("Level 0 training completed");
 				cartificationLevel.setTotal("No");
 				dealershipMasterCertifiedRankWithinBC.setName("Level 1 training completed");
 				dealershipMasterCertifiedRankWithinBC.setTotal("No");
-				years.setName("Incentive Eligible");
 				cartificationLevel.setTotal("$0");
 				
 				totalCertifiedSpecialistParticipants.setName("QTD Survey Score");
-				totalCertifiedSpecialistParticipants.setTotal("0");
-				
-				totalCertifiedParticipants.setName("Total Earnings YTD");
-				totalCertifiedParticipants.setTotal("$0");
-				
+				totalCertifiedSpecialistParticipants.setTotal("0");			
 				totalMasterCertifiedParticipants.setName("BC Rank");
 				totalMasterCertifiedParticipants.setTotal("0");
-				
-				if(SIRewardsDetailsList.size()>0){
-					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsList.get(0);
+				*/
+				if(SIRewardsDetailsListQTD.size()>0){
+					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListQTD.get(0);
 
 					eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getEligibleSurveys()));
+					if(SIRewardsDetailsDTO.getTrainingQualified()>0){
+						trainingCompleted.setTotal("Yes");
+					}
 					if(SIRewardsDetailsDTO.getIncentiveQualified()>0){
 						projectedEarnings.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
+						incentiveEligible.setTotal("Yes");
 					}
-					
-					if(SIRewardsDetailsDTO.getLevel0() > 0){
-						cartificationLevel.setTotal("Yes");
-					}
-					if(SIRewardsDetailsDTO.getLevel1() > 0){
-						dealershipMasterCertifiedRankWithinBC.setTotal("Yes");
-					}
-					if(SIRewardsDetailsDTO.getIncentiveQualified() > 0){
-						years.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getEligibleSurveys() * 10));
-					}
-
-					totalCertifiedSpecialistParticipants.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getSurveyScore()));
-					
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(projectedEarnings));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(years));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-
+					qtdSureveyScore.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getSurveyScore()));
 				}
 
 				if(SIRewardsDetailsListYTD.size()>0){
 					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListYTD.get(0);
-
-					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
-					totalMasterCertifiedParticipants.setTotal(SIRewardsDetailsDTO.getBCAdvisorRankEarnings() + "");
+					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
+					advisorRank.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getBCAdvisorRankEarnings()));
 
 				}
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(projectedEarnings));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalEarningsYTD));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSureveyScore));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(advisorRank));
+				
 
 			}else if(type.equals("Dealer") || type.equals("Manager")){
 				List<String> filters = new ArrayList<String>();
@@ -4902,97 +4940,97 @@ public class DashboardController {
 					}
 				}
 				
-				totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
+				/*totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
 				totalCertifiedSpecialistParticipants.setTotal("0");
-
-				totalCertifiedParticipants.setName("Total Earnings YTD");
-				totalCertifiedParticipants.setTotal("$0");
+				*/
 
 				if(type.equals("Dealer")){
-					totalMasterCertifiedParticipants.setName("Dealership BC Rank");
+					/*totalMasterCertifiedParticipants.setName("Dealership BC Rank");
 					totalMasterCertifiedParticipants.setTotal("-");
-					
+					*/
 					if(SIRewardsDetailsGraphList.size() > 0){
 						SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
 						eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getEligibleSurveys()));
 						projectedEarnings.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
-						totalCertifiedSpecialistParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getAvgSurveyScore()));
 					}
 					
 					if(SIRewardsDetailsGraphListYTD.size() > 0){
 						SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
-						totalCertifiedParticipants.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
-						if(type.equals("Dealer")){
-							totalMasterCertifiedParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getBCDlearRankEarnings()));
-						}
+						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+						dealerRank.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getBCDlearRankEarnings()));
 					}
 					
 				}else if(type.equals("Manager")){
-					totalMasterCertifiedParticipants.setName("BC Rank");
-					totalMasterCertifiedParticipants.setTotal("-");
+					List<SIRewardsDetailsDTO> SIRewardsDetailsListQTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD", dealerCode, this.getCurrentQuarter());
+					List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode, this.getCurrentYear());
 
-					if(SIRewardsDetailsList.size()>0){
-						SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsList.get(0);
-						totalMasterCertifiedParticipants.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getBCAdvisorRankEarnings()));
+					if(SIRewardsDetailsListQTD.size()>0){
+						SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListQTD.get(0);
+						//totalMasterCertifiedParticipants.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getBCAdvisorRankEarnings()));
 						projectedEarnings.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
+						if(SIRewardsDetailsDTO.getIncentiveQualified() > 0){
+							incentiveEligible.setTotal("Yes");
+							projectedEarnings.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
+						}
 					}
 					
 					if(SIRewardsDetailsGraphList.size() > 0){
 						SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
 						eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getEligibleSurveys()));
-						totalCertifiedSpecialistParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getAvgSurveyScore()));
+						//totalCertifiedSpecialistParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getAvgSurveyScore()));
 					}
 					
 					if(SIRewardsDetailsGraphListYTD.size() > 0){
 						SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
-						totalCertifiedParticipants.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
-						if(type.equals("Dealer")){
-							totalMasterCertifiedParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getBCDlearRankEarnings()));
-						}
+						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+						
+					}
+					
+					if(SIRewardsDetailsListYTD.size()>0){
+						managerRank.setTotal(this.formatCurrency(SIRewardsDetailsListYTD.get(0).getBCAdvisorRankEarnings()));
 					}
 					
 				}
 				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerAdvocacy));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerTarget));
+				if(type.equals("Manager")){
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(managerRank));	
+				}
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(projectedEarnings));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalEarningsYTD));
+				if(type.equalsIgnoreCase("dealer")){
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(managersAndDirectorsQualified));
+					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerRank));
+				}
 				
 			}else if(type.equals("District")){
 				List<String> filters = new ArrayList<String>();
 				filters.add(territory);
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
+				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphListYTD = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "YTD");
 				
-				
-				totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
+				/*totalCertifiedSpecialistParticipants.setName("Avg. Quarterly Survey Score");
 				totalCertifiedSpecialistParticipants.setTotal("0");
-				
-				totalCertifiedParticipants.setName("Total Earnings YTD");
-				totalCertifiedParticipants.setTotal("$0");
-
+				*/
+/*
 				totalMasterCertifiedParticipants.setName("Dealership BC Rank");
 				totalMasterCertifiedParticipants.setTotal("-");
-				
-				
+	*/			
 				if(SIRewardsDetailsGraphList.size() > 0){
 					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
 					eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getEligibleSurveys()));
-					totalCertifiedSpecialistParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getAvgSurveyScore()));
 				}
 				
+				if(SIRewardsDetailsGraphListYTD.size() > 0){
+					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
+					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+				}
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedSpecialistParticipants));
-				
-				SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "YTD");
-				if(SIRewardsDetailsGraphList.size() > 0){
-					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
-					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
-					totalMasterCertifiedParticipants.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getBCDlearRankEarnings()));
-				}
-				
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalMasterCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalEarningsYTD));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(managersAndDirectorsQualified));
 			}
 			return topTenChart;
 		}

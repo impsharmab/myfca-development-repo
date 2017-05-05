@@ -106,6 +106,7 @@ var TestAdminComponent = (function () {
         //     }
         // ];
         $("#project").autocomplete({
+            allowFreeEntries: false,
             minLength: 0,
             source: this.projects,
             focus: function (event, ui) {

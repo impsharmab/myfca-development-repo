@@ -199,7 +199,7 @@ public class TablesController {
 				List<SIRewardsYOYGraphDTO> sublist = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(territory, "YTD");
 				for(SIRewardsYOYGraphDTO item: sublist){
 						List<SIRewardsYOYDetailsDTO> participants = this.dashService.getSIRewardsYOYDetailsByDealerCodeAndToggle(item.getChildTerritory(), "YTD");
-						//result.addAll(participants);
+						result.addAll(participants);
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
 				 return this.dashService.getSIRewardsYOYDetailsByDealerCodeAndToggle(territory, "YTD");

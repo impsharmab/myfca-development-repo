@@ -64,8 +64,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
   }
   numberWithPercentage(x) {
-   return (x).toFixed(1);
-  //  return Math.floor(x);
+    return (x).toFixed(1);
+    //  return Math.floor(x);
   }
   ngOnDestroy() {
     this.tilesArray = [];
@@ -567,7 +567,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               events: {
 
                 click: function () {
-                  if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                  if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }
@@ -631,7 +631,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           drillUpButton: {
             relativeTo: 'spacingBox',
             position: {
-              y: 0,
+              y: 25,
               x: 0
             }
           }
@@ -709,7 +709,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -751,7 +751,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               cursor: 'pointer',
               events: {
                 click: function () {
-                  if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                  if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }// modal trigger
@@ -811,7 +811,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           drillUpButton: {
             relativeTo: 'spacingBox',
             position: {
-              y: 0,
+              y: 25,
               x: 0
             }
           }
@@ -853,7 +853,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 ||tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -883,12 +883,18 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column_compound":
         chartObj.chart.type = "column"
+        // chartObj.plotOptions["column"] = {
+        //   grouping: true,
+        //   groupPadding: 0.1,
+        //   pointWidth: 20,
+        //   pointPadding: 0,
+        // }
         chartObj.plotOptions["series"] = {
           point: {
             cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -920,6 +926,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }
 
         }
+
         delete chartObj.xAxis.categories;
         //delete chartObj.yAxis;
         this.constructChartObject(chartData, chartObj, tileId);
@@ -932,7 +939,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 ||tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -1112,7 +1119,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function () {
-                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                   window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }// modal trigger
@@ -1173,7 +1180,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 0,
+          y: 25,
           x: 0
         }
       }
@@ -1258,7 +1265,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           cursor: 'pointer',
           events: {
             click: function () {
-              if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+              if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 ||  id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger
@@ -1321,7 +1328,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 0,
+          y: 25,
           x: 0
         }
       }
@@ -1406,7 +1413,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           cursor: 'pointer',
           events: {
             click: function () {
-              if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+              if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 ||  id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
               }
@@ -1478,7 +1485,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 0,
+          y: 25,
           x: 0
         }
       }
