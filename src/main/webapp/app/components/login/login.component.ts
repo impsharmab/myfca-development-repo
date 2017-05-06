@@ -105,7 +105,6 @@ export class LoginComponent implements OnInit {
         debugger
         var user = this.cookieService.get("token");
         if (user !== undefined) {
-
            if (user !== undefined && user.length > 1) {
                 this.loginService.getRefreshLoginResponse(user).subscribe(
                     (refreshTokenData) => {

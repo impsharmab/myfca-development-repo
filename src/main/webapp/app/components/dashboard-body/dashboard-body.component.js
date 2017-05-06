@@ -38,6 +38,7 @@ var DashboardBodyComponent = (function () {
         this.chartRawData = {};
         this.unit = "";
         this.drilldownAverageCount = 0;
+        this.printButtonName = {};
         this.drillUptotalCount = 0;
         this.drillupAverageCount = 0;
         this.charTypeJSON = {};
@@ -113,19 +114,19 @@ var DashboardBodyComponent = (function () {
             this.totalCount = this.totalCount / this.drilldownAverageCount;
         }
         if (obj.unit == "$" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
         }
         else if (obj.unit == "$" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
         }
         else if (obj.unit == "%" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
         }
         else if (obj.unit == "%" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
         }
         else {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
         }
         // chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
         this.drillUptotalCount = 0;
@@ -151,19 +152,29 @@ var DashboardBodyComponent = (function () {
             this.drillUptotalCount = this.drillUptotalCount / this.drillupAverageCount;
         }
         if (obj.unit == "$" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
+            chart.setTitle(null, {
+                text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+            });
         }
         else if (obj.unit == "$" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
+            chart.setTitle(null, {
+                text: "Average " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+            });
         }
         else if (obj.unit == "%" && obj.avarage == false) {
-            chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit });
+            chart.setTitle(null, {
+                text: "Total " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+            });
         }
         else if (obj.unit == "%" && obj.avarage == true) {
-            chart.setTitle(null, { text: "Average " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit });
+            chart.setTitle(null, {
+                text: "Average " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+            });
         }
         else {
-            chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
+            chart.setTitle(null, {
+                text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+            });
         }
         // chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
         this.totalCount = 0;
@@ -594,24 +605,25 @@ var DashboardBodyComponent = (function () {
                         }
                     }
                 };
+                this.printButtonName[tileId] = this.pieButtons[tileId][0];
                 if (chartDataValues.length > 0) {
                     if (chartData.avarage) {
                         total = total / avagerCount;
                     }
                     if (chartData.unit == "$" && chartData.avarage == false) {
-                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
                     }
                     else if (chartData.unit == "$" && chartData.avarage == true) {
-                        chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
+                        chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
                     }
                     else if (chartData.unit == "%" && chartData.avarage == false) {
-                        chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+                        chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
                     }
                     else if (chartData.unit == "%" && chartData.avarage == true) {
-                        chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+                        chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
                     }
                     else {
-                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+                        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
                     } // chartObj.yAxis.title.text = chartData.yaxisTitle;
                 }
                 break;
@@ -1266,24 +1278,25 @@ var DashboardBodyComponent = (function () {
             total = total / avagerCount;
         }
         if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
         }
         else if (chartData.unit == "$" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
         }
         else if (chartData.unit == "%" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+            chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
         }
         else if (chartData.unit == "%" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+            chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
         }
         else {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
         }
         // {series.name}
         this.chartObjects[id] = new Highcharts.Chart(chartObj);
     };
     DashboardBodyComponent.prototype.chartSwitch = function (buttonName, id) {
+        this.printButtonName[id] = buttonName;
         if (buttonName === "NAT") {
             this.chartSwitchNAT(id);
             return;
@@ -1416,19 +1429,19 @@ var DashboardBodyComponent = (function () {
             total = total / avagerCount;
         }
         if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
         }
         else if (chartData.unit == "$" && chartData.avarage == true) {
-            chartObject.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObject.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
         }
         else if (chartData.unit == "%" && chartData.avarage == false) {
-            chartObject.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+            chartObject.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
         }
         else if (chartData.unit == "%" && chartData.avarage == true) {
-            chartObject.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+            chartObject.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
         }
         else {
-            chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
         }
         this.chartObjects[id] = new Highcharts.Chart(chartObject);
     };
@@ -1511,7 +1524,7 @@ DashboardBodyComponent = __decorate([
         moduleId: module.id,
         selector: "app-content",
         templateUrl: "./dashboard-body.html",
-        styles: ['button:focus { backgfloor:#025fb1; color: #fff; }']
+        styles: ['button:focus { background-color:#025fb1; color: #fff; }']
     }),
     __metadata("design:paramtypes", [dashboard_body_service_1.DashboardBodyService, ng_bootstrap_1.NgbModal, cookies_service_1.CookieService])
 ], DashboardBodyComponent);

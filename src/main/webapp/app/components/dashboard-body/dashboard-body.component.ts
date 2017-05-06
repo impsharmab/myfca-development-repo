@@ -18,7 +18,7 @@ require('highcharts/modules/no-data-to-display')(Highcharts);
   moduleId: module.id,
   selector: "app-content",
   templateUrl: "./dashboard-body.html",
-  styles: ['button:focus { backgfloor:#025fb1; color: #fff; }']
+  styles: ['button:focus { background-color:#025fb1; color: #fff; }']
 })
 
 export class DashboardBodyComponent implements OnInit, OnDestroy {
@@ -43,6 +43,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   private chartRawData: any = {};
   private unit: any = "";
   private drilldownAverageCount = 0;
+  private printButtonName: any = {};
 
   ngOnInit() {
     this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
@@ -124,15 +125,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.totalCount = this.totalCount / this.drilldownAverageCount;
     }
     if (obj.unit == "$" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
     } else if (obj.unit == "$" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+      chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
     } else if (obj.unit == "%" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" +(e.point.series.type==="pie"? e.point.name: "") });
     } else if (obj.unit == "%" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + e.point.name });
+      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
     } else {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
+      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
 
     }
     // chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
@@ -162,15 +163,25 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.drillUptotalCount = this.drillUptotalCount / this.drillupAverageCount;
     }
     if (obj.unit == "$" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
+      chart.setTitle(null, {
+        text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+      });
     } else if (obj.unit == "$" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
+      chart.setTitle(null, {
+        text: "Average " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+      });
     } else if (obj.unit == "%" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit });
+      chart.setTitle(null, {
+        text: "Total " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+      });
     } else if (obj.unit == "%" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit });
+      chart.setTitle(null, {
+        text: "Average " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+      });
     } else {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
+      chart.setTitle(null, {
+        text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+      });
 
     }
     // chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() });
@@ -567,7 +578,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               events: {
 
                 click: function () {
-                  if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                  if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }
@@ -636,20 +647,22 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             }
           }
         }
+        this.printButtonName[tileId] = this.pieButtons[tileId][0];
         if (chartDataValues.length > 0) {
+
           if (chartData.avarage) {
             total = total / avagerCount;
           }
           if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
           } else if (chartData.unit == "$" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
           } else if (chartData.unit == "%" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+            chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
           } else if (chartData.unit == "%" && chartData.avarage == true) {
-            chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+            chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
           } else {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
 
           } // chartObj.yAxis.title.text = chartData.yaxisTitle;
         }
@@ -709,7 +722,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -751,7 +764,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               cursor: 'pointer',
               events: {
                 click: function () {
-                  if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                  if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }// modal trigger
@@ -853,7 +866,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 ||tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -939,7 +952,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 ||tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -1119,7 +1132,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             cursor: 'pointer',
             events: {
               click: function () {
-                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 ||  tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                   window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }// modal trigger
@@ -1265,7 +1278,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           cursor: 'pointer',
           events: {
             click: function () {
-              if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 ||  id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+              if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger
@@ -1338,15 +1351,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
 
     if (chartData.unit == "$" && chartData.avarage == false) {
-      chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+      chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "$" && chartData.avarage == true) {
-      chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
+      chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "%" && chartData.avarage == false) {
-      chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+      chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "%" && chartData.avarage == true) {
-      chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+      chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
     } else {
-      chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+      chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
     }
 
     // {series.name}
@@ -1357,6 +1370,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   }
 
   chartSwitch(buttonName: any, id: any) {
+    this.printButtonName[id] = buttonName;
     if (buttonName === "NAT") {
       this.chartSwitchNAT(id);
       return;
@@ -1413,7 +1427,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           cursor: 'pointer',
           events: {
             click: function () {
-              if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 ||  id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+              if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
               }
@@ -1495,15 +1509,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
 
     if (chartData.unit == "$" && chartData.avarage == false) {
-      chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+      chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "$" && chartData.avarage == true) {
-      chartObject.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
+      chartObject.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "%" && chartData.avarage == false) {
-      chartObject.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+      chartObject.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "%" && chartData.avarage == true) {
-      chartObject.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+      chartObject.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit + "<br>" + this.printButtonName[id];
     } else {
-      chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+      chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
 
     }
     this.chartObjects[id] = new Highcharts.Chart(chartObject);
