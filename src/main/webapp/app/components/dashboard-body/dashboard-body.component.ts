@@ -577,7 +577,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             drillDownObj.point = {
               cursor: 'pointer',
               events: {
-
                 click: function () {
                   if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
