@@ -781,15 +781,11 @@
 					dom: 'Bfrtip',
 					buttons: [
 						'pageLength',
-
-
 						{
 							extend: 'excelHtml5'
 
 						}
-
 					],
-
 					"scrollY": "600px",
 					"scrollX": true,
 					"pagingType": "full_numbers",

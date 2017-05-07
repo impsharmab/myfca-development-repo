@@ -125,15 +125,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.totalCount = this.totalCount / this.drilldownAverageCount;
     }
     if (obj.unit == "$" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
+      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "$" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
+      chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "%" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" +(e.point.series.type==="pie"? e.point.name: "") });
+      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "%" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
+      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type==="pie"? e.point.name: "") });
+      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
 
     }
     // chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + e.point.name });
@@ -402,8 +402,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           position: {
             align: 'right', // by default
             verticalAlign: 'top', // by default
-            x: -10,
-            y: 10
+            x: 0,
+            y: 35
           },
           relativeTo: 'chart'
         }
@@ -565,6 +565,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         this.pieButtons[obj.id] = pieButtons;
         for (var i = 0; i < chartData.data.length; i++) {
           i == 0 && !chartData.cfdealDisMan ? pieButtons.push("NAT") : "";
+
           var dataObj = chartData.data[i];
           categories.push(dataObj.name);
           avagerCount = avagerCount + 1;
@@ -609,7 +610,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             drillDownObj.data = new Array();
             for (var j = 0; j < drilldownData.length; j++) {
               var obj = drilldownData[j];
-              pieButtons.indexOf(obj.name) > -1 ? "" : pieButtons.push(obj.name);
+              if (!chartData.cfdealDisMan) {
+                pieButtons.indexOf(obj.name) > -1 ? "" : pieButtons.push(obj.name);
+              }
+
               drillDownObj.data.push([
                 obj.name,
                 (obj.value)]);
@@ -642,7 +646,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           drillUpButton: {
             relativeTo: 'spacingBox',
             position: {
-              y: 25,
+              y: 35,
               x: 0
             }
           }
@@ -676,6 +680,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             allowPointSelect: true,
             cursor: 'pointer',
             size: '90%',
+            tooltip: {
+              pointFormat: tooltip
+            },
             dataLabels: {
               enabled: true,
               padding: 0,
@@ -698,6 +705,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           allowPointSelect: true,
           cursor: 'pointer',
           size: '80%',
+          tooltip: {
+            pointFormat: tooltip
+          },
           dataLabels: {
             allowOverlap: true,
             enabled: true,
@@ -707,7 +717,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
             //format: '<b>{point.name}</b>: <br>{point.y:.0f}',
             format: '<b>{point.name}</b> <br>' + dataLabels,
-            tooltip: tooltip,
+           // tooltip: tooltip,
 
             style: {
               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
@@ -824,7 +834,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           drillUpButton: {
             relativeTo: 'spacingBox',
             position: {
-              y: 25,
+              y: 35,
               x: 0
             }
           }
@@ -1025,53 +1035,69 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   public chartChange(chartType: string, id: any): void {
     var chartObject = this.contentBody[id];
+    var tooltip: string = "";
+    var dataLabels: string = "";
+    var stackLabels: string = "";
+    if (chartObject.unit == "%") {
+      tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>{point.y}</b> <b>' + chartObject.unit + '</b><br/>';
+      dataLabels = "{point.y}" + chartObject.unit
+      stackLabels = '{total}' + chartObject.unit
+    } else {
+      tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>' + chartObject.unit + '</b><b>{point.y:.0f}</b> <br/>';
+      dataLabels = chartObject.unit + "{point.y:.0f}"
+      stackLabels = chartObject.unit + '{total:.0f}'
+    }
     // console.log(JSON.stringify(chartObject));
     // console.log(this.chartObjects[id].container.id);
     chartObject.chart.type = chartType
     var __this = this; chartObject.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } }
     chartObject.chart.renderTo = this.chartObjects[id].container.id;
-    chartObject.chart.plotOptions = {
-      column: {
-        pointPadding: 0.2,
-        borderWidth: 0,
-        dataLabels: {
+    // chartObject.chart.plotOptions = {
+    //   column: {
+    //     pointPadding: 0.2,
+    //     borderWidth: 0,
+    //     dataLabels: {
+    //       allowOverlap: true,
+    //       padding: 0,
+    //       enabled: true,
+    //       crop: false,
+    //       overFlow: 'justify',
+    //       tooltip:{
+    //         pointFormat:tooltip
+    //       },
+    //       style: {
+    //         fontSize: '9px',
+    //         fontWeight: 'bold'
+    //       }
+    //     }
+    //   },
+    //   pie: {
+    //     plotBorderWidth: 0,
+    //     allowPointSelect: true,
+    //     cursor: 'pointer',
+    //     size: '100%',
+    //     dataLabels: {
+    //       enabled: true,
+    //       padding: 0,
+    //       allowOverlap: true,
+    //       //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+    //       //format: '<b>{point.name}</b>: <br>{point.y}',
+    //       crop: false,
+    //       overFlow: 'justify',
+    //       tooltip:{
+    //         pointFormat:tooltip
+    //       },
+    //       style: {
+    //         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+    //         fontSize: '9px',
+    //         fontWeight: 'bold'
 
-          allowOverlap: true,
-          padding: 0,
-          enabled: true,
-          crop: false,
-          overFlow: 'justify',
-          style: {
-            fontSize: '9px',
-            fontWeight: 'bold'
-          }
-        }
-      },
-      pie: {
-        plotBorderWidth: 0,
-        allowPointSelect: true,
-        cursor: 'pointer',
-        size: '100%',
-        dataLabels: {
-          enabled: true,
-          padding: 0,
-          allowOverlap: true,
-          //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-
-          //format: '<b>{point.name}</b>: <br>{point.y}',
-          crop: false,
-          overFlow: 'justify',
-          style: {
-            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-            fontSize: '9px',
-            fontWeight: 'bold'
-
-          }
-        }
+    //       }
+    //     }
 
 
-      }
-    }
+    //   }
+    // }
 
     if (chartType === "pie") {
 
@@ -1087,11 +1113,12 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       // else{
       //   pointFormat = '<span style="color:{series.color}">{series.name}</span>:'+'hello'+'<b>{point.y}</b>';
       // }
-      chartObject.tooltip = {
-        //pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:.0f}</b>',
-        shared: false
-      }
+      // chartObject.tooltip = {
+      //   //pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+      //   // pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:.0f}</b>',
+
+      //   // shared: false
+      // }
     } else {
       delete chartObject.tooltip;
     }
@@ -1193,7 +1220,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 25,
+          y: 35,
           x: 0
         }
       }
@@ -1341,7 +1368,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 25,
+          y: 35,
           x: 0
         }
       }
@@ -1499,7 +1526,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 25,
+          y: 35,
           x: 0
         }
       }

@@ -396,8 +396,8 @@ var DashboardBodyComponent = (function () {
                     position: {
                         align: 'right',
                         verticalAlign: 'top',
-                        x: -10,
-                        y: 10
+                        x: 0,
+                        y: 35
                     },
                     relativeTo: 'chart'
                 }
@@ -566,7 +566,9 @@ var DashboardBodyComponent = (function () {
                         drillDownObj.data = new Array();
                         for (var j = 0; j < drilldownData.length; j++) {
                             var obj = drilldownData[j];
-                            pieButtons.indexOf(obj.name) > -1 ? "" : pieButtons.push(obj.name);
+                            if (!chartData.cfdealDisMan) {
+                                pieButtons.indexOf(obj.name) > -1 ? "" : pieButtons.push(obj.name);
+                            }
                             drillDownObj.data.push([
                                 obj.name,
                                 (obj.value)
@@ -600,7 +602,7 @@ var DashboardBodyComponent = (function () {
                     drillUpButton: {
                         relativeTo: 'spacingBox',
                         position: {
-                            y: 25,
+                            y: 35,
                             x: 0
                         }
                     }
@@ -636,6 +638,9 @@ var DashboardBodyComponent = (function () {
                             allowPointSelect: true,
                             cursor: 'pointer',
                             size: '90%',
+                            tooltip: {
+                                pointFormat: tooltip
+                            },
                             dataLabels: {
                                 enabled: true,
                                 padding: 0,
@@ -657,6 +662,9 @@ var DashboardBodyComponent = (function () {
                     allowPointSelect: true,
                     cursor: 'pointer',
                     size: '80%',
+                    tooltip: {
+                        pointFormat: tooltip
+                    },
                     dataLabels: {
                         allowOverlap: true,
                         enabled: true,
@@ -666,7 +674,7 @@ var DashboardBodyComponent = (function () {
                         // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
                         //format: '<b>{point.name}</b>: <br>{point.y:.0f}',
                         format: '<b>{point.name}</b> <br>' + dataLabels,
-                        tooltip: tooltip,
+                        // tooltip: tooltip,
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
                             fontSize: '9px',
@@ -778,7 +786,7 @@ var DashboardBodyComponent = (function () {
                     drillUpButton: {
                         relativeTo: 'spacingBox',
                         position: {
-                            y: 25,
+                            y: 35,
                             x: 0
                         }
                     }
@@ -976,65 +984,70 @@ var DashboardBodyComponent = (function () {
     };
     DashboardBodyComponent.prototype.chartChange = function (chartType, id) {
         var chartObject = this.contentBody[id];
+        var tooltip = "";
+        var dataLabels = "";
+        var stackLabels = "";
+        if (chartObject.unit == "%") {
+            tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>{point.y}</b> <b>' + chartObject.unit + '</b><br/>';
+            dataLabels = "{point.y}" + chartObject.unit;
+            stackLabels = '{total}' + chartObject.unit;
+        }
+        else {
+            tooltip = '<span style="color:{series.color}">{series.name}</span> : <b>' + chartObject.unit + '</b><b>{point.y:.0f}</b> <br/>';
+            dataLabels = chartObject.unit + "{point.y:.0f}";
+            stackLabels = chartObject.unit + '{total:.0f}';
+        }
         // console.log(JSON.stringify(chartObject));
         // console.log(this.chartObjects[id].container.id);
         chartObject.chart.type = chartType;
         var __this = this;
         chartObject.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } };
         chartObject.chart.renderTo = this.chartObjects[id].container.id;
-        chartObject.chart.plotOptions = {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0,
-                dataLabels: {
-                    allowOverlap: true,
-                    padding: 0,
-                    enabled: true,
-                    crop: false,
-                    overFlow: 'justify',
-                    style: {
-                        fontSize: '9px',
-                        fontWeight: 'bold'
-                    }
-                }
-            },
-            pie: {
-                plotBorderWidth: 0,
-                allowPointSelect: true,
-                cursor: 'pointer',
-                size: '100%',
-                dataLabels: {
-                    enabled: true,
-                    padding: 0,
-                    allowOverlap: true,
-                    //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
-                    //format: '<b>{point.name}</b>: <br>{point.y}',
-                    crop: false,
-                    overFlow: 'justify',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
-                        fontSize: '9px',
-                        fontWeight: 'bold'
-                    }
-                }
-            }
-        };
+        // chartObject.chart.plotOptions = {
+        //   column: {
+        //     pointPadding: 0.2,
+        //     borderWidth: 0,
+        //     dataLabels: {
+        //       allowOverlap: true,
+        //       padding: 0,
+        //       enabled: true,
+        //       crop: false,
+        //       overFlow: 'justify',
+        //       tooltip:{
+        //         pointFormat:tooltip
+        //       },
+        //       style: {
+        //         fontSize: '9px',
+        //         fontWeight: 'bold'
+        //       }
+        //     }
+        //   },
+        //   pie: {
+        //     plotBorderWidth: 0,
+        //     allowPointSelect: true,
+        //     cursor: 'pointer',
+        //     size: '100%',
+        //     dataLabels: {
+        //       enabled: true,
+        //       padding: 0,
+        //       allowOverlap: true,
+        //       //format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
+        //       //format: '<b>{point.name}</b>: <br>{point.y}',
+        //       crop: false,
+        //       overFlow: 'justify',
+        //       tooltip:{
+        //         pointFormat:tooltip
+        //       },
+        //       style: {
+        //         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+        //         fontSize: '9px',
+        //         fontWeight: 'bold'
+        //       }
+        //     }
+        //   }
+        // }
         if (chartType === "pie") {
             var pointFormat = "";
-            // alert(chartObject.unit)
-            // if (chartObject.unit == "%") {
-            //   pointFormat = '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b>' + "%";
-            // } else if(chartObject.unit == "$"){
-            //   pointFormat = '<span style="color:{series.color}">{series.name}</span>:<b>'+'$'+'{point.y}</b>';
-            // }
-            // else{
-            //   pointFormat = '<span style="color:{series.color}">{series.name}</span>:'+'hello'+'<b>{point.y}</b>';
-            // }
-            chartObject.tooltip = {
-                //pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y:.0f}</b>',
-                shared: false
-            };
         }
         else {
             delete chartObject.tooltip;
@@ -1130,7 +1143,7 @@ var DashboardBodyComponent = (function () {
             drillUpButton: {
                 relativeTo: 'spacingBox',
                 position: {
-                    y: 25,
+                    y: 35,
                     x: 0
                 }
             }
@@ -1269,7 +1282,7 @@ var DashboardBodyComponent = (function () {
             drillUpButton: {
                 relativeTo: 'spacingBox',
                 position: {
-                    y: 25,
+                    y: 35,
                     x: 0
                 }
             }
@@ -1420,7 +1433,7 @@ var DashboardBodyComponent = (function () {
             drillUpButton: {
                 relativeTo: 'spacingBox',
                 position: {
-                    y: 25,
+                    y: 35,
                     x: 0
                 }
             }
