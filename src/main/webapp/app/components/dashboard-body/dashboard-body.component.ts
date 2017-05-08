@@ -129,9 +129,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     } else if (obj.unit == "$" && obj.avarage == true) {
       chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "%" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
+      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])  + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "%" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + obj.unit + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
+      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString()+ obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else {
       chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
 
@@ -640,13 +640,13 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           "series": drilldownArray,
           activeDataLabelStyle: {
             "textDecoration": "none"
-
           },
           drillUpButton: {
             relativeTo: 'spacingBox',
             position: {
-              y: 35,
-              x: 0
+              x: 0,
+              y: 35
+
             }
           }
         }
@@ -716,7 +716,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
             //format: '<b>{point.name}</b>: <br>{point.y:.0f}',
             format: '<b>{point.name}</b> <br>' + dataLabels,
-           // tooltip: tooltip,
+            // tooltip: tooltip,
 
             style: {
               color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',

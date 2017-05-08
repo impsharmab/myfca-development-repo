@@ -48,6 +48,17 @@ Float:none;
 }
 /*replced nav with sav to overcome overriden from top -10 tab*/
 
+.getstarted-button{
+    border: 1px solid transparent;
+    line-height: 1.25;
+    background-color: #5bc0de;
+    border-color: #2aabd2;
+    color: #fff !important;
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+    cursor: pointer;
+    
+}
 
 body {
     background-color: #f1f1f1!important;

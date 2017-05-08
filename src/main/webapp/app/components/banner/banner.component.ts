@@ -17,7 +17,7 @@ export class BannerComponent implements OnInit {
         //console.log("banners: "+this.banners)
     }
     ngOnInit() {
-        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+        this.data = JSON.parse(sessionStorage.getItem("CurrentUser")) 
         //    document.getElementById("profileModel").click();
     }
 
