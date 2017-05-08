@@ -2,26 +2,16 @@
  * System configuration for Angular samples
  * Adjust as necessary for your application needs.
  */
-(function (global) {
-  // var loc=window.location.pathname;
-  // console.log(loc);
-  //loc = "/MyFcaWebApp/MyFcaDashboard/index.html";
-  //var nloc = loc.slice(0,-10);
-  //console.log(nloc);
-  //nloc=MyFcaWebApp/MyFcaDashboard
+(function (global) {  
+  var appversion = "1.1";
   System.config({
-    paths: {
-      // paths serve as alias
-      // npm url     
-      'npm:': 'node_modules/'
-      //tomcat url   'npm:': 'imiservices/node_modules/'
+    paths: {         
+      'npm:': 'node_modules/'     
     },
     // map tells the System loader where to look for things
     map: {
-      // our app is within the app folder
-      //npm url    
-      app: 'app',
-      // tomacat url      app: 'imiservices/app',
+      // our app is within the app folder      
+      app: 'app',     
       // angular bundles
       '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
       '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
@@ -36,25 +26,25 @@
       '@angular/upgrade/static': 'npm:@angular/upgrade/bundles/upgrade-static.umd.js',
       // other libraries
       'angular2-highcharts': 'npm:angular2-highcharts',
-      'angular-datatables':'npm:angular-datatables',
+      'angular-datatables': 'npm:angular-datatables',
       'highcharts': 'npm:highcharts',
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
       '@ng-bootstrap/ng-bootstrap': 'node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
-      'angular2-cookie':            'npm:angular2-cookie'
+      'angular2-cookie': 'npm:angular2-cookie'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       app: {
-      	main: './main.js',
+        main: './main.js?v=' + appversion,
         defaultExtension: 'js',
-           "styles": [
-        "../node_modules/datatables.net-dt/css/jquery.dataTables.css"
-      ],
-      "scripts": [
-        "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/datatables.net/js/jquery.dataTables.js"
-      ]
+        "styles": [
+          "../node_modules/datatables.net-dt/css/jquery.dataTables.css"
+        ],
+        "scripts": [
+          "../node_modules/jquery/dist/jquery.js",
+          "../node_modules/datatables.net/js/jquery.dataTables.js"
+        ]
       },
       rxjs: {
         defaultExtension: 'js'
@@ -65,7 +55,7 @@
       },
       'highcharts': {
         main: './highstock.src.js',
-         defaultExtension: 'js'
+        defaultExtension: 'js'
       },
       'angular2-cookie': {
         main: './core.js',

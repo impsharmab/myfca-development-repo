@@ -331,12 +331,6 @@ var DashboardBodyComponent = (function () {
     DashboardBodyComponent.prototype.openProgramRules = function (url) {
         window.open(url);
     };
-    // options: any;
-    // getJSONObject(jsonString: string) {
-    //   //  debugger;
-    //   // console.log(jsonString)
-    //   return JSON.parse(jsonString);
-    // }
     DashboardBodyComponent.prototype.getTileJson = function (id) {
         var _this = this;
         this.contentBody[id] = [];
@@ -390,17 +384,6 @@ var DashboardBodyComponent = (function () {
                 //marginRight: 100,
                 type: '',
                 zoomType: 'x',
-                // panning: true,
-                // panKey: 'shift',
-                resetZoomButton: {
-                    position: {
-                        align: 'right',
-                        verticalAlign: 'top',
-                        x: 0,
-                        y: 35
-                    },
-                    relativeTo: 'chart'
-                }
             },
             // colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
             //   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
@@ -493,21 +476,26 @@ var DashboardBodyComponent = (function () {
                 chartObj.chart.type = "pie";
                 chartObj.plotOptions = {
                     pie: {
-                        size: 200,
+                        //size: 250,
+                        size: '70%',
                         allowPointSelect: false,
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            padding: 0,
-                            allowOverlap: true,
+                            padding: 3,
+                            allowOverlap: false,
                             overFlow: 'justify',
                             crop: true,
-                            distance: 5,
+                            distance: 13,
+                            // rotation: -5,
+                            // y: -5,
                             // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
                             //format: '<b>{point.name}</b>: <br>{point.y:.0f}',
-                            format: '<b>{point.name}</b>: <br>{point.y:.0f}',
+                            format: '<b>{point.name}</b>: {point.y:.0f}',
                             style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                                width: '90px',
+                                fontSize: '8.5px',
                             }
                         }
                     }
@@ -533,10 +521,10 @@ var DashboardBodyComponent = (function () {
                         var drillDownObj = {};
                         var __this = this;
                         drillDownObj.point = {
-                            cursor: 'pointer',
+                            //cursor: 'pointer',
                             events: {
                                 click: function () {
-                                    if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                    if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                         window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     }
@@ -603,7 +591,7 @@ var DashboardBodyComponent = (function () {
                         relativeTo: 'spacingBox',
                         position: {
                             x: 0,
-                            y: 35
+                            y: 30
                         }
                     }
                 };
@@ -636,7 +624,7 @@ var DashboardBodyComponent = (function () {
                         {
                             plotBorderWidth: 0,
                             allowPointSelect: true,
-                            cursor: 'pointer',
+                            //cursor: 'pointer',
                             size: '90%',
                             tooltip: {
                                 pointFormat: tooltip
@@ -660,7 +648,7 @@ var DashboardBodyComponent = (function () {
                 chartObj.plotOptions["pie"] = {
                     plotBorderWidth: 0,
                     allowPointSelect: true,
-                    cursor: 'pointer',
+                    //cursor: 'pointer',
                     size: '80%',
                     tooltip: {
                         pointFormat: tooltip
@@ -684,10 +672,10 @@ var DashboardBodyComponent = (function () {
                 };
                 chartObj.plotOptions["series"] = {
                     point: {
-                        cursor: 'pointer',
+                        // cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -721,10 +709,10 @@ var DashboardBodyComponent = (function () {
                         var drillDownObj = {};
                         var __this = this;
                         drillDownObj.point = {
-                            cursor: 'pointer',
+                            //cursor: 'pointer',
                             events: {
                                 click: function () {
-                                    if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                    if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                         window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     } // modal trigger
@@ -786,7 +774,7 @@ var DashboardBodyComponent = (function () {
                     drillUpButton: {
                         relativeTo: 'spacingBox',
                         position: {
-                            y: 35,
+                            y: 30,
                             x: 0
                         }
                     }
@@ -828,10 +816,10 @@ var DashboardBodyComponent = (function () {
                 chartObj.chart.type = "bar";
                 chartObj.plotOptions["series"] = {
                     point: {
-                        cursor: 'pointer',
+                        //cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -869,10 +857,10 @@ var DashboardBodyComponent = (function () {
                 // }
                 chartObj.plotOptions["series"] = {
                     point: {
-                        cursor: 'pointer',
+                        // cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -911,10 +899,10 @@ var DashboardBodyComponent = (function () {
                 chartObj.chart.type = "column";
                 chartObj.plotOptions["column"] = {
                     point: {
-                        cursor: 'pointer',
+                        // cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
-                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -1081,10 +1069,10 @@ var DashboardBodyComponent = (function () {
                     var drillDownObj = {};
                     var __this = this;
                     drillDownObj.point = {
-                        cursor: 'pointer',
+                        // cursor: 'pointer',
                         events: {
                             click: function () {
-                                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 } // modal trigger
@@ -1143,7 +1131,7 @@ var DashboardBodyComponent = (function () {
             drillUpButton: {
                 relativeTo: 'spacingBox',
                 position: {
-                    y: 35,
+                    y: 30,
                     x: 0
                 }
             }
@@ -1192,7 +1180,7 @@ var DashboardBodyComponent = (function () {
             pie: {
                 plotBorderWidth: 0,
                 allowPointSelect: true,
-                cursor: 'pointer',
+                // cursor: 'pointer',
                 size: '100%',
                 dataLabels: {
                     enabled: true,
@@ -1222,10 +1210,10 @@ var DashboardBodyComponent = (function () {
                 var drillDownObj = {};
                 var __this = this;
                 drillDownObj.point = {
-                    cursor: 'pointer',
+                    //cursor: 'pointer',
                     events: {
                         click: function () {
-                            if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+                            if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 22 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
@@ -1282,7 +1270,7 @@ var DashboardBodyComponent = (function () {
             drillUpButton: {
                 relativeTo: 'spacingBox',
                 position: {
-                    y: 35,
+                    y: 30,
                     x: 0
                 }
             }
@@ -1333,7 +1321,7 @@ var DashboardBodyComponent = (function () {
             pie: {
                 plotBorderWidth: 0,
                 allowPointSelect: true,
-                cursor: 'pointer',
+                // cursor: 'pointer',
                 size: '100%',
                 dataLabels: {
                     enabled: true,
@@ -1361,10 +1349,10 @@ var DashboardBodyComponent = (function () {
                 var drillDownObj = {};
                 var __this = this;
                 drillDownObj.point = {
-                    cursor: 'pointer',
+                    // cursor: 'pointer',
                     events: {
                         click: function () {
-                            if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+                            if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 22 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
@@ -1433,7 +1421,7 @@ var DashboardBodyComponent = (function () {
             drillUpButton: {
                 relativeTo: 'spacingBox',
                 position: {
-                    y: 35,
+                    y: 30,
                     x: 0
                 }
             }

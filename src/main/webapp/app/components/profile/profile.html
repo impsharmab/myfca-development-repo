@@ -6,6 +6,11 @@ var func=function(){
 
 </script>
 
+
+<script>
+
+</script>
+
 <section class="intro-section admin-margin " id="intro">
 
     <div class="page-title">
@@ -32,6 +37,8 @@ var func=function(){
 
                 <div class="content-row row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
+                        <button class= "getstarted-button" style="margin-left: 500; background-color: #536ea4!important;"(click)="goBack()">Return to Dashboard</button>
+
                         <!--<form class="pageForm">
                             <label>Change Display Name</label>
                             <input id="username" pattern="[A-Z]{3}[0-9]{4}" type="text" value="Bijay Sharma"><br>
@@ -57,9 +64,9 @@ var func=function(){
                             <p style="color:red; margin-left: 208" id="pwsuccess">{{successProfileChangeMessage}}</p>                            
                             <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorProfileChange}}</p> 
                             <label>Name:</label>
-                            <input id="username" name="username" type="text" [(ngModel)]="profiledata.name"><br>
+                            <input id="username" size="30" name="username" type="text" [(ngModel)]="profiledata.name"><br>
                             <label>Email:</label>
-                            <input id="email" name="email" type="text" [(ngModel)]="profiledata.email">
+                            <input id="email" size="30" name="email" type="text" [(ngModel)]="profiledata.email">
                             <div class="form-actions">
                                 <!--<button type="reset" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style="cursor:pointer">Cancel</button>-->
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeProfileData()"
@@ -74,11 +81,11 @@ var func=function(){
                             <p style="color:red; margin-left: 208" id="pwnotmatch">{{passwordNotMatched}}</p>
                             <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorPassWordChange}}</p>                            
                             <label>New Password:</label>
-                            <input id="passwordInput" name="password1" type="password" [(ngModel)]="profiledata.password1">
+                            <input id="passwordInput" size="30" name="password1" type="password" [(ngModel)]="profiledata.password1">
 
                             <br>
                             <label>Confirm Password:</label>
-                            <input id="passwordInput" name="password2" type="password" [(ngModel)]="profiledata.password2">
+                            <input id="passwordInput" size="30" name="password2" type="password" [(ngModel)]="profiledata.password2">
                             <br/>
 
                             <div class="form-actions">

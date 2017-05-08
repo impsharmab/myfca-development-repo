@@ -25,6 +25,7 @@ public interface BannerDAO {
 	public List<BannersDTO> getBannersByRole(InputRequest userRoleReq);
 	//public List<ImagesDTO> getBannersByRole(int roleId, String territory);
 	//public List<ImagesDTO> getAllBanners();
+
 	
 	
 }

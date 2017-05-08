@@ -19,8 +19,6 @@
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
 
-
-
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="app/resources/css/styles-datatables.css">
@@ -489,7 +487,49 @@
 			return tableData;
 		}
 		function getChart22(jsonData) {
-			//sir
+			var tableData = {};
+			//tableData.headers = ["Dealer", "Jeep", "Ram", "Total Points Earned"];
+			tableData.headers = ["DealerCode", "Dealer", "Total Projected Earnings"];
+			tableData.data = [];
+			var delarName = {};
+			var dealerCode = {};
+			for (var i = 0; i < jsonData.length; i++) {
+				var obj = jsonData[i];
+				delarName[obj.dealerCode] = obj.dealerName;
+				dealerCode[obj.dealerCode] = obj.dealerCode;
+
+			}
+			for (var key in dealerCode) {
+				var outerObj = {}
+				var outerData = jsonData.filter(function (ele, index, array) {
+					return dealerCode[key] === ele.dealerCode;
+				});
+				var sid = {};
+				for (var k = 0; k < outerData.length; k++) {
+					var obj = outerData[k];
+					sid[obj.sid] = obj.sid;
+				}
+				var innerDataObj = {};
+				var totalProjectedEarnings = 0;
+				innerDataObj.headers = [
+					"",
+					"Participant",
+					"Projected Earnings"
+				]
+				innerDataObj.data = [];
+				for (var key1 in sid) {
+					var innerData = outerData.filter(function (ele, index, array) {
+						return sid[key1] === ele.sid;
+					});
+					for (var y = 0; y < innerData.length; y++) {
+						innerDataObj.data.push(["", innerData[y].name, numberWithCommasNoDecimals(innerData[y].projectedEarnings)]);
+						totalProjectedEarnings = totalProjectedEarnings + innerData[y].projectedEarnings;
+						
+					}
+				}
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasNoDecimals(totalProjectedEarnings)], "innerData": innerDataObj })
+			}
+			return tableData;
 		}
 		function getChart23(jsonData) {
 			var tableData = {};

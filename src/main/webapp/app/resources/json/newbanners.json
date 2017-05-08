@@ -1,22 +1,22 @@
 [
     {
-            "imageName": "FCA Rewards",
-            "fileName": "image-5.jpg",
-            "imageOrder": 1
-        },
-        {
-            "imageName": "CPDashboardBanner5.6.17",
-            "fileName": "CPDashboardBanner5.6.17.jpg",
-            "imageOrder": 2
-        },
-        {
-            "imageName": "FCA Welcome",
-            "fileName": "image-7.jpg",
-            "imageOrder": 3
-        },
-        {
-            "imageName": "FCA Welcome",
-            "fileName": "warrantyadminbanner.jpg",
-            "imageOrder": 3
-        }
+        "imageName": "FCA Rewards",
+        "fileName": "image-5.jpg",
+        "imageOrder": 1
+    },
+    {
+        "imageName": "CPDashboardBanner5.6.17",
+        "fileName": "CPDashboardBanner5.6.17.jpg",
+        "imageOrder": 2
+    },
+    {
+        "imageName": "FCA Welcome",
+        "fileName": "image-7.jpg",
+        "imageOrder": 3
+    },
+    {
+        "imageName": "FCA Welcome",
+        "fileName": "warrantyadminbanner.jpg",
+        "imageOrder": 3
+    }
 ]

@@ -28,7 +28,7 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 		List<ImagesDTO> result = new ArrayList<ImagesDTO>();
 		try {
 			final Query query = this.em.createNativeQuery(IMAGES_BY_ROLE_AND_TERRITORY, ImagesDTO.class);
-			query.setParameter(0, territory);
+			query.setParameter(0, roleId);
 			query.setParameter(1, territory);
 			result = query.getResultList();
 		} catch (final NoResultException ex) {
@@ -49,6 +49,20 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getAllBannersForAdmin", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<ImagesDTO> getAllBanners() {
+		List<ImagesDTO> result = new ArrayList<ImagesDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(IMAGES_EXECUTIVE, ImagesDTO.class);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getAllBanners", ex);
 		}
 		return result;
 	}

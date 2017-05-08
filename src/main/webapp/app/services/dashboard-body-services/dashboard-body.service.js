@@ -41,7 +41,7 @@ var DashboardBodyService = (function () {
         // var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
         // var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
         var getNumberOfTilesServiceUrl = "services/notile/" + positioncodes + "/" + dealerlcodes;
-        // var getNumberOfTilesServiceUrl: string = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
+        var getNumberOfTilesServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/notile/" + positioncodes + "/" + dealerlcodes;
         // var getNumberOfTilesServiceUrl: string = "./app/resources/json/notiles.json";
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
@@ -63,8 +63,8 @@ var DashboardBodyService = (function () {
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
         //var tileService = "./app/resources/dc-json/" + id + "-tile.json";
-        var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        // var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        // var tileService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        var tileService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(tileService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -82,8 +82,8 @@ var DashboardBodyService = (function () {
         // headers.append("Cache-Control", "no-store");
         //   var chartService = "./app/resources/dc-json/" + id + "-chart.json";
         // var chartService = "./app/resources/json/customer_first.json"; //retention
-        //var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
-        var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        var chartService = "https://test.myfcarewards.com/myfcarewards/services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        // var chartService = "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
         return this.http.get(chartService, { headers: headers })
             .map(function (response) { return response.json(); })
             .catch(this.handleError);

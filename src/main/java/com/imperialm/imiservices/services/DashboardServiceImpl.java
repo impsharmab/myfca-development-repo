@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.imperialm.imiservices.dao.ProgramCountDAOImpl;
 import com.imperialm.imiservices.dao.SIRewardsYOYDetailsDAO;
 import com.imperialm.imiservices.dao.MyFCAMserRankingDetailsDAO;
 import com.imperialm.imiservices.dao.MyFCAMserRankingDAO;
@@ -75,6 +76,9 @@ import com.imperialm.imiservices.dao.TTTATopNDAO;
 public class DashboardServiceImpl {
 
 	@Autowired
+	private ProgramCountDAOImpl ProgramCountDAOImpl;
+	
+	@Autowired
 	private SIRewardsYOYDetailsDAO SIRewardsYOYDetailsDAO;
 	
 	@Autowired
@@ -133,13 +137,13 @@ public class DashboardServiceImpl {
 	
 	@Autowired
 	private RewardRedemptionDetailsDAO RewardRedemptionDetailsDAO;
-	
+
 	@Autowired
 	private CertProfsWinnersDetailsDAO CertProfsWinnersDetailsDAO;
-	
+
 	@Autowired
 	private UserPositionCodeRoleDAO UserPositionCodeRoleDAO;
-	
+
 	@Autowired
 	private DealerPersonnelPositionsDAO DealerPersonnelPositionsDAO;
 	
@@ -706,4 +710,19 @@ public class DashboardServiceImpl {
 		return this.SIRewardsYOYDetailsDAO.getSIRewardsYOYDetailsByDealerCodeAndToggle( dealerCode, toggle);
 	}
 	
+	public List<Integer> getTotalDealersEnrolledByProgramID(int programId) {
+		return this.ProgramCountDAOImpl.totalDealersEnrolledByProgramID(programId);
+	}
+	
+	public List<Integer> gettotalDealersEnrolledByProgramGroupID(int programId) {
+		return this.ProgramCountDAOImpl.totalDealersEnrolledByProgramGroupID(programId);
+	}
+	
+	public List<Integer> getTotalParticipantsEnrolledByProgramIDAndDealerCode(int programId, String dealerCode){
+		return this.ProgramCountDAOImpl.totalParticipantsEnrolledByProgramIDAndDealerCode(programId, dealerCode);
+	}
+	
+	public List<Integer> getTotalDealersEnrolledByProgramIDAndTerritory(int programId, String territory){
+		return this.ProgramCountDAOImpl.totalDealersEnrolledByProgramID(programId, territory);
+	}
 }

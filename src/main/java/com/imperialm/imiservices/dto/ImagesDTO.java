@@ -5,15 +5,19 @@ package com.imperialm.imiservices.dto;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * @author Dheerajr
  *
  */
+@Entity
 public class ImagesDTO implements Serializable {
 
-	private String imageName;
-	private String fileName;
-	private int imageOrder;
+	@Id private String imageName;
+	@Id private String fileName;
+	@Id private int imageOrder;
 
 	public ImagesDTO() {
 	}

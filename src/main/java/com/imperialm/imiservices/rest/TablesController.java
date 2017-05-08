@@ -214,11 +214,11 @@ public class TablesController {
 				filters.add(territory);
 				List<SIRewardsDetailsGraphDTO> sublist = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle(territory, "QTD");
 				for(SIRewardsDetailsGraphDTO item: sublist){
-						List<SIRewardsDetailsDTO> participants = this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(item.getChildTerritory(), "QTD", this.getCurrentQuarter());
+						List<SIRewardsDetailsDTO> participants = this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(item.getChildTerritory(), "QTD", "2017Q1");//this.getCurrentQuarter()
 						result.addAll(participants);
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
-				 return this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(territory, "QTD", this.getCurrentQuarter());
+				 return this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(territory, "QTD", "2017Q1"); //this.getCurrentQuarter()
 			}
 			return result;
 		}

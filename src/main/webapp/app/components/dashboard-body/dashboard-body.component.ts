@@ -129,9 +129,9 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     } else if (obj.unit == "$" && obj.avarage == true) {
       chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "%" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])  + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
+      chart.setTitle(null, { text: "Total " + this.numberWithPercentage(this.totalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "%" && obj.avarage == true) {
-      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString()+ obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
+      chart.setTitle(null, { text: "Average " + this.numberWithPercentage(e.point.y).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else {
       chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
 
@@ -333,12 +333,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   openProgramRules(url) {
     window.open(url)
   }
-  // options: any;
-  // getJSONObject(jsonString: string) {
-  //   //  debugger;
-  //   // console.log(jsonString)
-  //   return JSON.parse(jsonString);
-  // }
 
   getTileJson(id: string) {
     this.contentBody[id] = [];
@@ -398,15 +392,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         zoomType: 'x',
         // panning: true,
         // panKey: 'shift',
-        resetZoomButton: {
-          position: {
-            align: 'right', // by default
-            verticalAlign: 'top', // by default
-            x: 0,
-            y: 35
-          },
-          relativeTo: 'chart'
-        }
+        // resetZoomButton: {
+        //   position: {
+        //     align: 'right', // by default
+        //     verticalAlign: 'top', // by default
+        //     x: 0,
+        //     y: 35
+        //   },
+        //   relativeTo: 'chart'
+        // }
       },
       // colors: ['#7cb5ec', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
       //   '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
@@ -532,22 +526,28 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         chartObj.chart.type = "pie"
         chartObj.plotOptions = {
           pie: {
-            size: 200,
+            //size: 250,
+            size: '70%',
             allowPointSelect: false,
             cursor: 'pointer',
             dataLabels: {
               enabled: true,
-              padding: 0,
-              allowOverlap: true,
+              padding: 3,
+              allowOverlap: false,
               overFlow: 'justify',
               crop: true,
-              distance: 5,
+              distance: 13,
+              // rotation: -5,
+              // y: -5,
               // format: '<b>{point.name}</b>: <br>{point.y}<br>({point.percentage:.1f}) %',
               //format: '<b>{point.name}</b>: <br>{point.y:.0f}',
-              format: '<b>{point.name}</b>: <br>{point.y:.0f}',
+              format: '<b>{point.name}</b>: {point.y:.0f}',
 
               style: {
-                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black',
+                width: '90px',
+                fontSize: '8.5px',
+
               }
             }
           }
@@ -575,10 +575,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             var drillDownObj: any = {};
             var __this = this;
             drillDownObj.point = {
-              cursor: 'pointer',
+              //cursor: 'pointer',
               events: {
                 click: function () {
-                  if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                  if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }
@@ -645,7 +645,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             relativeTo: 'spacingBox',
             position: {
               x: 0,
-              y: 35
+              y: 30
 
             }
           }
@@ -677,7 +677,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           {
             plotBorderWidth: 0,
             allowPointSelect: true,
-            cursor: 'pointer',
+            //cursor: 'pointer',
             size: '90%',
             tooltip: {
               pointFormat: tooltip
@@ -702,7 +702,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         chartObj.plotOptions["pie"] = {
           plotBorderWidth: 0,
           allowPointSelect: true,
-          cursor: 'pointer',
+          //cursor: 'pointer',
           size: '80%',
           tooltip: {
             pointFormat: tooltip
@@ -728,10 +728,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         }
         chartObj.plotOptions["series"] = {
           point: {
-            cursor: 'pointer',
+            // cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -770,10 +770,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             var drillDownObj: any = {};
             var __this = this;
             drillDownObj.point = {
-              cursor: 'pointer',
+              //cursor: 'pointer',
               events: {
                 click: function () {
-                  if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                  if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                   }// modal trigger
@@ -833,7 +833,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           drillUpButton: {
             relativeTo: 'spacingBox',
             position: {
-              y: 35,
+              y: 30,
               x: 0
             }
           }
@@ -872,10 +872,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         chartObj.chart.type = "bar";
         chartObj.plotOptions["series"] = {
           point: {
-            cursor: 'pointer',
+            //cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -913,10 +913,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         // }
         chartObj.plotOptions["series"] = {
           point: {
-            cursor: 'pointer',
+            // cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -958,10 +958,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
         chartObj.plotOptions["column"] = {
           point: {
-            cursor: 'pointer',
+            // cursor: 'pointer',
             events: {
               click: function (e, a, b) {
-                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
@@ -1155,10 +1155,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           var drillDownObj: any = {};
           var __this = this;
           drillDownObj.point = {
-            cursor: 'pointer',
+            // cursor: 'pointer',
             events: {
               click: function () {
-                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+                if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                   window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }// modal trigger
@@ -1219,7 +1219,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 35,
+          y: 30,
           x: 0
         }
       }
@@ -1265,7 +1265,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       pie: {
         plotBorderWidth: 0,
         allowPointSelect: true,
-        cursor: 'pointer',
+        // cursor: 'pointer',
         size: '100%',
         dataLabels: {
           enabled: true,
@@ -1301,10 +1301,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         var drillDownObj: any = {};
         var __this = this;
         drillDownObj.point = {
-          cursor: 'pointer',
+          //cursor: 'pointer',
           events: {
             click: function () {
-              if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+              if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 22 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
                 // modal trigger
@@ -1367,7 +1367,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 35,
+          y: 30,
           x: 0
         }
       }
@@ -1419,7 +1419,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       pie: {
         plotBorderWidth: 0,
         allowPointSelect: true,
-        cursor: 'pointer',
+        // cursor: 'pointer',
         size: '100%',
         dataLabels: {
           enabled: true,
@@ -1450,10 +1450,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         var drillDownObj: any = {};
         var __this = this;
         drillDownObj.point = {
-          cursor: 'pointer',
+          // cursor: 'pointer',
           events: {
             click: function () {
-              if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
+              if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 22 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                 window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token)
               }
@@ -1525,7 +1525,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       drillUpButton: {
         relativeTo: 'spacingBox',
         position: {
-          y: 35,
+          y: 30,
           x: 0
         }
       }

@@ -28,6 +28,9 @@ var ProfileComponent = (function () {
         };
         this.getProfileData();
     };
+    ProfileComponent.prototype.goBack = function () {
+        window.history.back();
+    };
     ProfileComponent.prototype.getProfileData = function () {
         var _this = this;
         //debugger

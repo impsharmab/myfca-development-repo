@@ -28,7 +28,10 @@ export class ProfileComponent implements OnInit {
         this.getProfileData();
     }
     constructor(private profileService: ProfileService) { }
-
+    
+    private goBack() {
+        window.history.back();
+    }
     private getProfileData() {
         //debugger
         this.profileService.getProfileData().subscribe(

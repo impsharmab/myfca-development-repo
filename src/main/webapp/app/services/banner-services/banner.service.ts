@@ -12,7 +12,16 @@ export class BannerService {
     constructor(private http: Http) { }
 
     getBanners() {
-        return this.http.get(this.getBannersServiceUrl)
+
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
+        var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
+        var getBannersServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/banners/" + positioncodes + "/" + dealerlcodes + "/"
+
+        var headers = new Headers();
+        headers.append('Authorization', validToken);
+
+        return this.http.get(getBannersServiceUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
@@ -27,5 +36,5 @@ export class BannerService {
         }
         return Observable.throw(errMsg);
     }
-    
+
 }
