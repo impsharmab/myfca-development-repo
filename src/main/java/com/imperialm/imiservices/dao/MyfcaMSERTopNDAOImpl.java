@@ -24,32 +24,7 @@ public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<MyfcaMSERTopNDTO> getTopNByRole(InputRequest userRoleReq) {
-		List<MyfcaMSERTopNDTO> result = new ArrayList<MyfcaMSERTopNDTO>();
-
-		MyfcaMSERTopNDTO MyfcaMSERTopNDTO = null;
-		try {
-			final Query query = this.em.createNativeQuery(TOP_N_BY_ROLE, MyfcaMSERTopNDTO.class);
-			result = query.getResultList();
-			
-		} catch (final NoResultException ex) {
-			MyfcaMSERTopNDTO = new MyfcaMSERTopNDTO();
-			MyfcaMSERTopNDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			logger.info("result in else " + MyfcaMSERTopNDTO);
-			result.add(MyfcaMSERTopNDTO);
-			
-		} catch (final Exception ex) {
-			MyfcaMSERTopNDTO = new MyfcaMSERTopNDTO();
-			logger.error("error occured in findTilesListByRole", ex);
-			MyfcaMSERTopNDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(MyfcaMSERTopNDTO);
-		}
-		return result;
-	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -81,7 +56,41 @@ public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + MyfcaMSERTopNDTO);
 		} catch (final Exception ex) {
-			logger.error("error occured in findTilesListByRole", ex);
+			logger.error("error occured in getTopNByType", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<MyfcaMSERTopNDTO> getTopNByTypeINMSERTABLE(String type, int rows, String name, String period) {
+		List<MyfcaMSERTopNDTO> result = new ArrayList<MyfcaMSERTopNDTO>();
+
+		MyfcaMSERTopNDTO MyfcaMSERTopNDTO = null;
+		try {
+			if(name == null && period == null){
+				final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE_MSER, MyfcaMSERTopNDTO.class);
+				query.setParameter(1, rows);
+				query.setParameter(2, type);
+				result = query.getResultList();
+			}else if(name == null && period != null){
+				final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE_PERIOD_MSER, MyfcaMSERTopNDTO.class);
+				query.setParameter(1, rows);
+				query.setParameter(2, type);
+				query.setParameter(3, period);
+				result = query.getResultList();
+			}else{
+				final Query query = this.em.createNativeQuery(TOP_N_BY_TYPE_NAME_PERIOD_MSER, MyfcaMSERTopNDTO.class);
+				query.setParameter(1, rows);
+				query.setParameter(2, type);
+				query.setParameter(3, name);
+				query.setParameter(4, period);
+				result = query.getResultList();
+			}
+
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + MyfcaMSERTopNDTO);
+		} catch (final Exception ex) {
+			logger.error("error occured in getTopNByTypeINMSERTABLE", ex);
 		}
 		return result;
 	}

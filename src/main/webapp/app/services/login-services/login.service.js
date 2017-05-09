@@ -34,8 +34,6 @@ var LoginService = (function () {
         // console.log(this.cookieService.get("CurrentUser"))
         // this.cookieService.removeAll();
         this.cookieService.put("token", (userdata.token));
-        console.log(this.cookieService.get("token"));
-        // alert("token" + this.cookieService.get("token"))
     };
     LoginService.prototype.getUsersData = function () {
         return this.userdata;
@@ -67,9 +65,8 @@ var LoginService = (function () {
             .catch(this.handleError);
     };
     LoginService.prototype.getRefreshLoginResponse = function (token) {
-        debugger;
-        var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
-        //var url = "./login/tokenrefresh/";
+        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        var url = "./login/tokenrefresh/";
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);

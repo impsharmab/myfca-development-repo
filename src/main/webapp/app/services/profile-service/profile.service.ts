@@ -6,42 +6,44 @@ import './../rxjs-operators';
 
 @Injectable()
 export class ProfileService {
-    private getProfileServiceUrl: string = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Profile/';
-    private getPasswordServiceUrl: string = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Password/';
     constructor(private http: Http, private cookieService: CookieService) { }
 
     getProfileData() {
+        //  var getProfileServiceUrl: string = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Profile/';
+        var getProfileServiceUrl: string = './UserProfile/Profile/';
 
-         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token; 
-       // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
 
         var headers = new Headers();
         headers.append('Authorization', validToken);
-        return this.http.get(this.getProfileServiceUrl, { headers })
+        return this.http.get(getProfileServiceUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
 
     changeProfileData(name: string, email: string) {
-        debugger
-         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        //  var getProfileServiceUrl: string = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Profile/';
+        var getProfileServiceUrl: string = './UserProfile/Profile/';
+
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "name": name, "email": email };
         var headers = new Headers();
         headers.append('Authorization', validToken);
-        return this.http.post(this.getProfileServiceUrl, body, { headers })
+        return this.http.post(getProfileServiceUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
 
     changeUserPassword(password: string) {
-        debugger
+        //var getPasswordServiceUrl: string = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Password/';
+        var getPasswordServiceUrl: string = './UserProfile/Password/';
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-//        var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "item": password };
         var headers = new Headers();
         headers.append('Authorization', validToken);
-        return this.http.post(this.getPasswordServiceUrl, body, { headers })
+        return this.http.post(getPasswordServiceUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }

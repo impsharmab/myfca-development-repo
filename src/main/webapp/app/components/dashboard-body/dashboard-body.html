@@ -1,4 +1,4 @@
-<template #content let-c="close" let-d="dismiss">
+<template #content let-c="close" let-d="dismiss" enablewelcomeprompt=true>
   <div class="modal-header">
     <h4 class="modal-title">Welcome, {{data.name}} </h4>
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -25,7 +25,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <input type="button" onclick="tableToExcel('dataTable', 'Top 10 Information')" value="Export to Excel" style="cursor:pointer; font-family: Helvetica, Arial, sans-serif;">
+    <input class="export-to-excel" type="button" onclick="tableToExcel('dataTable', 'Top 10 Information')" value="Export to Excel">
     <datatable id="dataTable" [tableData]="statisticModelData"></datatable>
   </div>
   <div class="modal-footer">
@@ -42,11 +42,15 @@
     </button>
   </div>
   <div class="modal-body">
+    <input class="export-to-excel" type="button" onclick="tableToExcel('testTable', 'Top 10 Information')" value="Export to Excel" style="cursor:pointer">
+        
     <ngb-tabset>
+        
       <ngb-tab *ngFor="let tableDataObj of tableData" title={{tableDataObj.tabName}}>
-        <template ngbTabContent>
-          <h4>{{tableDataObj.tableName}}</h4>
-          <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Export to Excel" style="cursor:pointer">
+        <template ngbTabContent> 
+                  
+          <h4 [innerHtml]="tableDataObj.tableName"></h4>
+         
           <table id="testTable" class="table table-hover table-striped bdt">
             <thead>
               <tr>
@@ -67,7 +71,7 @@
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+    <button type="button" class="getstarted-button" (click)="c('Close click')">Close</button>
   </div>
 </template>
 <template ngbModalContainer></template>
@@ -123,18 +127,19 @@
           && (errorInArray(contentBody[tile.id].top3)))" style="text-align: center;">
             Enrollment Period has ended. Please read the program rules below regarding future Enrollment.</p>
 
-          <div class="data-group " *ngFor="let data of contentBody[tile.id].attribute ">
-            <p class="data-point " *ngIf="emptyBadge(data.badgeUrl) ">{{data.value}}</p>
-            <p class="data-substitle " *ngIf="emptyBadge(data.badgeUrl) ">{{data.name}}</p>
-            <p class="data-substitle " *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc?id={{data.badgeUrl}} "></p>
-            <p class="data-substitle ">{{data.badgeTitle}}</p>
+          <div class="data-group" *ngFor="let data of contentBody[tile.id].attribute ">
+            <p class="data-point" *ngIf="emptyBadge(data.badgeUrl) " [innerHtml]="data.value"></p>
+            <p class="data-substitle" *ngIf="emptyBadge(data.badgeUrl) " [innerHtml]="data.name"></p>
+            <p class="data-substitle" *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc?id={{data.badgeUrl}} "></p>
+            <p class="data-substitle">{{data.badgeTitle}}</p>
           </div>
 
         </div>
+        
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_advisors)
-              " (click)="openDataTable(contentBody[tile.id].top10_advisors) " style="cursor:pointer"><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_advisors.buttonName}}</button><br>
+              " (click)="openDataTable(contentBody[tile.id].top10_advisors) " style="cursor:pointer" [innerHtml]= "contentBody[tile.id].top10_advisors.buttonName"></button><br>
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_technicians) "
-          (click)="openDataTable(contentBody[tile.id].top10_technicians) " style="cursor:pointer"><i class="fa fa-star " aria-hidden="true "></i>{{contentBody[tile.id].top10_technicians.buttonName}}</button>
+          (click)="openDataTable(contentBody[tile.id].top10_technicians) " style="cursor:pointer" [innerHtml]="contentBody[tile.id].top10_technicians.buttonName"><i class="fa fa-star " aria-hidden="true " ></i></button>
         <div style="margin-bottom: 45; margin-top: -80" class="chart-controls " *ngIf="tile.type=='chart' && chartType(tile.id) ">
           <a (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i  class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer"></i></a>
           <a (click)="chartChange( 'column',tile.id) " alt="View Column Chart "><i  class="fa fa-bar-chart

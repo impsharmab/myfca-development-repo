@@ -30,7 +30,8 @@ var AdminService = (function () {
     AdminService.prototype.setEndEmulateUserData = function (endEmulateUserData) {
     };
     AdminService.prototype.getImageList = function () {
-        var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
+        // var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
+        var getImageListUrl = "./services/files/listFiles";
         return this.http.get(getImageListUrl)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
@@ -60,9 +61,8 @@ var AdminService = (function () {
             .catch(this.handleError);
     };
     AdminService.prototype.getEmulateUserData = function (sid) {
-        //var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
-        // var getEmulateUserDataUrl = "service/Admin/?id="+sid;
-        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
+        // var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
+        var getEmulateUserDataUrl = "./services/admin/emulate/" + sid;
         var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
@@ -72,8 +72,8 @@ var AdminService = (function () {
             .catch(this.handleError);
     };
     AdminService.prototype.addBanner = function (roleID, bc, orderBy, image) {
-        debugger;
-        var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
+        // var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
+        var getAddBannerUrl = "./services/admin/banner/add/";
         var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var body = {
             "dashBoardBannersID": 0, "image": image, "roleID": roleID, "orderBy": orderBy, "businessCenter": bc,

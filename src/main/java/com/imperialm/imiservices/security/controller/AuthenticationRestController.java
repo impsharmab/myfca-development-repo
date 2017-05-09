@@ -1,5 +1,7 @@
 package com.imperialm.imiservices.security.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.imperialm.imiservices.dao.DashBoardBannersDAOImpl;
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
@@ -47,6 +50,8 @@ public class AuthenticationRestController {
 
 	@Autowired
 	private UserServiceImpl userDetailsService;
+	
+	private static Logger logger = LoggerFactory.getLogger(AuthenticationRestController.class);
 
 	@RequestMapping(value = "/login/token", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
@@ -107,6 +112,7 @@ public class AuthenticationRestController {
 			response.setAdmin(true);
 		}
 		// Return the token
+		logger.info("User Id: " + user.getUserId() + ", signed in!");
 		return ResponseEntity.ok(response);
 	}
 
@@ -181,9 +187,15 @@ public class AuthenticationRestController {
 
 		List<String> positionCode = new ArrayList<String>();
 		List<String> dealerCode = new ArrayList<String>();
-
-		positionCode.add(tokenPositionCode);
-		dealerCode.add(tokenDealerCode);
+		if(!(tokenPositionCode.isEmpty() || tokenPositionCode == null || tokenPositionCode.equalsIgnoreCase("undefined"))){
+			positionCode.add(tokenPositionCode);
+		}
+		
+		if(!(tokenDealerCode.isEmpty() || tokenDealerCode == null || tokenDealerCode.equalsIgnoreCase("undefined"))){
+			dealerCode.add(tokenDealerCode);
+		}
+		
+		
 
 		for(UserPositionCodeRoleDTO item: userCodes){
 			positionCode.add(item.getPositionCode());

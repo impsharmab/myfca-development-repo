@@ -25,7 +25,8 @@ export class AdminService {
     }
 
     getImageList() {
-        var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
+        // var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
+        var getImageListUrl = "./services/files/listFiles"
         return this.http.get(getImageListUrl)
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -60,10 +61,9 @@ export class AdminService {
             .catch(this.handleError);
     }
 
-    getEmulateUserData(sid: string) {
-        //var getEmulateUserDataUrl = "app/resources/json/emulate-user.response.json";
-        // var getEmulateUserDataUrl = "service/Admin/?id="+sid;
-        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
+    getEmulateUserData(sid: string) {        
+        // var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
+        var getEmulateUserDataUrl = "./services/admin/emulate/" + sid;
 
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
@@ -74,8 +74,8 @@ export class AdminService {
             .catch(this.handleError);
     }
     addBanner(roleID, bc, orderBy, image) {
-        debugger
-        var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
+        // var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
+        var getAddBannerUrl = "./services/admin/banner/add/";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var body = {
             "dashBoardBannersID": 0, "image": image, "roleID": roleID, "orderBy": orderBy, "businessCenter": bc,

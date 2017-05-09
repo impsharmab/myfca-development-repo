@@ -191,6 +191,10 @@ public class DashboardServiceImpl {
 		 return this.MyfcaMSERTopNDAO.getTopNByType(type, rows, name, period);
 	}
 	
+	public List<MyfcaMSERTopNDTO> getTopNByTypeINMSERTABLE(String type, int rows, String name, String period){
+		 return this.MyfcaMSERTopNDAO.getTopNByTypeINMSERTABLE(type, rows, name, period);
+	}
+	
 	public TotalName getMTDByProgramAndProgramgroup(String name, String program, String programgroup){
 		 return this.MyfcaMSERTotalEarningsDetailsDAO.getMTDByProgramAndProgramgroup(name, program, programgroup);
 	}
@@ -714,8 +718,16 @@ public class DashboardServiceImpl {
 		return this.ProgramCountDAOImpl.totalDealersEnrolledByProgramID(programId);
 	}
 	
+	public List<Integer> getTotalDealersByProgramID(int programId) {
+		return this.ProgramCountDAOImpl.totalDealersByProgramID(programId);
+	}
+	
 	public List<Integer> gettotalDealersEnrolledByProgramGroupID(int programId) {
 		return this.ProgramCountDAOImpl.totalDealersEnrolledByProgramGroupID(programId);
+	}
+	
+	public List<Integer> gettotalDealersByProgramGroupID(int programId) {
+		return this.ProgramCountDAOImpl.totalDealersByProgramGroupID(programId);
 	}
 	
 	public List<Integer> getTotalParticipantsEnrolledByProgramIDAndDealerCode(int programId, String dealerCode){

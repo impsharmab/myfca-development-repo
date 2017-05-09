@@ -36,7 +36,7 @@
         <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
     </div>
 </template>
-<template ngbModalContainer></template>
+<template ngbModalContainer></template> 
 <template #positioncodeModal let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title"> </h4>
@@ -56,7 +56,7 @@
 
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top " role="navigation">
     <div class="container">
-        <a  class="brand-logo"><img src="app/resources/images/header-carousel/FCA-mast-logo.jpg" /></a>
+        <a  class="brand-logo"><img src="services/loadrsc?id=FCALogo_and_MyRewards.jpg" /></a>
         <div class="navbar-header">
             <ul class="sav">
                 <li class="sav-item ">
@@ -72,7 +72,7 @@
                 <li class="sav-item " [hidden]="retweetIconHide">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
                     <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">
-                        <span><img src = "https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=retweet.png"  alt="Retweet"  width="25" height="25"></span></a>
+                        <span><img src = "services/loadrsc?id=retweet.png"  alt="Retweet"  width="25" height="25"></span></a>
                 </li>
                 <li class="sav-item">
                     <!--<a *ngIf="booleanAdmin" class="utility-nav active" (click)="admin()">Admin </a>-->

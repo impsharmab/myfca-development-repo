@@ -81,7 +81,6 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.refreshLogin = function () {
         var _this = this;
-        debugger;
         var user = this.cookieService.get("token");
         if (user !== undefined) {
             if (user !== undefined && user.length > 1) {

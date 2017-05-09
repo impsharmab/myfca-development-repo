@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProfileService } from '../../services/profile-service/profile.service'
 import { ProfileData } from './profile.interface'
 @Component({
@@ -9,6 +9,7 @@ import { ProfileData } from './profile.interface'
 
 })
 export class ProfileComponent implements OnInit {
+    @Input() enablewelcomeprompt: any;
     private profiledata: ProfileData;
     private profileChangeData: any;
     private _password: any;

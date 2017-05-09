@@ -145,7 +145,8 @@ export class TestAdminComponent implements OnInit {
             select: function (event, ui) {
                 $("#project").val(ui.item.label);
                 $("#project-id").val(ui.item.value);
-                $("#project-icon").attr("src", "https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=" + ui.item.icon);
+                //$("#project-icon").attr("src", "https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=" + ui.item.icon);
+                $("#project-icon").attr("src", "./services/loadrsc?id=" + ui.item.icon);
                 return false;
             }
         })

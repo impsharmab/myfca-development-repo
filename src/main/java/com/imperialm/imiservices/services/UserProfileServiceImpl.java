@@ -82,21 +82,22 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc) {
 		this.userTiles = new ArrayList<NoTile>();
 		if(tile1.contains(positionCode)){
-		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "services/loadrsc?id=2017MSERRules.pdf"));
+		this.userTiles.add(new NoTile(2,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
 		}
 		
 		if(tile2.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "services/loadrsc?id=2017MSERRules.pdf"));
+		this.userTiles.add(new NoTile(19,"","chart", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc, "services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
 		}
 		
 		if(user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){
-			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules.pdf"));
-			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules.pdf"));
-			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules.pdf"));
-			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules.pdf"));
-			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=","services/loadrsc?id=2017MSERRules.pdf"));
-			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules.pdf"));
-			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","http://uat.imperialmarketing.com/mser?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=2017MSERRules.pdf"));
+			this.userTiles.add(new NoTile(3,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
+			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
+			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
+			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
+			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","hhttp://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=","services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
+			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
+			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
+			this.userTiles.add(new NoTile(37,"","tile", "","mser-logo.jpg","http://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=" + dc,"services/loadrsc?id=MSERProgramRulesv15_9_17.pdf"));
 		}
 		
 		
@@ -104,18 +105,18 @@ public class UserProfileServiceImpl implements UserProfileService {
 			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://cms.chrysler.fcaperformanceinstitute.com/","services/loadrsc?id=2017FCACPRulesandProgramOverview.pdf"));
 			}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","https://cms.chrysler.fcaperformanceinstitute.com/","#"));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","https://cms.chrysler.fcaperformanceinstitute.com/","services/loadrsc?id=2017FCACPRulesandProgramOverview.pdf"));
 			}
 		
 		if(tile5.contains(positionCode)){
-			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","https://brainboost.meap.me/","#"));
+			this.userTiles.add(new NoTile(26,"","tile", "","brainboost.jpg","https://brainboost.meap.me/","https://brainboost.meap.me/"));
 			}
 		if(tile6.contains(positionCode)){
-			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg","https://brainboost.meap.me/","#"));
+			this.userTiles.add(new NoTile(9,"","chart", "","brainboost.jpg","https://brainboost.meap.me/","https://brainboost.meap.me/"));
 			}
 		
 		if(tile7.contains(positionCode)){
-			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg","https://brainboost.meap.me/","#"));
+			this.userTiles.add(new NoTile(12,"","chart", "","brainboost.jpg","https://brainboost.meap.me/","https://brainboost.meap.me/"));
 			}
 		
 		if(tile8.contains(positionCode)){
@@ -123,7 +124,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}
 		
 		if(tile9.contains(positionCode)){
-			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts.jpg","https://brainboost.meap.me/","#"));
+			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts-ram.jpg","https://brainboost.meap.me/","#"));
 			}
 		
 		if(tile10.contains(positionCode)){
@@ -151,16 +152,16 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}
 		
 		if(tile15.contains(positionCode)){
-			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","","services/loadrsc?id=2017Q2SIRRules.pdf")); //SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","","services/loadrsc?id=2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); //SERVICE INCENTIVE
 			}
 		
 		
 		if(tile16.contains(positionCode)){
-			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","","services/loadrsc?id=2017Q2SIRRules.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","","services/loadrsc?id=2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
 			}
 		
 		if(tile17.contains(positionCode)){
-			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","","services/loadrsc?id=2017Q2SIRRules.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","","services/loadrsc?id=2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
 			}
 		
 		/*if(tile18.contains(positionCode)){ 
@@ -168,18 +169,21 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		
 		if(tile19.contains(positionCode)){ 
-			NoTile rr = new NoTile(24,"","tile", "","rewards.jpg","https://fcarewardredemption.com","#");
-			rr.setProgramRules("Shop Now");
+			NoTile rr = new NoTile(24,"","tile", "","rewards.jpg","http://sand.myfcarewards.m2.humanelementdev.com/he_singlesignon?token=" + token,"");
+			rr.setProgramSite("Shop Now");
 			this.userTiles.add(rr); // REWARDRED
 			}
 		
 		if(tile20.contains(positionCode) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","https://fcarewardredemption.com","#")); // REWARDRED
+			NoTile rr = new NoTile(23,"","chart", "","rewards.jpg","http://sand.myfcarewards.m2.humanelementdev.com/he_singlesignon?token=" + token,"");
+			rr.setProgramSite("Shop Now");
+			//this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","https://fcarewardredemption.com","#")); // REWARDRED
+			this.userTiles.add(rr);
 			}
 		
 		// SUMMARY
 		if(tile21.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(36,"","chart", "","FCASummary.jpg","#","#")); // SUMMARY
+			this.userTiles.add(new NoTile(36,"","chart", "","FCASummary.jpg","","")); // SUMMARY
 			}
 			
 			//Customer first

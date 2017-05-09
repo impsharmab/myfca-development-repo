@@ -65,6 +65,10 @@ var ProfileComponent = (function () {
     };
     return ProfileComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], ProfileComponent.prototype, "enablewelcomeprompt", void 0);
 ProfileComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

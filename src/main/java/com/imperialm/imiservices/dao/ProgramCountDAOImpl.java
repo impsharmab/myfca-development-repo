@@ -24,7 +24,24 @@ public class ProgramCountDAOImpl {
 		List<Integer> result = new ArrayList<Integer>();
 
 		try {
-			final Query query = this.em.createNativeQuery("select count(distinct DealerCode) from ProgramEnrollments where Status = 'E' and programId = (?0)");
+			final Query query = this.em.createNativeQuery("select count(distinct DealerCode) from ProgramEnrollments where Status = 'E' and programId = (?0) and DelFlag = 'N'");
+			query.setParameter(0, programId);
+
+			List<Integer> rows = (List<Integer>) query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in totalDealersEnrolledByProgramID", ex);
+		}
+		return result;
+	}
+	
+	public List<Integer> totalDealersByProgramID(int programId){
+		List<Integer> result = new ArrayList<Integer>();
+
+		try {
+			final Query query = this.em.createNativeQuery("select count(distinct DealerCode) from ProgramEnrollments where programId = (?0) and DelFlag = 'N'");
 			query.setParameter(0, programId);
 
 			List<Integer> rows = (List<Integer>) query.getResultList();
@@ -41,7 +58,7 @@ public class ProgramCountDAOImpl {
 		List<Integer> result = new ArrayList<Integer>();
 
 		try {
-			final Query query = this.em.createNativeQuery("select count(distinct pe.DealerCode) from ProgramEnrollments pe inner join Hierarchy h  on pe.DealerCode = h.Child  where pe.Status = 'E' and pe.programId = ?0 and h.Parent like ?1");
+			final Query query = this.em.createNativeQuery("select count(distinct pe.DealerCode) from ProgramEnrollments pe inner join Hierarchy h  on pe.DealerCode = h.Child  where pe.Status = 'E' and pe.programId = ?0 and h.Parent like ?1 and DelFlag = 'N'");
 			query.setParameter(0, programId);
 			query.setParameter(1, territory);
 
@@ -61,6 +78,23 @@ public class ProgramCountDAOImpl {
 
 		try {
 			final Query query = this.em.createNativeQuery("select count(Distinct DealerCode) from [ProgramGroupEnrollments] where ProgramGroupID = (?0) and DelFlag = 'N' and [Status] = 'E'");
+			query.setParameter(0, programId);
+
+			List<Integer> rows = (List<Integer>) query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in totalDealersEnrolledByProgramID", ex);
+		}
+		return result;
+	}
+	
+	public List<Integer> totalDealersByProgramGroupID(int programId){
+		List<Integer> result = new ArrayList<Integer>();
+
+		try {
+			final Query query = this.em.createNativeQuery("select count(Distinct DealerCode) from [ProgramGroupEnrollments] where ProgramGroupID = (?0) and DelFlag = 'N'");
 			query.setParameter(0, programId);
 
 			List<Integer> rows = (List<Integer>) query.getResultList();

@@ -526,7 +526,7 @@ var DashboardBodyComponent = (function () {
                                 click: function () {
                                     if (this.x != undefined && this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                        window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     }
                                     // modal trigger
                                     // __this.service.getTableJson("").subscribe(
@@ -592,6 +592,25 @@ var DashboardBodyComponent = (function () {
                         position: {
                             x: 0,
                             y: 30
+                        },
+                        theme: {
+                            fill: '#0275d8',
+                            margin: 1,
+                            border: 2,
+                            borderRadius: 2,
+                            textColor: '#fff',
+                            'stroke-width': 1,
+                            stroke: 'silver',
+                            r: 0,
+                            states: {
+                                hover: {
+                                    fill: '#025fb1'
+                                },
+                                select: {
+                                    stroke: '#039',
+                                    fill: '#025fb1'
+                                }
+                            }
                         }
                     }
                 };
@@ -679,7 +698,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -714,7 +733,7 @@ var DashboardBodyComponent = (function () {
                                 click: function () {
                                     if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                        window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                        window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                     } // modal trigger
                                     // __this.service.getTableJson("").subscribe(
                                     //   (resUserData) => {
@@ -776,6 +795,25 @@ var DashboardBodyComponent = (function () {
                         position: {
                             y: 30,
                             x: 0
+                        },
+                        theme: {
+                            fill: '#0275d8',
+                            margin: 1,
+                            border: 2,
+                            borderRadius: 2,
+                            textColor: '#fff',
+                            'stroke-width': 1,
+                            stroke: 'silver',
+                            r: 0,
+                            states: {
+                                hover: {
+                                    fill: '#025fb1'
+                                },
+                                select: {
+                                    stroke: '#039',
+                                    fill: '#025fb1'
+                                }
+                            }
                         }
                     }
                 };
@@ -823,7 +861,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -864,7 +902,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -906,7 +944,7 @@ var DashboardBodyComponent = (function () {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
                             }
                         }
@@ -1074,7 +1112,7 @@ var DashboardBodyComponent = (function () {
                             click: function () {
                                 if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                    window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
+                                    window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 } // modal trigger
                                 // __this.modalService.open(__this.tableContent, { size: "lg" });
                                 // __this.service.getTableJson("").subscribe(
@@ -1133,6 +1171,25 @@ var DashboardBodyComponent = (function () {
                 position: {
                     y: 30,
                     x: 0
+                },
+                theme: {
+                    fill: '#0275d8',
+                    margin: 1,
+                    border: 2,
+                    borderRadius: 2,
+                    textColor: '#fff',
+                    'stroke-width': 1,
+                    stroke: 'silver',
+                    r: 0,
+                    states: {
+                        hover: {
+                            fill: '#025fb1'
+                        },
+                        select: {
+                            stroke: '#039',
+                            fill: '#025fb1'
+                        }
+                    }
                 }
             }
         };
@@ -1215,7 +1272,7 @@ var DashboardBodyComponent = (function () {
                         click: function () {
                             if (this.x != undefined && this.name > 3 && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 22 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                                window.open("./datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
                         },
                         drilldown: function () {
@@ -1272,6 +1329,25 @@ var DashboardBodyComponent = (function () {
                 position: {
                     y: 30,
                     x: 0
+                },
+                theme: {
+                    fill: '#0275d8',
+                    margin: 1,
+                    border: 2,
+                    borderRadius: 2,
+                    textColor: '#fff',
+                    'stroke-width': 1,
+                    stroke: 'silver',
+                    r: 0,
+                    states: {
+                        hover: {
+                            fill: '#025fb1'
+                        },
+                        select: {
+                            stroke: '#039',
+                            fill: '#025fb1'
+                        }
+                    }
                 }
             }
         };
@@ -1354,7 +1430,7 @@ var DashboardBodyComponent = (function () {
                         click: function () {
                             if (this.x != undefined && (id == 9 || id == 10 || id == 11 || id == 12 || id == 13 || id == 19 || id == 20 || id == 22 || id == 23 || id == 31 || id == 32 || id == 33 || id == 36)) {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-                                window.open("https://test.myfcarewards.com/myfcarewards/datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
+                                window.open("./datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
                             // modal trigger
                             // __this.service.getTableJson("").subscribe(
@@ -1423,6 +1499,25 @@ var DashboardBodyComponent = (function () {
                 position: {
                     y: 30,
                     x: 0
+                },
+                theme: {
+                    fill: '#0275d8',
+                    margin: 1,
+                    border: 2,
+                    borderRadius: 2,
+                    textColor: '#fff',
+                    'stroke-width': 1,
+                    stroke: 'silver',
+                    r: 0,
+                    states: {
+                        hover: {
+                            fill: '#025fb1'
+                        },
+                        select: {
+                            stroke: '#039',
+                            fill: '#025fb1'
+                        }
+                    }
                 }
             }
         };
@@ -1508,6 +1603,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], DashboardBodyComponent.prototype, "data", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], DashboardBodyComponent.prototype, "enablewelcomeprompt", void 0);
 __decorate([
     core_1.ViewChild("content"),
     __metadata("design:type", core_1.TemplateRef)

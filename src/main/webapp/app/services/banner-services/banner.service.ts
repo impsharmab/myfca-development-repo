@@ -6,18 +6,14 @@ import './../rxjs-operators';
 @Injectable()
 export class BannerService {
     private getBannersServiceUrl: string = './app/resources/json/newbanners.json';
-
-    // private validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).validToken;
-    // private validToken: any = this.tokenObject.validToken;
     constructor(private http: Http) { }
 
     getBanners() {
-
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
-        var getBannersServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/banners/" + positioncodes + "/" + dealerlcodes + "/"
-
+        // var getBannersServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/banners/" + positioncodes + "/" + dealerlcodes + "/"
+        var getBannersServiceUrl = "./services/banners/" + positioncodes + "/" + dealerlcodes + "/";
         var headers = new Headers();
         headers.append('Authorization', validToken);
 
