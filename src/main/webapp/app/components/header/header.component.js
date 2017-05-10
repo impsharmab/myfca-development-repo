@@ -75,8 +75,10 @@ var HeaderComponent = (function () {
         this.router.navigate(adminUrl);
     };
     HeaderComponent.prototype.dashboardPage = function () {
-        var dashboardUrl = ["myfcadashboard"];
-        this.router.navigate(dashboardUrl, [{ "flag": "flag" }]);
+        var dashboardUrl = ["/myfcadashboard"];
+        //Router.navigate(['/myRoute',{someProperty:"SomeValue"}]
+        //this.router.navigate([dashboardUrl, {"flag":"flag"}]);
+        this.router.navigate(dashboardUrl);
     };
     HeaderComponent.prototype.dropdownPositionCode = function () {
         this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' });

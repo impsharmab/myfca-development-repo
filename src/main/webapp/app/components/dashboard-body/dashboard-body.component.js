@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var dashboard_body_service_1 = require("../../services/dashboard-body-services/dashboard-body.service");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var router_1 = require("@angular/router");
+//import { RouteParams } from '@angular/router-deprecated';
 var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var Highcharts = require('highcharts');
 // const Highcharts3d = require('highcharts/highcharts-3d.src');
@@ -21,6 +22,7 @@ require('highcharts/modules/drilldown')(Highcharts);
 require('highcharts/modules/no-data-to-display')(Highcharts);
 // require('../../resources/js/data.js')(Highcharts);
 var DashboardBodyComponent = (function () {
+    //private showWelcomePopup: boolean = false;
     function DashboardBodyComponent(service, modalService, cookieService, router, activatedRoute) {
         this.service = service;
         this.modalService = modalService;
@@ -61,17 +63,24 @@ var DashboardBodyComponent = (function () {
         //number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.initializeContent();
     }
+    DashboardBodyComponent.prototype.showWelcomeModal = function () {
+        sessionStorage.setItem("showWelcomePopup", "false");
+    };
     DashboardBodyComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
-        //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
-        this.activatedRoute.params.subscribe(function (params) {
-            console.log(params);
-            var flag = params["flag"];
-            if (flag == undefined) {
-                _this.modalService.open(_this.model, { size: "lg" });
-            }
-        });
+        //sessionStorage.setItem("showWelcomePopup", "true");
+        var showWelcomePopup = sessionStorage.getItem("showWelcomePopup");
+        if (showWelcomePopup == undefined) {
+            this.modalService.open(this.model, { size: "lg" });
+        }
+        // this.activatedRoute.params.subscribe(params => {
+        //   console.log(params)
+        //   let flag = params["flag"]
+        //   console.log(flag)
+        //   if (flag == undefined) {
+        //     this.modalService.open(this.model, { size: "lg" });
+        //   }
+        // })
         $(document).ready(function () {
             var elementHeights = $('.data - group').map(function () {
                 return $(this).height();

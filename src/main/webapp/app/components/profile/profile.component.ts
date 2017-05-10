@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, RouterOutlet, ActivatedRoute, Params } from '@angular/router';
 import { ProfileService } from '../../services/profile-service/profile.service'
 import { ProfileData } from './profile.interface'
 @Component({
@@ -19,6 +20,8 @@ export class ProfileComponent implements OnInit {
     private successProfileChangeMessage: string = "";
     private errorProfileChangeMessage: string = "";
 
+    constructor(private profileService: ProfileService, private router: Router, ) { }
+
     ngOnInit() {
         this.profiledata = {
             "email": "",
@@ -28,10 +31,11 @@ export class ProfileComponent implements OnInit {
         }
         this.getProfileData();
     }
-    constructor(private profileService: ProfileService) { }
-    
+
     private goBack() {
-        window.history.back();
+        //window.history.back();
+        let dashboardUrl = ["/myfcadashboard"];        
+        this.router.navigate(dashboardUrl);
     }
     private getProfileData() {
         //debugger

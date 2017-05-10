@@ -9,10 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var profile_service_1 = require("../../services/profile-service/profile.service");
 var ProfileComponent = (function () {
-    function ProfileComponent(profileService) {
+    function ProfileComponent(profileService, router) {
         this.profileService = profileService;
+        this.router = router;
         this.successPasswordChangeMessage = "";
         this.passwordNotMatched = "";
         this.errorPassWordChange = "";
@@ -29,7 +31,9 @@ var ProfileComponent = (function () {
         this.getProfileData();
     };
     ProfileComponent.prototype.goBack = function () {
-        window.history.back();
+        //window.history.back();
+        var dashboardUrl = ["/myfcadashboard"];
+        this.router.navigate(dashboardUrl);
     };
     ProfileComponent.prototype.getProfileData = function () {
         var _this = this;
@@ -75,7 +79,7 @@ ProfileComponent = __decorate([
         selector: 'app-profile',
         templateUrl: 'profile.html',
     }),
-    __metadata("design:paramtypes", [profile_service_1.ProfileService])
+    __metadata("design:paramtypes", [profile_service_1.ProfileService, router_1.Router])
 ], ProfileComponent);
 exports.ProfileComponent = ProfileComponent;
 //# sourceMappingURL=profile.component.js.map

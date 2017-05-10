@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@an
 import { DashboardBodyService } from '../../services/dashboard-body-services/dashboard-body.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router, ActivatedRoute, NavigationEnd, Params } from '@angular/router';
+//import { RouteParams } from '@angular/router-deprecated';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 const Highcharts = require('highcharts');
@@ -46,52 +47,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   private unit: any = "";
   private drilldownAverageCount = 0;
   private printButtonName: any = {};
+  //private showWelcomePopup: boolean = false;
 
-  ngOnInit() {
-    this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
-    //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
-
-    this.activatedRoute.params.subscribe(params => {
-      console.log(params)
-      let flag = params["flag"]
-      if (flag == undefined) {
-        this.modalService.open(this.model, { size: "lg" });
-
-      }
-    })
-
-    $(document).ready(function () {
-      var elementHeights = $('.data - group').map(function () {
-        return $(this).height();
-      }).get();
-      var maxHeight = Math.max.apply(null, elementHeights);
-      $('.data-group').height(maxHeight);
-    });
-
-    function numberWithPercentage(x) {
-      return (x).toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
-  }
-  numberWithPercentage(x) {
-    return (x).toFixed(1);
-    //  return Math.floor(x);
-  }
-  ngOnDestroy() {
-    this.tilesArray = [];
-    this.contentBody = {};
-    this.tableData = {
-      "buttonName": "",
-      "title": "",
-      "tableData": []
-    };
-    this.unitAndAverage = {}
-    this.showPieButton = {}
-    this.bc
-    this.totalCount = 0;
-    this.avarage = 0;
-    this.pieButtons = {};
-    this.chartRawData = {};
-  }
   constructor(private service: DashboardBodyService,
     private modalService: NgbModal,
     private cookieService: CookieService,
@@ -114,6 +71,63 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.initializeContent();
 
   }
+
+  showWelcomeModal() {    
+    sessionStorage.setItem("showWelcomePopup", "false");   
+  }
+  ngOnInit() {
+    this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
+    //sessionStorage.setItem("showWelcomePopup", "true");
+    var showWelcomePopup = sessionStorage.getItem("showWelcomePopup");
+
+    if (showWelcomePopup ==undefined) {
+      this.modalService.open(this.model, { size: "lg" });
+    }
+    
+    // this.activatedRoute.params.subscribe(params => {
+    //   console.log(params)
+    //   let flag = params["flag"]
+    //   console.log(flag)
+    //   if (flag == undefined) {
+    //     this.modalService.open(this.model, { size: "lg" });
+    //   }
+    // })
+
+    $(document).ready(function () {
+      var elementHeights = $('.data - group').map(function () {
+        return $(this).height();
+      }).get();
+      var maxHeight = Math.max.apply(null, elementHeights);
+      $('.data-group').height(maxHeight);
+    });
+
+    function numberWithPercentage(x) {
+      return (x).toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+  }
+
+
+  numberWithPercentage(x) {
+    return (x).toFixed(1);
+    //  return Math.floor(x);
+  }
+  ngOnDestroy() {
+    this.tilesArray = [];
+    this.contentBody = {};
+    this.tableData = {
+      "buttonName": "",
+      "title": "",
+      "tableData": []
+    };
+    this.unitAndAverage = {}
+    this.showPieButton = {}
+    this.bc
+    this.totalCount = 0;
+    this.avarage = 0;
+    this.pieButtons = {};
+    this.chartRawData = {};
+  }
+
   drillDown(e: any, chart: any, id: any) {
     var obj = this.unitAndAverage[id]
     this.drillUptotalCount = 0;

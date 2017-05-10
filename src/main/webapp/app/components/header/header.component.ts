@@ -94,8 +94,11 @@ export class HeaderComponent implements OnInit {
     }
 
     private dashboardPage() {
-        let dashboardUrl = ["myfcadashboard"]
-        this.router.navigate(dashboardUrl, [{"flag":"flag"}]);
+        let dashboardUrl = ["/myfcadashboard"]
+        //Router.navigate(['/myRoute',{someProperty:"SomeValue"}]
+        //this.router.navigate([dashboardUrl, {"flag":"flag"}]);
+        this.router.navigate(dashboardUrl);
+        
         
     }
 
