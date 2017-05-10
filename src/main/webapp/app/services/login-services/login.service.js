@@ -50,20 +50,6 @@ var LoginService = (function () {
         })
             .catch(this.handleError);
     };
-    LoginService.prototype.getLoginResponse = function (username, password) {
-        var url = "./login/token/";
-        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
-        var body = { "username": username, "password": password };
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
-        return this.http.post(url, body, { headers: headers })
-            .map(function (response) {
-            return response.json();
-        })
-            .catch(this.handleError);
-    };
     LoginService.prototype.getRefreshLoginResponse = function (token) {
         //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
         var url = "./login/tokenrefresh/";
@@ -73,6 +59,20 @@ var LoginService = (function () {
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
         return this.http.get(url, { headers: headers })
+            .map(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
+    };
+    LoginService.prototype.getLoginResponse = function (username, password) {
+        var url = "./login/token/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        var body = { "username": username, "password": password };
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
+        return this.http.post(url, body, { headers: headers })
             .map(function (response) {
             return response.json();
         })

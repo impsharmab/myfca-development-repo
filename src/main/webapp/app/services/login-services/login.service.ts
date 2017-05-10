@@ -28,7 +28,7 @@ export class LoginService {
 
         // this.cookieService.removeAll();
         this.cookieService.put("token", (userdata.token));
-       
+
     }
 
     getUsersData() {
@@ -44,6 +44,22 @@ export class LoginService {
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError);
+    }
+    getRefreshLoginResponse(token) {
+        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        var url = "./login/tokenrefresh/";
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', token);
+
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
+
+        return this.http.get(url, { headers })
+            .map((response: Response) =>
+                response.json())
+            .catch(this.handleError)
     }
 
     getLoginResponse(username, password): any {
@@ -61,22 +77,6 @@ export class LoginService {
                 response.json())
             .catch(this.handleError)
 
-    }
-    getRefreshLoginResponse(token) {       
-        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
-        var url = "./login/tokenrefresh/";
-
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', token);
-
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
-
-        return this.http.get(url, { headers })
-            .map((response: Response) =>
-                response.json())
-            .catch(this.handleError)
     }
     private handleError(error: Response | any) {
         let errMsg: string = "";

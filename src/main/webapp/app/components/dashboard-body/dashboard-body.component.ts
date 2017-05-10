@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { DashboardBodyService } from '../../services/dashboard-body-services/dashboard-body.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute, NavigationEnd, Params } from '@angular/router';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 const Highcharts = require('highcharts');
@@ -50,8 +51,14 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
     //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
 
-    this.modalService.open(this.model, { size: "lg" });
+    this.activatedRoute.params.subscribe(params => {
+      console.log(params)
+      let flag = params["flag"]
+      if (flag == undefined) {
+        this.modalService.open(this.model, { size: "lg" });
 
+      }
+    })
 
     $(document).ready(function () {
       var elementHeights = $('.data - group').map(function () {
@@ -85,7 +92,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.pieButtons = {};
     this.chartRawData = {};
   }
-  constructor(private service: DashboardBodyService, private modalService: NgbModal, private cookieService: CookieService) {
+  constructor(private service: DashboardBodyService,
+    private modalService: NgbModal,
+    private cookieService: CookieService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     Highcharts.setOptions({
       lang: {
         thousandsSep: ',',
@@ -649,26 +660,26 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               y: 30
 
             },
-            theme: {
-              fill: '#0275d8',
-              margin: 1,
-              border: 2,
-              borderRadius: 2,
-              textColor: '#fff',
+            // theme: {
+            //   fill: '#0275d8',
+            //   margin: 1,
+            //   border: 2,
+            //   borderRadius: 2,
+            //   textColor: '#fff',
 
-              'stroke-width': 1,
-              stroke: 'silver',
-              r: 0,
-              states: {
-                hover: {
-                  fill: '#025fb1'
-                },
-                select: {
-                  stroke: '#039',
-                  fill: '#025fb1'
-                }
-              }
-            }
+            //   'stroke-width': 1,
+            //   stroke: 'silver',
+            //   r: 0,
+            //   states: {
+            //     hover: {
+            //       fill: '#025fb1'
+            //     },
+            //     select: {
+            //       stroke: '#039',
+            //       fill: '#025fb1'
+            //     }
+            //   }
+            // }
           }
         }
         this.printButtonName[tileId] = this.pieButtons[tileId][0];
@@ -857,25 +868,25 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               y: 30,
               x: 0
             },
-            theme: {
-              fill: '#0275d8',
-              margin: 1,
-              border: 2,
-              borderRadius: 2,
-              textColor: '#fff',
-              'stroke-width': 1,
-              stroke: 'silver',
-              r: 0,
-              states: {
-                hover: {
-                  fill: '#025fb1'
-                },
-                select: {
-                  stroke: '#039',
-                  fill: '#025fb1'
-                }
-              }
-            }
+            // theme: {
+            //   fill: '#0275d8',
+            //   margin: 1,
+            //   border: 2,
+            //   borderRadius: 2,
+            //   textColor: '#fff',
+            //   'stroke-width': 1,
+            //   stroke: 'silver',
+            //   r: 0,
+            //   states: {
+            //     hover: {
+            //       fill: '#025fb1'
+            //     },
+            //     select: {
+            //       stroke: '#039',
+            //       fill: '#025fb1'
+            //     }
+            //   }
+            // }
           }
         }
         if (chartData.averageLine) {
@@ -1262,25 +1273,25 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           y: 30,
           x: 0
         },
-        theme: {
-          fill: '#0275d8',
-          margin: 1,
-          border: 2,
-          borderRadius: 2,
-          textColor: '#fff',
-          'stroke-width': 1,
-          stroke: 'silver',
-          r: 0,
-          states: {
-            hover: {
-              fill: '#025fb1'
-            },
-            select: {
-              stroke: '#039',
-              fill: '#025fb1'
-            }
-          }
-        }
+        // theme: {
+        //   fill: '#0275d8',
+        //   margin: 1,
+        //   border: 2,
+        //   borderRadius: 2,
+        //   textColor: '#fff',
+        //   'stroke-width': 1,
+        //   stroke: 'silver',
+        //   r: 0,
+        //   states: {
+        //     hover: {
+        //       fill: '#025fb1'
+        //     },
+        //     select: {
+        //       stroke: '#039',
+        //       fill: '#025fb1'
+        //     }
+        //   }
+        // }
       }
 
     }
@@ -1429,25 +1440,25 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           y: 30,
           x: 0
         },
-        theme: {
-          fill: '#0275d8',
-          margin: 1,
-          border: 2,
-          borderRadius: 2,
-          textColor: '#fff',
-          'stroke-width': 1,
-          stroke: 'silver',
-          r: 0,
-          states: {
-            hover: {
-              fill: '#025fb1'
-            },
-            select: {
-              stroke: '#039',
-              fill: '#025fb1'
-            }
-          }
-        }
+        // theme: {
+        //   fill: '#0275d8',
+        //   margin: 1,
+        //   border: 2,
+        //   borderRadius: 2,
+        //   textColor: '#fff',
+        //   'stroke-width': 1,
+        //   stroke: 'silver',
+        //   r: 0,
+        //   states: {
+        //     hover: {
+        //       fill: '#025fb1'
+        //     },
+        //     select: {
+        //       stroke: '#039',
+        //       fill: '#025fb1'
+        //     }
+        //   }
+        // }
       }
     }
     if (chartData.avarage) {
@@ -1606,25 +1617,25 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           y: 30,
           x: 0
         },
-        theme: {
-          fill: '#0275d8',
-          margin: 1,
-          border: 2,
-          borderRadius: 2,
-          textColor: '#fff',
-          'stroke-width': 1,
-          stroke: 'silver',
-          r: 0,
-          states: {
-            hover: {
-              fill: '#025fb1'
-            },
-            select: {
-              stroke: '#039',
-              fill: '#025fb1'
-            }
-          }
-        }
+        // theme: {
+        //   fill: '#0275d8',
+        //   margin: 1,
+        //   border: 2,
+        //   borderRadius: 2,
+        //   textColor: '#fff',
+        //   'stroke-width': 1,
+        //   stroke: 'silver',
+        //   r: 0,
+        //   states: {
+        //     hover: {
+        //       fill: '#025fb1'
+        //     },
+        //     select: {
+        //       stroke: '#039',
+        //       fill: '#025fb1'
+        //     }
+        //   }
+        // }
       }
     }
     if (chartData.avarage) {

@@ -95,7 +95,8 @@ export class HeaderComponent implements OnInit {
 
     private dashboardPage() {
         let dashboardUrl = ["myfcadashboard"]
-        this.router.navigate(dashboardUrl);
+        this.router.navigate(dashboardUrl, [{"flag":"flag"}]);
+        
     }
 
     private dropdownPositionCode() {

@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var dashboard_body_service_1 = require("../../services/dashboard-body-services/dashboard-body.service");
 var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
+var router_1 = require("@angular/router");
 var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var Highcharts = require('highcharts');
 // const Highcharts3d = require('highcharts/highcharts-3d.src');
@@ -20,10 +21,12 @@ require('highcharts/modules/drilldown')(Highcharts);
 require('highcharts/modules/no-data-to-display')(Highcharts);
 // require('../../resources/js/data.js')(Highcharts);
 var DashboardBodyComponent = (function () {
-    function DashboardBodyComponent(service, modalService, cookieService) {
+    function DashboardBodyComponent(service, modalService, cookieService, router, activatedRoute) {
         this.service = service;
         this.modalService = modalService;
         this.cookieService = cookieService;
+        this.router = router;
+        this.activatedRoute = activatedRoute;
         this.contentBody = {};
         this.tableData = {
             "buttonName": "",
@@ -59,9 +62,16 @@ var DashboardBodyComponent = (function () {
         this.initializeContent();
     }
     DashboardBodyComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"));
         //this.data = JSON.parse(this.cookieService.get("CurrentUser"))
-        this.modalService.open(this.model, { size: "lg" });
+        this.activatedRoute.params.subscribe(function (params) {
+            console.log(params);
+            var flag = params["flag"];
+            if (flag == undefined) {
+                _this.modalService.open(_this.model, { size: "lg" });
+            }
+        });
         $(document).ready(function () {
             var elementHeights = $('.data - group').map(function () {
                 return $(this).height();
@@ -593,25 +603,6 @@ var DashboardBodyComponent = (function () {
                             x: 0,
                             y: 30
                         },
-                        theme: {
-                            fill: '#0275d8',
-                            margin: 1,
-                            border: 2,
-                            borderRadius: 2,
-                            textColor: '#fff',
-                            'stroke-width': 1,
-                            stroke: 'silver',
-                            r: 0,
-                            states: {
-                                hover: {
-                                    fill: '#025fb1'
-                                },
-                                select: {
-                                    stroke: '#039',
-                                    fill: '#025fb1'
-                                }
-                            }
-                        }
                     }
                 };
                 this.printButtonName[tileId] = this.pieButtons[tileId][0];
@@ -796,25 +787,6 @@ var DashboardBodyComponent = (function () {
                             y: 30,
                             x: 0
                         },
-                        theme: {
-                            fill: '#0275d8',
-                            margin: 1,
-                            border: 2,
-                            borderRadius: 2,
-                            textColor: '#fff',
-                            'stroke-width': 1,
-                            stroke: 'silver',
-                            r: 0,
-                            states: {
-                                hover: {
-                                    fill: '#025fb1'
-                                },
-                                select: {
-                                    stroke: '#039',
-                                    fill: '#025fb1'
-                                }
-                            }
-                        }
                     }
                 };
                 if (chartData.averageLine) {
@@ -1172,25 +1144,6 @@ var DashboardBodyComponent = (function () {
                     y: 30,
                     x: 0
                 },
-                theme: {
-                    fill: '#0275d8',
-                    margin: 1,
-                    border: 2,
-                    borderRadius: 2,
-                    textColor: '#fff',
-                    'stroke-width': 1,
-                    stroke: 'silver',
-                    r: 0,
-                    states: {
-                        hover: {
-                            fill: '#025fb1'
-                        },
-                        select: {
-                            stroke: '#039',
-                            fill: '#025fb1'
-                        }
-                    }
-                }
             }
         };
         //  chartObj.xAxis.categories = categories;
@@ -1330,25 +1283,6 @@ var DashboardBodyComponent = (function () {
                     y: 30,
                     x: 0
                 },
-                theme: {
-                    fill: '#0275d8',
-                    margin: 1,
-                    border: 2,
-                    borderRadius: 2,
-                    textColor: '#fff',
-                    'stroke-width': 1,
-                    stroke: 'silver',
-                    r: 0,
-                    states: {
-                        hover: {
-                            fill: '#025fb1'
-                        },
-                        select: {
-                            stroke: '#039',
-                            fill: '#025fb1'
-                        }
-                    }
-                }
             }
         };
         if (chartData.avarage) {
@@ -1500,25 +1434,6 @@ var DashboardBodyComponent = (function () {
                     y: 30,
                     x: 0
                 },
-                theme: {
-                    fill: '#0275d8',
-                    margin: 1,
-                    border: 2,
-                    borderRadius: 2,
-                    textColor: '#fff',
-                    'stroke-width': 1,
-                    stroke: 'silver',
-                    r: 0,
-                    states: {
-                        hover: {
-                            fill: '#025fb1'
-                        },
-                        select: {
-                            stroke: '#039',
-                            fill: '#025fb1'
-                        }
-                    }
-                }
             }
         };
         if (chartData.avarage) {
@@ -1626,7 +1541,11 @@ DashboardBodyComponent = __decorate([
         templateUrl: "./dashboard-body.html",
         styles: ['button:focus { background-color:#025fb1; color: #fff; }']
     }),
-    __metadata("design:paramtypes", [dashboard_body_service_1.DashboardBodyService, ng_bootstrap_1.NgbModal, cookies_service_1.CookieService])
+    __metadata("design:paramtypes", [dashboard_body_service_1.DashboardBodyService,
+        ng_bootstrap_1.NgbModal,
+        cookies_service_1.CookieService,
+        router_1.Router,
+        router_1.ActivatedRoute])
 ], DashboardBodyComponent);
 exports.DashboardBodyComponent = DashboardBodyComponent;
 //# sourceMappingURL=dashboard-body.component.js.map

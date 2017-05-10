@@ -483,6 +483,10 @@ public class DashboardServiceImpl {
 		return this.SIRewardsDetailsGraphDAO.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, toggle);
 	}
 	
+	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphSUMByTerritoryAndToggle(String territory, String toggle){
+		return this.SIRewardsDetailsGraphDAO.getSIRewardsDetailsGraphSUMByTerritoryAndToggle(territory, toggle);
+	}
+	
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByParentTerritoryListDistinct(List<String> territory){
 		return this.RewardRedemptionGraphDAO.getRewardRedemptionGraphByParentTerritoryListDistinct(territory);
 	}
@@ -737,4 +741,16 @@ public class DashboardServiceImpl {
 	public List<Integer> getTotalDealersEnrolledByProgramIDAndTerritory(int programId, String territory){
 		return this.ProgramCountDAOImpl.totalDealersEnrolledByProgramID(programId, territory);
 	}
+	
+	public boolean checkDealerEnrollmentByProgram(int programId, String dealerCode){
+		return this.ProgramCountDAOImpl.checkDealerEnrollmentByProgram(programId, dealerCode);
+	}
+	
+	public List<Integer> getTotalELValidated(){
+		return this.ProgramCountDAOImpl.getTotalELValidated();
+	}
+	
+	
+	
+	
 }

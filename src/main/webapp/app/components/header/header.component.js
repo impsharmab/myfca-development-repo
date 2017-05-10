@@ -76,7 +76,7 @@ var HeaderComponent = (function () {
     };
     HeaderComponent.prototype.dashboardPage = function () {
         var dashboardUrl = ["myfcadashboard"];
-        this.router.navigate(dashboardUrl);
+        this.router.navigate(dashboardUrl, [{ "flag": "flag" }]);
     };
     HeaderComponent.prototype.dropdownPositionCode = function () {
         this.modalService.open(this.positioncodeModal, { windowClass: 'position-dealercode' });

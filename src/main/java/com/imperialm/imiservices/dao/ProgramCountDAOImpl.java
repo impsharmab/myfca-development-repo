@@ -125,4 +125,37 @@ public class ProgramCountDAOImpl {
 		return result;
 	}
 	
+	
+	public List<Integer> getTotalELValidated(){
+		List<Integer> result = new ArrayList<Integer>();
+
+		try {
+			final Query query = this.em.createNativeQuery("select count( distinct D.DealerCode) from DealerInfo D left join (select pge.* from ProgramGroupEnrollments pge join ProgramGroups pg on pge.ProgramGroupID = pg.ProgramGroupID where pg.ProgramGroupID = 1) as p on D.DealerCode = p.DealerCode join (select * from ProgramEnrollments where ProgramId = 1 and Status = 'E') PE on D.DealerCode = PE.DealerCode where D.ELFlag = 'Y'");
+			List<Integer> rows = (List<Integer>) query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getTotalELValidated", ex);
+		}
+		return result;
+	}
+	
+	public boolean checkDealerEnrollmentByProgram(int programId, String dealerCode){
+		List<Integer> result = new ArrayList<Integer>();
+
+		try {
+			final Query query = this.em.createNativeQuery("select count(distinct DealerCode) from ProgramEnrollments where Status = 'E' and programId = ?0 and DealerCode = ?1 and DelFlag = 'N'");
+			query.setParameter(0, programId);
+			query.setParameter(1, dealerCode);
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in checkDealerEnrollmentByProgram", ex);
+		}
+		
+		return result.size()>0;
+	}
+	
+	
 }

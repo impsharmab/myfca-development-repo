@@ -47,7 +47,9 @@ Float:none;
    
 }
 /*replced nav with sav to overcome overriden from top -10 tab*/
-
+/*.highcharts-drillup-button {
+    color:red;
+}*/
 .export-to-excel{
     border: 1px solid transparent;
     line-height: 1.25;
