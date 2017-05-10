@@ -1,8 +1,7 @@
 <script>
-var func=function(){
+    var func = function () {
 
-}
-
+    }
 
 </script>
 
@@ -19,7 +18,7 @@ var func=function(){
                 <div class="row">
 
                     <div class="col-sm-12 col-md-12">
-                        <h3 class="heading-xl" >
+                        <h3 class="heading-xl profile">
                             Update User Profile Page
                         </h3>
                     </div>
@@ -37,7 +36,8 @@ var func=function(){
 
                 <div class="content-row row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
-                        <button class= "getstarted-button" style="margin-left: 500; background-color: #536ea4!important;"(click)="goBack()">Return to Dashboard</button>
+                        <button class="getstarted-button btn-sm" style="margin: 10px; background-color: #536ea4!important;" (click)="goBack()"><i class="fa fa-sign-in"></i>Return to Dashboard</button>
+                        <!--<button class="getstarted-button btn-sm" style="margin: 10px; background-color: #536ea4 !important;"><i class="fa fa-sign-in"></i>Return to Dashboard</button>-->
 
                         <!--<form class="pageForm">
                             <label>Change Display Name</label>
@@ -61,8 +61,8 @@ var func=function(){
                         </form>-->
                         <form class="pageForm" #changeInformation="ngForm">
                             <h6>Change your Information</h6>
-                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successProfileChangeMessage}}</p>                            
-                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorProfileChange}}</p> 
+                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successProfileChangeMessage}}</p>
+                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorProfileChange}}</p>
                             <label>Name:</label>
                             <input id="username" size="30" name="username" type="text" [(ngModel)]="profiledata.name"><br>
                             <label>Email:</label>
@@ -79,7 +79,7 @@ var func=function(){
                             <h6>Change your Password</h6>
                             <p style="color:red; margin-left: 208" id="pwsuccess">{{successPasswordChangeMessage}}</p>
                             <p style="color:red; margin-left: 208" id="pwnotmatch">{{passwordNotMatched}}</p>
-                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorPassWordChange}}</p>                            
+                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorPassWordChange}}</p>
                             <label>New Password:</label>
                             <input id="passwordInput" size="30" name="password1" type="password" [(ngModel)]="profiledata.password1">
 

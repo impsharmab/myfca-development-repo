@@ -31,11 +31,12 @@ body {
   background-color: #777;
 }
 .carousel-item > img {
-  position: absolute;
+  /*position: absolute;*/
   padding-top: 67;
-  top: 0;
+  /*top: 0;
   left: 0;
-  min-width: 100%;
+  min-width: 100%;*/
+  object-fit:contain;
   height: auto;
 }
 

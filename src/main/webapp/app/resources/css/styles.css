@@ -11,7 +11,7 @@
 
 .sav {
     display: block;
-    float: left;
+    /*float: left;*/
     width: 100%;
     height: 25px;
     font-size: .75em;
@@ -19,7 +19,7 @@
 .sav-utility {
     height: 25px;
     display: block;
-    float: right;
+    /*float: right;*/
     text-align: right;
 }
 .sav-utility {
@@ -89,8 +89,8 @@ body {
 nav .brand-logo {
     color: #444;
     display: block;
-    float: left;
-    width: 400px;
+    /*float: left;
+    width: 400px;*/
 }
 .nav { 
     float: right;
@@ -99,12 +99,15 @@ nav .nav-item {
     font-size: .75em;
 }
 .brand-logo img {
-    width: 100%;
-    height: auto;
+    /*width: 100%;
+    height: auto;*/
+    width:auto;
+    height:70px;
+
 }
 .navbar-header {
-    float: right;
-    width: 400px;
+    /*float: right;
+    width: 400px;*/
     text-align: right;
 }
 .navbar-toggleable-md > .container {
@@ -141,7 +144,7 @@ p {} .button-collapse {
     padding: 20px;
 }
 .pageForm {
-    float: left:
+    /*float: left;*/
 }
 .admin-margin {
     margin-top: 60px;
@@ -149,10 +152,10 @@ p {} .button-collapse {
 .pageForm label {
     padding-right: 20px;
     text-align: right;
-    width: 200px;
+    width: 160px;
 }
-.pageTitle .heading-xl {
-    color: #fff;
+.pageTitle .heading-xl .profile {
+    color: #fff !important;
     display: inline-block;
     /*font-size: 40px;*/
     margin: 0;
@@ -373,9 +376,12 @@ footer.page-footer {
 /* Footer */
 
 .extra-links {
-    background-color: #536ea4;
-    border: 1px solid #fff;
-    padding: 15px;
+    /*background-color: #536ea4;*/
+    border: 1px solid #fff !important;
+    /*padding: 15px;*/
+    background:none;
+    padding: initial;
+    /*border:none;*/
 }
 .extra-links ul {
     margin: 6px;
@@ -398,6 +404,7 @@ footer.page-footer .footer-copyright {
 }
 .white-text {
     color: #ffffff !important;
+    text-align: justify;
 }
 .grey-text {
     color: #9e9e9e !important;

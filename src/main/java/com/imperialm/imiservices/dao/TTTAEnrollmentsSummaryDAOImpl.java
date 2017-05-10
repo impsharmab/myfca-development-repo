@@ -205,4 +205,21 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 		return result;
 	}
 
+	@Override
+	public List<Double> getTTTANATAverageSurveyScoreByPositionCode(String positionCode) {
+		List<Double> result = new ArrayList<Double>();
+
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_NAT_AVERAGE_SURVEY_SCORE);
+			query.setParameter(0, positionCode);
+			List<Double> rows = (List<Double>) query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getTTTANATAverageSurveyScoreByPositionCode", ex);
+		}
+		return result;
+	}
+
 }

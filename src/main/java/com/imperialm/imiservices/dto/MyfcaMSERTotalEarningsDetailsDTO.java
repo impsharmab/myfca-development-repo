@@ -10,16 +10,16 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 public class MyfcaMSERTotalEarningsDetailsDTO implements Serializable{
-	  @Id private String DealerCode;
-	  @Id private String DealerName;
-	  @Id private String SID;
-	  @Id private String Name;
-	  @Id private String PositionCode;
-	  @Id private String Program;
-	  @Id private String ProgramGroup;
-	  @Id private double EarningsMTD;
-	  @Id private double EarningsYTD;
-	  @Id private int DealersEnrolled;
-	  @Id private int ParticipantsEnrolled;
+	  @Id private String dealerCode;
+	  @Id private String dealerName;
+	  @Id private String sID;
+	  @Id private String name;
+	  @Id private String positionCode;
+	  @Id private String program;
+	  @Id private String programGroup;
+	  @Id private double earningsMTD;
+	  @Id private double earningsYTD;
+	  @Id private int dealersEnrolled;
+	  @Id private int participantsEnrolled;
 	  @Id private String error;
 }

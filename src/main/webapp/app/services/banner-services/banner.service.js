@@ -21,8 +21,8 @@ var BannerService = (function () {
         var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var positioncodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
-        // var getBannersServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/banners/" + positioncodes + "/" + dealerlcodes + "/"
-        var getBannersServiceUrl = "./services/banners/" + positioncodes + "/" + dealerlcodes + "/";
+        var getBannersServiceUrl = "https://test.myfcarewards.com/myfcarewards/services/banners/" + positioncodes + "/" + dealerlcodes + "/";
+        //var getBannersServiceUrl = "./services/banners/" + positioncodes + "/" + dealerlcodes + "/";
         var headers = new http_1.Headers();
         headers.append('Authorization', validToken);
         return this.http.get(getBannersServiceUrl, { headers: headers })

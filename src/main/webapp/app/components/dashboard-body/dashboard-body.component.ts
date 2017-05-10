@@ -72,18 +72,18 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   }
 
-  showWelcomeModal() {    
-    sessionStorage.setItem("showWelcomePopup", "false");   
+  showWelcomeModal() {
+    sessionStorage.setItem("showWelcomePopup", "false");
   }
   ngOnInit() {
     this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
     //sessionStorage.setItem("showWelcomePopup", "true");
     var showWelcomePopup = sessionStorage.getItem("showWelcomePopup");
 
-    if (showWelcomePopup ==undefined) {
+    if (showWelcomePopup == undefined) {
       this.modalService.open(this.model, { size: "lg" });
     }
-    
+
     // this.activatedRoute.params.subscribe(params => {
     //   console.log(params)
     //   let flag = params["flag"]
@@ -284,7 +284,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
   }
   openProgramSite(url: any) {
-    window.open(url)
+    location.href=(url)
   }
   notEmptyBadge(data: any): boolean {
     try {
@@ -702,6 +702,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           if (chartData.avarage) {
             total = total / avagerCount;
           }
+
           if (chartData.unit == "$" && chartData.avarage == false) {
             chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
           } else if (chartData.unit == "$" && chartData.avarage == true) {
@@ -912,6 +913,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             zIndex: 2
           }]
 
+        }
+      
+        if (chartDataValues.length == 0) {
+          //alert(chartDataValues.length)
+          chartObj.subtitle.text = "Total 0";
         }
         if (chartDataValues.length > 0) {
           if (chartData.avarage) {

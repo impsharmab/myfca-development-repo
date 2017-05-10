@@ -427,6 +427,18 @@ public class DashboardServiceImpl {
 		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySIDAndToggle(sID, toggle, dealerCode, quarter);
 	}
 	
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(String dealerCode, String toggle, String quarter, String positionCode){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(dealerCode, toggle, quarter, positionCode);
+	}
+	
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(String dealerCode, String toggle, String quarter, List<String> positionCode){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(dealerCode, toggle, quarter, positionCode);
+	}
+	
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(List<String> dealerCode, String toggle, String quarter, List<String> positionCode){
+		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(dealerCode, toggle, quarter, positionCode);
+	}
+	
 	public List<RetentionGraphDTO> getRetentionGraphByParentTerritoryList(List<String> list){
 		return this.RetentionGraphDAO.getRetentionGraphByParentTerritoryList(list);
 	}
@@ -750,7 +762,9 @@ public class DashboardServiceImpl {
 		return this.ProgramCountDAOImpl.getTotalELValidated();
 	}
 	
-	
+	public List<Double> getTTTANATAverageSurveyScoreByPositionCode(String positionCode){
+		return this.TTTAEnrollmentsSummaryDAO.getTTTANATAverageSurveyScoreByPositionCode(positionCode);
+	}
 	
 	
 }

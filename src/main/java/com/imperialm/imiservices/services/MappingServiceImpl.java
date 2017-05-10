@@ -680,14 +680,14 @@ public class MappingServiceImpl {
 		return topTenTableData;
 	}
 	
-	public TopTenTableData MapMSERTopNDTOtoTopTenTableData(List<MyfcaMSERTopNDTO> MyfcaMSERTopNDTO, String tableName, List<String> tableHeader){
+	public TopTenTableData MapMSERTopNDTOtoTopTenTableData(List<MyfcaMSERTopNDTO> MyfcaMSERTopNDTO, String tableName, List<String> tableHeader, String type){
 		TopTenTableData topTenTableData = new TopTenTableData();
 		
 		topTenTableData.setTableHeader(tableHeader);
 		topTenTableData.setTableName(tableName);
 		
 		List<Object> data = new ArrayList<Object>();
-		if(MyfcaMSERTopNDTO.size() == 10){
+		if(type.equalsIgnoreCase("top10")){
 		for(MyfcaMSERTopNDTO item: MyfcaMSERTopNDTO){
 			List<Object> items = new ArrayList<Object>();
 			if(item.getError().equals("") || item.getError().equals(null)){

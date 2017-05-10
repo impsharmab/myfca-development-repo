@@ -148,12 +148,13 @@ public class ProgramCountDAOImpl {
 			final Query query = this.em.createNativeQuery("select count(distinct DealerCode) from ProgramEnrollments where Status = 'E' and programId = ?0 and DealerCode = ?1 and DelFlag = 'N'");
 			query.setParameter(0, programId);
 			query.setParameter(1, dealerCode);
+			List<Integer> rows = (List<Integer>) query.getResultList();
+			result = rows;
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in checkDealerEnrollmentByProgram", ex);
 		}
-		
 		return result.size()>0;
 	}
 	

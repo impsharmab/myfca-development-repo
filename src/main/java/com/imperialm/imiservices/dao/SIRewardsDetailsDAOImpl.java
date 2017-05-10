@@ -22,24 +22,6 @@ public class SIRewardsDetailsDAOImpl implements SIRewardsDetailsDAO {
 	@PersistenceContext
 	private EntityManager em;
 
-	/*@SuppressWarnings("unchecked")
-	@Override
-	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCode(String dealerCode) {
-		List<SIRewardsDetailsDTO> result = new ArrayList<SIRewardsDetailsDTO>();
-
-		try {
-			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_CODE, SIRewardsDetailsDTO.class);
-			query.setParameter(0, dealerCode);
-			List<SIRewardsDetailsDTO> rows = query.getResultList();
-			result = rows;
-		} catch (final NoResultException ex) {
-			logger.info("result in else " + result);
-		} catch (final Exception ex) {
-			logger.error("error occured in getSIRewardsDetailsByDealerCode", ex);
-		}
-		return result;
-	}*/
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID, String dealerCode, String quarter) {
@@ -95,6 +77,66 @@ public class SIRewardsDetailsDAOImpl implements SIRewardsDetailsDAO {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getSIRewardsDetailsBySIDAndToggle", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(String dealerCode,
+			String toggle, String quarter, String positionCode) {
+		List<SIRewardsDetailsDTO> result = new ArrayList<SIRewardsDetailsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_CODE_AND_TOGGLE_AND_POSITIONCODE, SIRewardsDetailsDTO.class);
+			query.setParameter(0, dealerCode);
+			query.setParameter(1, toggle);
+			query.setParameter(2, quarter);
+			query.setParameter(3, positionCode);
+			List<SIRewardsDetailsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(String dealerCode,
+			String toggle, String quarter, List<String> positionCode) {
+		List<SIRewardsDetailsDTO> result = new ArrayList<SIRewardsDetailsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_CODE_AND_TOGGLE_AND_POSITIONCODE_LIST, SIRewardsDetailsDTO.class);
+			query.setParameter(0, dealerCode);
+			query.setParameter(1, toggle);
+			query.setParameter(2, quarter);
+			query.setParameter(3, positionCode);
+			List<SIRewardsDetailsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode", ex);
+		}
+		return result;
+	}
+
+	@Override
+	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(List<String> dealerCode,
+			String toggle, String quarter, List<String> positionCode) {
+		List<SIRewardsDetailsDTO> result = new ArrayList<SIRewardsDetailsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_CODE_LIST_AND_TOGGLE_AND_POSITIONCODE_LIST, SIRewardsDetailsDTO.class);
+			query.setParameter(0, dealerCode);
+			query.setParameter(1, toggle);
+			query.setParameter(2, quarter);
+			query.setParameter(3, positionCode);
+			List<SIRewardsDetailsDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode", ex);
 		}
 		return result;
 	}

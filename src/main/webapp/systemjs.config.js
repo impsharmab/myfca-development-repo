@@ -3,7 +3,7 @@
  * Adjust as necessary for your application needs.
  */
 (function (global) {  
-  var appversion = "2.0";
+  var appversion = "2.1";
   System.config({
     paths: {         
       'npm:': 'node_modules/'     

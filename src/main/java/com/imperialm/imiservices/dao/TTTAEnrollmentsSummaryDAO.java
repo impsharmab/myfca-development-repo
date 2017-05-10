@@ -13,7 +13,7 @@ public interface TTTAEnrollmentsSummaryDAO {
 	public static final String SELECT_SUM_BY_PARENT_TERRITORY_AND_POSITIONCODE = "SELECT [Parent] 'parentTerritory', '' as 'childTerritory' , SUM([TotalEnrollments]) 'totalEnrollments' ,[PositionCode] 'positionCode' , SUM([IncentiveEligible]) 'incentiveEligible' , avg([AvgSurveyScore]) 'avgSurveyScore' , SUM([SurveyCount]) 'surveyCount' , SUM([Level3Techs]) 'level3Techs' ,ISNULL(SUM([TTTARank]),0) 'tTTARank' , avg([YearsOfService]) 'yearsOfService', AVG([PercentEnrolled]) 'percentEnrolled' FROM [TTTAEnrollmentsSummary] where [Parent] LIKE ?0 AND [PositionCode] = ?1 AND [TotalEnrollments] > 0 group by [Parent], [PositionCode]";
 	public static final String SELECT_NAT_TOP_TECH_ENROLLED_DEALERCOUNT = "SELECT CAST(COUNT(distinct [DealerCode]) as varchar(20)) 'total', 'Total Dealers Enrolled' as 'name', '' as error FROM [dbo].[TTTAEnrollments] where Enrollment = 'E'";
 	public static final String SELECT_NAT_TOP_ADVISOR_ENROLLED_DEALERCOUNT = "SELECT CAST(COUNT(distinct [DealerCode]) as varchar(20)) 'total', 'Total Dealers Enrolled' as 'name', '' as error FROM [dbo].[TTTAEnrollments] where Enrollment = 'E'";
-	
+	public static final String SELECT_NAT_AVERAGE_SURVEY_SCORE = "Select ((CAST(Sum(ScoreQualified) as decimal(8,2))/ (CAST(Sum(TotalQualified) as decimal(8,2))))*100 ) 'Avg.SurveyScore'  FROM TTTAEnrollmentsSummary Where PositionCode=?0 and parent = 'nat'";
 	public static final String SELECT_NAT_TOP_ADVISOR_IncentiveEligible = "SELECT CAST(SUM([IncentiveEligible]) as varchar(20)) 'total', 'Total Advisors Incentive Eligible' as 'name', '' as error FROM [dbo].[TTTAEnrollmentsSummary] where PositionCode = '13' and [Parent] = 'NAT' group by [Parent]";
 	public static final String SELECT_NAT_TOP_TECH_IncentiveEligible = "SELECT CAST(SUM([IncentiveEligible]) as varchar(20)) 'total', 'Total Technicians Incentive Eligible' as 'name', '' as error FROM [dbo].[TTTAEnrollmentsSummary] where PositionCode = '23' and [Parent] = 'NAT' group by [Parent]";
 	
@@ -26,6 +26,7 @@ public interface TTTAEnrollmentsSummaryDAO {
 	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByParentAndPositionCode(List<String> territories, String positionCode);
 	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummarySUMByParentAndPositionCode(List<String> territories, String positionCode);
 	public TotalName getTTTANATTopTechEnrolledDealerCount();
+	public List<Double> getTTTANATAverageSurveyScoreByPositionCode(String positionCode);
 	public TotalName getTTTANATTopAdvisorEnrolledDealerCount();
 	public TotalName getTTTANATTopTechEnrolledIncentiveEligible();
 	public TotalName getTTTANATTopAdvisorEnrolledIncentiveEligible();

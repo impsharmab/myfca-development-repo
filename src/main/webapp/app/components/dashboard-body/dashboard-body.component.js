@@ -272,7 +272,7 @@ var DashboardBodyComponent = (function () {
         }
     };
     DashboardBodyComponent.prototype.openProgramSite = function (url) {
-        window.open(url);
+        location.href = (url);
     };
     DashboardBodyComponent.prototype.notEmptyBadge = function (data) {
         try {
@@ -806,6 +806,10 @@ var DashboardBodyComponent = (function () {
                             width: '3',
                             zIndex: 2
                         }];
+                }
+                if (chartDataValues.length == 0) {
+                    //alert(chartDataValues.length)
+                    chartObj.subtitle.text = "Total 0";
                 }
                 if (chartDataValues.length > 0) {
                     if (chartData.avarage) {
