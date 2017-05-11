@@ -9,8 +9,7 @@ declare var $: any;
 @Component({
     moduleId: module.id,
     selector: "app-header",
-    templateUrl: "./header.html"
-    // styleUrls: ["./css/carosuel.css", "./css/scrolling-nav.css"] ?
+    templateUrl: "./header.html"   
 })
 
 export class HeaderComponent implements OnInit {
@@ -28,23 +27,12 @@ export class HeaderComponent implements OnInit {
         private modalService: NgbModal,
         private router: Router,
         private cookieService: CookieService) {
-
     }
 
     private poscodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
     private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
     private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
     private booleanAdminToken: any = this.cookieService.get("adminToken");
-
-    // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
-    // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
-    // private booleanAdmin: any = JSON.parse(this.cookieService.get("CurrentUser")).admin;
-
-
-    //  var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
-    //     var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
-    //     var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
-
 
     private positionCodeCancel() {
         this.positioncodeModal.close();
@@ -58,14 +46,11 @@ export class HeaderComponent implements OnInit {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
         if (!this.enablePointer) {
             $(document).ready(function () {
-                $("#enablePointer").css( "cursor", "pointer");
-                $("#enablePointer").css( "text-decoration", "underline");
+                $("#enablePointer").css("cursor", "pointer");
+                $("#enablePointer").css("text-decoration", "underline");
             });
         }
     }
-
-
-
     private contactUs() {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
 
@@ -79,8 +64,6 @@ export class HeaderComponent implements OnInit {
         sessionStorage.removeItem('CurrentUser');
         sessionStorage.removeItem('selectedCodeData');
         sessionStorage.clear();
-        // this.cookieService.remove('CurrentUser');
-        // this.cookieService.remove('selectedCodeData');
         this.cookieService.removeAll();
         // let loginUrl = ["login"]
         // this.router.navigate(loginUrl);
@@ -98,8 +81,8 @@ export class HeaderComponent implements OnInit {
         //Router.navigate(['/myRoute',{someProperty:"SomeValue"}]
         //this.router.navigate([dashboardUrl, {"flag":"flag"}]);
         this.router.navigate(dashboardUrl);
-        
-        
+
+
     }
 
     private dropdownPositionCode() {
@@ -124,22 +107,11 @@ export class HeaderComponent implements OnInit {
         this.cookieService.put("token", adminToken)
         debugger
         // this.cookieService.put(adminToken, "")
-
-
         // this.adminToken = adminToken;
         let url = ["login"]
         this.router.navigate(url);
         // this.booleanEndEmulation();
         // alert(this.booleanAdminToken)
-
     }
-
-    // booleanEndEmulation() {
-    //     var booleanAdminToken = this.cookieService.get("adminToken");
-    //     if (booleanAdminToken !== undefined || booleanAdminToken.length > 1) {
-    //         this.booleanAdminToken = true;
-    //     }
-    // }
-
 }
 

@@ -10,6 +10,10 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 public class SIRewardsDetailsGraphDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8833989764966215067L;
 	@Id private String parentTerritory;
 	@Id private String childTerritory;
 	@Id private String toggle;
@@ -20,4 +24,6 @@ public class SIRewardsDetailsGraphDTO implements Serializable {
 	@Id private int trainingQualified;
 	@Id private int EligibleSurveys;
 	@Id private int totalSurveys;
+	@Id private int advsiorsQualified;
+	@Id private int managersQualified;
 }

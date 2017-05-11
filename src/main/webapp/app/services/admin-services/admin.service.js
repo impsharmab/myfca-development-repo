@@ -71,6 +71,17 @@ var AdminService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    AdminService.prototype.getAllBannerData = function () {
+        // var getAllBannerDataUrl = "./app/components/admin/admin-banner-table.json";
+        var getAllBannerDataUrl = "./services/admin/banner/getAll/";
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', validToken);
+        return this.http.get(getAllBannerDataUrl, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     AdminService.prototype.addBanner = function (roleID, bc, orderBy, image) {
         // var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
         var getAddBannerUrl = "./services/admin/banner/add/";
@@ -81,7 +92,7 @@ var AdminService = (function () {
         };
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'validToken');
+        headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
         return this.http.post(getAddBannerUrl, body, { headers: headers })

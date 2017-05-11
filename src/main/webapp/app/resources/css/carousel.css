@@ -32,12 +32,14 @@ body {
 }
 .carousel-item > img {
   /*position: absolute;*/
-  padding-top: 67;
+  /*padding-top: 67;*/
   /*top: 0;
   left: 0;
   min-width: 100%;*/
+  background-color: #f1f1f1;
   object-fit:contain;
   height: auto;
+  margin-top: -15 !important;
 }
 
 
@@ -93,4 +95,25 @@ body {
   .featurette-heading {
     margin-top: 7rem;
   }
+  @media screen and (min-width: 964px){
+  ngb-carousel.carousel.slide {
+    margin-top:3.9rem;
+  }
+ 
+}
+ 
+@media screen and (min-width: 768px) and (max-width:964px){
+  ngb-carousel.carousel.slide {
+    margin-top: 8.4rem;
+  }
+ 
+}
+ 
+@media screen and (min-width: 340px) and (max-width:767px){
+  ngb-carousel.carousel.slide {
+    margin-top: 6.8rem;
+  }
+ 
+}
+
 }

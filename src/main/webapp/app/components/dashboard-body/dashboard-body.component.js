@@ -272,7 +272,7 @@ var DashboardBodyComponent = (function () {
         }
     };
     DashboardBodyComponent.prototype.openProgramSite = function (url) {
-        location.href = (url);
+        window.open(url);
     };
     DashboardBodyComponent.prototype.notEmptyBadge = function (data) {
         try {

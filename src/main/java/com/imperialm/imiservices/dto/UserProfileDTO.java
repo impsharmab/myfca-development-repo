@@ -12,6 +12,10 @@ import java.util.List;
  */
 public class UserProfileDTO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8783910709976751135L;
 	private String error = "";
 	private String userID;
 	private String name;

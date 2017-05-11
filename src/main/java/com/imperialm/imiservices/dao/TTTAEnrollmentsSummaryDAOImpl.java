@@ -205,6 +205,7 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Double> getTTTANATAverageSurveyScoreByPositionCode(String positionCode) {
 		List<Double> result = new ArrayList<Double>();

@@ -33,6 +33,22 @@ public class MappingServiceImpl {
 
 	public MappingServiceImpl(){}
 	
+	public Chart copyChart(Chart chart){
+		Chart c = new Chart();
+		c.setAvarage(chart.isAvarage());
+		c.setAverageLine(chart.isAverageLine());
+		c.setCFDealDisMan(chart.isCFDealDisMan());
+		c.setCustomer_first(chart.isCustomer_first());
+		c.setData(chart.getData());
+		c.setRetention(chart.isRetention());
+		c.setSubTitle(chart.getSubTitle());
+		c.setTitle(chart.getTitle());
+		c.setType(chart.getType());
+		c.setUnit(chart.getUnit());
+		c.setXaxisTitle(chart.getXaxisTitle());
+		c.setYaxisTitle(chart.getYaxisTitle());
+		return c;
+	}
 	
 	public Chart MapMSEREarningsDTOtoChart(List<MSEREarningsDTO> MSEREarningDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
 		Chart chart = new Chart();

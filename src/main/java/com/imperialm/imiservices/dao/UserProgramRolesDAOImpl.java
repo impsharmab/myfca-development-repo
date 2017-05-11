@@ -25,4 +25,10 @@ public class UserProgramRolesDAOImpl implements UserProgramRolesDAO {
 		return null;
 	}
 
+	@Override
+	public boolean isAdmin(String userId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

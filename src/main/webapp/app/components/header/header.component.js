@@ -30,12 +30,6 @@ var HeaderComponent = (function () {
         this.booleanAdmin = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
         this.booleanAdminToken = this.cookieService.get("adminToken");
     }
-    // private poscodes: any = JSON.parse(this.cookieService.get("CurrentUser")).positionCode;
-    // private delcodes: any = JSON.parse(this.cookieService.get("CurrentUser")).dealerCode;
-    // private booleanAdmin: any = JSON.parse(this.cookieService.get("CurrentUser")).admin;
-    //  var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
-    //     var positioncodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedPositionCode;
-    //     var dealerlcodes: any = JSON.parse(this.cookieService.get("selectedCodeData")).selectedDealerCode;
     HeaderComponent.prototype.positionCodeCancel = function () {
         this.positioncodeModal.close();
     };
@@ -63,8 +57,6 @@ var HeaderComponent = (function () {
         sessionStorage.removeItem('CurrentUser');
         sessionStorage.removeItem('selectedCodeData');
         sessionStorage.clear();
-        // this.cookieService.remove('CurrentUser');
-        // this.cookieService.remove('selectedCodeData');
         this.cookieService.removeAll();
         // let loginUrl = ["login"]
         // this.router.navigate(loginUrl);

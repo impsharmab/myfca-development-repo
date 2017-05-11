@@ -29,12 +29,12 @@
 			font-family: Helvetica, Arial, sans-serif;
 			color: #666;
 		}
-		
+
 		h4 {
 			font-size: 16px;
 			color: #dd007d;
 		}
-		
+
 		table {
 			font-size: 14px;
 			font-family: Helvetica, Arial, sans-serif;
@@ -462,12 +462,12 @@
 					});
 					// innerDataObj.data.push([innerData[0].name, innerData[0].certified, innerData[0].certifiedSpecalist, innerData[0].masterCertified, innerData[0].certified + innerData[0].certifiedSpecalist + innerData[0].masterCertified]);
 					for (var x = 0; x < innerData.length; x++) {
-						
+
 						innerDataObj.data.push(["", innerData[x].name,
-							numberWithCommasNoDecimals(innerData[x].lastYearEarnings),
-							numberWithCommasNoDecimals(innerData[x].currentYearEarnings),
-							numberWithCommasNoDecimals((innerData[x].lastYearEarnings)+(innerData[x].currentYearEarnings))
-							]);
+							"$" + numberWithCommasNoDecimals(innerData[x].lastYearEarnings),
+							"$" + numberWithCommasNoDecimals(innerData[x].currentYearEarnings),
+							"$" + numberWithCommasNoDecimals((innerData[x].lastYearEarnings) + (innerData[x].currentYearEarnings))
+						]);
 
 						total2016 = total2016 + innerData[x].lastYearEarnings;
 						total2017 = total2017 + innerData[x].currentYearEarnings;
@@ -479,9 +479,9 @@
 				tableData.data.push({
 					"data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key],
 						delarName[key],
-						numberWithCommasNoDecimals(total2016),
-						numberWithCommasNoDecimals(total2017),
-						numberWithCommasNoDecimals(total2016 + total2017)], "innerData": innerDataObj
+						"$" + numberWithCommasNoDecimals(total2016),
+						"$" + numberWithCommasNoDecimals(total2017),
+						"$" + numberWithCommasNoDecimals(total2016 + total2017)], "innerData": innerDataObj
 				})
 			}
 			return tableData;
@@ -522,12 +522,12 @@
 						return sid[key1] === ele.sid;
 					});
 					for (var y = 0; y < innerData.length; y++) {
-						innerDataObj.data.push(["", innerData[y].name, numberWithCommasNoDecimals(innerData[y].projectedEarnings)]);
+						innerDataObj.data.push(["", innerData[y].name,"$"+numberWithCommasNoDecimals(innerData[y].projectedEarnings)]);
 						totalProjectedEarnings = totalProjectedEarnings + innerData[y].projectedEarnings;
-						
+
 					}
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], numberWithCommasNoDecimals(totalProjectedEarnings)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], "$"+ numberWithCommasNoDecimals(totalProjectedEarnings)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -818,6 +818,8 @@
 				}
 				//Initialse DataTables, with no sorting on the 'details' column
 				var oTable = $('#exampleTable').dataTable({
+					"searching": true,
+					"lengthMenu": [[25, 50, 100], [25, 50, 100]],
 					dom: 'Bfrtip',
 					buttons: [
 						'pageLength',
@@ -835,7 +837,6 @@
 					columns: cloumns,
 					"bPaginate": true,
 					"destroy": true,
-
 					"oLanguage": {
 						"sInfo": "_TOTAL_ entries"
 					},
@@ -867,6 +868,8 @@
 						this.src = "https://i.imgur.com/d4ICC.png";
 						oTable.fnOpen(nTr, fnFormatDetails(iTableCounter, detailsTableHtml), 'details');
 						oInnerTable = $("#exampleTable_" + iTableCounter).dataTable({
+							"searching": true,
+							"lengthMenu": [[25, 50, 100], [25, 50, 100]],
 							dom: 'Bfrtip',
 							buttons: [
 								'pageLength',

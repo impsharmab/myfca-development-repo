@@ -1,28 +1,17 @@
-<!--<script>
-    if (enablePointer) {
-        $(document).ready(function () {
-            $("#enablePointer").css("cursor", "pointer");
-        });
-    }
-</script>-->
-
 <template #contactModal let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title"> </h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body">
         <h4>Contact Us</h4>
         <div class="contact-block">
             <a href="mailto:customerservice@imperialm.com" style="text-decoration: underline;">customerservice@imperialm.com</a>
-            <!--<a href="mailto:sharmabijaya1@gmail.com">Contact Us</a>-->
         </div>
-
         <div class="contact-block">
             <a href="tel:2483530950" style="text-decoration: underline;">P: 248.353.0950</a>
-            <!--<p>P: 248.353.0950</p>-->
             <p>F: 248.353.3309</p>
         </div>
         <div class="contact-block">
@@ -36,13 +25,13 @@
         <!--<button type="button" class=" modal-action modal-close waves-effect waves-light btn-flat" (click)="c('Close click')">Close</button>-->
     </div>
 </template>
-<template ngbModalContainer></template> 
+<template ngbModalContainer></template>
 <template #positioncodeModal let-c="close" let-d="dismiss">
     <div class="modal-header">
         <h4 class="modal-title"> </h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body">
         <position-code (onSubmit)="positionCodeSubmit(c)" (onCancel)="c()"></position-code>
@@ -53,15 +42,14 @@
     </div>
 </template>
 
-
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top " role="navigation">
     <div class="container">
-        <a  class="brand-logo"><img src="https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=FCALogo_and_MyRewards.jpg" /></a>
+        <a class="brand-logo"><img src="https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=FCALogo_and_MyRewards.jpg" /></a>
         <div class="navbar-header">
             <ul class="sav">
                 <li class="sav-item ">
                     <!--Welcome, <a class="utility-nav active" href="#">Mr. {{data.name}} </a>-->
-                    Welcome, <a  id="enablePointer" class="utility-nav active"  (click)="dashboardPage()">{{data.name}}</a>
+                    Welcome, <a id="enablePointer" class="utility-nav active" (click)="dashboardPage()">{{data.name}}</a>
                 </li>
             </ul>
             <ul class="sav-utility" style="margin-top: 5px">

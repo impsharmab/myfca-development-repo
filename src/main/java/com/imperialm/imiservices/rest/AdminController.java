@@ -45,10 +45,10 @@ public class AdminController {
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 			if(!jwtTokenUtil.validateToken(token, user)){
-				return "Invalid Token";
+				return ResponseEntity.status(500).body("Invalid Token");
 			}
 		}catch(Exception e){
-			return "Failed to check Token";
+			return ResponseEntity.status(500).body("Failed to check Token");
 		}
 
 		//TODO: check if admin is requesting the token
@@ -70,21 +70,23 @@ public class AdminController {
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 			if(!jwtTokenUtil.validateToken(token, user)){
-				return "Invalid Token";
+				return ResponseEntity.status(500).body("Invalid Token");
 			}
 		}catch(Exception e){
-			return "Failed to check Token";
+			return ResponseEntity.status(500).body("Failed to check Token");
 		}
 
 		//TODO: check if admin is requesting the token
 
 		try{
-			dashBoardBannersDAO.deleteBanner(id);
+			if(dashBoardBannersDAO.deleteBanner(id, user.getUserId())){
+				return true;
+			}else{
+				throw new Exception();
+			}
 		} catch(Exception e){
 			return ResponseEntity.status(500).body("Banner with id: " + id + "could not be deleted");
 		}
-
-		return true;
 	}
 	
 	
@@ -96,21 +98,23 @@ public class AdminController {
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 			if(!jwtTokenUtil.validateToken(token, user)){
-				return "Invalid Token";
+				return ResponseEntity.status(500).body("Invalid Token");
 			}
 		}catch(Exception e){
-			return "Failed to check Token";
+			return ResponseEntity.status(500).body("Failed to check Token");
 		}
 
 		//TODO: check if admin is requesting the token
 
 		try{
-			dashBoardBannersDAO.addBanner(banner);
+			if(dashBoardBannersDAO.addBanner(banner, user.getUserId())){
+				return true;
+			}else{
+				throw new Exception();
+			}
 		} catch(Exception e){
 			return ResponseEntity.status(500).body("Banner with Role Id: " + banner.getRoleID() + ", and image file named: '" + banner.getImage() + "', and BC: " + banner.getBusinessCenter() + ", could not be added");
 		}
-
-		return true;
 	}
 	
 	@RequestMapping(value = "/services/admin/banner/update/", method = RequestMethod.POST)
@@ -121,21 +125,23 @@ public class AdminController {
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 			if(!jwtTokenUtil.validateToken(token, user)){
-				return "Invalid Token";
+				return ResponseEntity.status(500).body("Invalid Token");
 			}
 		}catch(Exception e){
-			return "Failed to check Token";
+			return ResponseEntity.status(500).body("Failed to check Token");
 		}
 
 		//TODO: check if admin is requesting the token
 
 		try{
-			dashBoardBannersDAO.addBanner(banner);
+			if(dashBoardBannersDAO.updateBanner(banner, user.getUserId())){
+				return true;
+			}else{
+				throw new Exception();
+			}
 		} catch(Exception e){
 			return ResponseEntity.status(500).body("Banner with Id: " + banner.getDashBoardBannersID() + ", could not be updated");
 		}
-
-		return true;
 	}
 	
 	@RequestMapping(value = "/services/admin/banner/getAll/", method = RequestMethod.GET)
@@ -146,14 +152,13 @@ public class AdminController {
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
 			if(!jwtTokenUtil.validateToken(token, user)){
-				return "Invalid Token";
+				return ResponseEntity.status(500).body("Invalid Token");
 			}
 		}catch(Exception e){
-			return "Failed to check Token";
+			return ResponseEntity.status(500).body("Failed to check Token");
 		}
 
 		//TODO: check if admin is requesting the token
-
 		try{
 			return dashBoardBannersDAO.getAllBannersForAdmin();
 		} catch(Exception e){

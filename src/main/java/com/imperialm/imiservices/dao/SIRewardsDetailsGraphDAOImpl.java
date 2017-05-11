@@ -80,6 +80,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByChildTerritoryAndToggle(List<String> territory,
 			String toggle) {
@@ -99,6 +100,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByChildTerritoryAndToggle(String territory,
 			String toggle) {
@@ -118,6 +120,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphSUMByTerritoryAndToggle(String territory,
 			String toggle) {

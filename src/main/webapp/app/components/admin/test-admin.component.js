@@ -20,12 +20,14 @@ var TestAdminComponent = (function () {
         this.errorUploadImageMessage = "";
         this.imagelist = [];
         this.projects = [];
+        this.allBannerTableData = [];
     }
     TestAdminComponent.prototype.ngOnInit = function () {
         var self = this;
         this.emulateuser = {
             sid: ''
         };
+        this.getAllBannerData();
         this.uploadImage = {
             dashBoardBannersID: 0,
             image: "",
@@ -44,6 +46,9 @@ var TestAdminComponent = (function () {
         this.getRoles();
         this.getAdminData();
         this.getImageList(self);
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
         $('#accordion').collapse({
             toggle: false
         });
@@ -78,6 +83,13 @@ var TestAdminComponent = (function () {
             $(bc).on('selectionchange', function (e, m) {
                 self.setBC(this.getValue());
             });
+        });
+    };
+    TestAdminComponent.prototype.getAllBannerData = function () {
+        var _this = this;
+        this.adminService.getAllBannerData().subscribe(function (allBannerTableData) {
+            _this.allBannerTableData = allBannerTableData;
+            console.log(_this.allBannerTableData);
         });
     };
     TestAdminComponent.prototype.testMethod = function () {
@@ -219,9 +231,9 @@ var TestAdminComponent = (function () {
             for (var j = 0; j < this.uploadImage.selectedRoleId.length; j++) {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(function (addBannerData) {
                     _this.addBannerData = addBannerData;
-                    debugger;
-                    console.log(addBannerData);
-                    alert(addBannerData);
+                    // debugger
+                    // console.log(addBannerData)
+                    // alert(addBannerData)
                 }, function (error) {
                     alert("Error in uploading images");
                     _this.errorUploadImageMessage = "Error in uploading images";

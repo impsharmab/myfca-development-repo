@@ -10,6 +10,10 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 public class UserPositionCodeRoleDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3472359421149656917L;
 	@Id private String dealerCode;
 	@Id private String sID;
 	@Id private String positionCode;

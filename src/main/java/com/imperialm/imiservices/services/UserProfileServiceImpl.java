@@ -76,7 +76,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private List<NoTile> userTiles = new ArrayList<NoTile>();
 	
 	private final String MSER_SITE = "http://uat.imperialmarketing.com/mser/dashSSO.do?token=";
-	private final String MSER_RULES = "services/loadrsc?id=MSERProgramRulesv15_9_17.pdf";
+	private final String MSER_RULES = "app/resources/pdf/MSERProgramRulesv15_9_17.pdf";
 	private final String BRAINBOOST_SITE = "https://brainboost.meap.me/";
 	private final String BRAINBOOST_RULES = "https://brainboost.meap.me/";
 	
@@ -104,10 +104,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		
 		if(tile3.contains(positionCode)){
-			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","https://cms.chrysler.fcaperformanceinstitute.com/","services/loadrsc?id=2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","","app/resources/pdf/2017FCACPRulesandProgramOverview.pdf"));
 			}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","https://cms.chrysler.fcaperformanceinstitute.com/","services/loadrsc?id=2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","","app/resources/pdf/2017FCACPRulesandProgramOverview.pdf"));
 			}
 		
 		if(tile5.contains(positionCode)){
@@ -126,20 +126,20 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}
 		
 		if(tile9.contains(positionCode)){
-			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts-ram.jpg","",""));
+			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts-ram.jpg","","app/resources/pdf/RAMExpert.pdf"));
 			}
 		
 		if(tile10.contains(positionCode)){
-			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts-ram.jpg","",""));
+			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts-ram.jpg","","app/resources/pdf/RAMExpert.pdf"));
 			}
 		
 		if(tile11.contains(positionCode)){
-			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm","services/loadrsc?id=2017MoparTTTAProgramRulesFINAL.pdf "));
+			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
 			}
 		
 		
 		if(tile12.contains(positionCode)){
-			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm","services/loadrsc?id=2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
 			}
 		
 		/*if(tile13.contains(positionCode)){
@@ -147,23 +147,23 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		//enrolled not enrolled 2 tiles
 		if(tile14.contains(positionCode)){
-			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","services/loadrsc?id=2017MoparTTTAProgramRulesFINAL.pdf "));
-			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","services/loadrsc?id=2017MoparTTTAProgramRulesFINAL.pdf "));
+			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
 			//this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg",""));
 			//this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg",""));
 			}
 		
 		if(tile15.contains(positionCode)){
-			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","","services/loadrsc?id=2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); //SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","","app/resources/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); //SERVICE INCENTIVE
 			}
 		
 		
 		if(tile16.contains(positionCode)){
-			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","","services/loadrsc?id=2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","","app/resources/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
 			}
 		
 		if(tile17.contains(positionCode)){
-			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","","services/loadrsc?id=2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","","app/resources/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
 			}
 		
 		/*if(tile18.contains(positionCode)){ 
@@ -190,12 +190,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 			//Customer first
 			if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","services/loadrsc?id=CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","app/resources/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
 			}
 			
 			//customer first
 			if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","services/loadrsc?id=CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","app/resources/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
 			}
 			/*
 			//NOTHING

@@ -12,6 +12,10 @@ import lombok.Setter;
 @Entity @Getter @Setter
 public class UsersDTO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6218000391717891635L;
 	@Id private String userId;
 	@Id private String name;
 	@Id private String email;

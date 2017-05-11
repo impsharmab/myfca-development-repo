@@ -1,3 +1,10 @@
+<script type="text/javascript" charset="utf-8">
+    // $(document).ready(function () {
+    //     $('#example').DataTable();
+    // });
+
+</script>
+
 <section id="admin" class="admin-section">
 
     <div class="container admin-container">
@@ -34,34 +41,34 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-8">
-                        
-                            <div class="box">
-                                <h4>Add Image to Banner</h4>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-6">
-                                        <label>Select Role</label>
-                                        <!--<div id="positionCodeImage" ></div>-->
-                                        <input id="roleId" name="roleId" >
 
-                                        <label>Select a Business Center</label>
-                                        <!--<div id="businessCenterImage"></div>-->
-                                        <input id="bc" name="bc" >
+                        <div class="box">
+                            <h4>Add Image to Banner</h4>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <label>Select Role</label>
+                                    <!--<div id="positionCodeImage" ></div>-->
+                                    <input id="roleId" name="roleId">
 
-                                        <label>Enter an Order Number</label>
-                                        <input type="text"  name="orderBy" [(ngModel)]="uploadImage.orderBy">
-                                    </div>
-                                    <div class="col-sm-12 col-md-6">
-                                        <label>Select an Image</label>
-                                        <input id="project">
-                                        <input type="hidden" id="project-id" name="image" [(ngModel)]="uploadImage.image">
-                                        <img id="project-icon" src="" class="ui-state-default" alt="">
-                                        <p id="project-description"></p>
-                                        <br />
-                                        <button type="button" class="btn btn-primary btn-sm" (click)="addBannerImage()">Add to Banner</button>
-                                    </div>
+                                    <label>Select a Business Center</label>
+                                    <!--<div id="businessCenterImage"></div>-->
+                                    <input id="bc" name="bc">
+
+                                    <label>Enter an Order Number</label>
+                                    <input type="text" name="orderBy" [(ngModel)]="uploadImage.orderBy">
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <label>Select an Image</label>
+                                    <input id="project">
+                                    <input type="hidden" id="project-id" name="image" [(ngModel)]="uploadImage.image">
+                                    <img id="project-icon" src="" class="ui-state-default" alt="">
+                                    <p id="project-description"></p>
+                                    <br />
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="addBannerImage()">Add to Banner</button>
                                 </div>
                             </div>
-                        
+                        </div>
+
                     </div>
 
 
@@ -103,7 +110,8 @@
                     </div>
                 </div>-->
                 <!--Configuration Image to Banner end-->
-                <div class="row">
+
+                <!--<div class="row">
                     <div class="col-sm-12 col-md-12">
 
                         <div class="box">
@@ -178,17 +186,50 @@
 
                         </div>
                     </div>
+                </div>-->
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="box">
+                            <h4>Banner Configuration</h4>
+                            <br />
+                            <table id="example" class="table display" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Roles</th>
+                                        <th>Business Center</th>
+                                        <th>Image Name</th>
+                                        <th>Order</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        
+                                    </tr>
+                                </thead>                                
+                                <tbody >
+                                    <tr *ngFor="let bannerData of allBannerTableData">
+                                        <td>{{bannerData.roleID}}</td>
+                                        <td>{{bannerData.businessCenter}}</td>
+                                        <td>{{bannerData.image}}</td>
+                                        <td>{{bannerData.orderBy}}</td>                                        
+                                        <td>edit</td>
+                                        <td>delete</td>                                       
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
+
                 <!--Configuration Image to Banner end-->
 
 
 
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-sm-12 col-md-12">
                         <h3>Amend By</h3>
                     </div>
-                </div>
-                <div class="row">
+                </div>-->
+                <!--<div class="row">
                     <div class="col-sm-12 col-md-6">
 
                         <div class="box">
@@ -209,13 +250,13 @@
                         </div>
                     </div>
 
-                </div>
-                <div class="row">
+                </div>-->
+                <!--<div class="row">
                     <div class="col-sm-12 col-md-12">
                         <hr />
                     </div>
-                </div>
-                <div class="row">
+                </div>-->
+                <!--<div class="row">
                     <div class="col-sm-12 col-md-6">
                         <h3>Choose view</h3>
                         <select class="form-control">
@@ -652,9 +693,9 @@
                         </div>
                     </div>
 
-                </div>
+                </div>-->
             </div>
-            <div class="col-sm-12 col-md-3">
+            <!--<div class="col-sm-12 col-md-3">
                 <div class="admin-right-col">
                     <h4>Instructions</h4>
                     <p>
@@ -665,8 +706,7 @@
                         mollit anim id est laborum.
                     </p>
                 </div>
-
-            </div>
+            </div>-->
         </div>
 
     </div>

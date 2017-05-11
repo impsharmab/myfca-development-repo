@@ -73,6 +73,18 @@ export class AdminService {
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
+    getAllBannerData(){
+        // var getAllBannerDataUrl = "./app/components/admin/admin-banner-table.json";
+        var getAllBannerDataUrl = "./services/admin/banner/getAll/";
+
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', validToken);
+        return this.http.get(getAllBannerDataUrl, { headers })
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
     addBanner(roleID, bc, orderBy, image) {
         // var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
         var getAddBannerUrl = "./services/admin/banner/add/";
@@ -83,7 +95,7 @@ export class AdminService {
         };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', 'validToken');
+        headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
 

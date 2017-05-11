@@ -10,6 +10,10 @@ import lombok.Setter;
 
 @Entity @Setter @Getter
 public class TTTATopNDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8667116656279186762L;
 	@Id private String topNType;
 	@Id private String parentTerritory;
 	@Id private String dealerCode;

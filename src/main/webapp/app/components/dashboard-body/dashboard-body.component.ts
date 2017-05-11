@@ -284,7 +284,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
   }
   openProgramSite(url: any) {
-    location.href=(url)
+    window.open(url)
   }
   notEmptyBadge(data: any): boolean {
     try {

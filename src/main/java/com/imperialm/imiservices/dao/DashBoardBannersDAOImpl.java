@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,23 +69,69 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 	}
 
 	@Override
-	public List<DashBoardBannersDTO> updateBanner(DashBoardBannersDTO banner) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean updateBanner(DashBoardBannersDTO banner, String userId) {
+		boolean result = false;
+		try {
+			final Query query = this.em.createNativeQuery("update DashBoardBanners set [Image] = ?0, [RoleID] = ?1, [OrderBy]= ?2, [BusinessCenter] = ?3, [Link] = ?4, [UpdatedBy] = ?5, [UpdatedDate] = GETDATE() where [DashBoardBannersID] = ?6");
+			query.setParameter(0, banner.getImage());
+			query.setParameter(1, banner.getRoleID());
+			query.setParameter(2, banner.getOrderBy() );
+			query.setParameter(3, banner.getBusinessCenter());
+			query.setParameter(4, banner.getLink());
+			query.setParameter(5, userId);
+			query.setParameter(6, banner.getDashBoardBannersID());
+			if(query.executeUpdate() > 0){
+				result = true;
+			}
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in deleteBanner", ex);
+		}
+		return result;
 	}
 
 	@Override
-	public List<DashBoardBannersDTO> deleteBanner(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean deleteBanner(int id, String userId) {
+		boolean result = false;
+		try {
+			final Query query = this.em.createNativeQuery("update DashBoardBanners set [DelFlag] = 'Y', [UpdatedBy] = ?1, [UpdatedDate] = GETDATE() where [DashBoardBannersID] = (?0)");
+			query.setParameter(0, id);
+			query.setParameter(1, userId);
+			if(query.executeUpdate() > 0){
+				result = true;
+			}
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in deleteBanner", ex);
+		}
+		return result;
 	}
 
 	@Override
-	public List<DashBoardBannersDTO> addBanner(DashBoardBannersDTO banner) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public boolean addBanner(DashBoardBannersDTO banner, String userId) {
+		boolean result = false;
+		try {
+			final Query query = this.em.createNativeQuery("INSERT INTO dbo.[DashBoardBanners] ([Image],[RoleID],[OrderBy],[BusinessCenter],[Link],[CreatedDate],[CreatedBy],[UpdatedDate],[UpdatedBy],[DelFlag])"
+					+ "VALUES(?0, (?1), (?2), ?3, ?4, GETDATE(), ?5, GETDATE(), ?5, 'N')");
+			query.setParameter(0, banner.getImage());
+			query.setParameter(1, banner.getRoleID());
+			query.setParameter(2, banner.getOrderBy() );
+			query.setParameter(3, banner.getBusinessCenter());
+			query.setParameter(4, banner.getLink());
+			query.setParameter(5, userId);
+			if(query.executeUpdate() > 0){
+				result = true;
+			}
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in addBanner", ex);
+		}
+		return result;
 	}
-
 	
 	
 }

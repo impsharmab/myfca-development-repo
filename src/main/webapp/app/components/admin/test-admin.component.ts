@@ -30,6 +30,7 @@ export class TestAdminComponent implements OnInit {
     private bc: any;
     private imagelist: any = [];
     private projects: any = [];
+    private allBannerTableData: any = [];
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
 
     ngOnInit() {
@@ -37,6 +38,7 @@ export class TestAdminComponent implements OnInit {
         this.emulateuser = {
             sid: ''
         }
+        this.getAllBannerData();
         this.uploadImage = {
             dashBoardBannersID: 0,
             image: "",
@@ -56,7 +58,10 @@ export class TestAdminComponent implements OnInit {
         this.getRoles();
         this.getAdminData();
         this.getImageList(self);
-        
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
         $('#accordion').collapse({
             toggle: false
         });
@@ -105,6 +110,14 @@ export class TestAdminComponent implements OnInit {
 
 
 
+    }
+    private getAllBannerData() {
+        this.adminService.getAllBannerData().subscribe(
+            (allBannerTableData) => {
+                this.allBannerTableData = allBannerTableData;
+                console.log(this.allBannerTableData)
+            }
+        )
     }
 
     testMethod() {
@@ -289,15 +302,14 @@ export class TestAdminComponent implements OnInit {
     }
 
     addBannerImage() {
-
         for (var i = 0; i < this.uploadImage.bc.length; i++) {
             for (var j = 0; j < this.uploadImage.selectedRoleId.length; j++) {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
                     (addBannerData) => {
                         this.addBannerData = addBannerData;
-                        debugger
-                        console.log(addBannerData)
-                        alert(addBannerData)
+                        // debugger
+                        // console.log(addBannerData)
+                        // alert(addBannerData)
                     },
                     (error) => {
                         alert("Error in uploading images");
