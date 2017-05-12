@@ -21,6 +21,8 @@ var TestAdminComponent = (function () {
         this.imagelist = [];
         this.projects = [];
         this.allBannerTableData = [];
+        this.editBannerDatum = {};
+        this.deleteBannerDatum = {};
     }
     TestAdminComponent.prototype.ngOnInit = function () {
         var self = this;
@@ -46,9 +48,10 @@ var TestAdminComponent = (function () {
         this.getRoles();
         this.getAdminData();
         this.getImageList(self);
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
+        // $(document).ready(function () {
+        //     $('#example').DataTable();
+        //     "searching": false
+        // });
         $('#accordion').collapse({
             toggle: false
         });
@@ -240,6 +243,23 @@ var TestAdminComponent = (function () {
                 });
             }
         }
+    };
+    TestAdminComponent.prototype.editBannerData = function (editBannerObj) {
+        var _this = this;
+        debugger;
+        this.adminService.editBannerData(editBannerObj).subscribe(function (editBannerDatum) {
+            _this.editBannerDatum = editBannerDatum;
+            console.log(editBannerDatum);
+        });
+    };
+    TestAdminComponent.prototype.deleteBannerData = function (dashBoardBannersID) {
+        this.adminService.deleteBannerData(dashBoardBannersID);
+        // .subscribe(
+        //     (deleteBannerDatum) => {
+        //         this.deleteBannerDatum = deleteBannerDatum;
+        //         console.log(deleteBannerDatum)
+        //     }
+        //)
     };
     return TestAdminComponent;
 }());

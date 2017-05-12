@@ -87,7 +87,7 @@
         <div class="card-content" *ngIf="tile.type == 'chart'">
           <!--<chart [options]="getChartJSONObject(tile.attributes)"></chart>-->
           <chart (drillup)="drillUp($event.originalEvent,$event.context,tile.id)" (drilldown)="drillDown($event.originalEvent,$event.context,tile.id)"
-            (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" style="min-width: 450px; max-width: 605px; min-height: 460px; max-height: 605px; margin: 0 auto"></chart>
+            (load)="saveChartInstance($event.context,tile.id)" [options]="contentBody[tile.id]" class="highchart-size"></chart>
           <span *ngIf="showPieButton[tile.id]" class="button-nav">
         <!--<button  id="button" (click)="chartSwitchNAT(tile.id)">NAT</button>-->
        &nbsp; <button id="button " style="margin-left:4px; font-size: 14px " class="customer_btn" *ngFor = "let buttonName of pieButtons[tile.id] "  (click)="chartSwitch(buttonName,tile.id)">{{buttonName}}</button>

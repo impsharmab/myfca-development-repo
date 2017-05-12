@@ -74,12 +74,16 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     public CacheManager cacheManager() {
         SimpleCacheManager cacheManager = new SimpleCacheManager();
         cacheManager.setCaches(Arrays.asList(
-          new ConcurrentMapCache("getMSERGraphByChildTerritoryAndToggleAndProgram")));
+          new ConcurrentMapCache("getMSERGraphByChildTerritoryAndToggleAndProgram"),new ConcurrentMapCache("getRoleByPositionCode"),
+          new ConcurrentMapCache("getDealerCodePCRoleBySid"),
+          new ConcurrentMapCache("loadUserByUsername"),
+          new ConcurrentMapCache("getUserTerritoyById")
+          ));
         return cacheManager;
     }
     
-    @CacheEvict(allEntries = true, value = "getMSERGraphByChildTerritoryAndToggleAndProgram")
-    @Scheduled(fixedDelay = 10 * 60 * 1000 ,  initialDelay = 500)
+    @CacheEvict(allEntries = true, value = {"getMSERGraphByChildTerritoryAndToggleAndProgram", "getRoleByPositionCode", "getDealerCodePCRoleBySid", "loadUserByUsername","getUserTerritoyById"}) //
+    @Scheduled(fixedDelay = 60 * 60 * 1000 ,  initialDelay = 500)
     public void reportCacheEvict() {
         System.out.println("Flush Cache " + new Date().toString());
     }

@@ -31,6 +31,8 @@ export class TestAdminComponent implements OnInit {
     private imagelist: any = [];
     private projects: any = [];
     private allBannerTableData: any = [];
+    private editBannerDatum: any = {};
+    private deleteBannerDatum: any = {}
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
 
     ngOnInit() {
@@ -59,9 +61,10 @@ export class TestAdminComponent implements OnInit {
         this.getAdminData();
         this.getImageList(self);
 
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
+        // $(document).ready(function () {
+        //     $('#example').DataTable();
+        //     "searching": false
+        // });
         $('#accordion').collapse({
             toggle: false
         });
@@ -321,6 +324,26 @@ export class TestAdminComponent implements OnInit {
 
 
 
+    }
+
+    private editBannerData(editBannerObj: any) {
+        debugger
+        this.adminService.editBannerData(editBannerObj).subscribe(
+            (editBannerDatum) => {
+                this.editBannerDatum = editBannerDatum;
+                console.log(editBannerDatum)
+            }
+        )
+    }
+
+    private deleteBannerData(dashBoardBannersID: any) {
+        this.adminService.deleteBannerData(dashBoardBannersID)
+        // .subscribe(
+        //     (deleteBannerDatum) => {
+        //         this.deleteBannerDatum = deleteBannerDatum;
+        //         console.log(deleteBannerDatum)
+        //     }
+        //)
     }
 
 }

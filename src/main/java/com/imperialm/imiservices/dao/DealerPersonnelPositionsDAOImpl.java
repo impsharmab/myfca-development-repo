@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -22,6 +23,7 @@ public class DealerPersonnelPositionsDAOImpl implements DealerPersonnelPositions
 
 	@SuppressWarnings("unchecked")
 	@Override
+	//@Cacheable("getRoleByPositionCode")
 	public int getRoleByPositionCode(String positionCode) {
 		int result = 0;
 		try {

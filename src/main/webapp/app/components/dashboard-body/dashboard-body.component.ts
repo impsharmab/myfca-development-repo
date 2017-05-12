@@ -415,7 +415,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
         //marginRight: 100,
         type: '',
-        zoomType: 'x',
+        // zoomType: 'x'
         // panning: true,
         // panKey: 'shift',
         // resetZoomButton: {

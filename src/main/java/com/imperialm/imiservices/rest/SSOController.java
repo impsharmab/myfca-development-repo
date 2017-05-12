@@ -7,9 +7,7 @@ package com.imperialm.imiservices.rest;
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
-import com.imperialm.imiservices.security.JwtAuthenticationRequest;
 import com.imperialm.imiservices.security.JwtTokenUtil;
-import com.imperialm.imiservices.security.service.JwtAuthenticationResponse;
 import com.imperialm.imiservices.services.UserServiceImpl;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -41,8 +39,6 @@ import java.util.ArrayList;
 import javax.naming.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  *
@@ -52,9 +48,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class SSOController {
 
     private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     @Autowired
     private UserPositionCodeRoleDAO userPositionCodeRoleDAO;

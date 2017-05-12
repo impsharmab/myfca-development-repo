@@ -26,13 +26,13 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByChildAndPositionCode(List<String> territories,
+	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByChildAndPositionCode(String territories,
 			String positionCode) {
 		List<TTTAEnrollmentsSummaryDTO> result = new ArrayList<TTTAEnrollmentsSummaryDTO>();
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_AND_POSITIONCODE, TTTAEnrollmentsSummaryDTO.class);
-			query.setParameter(0, territories.get(0));
+			query.setParameter(0, territories);
 			query.setParameter(1, positionCode);
 			List<TTTAEnrollmentsSummaryDTO> rows = query.getResultList();
 			result = rows;

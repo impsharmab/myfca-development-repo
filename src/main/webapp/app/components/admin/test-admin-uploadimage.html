@@ -199,7 +199,7 @@
                                         <th>Business Center</th>
                                         <th>Image Name</th>
                                         <th>Order</th>
-                                        <th>Edit</th>
+                                        <!--<th>Edit</th>-->
                                         <th>Delete</th>
                                         
                                     </tr>
@@ -210,8 +210,8 @@
                                         <td>{{bannerData.businessCenter}}</td>
                                         <td>{{bannerData.image}}</td>
                                         <td>{{bannerData.orderBy}}</td>                                        
-                                        <td>edit</td>
-                                        <td>delete</td>                                       
+                                        <!--<td><button type="button" class="btn btn-primary btn-sm" (click)="editBannerData(bannerData)"><i class="fa fa-edit"></i></button></td>-->
+                                        <td><button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button></td>                                       
                                     </tr>
                                 </tbody>
                             </table>

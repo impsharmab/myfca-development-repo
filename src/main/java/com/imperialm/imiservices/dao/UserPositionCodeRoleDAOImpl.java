@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
@@ -24,6 +25,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable("getDealerCodePCRoleBySid")
 	public List<UserPositionCodeRoleDTO> getDealerCodePCRoleBySid(String sid) {
 		List<UserPositionCodeRoleDTO> result = new ArrayList<UserPositionCodeRoleDTO>();
 		try {
@@ -39,7 +41,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 		return result;
 	}
         
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
 	@Override
 	public List<UserPositionCodeRoleDTO> getDealerCodePCRoleByUID(String uid, String dealerCode, String positionCode) {
 		List<UserPositionCodeRoleDTO> result = new ArrayList<UserPositionCodeRoleDTO>();
@@ -94,6 +96,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable("getUserTerritoyById")
 	public List<String> getUserTerritoyById(String sid) {
 		List<String> result = new ArrayList<String>();
 		try {

@@ -6,7 +6,7 @@ import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 
 public interface UserPositionCodeRoleDAO {
 
-    public static String SELECT_DEALERCODE_PC_ROLE_BY_SID = "SELECT [DealerCode] ,[SID] ,[PositionCode] ,[isPrimaryPosition] ,[IsPrimaryDealer], x.[RoleId] FROM [dbo].[DealerPersonnel] INNER JOIN [dbo].[DealerPersonnelPositions] as x on x.Code = [PositionCode] where [SID] = ?0";
+    public static String SELECT_DEALERCODE_PC_ROLE_BY_SID = "SELECT d.[DealerCode] ,d.[SID] ,d.[PositionCode] ,d.[isPrimaryPosition] ,d.[IsPrimaryDealer], x.[RoleId] FROM [dbo].[DealerPersonnel] d INNER JOIN [dbo].[DealerPersonnelPositions] as x on x.PositionCode = d.[PositionCode] where d.[SID] = ?0";
     public static String SELECT_USER_BC_BY_DEALERCODE = "SELECT bc.BCCode FROM [dbo].[DealerInfo] di inner join [dbo].[BCCODES] bc on di.[BC] = bc.[BCName] where di.[DealerCode] = ?0 AND di.DelFlag = 'N'";
     public static String SELECT_USER_DISTRICT_BY_DEALERCODE = "SELECT CONCAT(bc.BCCode , '-' , di.[District]) FROM [dbo].[DealerInfo] di inner join [dbo].[BCCODES] bc on di.[BC] = bc.[BCName] where di.[DealerCode] = ?0 AND di.DelFlag = 'N'";
     public static String SELECT_USER_TERRITORY = "select ut.Territory from users u join UserTerritory ut on ut.UserID = u.UserId where u.userid = ?0";
@@ -15,7 +15,7 @@ public interface UserPositionCodeRoleDAO {
                                                             " INNER JOIN DealerPersonnel d \n" +
                                                             "    ON U.UserId = d.SID \n" +
                                                             " INNER JOIN DealerPersonnelPositions x \n" +
-                                                            "    ON x.Code = PositionCode \n" +
+                                                            "    ON x.PositionCode = PositionCode \n" +
                                                             " WHERE [SID] = ?0 \n" +
                                                             "   AND 1 = CASE WHEN d.DealerCode = ?1 THEN 1 \n" +
                                                             "                WHEN ?1 = '' THEN 1 \n" +

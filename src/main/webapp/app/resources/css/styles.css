@@ -5,7 +5,13 @@
  *
  * Made By MaterializeCSS.com
  */
-
+.highchart-size{
+   min-width: 450px; 
+   max-width: 605px; 
+   min-height: 460px; 
+   max-height: 605px;
+   margin: 0 auto
+}
 
 /*replced nav with sav to overcome overriden from top -10 tab*/
 

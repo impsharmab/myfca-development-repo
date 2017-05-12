@@ -626,7 +626,7 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrolledGraphDAO.getTTTAEnrolledBCORDistrictNotEnrolled(territory);
 	}
 	
-	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByChildAndPositionCode(List<String> territories, String positionCode){
+	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByChildAndPositionCode(String territories, String positionCode){
 		return this.TTTAEnrollmentsSummaryDAO.getTTTAEnrollmentsSummaryByChildAndPositionCode(territories, positionCode);
 	}
 

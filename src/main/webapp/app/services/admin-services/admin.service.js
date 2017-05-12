@@ -71,17 +71,6 @@ var AdminService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    AdminService.prototype.getAllBannerData = function () {
-        // var getAllBannerDataUrl = "./app/components/admin/admin-banner-table.json";
-        var getAllBannerDataUrl = "./services/admin/banner/getAll/";
-        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        var headers = new http_1.Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Authorization', validToken);
-        return this.http.get(getAllBannerDataUrl, { headers: headers })
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
     AdminService.prototype.addBanner = function (roleID, bc, orderBy, image) {
         // var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
         var getAddBannerUrl = "./services/admin/banner/add/";
@@ -99,6 +88,42 @@ var AdminService = (function () {
             .map(function (response) {
             return response.json();
         })
+            .catch(this.handleError);
+    };
+    AdminService.prototype.getAllBannerData = function () {
+        // var getAllBannerDataUrl = "./app/components/admin/admin-banner-table.json";
+        var getAllBannerDataUrl = "./services/admin/banner/getAll/";
+        //var getAllBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/getAll/";
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', validToken);
+        return this.http.get(getAllBannerDataUrl, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    AdminService.prototype.editBannerData = function (editBannerDataObj) {
+        debugger;
+        var editBannerDataUrl = "./services/admin/banner/update/";
+        //var editBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/update/";
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var body = editBannerDataObj;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', validToken);
+        return this.http.put(editBannerDataUrl, body, { headers: headers })
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    AdminService.prototype.deleteBannerData = function (dashBoardBannersID) {
+        var deleteBannerDataUrl = "./services/admin/banner/delete/" + dashBoardBannersID;
+        // var deleteBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/delete/" + dashBoardBannersID;
+        var validToken = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', validToken);
+        return this.http.delete(deleteBannerDataUrl, { headers: headers })
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     AdminService.prototype.handleError = function (error) {

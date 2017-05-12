@@ -136,8 +136,8 @@ public class TileServiceImpl{
 			topTenChart.setTop10_advisors(datatableA);
 			topTenChart.setTop10_technicians(datatableT);
 
-			TotalName cartificationLevel = new TotalName();
-			TotalName totalCertifiedParticipants = new TotalName();
+			TotalName cartificationLevel = new TotalName("Rewarding Excellence&reg; Card Awards YTD","$0");
+			TotalName totalCertifiedParticipants = new TotalName("Rewarding Excellence&reg; Card Awards MTD","$0");
 
 			if(type.equals("Executive")){
 				List<MyfcaMSERTotalEarningsDTO> MSERGraphDTOListYTD = this.dashService.getMSERGraphProgramsSUMByParentTerritoryAndToggle("NAT", "YTD");
@@ -145,17 +145,14 @@ public class TileServiceImpl{
 
 				if(MSERGraphDTOListYTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListYTD.get(0);
-					cartificationLevel.setName("Rewarding Excellence&reg; Card Awards YTD");
 					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
 					cartificationLevel.setTotal("$" + this.formatCurrency(total));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
 				}
+				
 				if(MSERGraphDTOListMTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListMTD.get(0);
-					totalCertifiedParticipants.setName("Rewarding Excellence&reg; Card Awards MTD");
 					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
 					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(total));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				}
 
 				TotalName dealerscount = new TotalName("Total Dealers Enrolled","0");
@@ -165,7 +162,9 @@ public class TileServiceImpl{
 				if(dealerscountlist.size()>0){
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
-
+				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 
 			}
@@ -176,19 +175,14 @@ public class TileServiceImpl{
 
 				if(MSERGraphDTOListYTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListYTD.get(0);
-
-					cartificationLevel.setName("Rewarding Excellence&reg; Card Awards YTD");
 					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
 					cartificationLevel.setTotal("$" + this.formatCurrency(total));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+					
 				}
 				if(MSERGraphDTOListMTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListMTD.get(0);
-
-					totalCertifiedParticipants.setName("Rewarding Excellence&reg; Card Awards MTD");
 					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
 					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(total));
-					topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				}
 				TotalName dealerscount = new TotalName("Total Dealers Enrolled","0");
 				
@@ -197,12 +191,10 @@ public class TileServiceImpl{
 				if(dealerscountlist.size()>0){
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
-
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 			}
-
-
-
 			return topTenChart;
 		}
 		case "3":
@@ -370,8 +362,6 @@ public class TileServiceImpl{
 			//tabledata.add(this.mappingService.MapMSERTopNDTOtoTopTenTableData(listPCPYTD, "Top3Parts Counter Parts Sold YTD", tableheaders));
 
 			datatable.setData(tabledata);
-
-
 
 			TotalName mtd = new TotalName();
 			TotalName ytd = new TotalName();
@@ -1097,8 +1087,7 @@ public class TileServiceImpl{
 				}
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 
-				List<String> filters = new ArrayList<String>(Arrays.asList(BC));
-				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "13");
+				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(BC, "13");
 
 				/*TotalName dealerscount =  new TotalName();
 				dealerscount.setName("Total Dealers Enrolled");
@@ -1226,8 +1215,7 @@ public class TileServiceImpl{
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
 				
-				List<String> filters = new ArrayList<String>(Arrays.asList(BC));
-				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "23");
+				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(BC, "23");
 
 				TotalName incentiveEligible  = new TotalName();
 				incentiveEligible.setName("Total Technicians Incentive Eligible This Quarter");
@@ -3522,10 +3510,7 @@ public class TileServiceImpl{
 				}
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 
-
-
-				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
-				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "13");
+				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(territory, "13");
 
 				TotalName incentiveEligible  = new TotalName();
 				incentiveEligible.setName("Total Advisors Incentive Eligible This Quarter");
@@ -3553,13 +3538,13 @@ public class TileServiceImpl{
 
 			if(type.equals("Manager") || type.equals("Dealer")){
 
-				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
+				//List<String> filters = new ArrayList<String>(Arrays.asList(territory));
 				
 				if(!this.dashService.checkDealerEnrollmentByProgram(this.TA_PROGRAM_ID, dealerCode)){
 					return topTenChart;
 				}
 				
-				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "13");
+				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(territory, "13");
 
 
 				TotalName enrolled  = new TotalName();
@@ -3685,8 +3670,7 @@ public class TileServiceImpl{
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
 
-				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
-				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "23");
+				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(territory, "23");
 
 
 				TotalName incentiveEligible  = new TotalName();
@@ -3723,7 +3707,6 @@ public class TileServiceImpl{
 
 			if(type.equals("Manager") || type.equals("Dealer")){
 
-				List<String> filters = new ArrayList<String>(Arrays.asList(territory));
 				if(!this.dashService.checkDealerEnrollmentByProgram(this.TT_PROGRAM_ID, dealerCode)){
 					return topTenChart;
 				}
@@ -3737,7 +3720,7 @@ public class TileServiceImpl{
 				//
 				//
 				//
-				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(filters, "23");
+				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(territory, "23");
 
 				TotalName incentiveEligible  = new TotalName();
 				incentiveEligible.setName("Total Technicians Incentive Eligible This Quarter");
@@ -3774,10 +3757,10 @@ public class TileServiceImpl{
 				
 				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgYearsOfService));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(enrolled));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(enrolled));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
 				
 			}

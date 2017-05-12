@@ -17,7 +17,7 @@ var DashboardBodyService = (function () {
     function DashboardBodyService(http, cookieService) {
         this.http = http;
         this.cookieService = cookieService;
-        // private baseUrl="";
+        //private baseUrl = "";
         this.baseUrl = "https://test.myfcarewards.com/myfcarewards/";
         this.tiles = new Array();
         this.userdata = {};
