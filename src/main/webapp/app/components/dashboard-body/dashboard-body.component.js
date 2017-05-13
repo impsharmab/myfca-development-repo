@@ -552,6 +552,7 @@ var DashboardBodyComponent = (function () {
                                     //     __this.statisticModelData = resUserData;
                                     //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                                     //   })
+                                    return true;
                                 },
                                 drilldown: function () {
                                     var chart = this;
@@ -641,7 +642,7 @@ var DashboardBodyComponent = (function () {
                     chartObj.plotOptions["column"] =
                         {
                             plotBorderWidth: 0,
-                            allowPointSelect: true,
+                            allowPointSelect: false,
                             //cursor: 'pointer',
                             size: '90%',
                             tooltip: {
@@ -665,7 +666,7 @@ var DashboardBodyComponent = (function () {
                         };
                 chartObj.plotOptions["pie"] = {
                     plotBorderWidth: 0,
-                    allowPointSelect: true,
+                    allowPointSelect: false,
                     //cursor: 'pointer',
                     size: '80%',
                     tooltip: {
@@ -693,12 +694,16 @@ var DashboardBodyComponent = (function () {
                         // cursor: 'pointer',
                         events: {
                             click: function (e, a, b) {
+                                if (this.name == null) {
+                                    return true;
+                                }
                                 if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                     //alert(this.name)
                                     //alert(tileId)
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                     window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
+                                return true;
                             }
                         }
                     },
@@ -733,12 +738,14 @@ var DashboardBodyComponent = (function () {
                                     if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                                         var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                         window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
-                                    } // modal trigger
+                                    }
+                                    // modal trigger
                                     // __this.service.getTableJson("").subscribe(
                                     //   (resUserData) => {
                                     //     __this.statisticModelData = resUserData;
                                     //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                                     //   })
+                                    return true;
                                 },
                                 drilldown: function () {
                                     var chart = this;
@@ -847,6 +854,7 @@ var DashboardBodyComponent = (function () {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                     window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
+                                return true;
                             }
                         }
                     },
@@ -888,6 +896,7 @@ var DashboardBodyComponent = (function () {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                     window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
+                                return true;
                             }
                         }
                     },
@@ -930,6 +939,7 @@ var DashboardBodyComponent = (function () {
                                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                     window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token);
                                 }
+                                return true;
                             }
                         }
                     },
@@ -1104,6 +1114,7 @@ var DashboardBodyComponent = (function () {
                                 //     __this.statisticModelData = resUserData;
                                 //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                                 //   })
+                                return true;
                             },
                             drilldown: function () {
                                 var chart = this;
@@ -1201,7 +1212,7 @@ var DashboardBodyComponent = (function () {
             },
             pie: {
                 plotBorderWidth: 0,
-                allowPointSelect: true,
+                allowPointSelect: false,
                 // cursor: 'pointer',
                 size: '100%',
                 dataLabels: {
@@ -1239,6 +1250,7 @@ var DashboardBodyComponent = (function () {
                                 var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                                 window.open("./datatable?chartId=" + id + "&territory=" + this.name + "&token=" + token);
                             }
+                            return true;
                         },
                         drilldown: function () {
                             var chart = this;
@@ -1342,7 +1354,7 @@ var DashboardBodyComponent = (function () {
             },
             pie: {
                 plotBorderWidth: 0,
-                allowPointSelect: true,
+                allowPointSelect: false,
                 // cursor: 'pointer',
                 size: '100%',
                 dataLabels: {
@@ -1384,6 +1396,7 @@ var DashboardBodyComponent = (function () {
                             //     __this.statisticModelData = resUserData;
                             //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                             //   })
+                            return true;
                         },
                         drilldown: function () {
                             var chart = this;

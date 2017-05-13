@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     private loginFailed: string = "";
     private loginErrorMessage: string = "";
     private refreshTokenData: any;
+    private hideLoginPage: boolean = false;
 
     constructor(private loginService: LoginService,
         private router: Router,
@@ -42,28 +43,20 @@ export class LoginComponent implements OnInit {
             username: '',
             password: ''
         }
-        // this.ssouser = {
-        //     ssotoken: "",
-        //     ssodealercode: "",
-        //     ssopositioncode: ""
-        // }
-
         this.activatedRoute.queryParams.subscribe((params: Params) => {
             this.ssotoken = params['token'];
             this.ssodealercode = params['dc'];
             this.ssopositioncode = params['pc'];
-
+            if (this.ssotoken !== "" && this.ssotoken !== undefined) {
+                this.hideLoginPage = true;
+                this.ssologin(
+                    this.ssotoken,
+                    this.ssopositioncode,
+                    this.ssodealercode
+                )
+            }
         });
-        if (this.ssotoken !== "" && this.ssotoken !== undefined) {
-            this.ssologin(
-                this.ssotoken,
-                this.ssopositioncode,
-                this.ssodealercode
-            )
-        }
         this.refreshLogin();
-
-
     }
 
     private ssologin(ssotoken: string, ssopositioncode: string, ssodealercode: string) {
@@ -101,10 +94,11 @@ export class LoginComponent implements OnInit {
             )
     }
 
-    private refreshLogin() {       
+    private refreshLogin() {
         var user = this.cookieService.get("token");
         if (user !== undefined) {
-           if (user !== undefined && user.length > 1) {
+            if (user !== undefined && user.length > 1) {
+                this.hideLoginPage = true;
                 this.loginService.getRefreshLoginResponse(user).subscribe(
                     (refreshTokenData) => {
                         //alert(refreshTokenData.token)
@@ -122,9 +116,7 @@ export class LoginComponent implements OnInit {
                             let url = ["myfcadashboard"]
                             this.router.navigate(url);
                         } else {
-                            // this.cookieService.remove("CurrentUser")
-                            // this.cookieService.remove("selectedCodeData")
-                            // this.cookieService.removeAll();
+
                         }
                     },
                     (error) => {

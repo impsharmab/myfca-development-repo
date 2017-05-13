@@ -1,17 +1,11 @@
-<!--<my-app>-->
-<!--<ng-component>-->
-<title>MyFcaDashboard </title>
-<!--<app-header>-->
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top " role="navigation">
     <div class="container">
-        <a class="brand-logo" href="#"><img src="services/loadrsc?id=FCALogo_and_MyRewards.jpg"></a>  
+        <a class="brand-logo" href="#"><img src="services/loadrsc?id=FCALogo_and_MyRewards.jpg"></a>
         <div class="navbar-header">
         </div>
     </div>
 </nav>
-<!--</app-header>-->
-<!--<app-banner>-->
-<section class="intro-section" id="intro">
+<section class="intro-section" id="intro" [hidden]="hideLoginPage">
     <div class="container">
         <div class="row login">
             <div class="col-sm card login-frame">
@@ -34,6 +28,6 @@
         </div>
     </div>
 </section>
-<!-- </app-banner>-->
-<!--</ng-component>-->
-<!--</my-app>-->
+<div style="display: flex; justify-content: center;" [hidden]="!hideLoginPage">
+    <img class="refreshGlyphImg" src="app/resources/images/spinner/spinner.gif" />
+</div>

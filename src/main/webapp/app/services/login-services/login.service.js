@@ -51,8 +51,8 @@ var LoginService = (function () {
             .catch(this.handleError);
     };
     LoginService.prototype.getRefreshLoginResponse = function (token) {
-        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
-        var url = "./login/tokenrefresh/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        //var url = "./login/tokenrefresh/";
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);

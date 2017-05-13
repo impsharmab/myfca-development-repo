@@ -34,7 +34,8 @@ export class ProfileComponent implements OnInit {
 
     private goBack() {
         //window.history.back();
-        let dashboardUrl = ["/myfcadashboard"];        
+        sessionStorage.setItem("showWelcomePopup", "false");
+        let dashboardUrl = ["/myfcadashboard"];
         this.router.navigate(dashboardUrl);
     }
     private getProfileData() {

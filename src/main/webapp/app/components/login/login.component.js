@@ -29,6 +29,7 @@ var LoginComponent = (function () {
         this.ssopositioncode = "";
         this.loginFailed = "";
         this.loginErrorMessage = "";
+        this.hideLoginPage = false;
         this._compiler.clearCache();
     }
     LoginComponent.prototype.ngOnInit = function () {
@@ -38,19 +39,15 @@ var LoginComponent = (function () {
             username: '',
             password: ''
         };
-        // this.ssouser = {
-        //     ssotoken: "",
-        //     ssodealercode: "",
-        //     ssopositioncode: ""
-        // }
         this.activatedRoute.queryParams.subscribe(function (params) {
             _this.ssotoken = params['token'];
             _this.ssodealercode = params['dc'];
             _this.ssopositioncode = params['pc'];
+            if (_this.ssotoken !== "" && _this.ssotoken !== undefined) {
+                _this.hideLoginPage = true;
+                _this.ssologin(_this.ssotoken, _this.ssopositioncode, _this.ssodealercode);
+            }
         });
-        if (this.ssotoken !== "" && this.ssotoken !== undefined) {
-            this.ssologin(this.ssotoken, this.ssopositioncode, this.ssodealercode);
-        }
         this.refreshLogin();
     };
     LoginComponent.prototype.ssologin = function (ssotoken, ssopositioncode, ssodealercode) {
@@ -84,6 +81,7 @@ var LoginComponent = (function () {
         var user = this.cookieService.get("token");
         if (user !== undefined) {
             if (user !== undefined && user.length > 1) {
+                this.hideLoginPage = true;
                 this.loginService.getRefreshLoginResponse(user).subscribe(function (refreshTokenData) {
                     //alert(refreshTokenData.token)
                     _this.refreshTokenData = (refreshTokenData);

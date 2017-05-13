@@ -1,994 +1,944 @@
 {
-    "headers": [
-        "DEALER",
-        "JEEP",
-        "RAM",
-        "TOTAL"
+    "chart": {
+        "type": "column"
+    },
+    "colors": [
+        "#7cb5ec",
+        "#90ed7d",
+        "#434348",
+        "#f7a35c",
+        "#8085e9",
+        "#f15c80",
+        "#e4d354",
+        "#2b908f",
+        "#f45b5b",
+        "#91e8e1"
     ],
-    "data": [
-        {
-            "data": [
-                "FRESNO CHRYSLER DODGE JEEP RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Kristan Turner",
-                        10,
-                        1090,
-                        1100
-                    ],
-                    [
-                        "Ronald Zibulka",
-                        105,
-                        105,
-                        210
-                    ],
-                    [
-                        "Eddy Bloodgood",
-                        800,
-                        800,
-                        1600
-                    ],
-                    [
-                        "Wayne Mumford",
-                        800,
-                        800,
-                        1600
-                    ],
-                    [
-                        "Richard Caret",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Kyle Bier",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Taran Matson",
-                        10,
-                        10,
-                        20
-                    ],
-                    [
-                        "Tim Finegan Jr",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Hector Valles",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Bernardo Mendigoria",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Joel Gonzalez",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Phillip Olivarez",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Craig Kent",
-                        0,
-                        200,
-                        200
-                    ],
-                    [
-                        "Nicole Boggio",
-                        20,
-                        895,
-                        915
-                    ],
-                    [
-                        "Miguel Florestorres",
-                        20,
-                        20,
-                        40
-                    ],
-                    [
-                        "Jason Higgins",
-                        10,
-                        10,
-                        20
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "PORTERVILLE CHRYSLER JEEP DODGE ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Hector Lopez",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Ruben Valencia",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Jared Santos",
-                        80,
-                        "",
-                        80
-                    ],
-                    [
-                        "Tanya Fuentes",
-                        15,
-                        "",
-                        15
-                    ],
-                    [
-                        "Clemente Benavides",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "TURLOCK CHRYSLER DODGE JEEP RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Conrad Ruezga",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Clifford Pike",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Armando Delatorre, Jr.",
-                        1600,
-                        "",
-                        1600
-                    ],
-                    [
-                        "Gordon Wright",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Nicole Rivera",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Juan Cuevas",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Tudor Reyes",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Virgilio Quejado",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "ALFA ROMEO AND FIAT OF FRESNO ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Brandon Ray",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Dustin Monroe",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Douglas Horwood",
-                        200,
-                        200,
-                        400
-                    ],
-                    [
-                        "Kristan Turner",
-                        10,
-                        10,
-                        20
-                    ],
-                    [
-                        "Nicole Boggio",
-                        70,
-                        70,
-                        140
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "LAMPE CHRYSLER DODGE JEEP RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Dustin Myers",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Sostenes Infante",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Gary Atkins",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Ric Duarte",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "David Zepeda",
-                        15,
-                        "",
-                        15
-                    ],
-                    [
-                        "Luis Hernandez",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Charles Armstrong",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Brian Mcgill",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Paul Brown",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Kenneth Mccluskey",
-                        40,
-                        "",
-                        40
-                    ],
-                    [
-                        "Luis Hernandez",
-                        15,
-                        "",
-                        15
-                    ],
-                    [
-                        "Tony Lourenco",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Italo Pudy",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "James Steelman",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Joe Crow",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Mark Anthony Grimmer",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Rodney Cavazos",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "SELMA CHRYSLER DODGE JEEP RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Erik Samuelson",
-                        685,
-                        "",
-                        685
-                    ],
-                    [
-                        "Jose Cristobal",
-                        1600,
-                        "",
-                        1600
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "CENTRAL VALLEY CHRYSLER JEEP ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Sherman Ezell",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "PAUL DYER",
-                        15,
-                        "",
-                        15
-                    ],
-                    [
-                        "Steve Niles",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Dave Peters",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Jesse Kiryakoz",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Dale Deyoung",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Prasit Promsawasdi",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Christopher Mewhinney",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Ray Mendes",
-                        400,
-                        "",
-                        400
-                    ],
-                    [
-                        "David Lemus",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Nasir Salehzada",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Mehrdad Razavi",
-                        10,
-                        "",
-                        10
-                    ],
-                    [
-                        "Adam Mellow",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Shaun Millanes",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "CLOVIS CHRYSLER DODGE JEEP RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Floyd White",
-                        30,
-                        "",
-                        30
-                    ],
-                    [
-                        "Brian Finegan",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Steven Baronian",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Jason Leavens",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Michael Milton",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Joshua Collins",
-                        400,
-                        "",
-                        400
-                    ],
-                    [
-                        "Craig Vollhardt",
-                        310,
-                        "",
-                        310
-                    ],
-                    [
-                        "Chase Burk",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Rodney Spenhoff",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "HANFORD CHRYSLER DODGE JEEP RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Dominic Harris",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Diane Kaczmarek",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Michael Jacobs",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Paul Smart",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Arturo Garcia",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Oscar Jimenez",
-                        200,
-                        "",
-                        200
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "CABRAL CHRYSLER JEEP DODGE RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Pat Clark",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Ryan Martin",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Cliff Rogers",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Adam Cardona",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Robert Bronken",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Ryan. Cohoon",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Fabian Mendoza",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Tony Correa",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Tony CHEE",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Michael Hickman",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Jason Sanders",
-                        15,
-                        "",
-                        15
-                    ],
-                    [
-                        "Adam Poso",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Clifford Langley",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "JIM MANNING DODGE CHRYSLER JEEP ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Porfirio Barragan",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Fernando Garcia",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Joshua Jackson",
-                        5,
-                        400,
-                        405
-                    ],
-                    [
-                        "Manuel Calvillo",
-                        0,
-                        400,
-                        400
-                    ],
-                    [
-                        "Vince Cantu",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Robert Delossantos",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "James Manning Jr",
-                        20,
-                        20,
-                        40
-                    ],
-                    [
-                        "Steven Moore",
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        "Allan Bonoan",
-                        140,
-                        140,
-                        280
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "RAZZARI DODGE CHRYSLER JEEP ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Robert Pearson",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Eric Menezes",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Juan Alvarez",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "GARY GOODWIN",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Donald Conner",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "STOCKTON DODGE CHRYSLER JEEP RA ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Yosmin Estrada",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Casey Hettervik",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "James Hill",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Jose Hernandez",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Steven Noriega",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Nahid Ali",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "William Bray",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "James Doyle",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Marc Guardado",
-                        25,
-                        "",
-                        25
-                    ]
-                ]
-            }
-        },
-        {
-            "data": [
-                "GILL CHRYSLER DODGE JEEP RAM ",
-                "",
-                "",
-                ""
-            ],
-            "innerData": {
-                "headers": [
-                    "Participant",
-                    "Jeep",
-                    "Ram",
-                    "Total"
-                ],
-                "data": [
-                    [
-                        "Amer Muhar",
-                        0,
-                        "",
-                        0
-                    ],
-                    [
-                        "Scott Brazil",
-                        200,
-                        "",
-                        200
-                    ],
-                    [
-                        "Joe Aguilar",
-                        800,
-                        "",
-                        800
-                    ],
-                    [
-                        "Jim Hamby",
-                        0,
-                        "",
-                        0
-                    ]
-                ]
+    "title": {
+        "text": "Expert Points Earned YTD"
+    },
+    "subtitle": {
+        "text": "Total656,800"
+    },
+    "credits": {
+        "enabled": false
+    },
+    "xAxis": {
+        "min": 0,
+        "type": "category",
+        "labels": {
+            "style": {
+                "fontSize": "7.5px"
             }
         }
-    ]
+    },
+    "yAxis": {
+        "min": 0,
+        "minRange": 1,
+        "allowDecimals": false,
+        "title": {
+            "text": "Total Points"
+        },
+        "stackLabels": {
+            "format": "{total:.0f}",
+            "enabled": true,
+            "overFlow": "none",
+            "crop": false,
+            "style": {
+                "fontSize": "9px",
+                "fontWeight": "bold"
+            }
+        }
+    },
+    "tooltip": {
+        "pointFormat": "<span style=\"color:{series.color}\">{series.name}</span> : <b></b><b>{point.y:.0f}</b> <br/>",
+        "shared": false
+    },
+    "plotOptions": {
+        "column": {
+            "plotBorderWidth": 0,
+            "allowPointSelect": true,
+            "size": "90%",
+            "tooltip": {
+                "pointFormat": "<span style=\"color:{series.color}\">{series.name}</span> : <b></b><b>{point.y:.0f}</b> <br/>"
+            },
+            "dataLabels": {
+                "enabled": true,
+                "padding": 0,
+                "format": "{point.y:.0f}",
+                "allowOverlap": true,
+                "overFlow": "justify",
+                "crop": false,
+                "rotation": -70,
+                "y": -15,
+                "style": {
+                    "fontSize": "9px",
+                    "fontWeight": "bold"
+                }
+            }
+        },
+        "pie": {
+            "plotBorderWidth": 0,
+            "allowPointSelect": true,
+            "size": "80%",
+            "tooltip": {
+                "pointFormat": "<span style=\"color:{series.color}\">{series.name}</span> : <b></b><b>{point.y:.0f}</b> <br/>"
+            },
+            "dataLabels": {
+                "allowOverlap": true,
+                "enabled": true,
+                "padding": 0,
+                "overFlow": "justify",
+                "crop": false,
+                "format": "<b>{point.name}</b> <br>{point.y:.0f}",
+                "style": {
+                    "color": "black",
+                    "fontSize": "9px",
+                    "fontWeight": "bold"
+                }
+            }
+        },
+        "series": {
+            "point": {
+                "events": {}
+            },
+            "events": {}
+        }
+    },
+    "series": [
+        {
+            "name": "Business Center",
+            "data": [
+                {
+                    "name": "CA",
+                    "y": 22000,
+                    "drilldown": "CA0"
+                },
+                {
+                    "name": "DN",
+                    "y": 58000,
+                    "drilldown": "DN1"
+                },
+                {
+                    "name": "GL",
+                    "y": 65200,
+                    "drilldown": "GL2"
+                },
+                {
+                    "name": "MA",
+                    "y": 54800,
+                    "drilldown": "MA3"
+                },
+                {
+                    "name": "MW",
+                    "y": 46000,
+                    "drilldown": "MW4"
+                },
+                {
+                    "name": "NE",
+                    "y": 56000,
+                    "drilldown": "NE5"
+                },
+                {
+                    "name": "SE",
+                    "y": 70800,
+                    "drilldown": "SE6"
+                },
+                {
+                    "name": "SW",
+                    "y": 218400,
+                    "drilldown": "SW7"
+                },
+                {
+                    "name": "WE",
+                    "y": 65600,
+                    "drilldown": "WE8"
+                }
+            ]
+        }
+    ],
+    "drilldown": {
+        "series": [
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "CA",
+                "id": "CA0",
+                "data": [
+                    [
+                        "CA-D",
+                        2000
+                    ],
+                    [
+                        "CA-F",
+                        800
+                    ],
+                    [
+                        "CA-G",
+                        400
+                    ],
+                    [
+                        "CA-H",
+                        2400
+                    ],
+                    [
+                        "CA-J",
+                        2400
+                    ],
+                    [
+                        "CA-K",
+                        2400
+                    ],
+                    [
+                        "CA-L",
+                        1600
+                    ],
+                    [
+                        "CA-M",
+                        2800
+                    ],
+                    [
+                        "CA-N",
+                        4800
+                    ],
+                    [
+                        "CA-O",
+                        2000
+                    ],
+                    [
+                        "CA-W",
+                        400
+                    ],
+                    [
+                        "CA-Y",
+                        0
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "DN",
+                "id": "DN1",
+                "data": [
+                    [
+                        "DN-A",
+                        0
+                    ],
+                    [
+                        "DN-B",
+                        1600
+                    ],
+                    [
+                        "DN-C",
+                        2000
+                    ],
+                    [
+                        "DN-D",
+                        2800
+                    ],
+                    [
+                        "DN-E",
+                        7200
+                    ],
+                    [
+                        "DN-F",
+                        4800
+                    ],
+                    [
+                        "DN-G",
+                        3600
+                    ],
+                    [
+                        "DN-H",
+                        4400
+                    ],
+                    [
+                        "DN-I",
+                        1200
+                    ],
+                    [
+                        "DN-J",
+                        2800
+                    ],
+                    [
+                        "DN-K",
+                        1200
+                    ],
+                    [
+                        "DN-L",
+                        1600
+                    ],
+                    [
+                        "DN-M",
+                        2800
+                    ],
+                    [
+                        "DN-N",
+                        5200
+                    ],
+                    [
+                        "DN-P",
+                        6000
+                    ],
+                    [
+                        "DN-Q",
+                        800
+                    ],
+                    [
+                        "DN-R",
+                        2800
+                    ],
+                    [
+                        "DN-S",
+                        4800
+                    ],
+                    [
+                        "DN-T",
+                        2400
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "GL",
+                "id": "GL2",
+                "data": [
+                    [
+                        "GL-9",
+                        0
+                    ],
+                    [
+                        "GL-A",
+                        2800
+                    ],
+                    [
+                        "GL-B",
+                        2400
+                    ],
+                    [
+                        "GL-C",
+                        800
+                    ],
+                    [
+                        "GL-D",
+                        4800
+                    ],
+                    [
+                        "GL-E",
+                        5600
+                    ],
+                    [
+                        "GL-F",
+                        4400
+                    ],
+                    [
+                        "GL-G",
+                        5200
+                    ],
+                    [
+                        "GL-I",
+                        8800
+                    ],
+                    [
+                        "GL-J",
+                        3600
+                    ],
+                    [
+                        "GL-K",
+                        5600
+                    ],
+                    [
+                        "GL-L",
+                        2400
+                    ],
+                    [
+                        "GL-M",
+                        3200
+                    ],
+                    [
+                        "GL-N",
+                        1600
+                    ],
+                    [
+                        "GL-O",
+                        2800
+                    ],
+                    [
+                        "GL-P",
+                        2000
+                    ],
+                    [
+                        "GL-Q",
+                        800
+                    ],
+                    [
+                        "GL-R",
+                        2400
+                    ],
+                    [
+                        "GL-S",
+                        1600
+                    ],
+                    [
+                        "GL-U",
+                        2000
+                    ],
+                    [
+                        "GL-X",
+                        1600
+                    ],
+                    [
+                        "GL-Z",
+                        800
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "MA",
+                "id": "MA3",
+                "data": [
+                    [
+                        "MA-A",
+                        4800
+                    ],
+                    [
+                        "MA-B",
+                        1200
+                    ],
+                    [
+                        "MA-C",
+                        3200
+                    ],
+                    [
+                        "MA-D",
+                        2800
+                    ],
+                    [
+                        "MA-E",
+                        4800
+                    ],
+                    [
+                        "MA-F",
+                        4400
+                    ],
+                    [
+                        "MA-G",
+                        3200
+                    ],
+                    [
+                        "MA-H",
+                        3200
+                    ],
+                    [
+                        "MA-I",
+                        2800
+                    ],
+                    [
+                        "MA-J",
+                        3200
+                    ],
+                    [
+                        "MA-K",
+                        2000
+                    ],
+                    [
+                        "MA-L",
+                        400
+                    ],
+                    [
+                        "MA-M",
+                        1200
+                    ],
+                    [
+                        "MA-N",
+                        800
+                    ],
+                    [
+                        "MA-O",
+                        4800
+                    ],
+                    [
+                        "MA-P",
+                        2800
+                    ],
+                    [
+                        "MA-Q",
+                        4400
+                    ],
+                    [
+                        "MA-R",
+                        4800
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "MW",
+                "id": "MW4",
+                "data": [
+                    [
+                        "MW-A",
+                        2000
+                    ],
+                    [
+                        "MW-B",
+                        2400
+                    ],
+                    [
+                        "MW-C",
+                        400
+                    ],
+                    [
+                        "MW-D",
+                        1200
+                    ],
+                    [
+                        "MW-E",
+                        800
+                    ],
+                    [
+                        "MW-F",
+                        6000
+                    ],
+                    [
+                        "MW-G",
+                        3200
+                    ],
+                    [
+                        "MW-H",
+                        1200
+                    ],
+                    [
+                        "MW-I",
+                        2400
+                    ],
+                    [
+                        "MW-J",
+                        1600
+                    ],
+                    [
+                        "MW-K",
+                        1200
+                    ],
+                    [
+                        "MW-L",
+                        5200
+                    ],
+                    [
+                        "MW-M",
+                        800
+                    ],
+                    [
+                        "MW-N",
+                        2400
+                    ],
+                    [
+                        "MW-O",
+                        5200
+                    ],
+                    [
+                        "MW-P",
+                        800
+                    ],
+                    [
+                        "MW-Q",
+                        1600
+                    ],
+                    [
+                        "MW-R",
+                        4800
+                    ],
+                    [
+                        "MW-U",
+                        2000
+                    ],
+                    [
+                        "MW-V",
+                        800
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "NE",
+                "id": "NE5",
+                "data": [
+                    [
+                        "NE-A",
+                        2800
+                    ],
+                    [
+                        "NE-B",
+                        2000
+                    ],
+                    [
+                        "NE-C",
+                        2400
+                    ],
+                    [
+                        "NE-D",
+                        1200
+                    ],
+                    [
+                        "NE-E",
+                        1200
+                    ],
+                    [
+                        "NE-F",
+                        1200
+                    ],
+                    [
+                        "NE-G",
+                        1600
+                    ],
+                    [
+                        "NE-H",
+                        0
+                    ],
+                    [
+                        "NE-I",
+                        800
+                    ],
+                    [
+                        "NE-J",
+                        800
+                    ],
+                    [
+                        "NE-K",
+                        2400
+                    ],
+                    [
+                        "NE-L",
+                        4800
+                    ],
+                    [
+                        "NE-M",
+                        10800
+                    ],
+                    [
+                        "NE-N",
+                        4400
+                    ],
+                    [
+                        "NE-O",
+                        2000
+                    ],
+                    [
+                        "NE-P",
+                        800
+                    ],
+                    [
+                        "NE-Q",
+                        2400
+                    ],
+                    [
+                        "NE-R",
+                        4400
+                    ],
+                    [
+                        "NE-S",
+                        2800
+                    ],
+                    [
+                        "NE-T",
+                        7200
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "SE",
+                "id": "SE6",
+                "data": [
+                    [
+                        "SE-A",
+                        4000
+                    ],
+                    [
+                        "SE-B",
+                        2000
+                    ],
+                    [
+                        "SE-C",
+                        8400
+                    ],
+                    [
+                        "SE-D",
+                        2000
+                    ],
+                    [
+                        "SE-E",
+                        3600
+                    ],
+                    [
+                        "SE-F",
+                        1200
+                    ],
+                    [
+                        "SE-G",
+                        2000
+                    ],
+                    [
+                        "SE-H",
+                        3200
+                    ],
+                    [
+                        "SE-I",
+                        1200
+                    ],
+                    [
+                        "SE-J",
+                        2400
+                    ],
+                    [
+                        "SE-K",
+                        1200
+                    ],
+                    [
+                        "SE-L",
+                        4000
+                    ],
+                    [
+                        "SE-M",
+                        6800
+                    ],
+                    [
+                        "SE-N",
+                        5200
+                    ],
+                    [
+                        "SE-O",
+                        2400
+                    ],
+                    [
+                        "SE-P",
+                        6400
+                    ],
+                    [
+                        "SE-Q",
+                        400
+                    ],
+                    [
+                        "SE-R",
+                        2400
+                    ],
+                    [
+                        "SE-S",
+                        4800
+                    ],
+                    [
+                        "SE-T",
+                        2800
+                    ],
+                    [
+                        "SE-U",
+                        2000
+                    ],
+                    [
+                        "SE-Z",
+                        2400
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "SW",
+                "id": "SW7",
+                "data": [
+                    [
+                        "SW-A",
+                        11600
+                    ],
+                    [
+                        "SW-B",
+                        22800
+                    ],
+                    [
+                        "SW-C",
+                        5600
+                    ],
+                    [
+                        "SW-D",
+                        11200
+                    ],
+                    [
+                        "SW-E",
+                        5200
+                    ],
+                    [
+                        "SW-F",
+                        8000
+                    ],
+                    [
+                        "SW-G",
+                        9200
+                    ],
+                    [
+                        "SW-H",
+                        8000
+                    ],
+                    [
+                        "SW-I",
+                        10400
+                    ],
+                    [
+                        "SW-J",
+                        2400
+                    ],
+                    [
+                        "SW-K",
+                        9200
+                    ],
+                    [
+                        "SW-L",
+                        11200
+                    ],
+                    [
+                        "SW-M",
+                        14000
+                    ],
+                    [
+                        "SW-N",
+                        11200
+                    ],
+                    [
+                        "SW-P",
+                        1200
+                    ],
+                    [
+                        "SW-Q",
+                        12000
+                    ],
+                    [
+                        "SW-R",
+                        10800
+                    ],
+                    [
+                        "SW-S",
+                        13200
+                    ],
+                    [
+                        "SW-T",
+                        11200
+                    ],
+                    [
+                        "SW-U",
+                        6000
+                    ],
+                    [
+                        "SW-V",
+                        15200
+                    ],
+                    [
+                        "SW-W",
+                        2400
+                    ],
+                    [
+                        "SW-X",
+                        6400
+                    ],
+                    [
+                        "SW-Y",
+                        0
+                    ]
+                ]
+            },
+            {
+                "point": {
+                    "events": {}
+                },
+                "name": "WE",
+                "id": "WE8",
+                "data": [
+                    [
+                        "WE-A",
+                        3200
+                    ],
+                    [
+                        "WE-B",
+                        2400
+                    ],
+                    [
+                        "WE-C",
+                        7200
+                    ],
+                    [
+                        "WE-D",
+                        6000
+                    ],
+                    [
+                        "WE-E",
+                        17200
+                    ],
+                    [
+                        "WE-F",
+                        3600
+                    ],
+                    [
+                        "WE-G",
+                        4000
+                    ],
+                    [
+                        "WE-I",
+                        3200
+                    ],
+                    [
+                        "WE-J",
+                        2800
+                    ],
+                    [
+                        "WE-K",
+                        1200
+                    ],
+                    [
+                        "WE-L",
+                        5600
+                    ],
+                    [
+                        "WE-M",
+                        3600
+                    ],
+                    [
+                        "WE-N",
+                        3200
+                    ],
+                    [
+                        "WE-O",
+                        2400
+                    ]
+                ]
+            }
+        ],
+        "activeDataLabelStyle": {
+            "textDecoration": "none"
+        },
+        "drillUpButton": {
+            "relativeTo": "spacingBox",
+            "position": {
+                "y": 30,
+                "x": 0
+            }
+        }
+    },
+    "navigation": {
+        "buttonOptions": {
+            "align": "left"
+        }
+    }
 }

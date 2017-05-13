@@ -9,7 +9,7 @@ declare var $: any;
 @Component({
     moduleId: module.id,
     selector: "app-header",
-    templateUrl: "./header.html"   
+    templateUrl: "./header.html"
 })
 
 export class HeaderComponent implements OnInit {
@@ -77,6 +77,7 @@ export class HeaderComponent implements OnInit {
     }
 
     private dashboardPage() {
+        sessionStorage.setItem("showWelcomePopup", "false");
         let dashboardUrl = ["/myfcadashboard"]
         //Router.navigate(['/myRoute',{someProperty:"SomeValue"}]
         //this.router.navigate([dashboardUrl, {"flag":"flag"}]);

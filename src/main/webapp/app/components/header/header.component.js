@@ -67,6 +67,7 @@ var HeaderComponent = (function () {
         this.router.navigate(adminUrl);
     };
     HeaderComponent.prototype.dashboardPage = function () {
+        sessionStorage.setItem("showWelcomePopup", "false");
         var dashboardUrl = ["/myfcadashboard"];
         //Router.navigate(['/myRoute',{someProperty:"SomeValue"}]
         //this.router.navigate([dashboardUrl, {"flag":"flag"}]);

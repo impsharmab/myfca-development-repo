@@ -32,6 +32,7 @@ var ProfileComponent = (function () {
     };
     ProfileComponent.prototype.goBack = function () {
         //window.history.back();
+        sessionStorage.setItem("showWelcomePopup", "false");
         var dashboardUrl = ["/myfcadashboard"];
         this.router.navigate(dashboardUrl);
     };

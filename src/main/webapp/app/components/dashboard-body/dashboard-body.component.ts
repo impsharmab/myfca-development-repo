@@ -614,6 +614,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   //     __this.statisticModelData = resUserData;
                   //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                   //   })
+                  return true;
                 },
                 drilldown: function () {
                   var chart = this;
@@ -723,7 +724,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           chartObj.plotOptions["column"] =
           {
             plotBorderWidth: 0,
-            allowPointSelect: true,
+            allowPointSelect: false,
             //cursor: 'pointer',
             size: '90%',
             tooltip: {
@@ -748,7 +749,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }
         chartObj.plotOptions["pie"] = {
           plotBorderWidth: 0,
-          allowPointSelect: true,
+          allowPointSelect: false,
           //cursor: 'pointer',
           size: '80%',
           tooltip: {
@@ -778,18 +779,21 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             // cursor: 'pointer',
             events: {
               click: function (e, a, b) {
+                if(this.name==null){
+                  return true;
+                }
                 if (this.name.length > 3 && this.name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                   //alert(this.name)
                   //alert(tileId)
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                   window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
+                return true;
               }
             }
+
           },
           events: {
-
-
             legendItemClick: function (e) {
               __this.lengendItemClick(e, this, tileId, chartData.retention)
 
@@ -823,12 +827,14 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   if (this.x != undefined && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
                     var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                     window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
-                  }// modal trigger
+                  }
+                  // modal trigger
                   // __this.service.getTableJson("").subscribe(
                   //   (resUserData) => {
                   //     __this.statisticModelData = resUserData;
                   //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                   //   })
+                  return true;
                 },
                 drilldown: function () {
                   var chart = this;
@@ -914,7 +920,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }]
 
         }
-      
+
         if (chartDataValues.length == 0) {
           //alert(chartDataValues.length)
           chartObj.subtitle.text = "Total 0";
@@ -952,6 +958,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                   window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
+                return true;
               }
             }
           },
@@ -993,6 +1000,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                   window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
+                return true;
               }
             }
           },
@@ -1038,6 +1046,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                   var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
                   window.open("./datatable?chartId=" + tileId + "&territory=" + this.name + "&token=" + token)
                 }
+                return true;
               }
             }
           },
@@ -1239,7 +1248,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                 //     __this.statisticModelData = resUserData;
                 //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                 //   })
-
+                return true;
               },
               drilldown: function () {
                 var chart = this;
@@ -1354,7 +1363,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       },
       pie: {
         plotBorderWidth: 0,
-        allowPointSelect: true,
+        allowPointSelect: false,
         // cursor: 'pointer',
         size: '100%',
         dataLabels: {
@@ -1404,6 +1413,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                 //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
                 //   })
               }
+              return true;
             },
             drilldown: function () {
               var chart = this;
@@ -1527,7 +1537,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       },
       pie: {
         plotBorderWidth: 0,
-        allowPointSelect: true,
+        allowPointSelect: false,
         // cursor: 'pointer',
         size: '100%',
         dataLabels: {
@@ -1572,6 +1582,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               //     __this.statisticModelData = resUserData;
               //     __this.modalService.open(__this.statisticModel, { windowClass: 'datatable' });
               //   })
+              return true;
             },
             drilldown: function () {
               var chart = this;

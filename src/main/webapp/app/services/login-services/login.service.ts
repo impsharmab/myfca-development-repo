@@ -46,8 +46,8 @@ export class LoginService {
             .catch(this.handleError);
     }
     getRefreshLoginResponse(token) {
-        //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
-        var url = "./login/tokenrefresh/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        //var url = "./login/tokenrefresh/";
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
