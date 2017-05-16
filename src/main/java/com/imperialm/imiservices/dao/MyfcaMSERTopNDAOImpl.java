@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 
@@ -28,9 +29,9 @@ public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getTopNByType")
 	public List<MyfcaMSERTopNDTO> getTopNByType(String type, int rows, String name, String period) {
 		List<MyfcaMSERTopNDTO> result = new ArrayList<MyfcaMSERTopNDTO>();
-
 		MyfcaMSERTopNDTO MyfcaMSERTopNDTO = null;
 		try {
 			if(name == null && period == null){
@@ -62,6 +63,7 @@ public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 	}
 
 	@Override
+	@Cacheable(value="getTopNByTypeINMSERTABLE")
 	public List<MyfcaMSERTopNDTO> getTopNByTypeINMSERTABLE(String type, int rows, String name, String period) {
 		List<MyfcaMSERTopNDTO> result = new ArrayList<MyfcaMSERTopNDTO>();
 

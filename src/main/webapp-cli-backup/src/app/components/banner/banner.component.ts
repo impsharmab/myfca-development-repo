@@ -5,7 +5,7 @@ import { BannerService } from '../../services/banner-services/banner.service';
 @Component({
     moduleId: module.id,
     selector: "app-banner",
-    templateUrl: "./banner.html"   
+    templateUrl: "./banner.html"
     // styleUrls: ["./css/carosuel.css", "./css/scrolling-nav.css"] ?
 })
 
@@ -17,7 +17,7 @@ export class BannerComponent implements OnInit {
         //console.log("banners: "+this.banners)
     }
     ngOnInit() {
-        this.data = JSON.parse(sessionStorage.getItem("CurrentUser")) 
+        this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
         //    document.getElementById("profileModel").click();
     }
 
@@ -26,11 +26,8 @@ export class BannerComponent implements OnInit {
             (banners) => {
                 this.banners = banners;
                 //console.log("banners1 : " + banners.fileName)
-
             }
         )
     }
-
-
 }
 

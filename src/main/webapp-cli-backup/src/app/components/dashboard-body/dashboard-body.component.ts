@@ -5,9 +5,7 @@ import { Router, ActivatedRoute, NavigationEnd, Params } from '@angular/router';
 //import { RouteParams } from '@angular/router-deprecated';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
-
 declare var $: any;
-
 
 // const Highcharts3d = require('highcharts/highcharts-3d.src');
 // Highcharts3d(Highcharts)
@@ -22,6 +20,7 @@ require('highcharts/modules/no-data-to-display')(Highcharts);
   moduleId: module.id,
   selector: "app-content",
   templateUrl: "./dashboard-body.html",
+  styleUrls:[],
   styles: ['button:focus { background-color:#025fb1; color: #fff; }']
 })
 

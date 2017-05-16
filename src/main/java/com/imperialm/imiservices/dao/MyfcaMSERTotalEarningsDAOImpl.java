@@ -26,6 +26,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getBCEarningsMyFCAMSER")
 	public List<MyfcaMSERTotalEarningsDTO> getBCEarnings(boolean filter){
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
 
@@ -48,6 +49,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Cacheable(value="getAllDistricDataMyFCAMSER")
 	public List<MyfcaMSERTotalEarningsDTO>  getAllDistricData(List<String> list){
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
 
@@ -65,6 +67,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Cacheable(value="getMSERGraphByTerritoryAndToggle")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByTerritoryAndToggle(String territory, String toggle){
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
 
@@ -82,6 +85,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 		return result;
 	}
 	@SuppressWarnings("unchecked")
+	@Cacheable(value="getMSERGraphByTerritoryAndToggleAndProgram")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByTerritoryAndToggleAndProgram(String territory, String toggle, String program){
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
 
@@ -101,6 +105,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Cacheable(value="getMSERGraphDistinctProgramsByParentTerritoryAndToggle")
 	public List<String> getMSERGraphDistinctProgramsByParentTerritoryAndToggle(String territory, String toggle){
 		List<String> result = new ArrayList<String>();
 
@@ -142,6 +147,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSERGraphProgramsSUMByParentTerritoryAndToggle")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggle(String territory, String toggle) {
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
 		
@@ -161,6 +167,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSERGraphProgramsSUMByChildTerritoryAndToggle")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByChildTerritoryAndToggle(String territory, String toggle) {
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
 		try {
@@ -179,6 +186,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSERGraphByChildTerritoryAndToggle")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphByChildTerritoryAndToggle(String territory, String toggle) {
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
 
@@ -197,6 +205,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 	}
 
 	@Override
+	@Cacheable(value="getMSERGraphNumberOfDealersEnrolledByBC_DistrictAndToggle")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphNumberOfDealersEnrolledByBC_DistrictAndToggle(String territory,
 			String toggle) {
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();
@@ -216,6 +225,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 	}
 
 	@Override
+	@Cacheable(value="getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram(String territory,
 			String toggle, String program) {
 		List<MyfcaMSERTotalEarningsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDTO>();

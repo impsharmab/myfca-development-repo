@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
@@ -24,6 +25,7 @@ public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
 	private EntityManager em;
 
 	@Override
+	@Cacheable(value="getMSERDetailsGraphByParent")
 	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByParent(String territory) {
 		List<MyFCAMserRankingDTO> result = new ArrayList<MyFCAMserRankingDTO>();
 
@@ -41,6 +43,7 @@ public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
 	}
 
 	@Override
+	@Cacheable(value="getMSERDetailsGraphByChild")
 	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByChild(String territory) {
 		List<MyFCAMserRankingDTO> result = new ArrayList<MyFCAMserRankingDTO>();
 

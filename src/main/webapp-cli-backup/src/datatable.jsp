@@ -227,7 +227,7 @@
 					var programsArray = ["RAM"]
 					for (var r = 0; r < programsArray.length; r++) {
 						var programObj = innerData.filter(function (ele, index, array) {
-							console.log(programsArray[r] === ele.certType.trim())
+							//console.log(programsArray[r] === ele.certType.trim())
 							return programsArray[r] === ele.certType.trim();
 
 						});
@@ -239,7 +239,7 @@
 						rowData.push(value)
 						//console.log(programObj)
 					}
-					console.log(rowData)
+					//console.log(rowData)
 					innerDataObj.data.push(rowData);
 					//jeepTotal = jeepTotal + (rowData[1] == undefined ? 0 : rowData[1]);
 					ramTotal = ramTotal + (rowData[2] == undefined ? 0 : rowData[2]);

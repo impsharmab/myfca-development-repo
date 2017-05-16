@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.RetentionGraphDTO;
@@ -24,6 +25,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRetentionGraphByParentTerritoryList")
 	public List<RetentionGraphDTO> getRetentionGraphByParentTerritoryList(List<String> list) {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
 
@@ -42,6 +44,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRetentionGraphByChildTerritoryList")
 	public List<RetentionGraphDTO> getRetentionGraphByChildTerritoryList(List<String> list) {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
 
@@ -60,6 +63,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRetentionGraphByParentTerritoryListAndPositionCode")
 	public List<RetentionGraphDTO> getRetentionGraphByParentTerritoryListAndPositionCode(List<String> list,
 			String positionCode) {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
@@ -79,6 +83,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 	}
 
 	@Override
+	@Cacheable(value="getRetentionGraphByChildTerritoryListAndPositionCode")
 	public List<RetentionGraphDTO> getRetentionGraphByChildTerritoryListAndPositionCode(List<String> list,
 			String positionCode) {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
@@ -98,6 +103,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 	}
 	
 	@Override
+	@Cacheable(value="getRetentionGraphByChildTerritoryAndPositionCode")
 	public List<RetentionGraphDTO> getRetentionGraphByChildTerritoryListAndPositionCode(String list,
 			String positionCode) {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
@@ -118,6 +124,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRetentionGraphNATByPositionCode")
 	public List<RetentionGraphDTO> getRetentionGraphNATByPositionCode(String positionCode) {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
 
@@ -136,6 +143,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRetentionGraphBCByBcAndPositionCodeByPositionCode")
 	public List<RetentionGraphDTO> getRetentionGraphBCByBcAndPositionCodeByPositionCode(String bc, String positionCode) {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
 
@@ -155,6 +163,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRetentionGraphNAT")
 	public List<RetentionGraphDTO> getRetentionGraphNAT() {
 		List<RetentionGraphDTO> result = new ArrayList<RetentionGraphDTO>();
 

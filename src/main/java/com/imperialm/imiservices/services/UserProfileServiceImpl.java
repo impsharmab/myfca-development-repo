@@ -49,11 +49,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//UB 19.1
 	//private List<String> tile18 = new ArrayList<String>(Arrays.asList("01","02","13","14","19","22","27","2S","32","33","35","36","37","39","40","46","47","49","4S","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","LV","N1","N2","SC","SD","UB","VT"));
 	//UB 20.1
-	private List<String> tile19 = new ArrayList<String>(Arrays.asList("01","02","13","14","2S","33","35","36","37","39","40","7M","7N","7P","7Q","ES","ET","17","22","27","32"));
+	private List<String> tile19 = new ArrayList<String>(Arrays.asList("01","02","13","14","19","2S","33","35","36","37","39","40","7M","7N","7P","7Q","ES","ET","17","22","27","32"));
 	//21.1
 	private List<String> tile20 = new ArrayList<String>(Arrays.asList("46","47","49","4S","50","56","60","65","6W","70","71","74","7L","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","LV","N1","N2","SC","SD","UB","VT"));
 	//UB 22.1 SUMMARY table
-	private List<String> tile21 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","10","11","12","13","14","16","17","20","1F","21","23","24","26","28","2C","2D","2S","2T","31","32","33","34","35","35","36","37","38","39","3S","3T","40","41","46","47","49","4S","50","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","ET","LV","N1","N2","SC","SD","UB","VT"));
+	private List<String> tile21 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","10","11","12","13","14","16","17","19","20","1F","21","22","23","24","25","26","27","28","2C","2D","2S","2T","30","31","32","33","34","35","35","36","37","38","39","3S","3T","40","41","46","47","49","4S","50","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","ET","LV","N1","N2","SC","SD","UB","VT"));
 	//UB 23.1
 	private List<String> tile22 = new ArrayList<String>(Arrays.asList("01","02","22","36","37","39","46","47","49","4S","50","56","60","65","6W","70","71","74","7L","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","LV","N1","N2","SC","SD","UB","VT"));
 	//UB 24.1
@@ -76,9 +76,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 	private List<NoTile> userTiles = new ArrayList<NoTile>();
 	
 	private final String MSER_SITE = "http://uat.imperialmarketing.com/mser/dashSSO.do?token=";
-	private final String MSER_RULES = "app/resources/pdf/MSERProgramRulesv15_9_17.pdf";
+	private final String MSER_RULES = "assets/pdf/MSERProgramRulesv15_9_17.pdf";
 	private final String BRAINBOOST_SITE = "https://brainboost.meap.me/";
 	private final String BRAINBOOST_RULES = "https://brainboost.meap.me/";
+	private final String RETENTION_RULES = "assets/pdf/RetentionPartsManagerUSA.pdf";
+	
 	
 	
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc) {
@@ -104,10 +106,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 		
 		
 		if(tile3.contains(positionCode)){
-			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","","app/resources/pdf/2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
 			}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","","app/resources/pdf/2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
 			}
 		
 		if(tile5.contains(positionCode)){
@@ -126,20 +128,20 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}
 		
 		if(tile9.contains(positionCode)){
-			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts-ram.jpg","","app/resources/pdf/RAMExpert.pdf"));
+			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts-ram.jpg","","assets/pdf/RAMExpert.pdf"));
 			}
 		
 		if(tile10.contains(positionCode)){
-			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts-ram.jpg","","app/resources/pdf/RAMExpert.pdf"));
+			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts-ram.jpg","","assets/pdf/RAMExpert.pdf"));
 			}
 		
 		if(tile11.contains(positionCode)){
-			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(14,"","tile", "","topadvisor.jpg","https://www.mopartopadvisor.com/topAdvisor/index.htm","assets/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
 			}
 		
 		
 		if(tile12.contains(positionCode)){
-			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(15,"","tile", "","toptech.jpg","https://www.mopartoptech.com/toptech/index.htm","assets/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
 			}
 		
 		/*if(tile13.contains(positionCode)){
@@ -147,23 +149,23 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 		//enrolled not enrolled 2 tiles
 		if(tile14.contains(positionCode)){
-			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
-			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","app/resources/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","assets/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","assets/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
 			//this.userTiles.add(new NoTile(16,"","chart", "","toptech-topadv.jpg",""));
 			//this.userTiles.add(new NoTile(17,"","chart", "","toptech-topadv.jpg",""));
 			}
 		
 		if(tile15.contains(positionCode)){
-			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","","app/resources/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); //SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","","assets/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); //SERVICE INCENTIVE
 			}
 		
 		
 		if(tile16.contains(positionCode)){
-			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","","app/resources/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","","assets/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
 			}
 		
 		if(tile17.contains(positionCode)){
-			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","","app/resources/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","","assets/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
 			}
 		
 		/*if(tile18.contains(positionCode)){ 
@@ -190,12 +192,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 			//Customer first
 			if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","app/resources/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","assets/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
 			}
 			
 			//customer first
 			if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","app/resources/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","assets/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
 			}
 			/*
 			//NOTHING
@@ -205,11 +207,11 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 		*/
 		if(tile25.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","","")); // RETENTION
+			this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
 			}
 			
 			if(tile26.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","","")); // RETENTION
+			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
 			}
 		
 		return userTiles;

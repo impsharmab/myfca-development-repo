@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
@@ -26,6 +27,7 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 	private EntityManager em;
 	
 	@Override
+	@Cacheable(value="getBCCertifications")
 	public List<CertProfsWinnersGraphDTO> getBCCertifications(boolean filter) {
 		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
 
@@ -47,7 +49,7 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 		return result;
 	}
 	
-	
+	@Cacheable(value="getAllDistricDataCPW")
 	public List<CertProfsWinnersGraphDTO>  getAllDistricData(List<String> list){
 		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
 
@@ -67,6 +69,7 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 		
 	}
 	
+	@Cacheable(value="getByTerritoryCPW")
 	public List<CertProfsWinnersGraphDTO>  getByTerritory(List<String> list){
 		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
 
@@ -88,6 +91,7 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 
 
 	@Override
+	@Cacheable(value="getByChildTerritoryListCPW")
 	public List<CertProfsWinnersGraphDTO> getByChildTerritory(List<String> list) {
 		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
 
@@ -106,6 +110,7 @@ public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 
 
 	@Override
+	@Cacheable(value="getByChildTerritoryCPW")
 	public List<CertProfsWinnersGraphDTO> getByChildTerritory(String list) {
 		List<CertProfsWinnersGraphDTO> result = new ArrayList<CertProfsWinnersGraphDTO>();
 

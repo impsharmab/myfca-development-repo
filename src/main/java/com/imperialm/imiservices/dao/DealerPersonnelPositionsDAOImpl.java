@@ -23,7 +23,7 @@ public class DealerPersonnelPositionsDAOImpl implements DealerPersonnelPositions
 
 	@SuppressWarnings("unchecked")
 	@Override
-	//@Cacheable("getRoleByPositionCode")
+	@Cacheable(value="getRoleByPositionCode")
 	public int getRoleByPositionCode(String positionCode) {
 		int result = 0;
 		try {

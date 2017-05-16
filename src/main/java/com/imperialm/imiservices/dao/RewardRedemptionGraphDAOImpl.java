@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
@@ -25,6 +26,7 @@ public class RewardRedemptionGraphDAOImpl implements RewardRedemptionGraphDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRewardRedemptionGraphByParentTerritoryList")
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByParentTerritoryList(List<String> list) {
 		List<RewardRedemptionGraphDTO> result = new ArrayList<RewardRedemptionGraphDTO>();
 
@@ -43,6 +45,7 @@ public class RewardRedemptionGraphDAOImpl implements RewardRedemptionGraphDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRewardRedemptionGraphByParentTerritoryListDistinct")
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByParentTerritoryListDistinct(List<String> list) {
 		List<RewardRedemptionGraphDTO> result = new ArrayList<RewardRedemptionGraphDTO>();
 
@@ -61,6 +64,7 @@ public class RewardRedemptionGraphDAOImpl implements RewardRedemptionGraphDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getRewardRedemptionGraphByChildTerritoryList")
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByChildTerritoryList(List<String> list) {
 		List<RewardRedemptionGraphDTO> result = new ArrayList<RewardRedemptionGraphDTO>();
 
@@ -78,6 +82,7 @@ public class RewardRedemptionGraphDAOImpl implements RewardRedemptionGraphDAO{
 	}
 
 	@Override
+	@Cacheable(value="getRewardRedemptionGraphByChildTerritory")
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByChildTerritory(String list) {
 		List<RewardRedemptionGraphDTO> result = new ArrayList<RewardRedemptionGraphDTO>();
 

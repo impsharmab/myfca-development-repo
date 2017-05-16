@@ -67,34 +67,18 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
    
+	 @Autowired
+	  public CacheManager cacheManager;
+	 
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler = new JwtAuthenticationEntryPoint();
-
-    @Bean
-    public CacheManager cacheManager() {
-        SimpleCacheManager cacheManager = new SimpleCacheManager();
-        cacheManager.setCaches(Arrays.asList(
-          new ConcurrentMapCache("getMSERGraphByChildTerritoryAndToggleAndProgram"),new ConcurrentMapCache("getRoleByPositionCode"),
-          new ConcurrentMapCache("getDealerCodePCRoleBySid"),
-          new ConcurrentMapCache("loadUserByUsername"),
-          new ConcurrentMapCache("getUserTerritoyById")
-          ));
-        return cacheManager;
+    
+    @Scheduled(fixedRateString = 480 * 60 * 1000 + "", initialDelayString = "100") // reset cache every hr, with delay of 1hr after app start
+    public void reportCurrentTime() {
+    	//CacheManager cacheManager = cacheManager();
+    	cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
+    	System.out.println("Flush Cache NEW " + new Date().toString());
     }
-    
-    @CacheEvict(allEntries = true, value = {"getMSERGraphByChildTerritoryAndToggleAndProgram", "getRoleByPositionCode", "getDealerCodePCRoleBySid", "loadUserByUsername","getUserTerritoyById"}) //
-    @Scheduled(fixedDelay = 60 * 60 * 1000 ,  initialDelay = 500)
-    public void reportCacheEvict() {
-        System.out.println("Flush Cache " + new Date().toString());
-    }
-    
-    
-
-   /* @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }*/
     
     @Bean @Qualifier("JwtAuthenticationTokenFilter")
     public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {

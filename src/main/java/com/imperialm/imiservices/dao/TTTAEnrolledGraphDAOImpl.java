@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
@@ -23,6 +24,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	private EntityManager em;
 	
 	@Override
+	@Cacheable(value="getTTTAEnrolledByParentTerritoryList")
 	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByParentTerritory(List<String> territory) {
 		List<TTTAEnrolledGraphDTO> result = new ArrayList<TTTAEnrolledGraphDTO>();
 
@@ -40,6 +42,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	}
 
 	@Override
+	@Cacheable(value="getTTTAEnrolledByChildTerritory")
 	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritory(String list) {
 		List<TTTAEnrolledGraphDTO> result = new ArrayList<TTTAEnrolledGraphDTO>();
 
@@ -74,6 +77,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	}
 
 	@Override
+	@Cacheable(value="getTTTAEnrolledBCORDistrict")
 	public int getTTTAEnrolledBCORDistrict(String territory) {
 		int result = 0;
 
@@ -91,6 +95,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	}
 	
 	@Override
+	@Cacheable(value="getTTTAEnrolledByParentTerritoryNotEnrolledList")
 	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByParentTerritoryNotEnrolled(List<String> territory) {
 		List<TTTAEnrolledGraphDTO> result = new ArrayList<TTTAEnrolledGraphDTO>();
 

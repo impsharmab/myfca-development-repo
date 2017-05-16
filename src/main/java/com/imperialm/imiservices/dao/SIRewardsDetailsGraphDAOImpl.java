@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
@@ -24,6 +25,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSIRewardsDetailsGraphByTerritoryAndToggle")
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByTerritoryAndToggle(String territory, String toggle){
 		List<SIRewardsDetailsGraphDTO> result = new ArrayList<SIRewardsDetailsGraphDTO>();
 		try {
@@ -43,6 +45,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSIRewardsDetailsGraphByTerritoryAndToggleList")
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByTerritoryAndToggle(List<String> territory, String toggle){
 		List<SIRewardsDetailsGraphDTO> result = new ArrayList<SIRewardsDetailsGraphDTO>();
 		try {
@@ -62,6 +65,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSIRewardsDetailsGraphByTerritoryAndToggleFilterParentList")
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByTerritoryAndToggleFilterParent(List<String> territory,
 			String toggle) {
 		List<SIRewardsDetailsGraphDTO> result = new ArrayList<SIRewardsDetailsGraphDTO>();
@@ -82,6 +86,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSIRewardsDetailsGraphByChildTerritoryAndToggleList")
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByChildTerritoryAndToggle(List<String> territory,
 			String toggle) {
 		List<SIRewardsDetailsGraphDTO> result = new ArrayList<SIRewardsDetailsGraphDTO>();
@@ -102,6 +107,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSIRewardsDetailsGraphByChildTerritoryAndToggle")
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByChildTerritoryAndToggle(String territory,
 			String toggle) {
 		List<SIRewardsDetailsGraphDTO> result = new ArrayList<SIRewardsDetailsGraphDTO>();
@@ -122,6 +128,7 @@ public class SIRewardsDetailsGraphDAOImpl implements SIRewardsDetailsGraphDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSIRewardsDetailsGraphSUMByTerritoryAndToggle")
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphSUMByTerritoryAndToggle(String territory,
 			String toggle) {
 		List<SIRewardsDetailsGraphDTO> result = new ArrayList<SIRewardsDetailsGraphDTO>();

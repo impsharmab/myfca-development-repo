@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
@@ -26,6 +27,7 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSIRewardsYOYGraphByTerritoryAndToggle")
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggle(String territory, String toggle) {
 		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
 		try {
@@ -43,6 +45,7 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 	}
 
 	@Override
+	@Cacheable(value="getSIRewardsYOYGraphByTerritoryAndToggleList")
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggle(List<String> territory,
 			String toggle) {
 		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
@@ -61,6 +64,7 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 	}
 
 	@Override
+	@Cacheable(value="getSIRewardsYOYGraphByTerritoryAndToggleFilterParentList")
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(List<String> territory,
 			String toggle) {
 		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();		
@@ -79,6 +83,7 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 	}
 
 	@Override
+	@Cacheable(value="getSIRewardsYOYGraphByChildAndToggle")
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByChildAndToggle(String territory, String toggle) {
 		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
 		try {

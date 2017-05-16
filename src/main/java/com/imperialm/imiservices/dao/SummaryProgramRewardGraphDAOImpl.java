@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
@@ -24,6 +25,7 @@ public class SummaryProgramRewardGraphDAOImpl implements SummaryProgramRewardGra
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSummaryProgramRewardGraphByParentTerritoryYTDList")
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByParentTerritoryYTD(List<String> territory) {
 		List<SummaryProgramRewardGraphDTO> result = new ArrayList<SummaryProgramRewardGraphDTO>();
 
@@ -42,6 +44,7 @@ public class SummaryProgramRewardGraphDAOImpl implements SummaryProgramRewardGra
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getSummaryProgramRewardGraphByChildTerritoryYTDList")
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(List<String> territory) {
 		List<SummaryProgramRewardGraphDTO> result = new ArrayList<SummaryProgramRewardGraphDTO>();
 
@@ -59,6 +62,7 @@ public class SummaryProgramRewardGraphDAOImpl implements SummaryProgramRewardGra
 	}
 
 	@Override
+	@Cacheable(value="getSummaryProgramRewardGraphByChildTerritoryYTD")
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(String territory) {
 		List<SummaryProgramRewardGraphDTO> result = new ArrayList<SummaryProgramRewardGraphDTO>();
 

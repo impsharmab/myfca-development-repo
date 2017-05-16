@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
@@ -23,6 +24,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getBCData")
 	public List<BrainBoostWinndersGraphDTO> getBCData(boolean filter) {
 		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
 		try {
@@ -44,6 +46,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Cacheable(value="getAllDistricData")
 	public List<BrainBoostWinndersGraphDTO>  getAllDistricData(List<String> list){
 		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
 		try {
@@ -62,7 +65,8 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 	
 	
 	@SuppressWarnings("unchecked")
-	public List<BrainBoostWinndersGraphDTO>  getByTerritory(List<String> list){
+	@Cacheable(value="getByTerritory")
+	public List<BrainBoostWinndersGraphDTO> getByTerritory(List<String> list){
 		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY, BrainBoostWinndersGraphDTO.class);
@@ -79,6 +83,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getByChildTerritoryList")
 	public List<BrainBoostWinndersGraphDTO> getByChildTerritory(List<String> list) {
 		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
 		try {
@@ -96,6 +101,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getByChildTerritory")
 	public List<BrainBoostWinndersGraphDTO> getByChildTerritory(String list) {
 		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
 		try {

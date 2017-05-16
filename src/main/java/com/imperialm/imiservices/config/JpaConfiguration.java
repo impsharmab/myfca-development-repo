@@ -70,6 +70,7 @@ public class JpaConfiguration {
 		// properties.put("hibernate.hbm2ddl.auto",
 		// environment.getRequiredProperty("hibernate.hbm2ddl.auto"));
 		properties.put("hibernate.show_sql", this.environment.getRequiredProperty("spring.jpa.show-sql"));
+		properties.put("hibernate.default_schema", this.environment.getRequiredProperty("spring.jpa.properties.hibernate.default_schema"));
 		return properties;
 	}
 

@@ -119,7 +119,7 @@ export class TestAdminComponent implements OnInit {
         this.adminService.getAllBannerData().subscribe(
             (allBannerTableData) => {
                 this.allBannerTableData = allBannerTableData;
-                console.log(this.allBannerTableData)
+                //console.log(this.allBannerTableData)
             }
         )
     }
@@ -178,8 +178,8 @@ export class TestAdminComponent implements OnInit {
         this.adminService.getImageList().subscribe(
             (imagelist) => {
                 this.imagelist = imagelist;
-                console.log(imagelist)
-                console.log(this.imagelist)
+               // console.log(imagelist)
+               // console.log(this.imagelist)
                 self.testMethod();
             }
         )
@@ -243,7 +243,7 @@ export class TestAdminComponent implements OnInit {
             (emulateUserData) => {
                 this.emulateUserData = emulateUserData;
                 debugger
-                console.log(emulateUserData)
+                //console.log(emulateUserData)
                 if (emulateUserData["item"].length > 0) {
                     // this.adminService.setEmulateUserData(this.emulateUserData);
                     var adminToken = this.cookieService.get("token");
@@ -332,7 +332,7 @@ export class TestAdminComponent implements OnInit {
         this.adminService.editBannerData(editBannerObj).subscribe(
             (editBannerDatum) => {
                 this.editBannerDatum = editBannerDatum;
-                console.log(editBannerDatum)
+                //console.log(editBannerDatum)
             }
         )
     }

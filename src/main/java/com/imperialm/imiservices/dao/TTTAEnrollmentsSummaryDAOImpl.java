@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
@@ -26,6 +27,7 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getTTTAEnrollmentsSummaryByChildAndPositionCode")
 	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByChildAndPositionCode(String territories,
 			String positionCode) {
 		List<TTTAEnrollmentsSummaryDTO> result = new ArrayList<TTTAEnrollmentsSummaryDTO>();
@@ -46,6 +48,7 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getTTTAEnrollmentsSummaryByParentAndPositionCode")
 	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummaryByParentAndPositionCode(List<String> territories,
 			String positionCode) {
 		List<TTTAEnrollmentsSummaryDTO> result = new ArrayList<TTTAEnrollmentsSummaryDTO>();
@@ -114,6 +117,7 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode")
 	public TotalName getTTTANATTopEnrolledDealerCountByBCDistrictAndPositionCode(String territory) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
@@ -187,6 +191,7 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getTTTAEnrollmentsSummarySUMByParentAndPositionCodeList")
 	public List<TTTAEnrollmentsSummaryDTO> getTTTAEnrollmentsSummarySUMByParentAndPositionCode(List<String> territories,
 			String positionCode) {
 		List<TTTAEnrollmentsSummaryDTO> result = new ArrayList<TTTAEnrollmentsSummaryDTO>();

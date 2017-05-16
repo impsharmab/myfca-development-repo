@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
@@ -24,6 +25,7 @@ public class CustomerFirstGraphDAOImpl implements CustomerFirstGraphDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getCustomerFirstByParentTerritoryAndToggleList")
 	public List<CustomerFirstGraphDTO> getCustomerFirstByParentTerritoryAndToggle(List<String> territory,
 			String toggle) {
 		List<CustomerFirstGraphDTO> result = new ArrayList<CustomerFirstGraphDTO>();
@@ -43,6 +45,7 @@ public class CustomerFirstGraphDAOImpl implements CustomerFirstGraphDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getCustomerFirstByChildTerritoryAndToggleList")
 	public List<CustomerFirstGraphDTO> getCustomerFirstByChildTerritoryAndToggle(List<String> territory,
 			String toggle) {
 		List<CustomerFirstGraphDTO> result = new ArrayList<CustomerFirstGraphDTO>();
@@ -61,6 +64,7 @@ public class CustomerFirstGraphDAOImpl implements CustomerFirstGraphDAO{
 	}
 
 	@Override
+	@Cacheable(value="getCustomerFirstByChildTerritoryAndToggle")
 	public List<CustomerFirstGraphDTO> getCustomerFirstByChildTerritoryAndToggle(String territory, String toggle) {
 		// TODO Auto-generated method stub 
 		List<CustomerFirstGraphDTO> result = new ArrayList<CustomerFirstGraphDTO>();
