@@ -1,0 +1,42 @@
+[
+    {
+        "dealerCode": "65940",
+        "dealerName": "FRESNO CHRYSLER DODGE JEEP RAM ",
+        "name": "Kristan Turner",
+        "certType": "JEEP ",
+        "cert": 1,
+        "points": 10,
+        "totalPoints": 10,
+        "sid": "S12205N"
+    },
+    {
+        "dealerCode": "65940",
+        "dealerName": "FRESNO CHRYSLER DODGE JEEP RAM ",
+        "name": "Kristan Turner",
+        "certType": "RAM ",
+        "cert": 1,
+        "points": 1090,
+        "totalPoints": 1090,
+        "sid": "S12205N"
+    },
+    {
+        "dealerCode": "65940",
+        "dealerName": "FRESNO CHRYSLER DODGE JEEP RAM ",
+        "name": "Kristan Turner",
+        "certType": "JEEP ",
+        "cert": 1,
+        "points": 10,
+        "totalPoints": 10,
+        "sid": "S12205N"
+    },
+    {
+        "dealerCode": "65940",
+        "dealerName": "FRESNO CHRYSLER DODGE JEEP RAM ",
+        "name": "Kristan Turner",
+        "certType": "RAM ",
+        "cert": 1,
+        "points": 1090,
+        "totalPoints": 1090,
+        "sid": "S12205N"
+    }
+]

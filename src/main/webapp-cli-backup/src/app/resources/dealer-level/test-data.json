@@ -1,0 +1,935 @@
+{
+    "headers": [
+        "DEALER",
+        "JEEP",
+        "RAM",
+        "TOTAL"
+    ],
+    "data": [
+        {
+            "data": [
+                "<img src=\"http://i.imgur.com/SD7Dz.png\">",
+                "FRESNO CHRYSLER DODGE JEEP RAM ",
+                "5000",
+                "454545",
+                "787878"
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Kristan Turner",
+                        "10",
+                        "1090",
+                        "1100"
+                    ],
+                    [
+                        "Ronald Zibulka",
+                        "105",
+                        "105",
+                        "210"
+                    ],
+                    [
+                        "Eddy Bloodgood",
+                        "800",
+                        "800",
+                        "1600"
+                    ],
+                    [
+                        "Wayne Mumford",
+                        "800",
+                        "800",
+                        "1600"
+                    ],
+                    [
+                        "Richard Caret",
+                        "0",
+                        "0",
+                        "0"
+                    ],
+                    [
+                        "Kyle Bier",
+                        "0",
+                        "0",
+                        "0"
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "PORTERVILLE CHRYSLER JEEP DODGE ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Hector Lopez",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Ruben Valencia",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Jared Santos",
+                        80,
+                        "",
+                        80
+                    ],
+                    [
+                        "Tanya Fuentes",
+                        15,
+                        "",
+                        15
+                    ],
+                    [
+                        "Clemente Benavides",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "TURLOCK CHRYSLER DODGE JEEP RAM ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Conrad Ruezga",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Clifford Pike",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Armando Delatorre, Jr.",
+                        1600,
+                        "",
+                        1600
+                    ],
+                    [
+                        "Gordon Wright",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Nicole Rivera",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Juan Cuevas",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Tudor Reyes",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Virgilio Quejado",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "ALFA ROMEO AND FIAT OF FRESNO ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Brandon Ray",
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        "Dustin Monroe",
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        "Douglas Horwood",
+                        200,
+                        200,
+                        400
+                    ],
+                    [
+                        "Kristan Turner",
+                        10,
+                        10,
+                        20
+                    ],
+                    [
+                        "Nicole Boggio",
+                        70,
+                        70,
+                        140
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "LAMPE CHRYSLER DODGE JEEP RAM ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Dustin Myers",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Sostenes Infante",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Gary Atkins",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Ric Duarte",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "David Zepeda",
+                        15,
+                        "",
+                        15
+                    ],
+                    [
+                        "Luis Hernandez",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Charles Armstrong",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Brian Mcgill",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Paul Brown",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Kenneth Mccluskey",
+                        40,
+                        "",
+                        40
+                    ],
+                    [
+                        "Luis Hernandez",
+                        15,
+                        "",
+                        15
+                    ],
+                    [
+                        "Tony Lourenco",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Italo Pudy",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "James Steelman",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Joe Crow",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Mark Anthony Grimmer",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Rodney Cavazos",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "SELMA CHRYSLER DODGE JEEP RAM ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Erik Samuelson",
+                        685,
+                        "",
+                        685
+                    ],
+                    [
+                        "Jose Cristobal",
+                        1600,
+                        "",
+                        1600
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "CENTRAL VALLEY CHRYSLER JEEP ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Sherman Ezell",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "PAUL DYER",
+                        15,
+                        "",
+                        15
+                    ],
+                    [
+                        "Steve Niles",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Dave Peters",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Jesse Kiryakoz",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Dale Deyoung",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Prasit Promsawasdi",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Christopher Mewhinney",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Ray Mendes",
+                        400,
+                        "",
+                        400
+                    ],
+                    [
+                        "David Lemus",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Nasir Salehzada",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Mehrdad Razavi",
+                        10,
+                        "",
+                        10
+                    ],
+                    [
+                        "Adam Mellow",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Shaun Millanes",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "CLOVIS CHRYSLER DODGE JEEP RAM ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Floyd White",
+                        30,
+                        "",
+                        30
+                    ],
+                    [
+                        "Brian Finegan",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Steven Baronian",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Jason Leavens",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Michael Milton",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Joshua Collins",
+                        400,
+                        "",
+                        400
+                    ],
+                    [
+                        "Craig Vollhardt",
+                        310,
+                        "",
+                        310
+                    ],
+                    [
+                        "Chase Burk",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Rodney Spenhoff",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "HANFORD CHRYSLER DODGE JEEP RAM ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Dominic Harris",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Diane Kaczmarek",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Michael Jacobs",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Paul Smart",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Arturo Garcia",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Oscar Jimenez",
+                        200,
+                        "",
+                        200
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "CABRAL CHRYSLER JEEP DODGE RAM ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Pat Clark",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Ryan Martin",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Cliff Rogers",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Adam Cardona",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Robert Bronken",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Ryan. Cohoon",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Fabian Mendoza",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Tony Correa",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Tony CHEE",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Michael Hickman",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Jason Sanders",
+                        15,
+                        "",
+                        15
+                    ],
+                    [
+                        "Adam Poso",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Clifford Langley",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "JIM MANNING DODGE CHRYSLER JEEP ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Porfirio Barragan",
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        "Fernando Garcia",
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        "Joshua Jackson",
+                        5,
+                        400,
+                        405
+                    ],
+                    [
+                        "Manuel Calvillo",
+                        0,
+                        400,
+                        400
+                    ],
+                    [
+                        "Vince Cantu",
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        "Robert Delossantos",
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        "James Manning Jr",
+                        20,
+                        20,
+                        40
+                    ],
+                    [
+                        "Steven Moore",
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        "Allan Bonoan",
+                        140,
+                        140,
+                        280
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "RAZZARI DODGE CHRYSLER JEEP ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Robert Pearson",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Eric Menezes",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Juan Alvarez",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "GARY GOODWIN",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Donald Conner",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "STOCKTON DODGE CHRYSLER JEEP RA ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Yosmin Estrada",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Casey Hettervik",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "James Hill",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Jose Hernandez",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Steven Noriega",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Nahid Ali",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "William Bray",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "James Doyle",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Marc Guardado",
+                        25,
+                        "",
+                        25
+                    ]
+                ]
+            }
+        },
+        {
+            "data": [
+                "GILL CHRYSLER DODGE JEEP RAM ",
+                "",
+                "",
+                ""
+            ],
+            "innerData": {
+                "headers": [
+                    "Participant",
+                    "Jeep",
+                    "Ram",
+                    "Total"
+                ],
+                "data": [
+                    [
+                        "Amer Muhar",
+                        0,
+                        "",
+                        0
+                    ],
+                    [
+                        "Scott Brazil",
+                        200,
+                        "",
+                        200
+                    ],
+                    [
+                        "Joe Aguilar",
+                        800,
+                        "",
+                        800
+                    ],
+                    [
+                        "Jim Hamby",
+                        0,
+                        "",
+                        0
+                    ]
+                ]
+            }
+        }
+    ]
+}

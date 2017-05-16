@@ -1,0 +1,7 @@
+.refreshGlyphImg{
+        width: 75px; 
+        height:75px;
+        position: fixed; /* or absolute */
+        top: 50%;
+        left: 50%;
+        }     

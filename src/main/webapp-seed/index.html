@@ -1,0 +1,112 @@
+<html>
+
+<head>
+
+	<!--<script>
+        document.write('<base href="' + document.location + '" />');
+    </script>-->
+
+
+	<!--<base href="/myfcarewards/">-->
+	<base href="/">
+	<!-- myfcarewards<script>document.write('<base href="' + document.location + '" />');</script>-->
+	<!--<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">-->
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<link rel="shortcut icon" href="app/resources/images/favicon.ico" />
+	<title>MyFcaDashboard</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="app/resources/js/es5-shim.js"></script>
+	<script src="app/resources/js/es6-shim.js"></script>
+
+	<link rel="stylesheet" href="app/resources/bootstrap/bootstrap.css" />
+	<link rel="stylesheet" href="app/resources/css/admin.css" />
+	<link rel="stylesheet" href="app/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="app/resources/css/scrolling-nav.css" />
+	<link rel="stylesheet" href="app/resources/css/carousel.css" />
+	<link rel="stylesheet" href="app/resources/css/styles.css" />
+	<link rel="stylesheet" href="app/resources/css/spinner.css" />
+	<link rel="stylesheet" href="app/resources/css/custom-modal.css" />
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link href="app/resources/js/magicsuggest-master/magicsuggest-min.css" rel="stylesheet" />
+	<script src="app/resources/js/magicsuggest-master/magicsuggest-min.js"></script>
+	<script src="app/resources/js/bootstrap.js"></script>
+
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+
+
+
+	<script src="app/resources/js/exportToExcel.js"></script>
+	<script src="app/resources/js/tableToExcel.js"></script>
+
+	<script src="node_modules/core-js/client/shim.min.js"></script>
+	<script src="node_modules/zone.js/dist/zone.js"></script>
+	<script src="node_modules/reflect-metadata/Reflect.js"></script>
+	<script src="node_modules/systemjs/dist/system.src.js"></script>
+	<script src="node_modules/rxjs/bundles/Rx.js"></script>
+	<script src="systemjs.config.js?v=2.2"></script>
+	<!--<script src="node_modules/es5-shim/es5-shim.js"></script>
+    <script src="node_modules/es6-shim/es6-shim.js"></script>-->
+
+
+
+	<script>
+		System.import('app').catch(function (err) {
+			console.error(err);
+		});
+	</script>
+	<!--<script>
+		$(document).ready(function () {
+			var elementHeights = $('.data-group').map(function () {
+				return $(this).height();
+			}).get();
+			console.log(elementHeights)
+			var maxHeight = Math.max.apply(null, elementHeights);
+			$('.data-group').height(maxHeight);
+		});
+
+	</script>-->
+	<script>
+		function a() {
+			var formData = new FormData();
+			formData.append('file', $('#file')[0].files[0]);
+			$.ajax({
+				// url: 'https://test.myfcarewards.com/myfcarewards/services/files/imageUpload',
+				url: './services/files/imageUpload',
+				type: 'POST',
+				data: formData,
+				processData: false,  // tell jQuery not to process the data
+				contentType: false,  // tell jQuery not to set contentType
+				success: function (data) {
+					console.log(data);
+					alert(data);
+				}
+			});
+
+		}
+
+	</script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+	<my-app>
+		<div style="display: flex; justify-content: center;">
+			<img class="refreshGlyphImg" src="app/resources/images/spinner/spinner.gif" />
+		</div>
+	</my-app>
+
+</body>
+
+</html>

@@ -4607,14 +4607,10 @@ public class TileServiceImpl{
 						}
 					}
 					
-					if(SIRewardsDetailsGraphListYTD.size() > 0){
-						SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
-						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
-						
-					}
 					
 					if(SIRewardsDetailsListYTD.size()>0){
 						managerRank.setTotal(this.formatCurrency(SIRewardsDetailsListYTD.get(0).getBCAdvisorRankEarnings()));
+						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsListYTD.get(0).getProjectedEarnings()));
 					}
 					
 				}
