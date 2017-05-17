@@ -1,0 +1,793 @@
+{
+    "positioncode": "01",
+    "chooseView": "BC",
+    "permissions": [
+        {
+            "name": "MSER",
+            "order": "1",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total Dealers Enrolled",
+                    "checked": true
+                },
+                {
+                    "name": "Excellence Cards Awards MTD",
+                    "checked": true
+                },
+                {
+                    "name": "Excellence Cards Awards YTD",
+                    "checked": true
+                },
+                {
+                    "name": "Total number of participants enrolled ",
+                    "checked": true
+                },
+                {
+                    "name": "Top 10 advisors MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Top 10 technicians MTD",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "MSER Graph",
+            "order": "2",
+            "checked": true,
+            "data": [
+                {
+                    "name": "uConnect",
+                    "checked": true
+                },
+                {
+                    "name": "wiAdvisor",
+                    "checked": true
+                },
+                {
+                    "name": "Express Lane",
+                    "checked": true
+                },
+                {
+                    "name": "Parts Counter",
+                    "checked": true
+                },
+                {
+                    "name": "Magenti Marelli",
+                    "checked": true
+                },
+                {
+                    "name": "MVP",
+                    "checked": true
+                },
+                {
+                    "name": "Mopar Parts",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Performance Institutes – Certified Professionals",
+            "order": "3",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Years Certified",
+                    "checked": true
+                },
+                {
+                    "name": "Prior year’s program level",
+                    "checked": true
+                },
+                {
+                    "name": "Certified badge ",
+                    "checked": true
+                },
+                {
+                    "name": "Certified Specialist badge",
+                    "checked": true
+                },
+                {
+                    "name": "Master Certified badge",
+                    "checked": true
+                },
+                {
+                    "name": "Current Year’s Program Points ",
+                    "checked": true
+                },
+                {
+                    "name": "Current Year’s Program Points ",
+                    "checked": true
+                },
+                {
+                    "name": "Current Year’s Program Points ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Certified Participants",
+                    "checked": true
+                },
+                {
+                    "name": "Total number of Master Certified level participants ",
+                    "checked": true
+                },
+                {
+                    "name": "Total number of Certified Specialist level participants ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Number of Certified level participants  ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank within BC for Total Master Certified Participants ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank nationwide for Total Master Certified Participants ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank within BC for Total Certified Participants  ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank within BC for Master Certified Participants ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank within BC for Certified Specialist Participants ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank within nationwide for Total Certified Participants  ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank within nationwide for Master Certified Participants ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank within nationwide for Certified Specialist Participants ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Certified Professionals Graph",
+            "order": "4",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Certified",
+                    "checked": true
+                },
+                {
+                    "name": "Certified Specialists",
+                    "checked": true
+                },
+                {
+                    "name": "Master Certified",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Performance Institute - Brain Boost",
+            "order": "5",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total Brain Boost Participants Last Month ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Brain boost winners last month ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Brain Boost Winners YTD",
+                    "checked": true
+                },
+                {
+                    "name": "Total Brain Boost Excellence Card Awards YTD",
+                    "checked": true
+                },
+                {
+                    "name": "Total Brain Boost Award Points Earned YTD",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Brain Boost-Graph-I",
+            "order": "6",
+            "checked": true,
+            "data": [
+                {
+                    "name": "total # of Brain Boost Winners",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Brain Boost-Graph-II",
+            "order": "7",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Excellence Card",
+                    "checked": true
+                },
+                {
+                    "name": "Award Points",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Certified Professionals – Experts",
+            "order": "8",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total Participants Completed in Jeep Expert",
+                    "checked": true
+                },
+                {
+                    "name": "Total Participants Completed in Ram Expert",
+                    "checked": true
+                },
+                {
+                    "name": "Total Participants Completed in Technology Expert ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Experts points earned YTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership rank in Business Center by Points Earned YTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership national rank by Points Earned YTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Completed (Yes/No)  ",
+                    "checked": true
+                },
+                {
+                    "name": "Expert Badge ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Certified Professional-Expert-Graph",
+            "order": "9",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Ram Expert",
+                    "checked": true
+                },
+                {
+                    "name": "Jeep Expert",
+                    "checked": true
+                },
+                {
+                    "name": "Technology Expert",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Certified Professional-Expert-GraphII",
+            "order": "10",
+            "checked": true,
+            "data": [
+                {
+                    "name": "number of Experts Points earned YTD",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Top Advisor",
+            "order": "11",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total Dealers Enrolled",
+                    "checked": true
+                },
+                {
+                    "name": "Total Advisors enrolled ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Advisors Incentive Eligible This Quarter ",
+                    "checked": true
+                },
+                {
+                    "name": "Incentive Eligible (Y/N)",
+                    "checked": true
+                },
+                {
+                    "name": "Top 10 advisors QTD ",
+                    "checked": true
+                },
+                {
+                    "name": "QTD Survey Count ",
+                    "checked": true
+                },
+                {
+                    "name": "Average Quarterly survey score ",
+                    "checked": true
+                },
+                {
+                    "name": "QTD Survey Score ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership Rank in Business Center ",
+                    "checked": true
+                },
+                {
+                    "name": "Advisor National rank QTD",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Top Tech",
+            "order": "12",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total Dealers Enrolled",
+                    "checked": true
+                },
+                {
+                    "name": "Total Technicians enrolled ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Technicians Incentive Eligible This Quarter ",
+                    "checked": true
+                },
+                {
+                    "name": "# of level 3",
+                    "checked": true
+                },
+                {
+                    "name": "Top 10 technicians QTD ",
+                    "checked": true
+                },
+                {
+                    "name": "QTD Survey Count",
+                    "checked": true
+                },
+                {
+                    "name": "Average Quarterly survey ",
+                    "checked": true
+                },
+                {
+                    "name": "QTD Survey Score ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealership Rank in Business Center based on Quarterly Survey score ",
+                    "checked": true
+                },
+                {
+                    "name": "Advisor national rank QTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Avg. years of service of technicians",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Top Tech/Top Advisor Graph",
+            "order": "13",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Group A",
+                    "checked": true
+                },
+                {
+                    "name": "Group B",
+                    "checked": true
+                },
+                {
+                    "name": "Group C",
+                    "checked": true
+                },
+                {
+                    "name": "Group D",
+                    "checked": true
+                },
+                {
+                    "name": "Group E",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Service Intensive Rewards -tile",
+            "order": "14",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Eligible Surveys Returned with a score of 9 or 10 QTD  ",
+                    "checked": true
+                },
+                {
+                    "name": "Dealer Advocacy score and target score ",
+                    "checked": true
+                },
+                {
+                    "name": "Training completed (Yes or No) ",
+                    "checked": true
+                },
+                {
+                    "name": "Advisors Incentive Qualified QTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Incentive Eligible (Yes or No) ",
+                    "checked": true
+                },
+                {
+                    "name": "average survey score",
+                    "checked": true
+                },
+                {
+                    "name": "N surveys received with a 9 or 10 QTD",
+                    "checked": true
+                },
+                {
+                    "name": "Incentive Eligible (Yes or No) ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Rewards Redemption - Tile",
+            "order": "14",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total Redemption Points awarded YTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Certified Professionals Points YTD",
+                    "checked": true
+                },
+                {
+                    "name": "Total Top Tech/Top Advisor Points YTD",
+                    "checked": true
+                },
+                {
+                    "name": "Current point balance ",
+                    "checked": true
+                },
+                {
+                    "name": "Total points redeemed YTD",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Rewards Redemption - Graph",
+            "order": "15",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total Points Earned",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Summary YTD Earnings",
+            "order": "16",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total points Enrolled",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Customer First-Graph",
+            "order": "17",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Level 0",
+                    "checked": true
+                },
+                {
+                    "name": "Performance",
+                    "checked": true
+                },
+                {
+                    "name": "Process",
+                    "checked": true
+                },
+                {
+                    "name": "Voice of Employee",
+                    "checked": true
+                },
+                {
+                    "name": "Training",
+                    "checked": true
+                },
+                {
+                    "name": "Facility",
+                    "checked": true
+                },
+                {
+                    "name": "CFAFE Award Certification",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Customer First-Pie",
+            "order": "18",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Level 0",
+                    "checked": true
+                },
+                {
+                    "name": "Performance",
+                    "checked": true
+                },
+                {
+                    "name": "Process",
+                    "checked": true
+                },
+                {
+                    "name": "Voice of Employee",
+                    "checked": true
+                },
+                {
+                    "name": "Training",
+                    "checked": true
+                },
+                {
+                    "name": "Facility",
+                    "checked": true
+                },
+                {
+                    "name": "CFAFE Award Certification",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Retention - Tile",
+            "order": "19",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Rolling 12 Month Retention % for Service Managers",
+                    "checked": true
+                },
+                {
+                    "name": "Rolling 12 Month Retention % for Service Advisors ",
+                    "checked": true
+                },
+                {
+                    "name": "Rolling 12 Month Retention % for Parts Managers ",
+                    "checked": true
+                },
+                {
+                    "name": "Rolling 12 Month Retention % for Parts Advisors ",
+                    "checked": true
+                },
+                {
+                    "name": "Rolling 12 Month Retention % for Technicians ",
+                    "checked": true
+                },
+                {
+                    "name": "Rolling 12 Month Retention % for Sales Managers ",
+                    "checked": true
+                },
+                {
+                    "name": "Rolling 12 Month Retention % for Sales Consultants ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Retention - Graph",
+            "order": "20",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Retention %",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "MSER-Enrollment",
+            "order": "21",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total number of Dealers Enrolled in MSER",
+                    "checked": true
+                },
+                {
+                    "name": "Total percentage of Dealers enrolled in MSER ",
+                    "checked": true
+                },
+                {
+                    "name": "Total number of Express Lane Validated dealers ",
+                    "checked": true
+                },
+                {
+                    "name": "Percentage of Express Lane Validated dealers ",
+                    "checked": true
+                },
+                {
+                    "name": "RTotal number of Parts Counter Enrolled dealers ",
+                    "checked": true
+                },
+                {
+                    "name": "Percentage of Parts Counter Enrolled dealers ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "MOPAR Part sales",
+            "order": "22",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Top 3 MOPAR Parts Sold MTD",
+                    "checked": true
+                },
+                {
+                    "name": "Total MOPAR Parts Earnings MTD",
+                    "checked": true
+                },
+                {
+                    "name": "Total MOPAR Parts Earnings YTD",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "MVP Plan Sales",
+            "order": "23",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Top 3 MVP Plans Sold MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total MVP Plans Earnings MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total MVP Plans Earnings YTD ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Magneti Marelli ",
+            "order": "24",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Top 3 Magneti Marelli Parts Sold MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Magneti Marelli Parts Earnings MTD  ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Magneti Marelli Parts Earnings YTD  ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Parts Counter  ",
+            "order": "25",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Top 3 Parts Counter Parts Sold MTD  ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Parts Counter Parts Earnings MTD  ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Parts Counter Parts Earnings YTD  ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "Express Lane  ",
+            "order": "26",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Top 3 Express Lane Parts Sold MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Express Lane Parts Earnings MTD   ",
+                    "checked": true
+                },
+                {
+                    "name": "Total Express Lane Parts Earnings YTD  ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "WiAdvisor   ",
+            "order": "27",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Top 3 WiAdvisor Parts Sold MTD",
+                    "checked": true
+                },
+                {
+                    "name": "Total WiAdvisor Parts Earnings MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total WiAdvisor Parts Earnings YTD ",
+                    "checked": true
+                }
+            ]
+        },
+        {
+            "name": "UConnect   ",
+            "order": "28",
+            "checked": true,
+            "data": [
+                {
+                    "name": "Total UConnect Navigation Activations MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total UConnect Navigation Activation Earnings MTD ",
+                    "checked": true
+                },
+                {
+                    "name": "Total UConnect Navigation Activation Earnings YTD ",
+                    "checked": true
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+<template #contactModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title"> </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h4>Contact Us</h4>
+        <div class="contact-block">
+            <a href="mailto:customerservice@imperialm.com" style="text-decoration: underline;">customerservice@imperialm.com</a>
+        </div>
+        <div class="contact-block">
+            <a href="tel:2483530950" style="text-decoration: underline;">P: 248.353.0950</a>
+            <p>F: 248.353.3309</p>
+        </div>
+        <div class="contact-block">
+            <p>21238 Bridge Street</p>
+            <p>Southfield, MI</p>
+            <p>48033</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class=" modal-action modal-close waves-effect waves-light btn-flat my-btn-flat getstarted-button" (click)="c('Close click')">Ok</a>
+    </div>
+</template>
+<template ngbModalContainer></template>
+<template #positioncodeModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title"> </h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <position-code (onSubmit)="positionCodeSubmit(c)" (onCancel)="c()"></position-code>
+    </div>
+    <div class="modal-footer">
+    </div>
+</template>
+
+<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top " role="navigation">
+    <div class="container">
+        <a class="brand-logo"><img src="https://test.myfcarewards.com/myfcarewards/services/loadrsc?id=FCALogo_and_MyRewards.jpg" /></a>
+        <div class="navbar-header">
+            <ul class="sav">
+                <li class="sav-item ">
+                    Welcome, <a id="enablePointer" class="utility-nav active" (click)="dashboardPage()">{{data.name}}</a>
+                </li>
+            </ul>
+            <ul class="sav-utility" style="margin-top: 5px">
+                <li class="sav-item ">
+                    <a *ngIf="booleanAdminToken" class=" utility-nav" (click)="endEmulation()" style="cursor:pointer; color:red ">End Emulation</a>
+                </li>
+                <li class="sav-item " [hidden]="retweetIconHide">
+                    <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">
+                        <span><img src = "services/loadrsc?id=retweet.png"  alt="Retweet"  width="25" height="25"></span></a>
+                </li>
+                <li class="sav-item">
+                   
+                    <a *ngIf="booleanAdmin" class=" utility-nav active" routerLink="/admin" style="cursor:pointer">Admin </a>
+                </li>
+                <li class="sav-item">
+                    <a class=" utility-nav" (click)="contactUs()" style="cursor:pointer">Contact Us</a>
+                </li>
+                <li class="sav-item">
+                    <a class=" utility-nav" (click)="profile()" style="cursor:pointer">Profile</a>
+                </li>
+                <li class="sav-item">
+                    <a class=" utility-nav disabled" (click)="logout()" style="cursor:pointer">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</nav>

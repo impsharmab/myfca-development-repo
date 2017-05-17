@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -61,7 +62,7 @@ public class TileServiceImpl{
 	private final int TT_PROGRAM_ID = 4;
 	private final int TA_PROGRAM_ID = 5;
 	
-	
+	@Cacheable("findTilesListByRole")
 	public @ResponseBody Object findTilesListByRole(String id, String positionCode, String dealerCode, UserDetailsImpl user) {
 
 		int testa = dashService.getRoleByPositionCode(positionCode);
@@ -3007,7 +3008,7 @@ public class TileServiceImpl{
 
 
 
-
+	@Cacheable("findTilesManager")
 	public @ResponseBody Object findTilesManager(String id, String positionCode, String dealerCode, UserDetailsImpl user, String type) {
 		String territory = "";
 		if(type.equals("Participant")){
