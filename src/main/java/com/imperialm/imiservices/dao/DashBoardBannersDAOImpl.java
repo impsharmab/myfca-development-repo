@@ -69,6 +69,7 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 	}
 
 	@Override
+	@Transactional
 	public boolean updateBanner(DashBoardBannersDTO banner, String userId) {
 		boolean result = false;
 		try {
@@ -92,6 +93,7 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 	}
 
 	@Override
+	@Transactional
 	public boolean deleteBanner(int id, String userId) {
 		boolean result = false;
 		try {

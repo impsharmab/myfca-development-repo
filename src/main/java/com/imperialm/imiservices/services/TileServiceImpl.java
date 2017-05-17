@@ -63,19 +63,19 @@ public class TileServiceImpl{
 	private final int TA_PROGRAM_ID = 5;
 	
 	@Cacheable("findTilesListByRole")
-	public @ResponseBody Object findTilesListByRole(String id, String positionCode, String dealerCode, UserDetailsImpl user) {
+	public @ResponseBody Object findTilesListByRole(String id, String positionCode, String dealerCode, String user) {
 
 		int testa = dashService.getRoleByPositionCode(positionCode);
 		String type = "";
 		String BC = "";
-		if(user.getUserId().equals("Dave")){
+		if(user.equals("Dave")){
 			type = "Executive";
 		}else{
 			if( testa == 1 || testa == 3 || testa == 13){
 				type = "Executive";
 			}else if( testa == 12){
 				type = "BC";
-				List<String> bcSet = this.dashService.getUserTerritoyById(user.getUserId());
+				List<String> bcSet = this.dashService.getUserTerritoyById(user);
 				if(bcSet.size() > 0){
 					BC = bcSet.get(0);
 				}
@@ -2982,8 +2982,12 @@ public class TileServiceImpl{
 			}
 			
 			List<Integer> eldealersenrolledcount = this.dashService.getTotalELValidated();
-			if(eldealersenrolledcount.size()>0){
-					expresslane.setTotal(this.formatCurrency(eldealersenrolledcount.get(0)));
+			List<Integer> eldealercount = this.dashService.gettotalDealersEnrolledByProgramGroupID(1);
+			if(eldealersenrolledcount.size()>0 && eldealercount.size()>0){
+				if(eldealercount.get(0) != 0){
+					double percentage = ((double)eldealercount.get(0)/(double)eldealersenrolledcount.get(0))*100;
+					expresslane.setTotal(this.formatCurrency(eldealersenrolledcount.get(0)) + "(" + df.format(percentage) + "%)");
+				}
 			}
 
 			List<Integer> partsCounterdealersenrolledcount = this.dashService.gettotalDealersEnrolledByProgramGroupID(6);
@@ -3009,24 +3013,18 @@ public class TileServiceImpl{
 
 
 	@Cacheable("findTilesManager")
-	public @ResponseBody Object findTilesManager(String id, String positionCode, String dealerCode, UserDetailsImpl user, String type) {
+	public @ResponseBody Object findTilesManager(String id, String positionCode, String dealerCode, String user, String type) {
 		String territory = "";
 		if(type.equals("Participant")){
-			territory = user.getUserId().trim();
+			territory = user.trim();
 		}else if( type.equals("Manager") || type.equals("Dealer")){
 			territory = dealerCode;
 		}else if(type.equals("District")){
 
-			List<String> bcSet = this.dashService.getUserTerritoyById(user.getUserId());
+			List<String> bcSet = this.dashService.getUserTerritoyById(user);
 			if(bcSet.size() > 0){
 				territory = bcSet.get(0);
 			}
-			/*List<String> a= this.dashService.getDistrictByDealerCode(dealerCode);
-			if(a.size() > 0){
-				territory = a.get(0); 
-			}else{
-				return null;
-			}*/
 		}
 
 		//divide the switch statement to functions
@@ -3115,7 +3113,7 @@ public class TileServiceImpl{
 				TotalName mtd = new TotalName("Rewarding Excellence&reg; Card Awards MTD", "$0");
 				TotalName ytd = new TotalName("Rewarding Excellence&reg; Card Awards YTD", "$0");
 
-				List<MyfcaMSERTotalEarningsDetailsDTO> MyfcaMSERTotalEarningsDetailsDTO = this.dashService.getMSERGraphDetailsSUMBySID(user.getUserId(), dealerCode);
+				List<MyfcaMSERTotalEarningsDetailsDTO> MyfcaMSERTotalEarningsDetailsDTO = this.dashService.getMSERGraphDetailsSUMBySID(user, dealerCode);
 				
 				if(MyfcaMSERTotalEarningsDetailsDTO.size() > 0){
 					mtd.setTotal("$" + this.formatCurrency(MyfcaMSERTotalEarningsDetailsDTO.get(0).getEarningsMTD()));
@@ -3134,7 +3132,7 @@ public class TileServiceImpl{
 				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 				
-				List<MyFCAMserRankingDetailsDTO> MSERDetailsDTOlist = this.dashService.getMSERDetailsBySID(user.getUserId().trim(), dealerCode);
+				List<MyFCAMserRankingDetailsDTO> MSERDetailsDTOlist = this.dashService.getMSERDetailsBySID(user.trim(), dealerCode);
 				
 				TotalName rank = new TotalName();
 				rank.setName("Ranking within BC by Rewarding Excellence&reg; Card Awards MTD");
@@ -3809,7 +3807,7 @@ public class TileServiceImpl{
 			if(type.equals("Manager") || type.equals("Dealer")){
 				territory = dealerCode;
 			}else if(type.equals("Participant")){
-				territory = user.getUserId().trim();
+				territory = user.trim();
 			}else if(type.equals("District")){
 				territory = territory.substring(0, 2);
 			}
@@ -4002,9 +4000,9 @@ public class TileServiceImpl{
 			TotalName ttta = new TotalName("Total Top Tech/Top Advisor Points YTD","0");
 			
 			if(type.equals("Participant") || type.equals("Manager")){
-				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.getUserId().trim(), dealerCode);
-				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsCCP = this.dashService.getRewardRedemptionDetailsCCPBySid(user.getUserId().trim(), dealerCode);
-				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTABySid(user.getUserId().trim(), dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionDetailsBySid(user.trim(), dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsCCP = this.dashService.getRewardRedemptionDetailsCCPBySid(user.trim(), dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTABySid(user.trim(), dealerCode);
 				
 				if(RewardRedemptionDetails.size() > 0){
 					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
@@ -4020,7 +4018,7 @@ public class TileServiceImpl{
 			}else if (type.equals("Dealer")){
 				List<RewardRedemptionGraphDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionGraphByChildTerritory(dealerCode);
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsCCP = this.dashService.getRewardRedemptionDetailsCCPByDealer(dealerCode);
-				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTABySid(user.getUserId().trim(), dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTABySid(user.trim(), dealerCode);
 				if(RewardRedemptionDetails.size() > 0){
 					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
 					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
@@ -4045,7 +4043,7 @@ public class TileServiceImpl{
 		case "25":
 		{
 			//check if dealer or not if dealer use dealer if not use sid // need a case for manager
-			String sid = user.getUserId().trim();
+			String sid = user.trim();
 
 			TopTenChart topTenChart = new TopTenChart();
 
@@ -4180,7 +4178,7 @@ public class TileServiceImpl{
 		case "26":
 		{
 			//check if dealer or not if dealer use dealer if not use sid // need a case for manager
-			String sid = user.getUserId();
+			String sid = user;
 			TopTenChart topTenChart = new TopTenChart();
 
 			//TotalName years = new TotalName();
@@ -4283,7 +4281,7 @@ public class TileServiceImpl{
 		case "27":
 		{
 			//check if dealer or not if dealer use dealer if not use sid // need a case for manager
-			String sid = user.getUserId();
+			String sid = user;
 			TopTenChart topTenChart = new TopTenChart();
 
 			TotalName years = new TotalName();
@@ -4358,7 +4356,7 @@ public class TileServiceImpl{
 		case "28":
 		{
 			//check if dealer or not if dealer use dealer if not use sid // need a case for manager
-			String sid = user.getUserId();
+			String sid = user;
 			TopTenChart topTenChart = new TopTenChart();
 
 			//TotalName years = new TotalName();
@@ -4509,7 +4507,7 @@ public class TileServiceImpl{
 		}
 		case "29":
 		{
-			String sid = user.getUserId().trim();
+			String sid = user.trim();
 			TopTenChart topTenChart = new TopTenChart();
 
 			TotalName eligibleSurveys = new TotalName("Eligible Surveys Returned with a Score of 9 or 10 QTD", "0");
@@ -4555,14 +4553,12 @@ public class TileServiceImpl{
 
 				}
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSureveyScore));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(advisorRank));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(trainingCompleted));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(projectedEarnings));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalEarningsYTD));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(advisorRank));
-				
-
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSureveyScore));
 			}else if(type.equals("Dealer") || type.equals("Manager")){
 				DecimalFormat df = new DecimalFormat("0.0");
 				List<String> filters = new ArrayList<String>();
@@ -5145,7 +5141,7 @@ public class TileServiceImpl{
 			}else if(type.equals("Dealer")){
 				sublist = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(dealerCode);
 			}else{				
-				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(user.getUserId().trim(), dealerCode);
+				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(user.trim(), dealerCode);
 			}
 
 			Chart chart = new Chart();

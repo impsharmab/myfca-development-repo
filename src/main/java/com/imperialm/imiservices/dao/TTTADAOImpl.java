@@ -19,7 +19,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class TTTADAOImpl implements TTTADAO {
-	private static Logger logger = LoggerFactory.getLogger(BannerDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(TTTADAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

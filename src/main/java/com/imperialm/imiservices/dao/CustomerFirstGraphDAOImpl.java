@@ -18,7 +18,7 @@ import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 @Repository
 public class CustomerFirstGraphDAOImpl implements CustomerFirstGraphDAO{
 	
-	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CustomerFirstGraphDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

@@ -30,8 +30,6 @@ import com.imperialm.imiservices.dao.SIRewardsDetailsGraphDAO;
 import com.imperialm.imiservices.dao.MyfcaMSERTotalEarningsDAO;
 import com.imperialm.imiservices.dao.TTTAEnrolledDAO;
 import com.imperialm.imiservices.dao.TTTAEnrollmentsDAO;
-import com.imperialm.imiservices.dao.DashboardDAO;
-import com.imperialm.imiservices.dao.MSEREarningsDAO;
 import com.imperialm.imiservices.dao.MyfcaMSERTotalEarningsDetailsDAO;
 import com.imperialm.imiservices.dao.BrainBoostWinndersGraphDAO;	
 import com.imperialm.imiservices.dao.CertProfsExpertGraphDAO;
@@ -80,12 +78,6 @@ public class DashboardServiceImpl {
 	
 	@Autowired
 	private SIRewardsYOYDetailsDAO SIRewardsYOYDetailsDAO;
-	
-	@Autowired
-	private DashboardDAO dashboardDAO;
-	
-	@Autowired
-	private MSEREarningsDAO MSEREarningsDAO;
 	
 	@Autowired
 	private MyfcaMSERTopNDAO MyfcaMSERTopNDAO;
@@ -173,19 +165,6 @@ public class DashboardServiceImpl {
 	
 	@Autowired
 	private MyFCAMserRankingDetailsDAO MyFCAMserRankingDetailsDAO;
-	
-	public List<DashboardDTO> findTilesListByRole(final InputRequest userRoleReq) {
-		return this.dashboardDAO.findTilesListByRole(userRoleReq);
-	}
-
-	
-	public List<DashboardDTO> findTilesByRole(final InputRequest userRoleReq) {
-		return this.dashboardDAO.findTilesByRole(userRoleReq);
-	}
-	
-	public List<MSEREarningsDTO> getEarningsByRole(final InputRequest userRoleReq){
-		 return this.MSEREarningsDAO.getEarningsByRole(userRoleReq);
-	}
 	
 	public List<MyfcaMSERTopNDTO> getMSERTopTen(String type, int rows, String name, String period){
 		 return this.MyfcaMSERTopNDAO.getTopNByType(type, rows, name, period);
@@ -410,10 +389,6 @@ public class DashboardServiceImpl {
 	public List<SIRewardsDetailsGraphDTO> getSIRewardsDetailsGraphByChildTerritoryAndToggle(String territory, String toggle){
 		return this.SIRewardsDetailsGraphDAO.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, toggle);
 	}
-	
-	/*public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCode(String dealerCode){
-		return this.SIRewardsDetailsDAO.getSIRewardsDetailsByDealerCode(dealerCode);
-	}*/
 	
 	public List<SIRewardsDetailsDTO> getSIRewardsDetailsBySID(String sID, String dealerCode, String quarter){
 		return this.SIRewardsDetailsDAO.getSIRewardsDetailsBySID(sID, dealerCode, quarter);

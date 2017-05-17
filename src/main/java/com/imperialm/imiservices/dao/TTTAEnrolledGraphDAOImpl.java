@@ -18,7 +18,7 @@ import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 @Repository
 public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 
-	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(TTTAEnrolledGraphDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

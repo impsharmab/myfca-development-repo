@@ -18,7 +18,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class TTTATopNDAOImpl implements TTTATopNDAO {
-	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(TTTATopNDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

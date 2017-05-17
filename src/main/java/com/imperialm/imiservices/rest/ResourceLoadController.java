@@ -37,7 +37,7 @@ public class ResourceLoadController {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value = "/services/loadrsc", method = RequestMethod.GET)
+	//@RequestMapping(value = "/services/loadrsc", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getImage(@RequestParam("id") final String fileName) throws IOException {
 		RandomAccessFile randonAccFile = null;
 		final HttpHeaders headers = new HttpHeaders();

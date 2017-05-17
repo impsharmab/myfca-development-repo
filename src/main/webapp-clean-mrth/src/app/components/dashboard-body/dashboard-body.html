@@ -79,7 +79,7 @@
     <!--- Row START -->
     <div *ngFor="let rowarray of tilesArray" class="row">
       <div *ngFor="let tile of rowarray; let i = index;" class="{{(rowarray.length%2==1) && (rowarray.length== i+1) ? 'col-sm-6 card':'col-sm card'}}">
-        <div class="image-frame">{{tile.tileName}}<img src="services/loadrsc?id={{tile.tileHeaderImage}}"> </div>
+        <div class="image-frame">{{tile.tileName}}<img src="services/loadrsc/{{tile.tileHeaderImage}}"> </div>
        
         <div class="card-content" *ngIf="tile.type == 'chart'">
          
@@ -125,7 +125,7 @@
           <div class="data-group" *ngFor="let data of contentBody[tile.id].attribute ">
             <p class="data-point" *ngIf="emptyBadge(data.badgeUrl) " [innerHtml]="data.value"></p>
             <p class="data-substitle" *ngIf="emptyBadge(data.badgeUrl) " [innerHtml]="data.name"></p>
-            <p class="data-substitle" *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc?id={{data.badgeUrl}} "></p>
+            <p class="data-substitle" *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc/{{data.badgeUrl}} "></p>
             <p class="data-substitle">{{data.badgeTitle}}</p>
           </div>
 

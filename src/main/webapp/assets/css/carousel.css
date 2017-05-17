@@ -15,7 +15,8 @@ body {
 /* Carousel base class */
 .carousel {
    margin-bottom: 2rem;
-   margin-top: 3.875rem;
+   margin-top: 128px;
+   /*margin-top: 3.875rem;*/
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -38,6 +39,7 @@ body {
   min-width: 100%;*/
   background-color: #f1f1f1;
   object-fit:contain;
+  object-position: 100 0 !important;
   height: auto;
   margin-top: -15 !important;
 }
@@ -91,29 +93,36 @@ body {
   }
 }
 
+.carousel-item.active[style],
+.carousel-item-next[style],
+.carousel-item-prev[style] {
+  display: block !important;
+}
+
+
 @media (min-width: 62em) {
   .featurette-heading {
     margin-top: 7rem;
   }
+}
   @media screen and (min-width: 964px){
   ngb-carousel.carousel.slide {
     margin-top:3.9rem;
   }
  
 }
- 
-@media screen and (min-width: 768px) and (max-width:964px){
-  ngb-carousel.carousel.slide {
-    margin-top: 8.4rem;
+
+@media screen and (max-width:822px) {
+  .navbar {
+    padding:16px 20px !important;
   }
- 
 }
+ 
+
  
 @media screen and (min-width: 340px) and (max-width:767px){
   ngb-carousel.carousel.slide {
     margin-top: 6.8rem;
   }
  
-}
-
 }

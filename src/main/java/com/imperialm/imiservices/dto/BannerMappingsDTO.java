@@ -11,6 +11,10 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 public class BannerMappingsDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8527257748761720900L;
 	@Id private int bannerMappingID;
 	@Id private int bannerID;
 	@Id private int roleID;

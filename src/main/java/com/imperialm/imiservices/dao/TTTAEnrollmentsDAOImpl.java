@@ -20,7 +20,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 	
-	private static Logger logger = LoggerFactory.getLogger(BannerDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(TTTAEnrollmentsDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

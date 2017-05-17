@@ -17,7 +17,7 @@ import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
 
 @Repository
 public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDAO {
-	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(BrainBoostWinndersGraphDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

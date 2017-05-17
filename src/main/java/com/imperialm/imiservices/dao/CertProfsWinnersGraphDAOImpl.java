@@ -21,7 +21,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class CertProfsWinnersGraphDAOImpl implements CertProfsWinnersGraphDAO {
 
-	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(CertProfsWinnersGraphDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

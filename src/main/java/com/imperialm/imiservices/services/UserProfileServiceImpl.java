@@ -104,12 +104,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 			this.userTiles.add(new NoTile(37,"","tile", "","MSEREnrollment.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=" + dc,MSER_RULES));
 		}
 		
-		
+		//cert-pro-banners
 		if(tile3.contains(positionCode)){
-			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-banner.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-experts.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
 			}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-banner.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-experts.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
 			}
 		
 		if(tile5.contains(positionCode)){
@@ -124,7 +124,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}
 		
 		if(tile8.contains(positionCode)){
-			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts.jpg","",""));
+			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts-ram.jpg","",""));
 			}
 		
 		if(tile9.contains(positionCode)){
@@ -207,11 +207,17 @@ public class UserProfileServiceImpl implements UserProfileService {
 			
 		*/
 		if(tile25.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
+			//this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
+			NoTile rr = new NoTile(30,"","tile", "","Retention.jpg","",RETENTION_RULES);
+			rr.setProgramRules("Tile Information");
+			this.userTiles.add(rr);
 			}
 			
 			if(tile26.contains(positionCode) || user.getUserId().toLowerCase().equals("dave") || user.getUserId().toLowerCase().equals("T1894DS".toLowerCase()) || user.getUserId().toLowerCase().equals("T0725BH".toLowerCase())){ 
-			this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
+			//this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
+			NoTile rr = new NoTile(31,"","chart", "","Retention.jpg","",RETENTION_RULES);
+			rr.setProgramRules("Tile Information");
+			this.userTiles.add(rr);
 			}
 		
 		return userTiles;

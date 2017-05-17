@@ -9,11 +9,11 @@ import { UploadImageInterface } from './admin-uploadImage.interface'
 
 declare var $: any;
 @Component({
-    moduleId: module.id, 
+    moduleId: module.id,
     selector: "app-admin",
     templateUrl: "./admin.html",
-    styleUrls:["./admin.css", "./magicsuggest-min.css"]
-   
+    styleUrls: ["./admin.css", "./magicsuggest-min.css"]
+
 })
 export class AdminComponent implements OnInit {
     private positioncode: any;
@@ -33,6 +33,7 @@ export class AdminComponent implements OnInit {
     private allBannerTableData: any = [];
     private editBannerDatum: any = {};
     private deleteBannerDatum: any = {}
+    private role: string = "";
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
 
     ngOnInit() {
@@ -60,7 +61,7 @@ export class AdminComponent implements OnInit {
         this.getRoles();
         this.getAdminData();
         this.getImageList(self);
-        
+
         $('#accordion').collapse({
             toggle: false
         });
@@ -104,11 +105,38 @@ export class AdminComponent implements OnInit {
             })
         });
     }
+    private constructRoles(roleID) {
+        if (roleID == 1) {
+            return "Executive"
+        } else if (roleID == 12) {
+            return "BC"
+        } else if (roleID == 11) {
+            return "BC"
+        } else if (roleID == 11) {
+            return "District Manager"
+        } else if (roleID == 10) {
+            return "Dealer"
+        } else if (roleID == 5) {
+            return "Manager"
+        } else if (roleID == 9) {
+            return "Participants"
+        }
+        debugger;
+    }
 
     private getAllBannerData() {
+        debugger
         this.adminService.getAllBannerData().subscribe(
             (allBannerTableData) => {
-                this.allBannerTableData = allBannerTableData;               
+                this.allBannerTableData = allBannerTableData;
+                // for (var i = 0; i < allBannerTableData.length; i++) {
+                //     console.log(allBannerTableData[i].roleID)
+                //     this.constructRoles(allBannerTableData[i].roleID);
+                // }
+
+            },
+            (error) => {
+                alert("error")
             }
         )
     }
@@ -122,7 +150,7 @@ export class AdminComponent implements OnInit {
             }
             )
         }
-        
+
 
         $("#project").autocomplete({
             allowFreeEntries: false,
@@ -134,8 +162,8 @@ export class AdminComponent implements OnInit {
             },
             select: function (event, ui) {
                 $("#project").val(ui.item.label);
-                $("#project-id").val(ui.item.value);                
-                $("#project-icon").attr("src", "./services/loadrsc?id=" + ui.item.icon);
+                $("#project-id").val(ui.item.value);
+                $("#project-icon").attr("src", "./services/loadrsc/" + ui.item.icon);
                 return false;
             }
         })
@@ -149,7 +177,7 @@ export class AdminComponent implements OnInit {
     getImageList(self) {
         this.adminService.getImageList().subscribe(
             (imagelist) => {
-                this.imagelist = imagelist;              
+                this.imagelist = imagelist;
                 self.testMethod();
             }
         )
@@ -192,17 +220,17 @@ export class AdminComponent implements OnInit {
     getAdminData() {
         this.adminService.getAdminData().subscribe(
             (adminData) => {
-                this.adminData = adminData.permissions;                
+                this.adminData = adminData.permissions;
             }
         )
     }
-    
+
     emulateUser() {
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
             (emulateUserData) => {
                 this.emulateUserData = emulateUserData;
                 debugger
-               
+
                 if (emulateUserData["item"].length > 0) {
                     var adminToken = this.cookieService.get("token");
                     this.cookieService.put("adminToken", adminToken);
@@ -210,19 +238,15 @@ export class AdminComponent implements OnInit {
                     let url = ["login"]
                     this.router.navigate(url);
                 }
-
             }
         )
-
-
     }
-
     endEmulateUser() {
         this.cookieService.get("adminToken")
         this.adminService.setEndEmulateUserData(this.endEmulateUserData);
         var poscodes: any = this.emulateUserData.positionCode;
         var delcodes: any = this.emulateUserData.dealerCode;
-       
+
         sessionStorage.setItem("selectedCodeData", JSON.stringify(
             {
                 "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
@@ -237,7 +261,7 @@ export class AdminComponent implements OnInit {
             for (var j = 0; j < this.uploadImage.selectedRoleId.length; j++) {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
                     (addBannerData) => {
-                        this.addBannerData = addBannerData;                       
+                        this.addBannerData = addBannerData;
                     },
                     (error) => {
                         alert("Error in uploading images");
@@ -252,14 +276,24 @@ export class AdminComponent implements OnInit {
         debugger
         this.adminService.editBannerData(editBannerObj).subscribe(
             (editBannerDatum) => {
-                this.editBannerDatum = editBannerDatum;               
+                this.editBannerDatum = editBannerDatum;
             }
         )
     }
 
     private deleteBannerData(dashBoardBannersID: any) {
-        this.adminService.deleteBannerData(dashBoardBannersID)
-        
+        debugger;
+        this.adminService.deleteBannerData(dashBoardBannersID).subscribe(
+            (deleteBannerDatum) => {
+                this.deleteBannerDatum = deleteBannerDatum;
+                alert(deleteBannerDatum)
+                alert(this.deleteBannerDatum)
+            },
+            (error) => {
+                alert("error in deleting banner");
+            }
+        )
+
     }
 
 }

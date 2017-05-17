@@ -11,6 +11,10 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 public class Banner2DTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2972672666811681849L;
 	@Id private int bannerID;
 	@Id private int name;
 	@Id private int fileName;

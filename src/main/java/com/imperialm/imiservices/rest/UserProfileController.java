@@ -37,9 +37,6 @@ public class UserProfileController {
 	@Value("${jwt.header}")
 	private String tokenHeader;
 
-	/*@Autowired
-	private UserServiceImpl userService;*/
-
 	@Autowired
 	private UserDAOImpl userDAOImpl;
 

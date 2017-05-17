@@ -72,7 +72,7 @@ public class DashboardController {
 			//token is expired/invalid token
 			return "Failed to check Token";
 		}
-		return tileService.findTilesListByRole(id, positionCode, dealerCode, user);
+		return tileService.findTilesListByRole(id, positionCode, dealerCode, user.getUserId().trim());
 	}
 
 }

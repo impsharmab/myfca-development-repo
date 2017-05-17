@@ -5,19 +5,20 @@
  *
  * Made By MaterializeCSS.com
  */
-.highchart-size{
-   min-width: 450px; 
-   max-width: 605px; 
-   min-height: 460px; 
-   max-height: 605px;
-   margin: 0 auto
-}
 
+.highchart-size {
+    min-width: 450px;
+    max-width: 605px;
+    min-height: 460px;
+    max-height: 605px;
+    margin: 0 auto
+}
 /*replced nav with sav to overcome overriden from top -10 tab*/
 
 .sav {
     display: block;
     /*float: left;*/
+    
     width: 100%;
     height: 25px;
     font-size: .75em;
@@ -26,6 +27,7 @@
     height: 25px;
     display: block;
     /*float: right;*/
+    
     text-align: right;
 }
 .sav-utility {
@@ -37,55 +39,52 @@
 .sav-utility .sav-item {
     width: auto;
     /*float: left;*/
+    
     font-size: .75em;
-    Display:inline-block;
+    Display: inline-block;
 }
 .sav-utility .sav-item {
-Float:none;
-
+    Float: none;
 }
-
 .sav .active {
     font-weight: bold;
 }
 .utility-nav {
     padding: 6px;
-   
 }
 /*replced nav with sav to overcome overriden from top -10 tab*/
 /*.highcharts-drillup-button {
     color:red;
 }*/
-.export-to-excel{
+
+.export-to-excel {
     border: 1px solid transparent;
     line-height: 1.25;
     background-color: #5bc0de;
     border-color: #2aabd2;
     color: #fff !important;
-	padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
     margin: 2;
-	border-radius: 0.25rem;
+    border-radius: 0.25rem;
     cursor: pointer;
-    font-family: Helvetica, Arial, sans-serif; 
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 15;
 }
-.footerCopyright{
-   width: 960px !important; 
-   font-size: 10px; 
-   text-align: center !important;
+.footerCopyright {
+    width: 960px !important;
+    font-size: 10px;
+    text-align: center !important;
 }
-.getstarted-button{
+.getstarted-button {
     border: 1px solid transparent;
     line-height: 1.25;
     background-color: #5bc0de;
     border-color: #2aabd2;
     color: #fff !important;
-	padding: 0.5rem 1rem;
-	border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
     cursor: pointer;
-    
 }
-
 body {
     background-color: #f1f1f1!important;
 }
@@ -94,11 +93,12 @@ body {
 }
 nav .brand-logo {
     color: #444;
-    display: block;
+    display: inline-block;
+    /*display: block;*/
     /*float: left;
     width: 400px;*/
 }
-.nav { 
+.nav {
     float: right;
 }
 nav .nav-item {
@@ -107,13 +107,14 @@ nav .nav-item {
 .brand-logo img {
     /*width: 100%;
     height: auto;*/
-    width:auto;
-    height:70px;
-
+    
+    width: auto;
+    height: 4em;
 }
 .navbar-header {
     /*float: right;
     width: 400px;*/
+    
     text-align: right;
 }
 .navbar-toggleable-md > .container {
@@ -164,8 +165,9 @@ p {} .button-collapse {
     color: #fff !important;
     display: inline-block;
     /*font-size: 40px;*/
+    
     margin: 0;
-    margin-top:65;
+    margin-top: 65;
     vertical-align: middle;
     /*margin-left: -175;*/
 }
@@ -268,6 +270,17 @@ h2 {
     text-align: right;
     margin: 20px 0px 0px 0px;
 }
+@media screen and (min-width: 665px) {
+    .sav-utility {
+        text-align: right;
+    }
+}
+@media screen and (max-width: 662px) {
+    .sav-utility {
+        display: block;
+        text-align: left;
+    }
+}
 @media only screen and (max-width: 992px) {
     .parallax-container .section {
         position: absolute;
@@ -282,6 +295,31 @@ h2 {
         top: 0;
     }
 }
+@media screen and (max-width: 648px) {
+    .data-group {
+        Width: 100%;
+        Margin: 10px 0;
+    }
+    .display-data-set {
+        Float: none;
+        Padding: 10px;
+    }
+    .btn-group-sm>.btn,
+    .btn-sm {
+        Margin: 1px;
+    }
+    footer.page-footer {
+        Padding: 20px;
+    }
+    .card .card-action {
+        /*position:absolute;*/
+    }
+    .fix[] {
+        Right: 8% !important;
+        Left: none !important;
+        Bottom: 8% !important;
+    }
+}
 .icon-block {
     padding: 0 15px;
 }
@@ -293,7 +331,8 @@ footer.page-footer {
 }
 .data-substitle {
     font-size: .7em;
-    color: !important;
+    /*color: !important;*/
+    
     text-align: center;
 }
 .image-frame {
@@ -304,7 +343,7 @@ footer.page-footer {
 .image-frame img {
     text-align: left;
     float: left;
-    height:40px;
+    height: 40px;
 }
 .data-point {
     font-size: 1.4em;
@@ -383,9 +422,11 @@ footer.page-footer {
 
 .extra-links {
     /*background-color: #536ea4;*/
+    
     border: 1px solid #fff !important;
     /*padding: 15px;*/
-    background:none;
+    
+    background: none;
     padding: initial;
     /*border:none;*/
 }
@@ -405,6 +446,7 @@ footer.page-footer .footer-copyright {
     color: rgba(255, 255, 255, 0.8);
     height: 50px;
     /*line-height: 50px;*/
+    
     line-height: inherit;
     overflow: hidden;
 }

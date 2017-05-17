@@ -33,6 +33,9 @@ public class AdminController {
 
 	@Autowired
 	private DashBoardBannersDAO dashBoardBannersDAO;
+	
+	@Autowired
+	private com.imperialm.imiservices.config.IMIServiceSecutiryConfig IMIServiceSecutiryConfig;
 
 
 	@RequestMapping(value = "/services/admin/emulate/{id}", method = RequestMethod.GET)
@@ -61,6 +64,12 @@ public class AdminController {
 		}
 		return tokenToPass;
 	}
+	
+	@RequestMapping(value = "/services/admin/resetcache", method = RequestMethod.GET)
+	public @ResponseBody Object resetcache(HttpServletRequest request) {
+			IMIServiceSecutiryConfig.resetCache();
+			return "Cache reset";
+		}
 
 	@RequestMapping(value = "/services/admin/banner/delete/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody Object deleteBanner(@PathVariable(value="id") int id, HttpServletRequest request) {

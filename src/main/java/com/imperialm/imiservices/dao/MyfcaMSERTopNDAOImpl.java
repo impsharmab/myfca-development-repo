@@ -21,7 +21,7 @@ import com.imperialm.imiservices.util.IMIServicesUtil;
 @Repository
 public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 	
-	private static Logger logger = LoggerFactory.getLogger(TilesDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(MyfcaMSERTopNDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;

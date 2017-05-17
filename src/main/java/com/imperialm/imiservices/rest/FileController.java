@@ -23,6 +23,9 @@ public class FileController {
 
 	@Value("${images.shared.folder.banner}")
 	private String imagePath;
+	
+	@Value("${images.shared.folder}")
+	private String imagesSharedFolder;
 
 	@RequestMapping(value="/services/files/imageUpload", method = RequestMethod.POST)
 	public ResponseEntity<?> UploadFile(MultipartHttpServletRequest request) throws IOException {
@@ -71,6 +74,11 @@ public class FileController {
 	@ResponseBody
 	public FileSystemResource getFile(@PathVariable("file_name") String fileName) {
 		return new FileSystemResource(imagePath + fileName);
+	}
+	
+	@RequestMapping(value = "/services/loadrsc/{file_name:.+}", method = RequestMethod.GET)
+	public FileSystemResource getImage(@PathVariable("file_name") String fileName) {
+		return new FileSystemResource(imagesSharedFolder + fileName);
 	}
 
 

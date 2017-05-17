@@ -12,13 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.imperialm.imiservices.dto.BannersDTO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.dto.request.InputRequest;
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
 import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
 import com.imperialm.imiservices.security.JwtTokenUtil;
@@ -45,12 +42,6 @@ public class BannerController {
 
 	@Autowired
 	private DealerPersonnelPositionsDAO DealerPersonnelPositionsDAO;
-
-	@RequestMapping(value = "/services/bannersbyrole", method = RequestMethod.GET)
-	public @ResponseBody List<BannersDTO> findBannersByRole(@RequestParam("role") final Long roleId) {
-		final InputRequest userRoleReq = new InputRequest(roleId);
-		return this.bannerService.findBannersByRole(userRoleReq);
-	}
 
 	@RequestMapping(value = "/services/banners/{positionCode}/{dealerCode}/", method = RequestMethod.GET)
 	public @ResponseBody Object getBanner(@PathVariable(value="dealerCode") String dealerCode,@PathVariable(value="positionCode") String positionCode, HttpServletRequest request) {

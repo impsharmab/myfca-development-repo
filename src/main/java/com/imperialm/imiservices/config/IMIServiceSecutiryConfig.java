@@ -74,7 +74,7 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     private AuthenticationEntryPoint unauthorizedHandler = new JwtAuthenticationEntryPoint();
     
     @Scheduled(fixedRateString = 480 * 60 * 1000 + "", initialDelayString = "100") // reset cache every hr, with delay of 1hr after app start
-    public void reportCurrentTime() {
+    public void resetCache() {
     	//CacheManager cacheManager = cacheManager();
     	cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
     	System.out.println("Flush Cache NEW " + new Date().toString());
