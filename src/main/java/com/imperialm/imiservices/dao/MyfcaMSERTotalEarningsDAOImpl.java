@@ -204,6 +204,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getMSERGraphNumberOfDealersEnrolledByBC_DistrictAndToggle")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphNumberOfDealersEnrolledByBC_DistrictAndToggle(String territory,
@@ -224,6 +225,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram")
 	public List<MyfcaMSERTotalEarningsDTO> getMSERGraphProgramsSUMByParentTerritoryAndToggleAndProgram(String territory,

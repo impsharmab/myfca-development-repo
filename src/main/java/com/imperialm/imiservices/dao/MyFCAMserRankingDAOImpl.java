@@ -14,7 +14,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
 
 @Repository
 public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
@@ -24,6 +23,7 @@ public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getMSERDetailsGraphByParent")
 	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByParent(String territory) {
@@ -42,6 +42,7 @@ public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getMSERDetailsGraphByChild")
 	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByChild(String territory) {

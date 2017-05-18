@@ -22,6 +22,7 @@ public class CertProfsExpertDetailsDAOImpl implements CertProfsExpertDetailsDAO{
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsByDealerCodeANDCertType(String dealerCode,
 			String certType) {
@@ -41,6 +42,7 @@ public class CertProfsExpertDetailsDAOImpl implements CertProfsExpertDetailsDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsBySIDANDCertType(String sid, String certType, String dealerCode) {
 		List<CertProfsExpertDetailsDTO> result = new ArrayList<CertProfsExpertDetailsDTO>();
@@ -60,6 +62,7 @@ public class CertProfsExpertDetailsDAOImpl implements CertProfsExpertDetailsDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySID(String sid, String dealerCode) {
 		List<CertProfsExpertDetailsDTO> result = new ArrayList<CertProfsExpertDetailsDTO>();
@@ -78,6 +81,7 @@ public class CertProfsExpertDetailsDAOImpl implements CertProfsExpertDetailsDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMByDealerCode(String dealerCode) {
 		List<CertProfsExpertDetailsDTO> result = new ArrayList<CertProfsExpertDetailsDTO>();

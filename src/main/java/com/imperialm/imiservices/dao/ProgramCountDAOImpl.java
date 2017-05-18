@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -20,6 +21,8 @@ public class ProgramCountDAOImpl {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
+	@Cacheable(value="totalDealersEnrolledByProgramID")
 	public List<Integer> totalDealersEnrolledByProgramID(int programId){
 		List<Integer> result = new ArrayList<Integer>();
 
@@ -37,6 +40,8 @@ public class ProgramCountDAOImpl {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Cacheable(value="totalDealersByProgramID")
 	public List<Integer> totalDealersByProgramID(int programId){
 		List<Integer> result = new ArrayList<Integer>();
 
@@ -54,6 +59,8 @@ public class ProgramCountDAOImpl {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Cacheable(value="totalDealersEnrolledByProgramIDAndTerritory")
 	public List<Integer> totalDealersEnrolledByProgramID(int programId, String territory){
 		List<Integer> result = new ArrayList<Integer>();
 
@@ -72,7 +79,8 @@ public class ProgramCountDAOImpl {
 		return result;
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	@Cacheable(value="totalDealersEnrolledByProgramGroupID")
 	public List<Integer> totalDealersEnrolledByProgramGroupID(int programId){
 		List<Integer> result = new ArrayList<Integer>();
 
@@ -90,6 +98,8 @@ public class ProgramCountDAOImpl {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Cacheable(value="totalDealersByProgramGroupID")
 	public List<Integer> totalDealersByProgramGroupID(int programId){
 		List<Integer> result = new ArrayList<Integer>();
 
@@ -107,6 +117,8 @@ public class ProgramCountDAOImpl {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Cacheable(value="totalParticipantsEnrolledByProgramIDAndDealerCode")
 	public List<Integer> totalParticipantsEnrolledByProgramIDAndDealerCode(int programId, String dealerCode){
 		List<Integer> result = new ArrayList<Integer>();
 
@@ -126,6 +138,8 @@ public class ProgramCountDAOImpl {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
+	@Cacheable(value="getTotalELValidated")
 	public List<Integer> getTotalELValidated(){
 		List<Integer> result = new ArrayList<Integer>();
 

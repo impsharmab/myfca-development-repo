@@ -2,7 +2,6 @@ package com.imperialm.imiservices.dao;
 
 import java.util.List;
 
-import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
 import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 
 public interface CertProfsWinnersGraphDAO {

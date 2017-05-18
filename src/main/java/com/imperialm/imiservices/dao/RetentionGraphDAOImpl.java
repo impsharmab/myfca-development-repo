@@ -82,6 +82,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getRetentionGraphByChildTerritoryListAndPositionCode")
 	public List<RetentionGraphDTO> getRetentionGraphByChildTerritoryListAndPositionCode(List<String> list,
@@ -102,6 +103,7 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getRetentionGraphByChildTerritoryAndPositionCode")
 	public List<RetentionGraphDTO> getRetentionGraphByChildTerritoryListAndPositionCode(String list,

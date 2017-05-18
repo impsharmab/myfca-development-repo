@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.DashBoardBannersDTO;
@@ -24,7 +25,9 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getBannersByRole")
 	public List<ImagesDTO> getBannersByRole(int roleId, String territory) {
 		List<ImagesDTO> result = new ArrayList<ImagesDTO>();
 		try {
@@ -40,6 +43,7 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<DashBoardBannersDTO> getAllBannersForAdmin() {
 		List<DashBoardBannersDTO> result = new ArrayList<DashBoardBannersDTO>();
@@ -54,6 +58,7 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ImagesDTO> getAllBanners() {
 		List<ImagesDTO> result = new ArrayList<ImagesDTO>();

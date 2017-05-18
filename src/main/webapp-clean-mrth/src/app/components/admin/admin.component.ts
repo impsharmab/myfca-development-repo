@@ -12,7 +12,7 @@ declare var $: any;
     moduleId: module.id,
     selector: "app-admin",
     templateUrl: "./admin.html",
-    styleUrls: ["./admin.css", "./magicsuggest-min.css"]
+    styleUrls: ["./admin.css"]
 
 })
 export class AdminComponent implements OnInit {
@@ -129,14 +129,9 @@ export class AdminComponent implements OnInit {
         this.adminService.getAllBannerData().subscribe(
             (allBannerTableData) => {
                 this.allBannerTableData = allBannerTableData;
-                // for (var i = 0; i < allBannerTableData.length; i++) {
-                //     console.log(allBannerTableData[i].roleID)
-                //     this.constructRoles(allBannerTableData[i].roleID);
-                // }
-
             },
             (error) => {
-                alert("error")
+                alert("error in getting banner data")
             }
         )
     }
@@ -153,7 +148,11 @@ export class AdminComponent implements OnInit {
 
 
         $("#project").autocomplete({
-            allowFreeEntries: false,
+            change: function (event, ui) {
+                if (!ui.item) {
+                    $("#project").val("");
+                }
+            },
             minLength: 0,
             source: this.projects,
             focus: function (event, ui) {
@@ -257,6 +256,18 @@ export class AdminComponent implements OnInit {
     }
 
     addBannerImage() {
+        debugger
+        if (this.uploadImage.selectedRoleId.length == 0) {
+            return false;
+        } else if (this.uploadImage.bc.length == 0) {
+            return false;
+        } else if (this.uploadImage.orderBy == undefined) {
+            return false;
+        } else if (this.uploadImage.orderBy.toString() == "") {
+            return false;
+        } else if (this.uploadImage.image.length == 0) {
+            return false;
+        }
         for (var i = 0; i < this.uploadImage.bc.length; i++) {
             for (var j = 0; j < this.uploadImage.selectedRoleId.length; j++) {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
@@ -286,8 +297,7 @@ export class AdminComponent implements OnInit {
         this.adminService.deleteBannerData(dashBoardBannersID).subscribe(
             (deleteBannerDatum) => {
                 this.deleteBannerDatum = deleteBannerDatum;
-                alert(deleteBannerDatum)
-                alert(this.deleteBannerDatum)
+                this.getAllBannerData();
             },
             (error) => {
                 alert("error in deleting banner");

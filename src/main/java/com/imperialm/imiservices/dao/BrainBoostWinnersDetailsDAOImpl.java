@@ -22,6 +22,7 @@ public class BrainBoostWinnersDetailsDAOImpl implements BrainBoostWinnersDetails
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsByDealerCode(String dealerCode, String toggle) {
 		List<BrainBoostWinnersDetailsDTO> result = new ArrayList<BrainBoostWinnersDetailsDTO>();
@@ -40,7 +41,7 @@ public class BrainBoostWinnersDetailsDAOImpl implements BrainBoostWinnersDetails
 		return result;
 	}
 
-	@SuppressWarnings("unused")
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsBySID(String sID, String toggle, String dealerCode) {
 		List<BrainBoostWinnersDetailsDTO> result = new ArrayList<BrainBoostWinnersDetailsDTO>();
@@ -60,6 +61,7 @@ public class BrainBoostWinnersDetailsDAOImpl implements BrainBoostWinnersDetails
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsSUMByDealerCode(String sID, String toggle) {
 		List<BrainBoostWinnersDetailsDTO> result = new ArrayList<BrainBoostWinnersDetailsDTO>();

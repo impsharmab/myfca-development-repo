@@ -14,7 +14,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
-import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class RewardRedemptionGraphDAOImpl implements RewardRedemptionGraphDAO{
@@ -81,6 +80,7 @@ public class RewardRedemptionGraphDAOImpl implements RewardRedemptionGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getRewardRedemptionGraphByChildTerritory")
 	public List<RewardRedemptionGraphDTO> getRewardRedemptionGraphByChildTerritory(String list) {

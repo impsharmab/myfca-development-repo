@@ -1,13 +1,7 @@
-/**
- *
- */
 package com.imperialm.imiservices.config;
 
-import java.text.DateFormat;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
-
-import javax.annotation.Resource;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,43 +10,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.concurrent.ConcurrentMapCache;
-import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
-import org.springframework.security.web.authentication.RememberMeServices;
-import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.imperialm.imiservices.filters.IMIServicesFilter;
 import com.imperialm.imiservices.security.JwtAuthenticationEntryPoint;
 import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
 import com.imperialm.imiservices.security.JwtDaoAuthenticationProvider;
-import com.imperialm.imiservices.services.UserService;
 import com.imperialm.imiservices.services.UserServiceImpl;
 
-/**
- * @author Dheerajr
- *
- */
+
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackages = "com.imperialm.imiservices")
@@ -73,11 +50,15 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler = new JwtAuthenticationEntryPoint();
     
-    @Scheduled(fixedRateString = 480 * 60 * 1000 + "", initialDelayString = "100") // reset cache every hr, with delay of 1hr after app start
+    @Scheduled(fixedRateString = 480 * 60 * 1000 +"", initialDelayString = "120000") // reset cache every hr, with delay of 1hr after app start
     public void resetCache() {
     	//CacheManager cacheManager = cacheManager();
-    	cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
-    	System.out.println("Flush Cache NEW " + new Date().toString());
+    	Collection<String> cacheNames = cacheManager.getCacheNames();
+    	for(String cache: cacheNames){
+    		cacheManager.getCache(cache).clear();
+    	}
+    	//cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
+    	System.out.println("Flush Cache" + new Date().toString());
     }
     
     @Bean @Qualifier("JwtAuthenticationTokenFilter")

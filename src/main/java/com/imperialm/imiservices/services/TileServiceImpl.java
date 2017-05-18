@@ -40,7 +40,6 @@ import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
 import com.imperialm.imiservices.dto.TTTATopNDTO;
-import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
 import com.imperialm.imiservices.model.TileAttribute1;
@@ -456,15 +455,15 @@ public class TileServiceImpl{
 				ytdearnings = listYTD.get(0).getEarnings();
 			}
 
-			mtd.setName("Total Uconnect Navigation Activation Earnings MTD");
-			ytd.setName("Total Uconnect Navigation Activation Earnings YTD");
+			mtd.setName("Total Uconnect Navigation Activation Earnings - MTD");
+			ytd.setName("Total Uconnect Navigation Activation Earnings - YTD");
 			mtd.setTotal("$" + this.formatCurrency(mtdearnings));
 			ytd.setTotal("$" + this.formatCurrency(ytdearnings));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
 			
 			TotalName nav = new TotalName();
-			nav.setName("Total Uconnect Navigation Activations MTD");
+			nav.setName("Total Uconnect Navigation Activations - MTD");
 			nav.setTotal("$0");
 			List<MyfcaMSERTopNDTO> listELPMTD = this.dashService.getMSERTopTen("TotalCount", 3, "Uconnect-NAVACT", "MTD");
 			if(listELPMTD.size()>0){
@@ -2977,7 +2976,7 @@ public class TileServiceImpl{
 			if(dealerscount.size()>0 && dealersenrolledcount.size()>0){
 				if(dealerscount.get(0) != 0){
 					double percentage = ((double)dealersenrolledcount.get(0)/(double)dealerscount.get(0))*100;
-					mser.setTotal(this.formatCurrency(dealersenrolledcount.get(0)) + "(" + df.format(percentage) +"%)");
+					mser.setTotal(this.formatCurrency(dealersenrolledcount.get(0)) + " (" + df.format(percentage) +"%)");
 				}
 			}
 			
@@ -2986,7 +2985,7 @@ public class TileServiceImpl{
 			if(eldealersenrolledcount.size()>0 && eldealercount.size()>0){
 				if(eldealercount.get(0) != 0){
 					double percentage = ((double)eldealercount.get(0)/(double)eldealersenrolledcount.get(0))*100;
-					expresslane.setTotal(this.formatCurrency(eldealersenrolledcount.get(0)) + "(" + df.format(percentage) + "%)");
+					expresslane.setTotal(this.formatCurrency(eldealersenrolledcount.get(0)) + " (" + df.format(percentage) + "%)");
 				}
 			}
 
@@ -2994,13 +2993,13 @@ public class TileServiceImpl{
 			if(dealersenrolledcount.size()>0 && partsCounterdealersenrolledcount.size()>0){
 				if(dealersenrolledcount.get(0) != 0){
 					double percentage = ((double)partsCounterdealersenrolledcount.get(0)/(double)dealersenrolledcount.get(0))*100;
-					partsCounter.setTotal(this.formatCurrency(partsCounterdealersenrolledcount.get(0)) + "(" + df.format(percentage) +"%)");
+					partsCounter.setTotal(this.formatCurrency(partsCounterdealersenrolledcount.get(0)) + " (" + df.format(percentage) +"%)");
 				}
 			}
 
-			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mser));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(expresslane));
 			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(partsCounter));
+			topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mser));
 
 			return topTenChart;
 		}

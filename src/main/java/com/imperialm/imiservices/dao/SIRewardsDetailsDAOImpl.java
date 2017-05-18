@@ -81,6 +81,7 @@ public class SIRewardsDetailsDAOImpl implements SIRewardsDetailsDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(String dealerCode,
 			String toggle, String quarter, String positionCode) {
@@ -101,6 +102,7 @@ public class SIRewardsDetailsDAOImpl implements SIRewardsDetailsDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(String dealerCode,
 			String toggle, String quarter, List<String> positionCode) {
@@ -121,6 +123,7 @@ public class SIRewardsDetailsDAOImpl implements SIRewardsDetailsDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsDetailsDTO> getSIRewardsDetailsByDealerCodeAndToggleAndPositionCode(List<String> dealerCode,
 			String toggle, String quarter, List<String> positionCode) {

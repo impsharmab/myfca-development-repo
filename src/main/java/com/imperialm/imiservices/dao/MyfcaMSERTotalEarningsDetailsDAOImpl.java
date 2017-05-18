@@ -10,11 +10,10 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
-import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
 import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDetailsDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
 import com.imperialm.imiservices.model.response.TotalName;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -25,6 +24,7 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getMSERDealersCount() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -48,6 +48,7 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getDealersCountWithPercentage(){
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -71,6 +72,7 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getMTDByProgramAndProgramgroup(String name, String program, String programgroup) {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -98,6 +100,7 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getYTDByProgramAndProgramgroup(String name, String program, String programgroup) {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -125,6 +128,7 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getExcellanceCardAwardYTDNAT() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -148,6 +152,7 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getExcellanceCardAwardMTDNAT() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -171,6 +176,7 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getMSEREnrolledDealersCount() {
 		// TODO Auto-generated method stub 
@@ -195,7 +201,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSEREarningsYTDByBCOrDistrict")
 	public TotalName getMSEREarningsYTDByBCOrDistrict(String territory) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
@@ -219,7 +227,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSEREarningsMTDByBCOrDistrict")
 	public TotalName getMSEREarningsMTDByBCOrDistrict(String territory) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
@@ -243,7 +253,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSERDealersCountByBCOrDistrict")
 	public TotalName getMSERDealersCountByBCOrDistrict(String territory) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
@@ -269,7 +281,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSERParticipantEnrolledByDealerCode")
 	public TotalName getMSERParticipantEnrolledByDealerCode(String dealerCode) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
@@ -293,7 +307,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getParticipantExcellanceCardAwardMTDBySIDandDealer")
 	public TotalName getParticipantExcellanceCardAwardMTD(String sid, String dealerCode) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
@@ -318,7 +334,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getParticipantExcellanceCardAwardYTDBySIDandDealer")
 	public TotalName getParticipantExcellanceCardAwardYTD(String sid, String dealerCode) {
 		List<TotalName> result = new ArrayList<TotalName>();
 
@@ -359,7 +377,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSERGraphDetailsBySID")
 	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsBySID(String sid, String dealerCode) {
 		List<MyfcaMSERTotalEarningsDetailsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDetailsDTO>();
 		try {
@@ -375,7 +395,9 @@ public class MyfcaMSERTotalEarningsDetailsDAOImpl implements MyfcaMSERTotalEarni
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getMSERGraphDetailsSUMBySID")
 	public List<MyfcaMSERTotalEarningsDetailsDTO> getMSERGraphDetailsSUMBySID(String sid, String dealerCode) {
 		List<MyfcaMSERTotalEarningsDetailsDTO> result = new ArrayList<MyfcaMSERTotalEarningsDetailsDTO>();
 		try {

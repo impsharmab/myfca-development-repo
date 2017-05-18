@@ -77,6 +77,7 @@ public class FileController {
 	}
 	
 	@RequestMapping(value = "/services/loadrsc/{file_name:.+}", method = RequestMethod.GET)
+	@ResponseBody
 	public FileSystemResource getImage(@PathVariable("file_name") String fileName) {
 		return new FileSystemResource(imagesSharedFolder + fileName);
 	}

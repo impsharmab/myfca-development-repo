@@ -10,11 +10,9 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
-import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDAO{
@@ -60,6 +58,7 @@ public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDA
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsCCPByDealer(String dealerCode) {
 		List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();
@@ -76,6 +75,7 @@ public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDA
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsCCPBySid(String sid, String dealerCode) {
 		List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();
@@ -93,6 +93,7 @@ public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDA
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsTTTAByDealer(String dealerCode) {
 		List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();
@@ -109,6 +110,7 @@ public class RewardRedemptionDetailsDAOImpl implements RewardRedemptionDetailsDA
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RewardRedemptionDetailsDTO> getRewardRedemptionDetailsTTTABySid(String sid, String dealerCode) {
 		List<RewardRedemptionDetailsDTO> result = new ArrayList<RewardRedemptionDetailsDTO>();

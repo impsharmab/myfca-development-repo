@@ -8,7 +8,6 @@ import javax.servlet.Filter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.imperialm.imiservices.filters.IMIServicesFilter;
-import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
 
 /**
  * @author Dheerajr

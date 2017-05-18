@@ -5,7 +5,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,13 +18,11 @@ import com.imperialm.imiservices.repositories.UserRepository;
 @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
 public class UserServiceImpl implements UserDetailsService {
 	private UserRepository userRepository;
-	private PasswordEncoder passwordEncoder;
 	
 	
 	@Autowired
-	public UserServiceImpl (UserRepository userRepository, PasswordEncoder passwordEncoder){
+	public UserServiceImpl (UserRepository userRepository){
 		this.userRepository = userRepository;
-		this.passwordEncoder = passwordEncoder;
 	}
 	
 	@Override

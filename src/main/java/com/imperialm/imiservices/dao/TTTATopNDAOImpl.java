@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.TTTATopNDTO;
@@ -51,6 +52,7 @@ public class TTTATopNDAOImpl implements TTTATopNDAO {
 	
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getTopNByTypeTYPEROWS")
 	public List<TTTATopNDTO> getTopNByType(String type, int rows) {
 		List<TTTATopNDTO> result = new ArrayList<TTTATopNDTO>();
 

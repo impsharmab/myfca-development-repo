@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
 
 @Repository
@@ -23,6 +22,7 @@ public class SIRewardsYOYDetailsDAOImpl implements SIRewardsYOYDetailsDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsYOYDetailsDTO> getSIRewardsYOYDetailsBySIDAndToggle(String sID, String dealerCode,
 			String toggle) {
@@ -42,6 +42,7 @@ public class SIRewardsYOYDetailsDAOImpl implements SIRewardsYOYDetailsDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsYOYDetailsDTO> getSIRewardsYOYDetailsByDealerCodeAndToggle(String dealerCode, String toggle) {
 		List<SIRewardsYOYDetailsDTO> result = new ArrayList<SIRewardsYOYDetailsDTO>();

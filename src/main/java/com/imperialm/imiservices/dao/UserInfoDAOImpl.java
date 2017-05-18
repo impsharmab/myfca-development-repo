@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.UserInfoDTO;
-import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class UserInfoDAOImpl implements UserInfoDAO {
@@ -23,6 +22,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<UserInfoDTO> getUserInfo(String userId) {
 		List<UserInfoDTO> result = new ArrayList<UserInfoDTO>();

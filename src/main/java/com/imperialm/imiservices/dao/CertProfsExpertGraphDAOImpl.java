@@ -10,10 +10,10 @@ import javax.persistence.Query;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
-import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
@@ -22,11 +22,10 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarned() {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
-
-		CertProfsExpertGraphDTO CertProfsExpertGraphDTO = null;
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BC, CertProfsExpertGraphDTO.class);
@@ -40,11 +39,10 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgram() {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
-
-		CertProfsExpertGraphDTO CertProfsExpertGraphDTO = null;
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BC_TOTAL_RAM_JEEP, CertProfsExpertGraphDTO.class);
@@ -58,7 +56,9 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getExpertPointsEarnedByChildTerritoryList")
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritory(List<String> filters) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
 
@@ -75,7 +75,9 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getExpertPointsEarnedByChildTerritory")
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritory(String filters) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
 
@@ -92,11 +94,11 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getExpertPointsEarnedByChildTerritoryAsParentList")
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByChildTerritoryAsParent(List<String> filters) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
-
-		CertProfsExpertGraphDTO CertProfsExpertGraphDTO = null;
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_POINTS_BY_CHILD_TERRITORY_AS_PARENT, CertProfsExpertGraphDTO.class);
@@ -111,7 +113,9 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getParticipantCompletedByProgramByChildTerritoryList")
 	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritory(List<String> filters) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
 
@@ -128,12 +132,12 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getParticipantCompletedByProgramByChildTerritoryAndCertTypeList")
 	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritoryAndCertType(
 			List<String> filters, String certType) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
-
-		CertProfsExpertGraphDTO CertProfsExpertGraphDTO = null;
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY_AND_CERT_TYPE, CertProfsExpertGraphDTO.class);
@@ -149,7 +153,9 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getParticipantCompletedByProgramByChildTerritoryAndCertType")
 	public List<CertProfsExpertGraphDTO> getParticipantCompletedByProgramByChildTerritoryAndCertType(
 			String filters, String certType) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
@@ -168,7 +174,9 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getExpertPointsEarnedByParentTerritoryList")
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByParentTerritory(List<String> filters) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
 
@@ -185,7 +193,9 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(value="getExpertPointsEarnedByParentTerritorySumList")
 	public List<CertProfsExpertGraphDTO> getExpertPointsEarnedByParentTerritorySum(List<String> filters) {
 		List<CertProfsExpertGraphDTO> result = new ArrayList<CertProfsExpertGraphDTO>();
 		try {

@@ -22,6 +22,7 @@ public class MyFCAMserRankingDetailsDAOImpl implements MyFCAMserRankingDetailsDA
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsBySID(String territory, String dealerCode) {
 		List<MyFCAMserRankingDetailsDTO> result = new ArrayList<MyFCAMserRankingDetailsDTO>();
@@ -40,6 +41,7 @@ public class MyFCAMserRankingDetailsDAOImpl implements MyFCAMserRankingDetailsDA
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<MyFCAMserRankingDetailsDTO> getMSERDetailsSUMBySID(String territory, String dealerCode) {
 		List<MyFCAMserRankingDetailsDTO> result = new ArrayList<MyFCAMserRankingDetailsDTO>();

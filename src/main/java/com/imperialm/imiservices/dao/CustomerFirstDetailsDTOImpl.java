@@ -58,6 +58,7 @@ public class CustomerFirstDetailsDTOImpl implements CustomerFirstDetailsDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<CustomerFirstDetailsDTO> getCustomerFirstDetailsByDealerCodeAndToggle(String dealerCode,
 			String toggle) {

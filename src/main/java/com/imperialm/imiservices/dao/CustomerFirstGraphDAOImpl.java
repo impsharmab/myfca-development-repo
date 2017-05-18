@@ -63,10 +63,10 @@ public class CustomerFirstGraphDAOImpl implements CustomerFirstGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getCustomerFirstByChildTerritoryAndToggle")
 	public List<CustomerFirstGraphDTO> getCustomerFirstByChildTerritoryAndToggle(String territory, String toggle) {
-		// TODO Auto-generated method stub 
 		List<CustomerFirstGraphDTO> result = new ArrayList<CustomerFirstGraphDTO>();
 
 		try {

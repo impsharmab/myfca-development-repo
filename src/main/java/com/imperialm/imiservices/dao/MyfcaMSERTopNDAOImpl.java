@@ -15,8 +15,6 @@ import org.springframework.stereotype.Repository;
 
 
 import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
-import com.imperialm.imiservices.dto.request.InputRequest;
-import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
@@ -62,6 +60,7 @@ public class MyfcaMSERTopNDAOImpl implements MyfcaMSERTopNDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getTopNByTypeINMSERTABLE")
 	public List<MyfcaMSERTopNDTO> getTopNByTypeINMSERTABLE(String type, int rows, String name, String period) {

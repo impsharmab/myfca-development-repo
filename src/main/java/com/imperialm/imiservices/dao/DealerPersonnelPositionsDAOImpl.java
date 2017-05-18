@@ -1,6 +1,5 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DealerPersonnelPositionsDAOImpl implements DealerPersonnelPositionsDAO{
 	
-	private static Logger logger = LoggerFactory.getLogger(MyfcaMSERTotalEarningsDAOImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(DealerPersonnelPositionsDAOImpl.class);
 
 	@PersistenceContext
 	private EntityManager em;
