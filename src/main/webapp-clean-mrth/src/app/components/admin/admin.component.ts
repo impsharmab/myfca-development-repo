@@ -256,7 +256,6 @@ export class AdminComponent implements OnInit {
     }
 
     addBannerImage() {
-        debugger
         if (this.uploadImage.selectedRoleId.length == 0) {
             return false;
         } else if (this.uploadImage.bc.length == 0) {
@@ -273,6 +272,7 @@ export class AdminComponent implements OnInit {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
                     (addBannerData) => {
                         this.addBannerData = addBannerData;
+                        alert("success")
                     },
                     (error) => {
                         alert("Error in uploading images");
@@ -297,6 +297,9 @@ export class AdminComponent implements OnInit {
         this.adminService.deleteBannerData(dashBoardBannersID).subscribe(
             (deleteBannerDatum) => {
                 this.deleteBannerDatum = deleteBannerDatum;
+                alert(deleteBannerDatum)
+                alert(this.deleteBannerDatum)
+                alert("successfully deleted")
                 this.getAllBannerData();
             },
             (error) => {

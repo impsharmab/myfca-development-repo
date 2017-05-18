@@ -48,7 +48,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   constructor(private service: DashboardBodyService,
     private modalService: NgbModal,
-    
+
     private router: Router) {
     Highcharts.setOptions({
       lang: {
@@ -262,6 +262,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       return false;
     }
   }
+  openProgramRules(url: any) {
+    window.open(url)
+
+  }
   openProgramSite(url: any) {
     window.open(url)
   }
@@ -334,9 +338,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     } catch (e) {
       return false;
     }
-  }
-  openProgramRules(url) {
-    window.open(url)
   }
 
   getTileJson(id: string) {

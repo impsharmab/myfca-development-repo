@@ -12,7 +12,7 @@ public interface DashBoardBannersDAO {
 	public static String BANNERS_BY_ROLE_AND_TERRITORY = "Select distinct image 'fileName', '' 'imageName', OrderBy 'imageOrder' from [DashBoardBanners] DelFlag = 'N' and RoleID = (?0) and BusinessCenter IN (?1 , 'NAT') order by OrderBy";
 	public static String BANNERS_EXECUTIVE = "Select distinct FileName 'fileName', Name 'imageName', bm.OrderBy 'imageOrder' from ";
 	
-	public static String SELECT_BANNER_FOR_ADMIN = "Select * from DashBoardBanners";
+	public static String SELECT_BANNER_FOR_ADMIN = "Select * from DashBoardBanners where DelFlag='N'";
 	
 	
 	public List<ImagesDTO> getBannersByRole(int roleId, String territory);

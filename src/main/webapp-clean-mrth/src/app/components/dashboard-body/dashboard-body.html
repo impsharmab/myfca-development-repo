@@ -76,7 +76,7 @@
 <section id="intro" class="intro-section">
   
   <div class="container">
-    <!--- Row START -->
+    <!--- Row START --> 
     <div *ngFor="let rowarray of tilesArray" class="row">
       <div *ngFor="let tile of rowarray; let i = index;" class="{{(rowarray.length%2==1) && (rowarray.length== i+1) ? 'col-sm-6 card':'col-sm card'}}">
         <div class="image-frame">{{tile.tileName}}<img src="services/loadrsc/{{tile.tileHeaderImage}}"> </div>
@@ -142,7 +142,7 @@
         </div>
         
         <div class="card-action ">
-          <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramSite(tile.programRulesUrl)"><i class="fa fa-check-square " aria-hidden="true "></i>
+          <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramRules(tile.programRulesUrl)"><i class="fa fa-check-square " aria-hidden="true "></i>
                 {{tile.programRules}} </button>
           <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
                 {{tile.programSite}} </button>

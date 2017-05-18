@@ -6,8 +6,8 @@ import './../rxjs-operators';
 
 @Injectable()
 export class DashboardBodyService {
-    //private baseUrl = "";
-    private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
+    private baseUrl = "";
+   // private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
     private tiles = new Array();
     private userdata = {}
     constructor(private http: Http, private cookieService: CookieService) { }

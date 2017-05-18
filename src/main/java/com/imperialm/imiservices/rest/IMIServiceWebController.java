@@ -66,4 +66,11 @@ public class IMIServiceWebController {
 
 		return IMIServicesConstants.DATA_TABLE;
 	}
+	
+	@RequestMapping(value = "/cms", method = RequestMethod.GET)
+	public String cms(@RequestParam(value = "page") String page, HttpServletRequest request) {
+		return IMIServicesConstants.CMS;
+	}
+	
+	
 }
