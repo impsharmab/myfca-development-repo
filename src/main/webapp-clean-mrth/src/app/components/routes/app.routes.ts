@@ -6,18 +6,19 @@ import { RootPageComponent } from '../root-page/root-page.component';
 import { LoginComponent } from "../login/login.component";
 import { AdminRootPageComponent } from "../admin/admin-rootpage.component";
 import { ProfileRootPageComponent } from "../profile/profile-rootpage.component";
+import { ResetPasswordComponent } from "../reset-password/reset-password.component";
 
 const routes: Routes = [
     {
         path: '',
         redirectTo: 'login',
-        pathMatch: 'full' 
+        pathMatch: 'full'
     },
     {
         path: "login",
         component: LoginComponent
     },
-    { 
+    {
         path: "myfcadashboard",
         component: RootPageComponent
     },
@@ -28,7 +29,13 @@ const routes: Routes = [
     {
         path: "profile",
         component: ProfileRootPageComponent
+    },
+    {
+        path: "resetpassword",
+        component: ResetPasswordComponent
     }
+
+
 ]
 
 @NgModule({

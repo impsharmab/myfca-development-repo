@@ -111,8 +111,6 @@ export class AdminComponent implements OnInit {
         } else if (roleID == 12) {
             return "BC"
         } else if (roleID == 11) {
-            return "BC"
-        } else if (roleID == 11) {
             return "District Manager"
         } else if (roleID == 10) {
             return "Dealer"
@@ -121,11 +119,9 @@ export class AdminComponent implements OnInit {
         } else if (roleID == 9) {
             return "Participants"
         }
-        debugger;
     }
 
     private getAllBannerData() {
-        debugger
         this.adminService.getAllBannerData().subscribe(
             (allBannerTableData) => {
                 this.allBannerTableData = allBannerTableData;
@@ -134,6 +130,11 @@ export class AdminComponent implements OnInit {
                 alert("error in getting banner data")
             }
         )
+    }
+
+    setImage(image) {
+        this.uploadImage.image = image;
+
     }
 
     testMethod() {
@@ -145,14 +146,14 @@ export class AdminComponent implements OnInit {
             }
             )
         }
-
-
+        var mainthis = this;
         $("#project").autocomplete({
             change: function (event, ui) {
                 if (!ui.item) {
                     $("#project").val("");
                 }
             },
+            allowFreeEntries: false,
             minLength: 0,
             source: this.projects,
             focus: function (event, ui) {
@@ -160,9 +161,11 @@ export class AdminComponent implements OnInit {
                 return false;
             },
             select: function (event, ui) {
+                var self = this;
                 $("#project").val(ui.item.label);
                 $("#project-id").val(ui.item.value);
-                $("#project-icon").attr("src", "./services/loadrsc/" + ui.item.icon);
+                $("#project-icon").attr("src", "https://test.myfcarewards.com/myfcarewards/services/loadrsc/" + ui.item.icon);
+                mainthis.uploadImage.image = ui.item.value;
                 return false;
             }
         })
@@ -173,6 +176,8 @@ export class AdminComponent implements OnInit {
             };
 
     }
+
+
     getImageList(self) {
         this.adminService.getImageList().subscribe(
             (imagelist) => {
@@ -228,8 +233,6 @@ export class AdminComponent implements OnInit {
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
             (emulateUserData) => {
                 this.emulateUserData = emulateUserData;
-                debugger
-
                 if (emulateUserData["item"].length > 0) {
                     var adminToken = this.cookieService.get("token");
                     this.cookieService.put("adminToken", adminToken);
@@ -256,6 +259,7 @@ export class AdminComponent implements OnInit {
     }
 
     addBannerImage() {
+        debugger
         if (this.uploadImage.selectedRoleId.length == 0) {
             return false;
         } else if (this.uploadImage.bc.length == 0) {
@@ -275,16 +279,17 @@ export class AdminComponent implements OnInit {
                         alert("success")
                     },
                     (error) => {
-                        alert("Error in uploading images");
-                        this.errorUploadImageMessage = "Error in uploading images";
+                        alert("Error in adding banner");
+                        this.errorUploadImageMessage = "Error in adding banner";
                     }
                 )
             }
         }
+        this.getAllBannerData();
     }
 
     private editBannerData(editBannerObj: any) {
-        debugger
+
         this.adminService.editBannerData(editBannerObj).subscribe(
             (editBannerDatum) => {
                 this.editBannerDatum = editBannerDatum;
@@ -293,7 +298,7 @@ export class AdminComponent implements OnInit {
     }
 
     private deleteBannerData(dashBoardBannersID: any) {
-        debugger;
+
         this.adminService.deleteBannerData(dashBoardBannersID).subscribe(
             (deleteBannerDatum) => {
                 this.deleteBannerDatum = deleteBannerDatum;
@@ -308,6 +313,7 @@ export class AdminComponent implements OnInit {
         )
 
     }
+
 
 }
 

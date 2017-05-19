@@ -83,16 +83,17 @@ export class LoginComponent implements OnInit {
     }
 
     private refreshLogin() {
-        sessionStorage.setItem("showWelcomePopup", "false");
         var user = this.cookieService.get("token");
         if (user !== undefined) {
             if (user !== undefined && user.length > 1) {
+                // sessionStorage.setItem("showWelcomePopup", "false");
                 this.hideLoginPage = true;
                 this.loginService.getRefreshLoginResponse(user).subscribe(
                     (refreshTokenData) => {
-                       this.refreshTokenData = (refreshTokenData)
-                        if (refreshTokenData.token.length > 1) {
+                        this.refreshTokenData = (refreshTokenData)
+                        if (refreshTokenData !== undefined && refreshTokenData.token.length > 1) {
                             this.loginService.setUserData(this.refreshTokenData);
+                            sessionStorage.setItem("showWelcomePopup", "false");
                             var poscodes: any = this.refreshTokenData.positionCode;
                             var delcodes: any = this.refreshTokenData.dealerCode;
                             sessionStorage.setItem("selectedCodeData", JSON.stringify(
@@ -108,9 +109,10 @@ export class LoginComponent implements OnInit {
                         }
                     },
                     (error) => {
+                        this.cookieService.removeAll();
                         alert("error in refreshing")
+                        //this.login();                        
                     }
-
                 )
             }
         }
@@ -120,15 +122,15 @@ export class LoginComponent implements OnInit {
     private login() {
         if (this.user.username.trim() === "" && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please enter your SID/TID and Password";
+            this.loginErrorMessage = "Please Enter your SID/TID and Password";
             return;
         } else if (this.user.username.trim() === "" && this.user.password.trim() !== null) {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please enter your SID/TID";
+            this.loginErrorMessage = "Please Enter your SID/TID";
             return;
         } else if (this.user.username.trim() !== null && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please enter your Password";
+            this.loginErrorMessage = "Please Enter your Password";
             return;
         }
         this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
@@ -154,11 +156,17 @@ export class LoginComponent implements OnInit {
             },
             (error) => {
                 this.loginFailed = "Login Failed";
-                this.loginErrorMessage = "Please enter your valid SID/TID and password";
+                this.loginErrorMessage = "Please Enter your valid SID/TID and Password";
             }
         )
 
     }
+
+    private resetPassword() {
+        let url = ["resetpassword"]
+        this.router.navigate(url);
+    }
+
 }
 
 

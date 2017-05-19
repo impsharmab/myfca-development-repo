@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http'
-import { ChartModule } from 'angular2-highcharts'; 
+import { ChartModule } from 'angular2-highcharts';
 import { RouterModule, Routes } from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -24,6 +24,7 @@ import { TableComponent } from "./components/table/table.component";
 import { PositionCodeComponent } from "./components/positioncode/positioncode.component";
 import { ProfileRootPageComponent } from "./components/profile/profile-rootpage.component";
 import { ProfileComponent } from "./components/profile/profile.component";
+import { ResetPasswordComponent } from "./components/reset-password/reset-password.component"
 
 
 //importing services
@@ -59,7 +60,7 @@ export function cookieServiceFactory() { return new CookieService(); }
         AdminService,
         PositionCodeService,
         ProfileService,
-         { provide: CookieService, useFactory: cookieServiceFactory } 
+        { provide: CookieService, useFactory: cookieServiceFactory }
     ],
 
     declarations: [
@@ -75,7 +76,8 @@ export function cookieServiceFactory() { return new CookieService(); }
         TableComponent,
         PositionCodeComponent,
         ProfileRootPageComponent,
-        ProfileComponent
+        ProfileComponent,
+        ResetPasswordComponent
     ],
 
     bootstrap: [AppComponent]

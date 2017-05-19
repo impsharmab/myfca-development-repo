@@ -116,4 +116,21 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 		}
 		return result;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<BrainBoostWinndersGraphDTO> getBrainBoostWinndersGraphDTOByParentTerritory(String list) {
+		List<BrainBoostWinndersGraphDTO> result = new ArrayList<BrainBoostWinndersGraphDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY, BrainBoostWinndersGraphDTO.class);
+			query.setParameter(0, list);
+			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
+			result = rows;
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getBrainBoostWinndersGraphDTOByParentTerritory", ex);
+		}
+		return result;
+	}
 }

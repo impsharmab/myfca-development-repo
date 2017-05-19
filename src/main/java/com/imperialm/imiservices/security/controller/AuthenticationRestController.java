@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.imperialm.imiservices.dao.UserProgramRolesDAO;
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dao.TIDUsersDAO;
+import com.imperialm.imiservices.dto.TIDUsersDTO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 import com.imperialm.imiservices.security.JwtAuthenticationRequest;
@@ -50,6 +53,14 @@ public class AuthenticationRestController {
 	@Autowired
 	private UserServiceImpl userDetailsService;
 	
+	@Autowired
+	private TIDUsersDAO TIDUsersDAO;
+	
+	@Autowired
+	private UserProgramRolesDAO UserProgramRolesDAO;
+	
+	
+	
 	private static Logger logger = LoggerFactory.getLogger(AuthenticationRestController.class);
 
 	@RequestMapping(value = "/login/token", method = RequestMethod.POST)
@@ -80,18 +91,22 @@ public class AuthenticationRestController {
 		}
 
 		if(userCodes.size() == 0){
-			List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
-			if(territoryCheck.size() > 0){
-				if(territoryCheck.get(0).equalsIgnoreCase("nat")){
-					positionCode.add("90");
-				}else if(territoryCheck.get(0).contains("-")){
-					positionCode.add("97");
-				}else if(territoryCheck.get(0).trim().length() == 2){
-					positionCode.add("8D");
-				}/*else{
-        			positionCode.add("01");
-        			dealerCode.add(user.getUserId());
-        		}*/
+			List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user.getUserId());
+			if(tids.size() > 0){
+				for(TIDUsersDTO item: tids){
+					positionCode.add(item.getPositionCode());
+				}
+			}else{
+				List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
+				if(territoryCheck.size() > 0){
+					if(territoryCheck.get(0).equalsIgnoreCase("nat")){
+						positionCode.add("90");
+					}else if(territoryCheck.get(0).contains("-")){
+						positionCode.add("97");
+					}else if(territoryCheck.get(0).trim().length() == 2){
+						positionCode.add("8D");
+					}
+				}
 			}
 		}
 
@@ -107,7 +122,7 @@ public class AuthenticationRestController {
 		response.setPositionCode(positionCode);
 		response.setDealerCode(dealerCode);
 		response.setName(user.getUsername());
-		if(user.getUserId().toLowerCase().equals("dave")){
+		if(UserProgramRolesDAO.isAdmin(user.getUserId().trim())){
 			response.setAdmin(true);
 		}
 		// Return the token
@@ -133,18 +148,22 @@ public class AuthenticationRestController {
 			}
 
 			if(userCodes.size() == 0){
-				List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
-				if(territoryCheck.size() > 0){
-					if(territoryCheck.get(0).equalsIgnoreCase("nat")){
-						positionCode.add("90");
-					}else if(territoryCheck.get(0).contains("-")){
-						positionCode.add("97");
-					}else if(territoryCheck.get(0).trim().length() == 2){
-						positionCode.add("8D");
-					}/*else{
-            			positionCode.add("01");
-            			dealerCode.add(user.getUserId());
-            		}*/
+				List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user.getUserId());
+				if(tids.size() > 0){
+					for(TIDUsersDTO item: tids){
+						positionCode.add(item.getPositionCode());
+					}
+				}else{
+					List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
+					if(territoryCheck.size() > 0){
+						if(territoryCheck.get(0).equalsIgnoreCase("nat")){
+							positionCode.add("90");
+						}else if(territoryCheck.get(0).contains("-")){
+							positionCode.add("97");
+						}else if(territoryCheck.get(0).trim().length() == 2){
+							positionCode.add("8D");
+						}
+					}
 				}
 			}
 
@@ -160,7 +179,7 @@ public class AuthenticationRestController {
 			response.setPositionCode(positionCode);
 			response.setDealerCode(dealerCode);
 			response.setName(user.getUsername());
-			if(user.getUserId().toLowerCase().equals("dave")){
+			if(UserProgramRolesDAO.isAdmin(user.getUserId().trim())){
 				response.setAdmin(true);
 			}
 
@@ -194,26 +213,28 @@ public class AuthenticationRestController {
 			dealerCode.add(tokenDealerCode);
 		}
 		
-		
-
 		for(UserPositionCodeRoleDTO item: userCodes){
 			positionCode.add(item.getPositionCode());
 			dealerCode.add(item.getDealerCode());
 		}
 
 		if(userCodes.size() == 0){
-			List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
-			if(territoryCheck.size() > 0){
-				if(territoryCheck.get(0).equalsIgnoreCase("nat")){
-					positionCode.add("90");
-				}else if(territoryCheck.get(0).contains("-")){
-					positionCode.add("97");
-				}else if(territoryCheck.get(0).length() == 2){
-					positionCode.add("8D");
-				}/*else{
-        			positionCode.add("01");
-        			dealerCode.add(user.getUserId());
-        		}*/
+			List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user.getUserId());
+			if(tids.size() > 0){
+				for(TIDUsersDTO item: tids){
+					positionCode.add(item.getPositionCode());
+				}
+			}else{
+				List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
+				if(territoryCheck.size() > 0){
+					if(territoryCheck.get(0).equalsIgnoreCase("nat")){
+						positionCode.add("90");
+					}else if(territoryCheck.get(0).contains("-")){
+						positionCode.add("97");
+					}else if(territoryCheck.get(0).trim().length() == 2){
+						positionCode.add("8D");
+					}
+				}
 			}
 		}
 
@@ -229,7 +250,7 @@ public class AuthenticationRestController {
 		response.setPositionCode(positionCode);
 		response.setDealerCode(dealerCode);
 		response.setName(user.getUsername());
-		if(user.getUserId().toLowerCase().equals("dave")){
+		if(UserProgramRolesDAO.isAdmin(user.getUserId().trim())){
 			response.setAdmin(true);
 		}
 		// Return the token

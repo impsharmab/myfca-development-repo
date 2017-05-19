@@ -479,7 +479,7 @@ public class MappingServiceImpl {
 	
 	public ChartData BrainBoostWinndersGraphDTOtoChartDataWinners(BrainBoostWinndersGraphDTO BrainBoostWinndersGraphDTO){
 		ChartData chartData = new ChartData();		
-		chartData.setName(BrainBoostWinndersGraphDTO.getParentTerritory());
+		chartData.setName(BrainBoostWinndersGraphDTO.getChildTerritory());
 		chartData.setValue(BrainBoostWinndersGraphDTO.getWinners());
 		return chartData;
 	}
@@ -517,7 +517,7 @@ public class MappingServiceImpl {
 		//ChartData excellenceCard = new ChartData();
 		ChartData awardPoints = new ChartData();
 		
-		chartData.setName(BrainBoostWinndersGraphDTO.getParentTerritory());
+		chartData.setName(BrainBoostWinndersGraphDTO.getChildTerritory());
 		
 		//excellenceCard.setName("Exellence Card Awards");
 		//excellenceCard.setValue(BrainBoostWinndersGraphDTO.getEarnings());

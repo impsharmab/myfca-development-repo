@@ -738,5 +738,9 @@ public class DashboardServiceImpl {
 		return this.TTTAEnrollmentsSummaryDAO.getTTTANATAverageSurveyScoreByPositionCode(positionCode);
 	}
 	
+	public List<BrainBoostWinndersGraphDTO> getBrainBoostWinndersGraphDTOByParentTerritory(String list){
+		return this.BrainBoostWinndersGraphDAO.getBrainBoostWinndersGraphDTOByParentTerritory(list);
+	}
+	
 	
 }

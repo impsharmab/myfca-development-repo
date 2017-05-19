@@ -156,7 +156,7 @@ public class AdminController {
 	@RequestMapping(value = "/services/admin/banner/getAll/", method = RequestMethod.GET)
 	public @ResponseBody Object getAllBanner(HttpServletRequest request) {
 		UserDetailsImpl user = null;
-		/*try{
+		try{
 			String token = request.getHeader(tokenHeader);
 			String username = jwtTokenUtil.getUsernameFromToken(token);
 			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
@@ -165,7 +165,7 @@ public class AdminController {
 			}
 		}catch(Exception e){
 			return ResponseEntity.status(500).body("Failed to check Token");
-		}*/
+		}
 
 		//TODO: check if admin is requesting the token
 		try{

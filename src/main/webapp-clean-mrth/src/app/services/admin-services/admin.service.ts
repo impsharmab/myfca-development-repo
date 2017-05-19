@@ -21,8 +21,8 @@ export class AdminService {
     }
 
     getImageList() {
-        //var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
-        var getImageListUrl = "./services/files/listFiles"
+        var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
+        //var getImageListUrl = "./services/files/listFiles"
         return this.http.get(getImageListUrl)
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -58,9 +58,9 @@ export class AdminService {
     }
 
     getEmulateUserData(sid: string) {
-        debugger
-        //var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
-        var getEmulateUserDataUrl = "./services/admin/emulate/" + sid;
+        //debugger
+        var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
+        //var getEmulateUserDataUrl = "./services/admin/emulate/" + sid;
 
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
@@ -72,9 +72,9 @@ export class AdminService {
     }
 
     addBanner(roleID, bc, orderBy, image) {
-        debugger
-        //  var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
-        var getAddBannerUrl = "./services/admin/banner/add/";
+        //debugger
+        var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
+        //var getAddBannerUrl = "./services/admin/banner/add/";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var body = {
             "dashBoardBannersID": 0, "image": image, "roleID": roleID, "orderBy": orderBy, "businessCenter": bc,
@@ -83,8 +83,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
-        headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
 
         return this.http.post(getAddBannerUrl, body, { headers: headers })
             .map((response: Response) =>
@@ -93,9 +93,9 @@ export class AdminService {
 
     }
     getAllBannerData() {
-        debugger
-        var getAllBannerDataUrl = "./services/admin/banner/getAll/";
-        // var getAllBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/getAll/";
+        // debugger
+        //var getAllBannerDataUrl = "./services/admin/banner/getAll/";
+        var getAllBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/getAll/";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -107,7 +107,7 @@ export class AdminService {
     editBannerData(editBannerDataObj: any) {
         debugger
         var editBannerDataUrl = "./services/admin/banner/update/";
-        // var editBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/update/";
+        var editBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/update/";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var body = editBannerDataObj;
         var headers = new Headers();
@@ -121,7 +121,7 @@ export class AdminService {
     deleteBannerData(dashBoardBannersID: any) {
         debugger
         var deleteBannerDataUrl = "./services/admin/banner/delete/" + dashBoardBannersID;
-        // var deleteBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/delete/" + dashBoardBannersID;
+        var deleteBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/delete/" + dashBoardBannersID;
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');

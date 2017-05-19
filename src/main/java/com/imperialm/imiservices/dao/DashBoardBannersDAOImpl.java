@@ -121,7 +121,7 @@ public class DashBoardBannersDAOImpl implements DashBoardBannersDAO {
 	public boolean addBanner(DashBoardBannersDTO banner, String userId) {
 		boolean result = false;
 		try {
-			final Query query = this.em.createNativeQuery("INSERT INTO dbo.[DashBoardBanners] ([Image],[RoleID],[OrderBy],[BusinessCenter],[Link],[CreatedDate],[CreatedBy],[UpdatedDate],[UpdatedBy],[DelFlag])"
+			final Query query = this.em.createNativeQuery("INSERT INTO [DashBoardBanners] ([Image],[RoleID],[OrderBy],[BusinessCenter],[Link],[CreatedDate],[CreatedBy],[UpdatedDate],[UpdatedBy],[DelFlag])"
 					+ "VALUES(?0, (?1), (?2), ?3, ?4, GETDATE(), ?5, GETDATE(), ?5, 'N')");
 			query.setParameter(0, banner.getImage());
 			query.setParameter(1, banner.getRoleID());

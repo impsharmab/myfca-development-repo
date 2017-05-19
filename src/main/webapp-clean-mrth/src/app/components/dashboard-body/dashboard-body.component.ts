@@ -74,7 +74,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     if (showWelcomePopup == undefined) {
       this.modalService.open(this.model, { size: "lg" });
     }
-
+    sessionStorage.setItem("showWelcomePopup", "false");
 
     $(document).ready(function () {
       var elementHeights = $('.data - group').map(function () {

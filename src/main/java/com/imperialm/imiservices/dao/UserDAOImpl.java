@@ -89,7 +89,7 @@ public class UserDAOImpl {
 	public List<UsersDTO> getProfile(String userId){
 			List<UsersDTO> result = new ArrayList<UsersDTO>();
 		try {
-			final Query query = this.em.createNativeQuery("select [UserId] 'userId',[Name] 'name' ,[Email] 'email' ,[CreatedDate] 'createdDate' ,[CreatedBy] 'createdBy' ,[UpdatedDate] 'updatedDate' ,[UpdatedBy] 'updatedBy' ,[DelFlag] 'delFlag' ,[HashPass] 'hashPass' ,[Salt] 'salt' ,[SendEmail] 'sendEmail' ,[PhoneNumber] 'phoneNumber' FROM [dbo].[Users] where userId = ?0", UsersDTO.class);
+			final Query query = this.em.createNativeQuery("select [UserId] 'userId',[Name] 'name' ,[Email] 'email' ,[CreatedDate] 'createdDate' ,[CreatedBy] 'createdBy' ,[UpdatedDate] 'updatedDate' ,[UpdatedBy] 'updatedBy' ,[DelFlag] 'delFlag' ,[HashPass] 'hashPass' ,[Salt] 'salt' ,[SendEmail] 'sendEmail' ,[PhoneNumber] 'phoneNumber' FROM [Users] where userId = ?0", UsersDTO.class);
 			query.setParameter(0, userId);
 			List<UsersDTO> rows = query.getResultList();
 			result = rows;

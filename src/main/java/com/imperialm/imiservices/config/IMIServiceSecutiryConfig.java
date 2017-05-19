@@ -3,7 +3,8 @@ package com.imperialm.imiservices.config;
 import java.util.Collection;
 import java.util.Date;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +25,7 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.imperialm.imiservices.dao.BrainBoostWinndersGraphDAOImpl;
 import com.imperialm.imiservices.security.JwtAuthenticationEntryPoint;
 import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
 import com.imperialm.imiservices.security.JwtDaoAuthenticationProvider;
@@ -35,6 +37,8 @@ import com.imperialm.imiservices.services.UserServiceImpl;
 @ComponentScan(basePackages = "com.imperialm.imiservices")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
+	
+	private static Logger logger = LoggerFactory.getLogger(IMIServiceSecutiryConfig.class);
 	
 	@Autowired
 	private UserServiceImpl userService;
@@ -58,7 +62,7 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     		cacheManager.getCache(cache).clear();
     	}
     	//cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
-    	System.out.println("Flush Cache" + new Date().toString());
+    	logger.info("Flush Cache" + new Date().toString());
     }
     
     @Bean @Qualifier("JwtAuthenticationTokenFilter")

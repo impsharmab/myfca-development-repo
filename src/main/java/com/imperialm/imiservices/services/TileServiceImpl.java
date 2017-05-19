@@ -17,6 +17,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.imperialm.imiservices.dao.TIDUsersDAO;
 import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
 import com.imperialm.imiservices.dto.BrainBoostWinnersDetailsDTO;
 import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
@@ -36,6 +37,7 @@ import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
+import com.imperialm.imiservices.dto.TIDUsersDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
@@ -57,6 +59,9 @@ public class TileServiceImpl{
 	@Autowired
 	private MappingServiceImpl mappingService;
 	
+	@Autowired
+	private TIDUsersDAO TIDUsersDAO;
+	
 	private final int MSER_PROGRAM_ID = 1;
 	private final int TT_PROGRAM_ID = 4;
 	private final int TA_PROGRAM_ID = 5;
@@ -67,30 +72,33 @@ public class TileServiceImpl{
 		int testa = dashService.getRoleByPositionCode(positionCode);
 		String type = "";
 		String BC = "";
-		if(user.equals("Dave")){
+		if( testa == 1 || testa == 3 || testa == 13){
 			type = "Executive";
-		}else{
-			if( testa == 1 || testa == 3 || testa == 13){
-				type = "Executive";
-			}else if( testa == 12){
-				type = "BC";
-				List<String> bcSet = this.dashService.getUserTerritoyById(user);
-				if(bcSet.size() > 0){
-					BC = bcSet.get(0);
+		}else if( testa == 12){
+			type = "BC";
+			List<String> bcSet = this.dashService.getUserTerritoyById(user);
+			if(bcSet.size() > 0){
+				BC = bcSet.get(0);
+			}else{
+				List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user);
+				if(tids.size() > 0){
+					for(TIDUsersDTO item: tids){
+						BC = item.getPositionCode();
+					}
 				}
-			}else if( testa == 11){
-				type = "District";
-				return this.findTilesManager(id, positionCode, dealerCode, user, type);
-			}else if( testa == 10){
-				type = "Dealer";
-				return this.findTilesManager(id, positionCode, dealerCode, user, type);
-			}else if( testa == 9){
-				type = "Participant";
-				return this.findTilesManager(id, positionCode, dealerCode, user, type);
-			}else if( testa == 5){
-				type = "Manager";
-				return this.findTilesManager(id, positionCode, dealerCode, user, type);
 			}
+		}else if( testa == 11){
+			type = "District";
+			return this.findTilesManager(id, positionCode, dealerCode, user, type);
+		}else if( testa == 10){
+			type = "Dealer";
+			return this.findTilesManager(id, positionCode, dealerCode, user, type);
+		}else if( testa == 9 || testa == 6){
+			type = "Participant";
+			return this.findTilesManager(id, positionCode, dealerCode, user, type);
+		}else if( testa == 5){
+			type = "Manager";
+			return this.findTilesManager(id, positionCode, dealerCode, user, type);
 		}
 		//divide the switch statement to functions
 		switch(id){
@@ -478,7 +486,7 @@ public class TileServiceImpl{
 		{
 
 			// check for role, to know what data to display
-			List<BrainBoostWinndersGraphDTO> listBC = this.dashService.getBrainBoostGraphBCData(true);
+			List<BrainBoostWinndersGraphDTO> listBC = this.dashService.getBrainBoostWinndersGraphDTOByParentTerritory("NAT");
 			List<BrainBoostWinndersGraphDTO> listBC_unfiltered = this.dashService.getBrainBoostGraphBCData(false);
 			List<String> filters = new ArrayList<String>();
 
@@ -521,11 +529,11 @@ public class TileServiceImpl{
 			for(BrainBoostWinndersGraphDTO item: listBC){
 				List<ChartData> list = new ArrayList<ChartData>();
 				for(BrainBoostWinndersGraphDTO object: sublist){
-					if(map.get(item.getParentTerritory()).contains(object.getParentTerritory())){
+					if(map.get(item.getChildTerritory()).contains(object.getParentTerritory())){
 						ChartData data = new ChartData(object.getParentTerritory(), object.getWinners());
 						list.add(data);
 					}
-					chartsMap.put(item.getParentTerritory(), list);
+					chartsMap.put(item.getChildTerritory(), list);
 				}
 			}
 
@@ -784,7 +792,7 @@ public class TileServiceImpl{
 		case "12":
 		{
 			// check for role, to know what data to display
-			List<BrainBoostWinndersGraphDTO> listBC = this.dashService.getBrainBoostGraphBCData(true);
+			List<BrainBoostWinndersGraphDTO> listBC = this.dashService.getBrainBoostWinndersGraphDTOByParentTerritory("NAT");
 			List<BrainBoostWinndersGraphDTO> listBC_unfiltered = this.dashService.getBrainBoostGraphBCData(false);
 			List<String> filters = new ArrayList<String>();
 
@@ -827,7 +835,7 @@ public class TileServiceImpl{
 			for(BrainBoostWinndersGraphDTO item: listBC){
 				List<ChartData> list = new ArrayList<ChartData>();
 				for(BrainBoostWinndersGraphDTO object: sublist){
-					if(map.get(item.getParentTerritory()).contains(object.getParentTerritory())){
+					if(map.get(item.getChildTerritory()).contains(object.getParentTerritory())){
 
 						ChartData temp = new ChartData();
 						temp.setName(object.getParentTerritory());
@@ -835,8 +843,8 @@ public class TileServiceImpl{
 
 						list.add(temp);
 					}
-					chartsMap.put(item.getParentTerritory(), list);
-					mapValues.put(item.getParentTerritory(), (double)item.getPoints());
+					chartsMap.put(item.getChildTerritory(), list);
+					mapValues.put(item.getChildTerritory(), (double)item.getPoints());
 				}
 			}
 
@@ -3019,10 +3027,16 @@ public class TileServiceImpl{
 		}else if( type.equals("Manager") || type.equals("Dealer")){
 			territory = dealerCode;
 		}else if(type.equals("District")){
-
 			List<String> bcSet = this.dashService.getUserTerritoyById(user);
 			if(bcSet.size() > 0){
 				territory = bcSet.get(0);
+			}else{
+				List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user);
+				if(tids.size() > 0){
+					for(TIDUsersDTO item: tids){
+						territory = item.getTerritory();
+					}
+				}
 			}
 		}
 

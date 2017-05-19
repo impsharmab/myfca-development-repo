@@ -6,9 +6,9 @@ import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 
 public interface UserPositionCodeRoleDAO {
 
-    public static String SELECT_DEALERCODE_PC_ROLE_BY_SID = "SELECT d.[DealerCode] ,d.[SID] ,d.[PositionCode] ,d.[isPrimaryPosition] ,d.[IsPrimaryDealer], x.[RoleId] FROM [dbo].[DealerPersonnel] d INNER JOIN [dbo].[DealerPersonnelPositions] as x on x.PositionCode = d.[PositionCode] where d.[SID] = ?0";
-    public static String SELECT_USER_BC_BY_DEALERCODE = "SELECT bc.BCCode FROM [dbo].[DealerInfo] di inner join [dbo].[BCCODES] bc on di.[BC] = bc.[BCName] where di.[DealerCode] = ?0 AND di.DelFlag = 'N'";
-    public static String SELECT_USER_DISTRICT_BY_DEALERCODE = "SELECT CONCAT(bc.BCCode , '-' , di.[District]) FROM [dbo].[DealerInfo] di inner join [dbo].[BCCODES] bc on di.[BC] = bc.[BCName] where di.[DealerCode] = ?0 AND di.DelFlag = 'N'";
+    public static String SELECT_DEALERCODE_PC_ROLE_BY_SID = "SELECT d.[DealerCode] ,d.[SID] ,d.[PositionCode] ,d.[isPrimaryPosition] ,d.[IsPrimaryDealer], ISNULL(x.[RoleId],0) 'roleId' FROM [DealerPersonnel] d INNER JOIN [DealerPersonnelPositions] as x on x.PositionCode = d.[PositionCode] where d.[SID] = ?0";
+    public static String SELECT_USER_BC_BY_DEALERCODE = "SELECT bc.BCCode FROM [DealerInfo] di inner join [BCCODES] bc on di.[BC] = bc.[BCName] where di.[DealerCode] = ?0 AND di.DelFlag = 'N'";
+    public static String SELECT_USER_DISTRICT_BY_DEALERCODE = "SELECT CONCAT(bc.BCCode , '-' , di.[District]) FROM [DealerInfo] di inner join [BCCODES] bc on di.[BC] = bc.[BCName] where di.[DealerCode] = ?0 AND di.DelFlag = 'N'";
     public static String SELECT_USER_TERRITORY = "select ut.Territory from users u join UserTerritory ut on ut.UserID = u.UserId where u.userid = ?0";
     public static String SELECT_DEALERCODE_PC_ROLE_BY_UID = "SELECT DealerCode , d.SID , PositionCode , isPrimaryPosition , IsPrimaryDealer, x.RoleId \n" +
                                                             "  FROM Users U \n" +
