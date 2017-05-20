@@ -51,8 +51,8 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6">
                                     <label>Select an Image</label>
-                                    <input id="project" name="project" >
-                                    <input type="hidden" id="project-id" name="project-id" >
+                                    <input id="project" name="project">
+                                    <input type="hidden" id="project-id" name="project-id">
                                     <img id="project-icon" src="" class="ui-state-default" alt="">
                                     <p id="project-description"></p>
                                     <br />
@@ -96,14 +96,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let bannerData of allBannerTableData">
-
+                                    <!--<tr *ngFor="let bannerData of allBannerTableData">
                                         <td>{{constructRoles(bannerData.roleID)}}</td>
                                         <td>{{bannerData.businessCenter}}</td>
                                         <td>{{bannerData.image}}</td>
                                         <td>{{bannerData.orderBy}}</td>
-                                        <!--<td><button type="button" class="btn btn-primary btn-sm" (click)="editBannerData(bannerData)"><i class="fa fa-edit"></i></button></td>-->
-                                        <td><button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm" (click)="editBannerData(bannerData)"><i class="fa fa-edit"></i></button></td>-->
+                                    <!--<td><button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button></td>
+                                    </tr>-->
+
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>61</td>
+                                        <td>2011/04/25</td>                                        
+                                    </tr>
+                                    <tr>
+                                        <td>Garrett Winters</td>
+                                        <td>Accountant</td>
+                                        <td>Tokyo</td>
+                                        <td>63</td>
+                                        <td>2011/07/25</td>                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -111,14 +125,10 @@
                         </div>
                     </div>
                 </div>
-
                 <!--Configuration Image to Banner end-->
             </div>
-
         </div>
-
     </div>
-
 </section>
 <style type="text/css">
     .box label {

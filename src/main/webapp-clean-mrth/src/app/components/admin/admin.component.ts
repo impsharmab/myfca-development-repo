@@ -62,6 +62,10 @@ export class AdminComponent implements OnInit {
         this.getAdminData();
         this.getImageList(self);
 
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+        
         $('#accordion').collapse({
             toggle: false
         });
@@ -276,7 +280,8 @@ export class AdminComponent implements OnInit {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
                     (addBannerData) => {
                         this.addBannerData = addBannerData;
-                        alert("success")
+                        alert("success");
+                        this.getAllBannerData();
                     },
                     (error) => {
                         alert("Error in adding banner");
@@ -285,7 +290,7 @@ export class AdminComponent implements OnInit {
                 )
             }
         }
-        this.getAllBannerData();
+
     }
 
     private editBannerData(editBannerObj: any) {
