@@ -40,22 +40,23 @@ export class LoginService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);
-
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");
-
         return this.http.get(url, { headers })
-            .map((response: Response) => {
-                alert(response.status)
-                debugger
-                if (response.status == 200) {
-                    return response.json()
-                }
-                else {
-                    return false
-                }
-            })
+            .map((response: Response) =>
+                response.json())
             .catch(this.handleError)
+        //   {
+        //     alert(response.status)
+        //     debugger
+        //     if (response.status == 200) {
+        //         return response.json()
+        //     }
+        //     else {
+        //         return false
+        //     }
+        // })
+        // .catch(this.handleError)
     }
 
     getLoginResponse(username, password): any {

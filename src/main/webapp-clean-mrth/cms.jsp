@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 	<title></title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="shortcut icon" href="assets/images/favicon.ico" />
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
-
 	<script type='text/javascript'>
 		function getParameterByName(name, url) {
 			if (!url) url = window.location.href;
@@ -19,6 +17,7 @@
 		}
 		var page = getParameterByName('page');
 		alert(page)
+
 		$(window).load(function () {
 			debugger
 			$.ajax({
@@ -37,11 +36,9 @@
 			});
 		});
 	</script>
-
 </head>
 
 <body>
 	<div id="cms"></div>
 </body>
-
 </html>

@@ -109,9 +109,10 @@ export class LoginComponent implements OnInit {
                         }
                     },
                     (error) => {
-                        this.cookieService.removeAll();
-                        alert("error in refreshing")
-                        //this.login();                        
+                        this.cookieService.removeAll();                        
+                        location.reload();
+                        //alert("error in refreshing")
+                                             
                     }
                 )
             }
