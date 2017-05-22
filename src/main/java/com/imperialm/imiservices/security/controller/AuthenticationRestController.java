@@ -68,66 +68,20 @@ public class AuthenticationRestController {
 		// Reload password post-security so we can generate token
 		final Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
-						authenticationRequest.getUsername(),
+						authenticationRequest.getUsername().trim(),
 						authenticationRequest.getPassword()
 						)
 				);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		final UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+		final UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(authenticationRequest.getUsername().trim());
 		/*
         if(!(this.get_SHA_512_SecurePassword(authenticationRequest.getPassword(), user.getSalt()).toUpperCase().equals(user.getPassword()))){
         	throw new AuthenticationException("Failed to login");
         }*/
 		final String token = jwtTokenUtil.generateToken(user);
-		List<UserPositionCodeRoleDTO> userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
-
-		List<String> positionCode = new ArrayList<String>();
-		List<String> dealerCode = new ArrayList<String>();
-
-		for(UserPositionCodeRoleDTO item: userCodes){
-			positionCode.add(item.getPositionCode());
-			dealerCode.add(item.getDealerCode());
-		}
-
-		if(userCodes.size() == 0){
-			List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user.getUserId());
-			if(tids.size() > 0){
-				for(TIDUsersDTO item: tids){
-					positionCode.add(item.getPositionCode());
-				}
-			}else{
-				List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
-				if(territoryCheck.size() > 0){
-					if(territoryCheck.get(0).equalsIgnoreCase("nat")){
-						positionCode.add("90");
-					}else if(territoryCheck.get(0).contains("-")){
-						positionCode.add("97");
-					}else if(territoryCheck.get(0).trim().length() == 2){
-						positionCode.add("8D");
-					}
-				}
-			}
-		}
-
-		Set<String> p = new LinkedHashSet<>(positionCode);
-		Set<String> d = new LinkedHashSet<>(dealerCode);
-		positionCode.clear();
-		dealerCode.clear();
-
-		positionCode.addAll(p);
-		dealerCode.addAll(d);
-
-		JwtAuthenticationResponse response =new JwtAuthenticationResponse(token);
-		response.setPositionCode(positionCode);
-		response.setDealerCode(dealerCode);
-		response.setName(user.getUsername());
-		if(UserProgramRolesDAO.isAdmin(user.getUserId().trim())){
-			response.setAdmin(true);
-		}
-		// Return the token
 		logger.info("User Id: " + user.getUserId() + ", signed in!");
-		return ResponseEntity.ok(response);
+		return finalizeToken(token,user, null , null);
 	}
 
 	@RequestMapping(value = "/login/tokenrefresh", method = RequestMethod.GET)
@@ -138,52 +92,7 @@ public class AuthenticationRestController {
 
 		if (jwtTokenUtil.canTokenBeRefreshed(token)) {
 			String refreshedToken = jwtTokenUtil.refreshToken(token);
-			List<UserPositionCodeRoleDTO> userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
-			List<String> positionCode = new ArrayList<String>();
-			List<String> dealerCode = new ArrayList<String>();
-
-			for(UserPositionCodeRoleDTO item: userCodes){
-				positionCode.add(item.getPositionCode());
-				dealerCode.add(item.getDealerCode());
-			}
-
-			if(userCodes.size() == 0){
-				List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user.getUserId());
-				if(tids.size() > 0){
-					for(TIDUsersDTO item: tids){
-						positionCode.add(item.getPositionCode());
-					}
-				}else{
-					List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
-					if(territoryCheck.size() > 0){
-						if(territoryCheck.get(0).equalsIgnoreCase("nat")){
-							positionCode.add("90");
-						}else if(territoryCheck.get(0).contains("-")){
-							positionCode.add("97");
-						}else if(territoryCheck.get(0).trim().length() == 2){
-							positionCode.add("8D");
-						}
-					}
-				}
-			}
-
-			Set<String> p = new LinkedHashSet<>(positionCode);
-			Set<String> d = new LinkedHashSet<>(dealerCode);
-			positionCode.clear();
-			dealerCode.clear();
-
-			positionCode.addAll(p);
-			dealerCode.addAll(d);
-
-			JwtAuthenticationResponse response =new JwtAuthenticationResponse(refreshedToken);
-			response.setPositionCode(positionCode);
-			response.setDealerCode(dealerCode);
-			response.setName(user.getUsername());
-			if(UserProgramRolesDAO.isAdmin(user.getUserId().trim())){
-				response.setAdmin(true);
-			}
-
-			return ResponseEntity.ok(response);
+			return finalizeToken(refreshedToken,user, null , null);
 		} else {
 			return ResponseEntity.badRequest().body("Invalid Token");
 		}
@@ -193,26 +102,29 @@ public class AuthenticationRestController {
 	public ResponseEntity<?> createAuthenticationToken(@PathVariable(value="token") String token, @PathVariable(value="positionCode") String tokenPositionCode, @PathVariable(value="dealerCode")String tokenDealerCode) throws AuthenticationException {
 
 		String username = jwtTokenUtil.getUsernameFromToken(token);
-		UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
+		UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username.trim());
 
 		if(!jwtTokenUtil.validateToken(token, user)){
 			//token is expired/invalid token
 			return ResponseEntity.status(500).body("Invalid Token");
 		}
 
+		return finalizeToken(token,user, tokenPositionCode , tokenDealerCode);
+	}
+
+	public ResponseEntity<?> finalizeToken(String token, UserDetailsImpl user, String tokenPositionCode, String tokenDealerCode){
 		List<UserPositionCodeRoleDTO> userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
-
-
 		List<String> positionCode = new ArrayList<String>();
 		List<String> dealerCode = new ArrayList<String>();
-		if(!(tokenPositionCode.isEmpty() || tokenPositionCode == null || tokenPositionCode.equalsIgnoreCase("undefined"))){
+
+		if(!(tokenPositionCode == null || tokenPositionCode.isEmpty() || tokenPositionCode.equalsIgnoreCase("undefined"))){
 			positionCode.add(tokenPositionCode);
 		}
 		
-		if(!(tokenDealerCode.isEmpty() || tokenDealerCode == null || tokenDealerCode.equalsIgnoreCase("undefined"))){
+		if(!(tokenDealerCode == null || tokenDealerCode.isEmpty() ||  tokenDealerCode.equalsIgnoreCase("undefined"))){
 			dealerCode.add(tokenDealerCode);
 		}
-		
+
 		for(UserPositionCodeRoleDTO item: userCodes){
 			positionCode.add(item.getPositionCode());
 			dealerCode.add(item.getDealerCode());
@@ -223,6 +135,9 @@ public class AuthenticationRestController {
 			if(tids.size() > 0){
 				for(TIDUsersDTO item: tids){
 					positionCode.add(item.getPositionCode());
+					if (item.getTerritory().length() == 5){
+						dealerCode.add(item.getTerritory());
+					}
 				}
 			}else{
 				List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
@@ -253,10 +168,8 @@ public class AuthenticationRestController {
 		if(UserProgramRolesDAO.isAdmin(user.getUserId().trim())){
 			response.setAdmin(true);
 		}
-		// Return the token
 		return ResponseEntity.ok(response);
 	}
-
 
 	public String get_SHA_512_SecurePassword(String passwordToHash, String   salt){
 		String generatedPassword = null;

@@ -455,7 +455,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       responsive: {
         rules: [{
           condition: {
-            maxWidth: 500
+            maxWidth: 450
           },
           chartOptions: {
             legend: {

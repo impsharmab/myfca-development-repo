@@ -60,8 +60,8 @@ export class LoginService {
     }
 
     getLoginResponse(username, password): any {
-        //var url = "./login/token/";
-        var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        var url = "./login/token/";
+        //var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -76,8 +76,8 @@ export class LoginService {
 
     }
     resetPassword(userId: string, emailId: string) {
-         var url = "https://test.myfcarewards.com/imimserservices/UserProfile/ResetPassword";
-       // var url = "./UserProfile/ResetPassword";
+       //  var url = "https://test.myfcarewards.com/imimserservices/UserProfile/ResetPassword";
+        var url = "./UserProfile/ResetPassword";
 
         var body = { "userId": userId, "email": emailId };
         var headers = new Headers();

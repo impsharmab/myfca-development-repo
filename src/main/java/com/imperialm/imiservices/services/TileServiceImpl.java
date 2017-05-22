@@ -5091,11 +5091,15 @@ public class TileServiceImpl{
 		}
 		case "35":
 		{
+			List<TTTAEnrolledGraphDTO> TTTAEnrolledDTO = null;
 			if(type.equalsIgnoreCase("district")){
-				territory = territory.substring(0, 3) + "%";
+				territory = territory.substring(0, 2);
+				TTTAEnrolledDTO = this.dashService.getTTTAEnrolledByParentTerritoryNotEnrolled(Arrays.asList(territory));
+			}else{
+				TTTAEnrolledDTO = this.dashService.getTTTAEnrolledByChildTerritoryNotEnrolled(territory);
 			}
 			// check for role, to know what data to display
-			List<TTTAEnrolledGraphDTO> TTTAEnrolledDTO = this.dashService.getTTTAEnrolledByChildTerritoryNotEnrolled(territory);
+			
 			Chart chart = new Chart();
 			chart.setTitle("Total Dealers Not Enrolled");
 			chart.setSubTitle("");

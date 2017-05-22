@@ -342,8 +342,10 @@ footer.page-footer {
 }
 .image-frame img {
     text-align: left;
-    float: left;
-    height: 40px;
+    float: left;    
+    height: auto !important;
+  max-height: 40px;
+
 }
 .data-point {
     font-size: 1.4em;
@@ -596,3 +598,43 @@ h4 {
     width: 100%;
     margin: 10px;
 }
+
+@media screen and (max-width:400px) {
+  .data-group {
+    width: 100%;
+  }
+
+  .sav .sav-item {
+    padding-left: 20px;
+  }
+
+  .sav-item {
+    text-align: left;
+  }
+
+  .sav-utility {
+    height: auto !important;
+  }
+
+  .navbar {
+    padding: 16px 0px;
+  }
+
+  .card {
+    margin-left:0;
+    margin-right: 0;
+  }
+
+  .footerCopyright {
+    width: 100% !important;
+    height: auto;
+    text-align: left;
+    padding: 15px;
+  }
+
+  footer.page-footer .footer-copyright {
+    overflow: visible;
+    height: auto !important;
+  }
+}
+

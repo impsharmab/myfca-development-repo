@@ -3,6 +3,10 @@ package com.imperialm.imiservices.util;
 import java.io.IOException;
 import java.sql.Clob;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 
 import org.apache.commons.io.IOUtils;
@@ -51,5 +55,63 @@ public class IMIServicesUtil {
 
 		return returnString;
 	}
+	
+	
+	
+
+	public String formatCurrency(int number){
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		String moneyString = formatter.format((int)number);
+		if (moneyString.endsWith(".00")) {
+			int centsIndex = moneyString.lastIndexOf(".00");
+			if (centsIndex != -1) {
+				moneyString = moneyString.substring(1, centsIndex);
+			}
+		}
+
+		return moneyString;
+	}
+
+	public String formatCurrency(double number){
+		NumberFormat formatter = NumberFormat.getCurrencyInstance();
+		String moneyString = formatter.format((int)number);
+		if (moneyString.endsWith(".00")) {
+			int centsIndex = moneyString.lastIndexOf(".00");
+			if (centsIndex != -1) {
+				moneyString = moneyString.substring(1, centsIndex);
+			}
+		}
+
+		return moneyString;
+	}
+
+	public String formatNumbers(double number){
+		DecimalFormat formatter = new DecimalFormat("#,###");
+
+		return formatter.format(number);
+	}
+
+	public String formatNumbers(int number){
+		DecimalFormat formatter = new DecimalFormat("#,###");
+
+		return formatter.format(number);
+	}
+	
+	public String getCurrentQuarter(){
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return (cal.get(Calendar.YEAR)) + "Q" + ((cal.get(Calendar.MONTH) / 3) + 1);
+	}
+
+	public String getCurrentYear(){
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return (cal.get(Calendar.YEAR))+"";
+	}	
+	
+	
+	
 
 }

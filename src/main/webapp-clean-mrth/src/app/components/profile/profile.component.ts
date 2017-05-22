@@ -47,8 +47,27 @@ export class ProfileComponent implements OnInit {
         )
     }
 
+    private emailRegex(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
     private changeProfileData() {
-        this.profileService.changeProfileData(this.profiledata.name, this.profiledata.email).subscribe(
+        if (this.profiledata.name.trim() === "" && this.profiledata.email.trim() === "") {
+            this.errorProfileChangeMessage = "Please enter your name and email id";
+            return;
+        } else if (this.profiledata.name.trim() === "" && this.profiledata.email.trim() !== "") {
+            this.errorProfileChangeMessage = "Please enter your name";
+            return;
+        }else if (this.profiledata.name.trim() !== "" && this.profiledata.email.trim() === "") {
+            this.errorProfileChangeMessage = "Please enter your email ID";
+            return;
+        }
+        else if (this.profiledata.name.trim() !== "" && this.profiledata.email.trim() !== "" && this.emailRegex(this.profiledata.email.trim())) {
+            this.errorProfileChangeMessage = "Please enter valid email id";
+            return;
+        }
+        this.profileService.changeProfileData(this.profiledata.name.trim(), this.profiledata.email.trim()).subscribe(
             (profileChangeData) => {
                 this.profileChangeData = (profileChangeData);
                 this.successProfileChangeMessage = "Your Profile Settings are Updated";
@@ -62,8 +81,11 @@ export class ProfileComponent implements OnInit {
         if (this.profiledata.password1.trim() !== this.profiledata.password2.trim()) {
             this.passwordNotMatched = "Password does not match, please enter the same password";
             return;
+        } else if ((this.profiledata.password1.trim()).length < 0 || (this.profiledata.password2.trim()).length < 0) {
+            this.passwordNotMatched = "Password is required";
+            return;
         }
-        this.profileService.changeUserPassword(this.profiledata.password1).subscribe(
+        this.profileService.changeUserPassword(this.profiledata.password1.trim()).subscribe(
             (password) => {
                 this._password = (password);
                 this.successPasswordChangeMessage = "Your Profile Password is Updated";

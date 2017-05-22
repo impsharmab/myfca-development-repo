@@ -62,10 +62,10 @@ export class AdminComponent implements OnInit {
         this.getAdminData();
         this.getImageList(self);
 
-        $(document).ready(function () {
-            $('#example').DataTable();
-        });
-        
+        // $(document).ready(function () {
+        //     $('#example').DataTable();
+        // });
+
         $('#accordion').collapse({
             toggle: false
         });
@@ -280,7 +280,7 @@ export class AdminComponent implements OnInit {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
                     (addBannerData) => {
                         this.addBannerData = addBannerData;
-                        alert("success");
+                        alert("Success in adding banner");
                         this.getAllBannerData();
                     },
                     (error) => {
@@ -307,9 +307,9 @@ export class AdminComponent implements OnInit {
         this.adminService.deleteBannerData(dashBoardBannersID).subscribe(
             (deleteBannerDatum) => {
                 this.deleteBannerDatum = deleteBannerDatum;
-                alert(deleteBannerDatum)
-                alert(this.deleteBannerDatum)
-                alert("successfully deleted")
+                // alert(deleteBannerDatum)
+                // alert(this.deleteBannerDatum)
+                alert("successfully deleted banner")
                 this.getAllBannerData();
             },
             (error) => {

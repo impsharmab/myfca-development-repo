@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
  * @author Dheerajr
  *
  */
+/*
 @Component
 @Aspect
 public class IMIServicesMonitor {
@@ -44,3 +45,4 @@ public class IMIServicesMonitor {
 		return output;
 	}
 }
+*/
