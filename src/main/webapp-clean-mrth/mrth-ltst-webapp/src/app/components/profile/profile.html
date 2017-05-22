@@ -1,0 +1,57 @@
+<section class="intro-section admin-margin " id="intro">
+    <div class="page-title">
+        <div class="pageTitle">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-12">
+                        <h3 class="heading-xl profile" style="color:white">
+                            Update User Profile Page
+                        </h3>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <article class="card animated fadeInUp">
+            <div class="card-block">
+                <div class="content-row row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <button class="getstarted-button btn-sm" style="margin: 10px; background-color: #536ea4!important;" (click)="goBack()"><i class="fa fa-arrow-circle-left" ></i> Return to Dashboard</button>
+                        <form class="pageForm" #changeInformation="ngForm">
+                            <h6>Change your Information</h6>
+                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successProfileChangeMessage}}</p>
+                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorProfileChange}}</p>
+                            <label>Name:</label>
+                            <input id="username" size="30" name="username" type="text" [(ngModel)]="profiledata.name"><br>
+                            <label>Email:</label>
+                            <input id="email" size="30" name="email" type="text" [(ngModel)]="profiledata.email">
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeProfileData()"
+                                    style="cursor:pointer">Update</button>
+                            </div>
+                        </form>
+                        <form class="pageForm" id="changePassword">
+                            <h6>Change your Password</h6>
+                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successPasswordChangeMessage}}</p>
+                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{passwordNotMatched}}</p>
+                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorPassWordChange}}</p>
+                            <label>New Password:</label>
+                            <input id="passwordInput" size="30" name="password1" type="password" [(ngModel)]="profiledata.password1">
+                            <br>
+                            <label>Confirm Password:</label>
+                            <input id="passwordInput" size="30" name="password2" type="password" [(ngModel)]="profiledata.password2">
+                            <br/>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" (click)="changeUserPassword()"
+                                    style="cursor:pointer">Change</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>

@@ -6,7 +6,7 @@
     </div>
 </nav>
 <section class="intro-section" id="intro" [hidden]="hideLoginPage">
-    <div class="container"> 
+    <div class="container">
         <div class="row login">
             <div class="col-sm card login-frame">
                 <div class="heading-line">
@@ -15,15 +15,25 @@
                 <form class="pageForm" #f="ngForm" novalidate (ngSubmit)="login()">
                     <p style="color: red; margin-bottom: auto; margin-left: 205;">{{loginFailed}} <br> {{loginErrorMessage}}</p>
                     <label><b>SID/TID: *</b></label>
-                    <input id="username" pattern="[A-Z]{3}[0-9]{4}" type="text" name="username" [(ngModel)]="user.username" #username="ngModel"
-                        placeholder="">
+                    <input id="username" type="text" name="username" [(ngModel)]="user.username" #username="ngModel"
+                        placeholder="" required minlength="7" maxlength="7">
                     <br>
                     <label><b>Password: *</b></label>
-                    <input id="password" pattern="[A-Z]{3}[0-9]{4}" type="password" name="password" [(ngModel)]="user.password" #password="ngModel"
-                        placeholder="">
-                        <a class="resetLink" style="color:blue; cursor: pointer" (click)="resetPassword()"><span>&nbsp;</span>&nbsp; <span style="text-decoration:underline"> Reset Password</span></a>
-                        <br/>
+                    <input id="password"  type="password" name="password" [(ngModel)]="user.password" #password="ngModel"
+                        placeholder="" required>
+                    <a class="resetLink" style="color:blue; cursor: pointer" (click)="resetPassword()"><span>&nbsp;</span>&nbsp; <span style="text-decoration:underline"> Reset Password</span></a>
+                    <br/>
+                    <!--<div *ngIf="(username.dirty || username.touched)" class="alert alert-danger">
+                        <div [hidden]="!username.errors.required">
+                            SID/TID is required
+                        </div>
+                        <div [hidden]="!name.errors.minlength">
+                            SID/TID must be 7 characters long.
+                        </div>                        
+                    </div>-->
                     <button type="submit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style=" margin-bottom: auto; margin-left: 205; margin-top: 5;">Enter</button>
+
+                    
                 </form>
             </div>
         </div>

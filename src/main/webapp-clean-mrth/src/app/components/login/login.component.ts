@@ -53,6 +53,15 @@ export class LoginComponent implements OnInit {
         this.refreshLogin();
     }
 
+    private usernameRegex(uname: string) {
+        if (uname.length == 7) {
+            var re = (/[s|t|S|T]{1}[0-9]{4,5}[A-Z|a-z]{1,2}/)
+            return re.test(uname)
+        } else {
+            return false
+        }
+    }
+    
     private ssologin(ssotoken: string, ssopositioncode: string, ssodealercode: string) {
         this.loginService.getSSOLoginResponse(
             this.ssotoken,
@@ -109,10 +118,10 @@ export class LoginComponent implements OnInit {
                         }
                     },
                     (error) => {
-                        this.cookieService.removeAll();                        
+                        this.cookieService.removeAll();
                         location.reload();
                         //alert("error in refreshing")
-                                             
+
                     }
                 )
             }
@@ -121,7 +130,12 @@ export class LoginComponent implements OnInit {
 
 
     private login() {
-        if (this.user.username.trim() === "" && this.user.password.trim() === "") {
+        // if (!this.usernameRegex(this.user.username.trim())) {
+        //     this.loginFailed = "Login Failed";
+        //     this.loginErrorMessage = "Please Enter your valid SID/TID";
+        //     return;
+        // }
+         if (this.user.username.trim() === "" && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID and Password";
             return;
@@ -129,12 +143,12 @@ export class LoginComponent implements OnInit {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID";
             return;
-        } else if (this.user.username.trim() !== null && this.user.password.trim() === "") {
+        } else if (this.user.username.trim() !== null && (!this.usernameRegex(this.user.username.trim())) && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
-            this.loginErrorMessage = "Please Enter your Password";
+            this.loginErrorMessage = "Please Enter your valid SID/TID and Password";
             return;
         }
-        this.loginService.getLoginResponse(this.user.username, this.user.password).subscribe(
+        this.loginService.getLoginResponse(this.user.username.trim(), this.user.password.trim()).subscribe(
             (resUserData) => {
                 this.userdata = (resUserData)
                 // console.log(resUserData)
