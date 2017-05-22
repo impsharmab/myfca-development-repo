@@ -27,7 +27,7 @@ public class IMIServicesFilter implements Filter {
 	@Override
 	public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain)
 			throws IOException, ServletException {
-		logger.info("Filtering on...........................................................");
+		//logger.info("Filtering on...........................................................");
 		final HttpServletResponse response = (HttpServletResponse) res;
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setHeader("Access-Control-Allow-Credentials", "true");
