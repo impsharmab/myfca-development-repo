@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
  * @author Dheerajr
  *
  */
+
 @Component
 @Aspect
 public class IMIServicesMonitor {
@@ -33,9 +34,9 @@ public class IMIServicesMonitor {
 		final String packageName = joinPoint.getSignature().getDeclaringTypeName();
 		final String methodName = joinPoint.getSignature().getName();
 
-		//logger.info(packageName + "." + methodName + " start");
+		logger.info(packageName + "." + methodName + " start");
 		final Object[] args = joinPoint.getArgs();
-		//logger.info(Arrays.toString(args));
+		logger.info(Arrays.toString(args));
 
 		final long start = System.currentTimeMillis();
 		final Object output = joinPoint.proceed();

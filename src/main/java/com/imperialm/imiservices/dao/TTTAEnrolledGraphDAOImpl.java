@@ -41,6 +41,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getTTTAEnrolledByChildTerritory")
 	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritory(String list) {
@@ -112,6 +113,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByChildTerritoryNotEnrolled(String list) {
 		List<TTTAEnrolledGraphDTO> result = new ArrayList<TTTAEnrolledGraphDTO>();
@@ -130,6 +132,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getTTTAEnrolledDealersNATNotEnrolled() {
 		int result = 0;
@@ -146,6 +149,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getTTTAEnrolledBCORDistrictNotEnrolled(String territory) {
 		int result = 0;

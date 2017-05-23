@@ -34,6 +34,8 @@ export class AdminComponent implements OnInit {
     private editBannerDatum: any = {};
     private deleteBannerDatum: any = {}
     private role: string = "";
+    private admin: Admin;
+    private tileDataLocal: any = {}
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
 
     ngOnInit() {
@@ -41,6 +43,11 @@ export class AdminComponent implements OnInit {
         this.emulateuser = {
             sid: ''
         }
+        this.admin = {
+            positioncode: '',
+            role: ''
+        }
+
         this.getAllBannerData();
         this.uploadImage = {
             dashBoardBannersID: 0,
@@ -56,7 +63,7 @@ export class AdminComponent implements OnInit {
             updatedBy: "",
             delFlag: ""
         }
-
+        //this.getTileDataLocal();
         this.getPositionCode();
         this.getRoles();
         this.getAdminData();
@@ -136,12 +143,12 @@ export class AdminComponent implements OnInit {
         )
     }
 
-    setImage(image) {
+    private setImage(image) {
         this.uploadImage.image = image;
 
     }
 
-    testMethod() {
+    private testMethod() {
         for (var k = 0; k < this.imagelist.length; k++) {
             this.projects.push({
                 value: this.imagelist[k],
@@ -182,7 +189,7 @@ export class AdminComponent implements OnInit {
     }
 
 
-    getImageList(self) {
+    private getImageList(self) {
         this.adminService.getImageList().subscribe(
             (imagelist) => {
                 this.imagelist = imagelist;
@@ -191,7 +198,7 @@ export class AdminComponent implements OnInit {
         )
     }
 
-    setRole(b) {
+    private setRole(b) {
         var a = [];
         if (!Array.isArray(b)) {
             a.push(b)
@@ -201,7 +208,7 @@ export class AdminComponent implements OnInit {
         this.uploadImage.selectedRoleId = a;
     }
 
-    setBC(b) {
+    private setBC(b) {
         var a = [];
         if (!Array.isArray(b)) {
             a.push(b)
@@ -211,21 +218,21 @@ export class AdminComponent implements OnInit {
         this.uploadImage.bc = a;
     }
 
-    getPositionCode() {
+    private getPositionCode() {
         this.adminService.getPositionCode().subscribe(
             (positioncode) => {
                 this.positioncode = positioncode;
             }
         )
     }
-    getRoles() {
+    private getRoles() {
         this.adminService.getRoles().subscribe(
             (roles) => {
                 this.roles = roles;
             }
         )
     }
-    getAdminData() {
+    private getAdminData() {
         this.adminService.getAdminData().subscribe(
             (adminData) => {
                 this.adminData = adminData.permissions;
@@ -233,7 +240,7 @@ export class AdminComponent implements OnInit {
         )
     }
 
-    emulateUser() {
+    private emulateUser() {
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
             (emulateUserData) => {
                 this.emulateUserData = emulateUserData;
@@ -247,7 +254,7 @@ export class AdminComponent implements OnInit {
             }
         )
     }
-    endEmulateUser() {
+    private endEmulateUser() {
         this.cookieService.get("adminToken")
         this.adminService.setEndEmulateUserData(this.endEmulateUserData);
         var poscodes: any = this.emulateUserData.positionCode;
@@ -262,8 +269,7 @@ export class AdminComponent implements OnInit {
         this.router.navigate(url);
     }
 
-    addBannerImage() {
-        debugger
+    private addBannerImage() {
         if (this.uploadImage.selectedRoleId.length == 0) {
             return false;
         } else if (this.uploadImage.bc.length == 0) {
@@ -294,7 +300,6 @@ export class AdminComponent implements OnInit {
     }
 
     private editBannerData(editBannerObj: any) {
-
         this.adminService.editBannerData(editBannerObj).subscribe(
             (editBannerDatum) => {
                 this.editBannerDatum = editBannerDatum;
@@ -317,6 +322,35 @@ export class AdminComponent implements OnInit {
             }
         )
 
+    }
+
+
+    private getTileDataLocal() {
+        this.adminService.getTileDataLocal().subscribe(
+            (tileDataLocal) => {
+                this.tileDataLocal = tileDataLocal;               
+                // alert("success")   
+                // console.log(tileDataLocal)
+                // console.log(this.tileDataLocal)             
+            },
+            (error) => {
+                alert("error");
+            }
+        )
+    }
+    private getTileDataResponse() {
+        this.adminService.getTileDataResponse(this.admin.positioncode).subscribe(
+            (deleteBannerDatum) => {
+                this.deleteBannerDatum = deleteBannerDatum;
+                // alert(deleteBannerDatum)
+                // alert(this.deleteBannerDatum)
+                alert("successfully deleted banner")
+                this.getAllBannerData();
+            },
+            (error) => {
+                alert("error in deleting banner");
+            }
+        )
     }
 
 

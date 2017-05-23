@@ -37,7 +37,7 @@ nav .nav-item{
 }
 /* Admin */
 #admin {
-    margin-top:150px;
+    margin-top:70px;
 }
 .admin-right-col{
     margin-top:3em;
@@ -57,7 +57,7 @@ nav .nav-item{
 }
 .admin-container{
     background:#fff;
-    padding-top:2em;
+    /*padding-top:2em;*/
     padding-bottom:2em;
 }
 .box{

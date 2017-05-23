@@ -25,7 +25,6 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import com.imperialm.imiservices.dao.BrainBoostWinndersGraphDAOImpl;
 import com.imperialm.imiservices.security.JwtAuthenticationEntryPoint;
 import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
 import com.imperialm.imiservices.security.JwtDaoAuthenticationProvider;
@@ -54,7 +53,7 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler = new JwtAuthenticationEntryPoint();
     
-    @Scheduled(fixedRateString = 480 * 60 * 1000 +"", initialDelayString = "120000") // reset cache every hr, with delay of 1hr after app start
+    @Scheduled(cron = "0 0 3 * * ?")
     public void resetCache() {
     	//CacheManager cacheManager = cacheManager();
     	Collection<String> cacheNames = cacheManager.getCacheNames();
@@ -62,7 +61,26 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     		cacheManager.getCache(cache).clear();
     	}
     	//cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
-    	logger.info("Flush Cache" + new Date().toString());
+    	logger.info("Cleared All Caches at: " + new Date().toString());
+    }
+    
+    
+    public void resetCache(String cashName, String key) {
+    	//CacheManager cacheManager = cacheManager();
+    	try{
+    		if(key != null){
+    			System.out.println(cacheManager.getCache(cashName).get(key));
+    			logger.info("Removed Object with Key: " + key + "from cache named: " + cashName + " at: " + new Date().toString());
+    		}else{
+    			cacheManager.getCache(cashName).clear();
+    			logger.info("Cleared Cache named: " + cashName + " at: " + new Date().toString());
+    		}
+        	//cacheManager.getCacheNames().parallelStream().forEach(name -> cacheManager.getCache(name).clear());
+        	
+    	}catch(Exception e){
+    		logger.error("Cache named: " + cashName + "Could not be cleared");
+    	}
+    	
     }
     
     @Bean @Qualifier("JwtAuthenticationTokenFilter")

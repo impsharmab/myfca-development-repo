@@ -51,13 +51,16 @@ export class ResetPasswordComponent implements OnInit {
       this.errorEmailID = 'Email is required'
       return;
     }
+    debugger
     this.loginService.resetPassword(this.resetpassword.sid_tid.trim(), this.resetpassword.emailId.trim()).subscribe(
       (resetPasswordData) => {
         this.resetPasswordData = (resetPasswordData)
         this.successResetPasswordMessage = "Please check your email for new UserID and Password";
+        alert("success")
       },
-      (error) => {
+      (error) => { 
         this.invalidCreds = true;
+        alert("error in reseting password")
         //this.errorMessage = "Please enter your valid SID/TID and password";
       }
     )

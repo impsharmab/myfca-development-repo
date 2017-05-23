@@ -30,12 +30,12 @@ public class EmailHandler {
                     subject = "Your MyFCADashboard password has been reset";
                     
                     message = "Hello, " +  user.getUser().getName() + "<br>"
-                    + "Your password has been reset for the Mopar Service Excellence Rewards Program website.<br>"
-                    + "Please log in at www.moparser.com using your user ID and the password below.<br>" 
+                    + "Your password has been reset for the MyFCADashboard website.<br>"
+                    + "Please log in at www.myfcarewards.com using your user ID and the password below.<br>" 
                     + "User Id: " + user.getUserId() + "<br>"
                     + "Password: " + (String) other + "<br>"
-                    + "<br>Once you are logged in you can change your password by selecting the “Profile” link located in the top left of the homepage."
-                    + "<br>If you have any questions please contact the Mopar Service Excellence Rewards Team at (866) 909-MSER(6737)."; 
+                    + "<br>Once you are logged in you can change your password by selecting the “Profile” link located in the top left of the homepage.";
+                    //+ "<br>If you have any questions please contact the Mopar Service Excellence Rewards Team at (866) 909-MSER(6737)."; 
                  // sendMail(from, to, cc, bcc, subject, message)
                     mailUtil.sendMail("info@moparser.com", user.getEmail(), ccEmailIds, null, subject, message);
                 }

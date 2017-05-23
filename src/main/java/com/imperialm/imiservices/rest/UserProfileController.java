@@ -51,6 +51,12 @@ public class UserProfileController {
 
 	@Autowired
 	private UserProfileService userprofileService;
+	
+	@Autowired
+	private com.imperialm.imiservices.ttta.dao.TTTAUsersDAO TTTAUsersDAO;
+	
+	@Autowired
+	private com.imperialm.imiservices.config.IMIServiceSecutiryConfig IMIServiceSecutiryConfig;
 
 	@RequestMapping(value = "/services/notile/{positionCode}/{dealerCode}", method = RequestMethod.GET)
 	public @ResponseBody Object getNoTile(@PathVariable(value="positionCode") String positionCode, @PathVariable(value="dealerCode") String dealerCode, HttpServletRequest request) {
@@ -105,7 +111,7 @@ public class UserProfileController {
 		temp.setEmail(userProfile.getEmail());
 		temp.setName(userProfile.getName());
 
-
+		//IMIServiceSecutiryConfig.resetCache(cashName, key);
 		return userDAOImpl.setProfile(temp);
 
 	}
@@ -168,8 +174,24 @@ public class UserProfileController {
 		}
 
 		String salt = UUID.randomUUID().toString().toUpperCase();
-		return userDAOImpl.setPassword(user.getUserId(), password.getItem(), salt);
-
+		boolean result = false;
+		if(userDAOImpl.setPassword(user.getUserId(), password.getItem(), salt)){
+			
+/*			List<String> TTTAPassword = TTTAUsersDAO.getPassword(user.getUserId().trim());
+			if(TTTAPassword.size() > 0 && TTTAUsersDAO.setPassword(user.getUserId(), password.getItem(), salt)){
+				return true;
+			}else{
+				TTTAUsersDAO.setPassword(user.getUserId(), TTTAPassword.get(0), salt);
+			}*/
+			result = true;
+		}else{
+			userDAOImpl.setHashedPassword(user.getUserId(), user.getPassword(), user.getSalt());
+		}
+		
+		if(result){
+			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", user.getUserId());
+		}
+		return ResponseEntity.status(500).body(result);
 	}
 
 

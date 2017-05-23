@@ -42,7 +42,7 @@ public class SummaryProgramRewardGraphDAOImpl implements SummaryProgramRewardGra
 		return result;
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getSummaryProgramRewardGraphByChildTerritoryYTDList")
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(List<String> territory) {
@@ -59,7 +59,7 @@ public class SummaryProgramRewardGraphDAOImpl implements SummaryProgramRewardGra
 			logger.error("error occured in getSummaryProgramRewardGraphByChildTerritoryYTD", ex);
 		}
 		return result;
-	}
+	}*/
 
 	@Override
 	@Cacheable(value="getSummaryProgramRewardGraphByChildTerritoryYTD")

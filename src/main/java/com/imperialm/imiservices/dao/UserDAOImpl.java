@@ -83,6 +83,25 @@ public class UserDAOImpl {
 		return result;
 	}
 	
+	@Transactional
+	public boolean setHashedPassword(String id, String hashedPassword, String salt){
+		boolean result = false;
+		try {
+			final Query query = this.em.createNativeQuery("update Users set [HashPass] = ?0 , [Salt] = ?1 where userid = ?2");
+			query.setParameter(0, hashedPassword);
+			query.setParameter(1, salt);
+			query.setParameter(2, id);
+			if(query.executeUpdate() > 0){
+				result = true;
+			}
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in setHashedPassword", ex);
+		}
+		return result;
+	}
+	
 	
 	
 	@SuppressWarnings("unchecked")

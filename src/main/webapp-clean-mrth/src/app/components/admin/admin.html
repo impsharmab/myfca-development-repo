@@ -4,7 +4,7 @@
             <div class="col-sm-12 col-md-9">
                 <div class="row">
                     <div class="col-md-8">
-                        <h1>Admin</h1>
+                        <!--<h1>Admin</h1>-->
                     </div>
                 </div>
                 <!--user emulation start-->
@@ -64,11 +64,13 @@
 
                     <div class="col-sm-12 col-md-4">
                         <div class="box">
-                            <h4>Add an Image</h4>
+                            <h4>Upload an Image</h4>
                             <br />
-                            <span>File</span>
+                            <!--<span>Choose an image</span>-->
+                            <label>Select an Image</label>
                             <input type="file" id="file" name="file" size="10" />
-                            <label class="font-size:8px; clear:none;">(File name) No File Chosen</label>
+                            <!--<label class="font-size:8px; clear:none;">(File name) No File Chosen</label>-->
+                            <br>
                             <br>
 
                             <input id="uploadbutton" type="button" value="Upload" onclick="a();" class="btn btn-primary btn-sm" />
@@ -79,6 +81,7 @@
                 </div>
                 <!--Add Image to Banner end-->
 
+                <!--Configuration Image to Banner start-->
                 <div class="row">
                     <div class="col-sm-12 col-md-12">
                         <div class="box">
@@ -102,7 +105,7 @@
                                         <td>{{bannerData.image}}</td>
                                         <td>{{bannerData.orderBy}}</td>
                                         <!--<td><button type="button" class="btn btn-primary btn-sm" (click)="editBannerData(bannerData)"><i class="fa fa-edit"></i></button></td>-->
-                                    <td><button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button></td>
+                                        <td><button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button></td>
                                     </tr>
 
                                     <!--<tr>
@@ -126,6 +129,81 @@
                     </div>
                 </div>
                 <!--Configuration Image to Banner end-->
+
+                <!-- Admin tile control start-->
+                <hr>
+                <div class="col-sm-12 col-md-12">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <h3>Tile Configuration to Dashboard</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="box">
+                                <h4>Position Code </h4>
+                                <label>Select Position Code</label>
+                                <select class="form-control" [(ngModel)]="admin.positioncode" (change)="getTileDataLocal()">
+                                    <option *ngFor="let positioncode of positioncode" >{{positioncode}}</option>                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <hr />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <h3>Tile Selection</h3>
+                            <div id="accordion" role="tablist" aria-multiselectable="true">
+
+                                <div class="card" *ngFor="let tileDataLocal of tileDataLocal.permissions">
+                                    <div class="card-header" role="tab" id="'heading'+ {{tileDataLocal.order}}">
+                                        <div class="row">
+                                            <div class="col-sm-10 col-md-10">
+                                                <div class="checkbox checkbox-primary">
+                                                    <input type="checkbox" id="{{tileDataLocal.order}}" [checked]= "tileDataLocal.checked" />
+                                                    <label for="{{tileDataLocal.order}}">{{tileDataLocal.name}}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--<div class="card">
+                                    <div class="card-header" role="tab" id="headingTwo">
+                                        <div class="row">
+                                            <div class="col-sm-10 col-md-10">
+                                                <div class="checkbox checkbox-primary">
+                                                    <input type="checkbox" id="mser-graph" />
+                                                    <label for="mser-graph">MSER Graph</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header" role="tab" id="headingThree">
+                                        <div class="row">
+                                            <div class="col-sm-10 col-md-10">
+                                                <div class="checkbox checkbox-primary">
+                                                    <input type="checkbox" id="mser-graph2" />
+                                                    <label for="mser-graph2">MSER Graph</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Admin tile control ends-->
             </div>
         </div>
     </div>

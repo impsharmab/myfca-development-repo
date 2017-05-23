@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  */
 
 public class IMIServicesFilter implements Filter {
-	private static Logger logger = LoggerFactory.getLogger(IMIServicesFilter.class);
+	//private static Logger logger = LoggerFactory.getLogger(IMIServicesFilter.class);
 
 	@Override
 	public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain)

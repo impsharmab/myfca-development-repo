@@ -646,9 +646,9 @@ public class DashboardServiceImpl {
 		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByParentTerritoryYTD(territory);
 	}
 	
-	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(List<String> territory){
+	/*public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(List<String> territory){
 		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByChildTerritoryYTD(territory);
-	}
+	}*/
 	
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(String territory){
 		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByChildTerritoryYTD(territory);

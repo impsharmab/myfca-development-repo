@@ -129,7 +129,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-    private login() {
+    private login() { 
         // if (!this.usernameRegex(this.user.username.trim())) {
         //     this.loginFailed = "Login Failed";
         //     this.loginErrorMessage = "Please Enter your valid SID/TID";

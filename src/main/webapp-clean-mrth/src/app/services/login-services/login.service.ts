@@ -34,8 +34,8 @@ export class LoginService {
     }
     getRefreshLoginResponse(token) {
         debugger
-       // var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
-        var url = "./login/tokenrefresh/";
+        var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+       // var url = "./login/tokenrefresh/";
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -61,7 +61,7 @@ export class LoginService {
 
     getLoginResponse(username, password): any {
         var url = "./login/token/";
-        //var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+       // var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -76,7 +76,7 @@ export class LoginService {
 
     }
     resetPassword(userId: string, emailId: string) {
-       //  var url = "https://test.myfcarewards.com/imimserservices/UserProfile/ResetPassword";
+         var url = "https://test.myfcarewards.com/myfcarewards/UserProfile/ResetPassword";
         var url = "./UserProfile/ResetPassword";
 
         var body = { "userId": userId, "email": emailId };
@@ -85,7 +85,7 @@ export class LoginService {
         return this.http.post(url, body, { headers: headers })
             .map((response: Response) =>
                 response.json())
-            .catch(this.handleError);
+            .catch(this.handleError); 
     }
     private handleError(error: Response | any) {
         let errMsg: string = "";

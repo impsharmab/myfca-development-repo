@@ -30,7 +30,7 @@ public class CMSController {
 	@Autowired
 	CMSService cmsService;
 	
-	 String pathName = "/MSER/Primary";
+	 String pathName = "/FCARewards/Primary";
 	 
 	 @RequestMapping(value ="/content/{page}", method = RequestMethod.GET)
 		public @ResponseBody Object getContenct(@PathVariable(value="page") String page, HttpServletRequest request) {

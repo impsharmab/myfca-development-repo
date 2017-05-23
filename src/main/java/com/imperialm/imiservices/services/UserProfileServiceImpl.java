@@ -41,7 +41,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//UB 15.1
 	private List<String> tile14 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
 	//UB 16.1
-	private List<String> tile15 = new ArrayList<String>(Arrays.asList("01","02","09","13","17","22","27","2S","32","33","35","36","37","39","46","47","4T","52","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile15 = new ArrayList<String>(Arrays.asList("01","02","09","13","17","22","27","2S","32","33","35","36","37","39","46","47","4T","52","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","LV","SB","SC","IEX","IBC","IDT"));
 	//UB 17.1
 	private List<String> tile16 = new ArrayList<String>(Arrays.asList("46","47","4T","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
 	//UB 18.1
@@ -53,7 +53,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//21.1
 	private List<String> tile20 = new ArrayList<String>(Arrays.asList("46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IDT"));
 	//UB 22.1 SUMMARY table
-	private List<String> tile21 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","10","11","12","13","14","16","17","19","1F","20","22","23","24","25","26","27","28","2S","2T","30","31","32","33","34","35","36","37","38","39","3S","3T","40","41","46","47","4T","50","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IBS","IDT"));
+	private List<String> tile21 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","10","11","12","13","14","16","17","19","1F","20","22","23","24","25","26","27","28","2S","2T","30","31","32","33","34","35","36","37","38","39","3S","3T","40","41","46","47","4T","50","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","ET","LV","SB","SC","IEX","IBC","IJM","IBS","IDT"));
 	//UB 23.1
 	private List<String> tile22 = new ArrayList<String>(Arrays.asList("01","02","22","36","37","39","46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IBS","IDT"));
 	//UB 24.1
@@ -130,7 +130,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		}
 
 		if(tile8.contains(positionCode)){
-			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts-ram.jpg","",""));
+			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts-ram.jpg","","assets/pdf/RAMExpert.pdf"));
 		}
 
 		if(tile9.contains(positionCode)){
@@ -190,7 +190,9 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 		// SUMMARY
 		if(tile21.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(36,"","chart", "","FCASummary.jpg","",SUMMARY_RULES)); // SUMMARY
+			NoTile rr = new NoTile(36,"","chart", "","FCASummary.jpg","",SUMMARY_RULES);
+			rr.setProgramRules("Tile Information");
+			this.userTiles.add(rr);
 		}
 
 		//Customer first

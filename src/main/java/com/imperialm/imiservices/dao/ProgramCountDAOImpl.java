@@ -155,6 +155,7 @@ public class ProgramCountDAOImpl {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public boolean checkDealerEnrollmentByProgram(int programId, String dealerCode){
 		List<Integer> result = new ArrayList<Integer>();
 
