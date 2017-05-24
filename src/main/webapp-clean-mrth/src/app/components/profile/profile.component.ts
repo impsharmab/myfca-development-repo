@@ -47,24 +47,20 @@ export class ProfileComponent implements OnInit {
         )
     }
 
-    private emailRegex(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
+    // private emailRegex(email) {
+    //     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //     return re.test(email);
+    // }
 
-    private changeProfileData() {
+    private changeProfileData() { 
         if (this.profiledata.name.trim() === "" && this.profiledata.email.trim() === "") {
             this.errorProfileChangeMessage = "Please enter your name and email id";
             return;
         } else if (this.profiledata.name.trim() === "" && this.profiledata.email.trim() !== "") {
             this.errorProfileChangeMessage = "Please enter your name";
             return;
-        }else if (this.profiledata.name.trim() !== "" && this.profiledata.email.trim() === "") {
+        } else if (this.profiledata.name.trim() !== "" && this.profiledata.email.trim() === "") {
             this.errorProfileChangeMessage = "Please enter your email ID";
-            return;
-        }
-        else if (this.profiledata.name.trim() !== "" && this.profiledata.email.trim() !== "" && this.emailRegex(this.profiledata.email.trim())) {
-            this.errorProfileChangeMessage = "Please enter valid email id";
             return;
         }
         this.profileService.changeProfileData(this.profiledata.name.trim(), this.profiledata.email.trim()).subscribe(

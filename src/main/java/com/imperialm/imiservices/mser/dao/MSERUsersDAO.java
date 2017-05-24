@@ -1,4 +1,4 @@
-package com.imperialm.imiservices.ttta.dao;
+package com.imperialm.imiservices.mser.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,19 +15,19 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class TTTAUsersDAO{
+public class MSERUsersDAO {
 
-	private static Logger logger = LoggerFactory.getLogger(TTTAUsersDAO.class);
+private static Logger logger = LoggerFactory.getLogger(MSERUsersDAO.class);
 	
 	@Autowired
-	@Qualifier("TTTAEntityManager")
+	@Qualifier("MSEREntityManager")
 	private EntityManager em;
 	
-	@Transactional(value="TTTATransactionManager")
+	@Transactional(value="MSERTransactionManager")
 	public boolean setPassword(String id, String password){
 		boolean result = false;
 		try {
-			final Query query = this.em.createNativeQuery("update [Users] set [Password] = ?0, [ModifiedDate] = GETDATE(), [ModifiedBy] = ?3 where userid = ?3");
+			final Query query = this.em.createNativeQuery("update [Users] set [Password] = ?0 where userid = ?3");
 			query.setParameter(0, password);
 			query.setParameter(3, id);
 			em.joinTransaction();
@@ -37,7 +37,7 @@ public class TTTAUsersDAO{
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
-			logger.error("error occured in setPassword TTTA", ex);
+			logger.error("error occured in setPassword MSER", ex);
 		}
 		return result;
 	}
@@ -53,10 +53,9 @@ public class TTTAUsersDAO{
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
-			logger.error("error occured in setPassword TTTA", ex);
+			logger.error("error occured in getPassword MSER", ex);
 		}
 		return result;
 	}
-	
 	
 }

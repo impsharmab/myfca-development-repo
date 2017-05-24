@@ -389,6 +389,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var chartObj = {
       chart: {
         type: '',
+        spacingBottom: 0
 
       },
       colors: ['#7cb5ec', '#90ed7d', '#434348', '#f7a35c', '#8085e9',

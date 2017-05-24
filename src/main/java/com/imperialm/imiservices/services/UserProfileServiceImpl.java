@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.imperialm.imiservices.dto.UserDetailsImpl;
@@ -17,17 +18,17 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//UR3.1
 	private List<String> tile2 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","80","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IDT"));
 	//UB4.1
-	private List<String> tile3 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","1F","20","22","23","24","25","27","29","2T","32","33","35","36","37","3T","40","41","42"));
+	private List<String> tile3 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","20","22","23","24","25","27","29","32","33","35","36","37","40","41","42"));
 	//UB5.1
 	private List<String> tile4 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
 	//UB6.1
-	private List<String> tile5 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","1F","20","22","23","24","25","27","29","2T","32","33","35","36","37","3T","40","41","42"));
+	private List<String> tile5 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","20","22","23","24","25","27","29","32","33","35","36","37","40","41","42"));
 	//UB7.1
 	private List<String> tile6 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
 	//UB 8.1
 	private List<String> tile7 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
 	//UB 9.1
-	private List<String> tile8 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","12","1F","22","25","2T","36","37","3T","41","42"));
+	private List<String> tile8 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","12","22","25","36","37","41","42"));
 	//UB 10.1
 	private List<String> tile9 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","1F","22","25","2T","36","37","3T","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
 	//UB 11.1
@@ -76,17 +77,53 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 	private List<NoTile> userTiles = new ArrayList<NoTile>();
 
-	private final String MSER_SITE = "http://uat.imperialmarketing.com/mser/dashSSO.do?token=";
-	private final String MSER_RULES = "assets/pdf/MSERProgramRulesv15_9_17.pdf";
-	private final String BRAINBOOST_SITE = "https://brainboost.meap.me/";
-	private final String BRAINBOOST_RULES = "https://brainboost.meap.me/";
-	private final String RETENTION_RULES = "assets/pdf/RetentionCalculation.pdf";
-	private final String SUMMARY_RULES = "assets/pdf/SummaryEarningsYTD.pdf";
-	private final String TOPADVISOR_SSO = "http://uat.imperialmarketing.com/topAdvisor/dashSSO.htm?token=";
-	private final String TOPTECH_SSO = "http://uat.imperialmarketing.com/topAdvisor/dashSSO.htm?token=";
+	@Value("${cms.link.MSERSITE}")
+	private String MSER_SITE;
+	
+	@Value("${cms.link.MSERRULES}")
+	private String MSER_RULES;
+	
+	@Value("${cms.link.BRAINBOOSTSITE}")
+	private String BRAINBOOST_SITE;
+	
+	@Value("${cms.link.BRAINBOOSTRULES}")
+	private String BRAINBOOST_RULES;
+	
+	@Value("${cms.link.RETENTIONRULES}")
+	private String RETENTION_RULES;
+	
+	@Value("${cms.link.SUMMARYRULES}")
+	private String SUMMARY_RULES;
+	
+	@Value("${cms.link.TOPADVISORSITE}")
+	private String TOPADVISOR_SSO;
+	
+	@Value("${cms.link.TOPTECHSITE}")
+	private String TOPTECH_SSO;
+	
+	@Value("${cms.link.CERTIFIEDPRORULES}")
+	private String CERTIFIEDPRORULES;
+	
+	@Value("${cms.link.SHOPNOW}")
+	private String SHOPNOW;
+	
+	@Value("${cms.link.CERTIFIEDEXPERTS}")
+	private String CERTEXPERT;
+	
+	@Value("${cms.link.TOPADVISORRULES}")
+	private String TOPADVISORRULES;
+	
+	@Value("${cms.link.SIREWARDSRULES}")
+	private String SIREWARDSRULES;
+	
+	@Value("${cms.link.CUSTOMERFIRSTRULES}")
+	private String CUSTOMERFIRSTRULES;
+	
+	@Value("${cms.link.CUSTOMERFIRSTSITE}")
+	private String CUSTOMERFIRSTSITE;
 
-
-
+	
+	
 
 
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc) {
@@ -104,7 +141,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 			this.userTiles.add(new NoTile(4,"","tile", "","VehicleProtection.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=" + dc,MSER_RULES));
 			this.userTiles.add(new NoTile(5,"","tile", "","Magenti.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=" + dc,MSER_RULES));
 			this.userTiles.add(new NoTile(6,"","tile", "","parts-counter.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=" + dc,MSER_RULES));
-			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg","hhttp://uat.imperialmarketing.com/mser/dashSSO.do?token=" + token + "&positioncode=" + pc + "&dealercode=",MSER_RULES));
+			this.userTiles.add(new NoTile(7,"","tile", "","Expresslane.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=",MSER_RULES));
 			this.userTiles.add(new NoTile(18,"","tile", "","wiadvisor-logo.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=" + dc,MSER_RULES));
 			this.userTiles.add(new NoTile(8,"","tile", "","uconnect-logo.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=" + dc,MSER_RULES));
 			this.userTiles.add(new NoTile(37,"","tile", "","MSEREnrollment.jpg",MSER_SITE + token + "&positioncode=" + pc + "&dealercode=" + dc,MSER_RULES));
@@ -112,10 +149,10 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 		//cert-pro-banners
 		if(tile3.contains(positionCode)){
-			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-experts.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(25,"","tile", "","cert-pro-experts.jpg","",CERTIFIEDPRORULES));
 		}
 		if(tile4.contains(positionCode)){
-			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-experts.jpg","","assets/pdf/2017FCACPRulesandProgramOverview.pdf"));
+			this.userTiles.add(new NoTile(13,"","chart", "","cert-pro-experts.jpg","",CERTIFIEDPRORULES));
 		}
 
 		if(tile5.contains(positionCode)){
@@ -130,15 +167,15 @@ public class UserProfileServiceImpl implements UserProfileService {
 		}
 
 		if(tile8.contains(positionCode)){
-			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts-ram.jpg","","assets/pdf/RAMExpert.pdf"));
+			this.userTiles.add(new NoTile(28,"","tile", "","cert-pro-experts-ram.jpg","",CERTEXPERT));
 		}
 
 		if(tile9.contains(positionCode)){
-			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts-ram.jpg","","assets/pdf/RAMExpert.pdf"));
+			this.userTiles.add(new NoTile(11,"","chart", "","cert-pro-experts-ram.jpg","",CERTEXPERT));
 		}
 
 		if(tile10.contains(positionCode)){
-			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts-ram.jpg","","assets/pdf/RAMExpert.pdf"));
+			this.userTiles.add(new NoTile(10,"","chart", "","cert-pro-experts-ram.jpg","",CERTEXPERT));
 		}
 
 		if(tile11.contains(positionCode)){
@@ -151,24 +188,24 @@ public class UserProfileServiceImpl implements UserProfileService {
 		}
 
 		if(tile13.contains(positionCode)){
-			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","assets/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(34,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com",TOPADVISORRULES));
 		}
 		
 		if(tile14.contains(positionCode)){
-			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com","assets/pdf/2017MoparTTTAProgramRulesFINAL.pdf"));
+			this.userTiles.add(new NoTile(35,"","chart", "","toptech-topadv.jpg","https://www.mopartopadvisor.com",TOPADVISORRULES));
 		}
 
 		if(tile15.contains(positionCode)){
-			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","","assets/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); //SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(29,"","tile", "","service-incentive.jpg","",SIREWARDSRULES)); //SERVICE INCENTIVE
 		}
 
 
 		if(tile16.contains(positionCode)){
-			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","","assets/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(20,"","chart", "","service-incentive.jpg","",SIREWARDSRULES)); // SERVICE INCENTIVE
 		}
 
 		if(tile17.contains(positionCode)){
-			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","","assets/pdf/2017Q2-Q4ServiceIncentiveRewardsProgramDetailsv5.pdf")); // SERVICE INCENTIVE
+			this.userTiles.add(new NoTile(22,"","chart", "","service-incentive.jpg","",SIREWARDSRULES)); // SERVICE INCENTIVE
 		}
 
 		/*if(tile18.contains(positionCode)){ 
@@ -176,13 +213,13 @@ public class UserProfileServiceImpl implements UserProfileService {
 			}*/
 
 		if(tile19.contains(positionCode)){ 
-			NoTile rr = new NoTile(24,"","tile", "","rewards.jpg","http://sand.myfcarewards.m2.humanelementdev.com/he_singlesignon?token=" + token,"");
+			NoTile rr = new NoTile(24,"","tile", "","rewards.jpg",SHOPNOW + token,"");
 			rr.setProgramSite("Shop Now");
 			this.userTiles.add(rr); // REWARDRED
 		}
 
 		if(tile20.contains(positionCode)){ 
-			NoTile rr = new NoTile(23,"","chart", "","rewards.jpg","http://sand.myfcarewards.m2.humanelementdev.com/he_singlesignon?token=" + token,"");
+			NoTile rr = new NoTile(23,"","chart", "","rewards.jpg",SHOPNOW + token,"");
 			rr.setProgramSite("Shop Now");
 			//this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","https://fcarewardredemption.com","#")); // REWARDRED
 			this.userTiles.add(rr);
@@ -197,12 +234,12 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 		//Customer first
 		if(tile22.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","assets/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
+			this.userTiles.add(new NoTile(32,"","chart", "","customer-first.png",CUSTOMERFIRSTSITE,CUSTOMERFIRSTRULES)); // //customer first
 		}
 
 		//customer first
 		if(tile23.contains(positionCode)){ 
-			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png","https://fca.track360.com/landingpage/","assets/pdf/CFAFEDealerAnnouncementProgramRules.pdf")); // //customer first
+			this.userTiles.add(new NoTile(33,"","chart", "","customer-first.png",CUSTOMERFIRSTSITE,CUSTOMERFIRSTRULES)); // //customer first
 		}
 		/*
 			//NOTHING

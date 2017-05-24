@@ -53,14 +53,14 @@ export class LoginComponent implements OnInit {
         this.refreshLogin();
     }
 
-    private usernameRegex(uname: string) {
-        if (uname.length == 7) {
-            var re = (/[s|t|S|T]{1}[0-9]{4,5}[A-Z|a-z]{1,2}/)
-            return re.test(uname)
-        } else {
-            return false
-        }
-    }
+    // private usernameRegex(uname: string) {
+    //     if (uname.length == 7) {
+    //         var re = (/[s|t|S|T]{1}[0-9]{4,5}[A-Z|a-z]{1,2}/)
+    //         return re.test(uname)
+    //     } else {
+    //         return false
+    //     }
+    // }
     
     private ssologin(ssotoken: string, ssopositioncode: string, ssodealercode: string) {
         this.loginService.getSSOLoginResponse(
@@ -139,11 +139,11 @@ export class LoginComponent implements OnInit {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID and Password";
             return;
-        } else if (this.user.username.trim() === "" && this.user.password.trim() !== null) {
+        } else if (this.user.username.trim() === "" && this.user.password !== null) {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID";
             return;
-        } else if (this.user.username.trim() !== null && (!this.usernameRegex(this.user.username.trim())) && this.user.password.trim() === "") {
+        } else if (this.user.username !== null  && this.user.password.trim() === "") {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your valid SID/TID and Password";
             return;

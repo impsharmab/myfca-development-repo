@@ -7,8 +7,8 @@
  */
 
 .highchart-size {
-    min-width: 450px;
-    max-width: 605px;
+   min-width: 450px;
+    max-width: 650px;
     min-height: 460px;
     max-height: 605px;
     margin: 0 auto
@@ -242,6 +242,7 @@ h2 {
 .card {
     margin: 10px;
     width: 100%;
+    padding-bottom:50px;
 }
 .card .btn {
     font-size: 0.8rem!important;
@@ -255,14 +256,14 @@ h2 {
     height: auto;
     padding: 5px;
     position: absolute;
-    margin-top: 15px;
+    margin-top: 5px;
     right: 0;
     text-align: right;
     width: 100%;
 }
 .card .card-content {
     border-radius: 0 0 0px 0px;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     /*margin-bottom: 40px;*/
 }
 .form-actions {
@@ -270,6 +271,7 @@ h2 {
     text-align: right;
     margin: 20px 0px 0px 0px;
 }
+
 @media screen and (min-width: 665px) {
     .sav-utility {
         text-align: right;
@@ -404,7 +406,7 @@ footer.page-footer {
 .chart-controls {
     float: right;
     height: auto;
-    padding: 6px;
+    padding: 0 6px;
     position: relative;
     text-align: right
 

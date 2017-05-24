@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+	<!-- for prod -->
 	<property name="LOG_HOME" value="D:/Program Files/Apache Software Foundation/Tomcat/logs" />
+	
+	<!-- for test -->
+	<!-- <property name="LOG_HOME" value="C:/apps/apache-tomcat-9/logs" /> -->
+	
 
 	<appender name="FILE-AUDIT"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">

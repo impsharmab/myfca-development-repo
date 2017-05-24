@@ -128,13 +128,12 @@
             <p class="data-substitle" *ngIf="notEmptyBadge(data.badgeUrl) "><img src="services/loadrsc/{{data.badgeUrl}} "></p>
             <p class="data-substitle">{{data.badgeTitle}}</p>
           </div>
-
         </div>
         
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_advisors)
               " (click)="openDataTable(contentBody[tile.id].top10_advisors) " style="cursor:pointer" [innerHtml]= "contentBody[tile.id].top10_advisors.buttonName"></button><br>
         <button type="button " class="btn btn-info btn-lg " *ngIf="tile.type=='tile' && notEmpty(contentBody[tile.id].top10_technicians) "
-          (click)="openDataTable(contentBody[tile.id].top10_technicians) " style="cursor:pointer" [innerHtml]="contentBody[tile.id].top10_technicians.buttonName"><i class="fa fa-star " aria-hidden="true " ></i></button>
+          (click)="openDataTable(contentBody[tile.id].top10_technicians) " style="cursor:pointer" [innerHtml]="contentBody[tile.id].top10_technicians.buttonName"><i class="fa fa-star " aria-hidden="true " ></i></button><br>
         
         <div style="margin-bottom: 45 !important; margin-top: -80 !important" class="chart-controls" *ngIf="tile.type=='chart' && chartType(tile.id) ">
           <a (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i  class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer"></i></a>
@@ -143,6 +142,11 @@
         </div>
         
         <div class="card-action ">
+          <!--<div style="float: left" class="chart-controls" *ngIf="tile.type=='chart' && chartType(tile.id) ">
+          <a (click)="chartChange( 'pie',tile.id) " alt="View Pie Chart "><i  class="fa fa-pie-chart " aria-hidden="true " style="cursor:pointer; color:#0275d8"></i></a>
+          <a (click)="chartChange( 'column',tile.id) " alt="View Column Chart "><i  class="fa fa-bar-chart
+              " aria-hidden="true " style="cursor:pointer; color:#0275d8"></i></a>
+        </div>-->
           <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramRules(tile.programRulesUrl)"><i class="fa fa-check-square " aria-hidden="true "></i>
                 {{tile.programRules}} </button>
           <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>

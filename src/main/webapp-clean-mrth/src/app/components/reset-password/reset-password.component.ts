@@ -25,30 +25,30 @@ export class ResetPasswordComponent implements OnInit {
       emailId: ""
     }
   }
-  private usernameRegex(uname: string) {
-    if (uname.length == 7) {
-      var re = (/[s|t|S|T]{1}[0-9]{4,5}[A-Z|a-z]{1,2}/)
-      return re.test(uname)
-    } else {
-      return false
-    }
-  }
-  private emailRegex(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  }
+  // private usernameRegex(uname: string) {
+  //   if (uname.length == 7) {
+  //     var re = (/[s|t|S|T]{1}[0-9]{4,5}[A-Z|a-z]{1,2}/)
+  //     return re.test(uname)
+  //   } else {
+  //     return false
+  //   }
+  // }
+  // private emailRegex(email) {
+  //   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //   return re.test(email);
+  // }
   private resetPassword() {
     if (this.resetpassword.sid_tid.trim() === "" && this.resetpassword.emailId.trim() === "") {
       this.errorUserID = "Please enter your SID/TID.";
       this.errorEmailID = "Email is required.";
       return;
-    } else if (this.resetpassword.sid_tid.trim() === "" && this.resetpassword.emailId.trim() !== null && (!this.emailRegex(this.resetpassword.emailId.trim()))) {
+    } else if (this.resetpassword.sid_tid.trim() === "" && this.resetpassword.emailId !== null) {
       this.errorUserID = "Please enter your SID/TID.";
-      this.errorEmailID = "Enter the valid Email ID.";
+      // this.errorEmailID = "Email is required.";
       return;
-    } else if (this.resetpassword.sid_tid.trim() !== null && (!this.usernameRegex(this.resetpassword.sid_tid.trim())) && this.resetpassword.emailId.trim() === "") {
-       this.errorUserID = "Please enter valid SID/TID.";
-      this.errorEmailID = 'Email is required'
+    } else if (this.resetpassword.sid_tid !== null && this.resetpassword.emailId.trim() === "") {
+      //  this.errorUserID = "Please enter valid SID/TID.";
+      this.errorEmailID = 'Email is required.'
       return;
     }
     debugger
@@ -56,7 +56,7 @@ export class ResetPasswordComponent implements OnInit {
       (resetPasswordData) => {
         this.resetPasswordData = (resetPasswordData)
         this.successResetPasswordMessage = "Please check your email for new UserID and Password";
-        alert("success")
+        //alert("success")
       },
       (error) => { 
         this.invalidCreds = true;
@@ -66,10 +66,8 @@ export class ResetPasswordComponent implements OnInit {
     )
     //debugger
   }
-
   private cancel() {
     let url = ["login"]
     this.router.navigate(url);
   }
-
 }

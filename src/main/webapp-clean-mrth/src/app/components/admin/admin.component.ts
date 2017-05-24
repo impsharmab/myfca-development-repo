@@ -36,7 +36,9 @@ export class AdminComponent implements OnInit {
     private role: string = "";
     private admin: Admin;
     private tileDataLocal: any = {}
+    private tiledataresponse: any = []
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
+
 
     ngOnInit() {
         var self = this;
@@ -68,6 +70,7 @@ export class AdminComponent implements OnInit {
         this.getRoles();
         this.getAdminData();
         this.getImageList(self);
+        //this.getTileDataResponse();
 
         // $(document).ready(function () {
         //     $('#example').DataTable();
@@ -138,7 +141,7 @@ export class AdminComponent implements OnInit {
                 this.allBannerTableData = allBannerTableData;
             },
             (error) => {
-                alert("error in getting banner data")
+                alert("Error in getting banner data")
             }
         )
     }
@@ -175,7 +178,7 @@ export class AdminComponent implements OnInit {
                 var self = this;
                 $("#project").val(ui.item.label);
                 $("#project-id").val(ui.item.value);
-                $("#project-icon").attr("src", "./services/loadrsc/" + ui.item.icon);
+                $("#project-icon").attr("src", "./services/files/get/" + ui.item.icon);
                 mainthis.uploadImage.image = ui.item.value;
                 return false;
             }
@@ -314,11 +317,11 @@ export class AdminComponent implements OnInit {
                 this.deleteBannerDatum = deleteBannerDatum;
                 // alert(deleteBannerDatum)
                 // alert(this.deleteBannerDatum)
-                alert("successfully deleted banner")
+                alert("Successfully deleted banner")
                 this.getAllBannerData();
             },
             (error) => {
-                alert("error in deleting banner");
+                alert("Error in deleting banner");
             }
         )
 
@@ -328,10 +331,13 @@ export class AdminComponent implements OnInit {
     private getTileDataLocal() {
         this.adminService.getTileDataLocal().subscribe(
             (tileDataLocal) => {
-                this.tileDataLocal = tileDataLocal;               
-                // alert("success")   
-                // console.log(tileDataLocal)
-                // console.log(this.tileDataLocal)             
+                this.tileDataLocal = tileDataLocal;
+               
+                var a = tileDataLocal.permissions
+                console.log(tileDataLocal)
+                console.log(a)                
+
+                 console.log(this.tileDataLocal)             
             },
             (error) => {
                 alert("error");
@@ -339,16 +345,17 @@ export class AdminComponent implements OnInit {
         )
     }
     private getTileDataResponse() {
+        debugger
         this.adminService.getTileDataResponse(this.admin.positioncode).subscribe(
-            (deleteBannerDatum) => {
-                this.deleteBannerDatum = deleteBannerDatum;
-                // alert(deleteBannerDatum)
-                // alert(this.deleteBannerDatum)
-                alert("successfully deleted banner")
-                this.getAllBannerData();
+            (tiledataresponse) => {
+                this.tiledataresponse = tiledataresponse;
+                // console.log(tiledataresponse)
+                // console.log(this.tiledataresponse)
+                // console.log(this.tiledataresponse.permissions)
+
             },
             (error) => {
-                alert("error in deleting banner");
+
             }
         )
     }

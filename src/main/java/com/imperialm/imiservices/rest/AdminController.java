@@ -89,6 +89,7 @@ public class AdminController {
 
 		try{
 			if(dashBoardBannersDAO.deleteBanner(id, user.getUserId())){
+				IMIServiceSecutiryConfig.resetCache("getBannersByRole", null);
 				return true;
 			}else{
 				throw new Exception();
@@ -117,6 +118,7 @@ public class AdminController {
 
 		try{
 			if(dashBoardBannersDAO.addBanner(banner, user.getUserId())){
+				IMIServiceSecutiryConfig.resetCache("getBannersByRole", null);
 				return true;
 			}else{
 				throw new Exception();
@@ -144,6 +146,7 @@ public class AdminController {
 
 		try{
 			if(dashBoardBannersDAO.updateBanner(banner, user.getUserId())){
+				IMIServiceSecutiryConfig.resetCache("getBannersByRole", null);
 				return true;
 			}else{
 				throw new Exception();

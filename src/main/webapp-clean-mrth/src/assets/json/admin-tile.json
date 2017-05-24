@@ -14,7 +14,7 @@
         {
             "name": "Performance Institutes – Certified Professionals",
             "order": "3",
-            "checked": false
+            "checked": true
         },
         {
             "name": "Certified Professionals Graph",
@@ -24,7 +24,7 @@
         {
             "name": "Performance Institute - Brain Boost",
             "order": "5",
-            "checked": false
+            "checked": true
         },
         {
             "name": "Brain Boost-Graph-I",
@@ -44,7 +44,7 @@
         {
             "name": "Certified Professional-Expert-Graph",
             "order": "9",
-            "checked": false
+            "checked": true
         },
         {
             "name": "Certified Professional-Expert-GraphII",

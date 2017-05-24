@@ -199,8 +199,8 @@ public class TileServiceImpl{
 				if(dealerscountlist.size()>0){
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedParticipants));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevel));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 			}
 			return topTenChart;
@@ -1093,7 +1093,7 @@ public class TileServiceImpl{
 				if(dealerscountlist.size()>0){
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+				
 
 				List<TTTAEnrollmentsSummaryDTO> incentiveEligibleList = this.dashService.getTTTAEnrollmentsSummaryByChildAndPositionCode(BC, "13");
 
@@ -1121,9 +1121,9 @@ public class TileServiceImpl{
 					avgSurveyCount.setTotal(df.format(incentiveEligibleList.get(0).getAvgSurveyScore()) + "%");
 				}
 
-				//topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(qtdSurveyCount));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
 
 			}
@@ -1661,32 +1661,6 @@ public class TileServiceImpl{
 				item.addDataList(chartsMap.get(item.getName()));
 			}
 			return chart;
-		}
-		case "24":
-		{
-			TopTenChart topTenChart = new TopTenChart();
-			//nothing for higher levela
-			return topTenChart;
-		}
-		case "25":
-		{
-			// nothing for upper management
-			TopTenChart topTenChart = new TopTenChart();
-			return topTenChart;
-		}case "26":
-		{
-			//nothing for upper levels
-			return new TopTenChart();
-		}
-		case "27":
-		{
-			//nothing for upper levels
-			return new TopTenChart();
-		}
-		case "28":
-		{
-			//nothing for upper levels
-			return new TopTenChart();
 		}
 		case "29":
 		{
@@ -3043,9 +3017,6 @@ public class TileServiceImpl{
 					mtd.setTotal("$" + this.formatCurrency(mtdres.get(0).getAmount()));
 				}
 
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
-
-
 				TotalName ytd = new TotalName();
 				ytd.setName("Rewarding Excellence&reg; Card Awards YTD");
 				ytd.setTotal("$0");
@@ -3056,15 +3027,12 @@ public class TileServiceImpl{
 					ytd.setTotal("$" + this.formatCurrency(ytdres.get(0).getAmount()));
 				}
 
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
-
 				TotalName dealerscount = new TotalName("Total Participants Enrolled","0");
 				
 				List<Integer> dealerscountlist = this.dashService.getTotalParticipantsEnrolledByProgramIDAndDealerCode(MSER_PROGRAM_ID, territory);
 				if(dealerscountlist.size()>0){
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
-				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
 				
 				List<MyFCAMserRankingDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChildAndToggle(territory);
 				TotalName rank = new TotalName();
@@ -3074,8 +3042,11 @@ public class TileServiceImpl{
 					rank.setTotal(this.formatNumbers(MSERDetailsGraphDTOlist.get(0).getBCRank()));
 				}
 				
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(mtd));
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(ytd));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(rank));
-
+				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealerscount));
+				
 			}else if(type.equals("Manager")){
 				TotalName mtd = new TotalName("Rewarding Excellence&reg; Card Awards MTD", "$0");
 				TotalName ytd = new TotalName("Rewarding Excellence&reg; Card Awards YTD", "$0");
@@ -3138,10 +3109,7 @@ public class TileServiceImpl{
 				if(dealerscountlist.size()>0){
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
-				
-				
-				
-				
+
 				List<MyFCAMserRankingDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChildAndToggle(territory);
 				TotalName rank = new TotalName();
 				rank.setName("Ranking within BC by Rewarding Excellence&reg; Card Awards MTD");
@@ -4068,9 +4036,9 @@ public class TileServiceImpl{
 				}
 
 				if(type.equals("Dealer") || type.equals("Manager")){
-					List<String> list = new ArrayList<String>();
-					list.add(dealerCode);
-					List<CertProfsWinnersGraphDTO> CertProfsWinnersGraphDTOList = this.dashService.getCertProfsWinnersGraphByChildTerritory(list);
+					//List<String> list = new ArrayList<String>();
+					//list.add(dealerCode);
+					List<CertProfsWinnersGraphDTO> CertProfsWinnersGraphDTOList = this.dashService.getCertProfsWinnersGraphByChildTerritory(dealerCode);
 
 					totalCertifiedParticipants.setName("Total Certified Participants");
 					totalMasterCertifiedParticipants.setName("Total Master Certified Level Participants");

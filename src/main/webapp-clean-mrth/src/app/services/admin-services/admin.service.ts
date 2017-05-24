@@ -145,13 +145,13 @@ export class AdminService {
 
     getTileDataResponse(positioncode) {
         debugger
-        var getTileDataUrl = "";
+         var getTileDataResponseUrl = "./assets/json/admin-tile-response.json";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
 
-        return this.http.delete(getTileDataUrl, { headers })
+        return this.http.get(getTileDataResponseUrl)
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }

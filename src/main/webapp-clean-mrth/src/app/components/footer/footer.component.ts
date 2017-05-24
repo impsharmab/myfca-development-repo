@@ -6,9 +6,13 @@ import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
     templateUrl: "./footer.html"
 
 })
-export class FooterComponent {  
+export class FooterComponent {
 
     constructor() { }
 
-   
+    openProgramSite(url: any) {
+        window.open(url)
+    }
+
+
 }

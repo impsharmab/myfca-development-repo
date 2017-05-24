@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.imperialm.imiservices.config;
 
 import java.util.Properties;
@@ -27,6 +24,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource(value = { "classpath:application.properties" })
+@EnableJpaRepositories(
+	    		basePackages = {"com.imperialm.imiservices.ttta.dao","com.imperialm.imiservices.dto", "com.imperialm.imiservices.repositories" , "com.imperialm.imiservices.entities", "com.imperialm.imiservices.services", "com.imperialm.imiservices.dto"}
+	)
 public class JpaConfiguration {
 
 	@Autowired
@@ -58,7 +58,7 @@ public class JpaConfiguration {
 	/*
 	 * Provider specific adapter.
 	 */
-	@Bean
+	//@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
 		final HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
 		return hibernateJpaVendorAdapter;
@@ -76,39 +76,13 @@ public class JpaConfiguration {
 		return properties;
 	}
 
+	@Primary
 	@Bean
-	@Autowired
 	public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
 		final JpaTransactionManager txManager = new JpaTransactionManager();
 		txManager.setEntityManagerFactory(emf);
 		return txManager;
 	}
-	
-	
-	@Bean("datasourceTTTA")
-	public DataSource dataSourceTTTA() {
-		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName(this.environment.getRequiredProperty("spring.datasource.driverClassName"));
-		dataSource.setUrl(this.environment.getRequiredProperty("spring.datasource.ttta.url"));
-		dataSource.setUsername(this.environment.getRequiredProperty("spring.datasource.username"));
-		dataSource.setPassword(this.environment.getRequiredProperty("spring.datasource.password"));
-		return dataSource;
-	}
-	
-	@Bean("TTTAEntityManager")
-	public LocalContainerEntityManagerFactoryBean entityManagerFactoryTTTA() throws NamingException {
-		final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-		factoryBean.setDataSource(this.dataSourceTTTA());
-		factoryBean.setPackagesToScan(
-				new String[] { "com.imperialm.imiservices.ttta.dao"});
-		factoryBean.setJpaVendorAdapter(this.jpaVendorAdapter());
-		factoryBean.setJpaProperties(this.jpaProperties());
-		return factoryBean;
-	}
-
-	
-	
-	
 	
 	
 	

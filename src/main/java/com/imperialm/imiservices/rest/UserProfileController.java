@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.imperialm.imiservices.rest;
 
 import java.util.List;
@@ -26,6 +23,7 @@ import com.imperialm.imiservices.dto.UsersDTO;
 import com.imperialm.imiservices.model.OneItem;
 import com.imperialm.imiservices.model.UserIdEmail;
 import com.imperialm.imiservices.model.UserProfile;
+import com.imperialm.imiservices.mser.dao.MSERUsersDAO;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.services.UserProfileService;
 import com.imperialm.imiservices.services.UserServiceImpl;
@@ -54,6 +52,9 @@ public class UserProfileController {
 	
 	@Autowired
 	private com.imperialm.imiservices.ttta.dao.TTTAUsersDAO TTTAUsersDAO;
+	
+	@Autowired
+	private MSERUsersDAO MSERUsersDAO;
 	
 	@Autowired
 	private com.imperialm.imiservices.config.IMIServiceSecutiryConfig IMIServiceSecutiryConfig;
@@ -175,21 +176,42 @@ public class UserProfileController {
 
 		String salt = UUID.randomUUID().toString().toUpperCase();
 		boolean result = false;
-		if(userDAOImpl.setPassword(user.getUserId(), password.getItem(), salt)){
-			
-/*			List<String> TTTAPassword = TTTAUsersDAO.getPassword(user.getUserId().trim());
-			if(TTTAPassword.size() > 0 && TTTAUsersDAO.setPassword(user.getUserId(), password.getItem(), salt)){
-				return true;
-			}else{
-				TTTAUsersDAO.setPassword(user.getUserId(), TTTAPassword.get(0), salt);
-			}*/
-			result = true;
-		}else{
-			userDAOImpl.setHashedPassword(user.getUserId(), user.getPassword(), user.getSalt());
-		}
+		boolean failTTTA = false;
+		boolean failMSER = false;
 		
+		List<String> TTTAPassword = TTTAUsersDAO.getPassword(user.getUserId().trim());
+		List<String> MSERPassword = MSERUsersDAO.getPassword(user.getUserId().trim());
+		
+		if(userDAOImpl.setPassword(user.getUserId(), password.getItem(), salt)){
+			if(TTTAPassword.size() > 0){
+				if(!TTTAUsersDAO.setPassword(user.getUserId(), password.getItem())){
+					failTTTA = true;
+				}
+			}
+			
+			if(MSERPassword.size() > 0){
+				if(!MSERUsersDAO.setPassword(user.getUserId(), password.getItem())){
+					failMSER = true;
+				}
+			}
+			
+			if(!failTTTA || !failMSER){
+				result = true;
+			}
+			
+		}
+
 		if(result){
 			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", user.getUserId());
+		}else{
+			//revert restting password
+			userDAOImpl.setHashedPassword(user.getUserId(), user.getPassword(), user.getSalt());
+			if(TTTAPassword.size() > 0){
+				TTTAUsersDAO.setPassword(user.getUserId(), TTTAPassword.get(0));
+			}
+			if(MSERPassword.size() > 0){
+				MSERUsersDAO.setPassword(user.getUserId(), MSERPassword.get(0));
+			}
 		}
 		return ResponseEntity.status(500).body(result);
 	}
@@ -224,14 +246,57 @@ public class UserProfileController {
 
 		String newPassword = RandomStringUtils.randomAlphanumeric(RandomUtils.nextInt(8,20));
 		//send an email with the new password
-
+		
+		
+		
 		String salt = UUID.randomUUID().toString().toUpperCase();
+		boolean result = false;
+		boolean failTTTA = false;
+		boolean failMSER = false;
+		
+		List<String> TTTAPassword = TTTAUsersDAO.getPassword(user.getUserId().trim());
+		List<String> MSERPassword = MSERUsersDAO.getPassword(user.getUserId().trim());
+		
+		if(userDAOImpl.setPassword(user.getUserId(), newPassword, salt)){
+			if(TTTAPassword.size() > 0){
+				if(!TTTAUsersDAO.setPassword(user.getUserId(), newPassword)){
+					failTTTA = true;
+				}
+			}
+			
+			if(MSERPassword.size() > 0){
+				if(!MSERUsersDAO.setPassword(user.getUserId(), newPassword)){
+					failMSER = true;
+				}
+			}
+			
+			if(!failTTTA || !failMSER){
+				result = true;
+			}
+			
+		}
+
+		if(result){
+			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", user.getUserId());
+			emailHandler.sendMailConfirmation(user, "ResetPassword", newPassword);
+		}else{
+			//revert restting password
+			userDAOImpl.setHashedPassword(user.getUserId(), user.getPassword(), user.getSalt());
+			if(TTTAPassword.size() > 0){
+				TTTAUsersDAO.setPassword(user.getUserId(), TTTAPassword.get(0));
+			}
+			if(MSERPassword.size() > 0){
+				MSERUsersDAO.setPassword(user.getUserId(), MSERPassword.get(0));
+			}
+		}
+		return ResponseEntity.status(503).body("Could not reset password");
+		/*String salt = UUID.randomUUID().toString().toUpperCase();
 		if(userDAOImpl.setPassword(user.getUserId(), newPassword, salt)){
 			emailHandler.sendMailConfirmation(user, "ResetPassword", newPassword);
 			return true;
 		}else{
 			return ResponseEntity.status(503).body("Could not reset password");
-		}
+		}*/
 	}
 
 

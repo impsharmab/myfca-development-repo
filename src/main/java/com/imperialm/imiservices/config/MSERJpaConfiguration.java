@@ -25,11 +25,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @PropertySource(value = { "classpath:application.properties"})
 @EnableJpaRepositories(
-	    entityManagerFactoryRef = "TTTAEntityManager", 
-	    transactionManagerRef = "TTTATransactionManager",
-	    		basePackages = {"com.imperialm.imiservices.ttta.dao"}
+	    entityManagerFactoryRef = "MSEREntityManager", 
+	    transactionManagerRef = "MSERTransactionManager",
+	    		basePackages = {"com.imperialm.imiservices.mser.dao"}
 	)
-public class TTTAJpaConfiguration {
+public class MSERJpaConfiguration {
 
 	@Autowired
 	private Environment environment;
@@ -37,19 +37,19 @@ public class TTTAJpaConfiguration {
 	public DataSource dataSource() {
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(this.environment.getRequiredProperty("spring.datasource.driverClassName"));
-		dataSource.setUrl(this.environment.getRequiredProperty("spring.datasource.ttta.url"));
+		dataSource.setUrl(this.environment.getRequiredProperty("spring.datasource.mser.url"));
 		dataSource.setUsername(this.environment.getRequiredProperty("spring.datasource.username"));
 		dataSource.setPassword(this.environment.getRequiredProperty("spring.datasource.password"));
-		dataSource.setCatalog(this.environment.getRequiredProperty("spring.datasource.ttta.db"));
+		dataSource.setCatalog(this.environment.getRequiredProperty("spring.datasource.mser.db"));
 		return dataSource;
 	}
 	
-	@Bean("TTTAEntityManager")
+	@Bean("MSEREntityManager")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
 		final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(this.dataSource());
 		factoryBean.setPackagesToScan(
-				new String[] { "com.imperialm.imiservices.ttta.dao"});
+				new String[] { "com.imperialm.imiservices.mser.dao"});
 		factoryBean.setJpaVendorAdapter(this.jpaVendorAdapter());
 		factoryBean.setJpaProperties(this.jpaProperties());
 		return factoryBean;
@@ -69,13 +69,12 @@ public class TTTAJpaConfiguration {
 		return properties;
 	}
 
-	@Bean(name="TTTATransactionManager")
+	@Bean(name="MSERTransactionManager")
 	public PlatformTransactionManager transactionManager(final EntityManagerFactory emf) {
 		final JpaTransactionManager txManager = new JpaTransactionManager();
 		txManager.setEntityManagerFactory(emf);
 		return txManager;
 	}
-	
 	
 
 }

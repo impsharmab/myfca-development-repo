@@ -34,8 +34,8 @@ export class LoginService {
     }
     getRefreshLoginResponse(token) {
         debugger
-        var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
-       // var url = "./login/tokenrefresh/";
+       // var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        var url = "./login/tokenrefresh/";
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -76,7 +76,7 @@ export class LoginService {
 
     }
     resetPassword(userId: string, emailId: string) {
-         var url = "https://test.myfcarewards.com/myfcarewards/UserProfile/ResetPassword";
+       //  var url = "https://test.myfcarewards.com/myfcarewards/UserProfile/ResetPassword";
         var url = "./UserProfile/ResetPassword";
 
         var body = { "userId": userId, "email": emailId };
