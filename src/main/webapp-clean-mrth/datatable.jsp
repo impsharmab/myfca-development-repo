@@ -21,7 +21,7 @@
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="app/resources/css/styles-datatables.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styles-datatables.css">
 
 	<style type="text/css">
 		body {
@@ -920,6 +920,10 @@
 	<style>
 		.datatable-margin-class {
 			margin: 20px;
+		}
+
+		td {
+			text-align: center
 		}
 	</style>
 

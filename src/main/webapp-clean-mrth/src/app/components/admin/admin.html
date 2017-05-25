@@ -87,6 +87,7 @@
                         <div class="box">
                             <h4>Banner Configuration</h4>
                             <br />
+                            <!--<datatable [tableData] = "allBannerTableData" [columnsHeader]="bannerColumnHeaders"  (deleteClick)="deleteBannerData($event.dashBoardBannersID)"></datatable>-->
                             <table id="example" class="table display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
@@ -94,7 +95,6 @@
                                         <th>Business Center</th>
                                         <th>Image Name</th>
                                         <th>Order</th>
-                                        <!--<th>Edit</th>-->
                                         <th>Delete</th>
                                     </tr>
                                 </thead>
@@ -104,24 +104,8 @@
                                         <td>{{bannerData.businessCenter}}</td>
                                         <td>{{bannerData.image}}</td>
                                         <td>{{bannerData.orderBy}}</td>
-                                        <!--<td><button type="button" class="btn btn-primary btn-sm" (click)="editBannerData(bannerData)"><i class="fa fa-edit"></i></button></td>-->
                                         <td><button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button></td>
                                     </tr>
-
-                                    <!--<tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>                                        
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>                                        
-                                    </tr>-->
                                 </tbody>
                             </table>
 
@@ -165,8 +149,7 @@
                                         <div class="row">
                                             <div class="col-sm-10 col-md-10">
                                                 <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" id="{{tileDataLocal.order}}" class="tileDataLocal.checked" 
-                                                    value="tileDataLocal.checked" [checked]="tileDataLocal.checked" 
+                                                    <input type="checkbox" id="{{tileDataLocal.order}}" class="tileDataLocal.checked" value="tileDataLocal.checked" [checked]="tileDataLocal.checked"
                                                     />
                                                     <label for="{{tileDataLocal.order}}">{{tileDataLocal.name}}</label>
                                                 </div>

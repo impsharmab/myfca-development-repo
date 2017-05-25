@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EntityScan
 @ComponentScan
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
-@EnableAspectJAutoProxy
+//@EnableAspectJAutoProxy
 @EnableTransactionManagement
 @EnableCaching
 @EnableScheduling

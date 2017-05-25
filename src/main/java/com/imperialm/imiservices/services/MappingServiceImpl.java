@@ -16,6 +16,7 @@ import com.imperialm.imiservices.dto.MSEREarningsDTO;
 import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
 import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
@@ -730,6 +731,39 @@ public class MappingServiceImpl {
 		return topTenTableData;
 	}
 	
+	public TopTenTableData MapSIRewardsDetailsDTOtoTopTenTableData(List<SIRewardsDetailsDTO> SIRewardsDetailsDTO, String tableName, List<String> tableHeader){
+		TopTenTableData topTenTableData = new TopTenTableData();
+		
+		topTenTableData.setTableHeader(tableHeader);
+		topTenTableData.setTableName(tableName);
+		
+		DecimalFormat df = new DecimalFormat("0.0");
+		List<Object> data = new ArrayList<Object>();
+		for(SIRewardsDetailsDTO item: SIRewardsDetailsDTO){
+			List<Object> items = new ArrayList<Object>();
+				items.add(item.getName());
+				items.add(this.formatCurrency(item.getAdvisorSurveys()));
+				items.add(df.format(item.getDealerTarget()) + "%");
+				if(item.getTrainingQualified()>0){
+					items.add("Yes");
+				}else{
+					items.add("No");
+				}
+				if(item.getIncentiveQualified()>0){
+					items.add("Yes");
+				}else{
+					items.add("No");
+				}
+				items.add("$" + this.formatCurrency(item.getProjectedEarnings()));
+				data.add(items);
+		}
+		topTenTableData.setData(data);
+		
+		return topTenTableData;
+	}
+	
+	
+	
 	public TileAttribute1 MapTotalNameToTileAttribute(TotalName totalName){
 		TileAttribute1 attribute= new TileAttribute1();
 		attribute.setName(totalName.getName());
@@ -752,6 +786,7 @@ public class MappingServiceImpl {
 	}
 
 	public String formatCurrency(double number){
+		number = Math.rint(number);
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
 		String moneyString = formatter.format((int)number);
 		if (moneyString.endsWith(".00")) {

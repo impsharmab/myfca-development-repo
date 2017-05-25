@@ -29,6 +29,12 @@ public class FileController {
 	
 	@Value("${cms.shared.folder}")
 	private String cmsPath;
+	
+	@Value("${cms.shared.folder.images}")
+	private String cmsimagesPath;
+	
+	@Value("${cms.shared.folder.docs}")
+	private String cmsdocsPath;
 
 
 	@RequestMapping(value="/services/files/imageUpload", method = RequestMethod.POST)
@@ -90,6 +96,18 @@ public class FileController {
 	@ResponseBody
 	public FileSystemResource getCmsFiles(@PathVariable("file_name") String fileName) {
 		return new FileSystemResource(cmsPath + fileName);
+	}
+	
+	@RequestMapping(value = "/content/file/image/{file_name:.+}", method = RequestMethod.GET)
+	@ResponseBody
+	public FileSystemResource getCmsimages(@PathVariable("file_name") String fileName) {
+		return new FileSystemResource(cmsimagesPath + fileName);
+	}
+	
+	@RequestMapping(value = "/content/file/docs/{file_name:.+}", method = RequestMethod.GET)
+	@ResponseBody
+	public FileSystemResource getCmsdocs(@PathVariable("file_name") String fileName) {
+		return new FileSystemResource(cmsdocsPath + fileName);
 	}
 
 

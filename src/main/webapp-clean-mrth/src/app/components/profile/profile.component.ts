@@ -53,13 +53,13 @@ export class ProfileComponent implements OnInit {
     // }
 
     private changeProfileData() { 
-        if (this.profiledata.name.trim() === "" && this.profiledata.email.trim() === "") {
+        if (this.profiledata.name === "" && this.profiledata.email === "") {
             this.errorProfileChangeMessage = "Please enter your name and email id";
             return;
-        } else if (this.profiledata.name.trim() === "" && this.profiledata.email.trim() !== "") {
+        } else if (this.profiledata.name === "" && this.profiledata.email !== "") {
             this.errorProfileChangeMessage = "Please enter your name";
             return;
-        } else if (this.profiledata.name.trim() !== "" && this.profiledata.email.trim() === "") {
+        } else if (this.profiledata.name !== "" && this.profiledata.email === "") {
             this.errorProfileChangeMessage = "Please enter your email ID";
             return;
         }

@@ -50,7 +50,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//UB 19.1
 	//private List<String> tile18 = new ArrayList<String>(Arrays.asList("01","02","13","14","19","22","27","2S","32","33","35","36","37","39","40","46","47","49","4S","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","LV","N1","N2","SC","SD","UB","VT"));
 	//UB 20.1
-	private List<String> tile19 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","1F","20","22","23","24","25","27","29","2T","32","33","35","36","37","3T","40","41","42"));
+	private List<String> tile19 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","20","22","23","24","25","27","29","32","33","35","36","37","40","41","42"));
 	//21.1
 	private List<String> tile20 = new ArrayList<String>(Arrays.asList("46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IDT"));
 	//UB 22.1 SUMMARY table

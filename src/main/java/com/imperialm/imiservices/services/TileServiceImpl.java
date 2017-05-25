@@ -35,6 +35,7 @@ import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
 import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
 import com.imperialm.imiservices.dto.TIDUsersDTO;
@@ -153,13 +154,13 @@ public class TileServiceImpl{
 
 				if(MSERGraphDTOListYTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListYTD.get(0);
-					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
+					double total = MyfcaMSERTotalEarningsDTO.getAmount();
 					cartificationLevel.setTotal("$" + this.formatCurrency(total));
 				}
 				
 				if(MSERGraphDTOListMTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListMTD.get(0);
-					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
+					double total = MyfcaMSERTotalEarningsDTO.getAmount();
 					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(total));
 				}
 
@@ -183,13 +184,13 @@ public class TileServiceImpl{
 
 				if(MSERGraphDTOListYTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListYTD.get(0);
-					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
+					double total = MyfcaMSERTotalEarningsDTO.getAmount();
 					cartificationLevel.setTotal("$" + this.formatCurrency(total));
 					
 				}
 				if(MSERGraphDTOListMTD.size()>0){
 					MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO = MSERGraphDTOListMTD.get(0);
-					int total = (int)MyfcaMSERTotalEarningsDTO.getAmount();
+					double total = MyfcaMSERTotalEarningsDTO.getAmount();
 					totalCertifiedParticipants.setTotal("$" + this.formatCurrency(total));
 				}
 				TotalName dealerscount = new TotalName("Total Dealers Enrolled","0");
@@ -1699,7 +1700,7 @@ public class TileServiceImpl{
 			TotalName managersAndDirectorsQualified = new TotalName("Managers and Directors Qualified QTD","0");
 			if(type.equals("Executive")){
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphSUMByTerritoryAndToggle("NAT", "QTD");
-				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphListYTD = this.dashService.getSIRewardsDetailsGraphSUMByTerritoryAndToggle("NAT", "YTD");
+				List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTO = this.dashService.getSIRewardsYOYGraphSumByTerritoryAndToggle("NAT", "YTD");
 				
 				if(SIRewardsDetailsGraphList.size() > 0){
 					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
@@ -1709,9 +1710,8 @@ public class TileServiceImpl{
 					managersAndDirectorsQualified.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getManagersQualified()));
 				}
 				
-				if(SIRewardsDetailsGraphListYTD.size() > 0){
-					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
-					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+				if(SIRewardsYOYGraphDTO.size() > 0){
+					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsYOYGraphDTO.get(0).getCurrentYearEarnings()));
 				}
 				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(projectedEarnings));
@@ -1723,8 +1723,7 @@ public class TileServiceImpl{
 				List<String> filters = new ArrayList<String>();
 				filters.add(BC);
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
-				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphListYTD = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "YTD");
-				
+				List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTO = this.dashService.getSIRewardsYOYGraphByChildAndToggle(BC, "YTD");
 				if(SIRewardsDetailsGraphList.size() > 0){
 					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
 					eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getEligibleSurveys()));
@@ -1733,9 +1732,8 @@ public class TileServiceImpl{
 					managersAndDirectorsQualified.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getManagersQualified()));
 				}
 				
-				if(SIRewardsDetailsGraphListYTD.size() > 0){
-					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
-					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+				if(SIRewardsYOYGraphDTO.size() > 0){
+					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsYOYGraphDTO.get(0).getCurrentYearEarnings()));
 				}
 				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(projectedEarnings));
@@ -2896,7 +2894,7 @@ public class TileServiceImpl{
 				item.addDataList(chartsMap.get(item.getName()));
 			}
 			chart.setUnit("$");
-			chart.setAverageLine(true);
+			//chart.setAverageLine(true);
 			return chart;
 		}
 
@@ -3786,11 +3784,12 @@ public class TileServiceImpl{
 		}
 		case "20":
 		{
+			List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTO = new ArrayList<SIRewardsYOYGraphDTO>();
 			if(type.equalsIgnoreCase("district")){
-				territory = territory.substring(0, 3) + "%";
+				SIRewardsYOYGraphDTO = this.dashService.getSIRewardsYOYGraphByTerritoryAndToggle(territory.substring(0, 2), "YTD");
+			}else{
+				SIRewardsYOYGraphDTO = this.dashService.getSIRewardsYOYGraphByChildAndToggle(territory, "YTD");
 			}
-
-			List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTO = this.dashService.getSIRewardsYOYGraphByChildAndToggle(territory, "YTD");
 
 			Chart chart = new Chart();
 			chart.setTitle("Service Incentive Reward Earnings YTD");
@@ -3836,10 +3835,12 @@ public class TileServiceImpl{
 		}
 		case "21":
 		{
+			List<SIRewardsDetailsGraphDTO> sublist = new ArrayList<SIRewardsDetailsGraphDTO>();
 			if(type.equalsIgnoreCase("district")){
-				territory = territory.substring(0, 3) + "%";
+				sublist = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle(territory.substring(0, 2) , "QTD");
+			}else{
+				sublist = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, "QTD");
 			}
-			List<SIRewardsDetailsGraphDTO> sublist = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, "QTD");
 
 			Chart chart = new Chart();
 			chart.setTitle("Average Quarterly Survey Scores QTD");
@@ -3861,10 +3862,12 @@ public class TileServiceImpl{
 		}
 		case "22":
 		{
+			List<SIRewardsDetailsGraphDTO> sublist = new ArrayList<SIRewardsDetailsGraphDTO>();
 			if(type.equalsIgnoreCase("district")){
-				territory = territory.substring(0, 3) + "%";
+				sublist = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle(territory.substring(0, 2), "QTD");
+			}else{
+				sublist = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, "QTD");
 			}
-			List<SIRewardsDetailsGraphDTO> sublist = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(territory, "QTD");
 
 			Chart chart = new Chart();
 			chart.setTitle("Projected Service Incentive Earnings QTD");
@@ -3898,10 +3901,6 @@ public class TileServiceImpl{
 				ChartData temp = new ChartData(item.getChildTerritory(), item.getEarnedPoints());
 				attributes.add(temp);
 			}
-			/*if(listOfFirstLevel.size() >0){
-				ChartData temp = new ChartData(territory, listOfFirstLevel.get(0).getEarnedPoints());
-				attributes.add(temp);
-			}*/
 
 			Chart chart = new Chart("Total Program Points Earned YTD", "", "Total Points Earned", "", "column");
 			chart.setData(attributes);
@@ -3928,25 +3927,25 @@ public class TileServiceImpl{
 					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
 				}
 				if(RewardRedemptionDetailsCCP.size() > 0){
-					ccp.setTotal(this.formatNumbers(RewardRedemptionDetailsCCP.get(0).getEarnedPoints() - RewardRedemptionDetailsCCP.get(0).getRedeemedPoints()));
+					ccp.setTotal(this.formatNumbers(RewardRedemptionDetailsCCP.get(0).getEarnedPoints()));
 				}
 				if(RewardRedemptionDetailsTTTA.size() > 0){
-					ttta.setTotal(this.formatNumbers(RewardRedemptionDetailsTTTA.get(0).getEarnedPoints() - RewardRedemptionDetailsTTTA.get(0).getRedeemedPoints()));
+					ttta.setTotal(this.formatNumbers(RewardRedemptionDetailsTTTA.get(0).getEarnedPoints()));
 				}
 			}else if (type.equals("Dealer")){
 				List<RewardRedemptionGraphDTO> RewardRedemptionDetails = this.dashService.getRewardRedemptionGraphByChildTerritory(dealerCode);
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsCCP = this.dashService.getRewardRedemptionDetailsCCPByDealer(dealerCode);
-				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTABySid(user.trim(), dealerCode);
+				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTAByDealer(dealerCode);
 				if(RewardRedemptionDetails.size() > 0){
 					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
 					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
 					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
 				}
 				if(RewardRedemptionDetailsCCP.size() > 0){
-					ccp.setTotal(this.formatNumbers(RewardRedemptionDetailsCCP.get(0).getEarnedPoints() - RewardRedemptionDetailsCCP.get(0).getRedeemedPoints()));
+					ccp.setTotal(this.formatNumbers(RewardRedemptionDetailsCCP.get(0).getEarnedPoints()));
 				}
 				if(RewardRedemptionDetailsTTTA.size() > 0){
-					ttta.setTotal(this.formatNumbers(RewardRedemptionDetailsTTTA.get(0).getEarnedPoints() - RewardRedemptionDetailsTTTA.get(0).getRedeemedPoints()));
+					ttta.setTotal(this.formatNumbers(RewardRedemptionDetailsTTTA.get(0).getEarnedPoints()));
 				}
 			}
 			
@@ -3995,26 +3994,31 @@ public class TileServiceImpl{
 						
 						if(CertProfsWinnersDetails.getPriorYearCertLevel().equalsIgnoreCase("MASTER CERTIFIED")){
 							
-							cartificationLevelPrior.setTotal(CertProfsWinnersDetails.getMasterCertified() + "");
+							/*cartificationLevelPrior.setTotal(CertProfsWinnersDetails.getMasterCertified() + "");
 							TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior);
 							tile.setBadgeTitle("");
 							tile.setBadgeUrl("mastercertified.jpg");
-							topTenChart.addAttribute(tile);
+							topTenChart.addAttribute(tile);*/
+							cartificationLevelPrior.setName(CertProfsWinnersDetails.getPriorYearCertLevel());
+							cartificationLevelPrior.setTotal("Yes");
+							topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior));
 							displayNotCertified = false;
 						}else if(CertProfsWinnersDetails.getPriorYearCertLevel().equalsIgnoreCase("CERTIFIED SPECIALIST")){
 							cartificationLevelPrior.setName("Certified Specialist");
-							cartificationLevelPrior.setTotal(CertProfsWinnersDetails.getCertifiedSpecialist() + "");
+							cartificationLevelPrior.setTotal("Yes");
+							//cartificationLevelPrior.setTotal(CertProfsWinnersDetails.getCertifiedSpecialist() + "");
 							TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior);
-							tile.setBadgeTitle("");
-							tile.setBadgeUrl("certifiedspecialist.jpg");
+							//tile.setBadgeTitle("");
+							//tile.setBadgeUrl("certifiedspecialist.jpg");
 							topTenChart.addAttribute(tile);
 							displayNotCertified = false;
 						}else if(CertProfsWinnersDetails.getPriorYearCertLevel().equalsIgnoreCase("CERTIFIED")){
 							cartificationLevelPrior.setName("Certified");
-							cartificationLevelPrior.setTotal(CertProfsWinnersDetails.getCertified() + "");
+							cartificationLevelPrior.setTotal("Yes");
+							//cartificationLevelPrior.setTotal(CertProfsWinnersDetails.getCertified() + "");
 							TileAttribute1 tile = this.mappingService.MapTotalNameToTileAttribute(cartificationLevelPrior);
-							tile.setBadgeTitle("");
-							tile.setBadgeUrl("cert-pro-badges.jpg");
+							//tile.setBadgeTitle("");
+							//tile.setBadgeUrl("cert-pro-badges.jpg");
 							topTenChart.addAttribute(tile);
 							displayNotCertified = false;
 						}else{
@@ -4444,14 +4448,15 @@ public class TileServiceImpl{
 			TotalName advisorRank = new TotalName("Advisor Rank in Business Center Based on YTD Earnings", "-");
 			
 
-			String qy = this.getCurrentQuarter();
-			String year = this.getCurrentYear();
+			//String qy = this.getCurrentQuarter();
+			//String year = this.getCurrentYear();
 			
 			
 			if(type.equals("Participant")){
 				List<SIRewardsDetailsDTO> SIRewardsDetailsListQTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD", dealerCode, this.getCurrentQuarter());
-				List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode, this.getCurrentYear());
-
+				//List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode, this.getCurrentYear());
+				List<SIRewardsYOYDetailsDTO> SIRewardsYOYDetailsDTOListYTD = this.dashService.getSIRewardsYOYDetailsBySIDAndToggle(sid, dealerCode, "YTD");
+				
 				if(SIRewardsDetailsListQTD.size()>0){
 					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListQTD.get(0);
 
@@ -4466,12 +4471,11 @@ public class TileServiceImpl{
 					qtdSureveyScore.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getSurveyScore()));
 				}
 
-				if(SIRewardsDetailsListYTD.size()>0){
-					SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListYTD.get(0);
-					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsDTO.getProjectedEarnings()));
-					advisorRank.setTotal(this.formatCurrency(SIRewardsDetailsDTO.getBCAdvisorRankEarnings()));
-
+				if(SIRewardsYOYDetailsDTOListYTD.size()>0){
+					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsYOYDetailsDTOListYTD.get(0).getCurrentYearEarnings()));
+					advisorRank.setTotal(this.formatCurrency(SIRewardsYOYDetailsDTOListYTD.get(0).getBCRank()));
 				}
+				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(advisorRank));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
@@ -4484,14 +4488,14 @@ public class TileServiceImpl{
 				List<String> filters = new ArrayList<String>();
 				filters.add(dealerCode);
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
-				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphListYTD = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "YTD");
+				List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTOYTD = this.dashService.getSIRewardsYOYGraphByChildAndToggle(dealerCode, "YTD");
+				List<SIRewardsDetailsDTO> SIRewardsDetailsListQTDDealer = this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(dealerCode,"QTD", this.getCurrentQuarter());
 				if(SIRewardsDetailsGraphList.size()>0){
 					eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsGraphList.get(0).getEligibleSurveys()));
 					advisorsIncentiveQualified.setTotal(this.formatCurrency(SIRewardsDetailsGraphList.get(0).getAdvsiorsQualified()));
 					managersAndDirectorsQualified.setTotal(this.formatCurrency(SIRewardsDetailsGraphList.get(0).getManagersQualified()));
 				}
 				if(type.equals("Dealer")){
-					List<SIRewardsDetailsDTO> SIRewardsDetailsListQTDDealer = this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(dealerCode,"QTD", this.getCurrentQuarter());
 					if(SIRewardsDetailsGraphList.size() > 0){
 						SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
 						projectedEarnings.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
@@ -4502,16 +4506,16 @@ public class TileServiceImpl{
 						dealerAdvocacy.setTotal(df.format(SIRewardsDetailsDTO.getDealerTarget()) + "%");
 					}
 					
-					if(SIRewardsDetailsGraphListYTD.size() > 0){
-						SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
-						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
-						dealerRank.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getBCDlearRankEarnings()));
+					if(SIRewardsYOYGraphDTOYTD.size() > 0){
+						SIRewardsYOYGraphDTO SIRewardsYOYGraphDTO = SIRewardsYOYGraphDTOYTD.get(0);
+						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsYOYGraphDTO.getCurrentYearEarnings()));
+						dealerRank.setTotal(this.formatCurrency(SIRewardsYOYGraphDTO.getBCDealerRank()));
 					}
 					
 				}else if(type.equals("Manager")){
 					List<SIRewardsDetailsDTO> SIRewardsDetailsListQTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "QTD", dealerCode, this.getCurrentQuarter());
-					List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode, this.getCurrentYear());
-
+					//List<SIRewardsDetailsDTO> SIRewardsDetailsListYTD = this.dashService.getSIRewardsDetailsBySIDAndToggle(sid, "YTD", dealerCode, this.getCurrentYear());
+					List<SIRewardsYOYDetailsDTO> SIRewardsYOYDetailsDTOListYTD = this.dashService.getSIRewardsYOYDetailsBySIDAndToggle(sid, dealerCode, "YTD");
 					if(SIRewardsDetailsListQTD.size()>0){
 						SIRewardsDetailsDTO SIRewardsDetailsDTO = SIRewardsDetailsListQTD.get(0);
 						if(SIRewardsDetailsDTO.getIncentiveQualified() > 0){
@@ -4524,11 +4528,28 @@ public class TileServiceImpl{
 						}
 					}
 					
-					
-					if(SIRewardsDetailsListYTD.size()>0){
-						managerRank.setTotal(this.formatCurrency(SIRewardsDetailsListYTD.get(0).getBCAdvisorRankEarnings()));
-						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsListYTD.get(0).getProjectedEarnings()));
+					if(SIRewardsYOYDetailsDTOListYTD.size()>0){
+						managerRank.setTotal(this.formatCurrency(SIRewardsYOYDetailsDTOListYTD.get(0).getBCRank()));
+						totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsYOYDetailsDTOListYTD.get(0).getCurrentYearEarnings()));
 					}
+
+					if(SIRewardsDetailsListQTDDealer.size()>0){
+						TopTenDataTable datatableA = new TopTenDataTable("Advisor Performance");
+						List<TopTenTableData> tabledataA = new ArrayList<TopTenTableData>();
+						List<String> tableheaders = new ArrayList<String>();
+						//keeps this as example
+						tableheaders.add("Name");
+						tableheaders.add("# QTD Surveys");
+						tableheaders.add("Individual Advocacy Score");
+						tableheaders.add("Training Y/N");
+						tableheaders.add("Incentive Eligible");
+						tableheaders.add("Projected Earnings QTD");
+						tabledataA.add(this.mappingService.MapSIRewardsDetailsDTOtoTopTenTableData(SIRewardsDetailsListQTDDealer, "Advisor Performance", tableheaders));
+						tabledataA.get(0).setTabName("Advisor Performance");
+						datatableA.setData(tabledataA);
+						topTenChart.setTop10_advisors(datatableA);
+					}
+
 					
 				}
 				
@@ -4578,8 +4599,7 @@ public class TileServiceImpl{
 				List<String> filters = new ArrayList<String>();
 				filters.add(territory);
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
-				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphListYTD = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "YTD");
-
+				List<SIRewardsYOYGraphDTO> SIRewardsYOYGraphDTO = this.dashService.getSIRewardsYOYGraphByChildAndToggle(territory, "YTD");
 				if(SIRewardsDetailsGraphList.size() > 0){
 					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphList.get(0);
 					eligibleSurveys.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getEligibleSurveys()));
@@ -4588,9 +4608,8 @@ public class TileServiceImpl{
 					managersAndDirectorsQualified.setTotal(this.formatCurrency(SIRewardsDetailsGraphDTO.getManagersQualified()));
 				}
 
-				if(SIRewardsDetailsGraphListYTD.size() > 0){
-					SIRewardsDetailsGraphDTO SIRewardsDetailsGraphDTO = SIRewardsDetailsGraphListYTD.get(0);
-					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsDetailsGraphDTO.getProjectedEarnings()));
+				if(SIRewardsYOYGraphDTO.size() > 0){
+					totalEarningsYTD.setTotal("$" + this.formatCurrency(SIRewardsYOYGraphDTO.get(0).getCurrentYearEarnings()));
 				}
 				
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(projectedEarnings));
@@ -5106,6 +5125,7 @@ public class TileServiceImpl{
 	}
 
 	public String formatCurrency(double number){
+		number = Math.rint(number);
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
 		String moneyString = formatter.format((int)number);
 		if (moneyString.endsWith(".00")) {
@@ -5119,6 +5139,7 @@ public class TileServiceImpl{
 	}
 
 	public String formatNumbers(double number){
+		number = Math.rint(number);
 		DecimalFormat formatter = new DecimalFormat("#,###");
 
 		return formatter.format(number);

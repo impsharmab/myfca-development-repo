@@ -27,16 +27,14 @@ public class EmailHandler {
             if (emailType.equalsIgnoreCase("ResetPassword")) {
                user = (UserDetailsImpl) object;
             		
-                    subject = "Your MyFCADashboard password has been reset";
+                    subject = "Your MyFCARewards Portal password has been reset";
                     
                     message = "Hello, " +  user.getUser().getName() + "<br>"
-                    + "Your password has been reset for the MyFCADashboard website.<br>"
+                    + "Your password has been reset for the MyFCARewards Portal.<br>"
                     + "Please log in at www.myfcarewards.com using your user ID and the password below.<br>" 
                     + "User Id: " + user.getUserId() + "<br>"
                     + "Password: " + (String) other + "<br>"
-                    + "<br>Once you are logged in you can change your password by selecting the “Profile” link located in the top left of the homepage.";
-                    //+ "<br>If you have any questions please contact the Mopar Service Excellence Rewards Team at (866) 909-MSER(6737)."; 
-                 // sendMail(from, to, cc, bcc, subject, message)
+                    + "<br>Once you are logged in you can change your password by selecting the “Profile” link located in the top right of the homepage.";
                     mailUtil.sendMail("info@moparser.com", user.getEmail(), ccEmailIds, null, subject, message);
                 }
         } catch (Exception e) {

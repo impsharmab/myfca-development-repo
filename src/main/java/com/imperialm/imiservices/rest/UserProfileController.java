@@ -111,9 +111,14 @@ public class UserProfileController {
 		temp.setUserId(user.getUserId());
 		temp.setEmail(userProfile.getEmail());
 		temp.setName(userProfile.getName());
-
-		//IMIServiceSecutiryConfig.resetCache(cashName, key);
-		return userDAOImpl.setProfile(temp);
+		
+		boolean result = userDAOImpl.setProfile(temp);
+		if(result){
+			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", null);
+			return result;
+		}else{
+			return ResponseEntity.badRequest();
+		}
 
 	}
 
@@ -202,7 +207,8 @@ public class UserProfileController {
 		}
 
 		if(result){
-			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", user.getUserId());
+			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", null);
+			return result;
 		}else{
 			//revert restting password
 			userDAOImpl.setHashedPassword(user.getUserId(), user.getPassword(), user.getSalt());
@@ -277,8 +283,9 @@ public class UserProfileController {
 		}
 
 		if(result){
-			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", user.getUserId());
+			IMIServiceSecutiryConfig.resetCache("loadUserByUsername", null);
 			emailHandler.sendMailConfirmation(user, "ResetPassword", newPassword);
+			return result;
 		}else{
 			//revert restting password
 			userDAOImpl.setHashedPassword(user.getUserId(), user.getPassword(), user.getSalt());

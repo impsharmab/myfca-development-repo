@@ -135,15 +135,15 @@ export class LoginComponent implements OnInit {
         //     this.loginErrorMessage = "Please Enter your valid SID/TID";
         //     return;
         // }
-         if (this.user.username.trim() === "" && this.user.password.trim() === "") {
+         if (this.user.username === "" && this.user.password === "") {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID and Password";
             return;
-        } else if (this.user.username.trim() === "" && this.user.password !== null) {
+        } else if (this.user.username === "" && this.user.password !== null) {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID";
             return;
-        } else if (this.user.username !== null  && this.user.password.trim() === "") {
+        } else if (this.user.username !== null  && this.user.password === "") {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your valid SID/TID and Password";
             return;

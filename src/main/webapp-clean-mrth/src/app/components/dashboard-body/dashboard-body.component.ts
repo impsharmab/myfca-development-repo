@@ -133,7 +133,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.totalCount = this.totalCount / this.drilldownAverageCount;
     }
     if (obj.unit == "$" && obj.avarage == false) {
-      chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
+      chart.setTitle(null, { text: "Total " + obj.unit + Math.round(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "$" && obj.avarage == true) {
       chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(this.totalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id]) + "<br>" + (e.point.series.type === "pie" ? e.point.name : "") });
     } else if (obj.unit == "%" && obj.avarage == false) {
@@ -170,7 +170,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
     if (obj.unit == "$" && obj.avarage == false) {
       chart.setTitle(null, {
-        text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
+        text: "Total " + obj.unit + Math.round(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
       });
     } else if (obj.unit == "$" && obj.avarage == true) {
       chart.setTitle(null, {
@@ -609,7 +609,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }
 
           if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
           } else if (chartData.unit == "$" && chartData.avarage == true) {
             chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + (this.printButtonName[tileId] === undefined ? "" : this.printButtonName[tileId]);
           } else if (chartData.unit == "%" && chartData.avarage == false) {
@@ -794,7 +794,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             total = total / avagerCount;
           }
           if (chartData.unit == "$" && chartData.avarage == false) {
-            chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+            chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
           } else if (chartData.unit == "$" && chartData.avarage == true) {
             chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
           } else if (chartData.unit == "%" && chartData.avarage == true) {
@@ -934,7 +934,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               total = total / avagerCount;
             }
             if (chartData.unit == "$" && chartData.avarage == false) {
-              chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+              chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
             } else if (chartData.unit == "$" && chartData.avarage == true) {
               chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
             } else if (chartData.unit == "%" && chartData.avarage == false) {
@@ -1077,7 +1077,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         total = total / avagerCount;
       }
       if (chartData.unit == "$" && chartData.avarage == false) {
-        chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
+        chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString();
       } else if (chartData.unit == "$" && chartData.avarage == true) {
         chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString();
       } else if (chartData.unit == "%" && chartData.avarage == false) {
@@ -1208,7 +1208,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
 
     if (chartData.unit == "$" && chartData.avarage == false) {
-      chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
+      chartObj.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "$" && chartData.avarage == true) {
       chartObj.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "%" && chartData.avarage == false) {
@@ -1356,7 +1356,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
 
     if (chartData.unit == "$" && chartData.avarage == false) {
-      chartObject.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
+      chartObject.subtitle.text = "Total " + chartData.unit + Math.round(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "$" && chartData.avarage == true) {
       chartObject.subtitle.text = "Average " + chartData.unit + Math.floor(total).toLocaleString() + "<br>" + this.printButtonName[id];
     } else if (chartData.unit == "%" && chartData.avarage == false) {
@@ -1412,7 +1412,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
 
     if (obj.unit == "$" && obj.avarage == false) {
-      event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.floor(total).toLocaleString() });
+      event.target.chart.setTitle(null, { text: "Total " + obj.unit + Math.round(total).toLocaleString() });
     } else if (obj.unit == "$" && obj.avarage == true) {
       event.target.chart.setTitle(null, { text: "Average " + obj.unit + Math.floor(total).toLocaleString() });
     } else if (obj.unit == "%" && obj.avarage == false) {

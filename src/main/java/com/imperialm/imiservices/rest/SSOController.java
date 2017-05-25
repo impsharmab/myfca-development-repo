@@ -4,7 +4,9 @@
  */
 package com.imperialm.imiservices.rest;
 
+import com.imperialm.imiservices.dao.TIDUsersDAO;
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dto.TIDUsersDTO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 import com.imperialm.imiservices.security.JwtTokenUtil;
@@ -47,218 +49,204 @@ import org.springframework.http.ResponseEntity;
 @RestController
 public class SSOController {
 
-    private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
+	private static Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
-    @Autowired
-    private UserPositionCodeRoleDAO userPositionCodeRoleDAO;
+	@Autowired
+	private UserPositionCodeRoleDAO userPositionCodeRoleDAO;
 
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
 
-    @Autowired
-    private UserServiceImpl userDetailsService;
+	@Autowired
+	private UserServiceImpl userDetailsService;
 
-    /**
-     * The GET method is not expected to be called, this is only for the testing
-     * purpose
-     *
-     * @param request
-     * @param response
-     * @return
-     */
-    @RequestMapping(value = "/sp/acs.saml", method = RequestMethod.GET)
-    public String getSSODetails(HttpServletRequest request, HttpServletResponse response) {
-        // show default page -- Change the return to show default page
-        return "failure";
-    }
+	@Autowired
+	private TIDUsersDAO TIDUsersDAO;
 
-    /**
-     * This method will process the SAML response from the DealerCONNECT
-     *
-     * @param authenticationRequest
-     * @param request
-     * @param response
-     * @return
-     * @throws javax.naming.AuthenticationException
-     */
-    @RequestMapping(value = "/sp/acs.saml",  method = RequestMethod.POST)
-    public Object processSingleSignOnToken(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-    	logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SAML REQUEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        Map userDetailMap = null;
-        userDetailMap = processSAMLResponse(request);
-        String userId = (String) userDetailMap.get("UID");
-        String dealerCode = (String) userDetailMap.get("Dealer Code");
-        String positionCode = (String) userDetailMap.get("Position Code");
-        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! USERID FROM DEALERCONNECT" + userId);
-        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DEALERCODE FROM DEALERCONNECT" + dealerCode);
-        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! POSITIONCODE FROM DEALERCONNECT" + positionCode);
-        logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        List<String> posCode = new ArrayList<String>();
-        List<String> dlrCode = new ArrayList<String>();
+	/**
+	 * The GET method is not expected to be called, this is only for the testing
+	 * purpose
+	 *
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/sp/acs.saml", method = RequestMethod.GET)
+	public String getSSODetails(HttpServletRequest request, HttpServletResponse response) {
+		// show default page -- Change the return to show default page
+		return "failure";
+	}
 
-        if ("NA".equals(dealerCode)) {
-            dealerCode = "";
-        }
+	/**
+	 * This method will process the SAML response from the DealerCONNECT
+	 *
+	 * @param authenticationRequest
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws javax.naming.AuthenticationException
+	 */
+	@RequestMapping(value = "/sp/acs.saml",  method = RequestMethod.POST)
+	public Object processSingleSignOnToken(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SAML REQUEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		Map userDetailMap = null;
+		userDetailMap = processSAMLResponse(request);
+		String userId = (String) userDetailMap.get("UID");
+		String dealerCode = (String) userDetailMap.get("Dealer Code");
+		String positionCode = (String) userDetailMap.get("Position Code");
+		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! USERID FROM DEALERCONNECT" + userId);
+		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DEALERCODE FROM DEALERCONNECT" + dealerCode);
+		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! POSITIONCODE FROM DEALERCONNECT" + positionCode);
+		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		//List<String> posCode = new ArrayList<String>();
+		//List<String> dlrCode = new ArrayList<String>();
 
-        if (userDetailMap == null || (userDetailMap != null && userDetailMap.size() == 0)) {            
-            return ResponseEntity.badRequest().body("Failed in getting SAML Response");
-        } else {
-            System.out.println("UserID: " + userId + "Dealer Code: " + dealerCode + "Position Code: " + positionCode);
-           
-            final UserDetailsImpl user = (UserDetailsImpl) userDetailsService.loadUserByUsername(userId);
+		if ("NA".equals(dealerCode)) {
+			dealerCode = "";
+		}
 
-            final String token = jwtTokenUtil.generateToken(user);
-            
-            List<UserPositionCodeRoleDTO> userCodes = new ArrayList<UserPositionCodeRoleDTO>();
-            
-            if ((dealerCode != null && !dealerCode.isEmpty()) && (positionCode != null && !positionCode.isEmpty())) {
-            	return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + positionCode, true);
-            } else if ((dealerCode != null && !dealerCode.isEmpty()) && (positionCode == null || positionCode.isEmpty())) {
-            	userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
-            	
-            	if(userCodes.size() > 0){
-            		return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + userCodes.get(0).getPositionCode() , true);
-            	}else if(userCodes.size() == 0){
-                 	List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
-                 	if(territoryCheck.size() > 0){
-                 		if(territoryCheck.get(0).equalsIgnoreCase("nat")){
-                 			return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "90" , true);
-                 		}else if(territoryCheck.get(0).contains("-")){
-                 			return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "97" , true);
-                 		}else if(territoryCheck.get(0).length() == 2){
-                 			return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "8D" , true);
-                 		}/*else{
+		if (userDetailMap == null || (userDetailMap != null && userDetailMap.size() == 0)) {            
+			return ResponseEntity.badRequest().body("Failed in getting SAML Response");
+		} else {
+			System.out.println("UserID: " + userId + "Dealer Code: " + dealerCode + "Position Code: " + positionCode);
+
+			UserDetailsImpl user = null;
+			try{
+				user = (UserDetailsImpl) userDetailsService.loadUserByUsername(userId);
+			}
+			catch(Exception e){
+				return ResponseEntity.ok().body("<html><body>User was not found, please contact Program Headquarters at <span><a href='tel:248.353.0950'>P: 248.353.0950</a> or Email to: <span><a href='mailto:customerservice@imperialm.com'>customerservice@imperialm.com</a></span></body></html>");
+			}
+
+			final String token = jwtTokenUtil.generateToken(user);
+
+			List<UserPositionCodeRoleDTO> userCodes = new ArrayList<UserPositionCodeRoleDTO>();
+
+			if ((dealerCode != null && !dealerCode.isEmpty()) && (positionCode != null && !positionCode.isEmpty())) {
+				return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + positionCode, true);
+			} else if ((dealerCode != null && !dealerCode.isEmpty()) && (positionCode == null || positionCode.isEmpty())) {
+				userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
+
+				if(userCodes.size() > 0){
+					return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + userCodes.get(0).getPositionCode() , true);
+				}else if(userCodes.size() == 0){
+					List<String> territoryCheck = this.userPositionCodeRoleDAO.getUserTerritoyById(user.getUserId());
+					if(territoryCheck.size() > 0){
+						if(territoryCheck.get(0).equalsIgnoreCase("nat")){
+							return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "90" , true);
+						}else if(territoryCheck.get(0).contains("-")){
+							return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "97" , true);
+						}else if(territoryCheck.get(0).length() == 2){
+							return new RedirectView("/?token=" + token + "&dc=" + dealerCode + "&pc=" + "8D" , true);
+						}/*else{
                  			positionCode.add("01");
                  			dealerCode.add(user.getUserId());
                  		}*/
-                 	}
-                 }
-            	
-            	return ResponseEntity.badRequest().body("Failed in getting position code");
-            	
-            } else if ((dealerCode == null || dealerCode.isEmpty()) && (positionCode != null && !positionCode.isEmpty())) {
-            	
-            	userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
-            	if(userCodes.size() > 0){
-            		return new RedirectView("/?token=" + token + "&dc=" + userCodes.get(0).getDealerCode() + "&pc=" + positionCode , true);
-            	}
-            	
-            	return new RedirectView("/?token=" + token + "&dc=0" + "&pc=" + positionCode, true);
-            } else {
-            	userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
-            	if(userCodes.size() > 0){
-            		return new RedirectView("/?token=" + token + "&dc=" + userCodes.get(0).getDealerCode() + "&pc=" + userCodes.get(0).getPositionCode() , true);
-            	}
-            	return ResponseEntity.badRequest().body("Failed in getting position code or dealer code");
-            }
-            
-            /*
-            if ((dealerCode != null && !dealerCode.isEmpty()) && (positionCode != null && !positionCode.isEmpty())) {
-                userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleByUID(user.getUserId(), dealerCode, positionCode);
-            } else if ((dealerCode != null && !dealerCode.isEmpty()) && (positionCode == null || positionCode.isEmpty())) {
-                userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleByUID(user.getUserId(), dealerCode, "");
-            } else if ((dealerCode == null || dealerCode.isEmpty()) && (positionCode != null && !positionCode.isEmpty())) {
-                userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleByUID(user.getUserId(), "", positionCode);
-            } else {
-                userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
-            }
-			
-            for (UserPositionCodeRoleDTO item : userCodes) {
-                posCode.add(item.getPositionCode());
-                dlrCode.add(item.getDealerCode());
-            }
+					}
+				}
 
-            final String token = jwtTokenUtil.generateToken(user);
+				return ResponseEntity.badRequest().body("Failed in getting position code");
 
-            JwtAuthenticationResponse res = new JwtAuthenticationResponse(token);
-            res.setPositionCode(posCode);
-            res.setDealerCode(dlrCode);
-            res.setName(user.getUsername());
-            if (user.getUserId().toLowerCase().equals("dave")) {
-                res.setAdmin(true);
-            }
-            
-            RedirectView redirectView = new RedirectView("/index.html?token=" + token + "&pc=" +  + , true);
-		    return redirectView;*/
-        }
-    }
+			} else if ((dealerCode == null || dealerCode.isEmpty()) && (positionCode != null && !positionCode.isEmpty())) {
 
-    /**
-     * Process the SAML Response received from IDP
-     *
-     * @param request
-     * @return
-     */
-    private Map processSAMLResponse(HttpServletRequest request) {
-        Map attributeMap = new LinkedHashMap();
-        String responseMessage = request.getParameter("SAMLResponse");
-        logger.info("SAMLResponse-" + responseMessage);
-        System.out.println("SAMLResponse-" + responseMessage);
-        try {
-            byte[] base64DecodedResponse = Base64.decode(responseMessage);
-            String decodedResponse = new String(base64DecodedResponse);
-            logger.info("Decoded SAML Response - " + decodedResponse);
-            System.out.println("Decoded SAML Response - " + decodedResponse);
+				userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
+				if(userCodes.size() > 0){
+					return new RedirectView("/?token=" + token + "&dc=" + userCodes.get(0).getDealerCode() + "&pc=" + positionCode , true);
+				}
 
-            try {
-                //bootstrap the opensaml stuff
-                org.opensaml.DefaultBootstrap.bootstrap();
-            } catch (Exception ex) {
-                logger.error("Exception: ", ex);
-                System.out.println("Exception: " + ex);
-            }
-            // get the message context
-            MessageContext messageContext = new BasicSAMLMessageContext();
-            messageContext.setInboundMessageTransport(new HttpServletRequestAdapter(request));
-            HTTPPostDecoder samlMessageDecoder = new HTTPPostDecoder();
-            samlMessageDecoder.decode(messageContext);
+				return new RedirectView("/?token=" + token + "&dc=0" + "&pc=" + positionCode, true);
+			} else {
+				userCodes = userPositionCodeRoleDAO.getDealerCodePCRoleBySid(user.getUserId());
 
-            Response samlResponse;
-            if (!(messageContext.getInboundMessage() instanceof SignableSAMLObject)) {
-                throw new SecurityPolicyException("Inbound Message is not a SignableSAMLObject");
-            }
-            samlResponse = (Response) messageContext.getInboundMessage();
+				if(userCodes.size() == 0){
+					List<TIDUsersDTO> tids = TIDUsersDAO.getTIDUsersByTID(user.getUserId());
+					if(tids.size() > 0){
+						return new RedirectView("/?token=" + token + "&dc=" + tids.get(0).getTerritory() + "&pc=" + tids.get(0).getPositionCode(), true);
+					}
+				}else if(userCodes.size() > 0){
+					return new RedirectView("/?token=" + token + "&dc=" + userCodes.get(0).getDealerCode() + "&pc=" + userCodes.get(0).getPositionCode() , true);
+				}
+				return ResponseEntity.badRequest().body("Failed in getting position code or dealer code");
+			}
+		}
+	}
 
-            Assertion decryptedAssertion = null;
-            try {
-                decryptedAssertion = samlResponse.getAssertions().get(0);
-            } catch (Exception de) {
-                logger.error("Assertion decryption failed.");
-                logger.error(de.getMessage());
-                System.out.println("Assertion decryption failed: " + de.getMessage());
-            }
+	/**
+	 * Process the SAML Response received from IDP
+	 *
+	 * @param request
+	 * @return
+	 */
+	private Map processSAMLResponse(HttpServletRequest request) {
+		Map attributeMap = new LinkedHashMap();
+		String responseMessage = request.getParameter("SAMLResponse");
+		logger.info("SAMLResponse-" + responseMessage);
+		System.out.println("SAMLResponse-" + responseMessage);
+		try {
+			byte[] base64DecodedResponse = Base64.decode(responseMessage);
+			String decodedResponse = new String(base64DecodedResponse);
+			logger.info("Decoded SAML Response - " + decodedResponse);
+			System.out.println("Decoded SAML Response - " + decodedResponse);
 
-            //loop through the nodes to get the Attributes
-            //this is where you would do something with these elements
-            //to tie this user with your environment
-            if (decryptedAssertion != null) {
-                List<AttributeStatement> attributeStatements = decryptedAssertion.getAttributeStatements();
-                for (AttributeStatement attributeStatement : attributeStatements) {
-                    List<Attribute> attributes = attributeStatement.getAttributes();
-                    for (Attribute attribute : attributes) {
-                        String strAttributeName = attribute.getName();
-                        List<org.opensaml.xml.XMLObject> attributeValues = attribute.getAttributeValues();
-                        for (XMLObject attributeValue : attributeValues) {
-                            String strAttributeValue = attributeValue.getDOM().getTextContent();
-                            logger.info(strAttributeName + ": " + strAttributeValue + " ");
-                            System.out.println(strAttributeName + ": " + strAttributeValue + " ");
-                            attributeMap.put(strAttributeName, strAttributeValue);
-                        }
-                    }
-                }
-            }
+			try {
+				//bootstrap the opensaml stuff
+				org.opensaml.DefaultBootstrap.bootstrap();
+			} catch (Exception ex) {
+				logger.error("Exception: ", ex);
+				System.out.println("Exception: " + ex);
+			}
+			// get the message context
+			MessageContext messageContext = new BasicSAMLMessageContext();
+			messageContext.setInboundMessageTransport(new HttpServletRequestAdapter(request));
+			HTTPPostDecoder samlMessageDecoder = new HTTPPostDecoder();
+			samlMessageDecoder.decode(messageContext);
 
-        } catch (MessageDecodingException ex) {
-            logger.error("Message Decoding Exception: ", ex);
-            System.out.println("Message Decoding Exception: " + ex);
-        } catch (SecurityException ex) {
-            logger.error("Security Exception: ", ex);
-            System.out.println("Security Exception: " + ex);
-        } catch (DOMException ex) {
-            logger.error("DOM Exception: ", ex);
-            System.out.println("DOM Exception: " + ex);
-        }
-        return attributeMap;
-    }
+			Response samlResponse;
+			if (!(messageContext.getInboundMessage() instanceof SignableSAMLObject)) {
+				throw new SecurityPolicyException("Inbound Message is not a SignableSAMLObject");
+			}
+			samlResponse = (Response) messageContext.getInboundMessage();
+
+			Assertion decryptedAssertion = null;
+			try {
+				decryptedAssertion = samlResponse.getAssertions().get(0);
+			} catch (Exception de) {
+				logger.error("Assertion decryption failed.");
+				logger.error(de.getMessage());
+				System.out.println("Assertion decryption failed: " + de.getMessage());
+			}
+
+			//loop through the nodes to get the Attributes
+			//this is where you would do something with these elements
+			//to tie this user with your environment
+			if (decryptedAssertion != null) {
+				List<AttributeStatement> attributeStatements = decryptedAssertion.getAttributeStatements();
+				for (AttributeStatement attributeStatement : attributeStatements) {
+					List<Attribute> attributes = attributeStatement.getAttributes();
+					for (Attribute attribute : attributes) {
+						String strAttributeName = attribute.getName();
+						List<org.opensaml.xml.XMLObject> attributeValues = attribute.getAttributeValues();
+						for (XMLObject attributeValue : attributeValues) {
+							String strAttributeValue = attributeValue.getDOM().getTextContent();
+							logger.info(strAttributeName + ": " + strAttributeValue + " ");
+							System.out.println(strAttributeName + ": " + strAttributeValue + " ");
+							attributeMap.put(strAttributeName, strAttributeValue);
+						}
+					}
+				}
+			}
+
+		} catch (MessageDecodingException ex) {
+			logger.error("Message Decoding Exception: ", ex);
+			System.out.println("Message Decoding Exception: " + ex);
+		} catch (SecurityException ex) {
+			logger.error("Security Exception: ", ex);
+			System.out.println("Security Exception: " + ex);
+		} catch (DOMException ex) {
+			logger.error("DOM Exception: ", ex);
+			System.out.println("DOM Exception: " + ex);
+		}
+		return attributeMap;
+	}
 
 }

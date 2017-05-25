@@ -6,7 +6,7 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
-	<link rel="shortcut icon" href="app/resources/images/favicon.ico" />
+	<link rel="shortcut icon" href="assets/images/favicon.ico" />
 
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-1.8.3.js"></script>
 
@@ -21,7 +21,7 @@
 
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="app/resources/css/styles-datatables.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styles-datatables.css">
 
 	<style type="text/css">
 		body {
@@ -522,12 +522,12 @@
 						return sid[key1] === ele.sid;
 					});
 					for (var y = 0; y < innerData.length; y++) {
-						innerDataObj.data.push(["", innerData[y].name,"$"+numberWithCommasNoDecimals(innerData[y].projectedEarnings)]);
+						innerDataObj.data.push(["", innerData[y].name, "$" + numberWithCommasNoDecimals(innerData[y].projectedEarnings)]);
 						totalProjectedEarnings = totalProjectedEarnings + innerData[y].projectedEarnings;
 
 					}
 				}
-				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], "$"+ numberWithCommasNoDecimals(totalProjectedEarnings)], "innerData": innerDataObj })
+				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], "$" + numberWithCommasNoDecimals(totalProjectedEarnings)], "innerData": innerDataObj })
 			}
 			return tableData;
 		}
@@ -725,8 +725,17 @@
 					var innerData = outerData.filter(function (ele, index, array) {
 						return sid[key1] === ele.sid;
 					});
-					innerDataObj.data.push(["", innerData[0].name, "$" + numberWithCommasDecimals(innerData[0].earnings)]);
-					totalEarnedDollars = totalEarnedDollars + (innerData[0].earnings);
+
+					//to show different names with same sid
+					for (var t = 0; t < innerData.length; t++) {
+						innerDataObj.data.push(["", innerData[t].name, "$" + numberWithCommasDecimals(innerData[t].earnings)]);
+						totalEarnedDollars = totalEarnedDollars + (innerData[t].earnings);
+					}
+
+
+					//to show only one name from same sid with different names
+					// innerDataObj.data.push(["", innerData[0].name, "$" + numberWithCommasDecimals(innerData[0].earnings)]);
+					// totalEarnedDollars = totalEarnedDollars + (innerData[0].earnings);
 					// ramTotal = ramTotal + (innerData[1] == undefined ? 0 : innerData[1].winners);
 				}
 				tableData.data.push({ "data": ["<img src=\"https://i.imgur.com/SD7Dz.png\">", dealerCode[key], delarName[key], "$" + numberWithCommasDecimals(totalEarnedDollars)], "innerData": innerDataObj })
@@ -911,6 +920,10 @@
 	<style>
 		.datatable-margin-class {
 			margin: 20px;
+		}
+
+		td {
+			text-align: center
 		}
 	</style>
 

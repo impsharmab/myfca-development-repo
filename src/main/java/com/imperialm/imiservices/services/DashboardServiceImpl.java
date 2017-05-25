@@ -455,6 +455,10 @@ public class DashboardServiceImpl {
 		return this.SIRewardsYOYGraphDAO.getSIRewardsYOYGraphByChildAndToggle(territory, toggle);
 	}
 	
+	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphSumByTerritoryAndToggle(String territory, String toggle){
+		return this.SIRewardsYOYGraphDAO.getSIRewardsYOYGraphSumByTerritoryAndToggle(territory, toggle);
+	}
+	
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(List<String> territory, String toggle){
 		return this.SIRewardsYOYGraphDAO.getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(territory, toggle);
 	}

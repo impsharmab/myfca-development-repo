@@ -16,6 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   private errorEmailID: string = "";
   private invalidCreds: boolean = false;
   private successResetPasswordMessage: string = "";
+  private errorResetPassswordMessage: string = "";
 
   constructor(private router: Router, private loginService: LoginService) { }
 
@@ -38,15 +39,15 @@ export class ResetPasswordComponent implements OnInit {
   //   return re.test(email);
   // }
   private resetPassword() {
-    if (this.resetpassword.sid_tid.trim() === "" && this.resetpassword.emailId.trim() === "") {
+    if (this.resetpassword.sid_tid === "" && this.resetpassword.emailId === "") {
       this.errorUserID = "Please enter your SID/TID.";
       this.errorEmailID = "Email is required.";
       return;
-    } else if (this.resetpassword.sid_tid.trim() === "" && this.resetpassword.emailId !== null) {
+    } else if (this.resetpassword.sid_tid === "" && this.resetpassword.emailId !== null) {
       this.errorUserID = "Please enter your SID/TID.";
       // this.errorEmailID = "Email is required.";
       return;
-    } else if (this.resetpassword.sid_tid !== null && this.resetpassword.emailId.trim() === "") {
+    } else if (this.resetpassword.sid_tid !== null && this.resetpassword.emailId === "") {
       //  this.errorUserID = "Please enter valid SID/TID.";
       this.errorEmailID = 'Email is required.'
       return;
@@ -55,16 +56,16 @@ export class ResetPasswordComponent implements OnInit {
     this.loginService.resetPassword(this.resetpassword.sid_tid.trim(), this.resetpassword.emailId.trim()).subscribe(
       (resetPasswordData) => {
         this.resetPasswordData = (resetPasswordData)
-        this.successResetPasswordMessage = "Please check your email for new UserID and Password";
-        //alert("success")
+        this.successResetPasswordMessage = "Please check your email for new Password";
+        alert("success")
       },
-      (error) => { 
+      (error) => {
         this.invalidCreds = true;
         alert("error in reseting password")
-        //this.errorMessage = "Please enter your valid SID/TID and password";
+        this.errorResetPassswordMessage = "Please enter your valid SID/TID and Email";
       }
     )
-    //debugger
+    
   }
   private cancel() {
     let url = ["login"]

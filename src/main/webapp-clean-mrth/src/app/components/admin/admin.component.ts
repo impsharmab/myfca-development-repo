@@ -37,6 +37,18 @@ export class AdminComponent implements OnInit {
     private admin: Admin;
     private tileDataLocal: any = {}
     private tiledataresponse: any = []
+    private bannerColumnHeaders: any = [
+        { "data": "roleID", "title": "Role" },
+        { "data": "businessCenter", "title": "Business Center" },
+        { "data": "image", "title": "Image" },
+        { "data": "orderBy", "title": "Order" },       
+        {
+            "className": 'details-control',
+            "orderable": false,
+            "data": null,
+            "defaultContent": '<button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button>'
+        }
+    ]
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
 
 
@@ -332,12 +344,12 @@ export class AdminComponent implements OnInit {
         this.adminService.getTileDataLocal().subscribe(
             (tileDataLocal) => {
                 this.tileDataLocal = tileDataLocal;
-               
+
                 var a = tileDataLocal.permissions
                 console.log(tileDataLocal)
-                console.log(a)                
+                console.log(a)
 
-                 console.log(this.tileDataLocal)             
+                console.log(this.tileDataLocal)
             },
             (error) => {
                 alert("error");
