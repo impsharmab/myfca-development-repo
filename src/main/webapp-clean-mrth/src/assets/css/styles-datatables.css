@@ -82,7 +82,7 @@ p {
 	padding:20px;
 }
 .pageForm{
-float:left:	
+float:left;	
 }
 .admin-margin{
 	margin-top:60px;
@@ -534,6 +534,5 @@ a {
 }
 
 table.dataTable thead .sorting {
-
     text-align: center;
 }

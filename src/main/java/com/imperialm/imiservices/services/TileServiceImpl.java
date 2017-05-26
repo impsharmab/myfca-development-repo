@@ -231,17 +231,17 @@ public class TileServiceImpl{
 			List<MyfcaMSERTopNDTO> ytdEarnings =  this.dashService.getMSERTopTen("TotalEarnings", 1, "Mopar Parts", "YTD");
 			
 			
-			int moneymtd = 0;
-			int moneyytd = 0;
+			double moneymtd = 0;
+			double moneyytd = 0;
 			
 			if(mtdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsMTD = mtdEarnings.get(0);
-				moneymtd =  (int)EarningsMTD.getEarnings();
+				moneymtd =  EarningsMTD.getEarnings();
 			}
 			
 			if(ytdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsYTD = ytdEarnings.get(0);
-				moneyytd =  (int)EarningsYTD.getEarnings();
+				moneyytd =  EarningsYTD.getEarnings();
 			}
 			
 			mtd.setName("Total Mopar Parts Earnings - MTD");
@@ -280,17 +280,17 @@ public class TileServiceImpl{
 			List<MyfcaMSERTopNDTO> ytdEarnings =  this.dashService.getMSERTopTen("TotalEarnings", 1, "MVP", "YTD");
 			
 			
-			int moneymtd = 0;
-			int moneyytd = 0;
+			double moneymtd = 0;
+			double moneyytd = 0;
 			
 			if(mtdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsMTD = mtdEarnings.get(0);
-				moneymtd =  (int)EarningsMTD.getEarnings();
+				moneymtd =  EarningsMTD.getEarnings();
 			}
 			
 			if(ytdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsYTD = ytdEarnings.get(0);
-				moneyytd =  (int)EarningsYTD.getEarnings();
+				moneyytd =  EarningsYTD.getEarnings();
 			}
 			
 			mtd.setName("Total MVP Plans Earnings - MTD");
@@ -424,17 +424,17 @@ public class TileServiceImpl{
 			List<MyfcaMSERTopNDTO> mtdEarnings =  this.dashService.getMSERTopTen("TotalEarnings", 1, "Express Lane", "MTD");
 			List<MyfcaMSERTopNDTO> ytdEarnings =  this.dashService.getMSERTopTen("TotalEarnings", 1, "Express Lane", "YTD");
 			
-			int moneymtd = 0;
-			int moneyytd = 0;
+			double moneymtd = 0;
+			double moneyytd = 0;
 			
 			if(mtdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsMTD = mtdEarnings.get(0);
-				moneymtd =  (int)EarningsMTD.getEarnings();
+				moneymtd =  EarningsMTD.getEarnings();
 			}
 			
 			if(ytdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsYTD = ytdEarnings.get(0);
-				moneyytd =  (int)EarningsYTD.getEarnings();
+				moneyytd =  EarningsYTD.getEarnings();
 			}
 			
 			mtd.setName("Total Express Lane Parts Earnings - MTD");
@@ -5113,7 +5113,7 @@ public class TileServiceImpl{
 
 	public String formatCurrency(int number){
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format((int)number);
+		String moneyString = formatter.format(number);
 		if (moneyString.endsWith(".00")) {
 			int centsIndex = moneyString.lastIndexOf(".00");
 			if (centsIndex != -1) {
@@ -5125,9 +5125,9 @@ public class TileServiceImpl{
 	}
 
 	public String formatCurrency(double number){
-		number = Math.rint(number);
+		number =  Math.round(number);
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format((int)number);
+		String moneyString = formatter.format(number);
 		if (moneyString.endsWith(".00")) {
 			int centsIndex = moneyString.lastIndexOf(".00");
 			if (centsIndex != -1) {
@@ -5139,15 +5139,13 @@ public class TileServiceImpl{
 	}
 
 	public String formatNumbers(double number){
-		number = Math.rint(number);
+		number = Math.round(number);
 		DecimalFormat formatter = new DecimalFormat("#,###");
-
 		return formatter.format(number);
 	}
 
 	public String formatNumbers(int number){
 		DecimalFormat formatter = new DecimalFormat("#,###");
-
 		return formatter.format(number);
 	}
 	

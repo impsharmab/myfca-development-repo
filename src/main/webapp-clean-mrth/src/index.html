@@ -3,10 +3,10 @@
 
 <head>
 	<!--<base href="/myfcarewards/">-->
-	<script>
+	<!--<script>
         document.write('<base href="' + document.location + '" />');
-    </script>
-	<!--<base href="/">-->
+    </script>-->
+	<base href="/">
 	<meta http-equiv="cache-control" content="max-age=0" />
 	<meta http-equiv="cache-control" content="no-cache" />
 	<meta http-equiv="expires" content="0" />
@@ -16,8 +16,6 @@
 	<title>MyFcaRewards Portal</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--<script src="assets/js/es5-shim.js"></script>
-	<script src="assets/js/es6-shim.js"></script>-->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
 	 crossorigin="anonymous">
@@ -43,38 +41,12 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
 	 crossorigin="anonymous"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.3/xlsx.full.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Base64/1.0.1/base64.min.js"></script>
+	<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+
 	<script src="assets/js/exportToExcel.js"></script>
 	<script src="assets/js/tableToExcel.js"></script>
-
-	<script>
-		function a() {
-			var formData = new FormData();
-			formData.append('file', $('#file')[0].files[0]);
-			$.ajax({
-				//url: 'https://test.myfcarewards.com/myfcarewards/services/files/imageUpload',
-				url: './services/files/imageUpload',
-				type: 'POST',
-				data: formData,
-				processData: false,  // tell jQuery not to process the data
-				contentType: false,  // tell jQuery not to set contentType
-				success: function (data) {
-					//console.log(data);
-					//alert(data);
-					alert("Successfully uploaded image")
-				},
-				error:
-				function (error) {
-					if ($('#file')[0].files[0] == null) {
-						alert("Please choose an image")
-					} else {
-						alert("Error in uploading image")
-					}
-
-				}
-
-			});
-		}
-	</script>
 
 </head>
 
@@ -84,7 +56,6 @@
 			<img class="refreshGlyphImg" src="assets/images/spinner/spinner.gif" />
 		</div>
 	</my-app>
-
 </body>
 
 </html>

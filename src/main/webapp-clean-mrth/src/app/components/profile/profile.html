@@ -22,8 +22,7 @@
                         <button class="getstarted-button btn-sm" style="margin: 10px; background-color: #536ea4!important;" (click)="goBack()"><i class="fa fa-arrow-circle-left" ></i> Return to Dashboard</button>
                         <form class="pageForm" #changeInformation="ngForm">
                             <h6>Change your Information</h6>
-                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successProfileChangeMessage}}</p>
-                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorProfileChange}}</p>
+                            <p style="color:red; margin-left: 208" id="pwsuccess">{{profileChangeMessage}}</p>
                             <label>Name:</label>
                             <input id="username" size="30" name="username" type="text" [(ngModel)]="profiledata.name"><br>
                             <label>Email:</label>
@@ -35,9 +34,7 @@
                         </form>
                         <form class="pageForm" id="changePassword">
                             <h6>Change your Password</h6>
-                            <p style="color:red; margin-left: 208" id="pwsuccess">{{successPasswordChangeMessage}}</p>
-                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{passwordNotMatched}}</p>
-                            <p style="color:red; margin-left: 208" id="pwnotmatch">{{errorPassWordChange}}</p>
+                            <p style="color:red; margin-left: 208" id="pwsuccess">{{changeUserPasswordMessage}}</p>                            
                             <label>New Password:</label>
                             <input id="passwordInput" size="30" name="password1" type="password" [(ngModel)]="profiledata.password1">
                             <br>

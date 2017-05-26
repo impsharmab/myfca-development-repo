@@ -6,15 +6,13 @@ import './../rxjs-operators';
 
 @Injectable()
 export class ProfileService {
-    constructor(private http: Http, private cookieService: CookieService) { }
+    constructor(private http: Http, private cookieService: CookieService) { }   
 
     getProfileData() {
         //  var getProfileServiceUrl: string = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Profile/';
         var getProfileServiceUrl: string = './UserProfile/Profile/';
-
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        // var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
-
+       
         var headers = new Headers();
         headers.append('Authorization', validToken);
         return this.http.get(getProfileServiceUrl, { headers })

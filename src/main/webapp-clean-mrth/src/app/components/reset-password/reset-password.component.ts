@@ -15,9 +15,8 @@ export class ResetPasswordComponent implements OnInit {
   private errorUserID: string = "";
   private errorEmailID: string = "";
   private invalidCreds: boolean = false;
-  private successResetPasswordMessage: string = "";
-  private errorResetPassswordMessage: string = "";
-
+  private resetPasswordMessage: string = "";
+ 
   constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
@@ -43,12 +42,12 @@ export class ResetPasswordComponent implements OnInit {
       this.errorUserID = "Please enter your SID/TID.";
       this.errorEmailID = "Email is required.";
       return;
-    } else if (this.resetpassword.sid_tid === "" && this.resetpassword.emailId !== null) {
+    } else if (this.resetpassword.sid_tid === "" && this.resetpassword.emailId !== null) {      
       this.errorUserID = "Please enter your SID/TID.";
-      // this.errorEmailID = "Email is required.";
+     this.errorEmailID = "";
       return;
     } else if (this.resetpassword.sid_tid !== null && this.resetpassword.emailId === "") {
-      //  this.errorUserID = "Please enter valid SID/TID.";
+      this.errorUserID = "";
       this.errorEmailID = 'Email is required.'
       return;
     }
@@ -56,16 +55,18 @@ export class ResetPasswordComponent implements OnInit {
     this.loginService.resetPassword(this.resetpassword.sid_tid.trim(), this.resetpassword.emailId.trim()).subscribe(
       (resetPasswordData) => {
         this.resetPasswordData = (resetPasswordData)
-        this.successResetPasswordMessage = "Please check your email for new Password";
-        alert("success")
+        this.errorUserID = "";
+        this.errorEmailID = '';
+        this.resetPasswordMessage = "Please check your email for new Password";        
       },
       (error) => {
-        this.invalidCreds = true;
-        alert("error in reseting password")
-        this.errorResetPassswordMessage = "Please enter your valid SID/TID and Email";
+        this.invalidCreds = true;      
+        this.errorUserID = "";
+        this.errorEmailID = '';
+        this.resetPasswordMessage = "Please enter your valid SID/TID and Email";
       }
     )
-    
+
   }
   private cancel() {
     let url = ["login"]

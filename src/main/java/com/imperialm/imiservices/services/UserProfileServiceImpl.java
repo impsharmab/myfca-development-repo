@@ -14,57 +14,57 @@ import com.imperialm.imiservices.model.NoTile;
 public class UserProfileServiceImpl implements UserProfileService {
 
 	//UR2.1
-	private List<String> tile1 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","07","08","09","11","12","13","14","16","17","19","20","22","23","25","27","29","2S","30","32","33","34","35","36","37","39","3S","40","46","47","52","56","60","70","80","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","ET","LV","SB","SC","IDS","IEX","IBC","IDT"));
+	private List<String> tile1 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","07","08","09","11","12","13","14","16","17","19","20","22","23","25","27","29","2S","30","32","33","34","35","36","37","39","3S","40","46","47","52","56","60","70","80","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","ET","LV","SB","SC","IDS","IEX","IBC","IDT","IAD"));
 	//UR3.1
-	private List<String> tile2 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","80","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IDT"));
+	private List<String> tile2 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","80","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IDT","IAD"));
 	//UB4.1
 	private List<String> tile3 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","20","22","23","24","25","27","29","32","33","35","36","37","40","41","42"));
 	//UB5.1
-	private List<String> tile4 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
+	private List<String> tile4 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT","IAD"));
 	//UB6.1
 	private List<String> tile5 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","20","22","23","24","25","27","29","32","33","35","36","37","40","41","42"));
 	//UB7.1
-	private List<String> tile6 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
+	private List<String> tile6 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT","IAD"));
 	//UB 8.1
-	private List<String> tile7 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
+	private List<String> tile7 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","17","1F","22","25","27","2T","32","33","35","36","37","3T","40","41","46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT","IAD"));
 	//UB 9.1
 	private List<String> tile8 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","12","22","25","36","37","41","42"));
 	//UB 10.1
-	private List<String> tile9 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","1F","22","25","2T","36","37","3T","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
+	private List<String> tile9 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","1F","22","25","2T","36","37","3T","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT","IAD"));
 	//UB 11.1
-	private List<String> tile10 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","1F","22","25","2T","36","37","3T","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT"));
+	private List<String> tile10 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","1F","22","25","2T","36","37","3T","41","46","47","4T","50","56","60","70","80","81","82","83","84","89","8D","8E","8U","8V","90","94","97","99","EA","EN","FL","LV","SB","SC","U5","U6","IEX","IBC","IJM","IDT","IAD"));
 	//UB 12.1
-	private List<String> tile11 = new ArrayList<String>(Arrays.asList("01","02","09","13","14","17","19","22","27","2S","32","33","35","36","37","39","40","46","47","4T","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile11 = new ArrayList<String>(Arrays.asList("01","02","09","13","14","17","19","22","27","2S","32","33","35","36","37","39","40","46","47","4T","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT","IAD"));
 	//UB 13.1
-	private List<String> tile12 = new ArrayList<String>(Arrays.asList("01","02","09","14","17","18","19","22","23","27","2S","32","33","35","36","37","39","40","46","47","4T","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile12 = new ArrayList<String>(Arrays.asList("01","02","09","14","17","18","19","22","23","27","2S","32","33","35","36","37","39","40","46","47","4T","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT","IAD"));
 	//UB 14.1
-	private List<String> tile13 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile13 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT","IAD"));
 	//UB 15.1
-	private List<String> tile14 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile14 = new ArrayList<String>(Arrays.asList("46","47","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT","IAD"));
 	//UB 16.1
-	private List<String> tile15 = new ArrayList<String>(Arrays.asList("01","02","09","13","17","22","27","2S","32","33","35","36","37","39","46","47","4T","52","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile15 = new ArrayList<String>(Arrays.asList("01","02","09","13","17","22","27","2S","32","33","35","36","37","39","46","47","4T","52","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","LV","SB","SC","IEX","IBC","IDT","IAD"));
 	//UB 17.1
-	private List<String> tile16 = new ArrayList<String>(Arrays.asList("46","47","4T","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile16 = new ArrayList<String>(Arrays.asList("46","47","4T","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT","IAD"));
 	//UB 18.1
-	private List<String> tile17 = new ArrayList<String>(Arrays.asList("46","47","4T","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT"));
+	private List<String> tile17 = new ArrayList<String>(Arrays.asList("46","47","4T","56","60","70","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IDT","IAD"));
 	//UB 19.1
 	//private List<String> tile18 = new ArrayList<String>(Arrays.asList("01","02","13","14","19","22","27","2S","32","33","35","36","37","39","40","46","47","49","4S","56","60","65","6W","70","71","74","7L","7M","7N","7P","7Q","82","83","84","87","88","89","8D","8E","8U","90","94","97","98","99","CI","EA","EN","ES","LV","N1","N2","SC","SD","UB","VT"));
 	//UB 20.1
 	private List<String> tile19 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","12","13","14","17","18","20","22","23","24","25","27","29","32","33","35","36","37","40","41","42"));
 	//21.1
-	private List<String> tile20 = new ArrayList<String>(Arrays.asList("46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IDT"));
+	private List<String> tile20 = new ArrayList<String>(Arrays.asList("46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IDT","IAD"));
 	//UB 22.1 SUMMARY table
-	private List<String> tile21 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","10","11","12","13","14","16","17","19","1F","20","22","23","24","25","26","27","28","2S","2T","30","31","32","33","34","35","36","37","38","39","3S","3T","40","41","46","47","4T","50","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","ET","LV","SB","SC","IEX","IBC","IJM","IBS","IDT"));
+	private List<String> tile21 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","10","11","12","13","14","16","17","19","1F","20","22","23","24","25","26","27","28","2S","2T","30","31","32","33","34","35","36","37","38","39","3S","3T","40","41","46","47","4T","50","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","ES","ET","LV","SB","SC","IEX","IBC","IJM","IBS","IDT","IAD"));
 	//UB 23.1
-	private List<String> tile22 = new ArrayList<String>(Arrays.asList("01","02","22","36","37","39","46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IBS","IDT"));
+	private List<String> tile22 = new ArrayList<String>(Arrays.asList("01","02","22","36","37","39","46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IBS","IDT","IAD"));
 	//UB 24.1
-	private List<String> tile23 = new ArrayList<String>(Arrays.asList("01","02","22","36","37","39","46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IBS","IDT"));
+	private List<String> tile23 = new ArrayList<String>(Arrays.asList("01","02","22","36","37","39","46","47","4T","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IEX","IBC","IJM","IBS","IDT","IAD"));
 	//UB 25.1
 	//private List<String> tile24 = new ArrayList<String>(); // this was empty, is empty
 	//UB 26.1
 	private List<String> tile25 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","10","11","17","19","1F","22","25","2S","2T","31","32","33","35","36","37","38","39","3T","40","41","46","47","50","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IJM","IBS","IDT"));
 	//UB 27.1
-	private List<String> tile26 = new ArrayList<String>(Arrays.asList("46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IJM","IBS","IDT"));
+	private List<String> tile26 = new ArrayList<String>(Arrays.asList("46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IJM","IBS","IDT","IAD"));
 	//UB 28.1
 	//private List<String> tile27 = new ArrayList<String>(); // empty
 	//UB 29.1

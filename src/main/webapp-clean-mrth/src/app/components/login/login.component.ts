@@ -94,8 +94,7 @@ export class LoginComponent implements OnInit {
     private refreshLogin() {
         var user = this.cookieService.get("token");
         if (user !== undefined) {
-            if (user !== undefined && user.length > 1) {
-                // sessionStorage.setItem("showWelcomePopup", "false");
+            if (user !== undefined && user.length > 1) {               
                 this.hideLoginPage = true;
                 this.loginService.getRefreshLoginResponse(user).subscribe(
                     (refreshTokenData) => {
@@ -120,8 +119,6 @@ export class LoginComponent implements OnInit {
                     (error) => {
                         this.cookieService.removeAll();
                         location.reload();
-                        //alert("error in refreshing")
-
                     }
                 )
             }
@@ -129,12 +126,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-    private login() { 
-        // if (!this.usernameRegex(this.user.username.trim())) {
-        //     this.loginFailed = "Login Failed";
-        //     this.loginErrorMessage = "Please Enter your valid SID/TID";
-        //     return;
-        // }
+    private login() {         
          if (this.user.username === "" && this.user.password === "") {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID and Password";
@@ -150,8 +142,7 @@ export class LoginComponent implements OnInit {
         }
         this.loginService.getLoginResponse(this.user.username.trim(), this.user.password.trim()).subscribe(
             (resUserData) => {
-                this.userdata = (resUserData)
-                // console.log(resUserData)
+                this.userdata = (resUserData)               
                 if (resUserData["token"].length > 0) {
                     this.loginService.setUserData(this.userdata);
 

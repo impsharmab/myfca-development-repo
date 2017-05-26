@@ -6,8 +6,8 @@ import './../rxjs-operators';
 
 @Injectable()
 export class AdminService {
-     private baseUrl = "";
-    //private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
+    private baseUrl = "";
+    //    private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
 
     constructor(private http: Http, private cookieService: CookieService) { }
 
@@ -22,7 +22,6 @@ export class AdminService {
     }
 
     getImageList() {
-        // var getImageListUrl = "https://test.myfcarewards.com/myfcarewards/services/files/listFiles";
         var getImageListUrl = this.baseUrl + "services/files/listFiles"
         return this.http.get(getImageListUrl)
             .map((response: Response) => response.json())
@@ -59,9 +58,7 @@ export class AdminService {
     }
 
     getEmulateUserData(sid: string) {
-        // var getEmulateUserDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/emulate/" + sid;
         var getEmulateUserDataUrl = this.baseUrl + "services/admin/emulate/" + sid;
-
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -72,7 +69,6 @@ export class AdminService {
     }
 
     addBanner(roleID, bc, orderBy, image) {
-        //var getAddBannerUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/add/";
         var getAddBannerUrl = this.baseUrl + "services/admin/banner/add/";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var body = {
@@ -82,8 +78,6 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
 
         return this.http.post(getAddBannerUrl, body, { headers: headers })
             .map((response: Response) =>
@@ -93,7 +87,6 @@ export class AdminService {
     }
     getAllBannerData() {
         var getAllBannerDataUrl = this.baseUrl + "services/admin/banner/getAll/";
-        //var getAllBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/getAll/";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -104,7 +97,6 @@ export class AdminService {
     }
     editBannerData(editBannerDataObj: any) {
         var editBannerDataUrl = this.baseUrl + "services/admin/banner/update/";
-        // var editBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/update/";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var body = editBannerDataObj;
         var headers = new Headers();
@@ -116,10 +108,7 @@ export class AdminService {
     }
 
     deleteBannerData(dashBoardBannersID: any) {
-        debugger
         var deleteBannerDataUrl = this.baseUrl + "services/admin/banner/delete/" + dashBoardBannersID;
-        // var deleteBannerDataUrl = "./services/admin/banner/delete/" + dashBoardBannersID;
-        // var deleteBannerDataUrl = "https://test.myfcarewards.com/myfcarewards/services/admin/banner/delete/" + dashBoardBannersID;
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -144,8 +133,7 @@ export class AdminService {
 
 
     getTileDataResponse(positioncode) {
-        debugger
-         var getTileDataResponseUrl = "./assets/json/admin-tile-response.json";
+        var getTileDataResponseUrl = "./assets/json/admin-tile-response.json";
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');

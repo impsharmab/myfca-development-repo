@@ -16,9 +16,8 @@ export class ProfileComponent implements OnInit {
     private _password: any;
     private successPasswordChangeMessage: string = "";
     private passwordNotMatched: string = "";
-    private errorPassWordChange: string = "";
-    private successProfileChangeMessage: string = "";
-    private errorProfileChangeMessage: string = "";
+    private changeUserPasswordMessage: string = "";  
+    private profileChangeMessage: string = "";
 
     constructor(private profileService: ProfileService, private router: Router, ) { }
 
@@ -54,40 +53,40 @@ export class ProfileComponent implements OnInit {
 
     private changeProfileData() { 
         if (this.profiledata.name === "" && this.profiledata.email === "") {
-            this.errorProfileChangeMessage = "Please enter your name and email id";
+            this.profileChangeMessage = "Please enter your name and email id";
             return;
         } else if (this.profiledata.name === "" && this.profiledata.email !== "") {
-            this.errorProfileChangeMessage = "Please enter your name";
+            this.profileChangeMessage = "Please enter your name";
             return;
         } else if (this.profiledata.name !== "" && this.profiledata.email === "") {
-            this.errorProfileChangeMessage = "Please enter your email ID";
+            this.profileChangeMessage = "Please enter your email ID";
             return;
         }
         this.profileService.changeProfileData(this.profiledata.name.trim(), this.profiledata.email.trim()).subscribe(
             (profileChangeData) => {
                 this.profileChangeData = (profileChangeData);
-                this.successProfileChangeMessage = "Your Profile Settings are Updated";
+                this.profileChangeMessage = "Your Profile Settings are Updated";
             },
             (error) => {
-                this.errorProfileChangeMessage = "Error in profile change";
+                this.profileChangeMessage = "Error in profile change";
             }
         )
     }
     private changeUserPassword() {
-        if (this.profiledata.password1.trim() !== this.profiledata.password2.trim()) {
-            this.passwordNotMatched = "Password does not match, please enter the same password";
+        if (this.profiledata.password1 !== this.profiledata.password2) {
+            this.changeUserPasswordMessage = "Password does not match, please enter the same Password";
             return;
-        } else if ((this.profiledata.password1.trim()).length < 0 || (this.profiledata.password2.trim()).length < 0) {
-            this.passwordNotMatched = "Password is required";
+        } else if (this.profiledata.password1.length < 0 || this.profiledata.password2.length < 0) {
+            this.changeUserPasswordMessage = "Password is Required";
             return;
         }
         this.profileService.changeUserPassword(this.profiledata.password1.trim()).subscribe(
             (password) => {
                 this._password = (password);
-                this.successPasswordChangeMessage = "Your Profile Password is Updated";
+                this.changeUserPasswordMessage = "Your Profile Password is Updated";
             },
             (error) => {
-                this.errorPassWordChange = "Error in password change";
+                this.changeUserPasswordMessage = "Error in Password Change";
 
             }
         )

@@ -44,7 +44,7 @@ public class TTTAJpaConfiguration {
 		return dataSource;
 	}
 	
-	@Bean("TTTAEntityManager")
+	@Bean(name="TTTAEntityManager")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
 		final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(this.dataSource());

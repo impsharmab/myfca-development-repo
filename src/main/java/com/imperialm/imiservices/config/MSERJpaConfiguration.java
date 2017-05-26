@@ -44,7 +44,7 @@ public class MSERJpaConfiguration {
 		return dataSource;
 	}
 	
-	@Bean("MSEREntityManager")
+	@Bean(name="MSEREntityManager")
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
 		final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(this.dataSource());

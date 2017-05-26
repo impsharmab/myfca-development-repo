@@ -2,11 +2,13 @@ package com.imperialm.imiservices.config;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,10 +23,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.cache.CacheManager;
+import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import com.google.common.cache.CacheBuilder;
 import com.imperialm.imiservices.security.JwtAuthenticationEntryPoint;
 import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
 import com.imperialm.imiservices.security.JwtDaoAuthenticationProvider;
@@ -38,6 +42,12 @@ import com.imperialm.imiservices.services.UserServiceImpl;
 public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
 	
 	private static Logger logger = LoggerFactory.getLogger(IMIServiceSecutiryConfig.class);
+	
+	@Value("${spring.cache.defaultmaxcacheentries}")
+	private int CACHEMAX;
+	
+	@Value("${spring.cache.defaultcachetime}")
+	private int CACHETIME;
 	
 	@Autowired
 	private UserServiceImpl userService;
@@ -64,6 +74,13 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
     	logger.info("Cleared All Caches at: " + new Date().toString());
     }
     
+    
+    @Bean
+    public CacheManager cacheManager(){
+    	GuavaCacheManager  guavaCacheManager =  new GuavaCacheManager();
+        guavaCacheManager.setCacheBuilder(CacheBuilder.newBuilder().maximumSize(CACHEMAX).expireAfterAccess(CACHETIME, TimeUnit.MINUTES));
+        return guavaCacheManager;
+    }
     
     public void resetCache(String cashName, String key) {
     	//CacheManager cacheManager = cacheManager();

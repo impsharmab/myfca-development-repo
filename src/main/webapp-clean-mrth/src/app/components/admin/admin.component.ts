@@ -35,13 +35,16 @@ export class AdminComponent implements OnInit {
     private deleteBannerDatum: any = {}
     private role: string = "";
     private admin: Admin;
-    private tileDataLocal: any = {}
-    private tiledataresponse: any = []
+    private tileDataLocal: any = {};
+    private tiledataresponse: any = [];
+    private imageUploadMessage: string = "";
+    private addBannerDataMessage: string = "";
+    private deleteBannerDataMessage: string = "";
     private bannerColumnHeaders: any = [
         { "data": "roleID", "title": "Role" },
         { "data": "businessCenter", "title": "Business Center" },
         { "data": "image", "title": "Image" },
-        { "data": "orderBy", "title": "Order" },       
+        { "data": "orderBy", "title": "Order" },
         {
             "className": 'details-control',
             "orderable": false,
@@ -129,6 +132,38 @@ export class AdminComponent implements OnInit {
             $(bc).on('selectionchange', function (e, m) {
                 self.setBC(this.getValue());
             })
+        });
+    }
+
+    private imageUpload() {
+        var formData = new FormData();
+        formData.append('file', $('#file')[0].files[0]);
+        var globalthis = this;
+        $.ajax({
+            // url: 'https://test.myfcarewards.com/myfcarewards/services/files/imageUpload',
+            url: './services/files/imageUpload',
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                globalthis.imageUploadMessage = "Successfully uploaded image";
+            },
+            error:
+            function (error) {
+                for (var i = 0; i < globalthis.imagelist.length; i++) {
+
+                    if ($('#file')[0].files[0].name == globalthis.imagelist[i]) {
+                        globalthis.imageUploadMessage = "Image already exists";
+                        return;
+                    }
+                }
+                if ($('#file')[0].files[0] == null) {
+                    globalthis.imageUploadMessage = "Please choose an image";
+                } else {
+                    globalthis.imageUploadMessage = "Error in uploading image";
+                }
+            }
         });
     }
     private constructRoles(roleID) {
@@ -286,14 +321,19 @@ export class AdminComponent implements OnInit {
 
     private addBannerImage() {
         if (this.uploadImage.selectedRoleId.length == 0) {
+            this.addBannerDataMessage = "Please select Role";
             return false;
         } else if (this.uploadImage.bc.length == 0) {
+            this.addBannerDataMessage = "Please select Business Center";
             return false;
         } else if (this.uploadImage.orderBy == undefined) {
+            this.addBannerDataMessage = "Please select Order";
             return false;
         } else if (this.uploadImage.orderBy.toString() == "") {
+            this.addBannerDataMessage = "Please select Order";
             return false;
         } else if (this.uploadImage.image.length == 0) {
+            this.addBannerDataMessage = "Please select an Image";
             return false;
         }
         for (var i = 0; i < this.uploadImage.bc.length; i++) {
@@ -301,12 +341,14 @@ export class AdminComponent implements OnInit {
                 this.adminService.addBanner(this.uploadImage.selectedRoleId[j], this.uploadImage.bc[i], this.uploadImage.orderBy, this.uploadImage.image).subscribe(
                     (addBannerData) => {
                         this.addBannerData = addBannerData;
-                        alert("Success in adding banner");
+                        this.addBannerDataMessage = "Success in adding banner"
+                        //alert("Success in adding banner");
                         this.getAllBannerData();
                     },
                     (error) => {
-                        alert("Error in adding banner");
-                        this.errorUploadImageMessage = "Error in adding banner";
+                        this.addBannerDataMessage = "Error in adding banner"
+                        // alert("Error in adding banner");
+                        //this.errorUploadImageMessage = "Error in adding banner";
                     }
                 )
             }
@@ -327,18 +369,17 @@ export class AdminComponent implements OnInit {
         this.adminService.deleteBannerData(dashBoardBannersID).subscribe(
             (deleteBannerDatum) => {
                 this.deleteBannerDatum = deleteBannerDatum;
-                // alert(deleteBannerDatum)
-                // alert(this.deleteBannerDatum)
-                alert("Successfully deleted banner")
+                this.deleteBannerDataMessage = "Successfully deleted banner";
+               // alert("Successfully deleted banner")
                 this.getAllBannerData();
             },
             (error) => {
-                alert("Error in deleting banner");
+                this.deleteBannerDataMessage = "Error in deleting banner";
+               // alert("Error in deleting banner");
             }
         )
 
     }
-
 
     private getTileDataLocal() {
         this.adminService.getTileDataLocal().subscribe(
@@ -356,6 +397,7 @@ export class AdminComponent implements OnInit {
             }
         )
     }
+
     private getTileDataResponse() {
         debugger
         this.adminService.getTileDataResponse(this.admin.positioncode).subscribe(
@@ -371,8 +413,7 @@ export class AdminComponent implements OnInit {
             }
         )
     }
-
-
+    
 }
 
 
