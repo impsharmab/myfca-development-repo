@@ -149,11 +149,24 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   }
   private drillUptotalCount: any = 0;
   private drillupAverageCount = 0;
+
   drillUp(e: any, chart: any, id: any) {
-    var obj = this.unitAndAverage[id];
-    for (var i = 0; i < e.seriesOptions.data.length; i++) {
-      this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
-      this.drillupAverageCount = this.drillupAverageCount + 1;
+    var obj = this.unitAndAverage[id];    
+    if (this.charTypeJSON[id] === 'bar_compound' || this.charTypeJSON[id] === 'column_stack' || this.charTypeJSON[id] === 'column_compound') {
+      this.drillUptotalCount = 0;
+      this.drillupAverageCount = 0;
+      for (var i = 0; i < chart.options.series.length; i++) {
+        for (var j = 0; j < chart.options.series[i].data.length; j++) {
+          var data = chart.options.series[i].data[j];
+          this.drillUptotalCount = this.drillUptotalCount + data.y;
+          this.drillupAverageCount = this.drillupAverageCount + 1;
+        }
+      }
+    } else {
+      for (var i = 0; i < e.seriesOptions.data.length; i++) {
+        this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
+        this.drillupAverageCount = this.drillupAverageCount + 1;
+      }
     }
     if (obj.averageLine) {
       var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;

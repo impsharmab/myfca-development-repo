@@ -87,9 +87,9 @@ export class AdminComponent implements OnInit {
         this.getImageList(self);
         //this.getTileDataResponse();
 
-        // $(document).ready(function () {
-        //     $('#example').DataTable();
-        // });
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
 
         $('#accordion').collapse({
             toggle: false
