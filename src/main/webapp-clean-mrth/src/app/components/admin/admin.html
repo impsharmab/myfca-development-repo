@@ -90,8 +90,9 @@
                         <div class="box">
                             <h4>Banner Configuration</h4>
                             <br />
-                            <datatable [tableData] = "allBannerTableData" [columnsHeader]="bannerColumnHeaders"  (deleteClick)="deleteBannerData($event.dashBoardBannersID)"></datatable>
                             <p style="color: red; margin-bottom: auto; margin-left: 205;">{{deleteBannerDataMessage}}</p>
+                            <datatable [tableData] = "allBannerTableData" [columnsHeader]="bannerColumnHeaders"  (deleteClick)="deleteBannerData($event.dashBoardBannersID)"></datatable>
+                            
                             <!--<table id="example" class="table display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
@@ -193,7 +194,7 @@
                     </div>
                 </div>
                 <!--Admin tile control ends-->
-            </div>
+            </div> 
         </div>
     </div>
 </section>

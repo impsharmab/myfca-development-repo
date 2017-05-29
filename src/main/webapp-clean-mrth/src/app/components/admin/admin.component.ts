@@ -41,7 +41,7 @@ export class AdminComponent implements OnInit {
     private addBannerDataMessage: string = "";
     private deleteBannerDataMessage: string = "";
     private bannerColumnHeaders: any = [
-        { "data": "roleID", "title": "Role" },
+        { "data": "roleID", "title": "Roles" },
         { "data": "businessCenter", "title": "Business Center" },
         { "data": "image", "title": "Image" },
         { "data": "orderBy", "title": "Order" },
@@ -49,7 +49,7 @@ export class AdminComponent implements OnInit {
             "className": 'details-control',
             "orderable": false,
             "data": null,
-            "defaultContent": '<button type="button" class="btn btn-primary btn-sm" (click)="deleteBannerData(bannerData.dashBoardBannersID)"><i class="fa fa-close"></i></button>'
+            "defaultContent": '<button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-close"></i></button>'
         }
     ]
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }

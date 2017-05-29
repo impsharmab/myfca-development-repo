@@ -1388,9 +1388,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var obj = this.unitAndAverage[id];
     var total = 0;
     var seriesCount = 0;
-    for (var i = 0; i < event.target.chart.series.length; i++) {
-      var series = event.target.chart.series[i];
+    for (var i = 0; i < event.target.chart.options.series.length; i++) {
+      var series = event.target.chart.options.series[i];
+      
       if (!retention) {
+        series = event.target.chart.series[i];
         if (clickedSeries.name === series.name) {
           if (!clickedSeries.visible) {
             for (var j = 0; j < series.data.length; j++) {
