@@ -14,6 +14,7 @@ export class TableComponent implements OnChanges, OnDestroy {
     @Input("tableData") tableData: any;
     @Input("columnsHeader") columns: any;
     @Output("deleteClick") deleteClick: EventEmitter<any> = new EventEmitter<any>();
+    @Input("columnDefs") columnDefs: any;
     constructor(private element: ElementRef, private renderer: Renderer) {
         var elementHtml = element.nativeElement;
         elementHtml.innerHTML = `<table id="` + this.randomId + `"></table>`
@@ -25,7 +26,7 @@ export class TableComponent implements OnChanges, OnDestroy {
 
         var data = this.tableData;
         var columns = this.columns;
-
+        var columnDefs = this.columnDefs;
         if ($.fn.dataTable.isDataTable('#' + this.randomId)) {
             this.tableObj.clear().draw();
             this.tableObj.rows.add(data); // Add new data
@@ -36,9 +37,11 @@ export class TableComponent implements OnChanges, OnDestroy {
         var table = $('#' + this.randomId).DataTable({
             // 'bSort': false,
             "data": data,
-            "columns": columns
+            "columns": columns,
+            "columnDefs":columnDefs
         });
         this.tableObj = table;
+        
         var __this = this;
         $('#' + this.randomId + ' tbody').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');

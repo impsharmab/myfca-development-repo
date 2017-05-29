@@ -49,11 +49,32 @@ export class AdminComponent implements OnInit {
             "className": 'details-control',
             "orderable": false,
             "data": null,
+            "title": "Delete",
             "defaultContent": '<button type="button" class="btn btn-primary btn-sm" ><i class="fa fa-close"></i></button>'
         }
     ]
-    constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
+    private columnDefs = [{
+        "targets": 0,
+        "data": "roleID",
+        "render": function (roleID, type, full, meta) {
+            if (roleID == 1) {
+                return "Executive"
+            } else if (roleID == 12) {
+                return "BC"
+            } else if (roleID == 11) {
+                return "District Manager"
+            } else if (roleID == 10) {
+                return "Dealer"
+            } else if (roleID == 5) {
+                return "Manager"
+            } else if (roleID == 9) {
+                return "Participants"
+            }
+        }
+    }];
 
+
+    constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
 
     ngOnInit() {
         var self = this;
@@ -370,12 +391,12 @@ export class AdminComponent implements OnInit {
             (deleteBannerDatum) => {
                 this.deleteBannerDatum = deleteBannerDatum;
                 this.deleteBannerDataMessage = "Successfully deleted banner";
-               // alert("Successfully deleted banner")
+                // alert("Successfully deleted banner")
                 this.getAllBannerData();
             },
             (error) => {
                 this.deleteBannerDataMessage = "Error in deleting banner";
-               // alert("Error in deleting banner");
+                // alert("Error in deleting banner");
             }
         )
 
@@ -413,7 +434,7 @@ export class AdminComponent implements OnInit {
             }
         )
     }
-    
+
 }
 
 
