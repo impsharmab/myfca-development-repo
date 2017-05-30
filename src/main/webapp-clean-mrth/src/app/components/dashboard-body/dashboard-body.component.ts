@@ -151,7 +151,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   private drillupAverageCount = 0;
 
   drillUp(e: any, chart: any, id: any) {
-    var obj = this.unitAndAverage[id];    
+    var obj = this.unitAndAverage[id];
     if (this.charTypeJSON[id] === 'bar_compound' || this.charTypeJSON[id] === 'column_stack' || this.charTypeJSON[id] === 'column_compound') {
       this.drillUptotalCount = 0;
       this.drillupAverageCount = 0;
@@ -847,7 +847,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }
         }
         chartObj.plotOptions["series"]["stacking"] = "normal";
-        delete chartObj.xAxis.categories;
+        delete chartObj.xAxis.categories;     
         this.constructChartObject(chartData, chartObj, tileId);
         break;
       case "column_compound":
@@ -889,6 +889,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         }
 
         delete chartObj.xAxis.categories;
+
         this.constructChartObject(chartData, chartObj, tileId);
         break;
       case "column_stack":
@@ -1002,6 +1003,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var seriesJsonObject = [];
     var drilldownArray = [];
     var avagerCount = 0;
+    //chartData.data.reverse();
     var total = 0;
     for (var i = 0; i < chartData.data.length; i++) {
       var dataObj = chartData.data[i];
@@ -1390,7 +1392,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var seriesCount = 0;
     for (var i = 0; i < event.target.chart.options.series.length; i++) {
       var series = event.target.chart.options.series[i];
-      
+
       if (!retention) {
         series = event.target.chart.series[i];
         if (clickedSeries.name === series.name) {

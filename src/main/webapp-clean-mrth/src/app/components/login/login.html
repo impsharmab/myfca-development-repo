@@ -15,12 +15,11 @@
                 <form class="pageForm" #f="ngForm" novalidate (ngSubmit)="login()">
                     <p style="color: red; margin-bottom: auto; margin-left: 205;">{{loginFailed}} <br> {{loginErrorMessage}}</p>
                     <label><b>SID/TID: *</b></label>
-                    <input id="username" type="text" name="username" [(ngModel)]="user.username" #username="ngModel"
-                        placeholder="" required minlength="7" maxlength="7">
+                    <input id="username" type="text" name="username" [(ngModel)]="user.username" #username="ngModel" placeholder="" required
+                        minlength="7" maxlength="7">
                     <br>
                     <label><b>Password: *</b></label>
-                    <input id="password"  type="password" name="password" [(ngModel)]="user.password" #password="ngModel"
-                        placeholder="" required>
+                    <input id="password" type="password" name="password" [(ngModel)]="user.password" #password="ngModel" placeholder="" required>
                     <a class="resetLink" style="color:blue; cursor: pointer" (click)="resetPassword()"><span>&nbsp;</span>&nbsp; <span style="text-decoration:underline"> Reset Password</span></a>
                     <br/>
                     <!--<div *ngIf="(username.dirty || username.touched)" class="alert alert-danger">
@@ -33,7 +32,7 @@
                     </div>-->
                     <button type="submit" class="btn btn-info btn-sm" data-toggle="modal" data-target="#updateProgramsModal" style=" margin-bottom: auto; margin-left: 205; margin-top: 5;">Enter</button>
 
-                    
+
                 </form>
             </div>
         </div>
@@ -42,3 +41,15 @@
 <div style="display: flex; justify-content: center;" [hidden]="!hideLoginPage">
     <img class="refreshGlyphImg" src="assets/images/spinner/spinner.gif" />
 </div>
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;); 
+
+  ga('create', 'UA-9443841-23', 'auto'); 
+    ga('send', 'pageview');
+</script>

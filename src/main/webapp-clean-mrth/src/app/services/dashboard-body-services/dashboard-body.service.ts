@@ -6,8 +6,8 @@ import './../rxjs-operators';
 
 @Injectable()
 export class DashboardBodyService {
-    //private baseUrl = "";
-    private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
+    private baseUrl = "";
+   // private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
     private tiles = new Array();
     private userdata = {}
     constructor(private http: Http, private cookieService: CookieService) { }
@@ -29,6 +29,7 @@ export class DashboardBodyService {
         var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
         var getNumberOfTilesServiceUrl: string = this.baseUrl + "services/notile/" + positioncodes + "/" + dealerlcodes;
+       // var getNumberOfTilesServiceUrl: string = "./src/assets/json/notiles.json";
         var headers = new Headers();
         headers.append('Authorization', validToken);
         // headers.append("Cache-Control", "no-cache");
@@ -60,6 +61,7 @@ export class DashboardBodyService {
         // headers.append("Cache-Control", "no-cache");
         // headers.append("Cache-Control", "no-store");       
         var chartService = this.baseUrl + "services/tile/" + id + "/" + positioncodes + "/" + dealerlcodes;
+        // var chartService = "./src/assets/json/19-chart.json";
         return this.http.get(chartService, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);

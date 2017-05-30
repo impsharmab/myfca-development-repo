@@ -1,0 +1,13 @@
+[
+    {
+        "id": 19,
+        "error": "",
+        "type": "chart",
+        "tileName": "",
+        "tileHeaderImage": "mser-logo.jpg",
+        "programRules": "Program Rules",
+        "programRulesUrl": "./content/MSERProgramRules",
+        "programSite": "Program Site",
+        "programSiteUrl": "http://uat.imperialmarketing.com/mser/dashSSO.do?token=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUMDFJQUQwIiwiZXhwIjoxNDk2NzY1NzE2LCJpYXQiOjE0OTYxNjA5MTZ9.C1ONFGco_SxRwtLCKFzLrarQKklLLFEy-OPPzkZeWwMRiwJ3VJ1w3ufHlGPriFMU_28JcM_3V177jg4nU-RZtg&positioncode=90&dealercode=0"
+    }
+]

@@ -115,7 +115,8 @@ public class SSOController {
 				user = (UserDetailsImpl) userDetailsService.loadUserByUsername(userId);
 			}
 			catch(Exception e){
-				return ResponseEntity.ok().body("<html><body>User was not found, please contact Program Headquarters at <span><a href='tel:248.353.0950'>P: 248.353.0950</a> or Email to: <span><a href='mailto:customerservice@imperialm.com'>customerservice@imperialm.com</a></span></body></html>");
+				return "loginerror.html";
+				//return ResponseEntity.ok().body("<html><body>User was not found, please contact Program Headquarters at <span><a href='tel:248.353.0950'>P: 248.353.0950</a> or Email to: <span><a href='mailto:customerservice@imperialm.com'>customerservice@imperialm.com</a></span></body></html>");
 			}
 
 			final String token = jwtTokenUtil.generateToken(user);

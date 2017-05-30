@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.security.JwtTokenUtil;
@@ -36,11 +37,6 @@ public class IMIServiceWebController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		return IMIServicesConstants.INDEX_PAGE;
-	}
-	
-	@RequestMapping(value = "/healthcheck.html", method = RequestMethod.GET)
-	public String healthcheck() {
-		return "healthcheck.html";
 	}
 
 	
