@@ -35,7 +35,7 @@ public class EmailHandler {
                     + "User Id: " + user.getUserId() + "<br>"
                     + "Password: " + (String) other + "<br>"
                     + "<br>Once you are logged in you can change your password by selecting the “Profile” link located in the top right of the homepage.";
-                    mailUtil.sendMail("info@moparser.com", user.getEmail(), ccEmailIds, null, subject, message);
+                    mailUtil.sendMail("info@myfcarewards.com", user.getEmail(), ccEmailIds, null, subject, message);
                 }
         } catch (Exception e) {
         	logger.error("Email Handler class error in--"+emailType +"-->" + e);

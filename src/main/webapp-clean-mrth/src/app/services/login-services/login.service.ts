@@ -32,7 +32,7 @@ export class LoginService {
                 response.json())
             .catch(this.handleError);
     }
-    
+
     getRefreshLoginResponse(token) {
         //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
         var url = "./login/tokenrefresh/";

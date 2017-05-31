@@ -16,9 +16,7 @@ export class AdminService {
         this.cookieService.put("adminToken", adminToken);
         this.cookieService.put("token", emulateuserData.item);
     }
-
     setEndEmulateUserData(endEmulateUserData) {
-
     }
 
     getImageList() {

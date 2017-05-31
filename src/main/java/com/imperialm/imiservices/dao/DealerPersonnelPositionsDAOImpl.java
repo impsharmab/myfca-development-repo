@@ -37,5 +37,25 @@ public class DealerPersonnelPositionsDAOImpl implements DealerPersonnelPositions
 		}
 		return result;
 	}
+	
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Cacheable(value="checkPositionCode")
+	public boolean checkPositionCode(String positionCode) {
+		try {
+			final Query query = this.em.createNativeQuery(CHECK_POSITIONCODE);
+			query.setParameter(0, positionCode);
+			List<String> rows = (List<String>) query.getResultList();
+			if(rows.size() > 0){
+				return true;
+			}else{
+				return false;
+			}
+		} catch (final Exception ex) {
+			logger.error("error occured in checkPositionCode", ex);
+			return false;
+		}
+	}
 
 }

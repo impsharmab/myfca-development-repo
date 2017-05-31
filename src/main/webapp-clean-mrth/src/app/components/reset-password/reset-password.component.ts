@@ -16,7 +16,8 @@ export class ResetPasswordComponent implements OnInit {
   private errorEmailID: string = "";
   private invalidCreds: boolean = false;
   private resetPasswordMessage: string = "";
- 
+  private disableButton: boolean = false;
+
   constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
@@ -42,28 +43,30 @@ export class ResetPasswordComponent implements OnInit {
       this.errorUserID = "Please enter your SID/TID.";
       this.errorEmailID = "Email is required.";
       return;
-    } else if (this.resetpassword.sid_tid === "" && this.resetpassword.emailId !== null) {      
+    } else if (this.resetpassword.sid_tid === "" && this.resetpassword.emailId !== null) {
       this.errorUserID = "Please enter your SID/TID.";
-     this.errorEmailID = "";
+      this.errorEmailID = "";
       return;
     } else if (this.resetpassword.sid_tid !== null && this.resetpassword.emailId === "") {
       this.errorUserID = "";
       this.errorEmailID = 'Email is required.'
       return;
     }
-    debugger
+    this.disableButton = true;
     this.loginService.resetPassword(this.resetpassword.sid_tid.trim(), this.resetpassword.emailId.trim()).subscribe(
       (resetPasswordData) => {
         this.resetPasswordData = (resetPasswordData)
         this.errorUserID = "";
         this.errorEmailID = '';
-        this.resetPasswordMessage = "Please check your email for new Password";        
+        this.resetPasswordMessage = "Please check your Email for new Password";
+        this.disableButton = true;
       },
       (error) => {
-        this.invalidCreds = true;      
+        this.invalidCreds = true;
         this.errorUserID = "";
         this.errorEmailID = '';
         this.resetPasswordMessage = "Please enter your valid SID/TID and Email";
+        this.disableButton = false;
       }
     )
 

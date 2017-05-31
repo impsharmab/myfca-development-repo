@@ -328,17 +328,17 @@ public class TileServiceImpl{
 			List<MyfcaMSERTopNDTO> mtdEarnings =  this.dashService.getMSERTopTen("TotalEarnings", 1, "Magneti Marelli", "MTD");
 			List<MyfcaMSERTopNDTO> ytdEarnings =  this.dashService.getMSERTopTen("TotalEarnings", 1, "Magneti Marelli", "YTD");
 			
-			int moneymtd = 0;
-			int moneyytd = 0;
+			double moneymtd = 0;
+			double moneyytd = 0;
 			
 			if(mtdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsMTD = mtdEarnings.get(0);
-				moneymtd =  (int)EarningsMTD.getEarnings();
+				moneymtd =  EarningsMTD.getEarnings();
 			}
 			
 			if(ytdEarnings.size() > 0){
 				MyfcaMSERTopNDTO EarningsYTD = ytdEarnings.get(0);
-				moneyytd =  (int)EarningsYTD.getEarnings();
+				moneyytd =  EarningsYTD.getEarnings();
 			}
 			
 
@@ -2902,7 +2902,7 @@ public class TileServiceImpl{
 		{
 			TopTenChart topTenChart = new TopTenChart();
 			TotalName mser = new TotalName("Total Number of Dealers Enrolled in MSER","0 (0.0%)");
-			TotalName expresslane = new TotalName("Total Number of Express Lane Validated Dealers","0");
+			TotalName expresslane = new TotalName("Total Number of Express Lane Validated Dealers","0 (0.0%)");
 			TotalName partsCounter = new TotalName("Total Number of Parts Counter Enrolled Dealers","0 (0.0%)");
 
 			List<Integer> dealersenrolledcount = this.dashService.getTotalDealersEnrolledByProgramID(this.MSER_PROGRAM_ID);

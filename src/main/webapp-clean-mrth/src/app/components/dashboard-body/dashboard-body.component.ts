@@ -48,7 +48,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   constructor(private service: DashboardBodyService,
     private modalService: NgbModal,
-
     private router: Router) {
     Highcharts.setOptions({
       lang: {
@@ -280,7 +279,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   }
   openProgramSite(url: any) {
-    window.open(url)
+    window.open(url, "_self")
   }
   notEmptyBadge(data: any): boolean {
     try {
@@ -847,8 +846,40 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }
         }
         chartObj.plotOptions["series"]["stacking"] = "normal";
-        delete chartObj.xAxis.categories;     
+        delete chartObj.xAxis.categories;
+        // console.log("before conditions: " + " " + chartData.data)
+        // console.log("before conditions: " + " " + chartObj)
+        if (chartData.data.length > 0) {
+          var bcs = new Object();
+          for (var i = 0; i < chartData.data[0].data.length; i++) {
+            bcs[chartData.data[0].data[i].name] = [];
+            if (chartData.data[0].data[i].data.length > 0) {
+              for (var j = 0; j < chartData.data[0].data[i].data.length; j++) {
+                bcs[chartData.data[0].data[i].name].push(chartData.data[0].data[i].data[j].name);
+              }
+            }
+          }
+
+          for (var i = 1; i < chartData.data.length; i++) {
+            for (var j = 0; j < chartData.data[i].data.length; j++) {
+              if (chartData.data[i].data[j].data.length > 0) {
+                for (var n = 0; n < chartData.data[i].data[j].data.length; n++) {
+                  console.log(bcs[chartData.data[i].data[j].name][n]);
+                  console.log(chartData.data[i].data[j].data[n].name);
+                  if (bcs[chartData.data[i].data[j].name][n] != chartData.data[i].data[j].data[n].name) {
+                    chartData.data[i].data[j].data.splice(n, 0, this.createDistrict(bcs[chartData.data[i].data[j].name][n]));
+                  }
+                }
+              } else if (bcs[chartData.data[i].data[j].name].length > 0) {
+                chartData.data[i].data[j].data = bcs[chartData.data[i].data[j]];
+              }
+            }
+          }
+        }
+        // console.log("after conditions: " + " " + chartData)
+        // console.log("after conditions: " + " " + chartObj);
         this.constructChartObject(chartData, chartObj, tileId);
+
         break;
       case "column_compound":
         chartObj.chart.type = "column"
@@ -965,6 +996,14 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     }
     return chartObj;
   }
+
+
+  private createDistrict(name) {
+    var districtobj = { "name": "", "data": [], "value": 0.0 };
+    districtobj.name = name;
+    return districtobj;
+  }
+
 
   public chartChange(chartType: string, id: any): void {
     var chartObject = this.contentBody[id];

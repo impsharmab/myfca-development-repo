@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dao.UserProgramRolesDAO;
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
 import com.imperialm.imiservices.dao.TIDUsersDAO;
 import com.imperialm.imiservices.dto.TIDUsersDTO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
@@ -58,6 +59,9 @@ public class AuthenticationRestController {
 	
 	@Autowired
 	private UserProgramRolesDAO UserProgramRolesDAO;
+	
+	@Autowired
+	private DealerPersonnelPositionsDAO DealerPersonnelPositionsDAO;
 	
 	
 	
@@ -109,6 +113,13 @@ public class AuthenticationRestController {
 			return ResponseEntity.status(500).body("Invalid Token");
 		}
 
+		if(tokenDealerCode.length() != 5){
+			tokenDealerCode = "";
+		}
+		
+		if(!DealerPersonnelPositionsDAO.checkPositionCode(tokenPositionCode)){
+			tokenPositionCode = "";
+		}
 		return finalizeToken(token,user, tokenPositionCode , tokenDealerCode);
 	}
 
