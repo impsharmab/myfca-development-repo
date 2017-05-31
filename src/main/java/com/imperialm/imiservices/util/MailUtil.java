@@ -16,8 +16,9 @@ public class MailUtil
   public boolean PROPERTIES_SET = false;
   private String smtpHost =  "smtp.office365.com";
   private String smtpPort =  "587";
-  private String exchangeUser =  "smtpuser@imperialm.com";
-  private String exchangePassword =  "imi.smtp";
+  //private String exchangeUser =  "smtpuser@imperialm.com";
+  private String exchangeUser =  "info@myfcarewards.com";
+  private String exchangePassword =  "Imi.smtp";
   private String emailSubjectPrefix = "";
 
     /** Logger for this class and subclasses */

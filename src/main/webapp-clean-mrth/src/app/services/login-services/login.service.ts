@@ -14,7 +14,7 @@ export class LoginService {
         sessionStorage.removeItem('CurrentUser');
         sessionStorage.removeItem('selectedCodeData');
         sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
-        this.cookieService.put("token", (userdata.token));
+        this.cookieService.put("token", (userdata.token)); 
     }
 
     getUsersData() {

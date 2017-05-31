@@ -864,8 +864,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             for (var j = 0; j < chartData.data[i].data.length; j++) {
               if (chartData.data[i].data[j].data.length > 0) {
                 for (var n = 0; n < chartData.data[i].data[j].data.length; n++) {
-                  console.log(bcs[chartData.data[i].data[j].name][n]);
-                  console.log(chartData.data[i].data[j].data[n].name);
+                  // console.log(bcs[chartData.data[i].data[j].name][n]);
+                  // console.log(chartData.data[i].data[j].data[n].name);
                   if (bcs[chartData.data[i].data[j].name][n] != chartData.data[i].data[j].data[n].name) {
                     chartData.data[i].data[j].data.splice(n, 0, this.createDistrict(bcs[chartData.data[i].data[j].name][n]));
                   }

@@ -61,8 +61,14 @@ export class LoginComponent implements OnInit {
     //         return false
     //     }
     // }
-    
+
     private ssologin(ssotoken: string, ssopositioncode: string, ssodealercode: string) {
+        sessionStorage.removeItem("selectedCodeData");
+        sessionStorage.removeItem("selectedDealerCode");
+        sessionStorage.removeItem("CurrentUser");
+        sessionStorage.clear();
+        this.cookieService.remove("token");
+        this.cookieService.removeAll();
         this.loginService.getSSOLoginResponse(
             this.ssotoken,
             this.ssopositioncode,
@@ -73,7 +79,6 @@ export class LoginComponent implements OnInit {
                     this.loginService.setUserData(this.userdata);
                     var poscodes: any = this.userdata.positionCode;
                     var delcodes: any = this.userdata.dealerCode;
-
                     sessionStorage.setItem("selectedCodeData", JSON.stringify(
                         {
                             "selectedPositionCode": poscodes === undefined ? 0 : poscodes[0] === "" ? "0" : poscodes.length > 0 ? poscodes[0] : 0,
@@ -94,7 +99,7 @@ export class LoginComponent implements OnInit {
     private refreshLogin() {
         var user = this.cookieService.get("token");
         if (user !== undefined) {
-            if (user !== undefined && user.length > 1) {               
+            if (user !== undefined && user.length > 1) {
                 this.hideLoginPage = true;
                 this.loginService.getRefreshLoginResponse(user).subscribe(
                     (refreshTokenData) => {
@@ -126,8 +131,8 @@ export class LoginComponent implements OnInit {
     }
 
 
-    private login() {         
-         if (this.user.username === "" && this.user.password === "") {
+    private login() {
+        if (this.user.username === "" && this.user.password === "") {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID and Password";
             return;
@@ -135,14 +140,14 @@ export class LoginComponent implements OnInit {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your SID/TID";
             return;
-        } else if (this.user.username !== null  && this.user.password === "") {
+        } else if (this.user.username !== null && this.user.password === "") {
             this.loginFailed = "Login Failed";
             this.loginErrorMessage = "Please Enter your valid SID/TID and Password";
             return;
         }
         this.loginService.getLoginResponse(this.user.username.trim(), this.user.password.trim()).subscribe(
             (resUserData) => {
-                this.userdata = (resUserData)               
+                this.userdata = (resUserData)
                 if (resUserData["token"].length > 0) {
                     this.loginService.setUserData(this.userdata);
 

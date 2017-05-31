@@ -178,7 +178,7 @@ public class TileServiceImpl{
 
 			}
 
-			if(type.equals("BC")){
+			if(type.equals("BC") && BC.length() ==2){
 				List<MyfcaMSERTotalEarningsDTO> MSERGraphDTOListYTD = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(BC, "YTD");
 				List<MyfcaMSERTotalEarningsDTO> MSERGraphDTOListMTD = this.dashService.getMSERGraphProgramsSUMByChildTerritoryAndToggle(BC, "MTD");
 
@@ -500,7 +500,7 @@ public class TileServiceImpl{
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
 			for(BrainBoostWinndersGraphDTO item: listBC_unfiltered){
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						filters.add(item.getChildTerritory());
@@ -513,7 +513,7 @@ public class TileServiceImpl{
 					chartsMap.put(item.getParentTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -570,7 +570,7 @@ public class TileServiceImpl{
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
 			for(CertProfsExpertGraphDTO item: list1st){	
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						filters.add(item.getChildTerritory());
@@ -584,7 +584,7 @@ public class TileServiceImpl{
 					chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getChildTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -644,7 +644,7 @@ public class TileServiceImpl{
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
 			for(CertProfsExpertGraphDTO item: unfiltereList){
 				if(!filters.contains(item.getChildTerritory())){
-					if(type.equals("BC")){
+					if(type.equals("BC") && BC.length() ==2){
 						//get users BC
 						if(item.getChildTerritory().contains(BC)){
 							filters.add(item.getChildTerritory());
@@ -658,7 +658,7 @@ public class TileServiceImpl{
 				}
 				List<String> temp = map.get(item.getParentTerritory());
 
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -804,7 +804,7 @@ public class TileServiceImpl{
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
 			for(BrainBoostWinndersGraphDTO item: listBC_unfiltered){
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						filters.add(item.getChildTerritory());
@@ -817,7 +817,7 @@ public class TileServiceImpl{
 					chartsMap.put(item.getParentTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -887,7 +887,7 @@ public class TileServiceImpl{
 			Map<String, List<ChartData>> chartsMap2 = new HashMap<String, List<ChartData>>();
 			Map<String, List<ChartData>> chartsMap3 = new HashMap<String, List<ChartData>>();
 			for(CertProfsWinnersGraphDTO item: listBC_unfiltered){
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						filters.add(item.getChildTerritory());
@@ -899,7 +899,7 @@ public class TileServiceImpl{
 					map.put(item.getParentTerritory(), new ArrayList<String>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -1087,7 +1087,7 @@ public class TileServiceImpl{
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgSurveyCount));
 
 
-			}else if(type.equals("BC")){
+			}else if(type.equals("BC") && BC.length() ==2){
 				TotalName dealerscount = new TotalName("Total Dealers Enrolled","0");
 				List<Integer> dealerscountlist = this.dashService.getTotalDealersEnrolledByProgramIDAndTerritory(TA_PROGRAM_ID, BC+"%");
 				
@@ -1212,7 +1212,7 @@ public class TileServiceImpl{
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(avgYearsOfService));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(incentiveEligible));
 
-			}else if(type.equals("BC")){
+			}else if(type.equals("BC") && BC.length() ==2){
 				TotalName dealerscount = new TotalName("Total Dealers Enrolled","0");
 				
 				List<Integer> dealerscountlist = this.dashService.getTotalDealersEnrolledByProgramIDAndTerritory(TT_PROGRAM_ID, BC+"%");
@@ -1343,7 +1343,7 @@ public class TileServiceImpl{
 					ChartData chartD = new ChartData(filter, total);
 					for(MyfcaMSERTotalEarningsDTO a: innerList){
 						total += a.getAmount();
-						if((type.equals("BC") && filter.equals(BC)) || type.equals("Executive")){
+						if((type.equals("BC") && filter.equals(BC) && BC.length() ==2) || type.equals("Executive")){
 							chartD.addData(new ChartData(a.getChild(), a.getAmount()));
 						}
 					}
@@ -1400,7 +1400,7 @@ public class TileServiceImpl{
 					chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getChildTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -1509,7 +1509,7 @@ public class TileServiceImpl{
 					chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getChildTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -1571,7 +1571,7 @@ public class TileServiceImpl{
 					chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getChildTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -1633,7 +1633,7 @@ public class TileServiceImpl{
 					chartsMap2.put(item.getChildTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getChildTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -1719,7 +1719,7 @@ public class TileServiceImpl{
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(advisorsIncentiveQualified));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(managersAndDirectorsQualified));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(eligibleSurveys));
-			}else if(type.equals("BC")){
+			}else if(type.equals("BC") && BC.length() ==2){
 				List<String> filters = new ArrayList<String>();
 				filters.add(BC);
 				List<SIRewardsDetailsGraphDTO> SIRewardsDetailsGraphList = this.dashService.getSIRewardsDetailsGraphByChildTerritoryAndToggle(filters, "QTD");
@@ -1834,7 +1834,7 @@ public class TileServiceImpl{
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(totalCertifiedLevelParticipants));
 				topTenChart.addAttribute(this.mappingService.MapTotalNameToTileAttribute(dealershipMasterCertifiedRankWithinBC));
 
-			}else if(type.equals("BC")){
+			}else if(type.equals("BC") && BC.length() ==2){
 				String territory = BC;
 				List<RetentionGraphDTO> RetentionGraphServiceManagerList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "09");
 				List<RetentionGraphDTO> RetentionGraphPartsAdvisorList = this.dashService.getRetentionGraphByChildTerritoryListAndPositionCode(territory, "14");
@@ -1948,7 +1948,7 @@ public class TileServiceImpl{
 					List<RetentionGraphDTO> innerList = this.dashService.getRetentionGraphByParentTerritoryListAndPositionCode(in, item.getName());
 					ChartData chartD = new ChartData(filter, total);
 					for(RetentionGraphDTO a: innerList){
-						if((type.equals("BC") && filter.equals(BC)) || type.equals("Executive")){
+						if((type.equals("BC") && filter.equals(BC) && BC.length() ==2) || type.equals("Executive")){
 							chartD.addData(new ChartData(a.getChildTerritory(), a.getPercentage()));
 						}
 					}
@@ -1999,7 +1999,7 @@ public class TileServiceImpl{
 			filters = new ArrayList<String>();
 
 			for(CustomerFirstGraphDTO item: listBC){
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						filters.add(item.getChildTerritory());
@@ -2030,7 +2030,7 @@ public class TileServiceImpl{
 					//chartsMap3.put(item.getParentTerritory(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -2253,7 +2253,7 @@ public class TileServiceImpl{
 			filters = new ArrayList<String>();
 
 			for(CustomerFirstGraphDTO item: listBC){
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						filters.add(item.getChildTerritory());
@@ -2279,7 +2279,7 @@ public class TileServiceImpl{
 					map.put(item.getParentTerritory(), new ArrayList<String>());
 				}
 				List<String> temp = map.get(item.getParentTerritory());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChildTerritory().contains(BC)){
 						temp.add(item.getChildTerritory());
@@ -2500,7 +2500,7 @@ public class TileServiceImpl{
 			List<TTTAEnrolledGraphDTO> listBC = this.dashService.getTTTAEnrolledByParentTerritory(filters);
 			filters = new ArrayList<String>();
 			for(TTTAEnrolledGraphDTO item: listBC){
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChild().contains(BC)){
 						filters.add(item.getChild());
@@ -2670,7 +2670,7 @@ public class TileServiceImpl{
 			List<TTTAEnrolledGraphDTO> listBC = this.dashService.getTTTAEnrolledByParentTerritoryNotEnrolled(filters);
 			filters = new ArrayList<String>();
 			for(TTTAEnrolledGraphDTO item: listBC){
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChild().contains(BC)){
 						filters.add(item.getChild());
@@ -2864,7 +2864,7 @@ public class TileServiceImpl{
 					chartsMap.put(item.getChild(), new ArrayList<ChartData>());
 				}
 				List<String> temp = map.get(item.getChild());
-				if(type.equals("BC")){
+				if(type.equals("BC") && BC.length() ==2){
 					//get users BC
 					if(item.getChild().contains(BC)){
 						temp.add(item.getChild());
