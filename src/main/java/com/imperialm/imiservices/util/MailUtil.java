@@ -101,7 +101,8 @@ public class MailUtil
         transport.sendMessage(msg, msg.getAllRecipients());
         //System.out.print("Sending to: " + to);
     }
-    catch (MessagingException mex) {throw mex;}// this may look redundant
+    catch (MessagingException mex)
+    {throw mex;}// this may look redundant
     finally
     {
       try

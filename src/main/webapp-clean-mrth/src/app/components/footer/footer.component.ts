@@ -8,11 +8,18 @@ import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 })
 export class FooterComponent {
 
+
     constructor() { }
 
     openProgramSite(url: any) {
         window.open(url)
     }
 
+    openFooterSSOSite(url: any) {
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
+        var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
 
+        window.open(url + validToken + "&positioncode=" + positioncodes + "&dealercode=" + dealerlcodes, "_self")
+    }
 }

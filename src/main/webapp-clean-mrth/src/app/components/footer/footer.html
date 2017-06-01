@@ -6,7 +6,7 @@
         <p style="font-size: 12px" class="white-text">This Dashboard is designed to show a summary of your performance in programs in which you are enrolled by your Dealership.
           Click on the individual tile to access the program rules, reports and all other pertinent information. If you have
           questions or need assistance, please contact Program Headquarters at <span><a href="tel:8882672187" style="text-decoration: underline; color:white">P: 888.267.2187</a></span>          or Email to
-          <span><a href="mailto:customerservice@imperialm.com" style="text-decoration: underline; color:white">customerservice@imperialm.com</a></span></p>
+          <span><a href="mailto:info@myfcarewards.com" style="text-decoration: underline; color:white">info@myfcarewards.com</a></span></p>
       </div>
  
       <div class="col-sm-12 col-md-3">
@@ -16,7 +16,7 @@
       <div class="extra-links col-sm-12 col-md-4">
         <div class="row">
           <div class="col-sm-12 col-md-4 ">
-            <a class="white-text footer-logo" href="https://fcarewardredemption.com/customer/account/login/" target="_blank" title="Reward Redemption">
+            <a class="white-text footer-logo" (click)='openFooterSSOSite("https://fcarewardredemption.com/he_singlesignon/login/login?token=")' target="_blank" title="Reward Redemption" style="cursor:pointer">
             <img class="footer-logo-img" src="services/loadrsc/MyRewards.jpg" alt="Reward Redemption" /></a>
           </div>
           <div class="col-sm-12 col-md-4">
@@ -26,7 +26,7 @@
         </div>
         <div class="row">
           <div class="col-sm-12 col-md-4">
-            <a class="white-text footer-logo " href="https://www.moparser.com/mser/home.do?a=true" target="_blank" title="MSER Payout Chart">
+            <a class="white-text footer-logo " (click)='openFooterSSOSite("https://www.moparser.com/mser/dashSSO.do?token=")' target="_blank" title="MSER Payout Chart" style="cursor:pointer">
             <img class="footer-logo-img" src="services/loadrsc/PayoutChart.jpg" alt="MSER Payout Chart" /></a>
           </div>
 
