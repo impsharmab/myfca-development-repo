@@ -145,7 +145,7 @@ public class ProgramCountDAOImpl {
 
 		try {
 			//final Query query = this.em.createNativeQuery("select count( distinct D.DealerCode) from DealerInfo D left join (select pge.* from ProgramGroupEnrollments pge join ProgramGroups pg on pge.ProgramGroupID = pg.ProgramGroupID where pg.ProgramGroupID = 1) as p on D.DealerCode = p.DealerCode join (select * from ProgramEnrollments where ProgramId = 1 and Status = 'E') PE on D.DealerCode = PE.DealerCode where D.ELFlag = 'Y'");
-			final Query query = this.em.createNativeQuery("Select Count(Distinct DI.DealerCode) 'EL-Validated_Dealers' From DealerInfo DI Where DI.ELFlag='Y' and TerminatedDate is Null ");
+			final Query query = this.em.createNativeQuery("Select Count(Distinct DI.DealerCode) From DealerInfo DI Where DI.ELFlag='Y' and TerminatedDate is Null");
 			List<Integer> rows = (List<Integer>) query.getResultList();
 			result = rows;
 		} catch (final NoResultException ex) {

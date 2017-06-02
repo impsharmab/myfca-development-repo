@@ -45,6 +45,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   private unit: any = "";
   private drilldownAverageCount = 0;
   private printButtonName: any = {};
+  private chartData: any;
 
   constructor(private service: DashboardBodyService,
     private modalService: NgbModal,
@@ -111,6 +112,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   drillDown(e: any, chart: any, id: any) {
     var obj = this.unitAndAverage[id]
+    var chartData = this.chartData;
     this.drillUptotalCount = 0;
     this.drillupAverageCount = 0;
     for (var i = 0; i < e.seriesOptions.data.length; i++) {
@@ -118,16 +120,37 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       this.drilldownAverageCount = this.drilldownAverageCount + 1;
     }
 
-    if (obj.averageLine) {
-      var averageLinetotal = this.totalCount / this.drilldownAverageCount;
+    // if (obj.topQuartile) {
+    //   var averageLinetotal = this.totalCount / this.drilldownAverageCount;
+    //   chart.yAxis["plotLines"] = [{
+    //     color: '#ff790c',
+    //     value: averageLinetotal,
+    //     width: '3',
+    //     zIndex: 2
+    //   }]
+
+    // }
+
+    if (chartData.topQuartile) {
       chart.yAxis["plotLines"] = [{
         color: '#ff790c',
-        value: averageLinetotal,
+        value: 25000,
         width: '3',
         zIndex: 2
       }]
 
+      // e.seriesOptions = {
+      //   point: {
+      //     events: {
+      //       click: function (e, a, b) {
+      //         alert()
+      //       }
+      //     }
+      //   }
+      // }
     }
+
+
     if (obj.avarage) {
       this.totalCount = this.totalCount / this.drilldownAverageCount;
     }
@@ -167,11 +190,12 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         this.drillupAverageCount = this.drillupAverageCount + 1;
       }
     }
-    if (obj.averageLine) {
-      var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;
+    if (obj.topQuartile) {
+      //var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;
+
       chart.yAxis["plotLines"] = [{
         color: '#ff790c',
-        value: averageLinetotal,
+        value: obj.firstLevelQuartile,
         width: '3',
         zIndex: 2
       }]
@@ -223,16 +247,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.chartRawData = {};
     this.initializeContent();
   }
-  initializeContent() {
+  initializeContent() {  
     this.service.getNumberOfTiltes().subscribe(
       (resUserData) => {
+        console.log(resUserData)
         this.tilesArray = this.chunk(resUserData, 2);
         for (var i = 0; i < resUserData.length; i++) {
           var obj = resUserData[i];
           if (obj.type === "tile") {
             this.getTileJson(obj.id);
           } else {
-            this.getChartJson(obj);
+            this.getChartJson(obj);          
           }
         }
       })
@@ -242,6 +267,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.modalService.open(this.topModel, { size: "lg" });
   }
   chunk(arr, size): any {
+    debugger
     var newArr = [];
     for (var i = 0; i < arr.length; i += size) {
       newArr.push(arr.slice(i, i + size));
@@ -360,20 +386,24 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       })
   }
   getChartJson(obj: any) {
+    debugger
     this.service.getChartJson(obj.id).subscribe(
       (chartData) => {
+        console.log(chartData);
         this.chartRawData[obj.id] = chartData;
         this.constructChartJson(obj, chartData)
       })
   }
   private charTypeJSON: any = {};
   constructChartJson(obj: any, chartData: any) {
+    debugger;
     this.charTypeJSON[obj.id] = chartData.type;
     var chartObj = this.getChartJSONObject(obj, chartData);
     this.contentBody[obj.id] = chartObj;
   }
-  private chartData: any;
+
   getChartJSONObject(obj: any, chartData: any): any {
+    debugger
     if (chartData.xaxisTitle == "") {
       chartData.xaxisTitle = chartData.yaxisTitle
     } else if (chartData.yaxisTitle == "") {
@@ -787,11 +817,11 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
             },
           }
         }
-        if (chartData.averageLine) {
-          var averageLinetotal = total / avagerCount;
+        if (chartData.topQuartile) {
+          // var averageLinetotal = total / avagerCount;
           chartObj.yAxis["plotLines"] = [{
             color: '#ff790c',
-            value: averageLinetotal,
+            value: chartData.firstLevelQuartile,
             width: '3',
             zIndex: 2
           }]
@@ -1020,7 +1050,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       stackLabels = chartObject.unit + '{total:.0f}'
     }
     chartObject.chart.type = chartType
-    var __this = this; chartObject.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } }
+    var __this = this;
+    chartObject.chart.events = {
+      drilldown: function (e, d) {
+        __this.drillDown(e, this, id);
+      },
+      drillup: function (e, d) {
+        __this.drillUp(e, this, id);
+      }
+    }
     chartObject.chart.renderTo = this.chartObjects[id].container.id;
     if (chartType === "pie") {
 
@@ -1147,7 +1185,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   chartSwitchNAT(id: any) {
     var chartObj = this.contentBody[id];
     chartObj.chart.type = "pie";
-    var __this = this; chartObj.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } }
+    var __this = this;
+    chartObj.chart.events = {
+      drilldown: function (e, d) {
+        __this.drillDown(e, this, id);
+      },
+      drillup: function (e, d) {
+        __this.drillUp(e, this, id);
+      }
+    }
     chartObj.chart.renderTo = this.chartObjects[id].container.id;
     chartObj.chart.plotOptions = {
       series: {
@@ -1288,7 +1334,15 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var chartObject = this.contentBody[id];
 
     chartObject.chart.type = "pie"
-    var __this = this; chartObject.chart.events = { drilldown: function (e, d) { __this.drillDown(e, this, id); }, drillup: function (e, d) { __this.drillUp(e, this, id); } }
+    var __this = this;
+    chartObject.chart.events = {
+      drilldown: function (e, d) {
+        __this.drillDown(e, this, id);
+      },
+      drillup: function (e, d) {
+        __this.drillUp(e, this, id);
+      }
+    }
     chartObject.chart.renderTo = this.chartObjects[id].container.id;
     chartObject.chart.plotOptions = {
       series: {

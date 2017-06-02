@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
-import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
 import com.imperialm.imiservices.model.response.TotalName;
 import com.imperialm.imiservices.util.IMIServicesUtil;
 
@@ -25,6 +24,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 	@PersistenceContext
 	private EntityManager em;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getTTTAEnrollmentCount() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -48,6 +48,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 		return result.get(0);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getTTTAIncentiveEligibleSUM() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -71,6 +72,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getTTTAAdvisorScoreAVG() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -94,6 +96,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getTTTATechnicianScoreAVG() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -117,6 +120,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getTTTATechnicianSurveyCount() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -140,6 +144,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 		return result.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public TotalName getTTTAAdvisorSurveyCount() {
 		List<TotalName> result = new ArrayList<TotalName>();
@@ -202,6 +207,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<TTTAEnrollmentsDTO> getTTTAEnrollmentsByDealerCodeAndEnrollement(String dealerCode, String enrollement,
 			String positionCode) {

@@ -5,6 +5,7 @@ import javax.ws.rs.core.MultivaluedMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,10 @@ public class CMSService {
 
     String cmsUrl1 = "http://850627-web2.imperialm.com/imi-cms/content";
     String cmsUrl2 = "http://850627-web2.imperialm.com/imi-cms/content";
-    String cmsContentType = "draft";
+    
+    @Value("${cms.mode}")
+    String cmsContentType;
+    
     ReloadableResourceBundleMessageSource cmsMessageSource;
 
     

@@ -6,15 +6,17 @@ import './../rxjs-operators';
 
 @Injectable()
 export class ProfileService {
-    constructor(private http: Http, private cookieService: CookieService) { }   
+    constructor(private http: Http, private cookieService: CookieService) { }
 
     getProfileData() {
         //  var getProfileServiceUrl: string = 'https://test.myfcarewards.com/myfcarewards/UserProfile/Profile/';
         var getProfileServiceUrl: string = './UserProfile/Profile/';
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-       
+
         var headers = new Headers();
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(getProfileServiceUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -29,6 +31,8 @@ export class ProfileService {
         var body = { "name": name, "email": email };
         var headers = new Headers();
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.post(getProfileServiceUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -41,6 +45,8 @@ export class ProfileService {
         var body = { "item": password };
         var headers = new Headers();
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.post(getPasswordServiceUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);

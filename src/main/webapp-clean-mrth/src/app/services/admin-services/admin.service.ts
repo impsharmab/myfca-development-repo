@@ -30,7 +30,8 @@ export class AdminService {
         var getPositionCodeUrl = "./assets/json/positioncode-array.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(getPositionCodeUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -39,7 +40,8 @@ export class AdminService {
         var getPositionCodeUrl = "./assets/json/admin-chooseview.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(getPositionCodeUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -49,7 +51,8 @@ export class AdminService {
         var adminService = "./assets/json/test-admin.json";
         var headers = new Headers();
         headers.append('Authorization', "");
-
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(adminService, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -61,6 +64,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(getEmulateUserDataUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -76,7 +81,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
-
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.post(getAddBannerUrl, body, { headers: headers })
             .map((response: Response) =>
                 response.json())
@@ -89,6 +95,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(getAllBannerDataUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -100,6 +108,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.put(editBannerDataUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -111,6 +121,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
 
         return this.http.delete(deleteBannerDataUrl, { headers })
             .map((response: Response) => response.json())
@@ -123,6 +135,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
 
         return this.http.get(getTileDataLocalUrl, { headers })
             .map((response: Response) => response.json())
@@ -136,6 +150,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
 
         return this.http.get(getTileDataResponseUrl)
             .map((response: Response) => response.json())

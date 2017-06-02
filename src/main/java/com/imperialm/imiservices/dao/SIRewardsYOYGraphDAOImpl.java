@@ -14,7 +14,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
-import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
@@ -44,6 +43,7 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getSIRewardsYOYGraphByTerritoryAndToggleList")
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggle(List<String> territory,
@@ -63,6 +63,7 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getSIRewardsYOYGraphByTerritoryAndToggleFilterParentList")
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphByTerritoryAndToggleFilterParent(List<String> territory,
@@ -104,8 +105,6 @@ public class SIRewardsYOYGraphDAOImpl implements SIRewardsYOYGraphDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SIRewardsYOYGraphDTO> getSIRewardsYOYGraphSumByTerritoryAndToggle(String territory, String toggle) {
-		// TODO Auto-generated method stub
-		
 		List<SIRewardsYOYGraphDTO> result = new ArrayList<SIRewardsYOYGraphDTO>();
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_SUM_BY_PARENT_TERRITORY_AND_TOGGLE, SIRewardsYOYGraphDTO.class);

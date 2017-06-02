@@ -61,6 +61,7 @@ public class SummaryProgramRewardGraphDAOImpl implements SummaryProgramRewardGra
 		return result;
 	}*/
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getSummaryProgramRewardGraphByChildTerritoryYTD")
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(String territory) {

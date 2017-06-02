@@ -5,10 +5,11 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
+import org.springframework.web.servlet.HandlerMapping;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -17,6 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class FileController {
@@ -30,13 +33,6 @@ public class FileController {
 	@Value("${cms.shared.folder}")
 	private String cmsPath;
 	
-	@Value("${cms.shared.folder.images}")
-	private String cmsimagesPath;
-	
-	@Value("${cms.shared.folder.docs}")
-	private String cmsdocsPath;
-
-
 	@RequestMapping(value="/services/files/imageUpload", method = RequestMethod.POST)
 	public ResponseEntity<?> UploadFile(MultipartHttpServletRequest request) throws IOException {
 
@@ -98,17 +94,18 @@ public class FileController {
 		return new FileSystemResource(cmsPath + fileName);
 	}
 	
-	@RequestMapping(value = "/content/file/image/{file_name:.+}", method = RequestMethod.GET)
+	@RequestMapping(value = "/shared/imi-cms/FCARewards/**", method = RequestMethod.GET)
 	@ResponseBody
-	public FileSystemResource getCmsimages(@PathVariable("file_name") String fileName) {
-		return new FileSystemResource(cmsimagesPath + fileName);
-	}
-	
-	@RequestMapping(value = "/content/file/docs/{file_name:.+}", method = RequestMethod.GET)
-	@ResponseBody
-	public FileSystemResource getCmsdocs(@PathVariable("file_name") String fileName) {
-		return new FileSystemResource(cmsdocsPath + fileName);
-	}
+	public FileSystemResource getCmsfile(final HttpServletRequest request) {
+		
+		String path = (String) request.getAttribute(
+	            HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+	        String bestMatchPattern = (String ) request.getAttribute(HandlerMapping.BEST_MATCHING_PATTERN_ATTRIBUTE);
 
+	        AntPathMatcher apm = new AntPathMatcher();
+	        String finalPath = apm.extractPathWithinPattern(bestMatchPattern, path);
+		
+		return new FileSystemResource(cmsPath + finalPath);
+	}
 
 }

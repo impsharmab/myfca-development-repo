@@ -1,7 +1,9 @@
 package com.imperialm.imiservices.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +22,9 @@ public class Chart {
 	private boolean retention = false;
 	private boolean cFDealDisMan = false;
 	private boolean averageLine = false;
+	private boolean topQuartile = false;
+	private double firstLevelQuartile = 0;
+	private Map<String, Double> secondLevelQuartile = new HashMap<String, Double>();
 	//private JsonNode drilldownData;
 	
 	public Chart(){

@@ -73,7 +73,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//private List<String> tile29 = new ArrayList<String>();// empty
 
 	//ALL MSER SUMMARY DAVE SKIFF TILES
-	private List<String> tile100 = new ArrayList<String>(Arrays.asList("IDS"));
+	private List<String> tile100 = new ArrayList<String>(Arrays.asList("IDS","IAD"));
 
 	private List<NoTile> userTiles = new ArrayList<NoTile>();
 

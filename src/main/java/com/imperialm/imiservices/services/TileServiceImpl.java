@@ -38,6 +38,7 @@ import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardQuartileGraphDTO;
 import com.imperialm.imiservices.dto.TIDUsersDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
@@ -2842,11 +2843,16 @@ public class TileServiceImpl{
 
 
 			List<SummaryProgramRewardGraphDTO> list1st = null;
-			//List<SummaryProgramRewardGraphDTO> list1st_Filtered = null;
+			
+			List<SummaryProgramRewardQuartileGraphDTO> list1stQuartile = null;
 
 			//check if nat or not if nat pull list of childeren and continue if not start from their
 			list1st = this.dashService.getSummaryProgramRewardGraphByParentTerritoryYTD(filters);
 
+			list1stQuartile = this.dashService.getSummaryProgramRewardQuartileGraphByParentTerritoryYTD(filters);
+			
+			
+			
 			filters = new ArrayList<String>();
 			for(SummaryProgramRewardGraphDTO item: list1st){
 				if(!filters.contains(item.getChild()))
@@ -2856,6 +2862,12 @@ public class TileServiceImpl{
 			
 			Chart chart = this.mappingService.SummaryProgramRewardGraphDTOtoChart(list1st, "Summary Dollar Earnings YTD", "", "", "Total Dollars Earned", "column");
 
+			
+			if(list1stQuartile.size() > 0){
+				chart.setFirstLevelQuartile(list1stQuartile.get(0).getTopQuartile());
+			}
+			
+			
 			Map<String, List<String>> map = new HashMap<String, List<String>>();
 			Map<String, List<ChartData>> chartsMap = new HashMap<String, List<ChartData>>();
 			for(SummaryProgramRewardGraphDTO item: list1st){
@@ -2876,7 +2888,8 @@ public class TileServiceImpl{
 
 			}
 			List<SummaryProgramRewardGraphDTO> sublist = this.dashService.getSummaryProgramRewardGraphByParentTerritoryYTD(filters);
-
+			List<SummaryProgramRewardQuartileGraphDTO> sublistQuartile = this.dashService.getSummaryProgramRewardQuartileGraphByParentTerritoryYTD(filters);
+			Map<String, Double> mapQuartile = new HashMap<String, Double>();
 			
 			for(SummaryProgramRewardGraphDTO item: list1st){
 				List<ChartData> list = new ArrayList<ChartData>();
@@ -2888,6 +2901,16 @@ public class TileServiceImpl{
 					chartsMap.put(item.getChild(), list);
 				}
 			}
+			
+			for(SummaryProgramRewardGraphDTO item: list1st){
+				for(SummaryProgramRewardQuartileGraphDTO object: sublistQuartile){
+					if(map.get(item.getChild()).contains(object.getParent())){
+						mapQuartile.put(item.getChild(), object.getTopQuartile());
+					}
+				}
+			}
+			
+			chart.setSecondLevelQuartile(mapQuartile);
 
 			List<ChartData> a = chart.getData();
 			for(ChartData item: a){
@@ -2895,6 +2918,7 @@ public class TileServiceImpl{
 			}
 			chart.setUnit("$");
 			//chart.setAverageLine(true);
+			chart.setTopQuartile(true);
 			return chart;
 		}
 
@@ -3032,7 +3056,7 @@ public class TileServiceImpl{
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
 				
-				List<MyFCAMserRankingDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChildAndToggle(territory);
+				List<MyFCAMserRankingDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChild(territory);
 				TotalName rank = new TotalName();
 				rank.setName("Ranking within BC by Rewarding Excellence&reg; Card Awards MTD");
 				rank.setTotal("0");
@@ -3108,7 +3132,7 @@ public class TileServiceImpl{
 					dealerscount.setTotal(this.formatCurrency(dealerscountlist.get(0)));
 				}
 
-				List<MyFCAMserRankingDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChildAndToggle(territory);
+				List<MyFCAMserRankingDTO> MSERDetailsGraphDTOlist = this.dashService.getMSERDetailsGraphByChild(territory);
 				TotalName rank = new TotalName();
 				rank.setName("Ranking within BC by Rewarding Excellence&reg; Card Awards MTD");
 				rank.setTotal("0");
@@ -3922,7 +3946,8 @@ public class TileServiceImpl{
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTABySid(user.trim(), dealerCode);
 				
 				if(RewardRedemptionDetails.size() > 0){
-					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
+					double balance = RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints();
+					bal.setTotal(this.formatNumbers(balance));
 					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
 					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
 				}
@@ -5078,12 +5103,17 @@ public class TileServiceImpl{
 		case "36":
 		{
 			List<SummaryProgramRewardGraphDTO> sublist = new ArrayList<SummaryProgramRewardGraphDTO>();
+			List<SummaryProgramRewardQuartileGraphDTO> subListQuartile = new ArrayList<SummaryProgramRewardQuartileGraphDTO>();;
+			
 			if(type.equals("District")){
 				sublist = this.dashService.getSummaryProgramRewardGraphByParentTerritoryYTD(Arrays.asList(territory.substring(0, 2)));
+				subListQuartile = this.dashService.getSummaryProgramRewardQuartileGraphByChildTerritoryYTD(territory);
 			}else if(type.equals("Dealer")){
 				sublist = this.dashService.getSummaryProgramRewardGraphByChildTerritoryYTD(dealerCode);
+				subListQuartile = this.dashService.getSummaryProgramRewardQuartileGraphByChildTerritoryYTD(dealerCode);
 			}else{				
 				sublist = this.dashService.getSummaryProgramRewardDetailsBySIDYTD(user.trim(), dealerCode);
+				subListQuartile = this.dashService.getSummaryProgramRewardQuartileDetailBySIDYTD(user.trim(), dealerCode);
 			}
 
 			Chart chart = new Chart();
@@ -5092,7 +5122,12 @@ public class TileServiceImpl{
 			chart.setType("column");
 			chart.setXaxisTitle("");
 			chart.setYaxisTitle("Total Dollars Earned");
+			chart.setTopQuartile(true);
 
+			if(subListQuartile.size() > 0){
+				chart.setFirstLevelQuartile(subListQuartile.get(0).getTopQuartile());
+			}
+			
 			List<ChartData> list = new ArrayList<ChartData>();
 			for(SummaryProgramRewardGraphDTO item: sublist){
 				ChartData chartData = new ChartData();	

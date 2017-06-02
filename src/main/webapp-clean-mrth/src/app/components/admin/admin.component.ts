@@ -174,15 +174,18 @@ export class AdminComponent implements OnInit {
             function (error) {
                 if ($('#file')[0].files[0] == null) {
                     globalthis.imageUploadMessage = "Please choose an image";
-                } else {
-                    globalthis.imageUploadMessage = "Error in uploading image";
-                    return;
                 }
+                var a = true;
                 for (var i = 0; i < globalthis.imagelist.length; i++) {
                     if ($('#file')[0].files[0].name == globalthis.imagelist[i]) {
                         globalthis.imageUploadMessage = "Image already exists";
+                        var a = false;
                         return;
                     }
+                }
+                if (a) {
+                    globalthis.imageUploadMessage = "Error in uploading image";
+                    return;
                 }
 
             }

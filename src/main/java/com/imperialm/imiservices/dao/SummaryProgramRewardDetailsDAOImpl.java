@@ -42,6 +42,7 @@ public class SummaryProgramRewardDetailsDAOImpl implements SummaryProgramRewardD
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SummaryProgramRewardDetailsDTO> getSummaryProgramRewardDetailsByDealerCodeYTD(String dealerCode) {
 		List<SummaryProgramRewardDetailsDTO> result = new ArrayList<SummaryProgramRewardDetailsDTO>();

@@ -14,7 +14,7 @@ export class LoginService {
         sessionStorage.removeItem('CurrentUser');
         sessionStorage.removeItem('selectedCodeData');
         sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
-        this.cookieService.put("token", (userdata.token)); 
+        this.cookieService.put("token", (userdata.token));
     }
 
     getUsersData() {
@@ -35,37 +35,29 @@ export class LoginService {
 
     getRefreshLoginResponse(token) {
         //var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        // var url = "https://www.myfcarewards.com/myfcarewards/login/tokenrefresh/";
         var url = "./login/tokenrefresh/";
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(url, { headers })
             .map((response: Response) =>
                 response.json())
             .catch(this.handleError)
-        //   {
-        //     alert(response.status)
-        //     debugger
-        //     if (response.status == 200) {
-        //         return response.json()
-        //     }
-        //     else {
-        //         return false
-        //     }
-        // })
-        // .catch(this.handleError)
     }
 
     getLoginResponse(username, password): any {
         var url = "./login/token/";
-       // var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+         var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
+        //var url = "https://www.myfcarewards.com/myfcarewards/login/token/";
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-
+        // headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
         return this.http.post(url, body, { headers: headers })
             .map((response: Response) =>
                 response.json())
@@ -74,6 +66,7 @@ export class LoginService {
     }
     resetPassword(userId: string, emailId: string) {
         //var url = "https://test.myfcarewards.com/myfcarewards/UserProfile/ResetPassword";
+        //var url = "https://www.myfcarewards.com/myfcarewards/UserProfile/ResetPassword";        
         var url = "./UserProfile/ResetPassword";
 
         var body = { "userId": userId, "email": emailId };

@@ -57,6 +57,7 @@ import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
 import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
 import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardQuartileGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
 import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
@@ -66,6 +67,8 @@ import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 import com.imperialm.imiservices.model.response.TotalName;
 import com.imperialm.imiservices.dao.MyfcaMSERTopNDAO;
 import com.imperialm.imiservices.dao.TTTATopNDAO;
+import com.imperialm.imiservices.dao.SummaryProgramRewardQuartileGraphDAO;
+import com.imperialm.imiservices.dao.SummaryProgramRewardQuartileDetailsDAO;
 
 @Service // implements DashboardService
 public class DashboardServiceImpl {
@@ -78,6 +81,12 @@ public class DashboardServiceImpl {
 	
 	@Autowired
 	private MyfcaMSERTopNDAO MyfcaMSERTopNDAO;
+	
+	@Autowired
+	private SummaryProgramRewardQuartileGraphDAO SummaryProgramRewardQuartileGraphDAO;
+	
+	@Autowired
+	private SummaryProgramRewardQuartileDetailsDAO SummaryProgramRewardQuartileDetailsDAO;
 	
 	@Autowired
 	private MyfcaMSERTotalEarningsDetailsDAO MyfcaMSERTotalEarningsDetailsDAO;
@@ -332,11 +341,11 @@ public class DashboardServiceImpl {
 		return this.MyfcaMSERTotalEarningsDAO.getAllDistricData(list);
 	}
 	
-	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByParentAndToggle(String territory){
+	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByParent(String territory){
 		return this.MyFCAMserRankingDAO.getMSERDetailsGraphByParent(territory);
 	}
 	
-	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByChildAndToggle(String territory){
+	public List<MyFCAMserRankingDTO> getMSERDetailsGraphByChild(String territory){
 		return this.MyFCAMserRankingDAO.getMSERDetailsGraphByChild(territory);
 	}
 	
@@ -656,6 +665,18 @@ public class DashboardServiceImpl {
 	
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardGraphByChildTerritoryYTD(String territory){
 		return this.SummaryProgramRewardGraphDAO.getSummaryProgramRewardGraphByChildTerritoryYTD(territory);
+	}
+	
+	public List<SummaryProgramRewardQuartileGraphDTO> getSummaryProgramRewardQuartileGraphByChildTerritoryYTD(String territory){
+		return this.SummaryProgramRewardQuartileGraphDAO.getSummaryProgramRewardQuartileGraphByChildTerritoryYTD(territory);
+	}
+	
+	public List<SummaryProgramRewardQuartileGraphDTO> getSummaryProgramRewardQuartileGraphByParentTerritoryYTD(List<String> territory){
+		return this.SummaryProgramRewardQuartileGraphDAO.getSummaryProgramRewardQuartileGraphByParentTerritoryYTD(territory);
+	}
+	
+	public List<SummaryProgramRewardQuartileGraphDTO> getSummaryProgramRewardQuartileDetailBySIDYTD(String sid, String dealerCode){
+		return this.SummaryProgramRewardQuartileDetailsDAO.getSummaryProgramRewardQuartileDetailsBySIDYTD(sid, dealerCode);
 	}
 	
 	public List<SummaryProgramRewardGraphDTO> getSummaryProgramRewardDetailsBySIDYTD(String territory, String dealerCode){

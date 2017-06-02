@@ -23,9 +23,9 @@ function s2ab(s) {
 }
 
 var tableToExcel = function (table, name) {
-  var  wb  =  XLSX.utils.table_to_book(document.getElementById(table), { sheet: "Sheet JS" });
-  var  wbout  =  XLSX.write(wb, { bookType: 'xlsx',  bookSST: true,  type:  'binary' });
-  var  fname  =  'test.'  + 'xlsx';
-      saveAs(new  Blob([s2ab(wbout)], { type: "application/octet-stream" }),  fname);
+  var wb = XLSX.utils.table_to_book(document.getElementById(table), { sheet: "Sheet JS" });
+  var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'binary' });
+  var fname = name + "." + 'xlsx';
+  saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), fname);
 
 }
