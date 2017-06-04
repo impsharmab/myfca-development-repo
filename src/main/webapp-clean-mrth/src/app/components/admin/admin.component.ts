@@ -35,7 +35,116 @@ export class AdminComponent implements OnInit {
     private deleteBannerDatum: any = {}
     private role: string = "";
     private admin: Admin;
-    private tileDataLocal: any = {};
+    private tileDataLocal: any = {
+        "positioncode": "01",
+        "permissions": [
+            {
+                "name": "MSER",
+                "order": "1",
+                "checked": false
+            },
+            {
+                "name": "MSER Graph",
+                "order": "2",
+                "checked": false
+            },
+            {
+                "name": "Performance Institutes – Certified Professionals",
+                "order": "3",
+                "checked": false
+            },
+            {
+                "name": "Certified Professionals Graph",
+                "order": "4",
+                "checked": false
+            },
+            {
+                "name": "Performance Institute - Brain Boost",
+                "order": "5",
+                "checked": false
+            },
+            {
+                "name": "Brain Boost-Graph-I",
+                "order": "6",
+                "checked": false
+            },
+            {
+                "name": "Brain Boost-Graph-II",
+                "order": "7",
+                "checked": false
+            },
+            {
+                "name": "Certified Professionals – Experts",
+                "order": "8",
+                "checked": false
+            },
+            {
+                "name": "Certified Professional-Expert-Graph",
+                "order": "9",
+                "checked": false
+            },
+            {
+                "name": "Certified Professional-Expert-GraphII",
+                "order": "10",
+                "checked": false
+            },
+            {
+                "name": "Top Advisor",
+                "order": "11",
+                "checked": false
+            },
+            {
+                "name": "Top Tech",
+                "order": "12",
+                "checked": false
+            },
+            {
+                "name": "Top Tech/Top Advisor Graph",
+                "order": "13",
+                "checked": false
+            },
+            {
+                "name": "Rewards Redemption - Tile",
+                "order": "14",
+                "checked": false
+            },
+            {
+                "name": "Rewards Redemption - Graph",
+                "order": "15",
+                "checked": false
+            },
+            {
+                "name": "Summary YTD Earnings",
+                "order": "16",
+                "checked": false
+            },
+            {
+                "name": "Customer First-Graph",
+                "order": "17",
+                "checked": false
+            },
+            {
+                "name": "Customer First-Pie",
+                "order": "18",
+                "checked": false
+            },
+            {
+                "name": "Retention - Tile",
+                "order": "19",
+                "checked": false
+            },
+            {
+                "name": "Retention - Graph",
+                "order": "20",
+                "checked": false
+            },
+            {
+                "name": "Retention - Graph",
+                "order": "21",
+                "checked": false
+            }
+        ]
+    };
     private tiledataresponse: any = [];
     private imageUploadMessage: string = "";
     private addBannerDataMessage: string = "";
@@ -411,11 +520,6 @@ export class AdminComponent implements OnInit {
             (tileDataLocal) => {
                 this.tileDataLocal = tileDataLocal;
 
-                var a = tileDataLocal.permissions
-                console.log(tileDataLocal)
-                console.log(a)
-
-                console.log(this.tileDataLocal)
             },
             (error) => {
                 alert("error");
@@ -427,16 +531,33 @@ export class AdminComponent implements OnInit {
         debugger
         this.adminService.getTileDataResponse(this.admin.positioncode).subscribe(
             (tiledataresponse) => {
+                var permissionJson = this.tileDataLocal.permissions;
+                for (var i = 0; i < permissionJson.length; i++) {
+                    permissionJson[i].checked = tiledataresponse.permissions[i];
+                }
                 this.tiledataresponse = tiledataresponse;
-                // console.log(tiledataresponse)
-                // console.log(this.tiledataresponse)
-                // console.log(this.tiledataresponse.permissions)
+
 
             },
             (error) => {
 
             }
         )
+    }
+    private onSave() {
+        var selectedPermissionJson = {
+            "positioncode": this.admin.positioncode,
+            "permissions": []
+        }
+        var changePermissionJson = this.tileDataLocal.permissions;
+        for (var i = 0; i < changePermissionJson.length; i++) {
+            selectedPermissionJson.permissions[i] = changePermissionJson[i].checked;
+        }
+        console.log(selectedPermissionJson)
+    }
+
+    private onCancel() {
+        this.getTileDataLocal();
     }
 
 }

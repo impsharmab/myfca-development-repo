@@ -121,7 +121,7 @@
 
                 <!-- Admin tile control start-->
                 <hr>
-                <div class="col-sm-12 col-md-12" style="display: none">
+                <div class="col-sm-12 col-md-12">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <h3>Tile Configuration to Dashboard</h3>
@@ -132,7 +132,7 @@
                             <div class="box">
                                 <h4>Position Code </h4>
                                 <label>Select Position Code</label>
-                                <select class="form-control" [(ngModel)]="admin.positioncode" (change)="getTileDataLocal(); getTileDataResponse()">
+                                <select class="form-control" [(ngModel)]="admin.positioncode" (change)="getTileDataResponse()">
                                     <option *ngFor="let positioncode of positioncode" >{{positioncode}}</option>                                    
                                 </select>
                             </div>
@@ -148,21 +148,22 @@
                         <div class="col-sm-12 col-md-12">
                             <h3>Tile Selection</h3>
                             <div id="accordion" role="tablist" aria-multiselectable="true">
-
                                 <div class="card" *ngFor=" let tileDataLocal of tileDataLocal.permissions ">
                                     <div class="card-header" role="tab" id="'heading'+ {{tileDataLocal.order}}">
                                         <div class="row">
                                             <div class="col-sm-10 col-md-10">
                                                 <div class="checkbox checkbox-primary">
-                                                    <input type="checkbox" id="{{tileDataLocal.order}}" class="tileDataLocal.checked" value="tileDataLocal.checked" [checked]="tileDataLocal.checked"
-                                                    />
+                                                    <input type="checkbox" id="{{tileDataLocal.order}}" class="tileDataLocal.checked" 
+                                                    value="tileDataLocal.checked" [checked]="tileDataLocal.checked" 
+                                                    (change)="tileDataLocal.checked = !tileDataLocal.checked"/>
                                                     <label for="{{tileDataLocal.order}}">{{tileDataLocal.name}}</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+                                <button (click)="onSave()">Save</button>
+                                <button (click)="onCancel()">Cancel</button>
                                 <!--<div class="card">
                                     <div class="card-header" role="tab" id="headingTwo">
                                         <div class="row">

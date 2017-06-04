@@ -913,18 +913,15 @@
     "cfdealDisMan": false,
     "topQuartile": true,
     "firstLevelQuartile": 600000,
-    "seconedLevelQuartile": [
-        {
-            "name": "CA",
-            "value": 10.0
-        },
-        {
-            "name": "DN",
-            "value": 100.0
-        },
-        {
-            "name": "MW",
-            "value": 1000.65
-        }
-    ]
+    "seconedLevelQuartile": {
+        "CA": 65000,
+        "DN": 40000,
+        "GL": 57000,
+        "MA": 40000,
+        "MW": 30000,
+        "NE": 35000,
+        "SE": 70000,
+        "SW": 40000,
+        "WE": 20000
+    }
 }

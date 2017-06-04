@@ -112,7 +112,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   drillDown(e: any, chart: any, id: any) {
     var obj = this.unitAndAverage[id]
-    var chartData = this.chartData;
+    var chartData = this.chartRawData[id];
     this.drillUptotalCount = 0;
     this.drillupAverageCount = 0;
     for (var i = 0; i < e.seriesOptions.data.length; i++) {
@@ -130,14 +130,20 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     //   }]
 
     // }
-
     if (chartData.topQuartile) {
-      chart.yAxis["plotLines"] = [{
-        color: '#ff790c',
-        value: 25000,
-        width: '3',
-        zIndex: 2
-      }]
+      var bc = chartData.seconedLevelQuartile[e.point.name];
+      debugger
+      chart.yAxis[0].removePlotLine('plotline');
+      chart.yAxis[0].addPlotLine(
+        {
+          id: 'plotline',
+          value: bc,
+          color: '#ff0000',
+          width: 2,
+          zIndex: 4        
+          // label: { text: bc }          
+        });
+
 
       // e.seriesOptions = {
       //   point: {
@@ -174,6 +180,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   drillUp(e: any, chart: any, id: any) {
     var obj = this.unitAndAverage[id];
+    var chartData = this.chartRawData[id];
     if (this.charTypeJSON[id] === 'bar_compound' || this.charTypeJSON[id] === 'column_stack' || this.charTypeJSON[id] === 'column_compound') {
       this.drillUptotalCount = 0;
       this.drillupAverageCount = 0;
@@ -190,15 +197,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         this.drillupAverageCount = this.drillupAverageCount + 1;
       }
     }
-    if (obj.topQuartile) {
-      //var averageLinetotal = this.drillUptotalCount / this.drillupAverageCount;
+    if (chartData.topQuartile) {
+      chart.yAxis[0].removePlotLine('plotline');
+      chart.yAxis[0].addPlotLine(
+        {
+          id: 'plotline',
+          value: chartData.firstLevelQuartile,
+          color: '#ff0000',
+          width: 2,
+          zIndex: 4
+        });
 
-      chart.yAxis["plotLines"] = [{
-        color: '#ff790c',
-        value: obj.firstLevelQuartile,
-        width: '3',
-        zIndex: 2
-      }]
 
     }
     if (obj.avarage) {
@@ -247,7 +256,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.chartRawData = {};
     this.initializeContent();
   }
-  initializeContent() {  
+  initializeContent() {
     this.service.getNumberOfTiltes().subscribe(
       (resUserData) => {
         console.log(resUserData)
@@ -257,24 +266,24 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           if (obj.type === "tile") {
             this.getTileJson(obj.id);
           } else {
-            this.getChartJson(obj);          
+            this.getChartJson(obj);
           }
         }
       })
   }
-  openDataTable(data) {
+  private openDataTable(data) {
     this.tableData = data.data;
     this.modalService.open(this.topModel, { size: "lg" });
   }
-  chunk(arr, size): any {
-    debugger
+  private chunk(arr, size): any {
+
     var newArr = [];
     for (var i = 0; i < arr.length; i += size) {
       newArr.push(arr.slice(i, i + size));
     }
     return newArr;
   }
-  notEmpty(dataObj: any): boolean {
+  private notEmpty(dataObj: any): boolean {
     try {
       if (dataObj.buttonName !== undefined) {
         return dataObj.data.length > 0 ? true : false;
@@ -386,7 +395,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       })
   }
   getChartJson(obj: any) {
-    debugger
+
     this.service.getChartJson(obj.id).subscribe(
       (chartData) => {
         console.log(chartData);
@@ -396,14 +405,14 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   }
   private charTypeJSON: any = {};
   constructChartJson(obj: any, chartData: any) {
-    debugger;
+    ;
     this.charTypeJSON[obj.id] = chartData.type;
     var chartObj = this.getChartJSONObject(obj, chartData);
     this.contentBody[obj.id] = chartObj;
   }
 
   getChartJSONObject(obj: any, chartData: any): any {
-    debugger
+
     if (chartData.xaxisTitle == "") {
       chartData.xaxisTitle = chartData.yaxisTitle
     } else if (chartData.yaxisTitle == "") {
@@ -821,6 +830,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           // var averageLinetotal = total / avagerCount;
           chartObj.yAxis["plotLines"] = [{
             color: '#ff790c',
+            id: "plotline",
             value: chartData.firstLevelQuartile,
             width: '3',
             zIndex: 2
