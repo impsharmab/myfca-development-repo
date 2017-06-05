@@ -6,8 +6,8 @@ import './../rxjs-operators';
 
 @Injectable()
 export class AdminService {
-    //private baseUrl = "";
-        private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
+    private baseUrl = "";
+    //private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
 
     constructor(private http: Http, private cookieService: CookieService) { }
 
@@ -21,7 +21,11 @@ export class AdminService {
 
     getImageList() {
         var getImageListUrl = this.baseUrl + "services/files/listFiles"
-        return this.http.get(getImageListUrl)
+        var headers = new Headers();
+        headers.append('Authorization', "");
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
+        return this.http.get(getImageListUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }
@@ -47,7 +51,7 @@ export class AdminService {
             .catch(this.handleError);
     }
 
-    getAdminData() { 
+    getAdminData() {
         var adminService = "./assets/json/test-admin.json";
         var headers = new Headers();
         headers.append('Authorization', "");
@@ -64,8 +68,8 @@ export class AdminService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
-        // headers.append("Cache-Control", "no-cache");
-        // headers.append("Cache-Control", "no-store");
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
         return this.http.get(getEmulateUserDataUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -146,6 +150,8 @@ export class AdminService {
 
     getTileDataResponse(positioncode) {
         var getTileDataResponseUrl = "./assets/json/admin-tile-response.json";
+        var getTileDataResponseUrl = "/" + positioncode;
+
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -154,6 +160,21 @@ export class AdminService {
         headers.append("Cache-Control", "no-store");
 
         return this.http.get(getTileDataResponseUrl)
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
+
+    saveSelectedPermission(selectedPermission: any) {
+        var saveSelectedPermissionUrl = "";
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var body = { selectedPermission }
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        headers.append("Cache-Control", "no-store");
+
+        return this.http.post(saveSelectedPermissionUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
     }

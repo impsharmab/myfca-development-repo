@@ -1,5 +1,6 @@
 package com.imperialm.imiservices.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -56,6 +57,22 @@ public class DealerPersonnelPositionsDAOImpl implements DealerPersonnelPositions
 			logger.error("error occured in checkPositionCode", ex);
 			return false;
 		}
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Cacheable(value="getAllPositionCodes")
+	public List<String> getAllPositionCodes() {
+		List<String> result = new ArrayList<String>();
+		try {
+			final Query query = this.em.createNativeQuery(POSITIONCODES);
+			List<String> rows = (List<String>) query.getResultList();
+			result = rows;
+		} catch (final Exception ex) {
+			logger.error("error occured in getAllPositionCodes", ex);
+		}
+		return result;
 	}
 
 }

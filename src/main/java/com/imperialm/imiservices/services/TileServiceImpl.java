@@ -3947,6 +3947,9 @@ public class TileServiceImpl{
 				
 				if(RewardRedemptionDetails.size() > 0){
 					double balance = RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints();
+					if(balance < 0){
+						balance =0;
+					}
 					bal.setTotal(this.formatNumbers(balance));
 					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
 					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
@@ -3962,7 +3965,11 @@ public class TileServiceImpl{
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsCCP = this.dashService.getRewardRedemptionDetailsCCPByDealer(dealerCode);
 				List<RewardRedemptionDetailsDTO> RewardRedemptionDetailsTTTA = this.dashService.getRewardRedemptionDetailsTTTAByDealer(dealerCode);
 				if(RewardRedemptionDetails.size() > 0){
-					bal.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints()));
+					double balance = RewardRedemptionDetails.get(0).getEarnedPoints() - RewardRedemptionDetails.get(0).getRedeemedPoints();
+					if(balance < 0){
+						balance =0;
+					}
+					bal.setTotal(this.formatNumbers(balance));
 					earned.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getEarnedPoints()));
 					redeemed.setTotal(this.formatNumbers(RewardRedemptionDetails.get(0).getRedeemedPoints()));
 				}

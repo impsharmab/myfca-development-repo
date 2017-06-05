@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.imperialm.imiservices.dao.DashBoardBannersDAO;
+import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
 import com.imperialm.imiservices.dto.DashBoardBannersDTO;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.model.OneItem;
@@ -36,6 +37,9 @@ public class AdminController {
 	
 	@Autowired
 	private com.imperialm.imiservices.config.IMIServiceSecutiryConfig IMIServiceSecutiryConfig;
+	
+	@Autowired
+	private DealerPersonnelPositionsDAO dealerPersonnelPositionsDAO;
 
 
 	@RequestMapping(value = "/services/admin/emulate/{id}", method = RequestMethod.GET)
@@ -177,5 +181,15 @@ public class AdminController {
 			return ResponseEntity.status(500).body("error fetching all banners");
 		}
 	}
+	
+	@RequestMapping(value = "/services/admin/getAllPositionCodes/", method = RequestMethod.GET)
+	public @ResponseBody Object getAllPositionCodes(HttpServletRequest request) {
+		try{
+			return dealerPersonnelPositionsDAO.getAllPositionCodes();
+		} catch(Exception e){
+			return ResponseEntity.status(500).body("error fetching all positioncodes");
+		}
+	}
+	
 
 }

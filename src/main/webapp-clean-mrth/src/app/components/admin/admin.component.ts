@@ -35,8 +35,10 @@ export class AdminComponent implements OnInit {
     private deleteBannerDatum: any = {}
     private role: string = "";
     private admin: Admin;
+    private emulateusermessage: string = "";
+    private selectedPermissionData: any;
     private tileDataLocal: any = {
-        "positioncode": "01",
+        "positioncode": "0",
         "permissions": [
             {
                 "name": "MSER",
@@ -425,6 +427,10 @@ export class AdminComponent implements OnInit {
     }
 
     private emulateUser() {
+        if (this.emulateuser.sid === "") {
+            this.emulateusermessage = "Please enter SID/TID";
+            return false;
+        }
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
             (emulateUserData) => {
                 this.emulateUserData = emulateUserData;
@@ -435,6 +441,10 @@ export class AdminComponent implements OnInit {
                     let url = ["login"]
                     this.router.navigate(url);
                 }
+            }
+            ,
+            (error) => {
+                this.emulateusermessage = "User Emulation Failed, Maybe due to incorrect SID/TID";
             }
         )
     }
@@ -519,16 +529,16 @@ export class AdminComponent implements OnInit {
         this.adminService.getTileDataLocal().subscribe(
             (tileDataLocal) => {
                 this.tileDataLocal = tileDataLocal;
-
+                console.log(tileDataLocal)
             },
             (error) => {
-                alert("error");
+                alert("Error in getting tile data");
             }
         )
     }
 
     private getTileDataResponse() {
-        debugger
+        // alert(this.admin.positioncode);
         this.adminService.getTileDataResponse(this.admin.positioncode).subscribe(
             (tiledataresponse) => {
                 var permissionJson = this.tileDataLocal.permissions;
@@ -536,8 +546,6 @@ export class AdminComponent implements OnInit {
                     permissionJson[i].checked = tiledataresponse.permissions[i];
                 }
                 this.tiledataresponse = tiledataresponse;
-
-
             },
             (error) => {
 
@@ -554,10 +562,19 @@ export class AdminComponent implements OnInit {
             selectedPermissionJson.permissions[i] = changePermissionJson[i].checked;
         }
         console.log(selectedPermissionJson)
+
+        this.adminService.saveSelectedPermission(selectedPermissionJson).subscribe(
+            (selectedPermissionData) => {
+                this.selectedPermissionData = selectedPermissionData;
+            },
+            (error) => {
+
+            }
+        )
     }
 
     private onCancel() {
-        this.getTileDataLocal();
+        this.getTileDataResponse();
     }
 
 }

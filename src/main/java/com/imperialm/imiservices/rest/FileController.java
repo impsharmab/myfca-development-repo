@@ -104,7 +104,7 @@ public class FileController {
 
 	        AntPathMatcher apm = new AntPathMatcher();
 	        String finalPath = apm.extractPathWithinPattern(bestMatchPattern, path);
-		
+		finalPath = finalPath.replace("/", "\\");
 		return new FileSystemResource(cmsPath + finalPath);
 	}
 

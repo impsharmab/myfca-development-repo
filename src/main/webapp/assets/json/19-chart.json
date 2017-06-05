@@ -918,7 +918,6 @@
                     "name": "CA",
                     "value": 2669.0,
                     "data": [
-                        
                         {
                             "name": "CA-F",
                             "value": 54.0,
@@ -5324,7 +5323,6 @@
                     "name": "CA",
                     "value": 3439.5,
                     "data": [
-                        
                         {
                             "name": "CA-F",
                             "value": 36.0,
@@ -5365,7 +5363,6 @@
                             "value": 622.0,
                             "data": []
                         },
-                        
                         {
                             "name": "CA-W",
                             "value": 411.0,
@@ -6129,5 +6126,21 @@
     "customer_first": false,
     "retention": false,
     "averageLine": false,
-    "cfdealDisMan": false
+    "cfdealDisMan": false,
+    "topQuartile": true,
+    "firstLevelQuartile": 0,
+    "seconedLevelQuartile": [
+        {
+            "name": "CA",
+            "value": 10.0
+        },
+        {
+            "name": "DN",
+            "value": 100.0
+        },
+        {
+            "name": "MW",
+            "value": 1000.65
+        }
+    ]
 }

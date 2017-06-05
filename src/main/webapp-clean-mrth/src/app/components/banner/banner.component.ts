@@ -19,7 +19,7 @@ export class BannerComponent implements OnInit {
         this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))      
     }
 
-    getBanners() {
+    private getBanners() {
         this.bannerService.getBanners().subscribe(
             (banners) => {
                 this.banners = banners;

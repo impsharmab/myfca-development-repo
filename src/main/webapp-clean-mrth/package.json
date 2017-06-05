@@ -1,6 +1,6 @@
 {
   "name": "myfcadashboard",
-  "version": "1.4.6",
+  "version": "1.4.8",
   "license": "MIT",
   "scripts": {
     "ng": "ng",

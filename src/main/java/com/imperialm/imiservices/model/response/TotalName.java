@@ -10,6 +10,10 @@ import lombok.Setter;
 
 @Entity @Getter @Setter
 public class TotalName implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1642787274602523166L;
 	@Id private String name;
 	@Id private String total;
 	@Id private String error;

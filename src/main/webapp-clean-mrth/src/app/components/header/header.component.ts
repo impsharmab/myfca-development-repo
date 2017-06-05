@@ -94,14 +94,10 @@ export class HeaderComponent implements OnInit {
         window.sessionStorage.clear();
         //document.sessionStorage.clear();
         
-        this.cookieService.put("token", adminToken)
-        debugger
-        // this.cookieService.put(adminToken, "")
-        // this.adminToken = adminToken;
+        this.cookieService.put("token", adminToken)        
         let url = ["login"]
         this.router.navigate(url);
-        // this.booleanEndEmulation();
-        // alert(this.booleanAdminToken)
+        
     }
 }
 

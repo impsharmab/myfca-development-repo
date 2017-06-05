@@ -11,11 +11,11 @@ export class FooterComponent {
 
     constructor() { }
 
-    openProgramSite(url: any) {
+   private openProgramSite(url: any) {
         window.open(url)
     }
 
-    openFooterSSOSite(url: any) {
+   private openFooterSSOSite(url: any) {
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
         var positioncodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedPositionCode;
         var dealerlcodes: any = JSON.parse(sessionStorage.getItem("selectedCodeData")).selectedDealerCode;
