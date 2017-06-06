@@ -1,13 +1,12 @@
 package com.imperialm.imiservices.dto;
 
 
-import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
 
 @Getter @Setter @Entity
 public class MyfcaMSERTotalEarningsDTO implements Serializable{

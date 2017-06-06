@@ -1,5 +1,16 @@
 package com.imperialm.imiservices.security.controller;
 
+import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
+import com.imperialm.imiservices.dao.TIDUsersDAO;
+import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dao.UserProgramRolesDAO;
+import com.imperialm.imiservices.dto.TIDUsersDTO;
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
+import com.imperialm.imiservices.security.JwtAuthenticationRequest;
+import com.imperialm.imiservices.security.JwtTokenUtil;
+import com.imperialm.imiservices.security.service.JwtAuthenticationResponse;
+import com.imperialm.imiservices.services.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,32 +20,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.imperialm.imiservices.dao.UserProgramRolesDAO;
-import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
-import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
-import com.imperialm.imiservices.dao.TIDUsersDAO;
-import com.imperialm.imiservices.dto.TIDUsersDTO;
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
-import com.imperialm.imiservices.security.JwtAuthenticationRequest;
-import com.imperialm.imiservices.security.JwtTokenUtil;
-import com.imperialm.imiservices.security.service.JwtAuthenticationResponse;
-import com.imperialm.imiservices.services.UserServiceImpl;
-
+import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpServletRequest;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.naming.AuthenticationException;
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class AuthenticationRestController {

@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.List;
-
 import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
+
+import java.util.List;
 
 public interface UserPositionCodeRoleDAO {
 

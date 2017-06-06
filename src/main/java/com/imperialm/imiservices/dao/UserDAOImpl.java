@@ -1,20 +1,18 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.imperialm.imiservices.dto.UsersDTO;
+import com.imperialm.imiservices.model.TwoStringItems;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
-
-import com.imperialm.imiservices.dto.UsersDTO;
-import com.imperialm.imiservices.model.TwoStringItems;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class UserDAOImpl {

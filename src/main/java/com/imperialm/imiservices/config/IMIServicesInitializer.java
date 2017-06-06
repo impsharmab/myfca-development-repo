@@ -3,11 +3,10 @@
  */
 package com.imperialm.imiservices.config;
 
-import javax.servlet.Filter;
-
+import com.imperialm.imiservices.filters.IMIServicesFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import com.imperialm.imiservices.filters.IMIServicesFilter;
+import javax.servlet.Filter;
 
 /**
  * @author Dheerajr

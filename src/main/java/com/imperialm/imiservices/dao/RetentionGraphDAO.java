@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.List;
-
 import com.imperialm.imiservices.dto.RetentionGraphDTO;
+
+import java.util.List;
 
 public interface RetentionGraphDAO {
 	public static String SELECT_BY_PARENT_TERRITORY_LIST = "SELECT [Parent] 'parentTerritory', [Child] 'childTerritory', [PositionCode] 'positionCode', [Percentage] 'percentage', '' as error FROM [RetentionGraph] where [Parent] IN (?0)";

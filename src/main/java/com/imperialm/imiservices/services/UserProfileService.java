@@ -3,10 +3,10 @@
  */
 package com.imperialm.imiservices.services;
 
-import java.util.List;
-
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.model.NoTile;
+
+import java.util.List;
 
 public interface UserProfileService {
 	

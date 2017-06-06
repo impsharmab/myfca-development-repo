@@ -1,10 +1,6 @@
 package com.imperialm.imiservices.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 
 public class MSEREarningsDTO implements Serializable {
 	private String territory;

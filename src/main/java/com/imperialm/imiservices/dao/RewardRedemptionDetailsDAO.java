@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.List;
-
 import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
+
+import java.util.List;
 
 public interface RewardRedemptionDetailsDAO {
 	public static String GET_DETAILS_BY_DEALER = "SELECT [DealerCode] 'dealerCode', [DealerName] 'dealerName', [SID] 'sID', [Name] 'name', SUM([EarnedPoints]) 'earnedPoints', SUM([RedeemedPoints]) 'redeemedPoints', SUM([BalancePoints]) 'balancePoints','' as error FROM [RewardRedemptionDetails] where [DealerCode] = ?0 group by DealerCode, DealerName, SID, Name";

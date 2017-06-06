@@ -1,10 +1,10 @@
 package com.imperialm.imiservices.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 public class TopTenTableData {

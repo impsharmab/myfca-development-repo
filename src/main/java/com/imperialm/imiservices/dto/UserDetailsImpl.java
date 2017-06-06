@@ -1,16 +1,14 @@
 package com.imperialm.imiservices.dto;
 
-import java.util.Collection;
-import java.util.HashSet;
-
+import com.imperialm.imiservices.entities.User;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.imperialm.imiservices.entities.User;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Collection;
+import java.util.HashSet;
 
 public class UserDetailsImpl implements UserDetails {
 	

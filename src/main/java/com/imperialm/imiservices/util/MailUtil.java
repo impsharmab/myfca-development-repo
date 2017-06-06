@@ -1,13 +1,12 @@
 package com.imperialm.imiservices.util;
 
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.springframework.stereotype.Service;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.springframework.stereotype.Service;
+
+import javax.mail.*;
+import javax.mail.internet.*;
 
 @Service
 public class MailUtil

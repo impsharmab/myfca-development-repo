@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.List;
-
 import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
+
+import java.util.List;
 
 public interface CertProfsWinnersDetailsDAO {
 	public static String SELECT_BY_DEALER_CODE = "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[CertType] 'certType' ,[Points] 'points' ,[Certified] 'certified' ,[CertifiedSpecialist] 'certifiedSpecialist' ,[MasterCertified] 'masterCertified' ,[TotalCertified] 'totalCertified' ,ISNULL([YearsOfCertified], 0) 'yearsOfCertified' , [PriorYearCertLevel] priorYearCertLevel,'' as error FROM [CertProfsWinnersDetails] where DealerCode = ?0";

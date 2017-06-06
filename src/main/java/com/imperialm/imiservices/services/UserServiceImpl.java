@@ -1,5 +1,8 @@
 package com.imperialm.imiservices.services;
 
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.entities.User;
+import com.imperialm.imiservices.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,10 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.entities.User;
-import com.imperialm.imiservices.repositories.UserRepository;
 
 //@Service("userService")
 @Component("UserServiceImpl")

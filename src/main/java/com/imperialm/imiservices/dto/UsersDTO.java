@@ -1,13 +1,12 @@
 package com.imperialm.imiservices.dto;
 
-import java.io.Serializable;
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
+import java.util.Date;
 
 @Entity @Getter @Setter
 public class UsersDTO implements Serializable {
