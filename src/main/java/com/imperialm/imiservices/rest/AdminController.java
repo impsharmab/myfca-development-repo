@@ -1,17 +1,5 @@
 package com.imperialm.imiservices.rest;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.imperialm.imiservices.dao.DashBoardBannersDAO;
 import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
 import com.imperialm.imiservices.dto.DashBoardBannersDTO;
@@ -19,6 +7,12 @@ import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.model.OneItem;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class AdminController {

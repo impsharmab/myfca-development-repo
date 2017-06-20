@@ -54,7 +54,7 @@
 		//var chartId = ${chartId };
 		$(window).load(function () {
 			$.ajax({
-				url: "/myfcarewards/services/data/${chartId}/${territory}",
+				url: "/services/data/${chartId}/${territory}",
 				//data: { signature: authHeader },
 				type: "GET",
 				beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', '${token}'); },

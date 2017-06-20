@@ -1,46 +1,15 @@
 package com.imperialm.imiservices.rest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
-import com.imperialm.imiservices.dto.BrainBoostWinnersDetailsDTO;
-import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
-import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
-import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
-import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
-import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
-import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDetailsDTO;
-import com.imperialm.imiservices.dto.RetentionDetailsDTO;
-import com.imperialm.imiservices.dto.RetentionGraphDTO;
-import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
-import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
-import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
-import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
-import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
-import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
-import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
-import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
-import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.dto.*;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.services.DashboardServiceImpl;
 import com.imperialm.imiservices.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @RestController
 public class TablesController {

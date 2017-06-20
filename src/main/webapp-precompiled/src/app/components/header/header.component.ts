@@ -33,6 +33,7 @@ export class HeaderComponent implements OnInit {
     private delcodes: any = JSON.parse(sessionStorage.getItem("CurrentUser")).dealerCode;
     private booleanAdmin: any = JSON.parse(sessionStorage.getItem("CurrentUser")).admin;
     private booleanAdminToken: any = this.cookieService.get("adminToken");
+    private booleanDealerEmulation: any = false;
 
     private positionCodeCancel() {
         this.positioncodeModal.close();
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnInit {
                 $("#enablePointer").css("text-decoration", "underline");
             });
         }
+        this.checkDealerToken();
     }
     private contactUs() {
         this.modalService.open(this.contactModal, { windowClass: 'contact-us' });
@@ -87,17 +89,41 @@ export class HeaderComponent implements OnInit {
 
     private endEmulation() {
         var adminToken = this.cookieService.get("adminToken");
-        this.cookieService.remove("adminToken")
+        this.cookieService.remove("adminToken");
         this.cookieService.remove("token");
         this.cookieService.removeAll();
         sessionStorage.clear();
         window.sessionStorage.clear();
         //document.sessionStorage.clear();
-        
-        this.cookieService.put("token", adminToken)        
+
+        this.cookieService.put("token", adminToken)
         let url = ["login"]
         this.router.navigate(url);
-        
+
+    }
+
+    private endDealerEmulation() {
+        var adminToken = this.cookieService.get("adminToken");
+        this.cookieService.remove("adminToken");
+        this.cookieService.remove("token");
+        this.cookieService.remove("dealercode");
+        this.cookieService.removeAll();
+        sessionStorage.clear();
+        window.sessionStorage.clear();
+        //document.sessionStorage.clear();
+
+        this.cookieService.put("token", adminToken)
+        let url = ["login"]
+        this.router.navigate(url);
+
+    }
+
+    private checkDealerToken() {
+        if (this.cookieService.get("adminToken") == this.cookieService.get("token")) {
+            if ((this.cookieService.get("token") !== undefined) && this.cookieService.get("token") !== null) {
+                this.booleanDealerEmulation = true;
+            }
+        }
     }
 }
 

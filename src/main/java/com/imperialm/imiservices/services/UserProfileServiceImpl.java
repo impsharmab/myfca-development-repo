@@ -1,14 +1,13 @@
 package com.imperialm.imiservices.services;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.model.NoTile;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.model.NoTile;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {

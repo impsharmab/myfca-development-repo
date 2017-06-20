@@ -1,20 +1,17 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
+import com.imperialm.imiservices.util.IMIServicesUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
-
-import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
-import com.imperialm.imiservices.model.response.TTTAResponse;
-import com.imperialm.imiservices.util.IMIServicesUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class TTTAEnrolledDAOImpl implements TTTAEnrolledDAO{

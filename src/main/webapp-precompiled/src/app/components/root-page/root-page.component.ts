@@ -6,7 +6,7 @@ import {DashboardBodyComponent} from "../dashboard-body/dashboard-body.component
     selector: '',
     templateUrl: 'rootpage.html',
 })
-export class RootPageComponent implements OnInit {
+export class RootPageComponent implements OnInit { 
     sampleUsers = [];
     private tilesArray: any;
     private userdata: any = {};

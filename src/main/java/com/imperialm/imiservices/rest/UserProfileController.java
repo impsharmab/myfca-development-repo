@@ -1,22 +1,5 @@
 package com.imperialm.imiservices.rest;
 
-import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.imperialm.imiservices.dao.UserDAOImpl;
 import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.dto.UsersDTO;
@@ -28,6 +11,16 @@ import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.services.UserProfileService;
 import com.imperialm.imiservices.services.UserServiceImpl;
 import com.imperialm.imiservices.util.EmailHandler;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class UserProfileController {

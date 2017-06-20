@@ -1,14 +1,13 @@
 package com.imperialm.imiservices.security;
 
-import java.security.MessageDigest;
-
+import com.imperialm.imiservices.dto.UserDetailsImpl;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.imperialm.imiservices.dto.UserDetailsImpl;
+import java.security.MessageDigest;
 public class JwtDaoAuthenticationProvider extends DaoAuthenticationProvider {
 
 	@Override

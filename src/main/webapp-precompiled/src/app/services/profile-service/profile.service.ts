@@ -16,7 +16,7 @@ export class ProfileService {
         var headers = new Headers();
         headers.append('Authorization', validToken);
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+       // headers.append("Cache-Control", "no-store");
         return this.http.get(getProfileServiceUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -27,12 +27,11 @@ export class ProfileService {
         var getProfileServiceUrl: string = './UserProfile/Profile/';
 
         var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
-        //var validToken: any = JSON.parse(this.cookieService.get("CurrentUser")).token;
         var body = { "name": name, "email": email };
         var headers = new Headers();
         headers.append('Authorization', validToken);
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+      //  headers.append("Cache-Control", "no-store");
         return this.http.post(getProfileServiceUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);
@@ -46,7 +45,7 @@ export class ProfileService {
         var headers = new Headers();
         headers.append('Authorization', validToken);
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+       // headers.append("Cache-Control", "no-store");
         return this.http.post(getPasswordServiceUrl, body, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);

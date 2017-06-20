@@ -1,11 +1,10 @@
 package com.imperialm.imiservices.dao;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity @Setter @Getter
 public class UserPositionCodeDTO implements Serializable {

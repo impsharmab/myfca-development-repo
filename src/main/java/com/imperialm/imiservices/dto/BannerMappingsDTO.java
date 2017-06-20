@@ -1,13 +1,12 @@
 package com.imperialm.imiservices.dto;
 
-import java.io.Serializable;
-import java.sql.Date;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
+import java.sql.Date;
 
 @Entity @Getter @Setter
 public class BannerMappingsDTO implements Serializable {

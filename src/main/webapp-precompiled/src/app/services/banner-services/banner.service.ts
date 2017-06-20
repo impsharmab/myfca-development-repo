@@ -16,7 +16,7 @@ export class BannerService {
         var headers = new Headers();
         headers.append('Authorization', validToken);
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-store");
         return this.http.get(getBannersServiceUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);

@@ -1,33 +1,18 @@
 package com.imperialm.imiservices.services;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.joda.time.DateTime;
-import org.springframework.stereotype.Service;
-
-import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
-import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
-import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
-import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
-import com.imperialm.imiservices.dto.MSEREarningsDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
-import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
-import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
-import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
-import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
-import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
-import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
-import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
-import com.imperialm.imiservices.dto.TTTATopNDTO;
+import com.imperialm.imiservices.dto.*;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
 import com.imperialm.imiservices.model.TileAttribute1;
 import com.imperialm.imiservices.model.TopTenTableData;
 import com.imperialm.imiservices.model.response.TotalName;
+import org.joda.time.DateTime;
+import org.springframework.stereotype.Service;
+
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MappingServiceImpl {

@@ -152,7 +152,7 @@
         </div>-->
           <button *ngIf="isEmpty(tile.programRulesUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramRules(tile.programRulesUrl)"><i class="fa fa-check-square " aria-hidden="true "></i>
                 {{tile.programRules}} </button>
-          <button *ngIf="isEmpty(tile.programSiteUrl)" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
+          <button *ngIf="isEmpty(tile.programSiteUrl) && !hideButton" type="button " class="btn btn-primary btn-sm " style="cursor:pointer" (click)="checkDealerToken(); openProgramSite(tile.programSiteUrl)"><i class="fa fa-arrow-circle-right " aria-hidden="true "></i>
                 {{tile.programSite}} </button>
           
         </div>

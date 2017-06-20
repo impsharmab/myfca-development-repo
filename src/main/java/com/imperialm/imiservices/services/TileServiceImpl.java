@@ -1,56 +1,18 @@
 package com.imperialm.imiservices.services;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.imperialm.imiservices.dao.TIDUsersDAO;
+import com.imperialm.imiservices.dto.*;
+import com.imperialm.imiservices.model.*;
+import com.imperialm.imiservices.model.response.TotalName;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.imperialm.imiservices.dao.TIDUsersDAO;
-import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
-import com.imperialm.imiservices.dto.BrainBoostWinnersDetailsDTO;
-import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
-import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
-import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
-import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
-import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
-import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
-import com.imperialm.imiservices.dto.MyFCAMserRankingDetailsDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
-import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDetailsDTO;
-import com.imperialm.imiservices.dto.RetentionGraphDTO;
-import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
-import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
-import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
-import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
-import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
-import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
-import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
-import com.imperialm.imiservices.dto.SummaryProgramRewardQuartileGraphDTO;
-import com.imperialm.imiservices.dto.TIDUsersDTO;
-import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
-import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
-import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
-import com.imperialm.imiservices.dto.TTTATopNDTO;
-import com.imperialm.imiservices.model.Chart;
-import com.imperialm.imiservices.model.ChartData;
-import com.imperialm.imiservices.model.TileAttribute1;
-import com.imperialm.imiservices.model.TopTenChart;
-import com.imperialm.imiservices.model.TopTenDataTable;
-import com.imperialm.imiservices.model.TopTenTableData;
-import com.imperialm.imiservices.model.response.TotalName;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.*;
 
 @Service
 public class TileServiceImpl{

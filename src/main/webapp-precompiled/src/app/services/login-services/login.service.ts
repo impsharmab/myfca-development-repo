@@ -16,7 +16,6 @@ export class LoginService {
         sessionStorage.setItem("CurrentUser", JSON.stringify(userdata));
         this.cookieService.put("token", (userdata.token));
     }
-
     getUsersData() {
         return this.userdata;
     }
@@ -26,7 +25,7 @@ export class LoginService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-store");
         return this.http.get(url)
             .map((response: Response) =>
                 response.json())
@@ -34,14 +33,14 @@ export class LoginService {
     }
 
     getRefreshLoginResponse(token) {
-        //  var url = "https://test.myfcarewards.com/myfcarewards/login/tokenrefresh/";
+        //  var url = "https://test.myfcarewards.com/login/tokenrefresh/";
         var url = "./login/tokenrefresh/";
 
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', token);
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        //  headers.append("Cache-Control", "no-store");
         return this.http.get(url, { headers })
             .map((response: Response) =>
                 response.json())
@@ -50,13 +49,13 @@ export class LoginService {
 
     getLoginResponse(username, password): any {
         var url = "./login/token/";
-        //  var url = "https://test.myfcarewards.com/myfcarewards/login/token/";
-        //var url = "https://www.myfcarewards.com/myfcarewards/login/token/";
+        // var url = "https://test.myfcarewards.com/login/token/";
+
         var body = { "username": username, "password": password };
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        //  headers.append("Cache-Control", "no-store");
         return this.http.post(url, body, { headers: headers })
             .map((response: Response) =>
                 response.json())
@@ -71,7 +70,7 @@ export class LoginService {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-store");
         return this.http.post(url, body, { headers: headers })
             .map((response: Response) =>
                 response.json())

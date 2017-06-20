@@ -7,7 +7,7 @@ import './../rxjs-operators';
 @Injectable()
 export class AdminService {
     private baseUrl = "";
-    //private baseUrl = "https://test.myfcarewards.com/myfcarewards/";
+    // private baseUrl = "https://test.myfcarewards.com/";
 
     constructor(private http: Http, private cookieService: CookieService) { }
 
@@ -69,7 +69,20 @@ export class AdminService {
         headers.append('Content-Type', 'application/json');
         headers.append('Authorization', validToken);
         headers.append("Cache-Control", "no-cache");
-        headers.append("Cache-Control", "no-store");
+        // headers.append("Cache-Control", "no-store");
+        return this.http.get(getEmulateUserDataUrl, { headers })
+            .map((response: Response) => response.json())
+            .catch(this.handleError);
+    }
+
+    emulateUserWithDealerCode(dealercode: string) {
+        var getEmulateUserDataUrl = this.baseUrl + "services/admin/checkDealerCode/" + dealercode;
+        var validToken: any = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', validToken);
+        headers.append("Cache-Control", "no-cache");
+        // headers.append("Cache-Control", "no-store");
         return this.http.get(getEmulateUserDataUrl, { headers })
             .map((response: Response) => response.json())
             .catch(this.handleError);

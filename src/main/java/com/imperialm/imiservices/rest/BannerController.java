@@ -1,24 +1,18 @@
 package com.imperialm.imiservices.rest;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
 import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
+import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dto.UserDetailsImpl;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.services.BannerService;
 import com.imperialm.imiservices.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 public class BannerController {

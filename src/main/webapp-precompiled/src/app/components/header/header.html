@@ -87,7 +87,8 @@
                 </ul>
                 <ul class="sav-utility" style="margin-top: 5px;">
                     <li class="sav-item ">
-                         <a *ngIf="booleanAdminToken" class=" utility-nav" (click)="endEmulation()" style="cursor:pointer; color:red ">End Emulation</a>
+                         <a *ngIf="booleanAdminToken && !booleanDealerEmulation" class=" utility-nav" (click)="endEmulation()" style="cursor:pointer; color:red ">End Emulation</a>
+                         <a *ngIf="booleanDealerEmulation" class=" utility-nav" (click)="endDealerEmulation()" style="cursor:pointer; color:red ">End Emulation</a>
                     </li>
                     <li class="sav-item " [hidden]="retweetIconHide">
                         <a *ngIf="poscodes.length>1 || delcodes.length>1" class="utility-nav active " (click)="dropdownPositionCode()" style="cursor:pointer">

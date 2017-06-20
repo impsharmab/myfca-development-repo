@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { Router } from '@angular/router';
 
 import { DashboardBodyService } from '../../services/dashboard-body-services/dashboard-body.service';
@@ -47,10 +48,13 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   private printButtonName: any = {};
   private chartData: any;
   private plotlinesValue: any = 0;
+  private booleanDealerEmulation: any = false;
+  private hideButton: any = false;
 
   constructor(private service: DashboardBodyService,
     private modalService: NgbModal,
-    private router: Router) {
+    private router: Router,
+    private cookieService: CookieService) {
     Highcharts.setOptions({
       lang: {
         thousandsSep: ',',
@@ -64,18 +68,23 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.initializeContent();
   }
 
- private showWelcomeModal() {
+  private showWelcomeModal() {
     sessionStorage.setItem("showWelcomePopup", "false");
   }
   ngOnInit() {
     this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
-
     var showWelcomePopup = sessionStorage.getItem("showWelcomePopup");
+    var hideButton = sessionStorage.getItem("hideButton");
+
+    if (hideButton !== undefined && hideButton == "true") {
+      this.hideButton = true;
+    }
 
     if (showWelcomePopup == undefined) {
       this.modalService.open(this.model, { size: "lg" });
     }
     sessionStorage.setItem("showWelcomePopup", "false");
+
 
     $(document).ready(function () {
       var elementHeights = $('.data - group').map(function () {
@@ -88,9 +97,16 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     function numberWithPercentage(x) {
       return (x).toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+    this.checkDealerToken();
   }
 
-
+  private checkDealerToken() {
+    if (this.cookieService.get("adminToken") == this.cookieService.get("token")) {
+      if ((this.cookieService.get("token") !== undefined) && this.cookieService.get("token") !== null) {
+        this.booleanDealerEmulation = true;
+      }
+    }
+  }
   private numberWithPercentage(x) {
     return (x).toFixed(1);
   }
@@ -155,12 +171,37 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.drilldownAverageCount = 0;
   }
   private drillUptotalCount: any = 0;
-  private drillupAverageCount = 0;
+  private drillupAverageCount: any = 0;
 
   private drillUp(e: any, chart: any, id: any) {
     var obj = this.unitAndAverage[id];
     var chartData = this.chartRawData[id];
-    if (this.charTypeJSON[id] === 'bar_compound' || this.charTypeJSON[id] === 'column_stack' || this.charTypeJSON[id] === 'column_compound') {
+    // if ((this.charTypeJSON[id] === 'bar_compound' || this.charTypeJSON[id] === 'column_stack' || this.charTypeJSON[id] === 'column_compound')
+    //   && (chartData.retention == undefined || chartData.retention == false)) {
+    //   this.drillUptotalCount = 0;
+    //   this.drillupAverageCount = 0;
+    //   for (var i = 0; i < chart.options.series.length; i++) {
+    //     for (var j = 0; j < chart.options.series[i].data.length; j++) {
+    //       var data = chart.options.series[i].data[j];
+    //       this.drillUptotalCount = this.drillUptotalCount + data.y;
+    //       this.drillupAverageCount = this.drillupAverageCount + 1;
+    //     }
+    //   }
+    // } else {
+    //   if (chartData.retention && this.charTypeJSON[id] === 'column_stack') {
+    //     for (var i = 0; i < e.target.chart.series.length; i++) {
+    //       var seriesObj = e.target.chart.series[i];
+    //       seriesObj.setVisible(false)
+
+    //     }
+    //     // e.seriesOptions.visible = true;
+    //   }
+    //   for (var i = 0; i < e.seriesOptions.data.length; i++) {
+    //     this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
+    //     this.drillupAverageCount = this.drillupAverageCount + 1;
+    //   }
+    // }
+    if (!chartData.retention && (this.charTypeJSON[id] === 'bar_compound' || this.charTypeJSON[id] === 'column_stack' || this.charTypeJSON[id] === 'column_compound')) {
       this.drillUptotalCount = 0;
       this.drillupAverageCount = 0;
       for (var i = 0; i < chart.options.series.length; i++) {
@@ -171,9 +212,22 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         }
       }
     } else {
-      for (var i = 0; i < e.seriesOptions.data.length; i++) {
-        this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
-        this.drillupAverageCount = this.drillupAverageCount + 1;
+      if (chartData.retention) {
+        for (var i = 0; i < chart.series.length; i++) {
+          if (chart.series[i].visible) {
+            for (var j = 0; j < chart.series[i].options.data.length; j++) {
+              this.drillUptotalCount = this.drillUptotalCount + chart.series[i].options.data[j].y;
+              this.drillupAverageCount = this.drillupAverageCount + 1;
+            }
+            break;
+          }
+        }
+      }
+      else {
+        for (var i = 0; i < e.seriesOptions.data.length; i++) {
+          this.drillUptotalCount = this.drillUptotalCount + e.seriesOptions.data[i].y;
+          this.drillupAverageCount = this.drillupAverageCount + 1;
+        }
       }
     }
     if (chartData.topQuartile) {
@@ -209,6 +263,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       chart.setTitle(null, {
         text: "Average " + this.numberWithPercentage(this.drillUptotalCount).toLocaleString() + obj.unit + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
       });
+
     } else {
       chart.setTitle(null, {
         text: "Total " + obj.unit + Math.floor(this.drillUptotalCount).toLocaleString() + "<br>" + (this.printButtonName[id] === undefined ? "" : this.printButtonName[id])
@@ -238,7 +293,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   }
   private initializeContent() {
     this.service.getNumberOfTiltes().subscribe(
-      (resUserData) => {        
+      (resUserData) => {
         this.tilesArray = this.chunk(resUserData, 2);
         for (var i = 0; i < resUserData.length; i++) {
           var obj = resUserData[i];
@@ -293,7 +348,10 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
 
   }
   private openProgramSite(url: any) {
-    window.open(url, "_self")
+    if (!this.booleanDealerEmulation) {
+      window.open(url, "_self")
+    }
+
   }
   private notEmptyBadge(data: any): boolean {
     try {
@@ -374,7 +432,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   private getChartJson(obj: any) {
 
     this.service.getChartJson(obj.id).subscribe(
-      (chartData) => {       
+      (chartData) => {
         this.chartRawData[obj.id] = chartData;
         this.constructChartJson(obj, chartData)
       })
@@ -416,7 +474,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       chart: {
         type: '',
         spacingBottom: 0
-
       },
       colors: ['#7cb5ec', '#90ed7d', '#434348', '#f7a35c', '#8085e9',
         '#f15c80', '#e4d354', '#2b908f', '#f45b5b', '#91e8e1'],
@@ -444,6 +501,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       yAxis: {
         min: 0,
         minRange: 1,
+
+
         allowDecimals: false,
         title: {
           text: chartData.yaxisTitle
@@ -491,6 +550,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               layout: 'horizontal'
             },
             yAxis: {
+
               labels: {
                 align: 'left',
                 x: 0,
@@ -802,16 +862,20 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
           }
         }
 
-        if (chartData.topQuartile) {         
-          this.plotlinesValue = chartData.firstLevelQuartile;         
+        if (chartData.topQuartile) {
+          this.plotlinesValue = chartData.firstLevelQuartile;
           chartObj.yAxis["plotLines"] = [{
             color: '#ff790c',
             id: "plotline",
             value: chartData.firstLevelQuartile,
+            // value: 60,
             width: '3',
-            zIndex: 2,            
+            zIndex: 2,
             // label: { text: Math.round(chartData.firstLevelQuartile) }
           }]
+          if (chartData.data.length == 1 && chartData.data[0].value < chartData.firstLevelQuartile) {
+            chartObj.yAxis["max"] = chartData.firstLevelQuartile + 10;
+          }
 
         }
 
@@ -891,7 +955,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               }
             }
           }
-        }        
+        }
         this.constructChartObject(chartData, chartObj, tileId);
         break;
       case "column_compound":
@@ -938,7 +1002,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column_stack":
         chartObj.chart.type = "column"
-
         chartObj.plotOptions["column"] = {
           point: {
             events: {
@@ -984,7 +1047,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
                 for (var k = 0; k < seriesObj.data.length; k++) {
                   total = total + seriesObj.data[k].y;
                   avagerCount = avagerCount + 1;
-
                 }
               }
             }
@@ -999,6 +1061,7 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
               chartObj.subtitle.text = "Total " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
             } else if (chartData.unit == "%" && chartData.avarage == true) {
               chartObj.subtitle.text = "Average " + this.numberWithPercentage(total).toLocaleString() + chartData.unit;
+
             } else {
               chartObj.subtitle.text = "Total " + chartData.unit + Math.floor(total).toLocaleString();
             }
@@ -1468,7 +1531,6 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     var seriesCount = 0;
     for (var i = 0; i < event.target.chart.options.series.length; i++) {
       var series = event.target.chart.options.series[i];
-
       if (!retention) {
         series = event.target.chart.series[i];
         if (clickedSeries.name === series.name) {

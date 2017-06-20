@@ -36,7 +36,9 @@ export class AdminComponent implements OnInit {
     private role: string = "";
     private admin: Admin;
     private emulateusermessage: string = "";
+    private emulatedealermessage: string = "";
     private selectedPermissionData: any;
+    private showButton: any = true;
     private tileDataLocal: any = {
         "positioncode": "0",
         "permissions": [
@@ -178,7 +180,7 @@ export class AdminComponent implements OnInit {
                 return "Dealer"
             } else if (roleID == 5) {
                 return "Manager"
-            } else if (roleID == 9) {
+            } else if (roleID == 6) {
                 return "Participants"
             }
         }
@@ -190,7 +192,8 @@ export class AdminComponent implements OnInit {
     ngOnInit() {
         var self = this;
         this.emulateuser = {
-            sid: ''
+            sid: '',
+            dealercode: ''
         }
         this.admin = {
             positioncode: '',
@@ -248,7 +251,7 @@ export class AdminComponent implements OnInit {
                 allowFreeEntries: false,
                 valueField: 'roleid',
                 displayField: 'name',
-                data: [{ roleid: 1, name: "Executive" }, { roleid: 12, name: "BC" }, { roleid: 11, name: "District Manager" }, { roleid: 10, name: "Dealer" }, { roleid: 5, name: "Manager" }, { roleid: 9, name: "Participant" }]
+                data: [{ roleid: 1, name: "Executive" }, { roleid: 12, name: "BC" }, { roleid: 11, name: "District Manager" }, { roleid: 10, name: "Dealer" }, { roleid: 5, name: "Manager" }, { roleid: 6, name: "Participant" }]
             });
 
             $(id).on('selectionchange', function (e, m) {
@@ -313,7 +316,7 @@ export class AdminComponent implements OnInit {
             return "Dealer"
         } else if (roleID == 5) {
             return "Manager"
-        } else if (roleID == 9) {
+        } else if (roleID == 6) {
             return "Participants"
         }
     }
@@ -426,11 +429,20 @@ export class AdminComponent implements OnInit {
         )
     }
 
-    private emulateUser() {
+    private emulateAllUser() {
         if (this.emulateuser.sid === "") {
-            this.emulateusermessage = "Please enter SID/TID";
+            this.emulateusermessage = "Please enter SID/TID/Dealer Code";
             return false;
         }
+        if (this.emulateuser.sid.length == 5) {
+            this.emulateUserWithDealerCode();
+        } else {
+            this.emulateUser();
+
+        }
+    }
+
+    private emulateUser() {
         this.adminService.getEmulateUserData(this.emulateuser.sid).subscribe(
             (emulateUserData) => {
                 this.emulateUserData = emulateUserData;
@@ -444,7 +456,25 @@ export class AdminComponent implements OnInit {
             }
             ,
             (error) => {
-                this.emulateusermessage = "User Emulation Failed, Maybe due to incorrect SID/TID";
+                this.emulateusermessage = "User Emulation Failed, Maybe due to incorrect SID/TID/Dealer Code";
+            }
+        )
+    }
+    private emulateUserWithDealerCode() {
+        this.adminService.emulateUserWithDealerCode(this.emulateuser.sid).subscribe(
+            (emulateUserData) => {
+                this.emulateUserData = emulateUserData;
+                var adminToken = this.cookieService.get("token");
+                this.cookieService.put("adminToken", adminToken);
+                this.cookieService.put("dealercode", this.emulateuser.sid);
+                sessionStorage.setItem("hideButton", "true");                
+                // this.cookieService.put("token", adminToken);
+                let url = ["login"]
+                this.router.navigate(url);
+            }
+            ,
+            (error) => {
+                this.emulateusermessage = "User Emulation Failed, Maybe due to incorrect SID/TID/Dealer Code";
             }
         )
     }

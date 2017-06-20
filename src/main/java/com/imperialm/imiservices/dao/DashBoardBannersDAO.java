@@ -1,9 +1,9 @@
 package com.imperialm.imiservices.dao;
 
-import java.util.List;
-
 import com.imperialm.imiservices.dto.DashBoardBannersDTO;
 import com.imperialm.imiservices.dto.ImagesDTO;
+
+import java.util.List;
 
 public interface DashBoardBannersDAO {
 	public static String IMAGES_BY_ROLE_AND_TERRITORY = "Select distinct image 'fileName', '' 'imageName', OrderBy 'imageOrder' from [DashBoardBanners] where DelFlag = 'N' and RoleID = (?0) and BusinessCenter IN (?1 , 'NAT') order by OrderBy";
