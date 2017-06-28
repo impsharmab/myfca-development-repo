@@ -1,12 +1,74 @@
 package com.imperialm.imiservices.services;
 
-import com.imperialm.imiservices.dao.*;
-import com.imperialm.imiservices.dto.*;
-import com.imperialm.imiservices.model.response.TotalName;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.imperialm.imiservices.dao.BrainBoostWinndersGraphDAO;
+import com.imperialm.imiservices.dao.BrainBoostWinnersDetailsDAO;
+import com.imperialm.imiservices.dao.CertProfsExpertDetailsDAO;
+import com.imperialm.imiservices.dao.CertProfsExpertGraphDAO;
+import com.imperialm.imiservices.dao.CertProfsWinnersDetailsDAO;
+import com.imperialm.imiservices.dao.CertProfsWinnersGraphDAO;
+import com.imperialm.imiservices.dao.CustomerFirstDetailsDAO;
+import com.imperialm.imiservices.dao.CustomerFirstGraphDAO;
+import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
+import com.imperialm.imiservices.dao.MyFCAMserRankingDAO;
+import com.imperialm.imiservices.dao.MyFCAMserRankingDetailsDAO;
+import com.imperialm.imiservices.dao.MyfcaMSERTopNDAO;
+import com.imperialm.imiservices.dao.MyfcaMSERTotalEarningsDAO;
+import com.imperialm.imiservices.dao.MyfcaMSERTotalEarningsDetailsDAO;
+import com.imperialm.imiservices.dao.ProgramCountDAOImpl;
+import com.imperialm.imiservices.dao.RetentionDetailsDAO;
+import com.imperialm.imiservices.dao.RetentionGraphDAO;
+import com.imperialm.imiservices.dao.RewardRedemptionDetailsDAO;
+import com.imperialm.imiservices.dao.RewardRedemptionGraphDAO;
+import com.imperialm.imiservices.dao.SIRewardsDetailsDAO;
+import com.imperialm.imiservices.dao.SIRewardsDetailsGraphDAO;
+import com.imperialm.imiservices.dao.SIRewardsYOYDetailsDAO;
+import com.imperialm.imiservices.dao.SIRewardsYOYGraphDAO;
+import com.imperialm.imiservices.dao.SummaryProgramRewardDetailsDAO;
+import com.imperialm.imiservices.dao.SummaryProgramRewardGraphDAO;
+import com.imperialm.imiservices.dao.SummaryProgramRewardQuartileDetailsDAO;
+import com.imperialm.imiservices.dao.SummaryProgramRewardQuartileGraphDAO;
+import com.imperialm.imiservices.dao.TTTAEnrolledDAO;
+import com.imperialm.imiservices.dao.TTTAEnrolledGraphDAO;
+import com.imperialm.imiservices.dao.TTTAEnrollmentsDAO;
+import com.imperialm.imiservices.dao.TTTAEnrollmentsSummaryDAO;
+import com.imperialm.imiservices.dao.TTTATopNDAO;
+import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
+import com.imperialm.imiservices.dto.BrainBoostWinnersDetailsDTO;
+import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
+import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
+import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
+import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
+import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
+import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
+import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
+import com.imperialm.imiservices.dto.MyFCAMserRankingDetailsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDetailsDTO;
+import com.imperialm.imiservices.dto.RetentionDetailsDTO;
+import com.imperialm.imiservices.dto.RetentionGraphDTO;
+import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
+import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardQuartileGraphDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
+import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
+import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
+import com.imperialm.imiservices.dto.TTTATopNDTO;
+import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
+import com.imperialm.imiservices.model.response.TotalName;
 
 @Service // implements DashboardService
 public class DashboardServiceImpl {
@@ -181,6 +243,10 @@ public class DashboardServiceImpl {
 	
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOBySID(String sID, String toggle, String dealerCode){
 		 return this.BrainBoostWinnersDetailsDAO.getBrainBoostWinnersDetailsBySID(sID, toggle, dealerCode);
+	}
+	
+	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOSUMBySID(String sID, String toggle){
+		 return this.BrainBoostWinnersDetailsDAO.getBrainBoostWinnersDetailsSUMBySID(sID, toggle);
 	}
 	
 	public List<BrainBoostWinnersDetailsDTO> getBrainBoostWinnersDetailsDTOByDealerCode(String dealerCode, String toggle){
@@ -453,8 +519,13 @@ public class DashboardServiceImpl {
 	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsByDealerCodeGroupBySID(String dealerCode){
 		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsByDealerCodeGroupBySID(dealerCode);
 	}
+	
 	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsBySID(String sid, String dealerCode){
 		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsBySID(sid, dealerCode);
+	}
+	
+	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsSUMBySID(String sid){
+		return this.CertProfsWinnersDetailsDAO.getCertProfsWinnersDetailsSUMBySID(sid);
 	}
 	
 	public List<UserPositionCodeRoleDTO> getDealerCodePCRoleBySid(String sid){
@@ -485,21 +556,21 @@ public class DashboardServiceImpl {
 		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsBySIDANDCertType(sid, certType, dealerCode);
 	}
 	
+	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySIDANDCertType(String sid, String certType){
+		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsSUMBySIDANDCertType(sid, certType);
+	}
+	
 	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySID(String sid, String dealerCode){
 		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsSUMBySID(sid, dealerCode);
+	}
+	
+	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMBySID(String sid){
+		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsSUMBySID(sid);
 	}
 	
 	public List<CertProfsExpertDetailsDTO> getCertProfsExpertDetailsSUMByDealerCode(String dealerCode){
 		return this.CertProfsExpertDetailsDAO.getCertProfsExpertDetailsSUMByDealerCode(dealerCode);
 	}
-	
-	/*public List<CustomerFirstDetailsDTO> getCustomerFirstByParentAndToggle(List<String> territory, String toggle)
-	{
-		return this.CustomerFirstDetailsDAO.getCustomerFirstByParentAndToggle(territory, toggle);
-	}
-	public List<CustomerFirstDetailsDTO> getCustomerFirstByChildAndToggle(List<String> territory, String toggle){
-		return this.CustomerFirstDetailsDAO.getCustomerFirstByChildAndToggle(territory, toggle);
-	}*/
 	
 	public List<RetentionGraphDTO> getRetentionGraphNAT(){
 		return this.RetentionGraphDAO.getRetentionGraphNAT();

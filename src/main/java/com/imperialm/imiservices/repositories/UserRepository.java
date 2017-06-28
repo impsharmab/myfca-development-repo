@@ -1,8 +1,9 @@
 package com.imperialm.imiservices.repositories;
 
-import com.imperialm.imiservices.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.imperialm.imiservices.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	@Query("select u from User u where u.userId=?1 and u.delFlag = 'N'")

@@ -1,17 +1,19 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.RetentionGraphDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.RetentionGraphDTO;
 
 @Repository
 public class RetentionGraphDAOImpl implements RetentionGraphDAO {
@@ -30,8 +32,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_LIST, RetentionGraphDTO.class);
 			query.setParameter(0, list);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -49,8 +51,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_LIST, RetentionGraphDTO.class);
 			query.setParameter(0, list);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -70,8 +72,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_LIST_AND_POSITIONCODE, RetentionGraphDTO.class);
 			query.setParameter(0, list);
 			query.setParameter(1, positionCode);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -91,8 +93,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_LIST_AND_POSITIONCODE, RetentionGraphDTO.class);
 			query.setParameter(0, list);
 			query.setParameter(1, positionCode);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -112,8 +114,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_AND_POSITIONCODE, RetentionGraphDTO.class);
 			query.setParameter(0, list);
 			query.setParameter(1, positionCode);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -131,8 +133,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_NAT_BY_POSITIONCODE, RetentionGraphDTO.class);
 			query.setParameter(0, positionCode);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -151,8 +153,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 			final Query query = this.em.createNativeQuery(SELECT_BY_BC_AND_POSITIONCODE, RetentionGraphDTO.class);
 			query.setParameter(1, bc);
 			query.setParameter(0, positionCode);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -169,8 +171,8 @@ public class RetentionGraphDAOImpl implements RetentionGraphDAO {
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_NAT, RetentionGraphDTO.class);
-			List<RetentionGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

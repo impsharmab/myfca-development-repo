@@ -1,10 +1,9 @@
 package com.imperialm.imiservices.config;
 
-import com.google.common.cache.CacheBuilder;
-import com.imperialm.imiservices.security.JwtAuthenticationEntryPoint;
-import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
-import com.imperialm.imiservices.security.JwtDaoAuthenticationProvider;
-import com.imperialm.imiservices.services.UserServiceImpl;
+import java.util.Collection;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,11 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
+import com.google.common.cache.CacheBuilder;
+import com.imperialm.imiservices.security.JwtAuthenticationEntryPoint;
+import com.imperialm.imiservices.security.JwtAuthenticationTokenFilter;
+import com.imperialm.imiservices.security.JwtDaoAuthenticationProvider;
+import com.imperialm.imiservices.services.UserServiceImpl;
 
 
 @Configuration
@@ -56,8 +57,8 @@ public class IMIServiceSecutiryConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
    
-	 @Autowired
-	  public CacheManager cacheManager;
+	@Autowired
+	public CacheManager cacheManager;
 	 
     @Autowired
     private AuthenticationEntryPoint unauthorizedHandler = new JwtAuthenticationEntryPoint();

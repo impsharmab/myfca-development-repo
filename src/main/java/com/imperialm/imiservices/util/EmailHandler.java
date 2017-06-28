@@ -1,12 +1,14 @@
 package com.imperialm.imiservices.util;
 
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import lombok.Getter;
-import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Service @Setter @Getter
 public class EmailHandler {

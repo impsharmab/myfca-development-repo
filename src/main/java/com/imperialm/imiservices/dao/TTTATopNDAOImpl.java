@@ -1,19 +1,20 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.TTTATopNDTO;
-import com.imperialm.imiservices.dto.request.InputRequest;
-import com.imperialm.imiservices.util.IMIServicesUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.TTTATopNDTO;
+import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class TTTATopNDAOImpl implements TTTATopNDAO {
@@ -21,32 +22,6 @@ public class TTTATopNDAOImpl implements TTTATopNDAO {
 
 	@PersistenceContext
 	private EntityManager em;
-	
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<TTTATopNDTO> getTopNByRole(InputRequest userRoleReq) {
-		List<TTTATopNDTO> result = new ArrayList<TTTATopNDTO>();
-
-		TTTATopNDTO TTTATopNDTO = null;
-		try {
-			final Query query = this.em.createNativeQuery(TOP_N_BY_ROLE, TTTATopNDTO.class);
-			result = query.getResultList();
-			
-		} catch (final NoResultException ex) {
-			TTTATopNDTO = new TTTATopNDTO();
-			TTTATopNDTO.setError(IMIServicesUtil.prepareJson("Info", "No Results found"));
-			logger.info("result in else " + TTTATopNDTO);
-			result.add(TTTATopNDTO);
-			
-		} catch (final Exception ex) {
-			TTTATopNDTO = new TTTATopNDTO();
-			logger.error("error occured in findTilesListByRole", ex);
-			TTTATopNDTO.setError(IMIServicesUtil.prepareJson("error", "error Occured" + ex.getMessage()));
-			result.add(TTTATopNDTO);
-		}
-		return result;
-	}
 	
 	@SuppressWarnings("unchecked")
 	@Override

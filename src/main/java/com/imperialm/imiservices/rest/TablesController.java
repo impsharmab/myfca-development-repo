@@ -1,50 +1,59 @@
 package com.imperialm.imiservices.rest;
 
-import com.imperialm.imiservices.dto.*;
-import com.imperialm.imiservices.security.JwtTokenUtil;
-import com.imperialm.imiservices.services.DashboardServiceImpl;
-import com.imperialm.imiservices.services.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
+import com.imperialm.imiservices.dto.BrainBoostWinnersDetailsDTO;
+import com.imperialm.imiservices.dto.CertProfsExpertDetailsDTO;
+import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
+import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
+import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
+import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
+import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDetailsDTO;
+import com.imperialm.imiservices.dto.RetentionDetailsDTO;
+import com.imperialm.imiservices.dto.RetentionGraphDTO;
+import com.imperialm.imiservices.dto.RewardRedemptionDetailsDTO;
+import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardDetailsDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.services.DashboardServiceImpl;
+import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @RestController
 public class TablesController {
 
 	@Autowired
 	private DashboardServiceImpl dashService;
-	
-	  @Value("${jwt.header}")
-	    private String tokenHeader;
-
-	    @Autowired
-	    private JwtTokenUtil jwtTokenUtil;
-
-	    @Autowired
-	    private UserServiceImpl userDetailsService;
+	    
+	@Autowired
+	private IMIServicesUtil IMIServicesUtil;
 
 	
 	@RequestMapping(value ="/services/data/{chartId}/{territory}", method = RequestMethod.GET)
 	public @ResponseBody Object findTilesListByRole(@PathVariable(value="chartId") String id, @PathVariable(value="territory") String territory, HttpServletRequest request) {
-		UserDetailsImpl user = null;
-		//get token extract user info and use for the calls
-		try{
-		 String token = request.getHeader(tokenHeader);
-	     String username = jwtTokenUtil.getUsernameFromToken(token);
-	     user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
-	     if(!jwtTokenUtil.validateToken(token, user)){
-	    	 //token is expired/invalid token
-	    	 return "Invalid Token";
-	     }
-		}catch(Exception e){
-			//token is expired/invalid token
-	    	 return "Failed to check Token";
-		}
+		@SuppressWarnings("unused")
+		UserDetailsImpl user = IMIServicesUtil.checkToken(request);
 
-		
 		//divide the switch statement to functions
 		switch(id){
 		case "9":
@@ -183,11 +192,11 @@ public class TablesController {
 				filters.add(territory);
 				List<SIRewardsDetailsGraphDTO> sublist = this.dashService.getSIRewardsDetailsGraphByTerritoryAndToggle(territory, "QTD");
 				for(SIRewardsDetailsGraphDTO item: sublist){
-						List<SIRewardsDetailsDTO> participants = this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(item.getChildTerritory(), "QTD", this.getCurrentQuarter());
+						List<SIRewardsDetailsDTO> participants = this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(item.getChildTerritory(), "QTD", IMIServicesUtil.getCurrentQuarter());
 						result.addAll(participants);
 				}
 			}else if (territory.length() > 4 && !territory.contains("-")){
-				 return this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(territory, "QTD", this.getCurrentQuarter());
+				 return this.dashService.getSIRewardsDetailsByDealerCodeAndToggle(territory, "QTD", IMIServicesUtil.getCurrentQuarter());
 			}
 			return result;
 		}
@@ -274,20 +283,6 @@ public class TablesController {
 		default:
 			return "No such service call exists.";
 		}
-	}
-
-	public String getCurrentQuarter(){
-		Date date = new Date();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return (cal.get(Calendar.YEAR)) + "Q" + ((cal.get(Calendar.MONTH) / 3) + 1);
-	}
-
-	public String getCurrentYear(){
-		Date date = new Date();
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return (cal.get(Calendar.YEAR))+"";
 	}
 	
 }

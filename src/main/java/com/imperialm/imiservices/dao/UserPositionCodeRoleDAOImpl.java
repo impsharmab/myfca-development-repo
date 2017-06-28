@@ -1,17 +1,19 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
 
 @Repository
 public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
@@ -29,8 +31,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_DEALERCODE_PC_ROLE_BY_SID, UserPositionCodeRoleDTO.class);
 			query.setParameter(0, sid);
-			List<UserPositionCodeRoleDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -48,8 +49,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 			query.setParameter(0, uid);
                         query.setParameter(1, dealerCode);
                         query.setParameter(2, positionCode);
-			List<UserPositionCodeRoleDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -65,8 +65,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_USER_BC_BY_DEALERCODE);
 			query.setParameter(0, dealerCode);
-			List<String> rows = (List<String>) query.getResultList();
-			result = rows;
+			result = (List<String>) query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -82,8 +81,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_USER_DISTRICT_BY_DEALERCODE);
 			query.setParameter(0, dealerCode);
-			List<String> rows = (List<String>) query.getResultList();
-			result = rows;
+			result = (List<String>) query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -100,8 +98,7 @@ public class UserPositionCodeRoleDAOImpl implements UserPositionCodeRoleDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_USER_TERRITORY);
 			query.setParameter(0, sid);
-			List<String> rows = (List<String>) query.getResultList();
-			result = rows;
+			result = (List<String>) query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

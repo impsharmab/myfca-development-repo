@@ -1,11 +1,12 @@
 package com.imperialm.imiservices.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity @Getter @Setter
 public class CustomerFirstDetailsDTO implements Serializable {

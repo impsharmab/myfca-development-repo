@@ -1,14 +1,19 @@
 package com.imperialm.imiservices.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity @Getter @Setter
 public class TTTAEnrollmentsSummaryDTO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2097719655917839070L;
 	@Id private String parentTerritory;
 	@Id private String childTerritory;
 	@Id private int totalEnrollments;

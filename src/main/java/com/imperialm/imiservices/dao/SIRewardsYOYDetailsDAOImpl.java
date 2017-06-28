@@ -1,16 +1,18 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.SIRewardsYOYDetailsDTO;
 
 @Repository
 public class SIRewardsYOYDetailsDAOImpl implements SIRewardsYOYDetailsDAO {
@@ -30,8 +32,8 @@ public class SIRewardsYOYDetailsDAOImpl implements SIRewardsYOYDetailsDAO {
 			query.setParameter(0, sID);
 			query.setParameter(1, dealerCode);
 			query.setParameter(2, toggle);
-			List<SIRewardsYOYDetailsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -48,8 +50,8 @@ public class SIRewardsYOYDetailsDAOImpl implements SIRewardsYOYDetailsDAO {
 			final Query query = this.em.createNativeQuery(SELECT_BY_DEALERCODE_AND_TOGGLE, SIRewardsYOYDetailsDTO.class);
 			query.setParameter(0, dealerCode);
 			query.setParameter(1, toggle);
-			List<SIRewardsYOYDetailsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

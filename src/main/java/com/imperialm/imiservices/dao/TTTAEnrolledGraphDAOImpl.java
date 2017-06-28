@@ -1,17 +1,19 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
 
 @Repository
 public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
@@ -21,6 +23,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	@PersistenceContext
 	private EntityManager em;
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getTTTAEnrolledByParentTerritoryList")
 	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByParentTerritory(List<String> territory) {
@@ -29,8 +32,8 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT, TTTAEnrolledGraphDTO.class);
 			query.setParameter(0, territory);
-			List<TTTAEnrolledGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -48,8 +51,8 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY, TTTAEnrolledGraphDTO.class);
 			query.setParameter(0, list);
-			List<TTTAEnrolledGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -59,6 +62,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public int getTTTAEnrolledDealersNAT() {
 		int result = 0;
@@ -75,6 +79,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getTTTAEnrolledBCORDistrict")
 	public int getTTTAEnrolledBCORDistrict(String territory) {
@@ -93,6 +98,7 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		return result;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(value="getTTTAEnrolledByParentTerritoryNotEnrolledList")
 	public List<TTTAEnrolledGraphDTO> getTTTAEnrolledByParentTerritoryNotEnrolled(List<String> territory) {
@@ -101,8 +107,8 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_NOT_ENROLLED, TTTAEnrolledGraphDTO.class);
 			query.setParameter(0, territory);
-			List<TTTAEnrolledGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -119,8 +125,8 @@ public class TTTAEnrolledGraphDAOImpl implements TTTAEnrolledGraphDAO {
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY_NOT_ENROLLED, TTTAEnrolledGraphDTO.class);
 			query.setParameter(0, list);
-			List<TTTAEnrolledGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

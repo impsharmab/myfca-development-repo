@@ -1,26 +1,30 @@
 package com.imperialm.imiservices.services;
 
-import com.imperialm.imiservices.util.CmsToken;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.WebResource.Builder;
-import com.sun.jersey.core.util.MultivaluedMapImpl;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
+import com.imperialm.imiservices.util.CmsToken;
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.WebResource.Builder;
+import com.sun.jersey.core.util.MultivaluedMapImpl;
 
 @Service
 public class CMSService {
 
 	private static Logger logger = LoggerFactory.getLogger(CMSService.class);
 
-    String cmsUrl1 = "http://850627-web2.imperialm.com/imi-cms/content";
-    String cmsUrl2 = "http://850627-web2.imperialm.com/imi-cms/content";
+	@Value("${cms.url1}")
+    String cmsUrl1;
+	
+	@Value("${cms.url2}")
+    String cmsUrl2;
     
     @Value("${cms.mode}")
     String cmsContentType;

@@ -1,13 +1,14 @@
 package com.imperialm.imiservices.services;
 
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.model.NoTile;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.model.NoTile;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
@@ -61,7 +62,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 	//UB 25.1
 	//private List<String> tile24 = new ArrayList<String>(); // this was empty, is empty
 	//UB 26.1
-	private List<String> tile25 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","10","11","17","19","1F","22","25","2S","2T","31","32","33","35","36","37","38","39","3T","40","41","46","47","50","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IJM","IBS","IDT"));
+	private List<String> tile25 = new ArrayList<String>(Arrays.asList("01","02","03","04","05","06","07","08","09","10","11","17","19","1F","22","25","2S","2T","31","32","33","35","36","37","38","39","3T","40","41","46","47","50","52","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IJM","IBS","IDT","IAD"));
 	//UB 27.1
 	private List<String> tile26 = new ArrayList<String>(Arrays.asList("46","47","50","56","60","70","82","83","84","89","8D","8E","8U","90","94","97","99","EA","EN","LV","SB","SC","IDS","IEX","IBC","IJM","IBS","IDT","IAD"));
 	//UB 28.1
@@ -120,9 +121,6 @@ public class UserProfileServiceImpl implements UserProfileService {
 	
 	@Value("${cms.link.CUSTOMERFIRSTSITE}")
 	private String CUSTOMERFIRSTSITE;
-
-	
-	
 
 
 	public List<NoTile> getuserTiles(String positionCode, String roleId, UserDetailsImpl user, String token, String pc, String dc) {
@@ -220,7 +218,7 @@ public class UserProfileServiceImpl implements UserProfileService {
 		if(tile20.contains(positionCode)){ 
 			NoTile rr = new NoTile(23,"","chart", "","rewards.jpg",SHOPNOW + token,"");
 			rr.setProgramSite("Shop Now");
-			//this.userTiles.add(new NoTile(23,"","chart", "","rewards.jpg","https://fcarewardredemption.com","#")); // REWARDRED
+			// REWARDRED
 			this.userTiles.add(rr);
 		}
 
@@ -248,14 +246,14 @@ public class UserProfileServiceImpl implements UserProfileService {
 
 		 */
 		if(tile25.contains(positionCode)){ 
-			//this.userTiles.add(new NoTile(30,"","tile", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
+			// RETENTION
 			NoTile rr = new NoTile(30,"","tile", "","Retention.jpg","",RETENTION_RULES);
 			rr.setProgramRules("Tile Information");
 			this.userTiles.add(rr);
 		}
 
 		if(tile26.contains(positionCode)){ 
-			//this.userTiles.add(new NoTile(31,"","chart", "","Retention.jpg","",RETENTION_RULES)); // RETENTION
+			// RETENTION
 			NoTile rr = new NoTile(31,"","chart", "","Retention.jpg","",RETENTION_RULES);
 			rr.setProgramRules("Tile Information");
 			this.userTiles.add(rr);

@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
-
 import java.util.List;
+
+import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
 
 public interface SIRewardsDetailsDAO {
 	//public static String SELECT_BY_DEALER_CODE = "SELECT [DealerCode] 'dealerCode' ,[DealerName] 'dealerName' ,[SID] 'sID' ,[Name] 'name' ,[Toggle] 'toggle' ,[EligibleSurveys] 'eligibleSurveys' ,[IncentiveQualified] 'incentiveQualified' ,[SurveyScore] 'surveyScore' ,[ProjectedEarnings] 'projectedEarnings' ,[level0] 'level0' ,[level1] 'level1' ,[TotalSurveys] 'totalSurveys' ,[BCAdvisorRankEarnings] 'bCAdvisorRankEarnings', [trainingQualified] 'trainingQualified', [DealerTarget] 'dealerTarget', [PositionCode] 'positionCode', [ReportQuarter] 'reportQuarter', [AdvisorSurveys] 'advisorSurveys' FROM [SIRewardsDetails] where DealerCode = ?0";

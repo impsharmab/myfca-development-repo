@@ -1,21 +1,39 @@
 package com.imperialm.imiservices.services;
 
-import com.imperialm.imiservices.dto.*;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
+import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
+import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
+import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
+import com.imperialm.imiservices.dto.RewardRedemptionGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsDTO;
+import com.imperialm.imiservices.dto.SIRewardsDetailsGraphDTO;
+import com.imperialm.imiservices.dto.SIRewardsYOYGraphDTO;
+import com.imperialm.imiservices.dto.SummaryProgramRewardGraphDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledDTO;
+import com.imperialm.imiservices.dto.TTTAEnrolledGraphDTO;
+import com.imperialm.imiservices.dto.TTTATopNDTO;
 import com.imperialm.imiservices.model.Chart;
 import com.imperialm.imiservices.model.ChartData;
 import com.imperialm.imiservices.model.TileAttribute1;
 import com.imperialm.imiservices.model.TopTenTableData;
 import com.imperialm.imiservices.model.response.TotalName;
-import org.joda.time.DateTime;
-import org.springframework.stereotype.Service;
-
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.List;
+import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Service
 public class MappingServiceImpl {
+	
+	@Autowired
+	private IMIServicesUtil IMIServicesUtil;
 
 	public MappingServiceImpl(){}
 	
@@ -36,19 +54,7 @@ public class MappingServiceImpl {
 		return c;
 	}
 	
-	public Chart MapMSEREarningsDTOtoChart(List<MSEREarningsDTO> MSEREarningDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
-		Chart chart = new Chart();
-		chart.setTitle(title);
-		chart.setSubTitle(subTitle);
-		chart.setType(type);
-		chart.setXaxisTitle(xaxisTitle);
-		chart.setYaxisTitle(yaxisTitle);
-		
-		chart.setData(this.MapMSEREarningDTOtoChartData(MSEREarningDTO));
-		
-		return chart;
-	}
-	
+
 	
 	public Chart MapMSERGraphDTOtoChart(List<MyfcaMSERTotalEarningsDTO> MyfcaMSERTotalEarningsDTO, String title, String subTitle, String xaxisTitle, String yaxisTitle, String type){
 		Chart chart = new Chart();
@@ -208,16 +214,6 @@ public class MappingServiceImpl {
 		return chart;
 	}
 	
-	public List<ChartData> MapMSEREarningDTOtoChartData(List<MSEREarningsDTO> MSEREarningDTO){
-		List<ChartData> list = new ArrayList<ChartData>();
-		
-		for (MSEREarningsDTO Earning : MSEREarningDTO) {
-			list.add(this.MapMSEREarningDTOtoChartData(Earning));
-		}
-		
-		return list;
-	}
-	
 	
 	public List<ChartData> MapMSERGraphDTOtoChartData(List<MyfcaMSERTotalEarningsDTO> MyfcaMSERTotalEarningsDTO){
 		List<ChartData> list = new ArrayList<ChartData>();
@@ -364,33 +360,6 @@ public class MappingServiceImpl {
 		return list;
 	}
 	
-	public ChartData MapMSEREarningDTOtoChartData(MSEREarningsDTO MSEREarningDTO){
-		ChartData chartData = new ChartData();
-		
-		chartData.setName(MSEREarningDTO.getTerritory());
-		
-		List<ChartData> data = new ArrayList<ChartData>();
-		ChartData MoparParts , mvp, MagnetiMarelli, PartsCounter, ExpressLane, wiAdvisor, uConnect;
-		MoparParts = new ChartData("Mopar Parts", MSEREarningDTO.getMoparParts());
-		mvp = new ChartData("mvp",MSEREarningDTO.getMvp());
-		MagnetiMarelli = new ChartData("Magneti Marelli",MSEREarningDTO.getMagnetiMarelli());
-		PartsCounter = new ChartData("Parts Counter", MSEREarningDTO.getPartsCounter());
-		wiAdvisor = new ChartData("wiAdvisor", MSEREarningDTO.getWiAdvisor());
-		ExpressLane = new ChartData("Express Lane", MSEREarningDTO.getExpressLane());
-		uConnect = new ChartData("uConnect", MSEREarningDTO.getuConnect());
-		
-		data.add(MoparParts);
-		data.add(mvp);
-		data.add(MagnetiMarelli);
-		data.add(PartsCounter);
-		data.add(wiAdvisor);
-		data.add(ExpressLane);
-		data.add(uConnect);
-		
-		chartData.setData(data);
-		
-		return chartData;
-	}
 	
 	public ChartData MapMSERGraphDTOtoChartData(MyfcaMSERTotalEarningsDTO MyfcaMSERTotalEarningsDTO){
 		ChartData chartData = new ChartData();
@@ -671,8 +640,8 @@ public class MappingServiceImpl {
 				items.add(item.getName());
 				items.add(item.getDealerName());
 				items.add(item.getParentTerritory());
-				items.add(this.formatNumbers(item.getTotalSurveys()));
-				items.add(this.formatNumbers(item.getAvgSurveyScore()));
+				items.add(IMIServicesUtil.formatNumbers(item.getTotalSurveys()));
+				items.add(IMIServicesUtil.formatNumbers(item.getAvgSurveyScore()));
 			}
 			data.add(items);
 		}
@@ -696,7 +665,7 @@ public class MappingServiceImpl {
 				items.add(item.getName());
 				items.add(item.getDealerName());
 				items.add(item.getParentTerritory());
-				items.add("$" + this.formatCurrency(item.getEarnings()));
+				items.add("$" + IMIServicesUtil.formatCurrency(item.getEarnings()));
 			}
 			data.add(items);
 		}
@@ -705,7 +674,7 @@ public class MappingServiceImpl {
 				List<Object> items = new ArrayList<Object>();
 				if(item.getError().equals("") || item.getError().equals(null)){
 					items.add(item.getName());
-					items.add(this.formatNumbers(item.getQuantity()));
+					items.add(IMIServicesUtil.formatNumbers(item.getQuantity()));
 				}
 				data.add(items);
 			}
@@ -727,7 +696,7 @@ public class MappingServiceImpl {
 		for(SIRewardsDetailsDTO item: SIRewardsDetailsDTO){
 			List<Object> items = new ArrayList<Object>();
 				items.add(item.getName());
-				items.add(this.formatCurrency(item.getAdvisorSurveys()));
+				items.add(IMIServicesUtil.formatCurrency(item.getAdvisorSurveys()));
 				items.add(df.format(item.getDealerTarget()) + "%");
 				if(item.getTrainingQualified()>0){
 					items.add("Yes");
@@ -739,7 +708,7 @@ public class MappingServiceImpl {
 				}else{
 					items.add("No");
 				}
-				items.add("$" + this.formatCurrency(item.getProjectedEarnings()));
+				items.add("$" + IMIServicesUtil.formatCurrency(item.getProjectedEarnings()));
 				data.add(items);
 		}
 		topTenTableData.setData(data);
@@ -757,7 +726,7 @@ public class MappingServiceImpl {
 	}
 	
 	
-	public String formatCurrency(int number){
+	/*public String formatCurrency(int number){
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
 		String moneyString = formatter.format((int)number);
 		if (moneyString.endsWith(".00")) {
@@ -795,5 +764,5 @@ public class MappingServiceImpl {
 		
 		return formatter.format(number);
 	}
-	
+	*/
 }

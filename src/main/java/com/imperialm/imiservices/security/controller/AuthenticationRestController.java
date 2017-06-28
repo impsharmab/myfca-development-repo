@@ -1,5 +1,29 @@
 package com.imperialm.imiservices.security.controller;
 
+import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.imperialm.imiservices.dao.DealerPersonnelPositionsDAO;
 import com.imperialm.imiservices.dao.TIDUsersDAO;
 import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
@@ -11,24 +35,6 @@ import com.imperialm.imiservices.security.JwtAuthenticationRequest;
 import com.imperialm.imiservices.security.JwtTokenUtil;
 import com.imperialm.imiservices.security.service.JwtAuthenticationResponse;
 import com.imperialm.imiservices.services.UserServiceImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
-
-import javax.naming.AuthenticationException;
-import javax.servlet.http.HttpServletRequest;
-import java.security.MessageDigest;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
 
 @RestController
 public class AuthenticationRestController {
@@ -111,9 +117,10 @@ public class AuthenticationRestController {
 			tokenDealerCode = "";
 		}
 		
-		if(!DealerPersonnelPositionsDAO.checkPositionCode(tokenPositionCode)){
+		if(!DealerPersonnelPositionsDAO.checkPositionCode(tokenPositionCode) || tokenPositionCode.trim().equals("00")){
 			tokenPositionCode = "";
 		}
+		
 		return finalizeToken(token,user, tokenPositionCode , tokenDealerCode);
 	}
 
@@ -170,7 +177,8 @@ public class AuthenticationRestController {
 		response.setPositionCode(positionCode);
 		response.setDealerCode(dealerCode);
 		response.setName(user.getUsername());
-		if(UserProgramRolesDAO.isAdmin(user.getUserId().trim())){
+		response.setUserId(jwtTokenUtil.getUsernameFromToken(token));
+		if(TIDUsersDAO.isAdmin(user.getUserId().trim())){
 			response.setAdmin(true);
 		}
 		return ResponseEntity.ok(response);

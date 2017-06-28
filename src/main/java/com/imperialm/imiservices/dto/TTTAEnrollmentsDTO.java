@@ -1,15 +1,20 @@
 package com.imperialm.imiservices.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity @Getter @Setter
 public class TTTAEnrollmentsDTO implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8268549508356142472L;
 	@Id private String dealerCode;
 	@Id private String dealerName;
 	@Id private String sID;

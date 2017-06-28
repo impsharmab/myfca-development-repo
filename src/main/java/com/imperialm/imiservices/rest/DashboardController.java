@@ -1,31 +1,28 @@
 package com.imperialm.imiservices.rest;
 
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.security.JwtTokenUtil;
-import com.imperialm.imiservices.services.TileServiceImpl;
-import com.imperialm.imiservices.services.UserServiceImpl;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.services.TileServiceImpl;
+import com.imperialm.imiservices.util.IMIServicesUtil;
 
 
 @RestController
 public class DashboardController {
-
-	@Value("${jwt.header}")
-	private String tokenHeader;
-
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
-
-	@Autowired
-	private UserServiceImpl userDetailsService;
 	
 	@Autowired
 	private TileServiceImpl tileService;
+	
+	@Autowired
+	private IMIServicesUtil IMIServicesUtil;
 
 	@RequestMapping(value = "/myfcadashboard", method = RequestMethod.GET)
 	public RedirectView myfcadashboard() {
@@ -53,20 +50,9 @@ public class DashboardController {
 
 	@RequestMapping(value ="/services/tile/{chartId}/{positionCode}/{dealerCode}", method = RequestMethod.GET)
 	public @ResponseBody Object findTilesListByRole(@PathVariable(value="chartId") String id, @PathVariable(value="positionCode") String positionCode, @PathVariable(value="dealerCode") String dealerCode, HttpServletRequest request) {
-		UserDetailsImpl user = null;
-		//get token extract user info and use for the calls
-		try{
-			String token = request.getHeader(tokenHeader);
-			String username = jwtTokenUtil.getUsernameFromToken(token);
-			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
-			if(!jwtTokenUtil.validateToken(token, user)){
-				//token is expired/invalid token
-				return "Invalid Token";
-			}
-		}catch(Exception e){
-			//token is expired/invalid token
-			return "Failed to check Token";
-		}
+		
+		UserDetailsImpl user = IMIServicesUtil.checkToken(request);
+		
 		return tileService.findTilesListByRole(id, positionCode, dealerCode, user.getUserId().trim());
 	}
 

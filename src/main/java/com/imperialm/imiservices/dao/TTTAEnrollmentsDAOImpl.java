@@ -1,18 +1,20 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
-import com.imperialm.imiservices.model.response.TotalName;
-import com.imperialm.imiservices.util.IMIServicesUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.TTTAEnrollmentsDTO;
+import com.imperialm.imiservices.model.response.TotalName;
+import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
@@ -176,8 +178,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 			query.setParameter(0, sid);
 			query.setParameter(1, positionCode);
 			query.setParameter(2,  dealerCode);
-			List<TTTAEnrollmentsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -195,8 +196,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 			final Query query = this.em.createNativeQuery(SELECT_BY_DEALERCODE, TTTAEnrollmentsDTO.class);
 			query.setParameter(0, dealerCode);
 			query.setParameter(1, positionCode);
-			List<TTTAEnrollmentsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -216,8 +216,7 @@ public class TTTAEnrollmentsDAOImpl implements TTTAEnrollmentsDAO{
 			query.setParameter(0, dealerCode);
 			query.setParameter(0, enrollement);
 			query.setParameter(2, positionCode);
-			List<TTTAEnrollmentsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

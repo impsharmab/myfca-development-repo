@@ -1,17 +1,19 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.CertProfsExpertGraphDTO;
 
 @Repository
 public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
@@ -27,8 +29,7 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BC, CertProfsExpertGraphDTO.class);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -44,8 +45,7 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BC_TOTAL_RAM_JEEP, CertProfsExpertGraphDTO.class);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -63,8 +63,7 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_POINTS_BY_CHILD_TERRITORY, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -82,8 +81,8 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_POINTS_BY_CHILD_TERRITORY_SINGLE, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -101,8 +100,8 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_POINTS_BY_CHILD_TERRITORY_AS_PARENT, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -120,8 +119,8 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -141,8 +140,8 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY_AND_CERT_TYPE, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
 			query.setParameter(1, certType);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -162,8 +161,8 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 			final Query query = this.em.createNativeQuery(SELECT_TOTAL_RAM_JEEP_BY_CHILD_TERRITORY_AND_CERT_TYPE_SINGLE, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
 			query.setParameter(1, certType);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -181,8 +180,8 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -199,8 +198,8 @@ public class CertProfsExpertGraphDAOImpl implements CertProfsExpertGraphDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_SUM, CertProfsExpertGraphDTO.class);
 			query.setParameter(0, filters);
-			List<CertProfsExpertGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

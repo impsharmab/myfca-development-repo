@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.RetentionDetailsDTO;
-
 import java.util.List;
+
+import com.imperialm.imiservices.dto.RetentionDetailsDTO;
 
 public interface RetentionDetailsDAO {
 

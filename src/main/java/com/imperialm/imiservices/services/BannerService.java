@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.services;
 
-import com.imperialm.imiservices.dto.ImagesDTO;
-
 import java.util.List;
+
+import com.imperialm.imiservices.dto.ImagesDTO;
 
 
 public interface BannerService {

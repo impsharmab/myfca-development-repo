@@ -4,14 +4,15 @@
  */
 package com.imperialm.imiservices.rest;
 
-import com.imperialm.imiservices.dao.TIDUsersDAO;
-import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
-import com.imperialm.imiservices.dto.TIDUsersDTO;
-import com.imperialm.imiservices.dto.UserDetailsImpl;
-import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
-import com.imperialm.imiservices.security.JwtTokenUtil;
-import com.imperialm.imiservices.services.UserServiceImpl;
-import com.sun.jersey.core.util.Base64;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.naming.AuthenticationException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.opensaml.common.SignableSAMLObject;
 import org.opensaml.common.binding.BasicSAMLMessageContext;
 import org.opensaml.saml2.binding.decoding.HTTPPostDecoder;
@@ -35,13 +36,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 import org.w3c.dom.DOMException;
 
-import javax.naming.AuthenticationException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.imperialm.imiservices.dao.TIDUsersDAO;
+import com.imperialm.imiservices.dao.UserPositionCodeRoleDAO;
+import com.imperialm.imiservices.dto.TIDUsersDTO;
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.dto.UserPositionCodeRoleDTO;
+import com.imperialm.imiservices.security.JwtTokenUtil;
+import com.imperialm.imiservices.services.UserServiceImpl;
+import com.sun.jersey.core.util.Base64;
 
 /**
  *
@@ -89,7 +91,6 @@ public class SSOController {
 	 */
 	@RequestMapping(value = "/sp/acs.saml",  method = RequestMethod.POST)
 	public Object processSingleSignOnToken(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SAML REQUEST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		Map userDetailMap = null;
 		userDetailMap = processSAMLResponse(request);
 		String userId = (String) userDetailMap.get("UID");
@@ -98,9 +99,6 @@ public class SSOController {
 		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! USERID FROM DEALERCONNECT" + userId);
 		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! DEALERCODE FROM DEALERCONNECT" + dealerCode);
 		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! POSITIONCODE FROM DEALERCONNECT" + positionCode);
-		logger.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		//List<String> posCode = new ArrayList<String>();
-		//List<String> dlrCode = new ArrayList<String>();
 
 		if ("NA".equals(dealerCode)) {
 			dealerCode = "";

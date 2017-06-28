@@ -1,23 +1,41 @@
 package com.imperialm.imiservices.util;
 
+import java.util.Date;
+import java.util.Properties;
+import java.util.StringTokenizer;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.commons.mail.DefaultAuthenticator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import javax.mail.*;
-import javax.mail.internet.*;
 
 @Service
 public class MailUtil
 {
   public Properties props = new Properties();
   public boolean PROPERTIES_SET = false;
-  private String smtpHost =  "smtp.office365.com";
-  private String smtpPort =  "587";
-  //private String exchangeUser =  "smtpuser@imperialm.com";
-  private String exchangeUser =  "info@myfcarewards.com";
-  private String exchangePassword =  "Imi.smtp";
+  
+  @Value("${email.smtphost}")
+  private String smtpHost;
+  
+  @Value("${email.smtpport}")
+  private String smtpPort;
+  
+  @Value("${email.exchangeuser}")
+  private String exchangeUser;
+  
+  @Value("${email.exchangepassword}")
+  private String exchangePassword;
+  
   private String emailSubjectPrefix = "";
 
     /** Logger for this class and subclasses */

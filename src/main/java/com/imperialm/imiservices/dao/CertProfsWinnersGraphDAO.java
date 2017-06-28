@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
-
 import java.util.List;
+
+import com.imperialm.imiservices.dto.CertProfsWinnersGraphDTO;
 
 public interface CertProfsWinnersGraphDAO {
 

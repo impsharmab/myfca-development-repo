@@ -11,5 +11,5 @@ public interface UserProgramRolesDAO {
 	public List<String> getUserRoleById(String userId);
 	public List<String> getUserProgramCodeById(String userId);
 	public String getUserRoleByIdAndPositionCode(String userId, String positionCode);
-	public boolean isAdmin(String userId);
+	//public boolean isAdmin(String userId);
 }

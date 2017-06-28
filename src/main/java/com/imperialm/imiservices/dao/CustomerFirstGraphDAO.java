@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
-
 import java.util.List;
+
+import com.imperialm.imiservices.dto.CustomerFirstGraphDTO;
 
 public interface CustomerFirstGraphDAO {
 	public static String SELECT_BY_PARENT_TERRITORY = "SELECT [Parent] 'parentTerritory' ,[Child] 'childTerritory' ,[NoCertification] 'noCertification' ,[Performance] 'performance' ,[Process] 'process' ,[VoiceofEmployee] 'voiceofEmployee' ,[Training] 'training' ,[Facility] 'facility' ,[CFAFEAwardCertification] 'cFAFEAwardCertification' ,[toggle] 'toggle' FROM [CustomerFirstGraph] where Parent IN (?0) AND toggle = ?1";

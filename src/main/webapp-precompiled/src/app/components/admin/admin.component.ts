@@ -16,6 +16,7 @@ declare var $: any;
 
 })
 export class AdminComponent implements OnInit {
+    private isInternalAdmin: any = false;
     private positioncode: any;
     private roles: any;
     private adminData: any;
@@ -190,6 +191,7 @@ export class AdminComponent implements OnInit {
     constructor(private adminService: AdminService, private cookieService: CookieService, private router: Router) { }
 
     ngOnInit() {
+        this.internalAdmin();
         var self = this;
         this.emulateuser = {
             sid: '',
@@ -269,7 +271,11 @@ export class AdminComponent implements OnInit {
             })
         });
     }
-
+    private goBack() {
+        sessionStorage.setItem("showWelcomePopup", "false");
+        let dashboardUrl = ["/myfcadashboard"];
+        this.router.navigate(dashboardUrl);
+    }
     private imageUpload() {
         var formData = new FormData();
         formData.append('file', $('#file')[0].files[0]);
@@ -467,7 +473,7 @@ export class AdminComponent implements OnInit {
                 var adminToken = this.cookieService.get("token");
                 this.cookieService.put("adminToken", adminToken);
                 this.cookieService.put("dealercode", this.emulateuser.sid);
-                sessionStorage.setItem("hideButton", "true");                
+                sessionStorage.setItem("hideButton", "true");
                 // this.cookieService.put("token", adminToken);
                 let url = ["login"]
                 this.router.navigate(url);
@@ -606,7 +612,15 @@ export class AdminComponent implements OnInit {
     private onCancel() {
         this.getTileDataResponse();
     }
-
+    private internalAdmin() {
+        var sessionStorageItem: any = JSON.parse(sessionStorage.getItem("CurrentUser"));
+        var positioncode: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
+        if (positioncode.indexOf("IAD") > -1) {
+            this.isInternalAdmin = true;
+        } else {
+            this.isInternalAdmin = false;
+        }
+    }
 }
 
 

@@ -1,12 +1,5 @@
 package com.imperialm.imiservices.util;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.sql.Clob;
 import java.sql.SQLException;
@@ -16,9 +9,42 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.imperialm.imiservices.dao.TIDUsersDAO;
+import com.imperialm.imiservices.dto.UserDetailsImpl;
+import com.imperialm.imiservices.security.JwtTokenUtil;
+import com.imperialm.imiservices.services.UserServiceImpl;
+
 @Component
 public class IMIServicesUtil {
 
+	@Value("${jwt.header}")
+	private String tokenHeader;
+	
+	@Autowired
+	private JwtTokenUtil jwtTokenUtil;
+
+	@Autowired
+	private UserServiceImpl userDetailsService;
+	
+	/*@Autowired
+	private UserProgramRolesDAO userProgramRolesDAO;*/
+	
+	@Autowired
+	private TIDUsersDAO tIDUsersDAO;
+	
 	private static Logger logger = LoggerFactory.getLogger(IMIServicesUtil.class);
 
 	public static String prepareJson(final String key, final String value) {
@@ -55,12 +81,10 @@ public class IMIServicesUtil {
 		return returnString;
 	}
 	
-	
-	
-
+	// this should include $ sign and merge with format numbers - can't change now since it is used for none curency
 	public String formatCurrency(int number){
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format((int)number);
+		String moneyString = formatter.format(number);
 		if (moneyString.endsWith(".00")) {
 			int centsIndex = moneyString.lastIndexOf(".00");
 			if (centsIndex != -1) {
@@ -72,8 +96,9 @@ public class IMIServicesUtil {
 	}
 
 	public String formatCurrency(double number){
+		number =  Math.round(number);
 		NumberFormat formatter = NumberFormat.getCurrencyInstance();
-		String moneyString = formatter.format((int)number);
+		String moneyString = formatter.format(number);
 		if (moneyString.endsWith(".00")) {
 			int centsIndex = moneyString.lastIndexOf(".00");
 			if (centsIndex != -1) {
@@ -83,18 +108,18 @@ public class IMIServicesUtil {
 
 		return moneyString;
 	}
-
+	
 	public String formatNumbers(double number){
+		number = Math.round(number);
 		DecimalFormat formatter = new DecimalFormat("#,###");
-
 		return formatter.format(number);
 	}
 
 	public String formatNumbers(int number){
 		DecimalFormat formatter = new DecimalFormat("#,###");
-
 		return formatter.format(number);
 	}
+
 	
 	public String getCurrentQuarter(){
 		Date date = new Date();
@@ -108,8 +133,46 @@ public class IMIServicesUtil {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		return (cal.get(Calendar.YEAR))+"";
-	}	
+	}
 	
+	public UserDetailsImpl checkToken(HttpServletRequest request){
+		UserDetailsImpl user = null;
+		try{
+			String token = request.getHeader(tokenHeader);
+			String username = jwtTokenUtil.getUsernameFromToken(token);
+			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
+			if(!jwtTokenUtil.validateToken(token, user)){
+				throw new BadCredentialsException("Invalid Token");
+			}
+		}catch(BadCredentialsException e){
+			throw new BadCredentialsException(e.getMessage());
+		}catch(Exception e){
+			throw new AuthenticationCredentialsNotFoundException("No credentials found in header");
+		}
+		return user;
+	}
+	
+	
+	public UserDetailsImpl checkAdminToken(HttpServletRequest request){
+		UserDetailsImpl user = null;
+		try{
+			String token = request.getHeader(tokenHeader);
+			String username = jwtTokenUtil.getUsernameFromToken(token);
+			user = (UserDetailsImpl) userDetailsService.loadUserByUsername(username);
+			if(!jwtTokenUtil.validateToken(token, user)){
+				throw new BadCredentialsException("Invalid Token");
+			}
+			if(!tIDUsersDAO.isAdmin(username)){
+				throw new BadCredentialsException("User is not an Admin");
+			}
+		}
+		catch(BadCredentialsException e){
+			throw new BadCredentialsException(e.getMessage());
+		}catch(Exception e){
+			throw new AuthenticationCredentialsNotFoundException("No credentials found in header");
+		}
+		return user;
+	}
 	
 	
 

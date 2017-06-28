@@ -3,11 +3,11 @@
  */
 package com.imperialm.imiservices.dto;
 
-import com.imperialm.imiservices.model.TileAttribute1;
-import com.imperialm.imiservices.model.TileDataTable;
-
 import java.io.Serializable;
 import java.util.List;
+
+import com.imperialm.imiservices.model.TileAttribute1;
+import com.imperialm.imiservices.model.TileDataTable;
 
 /**
  * @author Dheerajr

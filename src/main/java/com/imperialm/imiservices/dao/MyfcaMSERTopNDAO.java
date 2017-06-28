@@ -1,8 +1,8 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
-
 import java.util.List;
+
+import com.imperialm.imiservices.dto.MyfcaMSERTopNDTO;
 
 public interface MyfcaMSERTopNDAO {
 public static String TOP_N_BY_TYPE = "select TOP (?) [TopNType] 'topNType', [Parent] 'parentTerritory', [DealerCode] 'dealerCode', [DealerName] 'dealerName', [SID] 'sID', [Name] 'name', [Earnings] 'earnings', [TopNRank] 'topNRank', [Toggle] 'toggle', ISNULL([Quantity],0) 'quantity', '' as error from [MyfcaMSERTopN] WHERE [TopNType] LIKE ? ORDER BY [TopNRank]";

@@ -1,17 +1,19 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.MyFCAMserRankingDTO;
 
 @Repository
 public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
@@ -30,8 +32,8 @@ public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT, MyFCAMserRankingDTO.class);
 			query.setParameter(0, territory);
-			List<MyFCAMserRankingDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -49,8 +51,8 @@ public class MyFCAMserRankingDAOImpl implements MyFCAMserRankingDAO{
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD, MyFCAMserRankingDTO.class);
 			query.setParameter(0, territory);
-			List<MyFCAMserRankingDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

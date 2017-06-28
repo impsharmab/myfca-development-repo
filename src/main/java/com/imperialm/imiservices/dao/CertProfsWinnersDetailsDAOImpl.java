@@ -1,16 +1,18 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.CertProfsWinnersDetailsDTO;
 
 @Repository
 public class CertProfsWinnersDetailsDAOImpl implements CertProfsWinnersDetailsDAO {
@@ -28,8 +30,8 @@ public class CertProfsWinnersDetailsDAOImpl implements CertProfsWinnersDetailsDA
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_CODE, CertProfsWinnersDetailsDTO.class);
 			query.setParameter(0, dealerCode);
-			List<CertProfsWinnersDetailsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -46,8 +48,8 @@ public class CertProfsWinnersDetailsDAOImpl implements CertProfsWinnersDetailsDA
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_DEALER_CODE_GROUP_BY_SID, CertProfsWinnersDetailsDTO.class);
 			query.setParameter(0, dealerCode);
-			List<CertProfsWinnersDetailsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -65,12 +67,28 @@ public class CertProfsWinnersDetailsDAOImpl implements CertProfsWinnersDetailsDA
 			final Query query = this.em.createNativeQuery(SELECT_BY_SID, CertProfsWinnersDetailsDTO.class);
 			query.setParameter(0, sID);
 			query.setParameter(1, dealerCode);
-			List<CertProfsWinnersDetailsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
 			logger.error("error occured in getCertProfsWinnersDetailsBySID", ex);
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CertProfsWinnersDetailsDTO> getCertProfsWinnersDetailsSUMBySID(String sID) {
+		List<CertProfsWinnersDetailsDTO> result = new ArrayList<CertProfsWinnersDetailsDTO>();
+		try {
+			final Query query = this.em.createNativeQuery(SELECT_BY_SID_SUM, CertProfsWinnersDetailsDTO.class);
+			query.setParameter(0, sID);
+			result = query.getResultList();
+		} catch (final NoResultException ex) {
+			logger.info("result in else " + result);
+		} catch (final Exception ex) {
+			logger.error("error occured in getCertProfsWinnersDetailsSUMBySID", ex);
 		}
 		return result;
 	}

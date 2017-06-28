@@ -1,14 +1,19 @@
 package com.imperialm.imiservices.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter @Setter @Entity
 public class SIRewardsDetailsDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2423753053442658107L;
 	@Id private String dealerCode;
 	@Id private String dealerName;
 	@Id private String sID;

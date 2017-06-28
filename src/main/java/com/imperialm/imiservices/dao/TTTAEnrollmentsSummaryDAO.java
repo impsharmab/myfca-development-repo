@@ -1,9 +1,9 @@
 package com.imperialm.imiservices.dao;
 
+import java.util.List;
+
 import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
 import com.imperialm.imiservices.model.response.TotalName;
-
-import java.util.List;
 
 public interface TTTAEnrollmentsSummaryDAO {
 	

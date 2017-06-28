@@ -1,10 +1,10 @@
 package com.imperialm.imiservices.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.io.Serializable;
 import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter @Setter
 public class Permissions implements Serializable {

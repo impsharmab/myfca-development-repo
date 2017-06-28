@@ -1,17 +1,19 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.BrainBoostWinndersGraphDTO;
 
 @Repository
 public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDAO {
@@ -28,12 +30,10 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 		try {
 			if(filter){
 				final Query query = this.em.createNativeQuery(SELECT_BC_FILTERED, BrainBoostWinndersGraphDTO.class);
-				List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
-				result = rows;
+				result = query.getResultList();
 			}else{
 				final Query query = this.em.createNativeQuery(SELECT_BC, BrainBoostWinndersGraphDTO.class);
-				List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
-				result = rows;
+				result = query.getResultList();
 			}
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
@@ -50,8 +50,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_DISTRIC_BY_BC, BrainBoostWinndersGraphDTO.class);
 			query.setParameter(0, list);
-			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -69,8 +68,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY, BrainBoostWinndersGraphDTO.class);
 			query.setParameter(0, list);
-			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -87,8 +85,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY, BrainBoostWinndersGraphDTO.class);
 			query.setParameter(0, list);
-			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -105,8 +102,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_SINGLE, BrainBoostWinndersGraphDTO.class);
 			query.setParameter(0, list);
-			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -122,8 +118,7 @@ public class BrainBoostWinndersGraphDAOImpl implements BrainBoostWinndersGraphDA
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_BY_TERRITORY, BrainBoostWinndersGraphDTO.class);
 			query.setParameter(0, list);
-			List<BrainBoostWinndersGraphDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

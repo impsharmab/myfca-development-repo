@@ -1,17 +1,19 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.MyfcaMSERTotalEarningsDTO;
 
 @Repository
 public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO {
@@ -31,12 +33,12 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 		try {
 			if(filter){
 				final Query query = this.em.createNativeQuery(SELECT_BC_FILTERED, MyfcaMSERTotalEarningsDTO.class);
-				List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-				result = rows;
+				result = query.getResultList();
+				
 			}else{
 				final Query query = this.em.createNativeQuery(SELECT_BC, MyfcaMSERTotalEarningsDTO.class);
-				List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-				result = rows;
+				result = query.getResultList();
+				
 			}
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
@@ -54,8 +56,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_DISTRIC_BY_BC, MyfcaMSERTotalEarningsDTO.class);
 			query.setParameter(0, list);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -73,8 +75,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_AND_TOGGLE, MyfcaMSERTotalEarningsDTO.class);
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -92,8 +94,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
 			query.setParameter(2, program);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -111,8 +113,7 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			final Query query = this.em.createNativeQuery(SELECT_DISTINCT_PROGRAM_BY_PARENT_TERRITORY_AND_TOGGLE);
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
-			List<String> rows = (List<String>) query.getResultList();
-			result = rows;
+			result = (List<String>) query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -133,8 +134,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
 			query.setParameter(2, program);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -153,8 +154,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_AND_TOGGLE_SUM, MyfcaMSERTotalEarningsDTO.class);
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -172,8 +173,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_TOGGLE_SUM, MyfcaMSERTotalEarningsDTO.class);
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -192,8 +193,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_AND_TOGGLE, MyfcaMSERTotalEarningsDTO.class);
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -213,8 +214,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			final Query query = this.em.createNativeQuery(SELECT_NUMBER_OF_DEALERS_ENROLLED_BY_BC_DISTRICT_AND_TOGGLE, MyfcaMSERTotalEarningsDTO.class);
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -234,8 +235,8 @@ public class MyfcaMSERTotalEarningsDAOImpl implements MyfcaMSERTotalEarningsDAO 
 			query.setParameter(0, territory);
 			query.setParameter(1, toggle);
 			query.setParameter(2, program);
-			List<MyfcaMSERTotalEarningsDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

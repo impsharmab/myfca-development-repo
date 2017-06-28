@@ -1,12 +1,12 @@
 package com.imperialm.imiservices.util;
 
 
-import org.apache.tomcat.util.codec.binary.Base64;
-
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.tomcat.util.codec.binary.Base64;
 
 /**
  * Both parties must agree upon a secret key (KEY) and initialization

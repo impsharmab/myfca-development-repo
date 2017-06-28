@@ -1,19 +1,21 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
-import com.imperialm.imiservices.model.response.TotalName;
-import com.imperialm.imiservices.util.IMIServicesUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.TTTAEnrollmentsSummaryDTO;
+import com.imperialm.imiservices.model.response.TotalName;
+import com.imperialm.imiservices.util.IMIServicesUtil;
 
 @Repository
 public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO {
@@ -34,8 +36,8 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 			final Query query = this.em.createNativeQuery(SELECT_BY_CHILD_TERRITORY_AND_POSITIONCODE, TTTAEnrollmentsSummaryDTO.class);
 			query.setParameter(0, territories);
 			query.setParameter(1, positionCode);
-			List<TTTAEnrollmentsSummaryDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -55,8 +57,8 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 			final Query query = this.em.createNativeQuery(SELECT_BY_PARENT_TERRITORY_AND_POSITIONCODE, TTTAEnrollmentsSummaryDTO.class);
 			query.setParameter(0, territories.get(0));
 			query.setParameter(1, positionCode);
-			List<TTTAEnrollmentsSummaryDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -198,8 +200,8 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 			final Query query = this.em.createNativeQuery(SELECT_SUM_BY_PARENT_TERRITORY_AND_POSITIONCODE, TTTAEnrollmentsSummaryDTO.class);
 			query.setParameter(0, territories.get(0));
 			query.setParameter(1, positionCode);
-			List<TTTAEnrollmentsSummaryDTO> rows = query.getResultList();
-			result = rows;
+			result = query.getResultList();
+			
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {
@@ -212,12 +214,10 @@ public class TTTAEnrollmentsSummaryDAOImpl implements TTTAEnrollmentsSummaryDAO 
 	@Override
 	public List<Double> getTTTANATAverageSurveyScoreByPositionCode(String positionCode) {
 		List<Double> result = new ArrayList<Double>();
-
 		try {
 			final Query query = this.em.createNativeQuery(SELECT_NAT_AVERAGE_SURVEY_SCORE);
 			query.setParameter(0, positionCode);
-			List<Double> rows = (List<Double>) query.getResultList();
-			result = rows;
+			result = (List<Double>) query.getResultList();
 		} catch (final NoResultException ex) {
 			logger.info("result in else " + result);
 		} catch (final Exception ex) {

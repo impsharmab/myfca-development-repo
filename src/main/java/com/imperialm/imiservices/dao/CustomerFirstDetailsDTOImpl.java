@@ -1,16 +1,18 @@
 package com.imperialm.imiservices.dao;
 
-import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
+
+import com.imperialm.imiservices.dto.CustomerFirstDetailsDTO;
 
 @Repository
 public class CustomerFirstDetailsDTOImpl implements CustomerFirstDetailsDAO{

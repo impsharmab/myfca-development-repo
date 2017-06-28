@@ -33,7 +33,7 @@ export class LoginService {
     }
 
     getRefreshLoginResponse(token) {
-        //  var url = "https://test.myfcarewards.com/login/tokenrefresh/";
+        var url = "https://test.myfcarewards.com/login/tokenrefresh/";
         var url = "./login/tokenrefresh/";
 
         var headers = new Headers();
