@@ -3,14 +3,14 @@
 
 <head>
 	<!--<base href="/myfcarewards/">-->
-	<script>
+	 <script>
 		document.write('<base href="' + document.location + '" />');
-	</script>
-	<!--<base href="/">-->
+	</script> 
+	<!-- <base href="/"> -->
 	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 	<meta http-equiv="Pragma" content="no-cache">
 	<meta http-equiv="Expires" content="0">
-	<meta http-equiv="cache-control" content="max-age=0" />	
+	<meta http-equiv="cache-control" content="max-age=0" />
 	<link rel="shortcut icon" href="assets/images/favicon.ico" />
 	<title>MyFcaRewards Portal</title>
 	<meta charset="UTF-8">
@@ -51,6 +51,18 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+	<script>
+		function openDetailsPage(name, tileId) {
+			if (name == null) {
+				return true;
+			}
+			if (name.length > 3 && name.length < 7 && (tileId == 9 || tileId == 10 || tileId == 11 || tileId == 12 || tileId == 13 || tileId == 19 || tileId == 20 || tileId == 22 || tileId == 23 || tileId == 31 || tileId == 32 || tileId == 33 || tileId == 36)) {
+				var token = JSON.parse(sessionStorage.getItem("CurrentUser")).token;
+				window.open("./datatable?chartId=" + tileId + "&territory=" + name + "&token=" + token)
+			}
+			return true;
+		}
+	</script>
 	<my-app>
 		<div style="display: flex; justify-content: center;">
 			<img class="refreshGlyphImg" src="assets/images/spinner/spinner.gif" />

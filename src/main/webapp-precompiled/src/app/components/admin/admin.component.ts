@@ -613,12 +613,12 @@ export class AdminComponent implements OnInit {
         this.getTileDataResponse();
     }
     private internalAdmin() {
-        var sessionStorageItem: any = JSON.parse(sessionStorage.getItem("CurrentUser"));
+       // var sessionStorageItem: any = JSON.parse(sessionStorage.getItem("CurrentUser"));
         var positioncode: any = JSON.parse(sessionStorage.getItem("CurrentUser")).positionCode;
         if (positioncode.indexOf("IAD") > -1) {
             this.isInternalAdmin = true;
         } else {
-            this.isInternalAdmin = false;
+            this.isInternalAdmin = false; 
         }
     }
 }

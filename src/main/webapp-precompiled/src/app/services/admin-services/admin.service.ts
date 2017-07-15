@@ -6,8 +6,9 @@ import './../rxjs-operators';
 
 @Injectable()
 export class AdminService {
-    private baseUrl = "";
+     private baseUrl = "";
     // private baseUrl = "https://test.myfcarewards.com/";
+   // private baseUrl = "https://www.myfcarewards.com/";
 
     constructor(private http: Http, private cookieService: CookieService) { }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { DomSanitizer } from "@angular/platform-browser";
 import { Router } from '@angular/router';
 
 import { DashboardBodyService } from '../../services/dashboard-body-services/dashboard-body.service';
@@ -54,7 +55,8 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   constructor(private service: DashboardBodyService,
     private modalService: NgbModal,
     private router: Router,
-    private cookieService: CookieService) {
+    private cookieService: CookieService,
+    private domSanitizer: DomSanitizer) {
     Highcharts.setOptions({
       lang: {
         thousandsSep: ',',
@@ -86,13 +88,13 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     sessionStorage.setItem("showWelcomePopup", "false");
 
 
-    $(document).ready(function () {
-      var elementHeights = $('.data - group').map(function () {
-        return $(this).height();
-      }).get();
-      var maxHeight = Math.max.apply(null, elementHeights);
-      $('.data-group').height(maxHeight);
-    });
+    // $(document).ready(function () {
+    //   var elementHeights = $('.data - group').map(function () {
+    //     return $(this).height();
+    //   }).get();
+    //   var maxHeight = Math.max.apply(null, elementHeights);
+    //   $('.data-group').height(maxHeight);
+    // });
 
     function numberWithPercentage(x) {
       return (x).toFixed(1).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -100,6 +102,12 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
     this.checkDealerToken();
   }
 
+  private getInfoMessage(infoMessage: string) {
+    alert(infoMessage);
+    return "Hello";
+
+    //return this.domSanitizer.bypassSecurityTrustResourceUrl(infoMessage);
+  }
   private checkDealerToken() {
     if (this.cookieService.get("adminToken") == this.cookieService.get("token")) {
       if ((this.cookieService.get("token") !== undefined) && this.cookieService.get("token") !== null) {
@@ -490,19 +498,17 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       xAxis: {
         min: 0,
         type: 'category',
-        categories: [],
-        labels: {
-          style: {
-            fontSize: '7.5px'
-          }
-        },
+        categories: []
+        // labels: {
+        //   style: {
+        //     fontSize: '7.5px'
+        //   }
+        // },  
 
       },
       yAxis: {
         min: 0,
         minRange: 1,
-
-
         allowDecimals: false,
         title: {
           text: chartData.yaxisTitle
@@ -709,8 +715,23 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         }
         break;
       case "column":
-        chartObj.chart.type = "column",
-          chartObj.plotOptions["column"] =
+        chartObj.chart.type = "column";
+        chartObj.xAxis["labels"] = {
+          align: 'center',
+          formatter: function () {
+            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+          },
+          // rotation: 0,
+          // step: 0,
+          style: {
+            fontSize: '7.5px',
+            textDecoration: 'none'
+          },
+          
+          useHTML: true
+        }
+
+        chartObj.plotOptions["column"] =
           {
             plotBorderWidth: 0,
             allowPointSelect: false,
@@ -906,6 +927,20 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       case "bar_compound":
         chartObj.chart["marginRight"] = 60
         chartObj.chart.type = "bar";
+        chartObj.xAxis["labels"] = {
+          align: 'center',
+          formatter: function () {
+            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+          },
+          // rotation: 0,
+          // step: 0,
+          style: {
+            fontSize: '7.5px',
+            textDecoration: 'none'
+          },
+          
+          useHTML: true
+        }
         chartObj.plotOptions["series"] = {
           point: {
             events: {
@@ -959,7 +994,21 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         this.constructChartObject(chartData, chartObj, tileId);
         break;
       case "column_compound":
-        chartObj.chart.type = "column"
+        chartObj.chart.type = "column";
+        chartObj.xAxis["labels"] = {
+          align: 'center',
+          formatter: function () {
+            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+          },
+          // rotation: 0,
+          // step: 0,
+          style: {
+            fontSize: '7.5px',
+            textDecoration: 'none'
+          },
+          
+          useHTML: true
+        }
         chartObj.plotOptions["series"] = {
           point: {
             events: {
@@ -1001,7 +1050,21 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         this.constructChartObject(chartData, chartObj, tileId);
         break;
       case "column_stack":
-        chartObj.chart.type = "column"
+        chartObj.chart.type = "column";
+        chartObj.xAxis["labels"] = {
+          align: 'center',
+          formatter: function () {
+            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+          },
+          // rotation: 0,
+          // step: 0,
+          style: {
+            fontSize: '7.5px',
+            textDecoration: 'none'
+          },
+          
+          useHTML: true
+        }
         chartObj.plotOptions["column"] = {
           point: {
             events: {

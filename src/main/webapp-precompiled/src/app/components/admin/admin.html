@@ -4,7 +4,7 @@
             <div class="col-sm-12 col-md-9">
                 <div class="row">
                     <div class="col-md-8">
-                        <!--<h1>Admin</h1>--> 
+                        <!--<h1>Admin</h1>-->
                     </div>
                 </div>
                 <!--user emulation start-->
@@ -14,7 +14,7 @@
                     <div class="col-sm-12 col-md-8">
                         <div class="box">
                             <h4>User Emulation</h4>
-                            <div class="row"> 
+                            <div class="row">
                                 <div class="col-sm-12 col-md-6">
                                     <p style="color: red;">{{emulateusermessage}}</p>
                                     <label>Enter SID/TID/Dealer Code</label>
@@ -42,7 +42,7 @@
                 <!--user emulation end-->
 
                 <!--Add Image to Banner start-->
-                <div class="row" *ngIf="isInternalAdmin">
+                <div class="row" [hidden]="!isInternalAdmin">
 
                     <div class="col-sm-12 col-md-8">
 
@@ -75,7 +75,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12 col-md-4" >
+                    <div class="col-sm-12 col-md-4">
                         <div class="box">
 
                             <h4>Upload an Image</h4>
@@ -97,7 +97,7 @@
                 <!--Add Image to Banner end-->
 
                 <!--Configuration Image to Banner start-->
-                <div class="row" *ngIf="isInternalAdmin">
+                <div class="row" [hidden]="!isInternalAdmin">
                     <div class="col-sm-12 col-md-12">
                         <div class="box">
                             <h4>Banner Configuration</h4>
