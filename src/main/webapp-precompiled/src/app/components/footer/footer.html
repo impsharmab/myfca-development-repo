@@ -15,7 +15,8 @@
       </div>
       <div class="extra-links col-sm-12 col-md-4">
         <div class="row">
-          <div class="col-sm-12 col-md-4 ">
+          <!--For Production  -->
+           <!-- <div class="col-sm-12 col-md-4 ">
             <a *ngIf="hideButton" class="white-text footer-logo" (click)='checkDealerToken(); openFooterSSOSite("https://fcarewardredemption.com/he_singlesignon/login/login?token=")'
               target="_blank" title="Reward Redemption">
             <img class="footer-logo-img" src="services/loadrsc/MyRewards.jpg" alt="Reward Redemption" /></a>
@@ -23,7 +24,19 @@
             <a *ngIf="!hideButton" class="white-text footer-logo pointer" (click)='checkDealerToken(); openFooterSSOSite("https://fcarewardredemption.com/he_singlesignon/login/login?token=")'
               target="_blank" title="Reward Redemption">
             <img class="footer-logo-img" src="services/loadrsc/MyRewards.jpg" alt="Reward Redemption" /></a>
-          </div>
+          </div>  -->
+
+          <!--For Test  -->
+           <div class="col-sm-12 col-md-4 ">
+            <a *ngIf="hideButton" class="white-text footer-logo" (click)='checkDealerToken(); openFooterSSOSite("https://myfcarewards.hestage.com/he_singlesignon/login/login?token=")'
+              target="_blank" title="Reward Redemption">
+            <img class="footer-logo-img" src="services/loadrsc/MyRewards.jpg" alt="Reward Redemption" /></a>
+
+            <a *ngIf="!hideButton" class="white-text footer-logo pointer" (click)='checkDealerToken(); openFooterSSOSite("https://myfcarewards.hestage.com/he_singlesignon/login/login?token=")'
+              target="_blank" title="Reward Redemption">
+            <img class="footer-logo-img" src="services/loadrsc/MyRewards.jpg" alt="Reward Redemption" /></a>
+          </div> 
+
           <div class="col-sm-12 col-md-4">
             <a class="white-text footer-logo" href="https://www.rewardingexcellence.com/" target="_blank" alt="Rewarding Excellence">
             <img class="footer-logo-img" src="services/loadrsc/RewardExcellence.jpg" title="Rewarding Excellence" /></a>

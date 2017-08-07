@@ -499,14 +499,14 @@
 			var dealerCode = {};
 			for (var i = 0; i < jsonData.length; i++) {
 				var obj = jsonData[i];
-				delarName[obj.dealerCode] = obj.dealerName;
-				dealerCode[obj.dealerCode] = obj.dealerCode;
+				delarName[obj.dealerCode.trim()] = obj.dealerName.trim();
+				dealerCode[obj.dealerCode.trim()] = obj.dealerCode.trim();
 
 			}
 			for (var key in dealerCode) {
 				var outerObj = {}
 				var outerData = jsonData.filter(function (ele, index, array) {
-					return dealerCode[key] === ele.dealerCode;
+					return dealerCode[key] === ele.dealerCode.trim();
 				});
 				var sid = {};
 				for (var k = 0; k < outerData.length; k++) {

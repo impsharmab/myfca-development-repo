@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, TemplateRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { DomSanitizer } from "@angular/platform-browser";
@@ -23,7 +23,7 @@ require('highcharts/modules/no-data-to-display')(Highcharts);
   styles: ['button:focus { background-color:#025fb1; color: #fff; }']
 })
 
-export class DashboardBodyComponent implements OnInit, OnDestroy {
+export class DashboardBodyComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() data: any;
   @Input() enablewelcomeprompt: any;
   @ViewChild("content") private model: TemplateRef<any>;
@@ -73,6 +73,21 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
   private showWelcomeModal() {
     sessionStorage.setItem("showWelcomePopup", "false");
   }
+  ngAfterViewInit() {
+    $(document).ready(function () {
+      setTimeout(
+        function () {
+          var elementHeights = $('.data-group').map(function () {
+            return $(this).height();
+          }).get();
+          var maxHeight = Math.max.apply(null, elementHeights);
+          $('.data-group').height(maxHeight);
+        },
+        800
+      );
+    });
+  }
+
   ngOnInit() {
     this.data = JSON.parse(sessionStorage.getItem("CurrentUser"))
     var showWelcomePopup = sessionStorage.getItem("showWelcomePopup");
@@ -498,13 +513,28 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       xAxis: {
         min: 0,
         type: 'category',
-        categories: []
+        categories: [],
         // labels: {
         //   style: {
         //     fontSize: '7.5px'
         //   }
-        // },  
+        // }, 
+        labels: {
+          align: 'center',
+          formatter: function () {
+            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+          },
+          // rotation: 0,
+          // step: 0,
+          style: {
+            fontSize: '7.5px',
+            // fontWeight: 'bold',
+            textDecoration: 'underline',
+            cursor: "pointer"
+          },
 
+          useHTML: true
+        }
       },
       yAxis: {
         min: 0,
@@ -716,20 +746,22 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column":
         chartObj.chart.type = "column";
-        chartObj.xAxis["labels"] = {
-          align: 'center',
-          formatter: function () {
-            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
-          },
-          // rotation: 0,
-          // step: 0,
-          style: {
-            fontSize: '7.5px',
-            textDecoration: 'none'
-          },
-          
-          useHTML: true
-        }
+        // chartObj.xAxis["labels"] = {
+        //   align: 'center',
+        //   formatter: function () {
+        //     return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+        //   },
+        //   // rotation: 0,
+        //   // step: 0,
+        //   style: {
+        //     fontSize: '7.5px',
+        //     // fontWeight: 'bold',
+        //     textDecoration: 'underline',
+        //     cursor: "pointer"
+        //   },
+
+        //   useHTML: true
+        //}
 
         chartObj.plotOptions["column"] =
           {
@@ -927,20 +959,20 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
       case "bar_compound":
         chartObj.chart["marginRight"] = 60
         chartObj.chart.type = "bar";
-        chartObj.xAxis["labels"] = {
-          align: 'center',
-          formatter: function () {
-            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
-          },
-          // rotation: 0,
-          // step: 0,
-          style: {
-            fontSize: '7.5px',
-            textDecoration: 'none'
-          },
-          
-          useHTML: true
-        }
+        // chartObj.xAxis["labels"] = {
+        //   align: 'center',
+        //   formatter: function () {
+        //     return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+        //   },
+        //   // rotation: 0,
+        //   // step: 0,
+        //   style: {
+        //     fontSize: '7.5px',
+        //     textDecoration: 'none'
+        //   },
+
+        //   useHTML: true
+        // }
         chartObj.plotOptions["series"] = {
           point: {
             events: {
@@ -995,20 +1027,20 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column_compound":
         chartObj.chart.type = "column";
-        chartObj.xAxis["labels"] = {
-          align: 'center',
-          formatter: function () {
-            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
-          },
-          // rotation: 0,
-          // step: 0,
-          style: {
-            fontSize: '7.5px',
-            textDecoration: 'none'
-          },
-          
-          useHTML: true
-        }
+        // chartObj.xAxis["labels"] = {
+        //   align: 'center',
+        //   formatter: function () {
+        //     return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+        //   },
+        //   // rotation: 0,
+        //   // step: 0,
+        //   style: {
+        //     fontSize: '7.5px',
+        //     textDecoration: 'none'
+        //   },
+
+        //   useHTML: true
+        // }
         chartObj.plotOptions["series"] = {
           point: {
             events: {
@@ -1051,20 +1083,20 @@ export class DashboardBodyComponent implements OnInit, OnDestroy {
         break;
       case "column_stack":
         chartObj.chart.type = "column";
-        chartObj.xAxis["labels"] = {
-          align: 'center',
-          formatter: function () {
-            return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
-          },
-          // rotation: 0,
-          // step: 0,
-          style: {
-            fontSize: '7.5px',
-            textDecoration: 'none'
-          },
-          
-          useHTML: true
-        }
+        // chartObj.xAxis["labels"] = {
+        //   align: 'center',
+        //   formatter: function () {
+        //     return '<div onclick="openDetailsPage(\'' + this.value + "','" + tileId + '\')">' + this.value + '</div>';
+        //   },
+        //   // rotation: 0,
+        //   // step: 0,
+        //   style: {
+        //     fontSize: '7.5px',
+        //     textDecoration: 'none'
+        //   },
+
+        //   useHTML: true
+        // }
         chartObj.plotOptions["column"] = {
           point: {
             events: {
